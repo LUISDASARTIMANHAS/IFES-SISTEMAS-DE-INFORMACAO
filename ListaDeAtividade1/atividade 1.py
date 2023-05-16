@@ -1,1 +1,0 @@
-nome = int( input("Insira seu nome"))
