@@ -1,14 +1,23 @@
-# Um posto está vendendo combustíveis com a seguinte tabela de descontos:
-# Álcool:
-# a. até 20 litros, desconto de 3% por litro. 
-# b. acima de 20 litros, desconto de 5% por litro.
-# Gasolina:
-# a. até 20 litros, desconto de 4% por litro. 
-# b. acima de 20 litros, desconto de 6% por litro.
+tipoComb = input("Insira o tipo de combustível vendido.(A-alcool, G-Gasolina)").upper()
+litrosSell = float(input("Insira a quantidade de combustível vendidos.(1)"))
 
-# Escreva um programa que leia o número de litros vendidos, 
-# o tipo de combustível
-# (codificado da seguinte forma: A­álcool, G­gasolina), 
-# calcule 
-# imprima o valor aser pago pelo cliente sabendo ­se que o preço do litro da gasolina é R$ 3,90
-# preço do litrodo álcool é R$ 3,20
+if (tipoComb == "G"):
+    total = litrosSell * 3.90
+    if (litrosSell <= 20):
+        des = total * (4/100)
+    else:
+        des = total * (6/100)
+elif (tipoComb == "A"):
+    total = litrosSell * 3.20
+    if (litrosSell <= 20):
+        des = total * (3/100)
+    else:
+        des = total * (5/100)
+else:
+    print("<Erro> <Tipo> LOG: Nenhum combustivel definito!")
+total = total - des
+
+print("Tipo De Combustivel: %s" % tipoComb)
+print("Quantidade comprada: %0.2f" % litrosSell)
+print("Desconto: %0.2f" % des)
+print("Parabens o valor total do seu combustivel foi: %0.2f" % total)
