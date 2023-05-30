@@ -18,4 +18,4 @@ if(total > 100):
     des = total * (5/100);
     total = total - des;
 
-print("O preço total deu: %0.2d")
+print("O preço total deu: %0.2d" %total)

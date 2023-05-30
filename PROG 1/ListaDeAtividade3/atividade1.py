@@ -1,12 +1,17 @@
-# A senha não pode ser igual ao nome do usuário, 
-# nem menor que 6 caracteres.
-#  Caso ocorra o erro, mostre a mensagem de erro e volte a pedir as informações. 
-# No final imprima o nome e a senha.
-# DICA: Use a função “len” para pegar a quantidade de caracteres de uma string.
-
-# Faça um programa que leia um nome de usuário e a sua senha. 
 nome = input("Insira seu nome de usuario: ");
 senha = input("Insira Sua senha: ");
 
 while (len(nome) < 6):
-    print("")
+    print("O nome não pode ser menor do que 6 caracteres");
+    nome = input("Insira seu nome de usuario: ");
+
+while (len(senha) < 6):
+    print("A senha não pode ser menor do que 6 caracteres");
+    senha = input("Insira Sua senha: ");
+
+while (senha == nome):
+    print("Senha invalida! A Senha não pode ser igual ao nome.");
+    senha = input("Insira Sua senha: ");
+
+print("Seu Usuário foi definido como: %s" %nome);
+print("Sua senha foi definido como: %s" %senha);

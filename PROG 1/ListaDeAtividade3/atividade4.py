@@ -33,11 +33,6 @@ while(numero > 0):
         impares = impares + 1
         Simpares = Simpares + numero
 
-
-    
-
-
-
 mediaPares = Spares / pares
 mediaImpares = Simpares / impares
 total = Spares + Simpares
