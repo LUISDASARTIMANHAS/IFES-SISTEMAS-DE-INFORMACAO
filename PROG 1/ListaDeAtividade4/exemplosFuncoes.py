@@ -1,4 +1,5 @@
 import turtle
+import presets
 
 def lado():
     print("Desenhando lado...")
@@ -17,11 +18,12 @@ def degrau():
 # ----------Fim das funções-------
 
 def main():
+    presets.head()
     cont = 1
     while(cont <= 4):
         lado()
         turtle.right(90)
         cont = cont + 1
-
+    presets.copy()
 
 main()
