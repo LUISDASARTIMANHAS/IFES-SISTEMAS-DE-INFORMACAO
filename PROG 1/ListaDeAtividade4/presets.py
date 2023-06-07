@@ -18,11 +18,11 @@ def copy():
     print("----------------------------------------------------")
 
 def validNota():
-    n = input("Insira uma Nota: ")
-    while(n < 0) or ( n > 10):
-        print("Nota Invalido!")
-        n = input("Insira uma Nota: ")
-    return n
+    nota = input("Insira uma Nota: ")
+    while(nota < 0) or ( nota > 10):
+        print("Nota Invalida!")
+        nota = input("Insira uma Nota: ")
+    return nota
 
 def validNome():
     nome = input("Insira seu nome: ");
@@ -79,3 +79,43 @@ def validSenha():
         print("A senha não pode ser menor do que 6 caracteres");
         senha = input("Insira Sua senha: ");
     return senha
+
+def fatorial(num):
+    fat = 1
+
+    while num > 1:
+        fat = fat * num
+        num = num - 1
+    
+    return fat
+
+def media3(nota1,nota2,nota3):
+    soma = nota1 + nota2 + nota3
+    media = soma / 3
+    return media
+
+def resultadoNota(media):
+    if(media >= 7):
+        txt = "APROVADO"
+    elif(media < 6):
+        txt = "REPROVADO"
+    else:
+        txt = "PROVA FINAL"
+    return txt
+
+def resGabarito():
+    g = input("Gabarito da questão: ").upper()
+
+    while g != "A" and g != "B" and g != "C" and g != "D" and g != "E":
+        g = input("Questão: ").upper()
+    
+    return g
+
+def resProva():
+    q1 = input("Questão: ").upper()
+
+    while q1 != "A" and q1 != "B" and q1 != "C" and q1 != "D" and q1 != "E":
+        q1 = input("Questão: ").upper()
+    
+    return q1
+
