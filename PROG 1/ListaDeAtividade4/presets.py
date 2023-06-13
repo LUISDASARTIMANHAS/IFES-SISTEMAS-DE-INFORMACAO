@@ -164,3 +164,6 @@ def saldoSys(saldo,value):
     saldo = saldo + (value)
     print("Saldo Atual: %d" %saldo)
     return saldo
+
+def somaImposto(taxaImposto,valorCusto):
+    
