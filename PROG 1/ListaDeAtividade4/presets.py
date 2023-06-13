@@ -1,14 +1,20 @@
+import random
+from typing import Sequence
+
 def head():
     print("----------------------------------------------------")
     print("\t LUIS_DAS_ARTIMANHAS & PINGOBRAS S.A")
     print("\t Iniciando programa.....")
     print("----------------------------------------------------")
 
-def data(dado,user,dado2,senha):
+def data(line1,line2,line3,line4,dado1,dado2,dado3,dado4):
     print("-----------------------DADOS--------------------")
-    print("\t %s : %s" %(dado,user))
-    print("\t %s : %s" %(dado2,senha))
+    print("\t %s : %s" %(line1,dado1))
+    print("\t %s : %s" %(line2,dado2))
+    print("\t %s : %s" %(line3,dado3))
+    print("\t %s : %s" %(line4,dado4))
     print("----------------------------------------------------")
+
 
 def copy():
     print("----------------------------------------------------")
@@ -103,19 +109,58 @@ def resultadoNota(media):
         txt = "PROVA FINAL"
     return txt
 
-def resGabarito():
-    g = input("Gabarito da questão: ").upper()
+def resGabarito(numQ):
+    g = input("Gabarito da questão %d: "%numQ).upper()
 
     while g != "A" and g != "B" and g != "C" and g != "D" and g != "E":
-        g = input("Questão: ").upper()
+        g = input("Questão %d: " %numQ).upper()
     
     return g
 
-def resProva():
-    q1 = input("Questão: ").upper()
+def resProva(numRes):
+    q1 = input("Questão %d: " %numRes).upper()
 
-    while q1 != "A" and q1 != "B" and q1 != "C" and q1 != "D" and q1 != "E":
-        q1 = input("Questão: ").upper()
+    while (q1 != "A") and (q1 != "B") and (q1 != "C") and (q1 != "D") and (q1 != "E"):
+        q1 = input("Questão %d: " %numRes).upper()
     
     return q1
 
+def validNum():
+    num = int(input("Insira um número: "));
+    
+    while(num <= 0 ):
+        print("O Número não pode ser menor do que 0!");
+        num = int(input("Insira um número: "));
+    return num
+
+def lancarDado():
+    return random.randint(1,6)
+
+def jogarDados():
+    input("Pressione ENTER para lançar os dados.")
+    d1 = lancarDado()
+    d2 = lancarDado()
+    soma = d1 + d2
+    print("Dado 1: %d" %d1)
+    print("Dado 2: %d" %d2)
+    print("SOMA: %d" %soma)
+    print("---------------------")
+    return soma
+
+def sequencia(stop):
+    seq = 1
+    while(seq <= stop):
+        print(seq, end=" ")
+        seq = seq + 1
+    return True
+
+def imprimirLinha(numLinha):
+    cont = 0
+    while(cont <= numLinha):
+        print(numLinha, end=" ")
+        cont = cont+1
+
+def saldoSys(saldo,value):
+    saldo = saldo + (value)
+    print("Saldo Atual: %d" %saldo)
+    return saldo
