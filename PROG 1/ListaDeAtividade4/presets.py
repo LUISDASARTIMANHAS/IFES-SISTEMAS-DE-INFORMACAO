@@ -133,6 +133,39 @@ def validNum():
         num = int(input("Insira um número: "));
     return num
 
+def validQtdProdutos():
+    qtd = int(input("Insira a quantidade de produtos: "));
+    
+    while(qtd <= 0 ):
+        print("A quantidade não pode ser menor do que 0!");
+        qtd = int(input("Insira a quantidade de produtos: "));
+    return qtd
+
+def validTaxa():
+    tax = int(input("Insira a taxa: "));
+    
+    while(tax <= 0 ) or (tax >=100):
+        print("A taxa não pode ser menor do que 0 ou maior que 100!");
+        tax = int(input("Insira a taxa: "));
+    return tax
+
+def validImc(imc):
+    if(imc < 18.5):
+        categoria = "Abaixo do peso"
+    elif(imc < 25):
+        categoria = "Peso normal"
+    elif(imc < 30):
+        categoria = "Sobrepeso"
+    elif(imc < 35):
+        categoria = "Obeso leve"
+    elif(imc < 40):
+        categoria = "Obeso moderado"
+    elif(imc > 40):
+        categoria = "Obeso mórbido"
+    else:
+        categoria = "IMC Invalido!"
+    return categoria
+
 def lancarDado():
     return random.randint(1,6)
 
@@ -146,6 +179,22 @@ def jogarDados():
     print("SOMA: %d" %soma)
     print("---------------------")
     return soma
+
+def validPeso():
+    peso = int(input("Insira seu Peso: "));
+    
+    while(peso <= 0 ) or( peso >= 400):
+        print("Seu Peso não pode ser menor do que 0 ou maior que 400KG!");
+        peso = int(input("Insira seu Peso: "));
+    return peso
+
+def validAltura():
+    alt = float(input("Insira sua Altura: "));
+    
+    while(alt <= 0 ) or(alt >= 3):
+        print("Sua Altura não pode ser menor do que 0M ou maior que 3M!");
+        alt = float(input("Insira sua Altura: "));
+    return alt
 
 def sequencia(stop):
     seq = 1
@@ -165,5 +214,33 @@ def saldoSys(saldo,value):
     print("Saldo Atual: %d" %saldo)
     return saldo
 
-def somaImposto(taxaImposto,valorCusto):
-    
+def somaImposto(imposto,valorCusto):
+    porcentImposto = imposto/100
+    taxa = valorCusto * porcentImposto
+    total = valorCusto + taxa
+    print("-----------------------DADOS--------------------")
+    print("\t Valor do produto: %s" %valorCusto)
+    print("\t Imposto: %s" %imposto)
+    print("\t Taxa: %s" %taxa)
+    print("\t Total a pagar: %s" %total)
+    print("------------------------------------------------")
+
+def continuarJogando(ponto):
+    soma = jogarDados()
+    if():
+        stop = True
+        return
+    else:
+        stop = True
+        return stop
+
+
+def primeiraJogada():
+    soma = jogarDados()
+    if():
+        return True
+    elif():
+        return False
+    else:
+        continuarJogando(soma)
+
