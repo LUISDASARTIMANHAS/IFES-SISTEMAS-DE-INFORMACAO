@@ -225,6 +225,9 @@ def somaImposto(imposto,valorCusto):
     print("\t Total a pagar: %s" %total)
     print("------------------------------------------------")
 
+def valorPagamento(valorPrestação,numDiasAtraso):
+
+
 def continuarJogando(ponto):
     soma = jogarDados()
     if():
