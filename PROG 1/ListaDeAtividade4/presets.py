@@ -1,5 +1,4 @@
 import random
-from typing import Sequence
 
 def head():
     print("----------------------------------------------------")
