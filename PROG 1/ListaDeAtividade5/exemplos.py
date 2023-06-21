@@ -7,12 +7,11 @@ def imprimir(vetor):
         i = i + 1
 
 def lerVetorNotas(vetNotas):
-    stoper = presets.validNota()
-
-    while(stoper != 0):
-        vetNotas.append(nota)
+    stop = "N"
+    while(stop == "N"):
         nota = presets.validNota()
-        stoper = nota
+        vetNotas.append(nota)
+        stop = presets.stop()
 
 # ----------------------FIM DAS FUNCTIONS---------------
 def main():

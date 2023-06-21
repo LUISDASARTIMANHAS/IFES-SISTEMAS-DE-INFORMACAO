@@ -24,9 +24,8 @@ def copy():
 
 def stop():
     stop = input("Deseja Finalizar A Execução? (S/N)").upper()
-    while(stop == "S"):
-        print("Execução Finalizada!")
-    copy()
+    print("A continuar a execução...")
+    return stop
 
 
 def validNota():
@@ -131,6 +130,28 @@ def resProva(numRes):
     
     return q1
 
+def comparar(data1,data2):
+    soma = 0
+    i = 0
+    while(i < len(data1)):
+        if(data1[i] == data2[i]):
+            soma = soma + 1
+        i = i + 1
+    return soma
+
+def lerArrayGabOrRes(data):
+    cont = 0
+    while(cont < 10):
+        g = resGabarito(cont + 1)
+        data.append(g)
+        cont = cont + 1
+
+def imprimirArray(data):
+    i = 0
+    while i < len(data):
+        print("Nota %d = %.1f" % (i, data[i]))
+        i = i + 1
+
 def validNum():
     num = int(input("Insira um número: "));
     
@@ -138,6 +159,14 @@ def validNum():
         print("O Número não pode ser menor do que 0!");
         num = int(input("Insira um número: "));
     return num
+
+def validTell():
+    tell = int(input("Insira seu número de telefone: "));
+    
+    while(tell <= 0) or (tell > 10):
+        print("O Telefone não pode ser menor do que 0!");
+        tell = int(input("Insira seu número de telefone: "));
+    return tell
 
 def validQtdProdutos():
     qtd = int(input("Insira a quantidade de produtos: "));
@@ -214,6 +243,10 @@ def imprimirLinha(numLinha):
     while(cont <= numLinha):
         print(numLinha, end=" ")
         cont = cont+1
+
+def continuar():
+    continuar = "S"
+    continuar = input("")
 
 def saldoSys(saldo,value):
     saldo = saldo + (value)
