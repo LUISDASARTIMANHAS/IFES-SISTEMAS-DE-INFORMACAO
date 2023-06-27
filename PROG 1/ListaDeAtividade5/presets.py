@@ -146,10 +146,10 @@ def lerArrayGabOrRes(data):
         data.append(g)
         cont = cont + 1
 
-def imprimirArray(data):
+def imprimirArray(placeholder,data):
     i = 0
     while i < len(data):
-        print("Nota %d = %.1f" % (i, data[i]))
+        print("%s %d: %.1f" % (placeholder,i, data[i]))
         i = i + 1
 
 def validNum():
@@ -263,3 +263,37 @@ def somaImposto(imposto,valorCusto):
     print("\t Taxa: %s" %taxa)
     print("\t Total a pagar: %s" %total)
     print("------------------------------------------------")
+
+def gerarNumAleatorio(min,max):
+    return random.randint(min,max)
+
+def searchParImp(num):
+    resto = num % 2
+    if(resto == 0):
+        return "par"
+    else:
+        return "impar"
+
+def searchParImpVetor(vetor,vetorPar,vetorImp):
+    i = 0
+    while i < len(vetor):
+        resto  = vetor[i] % 2
+        if(resto == 0):
+            vetorPar.append(vetor[i])
+        else:
+            vetorImp.append(vetor[i])
+        i = i + 1
+
+def gerarNumQtd(qtd,min,max, vetor):
+    cont = 0
+    while(cont < qtd):
+        num = gerarNumAleatorio(min,max)
+        vetor.append(num)
+        cont = cont + 1
+
+def intercalarVetor(input1,input2,data):
+    i = 0
+    while(i < len(input1)) or (i < len(input2)):
+        data.append(input1[i])
+        data.append(input2[i])
+        i = i + 1
