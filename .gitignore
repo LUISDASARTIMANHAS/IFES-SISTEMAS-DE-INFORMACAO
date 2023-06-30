@@ -12,3 +12,5 @@ trim_trailing_whitespace = false
 insert_final_newline = false
 .vscode
 .github
+vscode
+github
