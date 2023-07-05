@@ -1,12 +1,27 @@
-import functions
+### EXEMPLO PARA O TRABALHO
 
-functions.
+def menu() :
+    op = ""
+    while op.isdigit() == False or int(op) < 0 or int(op) > 6:
+
+        print("\n" * 130)        
+        print("NOME DO SEU SISTEMA:")
+        print("1-Inserir")
+        print("2-Pesquisar")
+        print("3-Atualizar")
+        print("4-Maior")
+        print("5-Excluir")
+        print("6-Listar")
+        print("0-Sair")
+        op = input("Escolha sua opção: ")
+    return int(op)
+
     
 ###### PRINCIPAL ##########
 def main():
     op = 1
     while op != 0:
-        op = functions.menu()
+        op = menu()
         
         if op == 0:
             print("\n\nFim do programa!!!\n\n")
@@ -54,4 +69,9 @@ def main():
             print("Opção inválida!")
 
         input("Pressione <enter> para continuar ...")
+    
+
+
 main()
+
+        

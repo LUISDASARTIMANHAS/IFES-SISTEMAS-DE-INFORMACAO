@@ -22,6 +22,22 @@ def copy():
     print("\t PINGOBRAS S.A")
     print("----------------------------------------------------")
 
+def menu() :
+    op = ""
+    while op.isdigit() == False or int(op) < 0 or int(op) > 6:
+
+        print("\n" * 130)        
+        print("NOME DO SEU SISTEMA:")
+        print("1-Inserir")
+        print("2-Pesquisar")
+        print("3-Atualizar")
+        print("4-Maior")
+        print("5-Excluir")
+        print("6-Listar")
+        print("0-Sair")
+        op = input("Escolha sua opção: ")
+    return int(op)
+
 def stop():
     stop = input("Deseja Finalizar A Execução? (S/N)").upper()
     print("A continuar a execução...")
@@ -54,42 +70,6 @@ def validUser():
         user = input("Insira seu usuario: ");
         nTam = len(user)
     return user
-
-def validIdade():
-    idade = int(input("Insira sua idade: "));
-    while(idade <= 0) or (idade >= 50):
-        print("Idade invalida.");
-        idade = int(input("Insira sua idade: "));
-    return idade
-
-def validSalario():
-    salario = int(input("Insira seu salario: "));
-    while(salario < 0):
-        print("Salario invalido.")
-        salario = input("Insira Seu salario: ");
-    return salario
-
-def validSexo():
-    sx = input("Insira seu sexo(F/M): ").upper();
-    while (sx != "F") and (sx != "M"):
-        print("Sexo invalido.")
-        sx = input("Insira seu sexo(F/M): ").upper();
-    return sx
-
-def validUF():
-    uf = input("Insira seu Estado Civil: ").upper();
-    while (uf != "S") and (uf != "C") and (uf != "V") and (uf != "D"):
-        print("Sexo invalido.")
-        uf = input("Insira seu Estado Civil: ").upper();
-    return uf
-
-def validSenha():
-    senha = input("Insira Sua senha: ");
-
-    while (len(senha) < 6):
-        print("A senha não pode ser menor do que 6 caracteres");
-        senha = input("Insira Sua senha: ");
-    return senha
 
 def fatorial(num):
     fat = 1
@@ -173,10 +153,3 @@ def gerarNumQtd(qtd,min,max, vetor):
         num = gerarNumAleatorio(min,max)
         vetor.append(num)
         cont = cont + 1
-
-def intercalarVetor(input1,input2,data):
-    i = 0
-    while(i < len(input1)) or (i < len(input2)):
-        data.append(input1[i])
-        data.append(input2[i])
-        i = i + 1
