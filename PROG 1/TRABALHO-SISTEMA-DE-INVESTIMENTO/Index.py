@@ -1,10 +1,11 @@
 import functions
-
-functions.
-    
+functions.head()
 ###### PRINCIPAL ##########
 def main():
     op = 1
+    DBCod = []
+    DBInvest =[]
+
     while op != 0:
         op = functions.menu()
         
@@ -15,11 +16,11 @@ def main():
             print("\n\nINSERIR\n\n")
             # Chamar a função para Inserir os dados nos vetores
 
-            
+
         elif op == 2:
             print("\n\nPESQUISAR\n\n")
-            # Ler a informação para pesquisar
-            # Chamar a função para pesquisar no vetor
+            pos = functions.pesq(DBCod)
+            print(pos)
             # Imprimir os dados se encontrar
 
 
@@ -40,9 +41,7 @@ def main():
 
         elif op == 5:
             print("\n\nEXCLUIR\n\n")
-            # Ler a informação para pesquisar
-            # Chamar a função para pesquisar no vetor
-            # Excluir a posição pesquisada, se encontrar
+            functions.pesqEDel(DBCod)
 
 
         elif op == 6:
@@ -52,6 +51,6 @@ def main():
 
         else:
             print("Opção inválida!")
-
         input("Pressione <enter> para continuar ...")
 main()
+functions.copy()

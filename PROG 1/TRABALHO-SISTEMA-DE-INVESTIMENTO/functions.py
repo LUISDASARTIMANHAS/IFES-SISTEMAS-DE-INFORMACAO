@@ -1,9 +1,28 @@
 import random
 
+CGREY    = '\33[90m'
+ERROR    = '\33[91m'
+OK  = '\33[92m'
+ALERT = '\33[93m'
+CBLUE2   = '\33[94m'
+CVIOLET2 = '\33[95m'
+CBEIGE2  = '\33[96m'
+STOPCOLOR  = '\33[97m'
+
+CGREYBG    = '\33[100m'
+CREDBG2    = '\33[101m'
+CGREENBG2  = '\33[102m'
+CYELLOWBG2 = '\33[103m'
+CBLUEBG2   = '\33[104m'
+CVIOLETBG2 = '\33[105m'
+CBEIGEBG2  = '\33[106m'
+CWHITEBG2  = '\33[107m'
+
 def head():
+    clear()
     print("----------------------------------------------------")
-    print("\t LUIS_DAS_ARTIMANHAS & PINGOBRAS S.A")
-    print("\t Iniciando programa.....")
+    print(OK+"\t LUIS_DAS_ARTIMANHAS & PINGOBRAS S.A")
+    print("\t Iniciando programa....."+STOPCOLOR)
     print("----------------------------------------------------")
 
 def data(line1,line2,line3,line4,dado1,dado2,dado3,dado4):
@@ -17,31 +36,29 @@ def data(line1,line2,line3,line4,dado1,dado2,dado3,dado4):
 
 def copy():
     print("----------------------------------------------------")
-    print("\t DEVS:")
+    print(OK+"\t DEVS:")
     print("\t LUIS_DAS_ARTIMANHAS.")
-    print("\t PINGOBRAS S.A")
+    print("\t PINGOBRAS S.A"+STOPCOLOR)
     print("----------------------------------------------------")
 
-def menu() :
-    op = ""
-    while op.isdigit() == False or int(op) < 0 or int(op) > 6:
+def clear():
+    print("\n" * 50) 
+    print("\t Console Limpo!") 
 
-        print("\n" * 130)        
-        print("NOME DO SEU SISTEMA:")
-        print("1-Inserir")
+def menu() :
+    op =""
+    while op.isdigit() == False or int(op) < 0 or int(op) > 6:
+        clear()
+        print(ALERT+"SISTEMA DE INVESTIMENTO:")
+        print(CBLUE2+"1-Inserir")
         print("2-Pesquisar")
         print("3-Atualizar")
         print("4-Maior")
-        print("5-Excluir")
-        print("6-Listar")
-        print("0-Sair")
-        op = input("Escolha sua opção: ")
+        print(ERROR+"5-Excluir")
+        print(CBLUE2+"6-Listar")
+        print(ERROR+"0-Sair")
+        op = input(CBLUE2+"Escolha sua opção: "+STOPCOLOR)
     return int(op)
-
-def stop():
-    stop = input("Deseja Finalizar A Execução? (S/N)").upper()
-    print("A continuar a execução...")
-    return stop
 
 
 def validNota():
@@ -50,6 +67,16 @@ def validNota():
         print("Nota Invalida!")
         nota = float(input("Insira uma Nota: "))
     return nota
+
+def validCod():
+    cod = input("Insira o codigo do investimento: ");
+    codTam = len(cod)
+
+    while(codTam <= 0 ):
+        print("O codigo do investimento não pode ser menor do que 0 caracteres");
+        cod = input("Insira o codigo do investimento: ");
+        codTam = len(cod)
+    return cod
 
 def validNome():
     nome = input("Insira seu nome: ");
@@ -153,3 +180,23 @@ def gerarNumQtd(qtd,min,max, vetor):
         num = gerarNumAleatorio(min,max)
         vetor.append(num)
         cont = cont + 1
+
+def pesq(data):
+    cod = validCod()
+    i = 0
+    while i < len(data) :
+        if data[i] == cod:
+            return i;
+        else:
+            print("O codigo do investimento não foi encontado!")
+            i = i + 1
+    return -1
+
+def pesqEDel(data):
+    pos = pesq(data)
+    DBCod= data[pos]
+    if(pos >= 0):
+        print("O Investimento: %d. Foi deletado com Sucesso." %DBCod)
+        del(DBCod)
+    else:
+        print(ERROR+"Nome não encontrado.")
