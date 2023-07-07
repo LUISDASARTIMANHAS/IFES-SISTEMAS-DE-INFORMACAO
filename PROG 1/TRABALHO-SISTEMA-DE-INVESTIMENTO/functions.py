@@ -73,20 +73,10 @@ def validCod():
     codTam = len(cod)
 
     while(codTam <= 0 ):
-        print("O codigo do investimento não pode ser menor do que 0 caracteres");
+        print(ERROR+"O codigo do investimento não pode ser menor do que 0 caracteres"+STOPCOLOR);
         cod = input("Insira o codigo do investimento: ");
         codTam = len(cod)
     return cod
-
-def validNome():
-    nome = input("Insira seu nome: ");
-    nTam = len(nome)
-
-    while(nTam <= 3 ):
-        print("O nome não pode ser menor do que 3 caracteres");
-        nome = input("Insira seu nome: ");
-        nTam = len(nome)
-    return nome
 
 def validUser():
     user = input("Insira seu usuario: ");
@@ -150,17 +140,6 @@ def saldoSys(saldo,value):
     print("Saldo Atual: %d" %saldo)
     return saldo
 
-def somaImposto(imposto,valorCusto):
-    porcentImposto = imposto/100
-    taxa = valorCusto * porcentImposto
-    total = valorCusto + taxa
-    print("-----------------------DADOS--------------------")
-    print("\t Valor do produto: %s" %valorCusto)
-    print("\t Imposto: %s" %imposto)
-    print("\t Taxa: %s" %taxa)
-    print("\t Total a pagar: %s" %total)
-    print("------------------------------------------------")
-
 def gerarNumAleatorio(min,max):
     return random.randint(min,max)
 
@@ -174,13 +153,6 @@ def searchParImpVetor(vetor,vetorPar,vetorImp):
             vetorImp.append(vetor[i])
         i = i + 1
 
-def gerarNumQtd(qtd,min,max, vetor):
-    cont = 0
-    while(cont < qtd):
-        num = gerarNumAleatorio(min,max)
-        vetor.append(num)
-        cont = cont + 1
-
 def pesq(data):
     cod = validCod()
     i = 0
@@ -188,7 +160,7 @@ def pesq(data):
         if data[i] == cod:
             return i;
         else:
-            print("O codigo do investimento não foi encontado!")
+            print(ERROR+"O codigo do investimento não foi encontado!"+STOPCOLOR)
             i = i + 1
     return -1
 
@@ -196,7 +168,7 @@ def pesqEDel(data):
     pos = pesq(data)
     DBCod= data[pos]
     if(pos >= 0):
-        print("O Investimento: %d. Foi deletado com Sucesso." %DBCod)
+        print(OK+"O Investimento: %d. Foi deletado com Sucesso." %DBCod + STOPCOLOR)
         del(DBCod)
     else:
-        print(ERROR+"Nome não encontrado.")
+        print(ERROR+"Não foi possível deletar os dados a pesquisa não retornou."+STOPCOLOR)
