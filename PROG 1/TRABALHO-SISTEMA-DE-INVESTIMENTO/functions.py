@@ -48,6 +48,7 @@ def clear():
 def menu() :
     op =""
     while op.isdigit() == False or int(op) < 0 or int(op) > 6:
+        print("\n")
         print(ALERT+"SISTEMA DE INVESTIMENTO:")
         print(CBLUE2+"1-Inserir")
         print("2-Pesquisar")
@@ -68,12 +69,12 @@ def validNota():
     return nota
 
 def validCod():
-    cod = input("Insira o codigo do investimento: ");
+    cod = input("Insira o código do investimento: ");
     codTam = len(cod)
 
     while(codTam <= 0 ):
-        print(ERROR+"O codigo do investimento não pode ser menor do que 0 caracteres"+STOPCOLOR);
-        cod = input("Insira o codigo do investimento: ");
+        print(ERROR+"O código do investimento não pode ser menor do que 0 caracteres"+STOPCOLOR);
+        cod = input("Insira o código do investimento: ");
         codTam = len(cod)
     return int(cod)
 
@@ -157,10 +158,12 @@ def pesq(data):
     i = 0
     while i < len(data) :
         if data[i] == cod:
+            print(OK+"O código do investimento procurado foi encontrado!"+STOPCOLOR)
             return i;
         else:
+            print(CBLUE2+"SISTEMA: PROCURANDO..."+STOPCOLOR)
             i = i + 1
-    print(ERROR+"O codigo do investimento não foi encontado!"+STOPCOLOR)
+    print(ERROR+"O código do investimento não foi encontado!"+STOPCOLOR)
     return -1
 
 def pesqEDel(data):
@@ -168,6 +171,6 @@ def pesqEDel(data):
     DBCod= data[pos]
     if(pos >= 0):
         print(OK+"O Investimento: %d. Foi deletado com Sucesso." %DBCod + STOPCOLOR)
-        del(DBCod)
+        del(pos)
     else:
         print(ERROR+"Não foi possível deletar os dados a pesquisa não retornou."+STOPCOLOR)

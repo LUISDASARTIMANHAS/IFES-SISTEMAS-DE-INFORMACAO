@@ -3,15 +3,14 @@ functions.head()
 ###### PRINCIPAL ##########
 def main():
     op = 1
-    DBCod = [0]
-    DBInvest =[0]
+    DBCod = [0,1,2,3,4,5]
+    DBInvest =[0,1,2]
 
     while op != 0:
         op = functions.menu()
         
         if op == 0:
-            print("\n\nFim do programa!!!\n\n")
-            
+            functions.copy()
         elif op == 1:
             print("\n\nINSERIR\n\n")
             # Chamar a função para Inserir os dados nos vetores
@@ -39,4 +38,3 @@ def main():
         else:
             print("Opção inválida!")
 main()
-functions.copy()
