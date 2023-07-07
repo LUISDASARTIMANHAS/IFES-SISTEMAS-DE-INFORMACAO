@@ -3,8 +3,8 @@ functions.head()
 ###### PRINCIPAL ##########
 def main():
     op = 1
-    DBCod = [0,1,2,3,4,5]
-    DBInvest =[0,1,2]
+    DBCod = []
+    DBInvest =[]
 
     while op != 0:
         op = functions.menu()
