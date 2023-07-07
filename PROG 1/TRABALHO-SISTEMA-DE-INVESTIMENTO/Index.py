@@ -51,6 +51,5 @@ def main():
 
         else:
             print("Opção inválida!")
-        input("Pressione <enter> para continuar ...")
 main()
 functions.copy()
