@@ -48,7 +48,6 @@ def clear():
 def menu() :
     op =""
     while op.isdigit() == False or int(op) < 0 or int(op) > 6:
-        clear()
         print(ALERT+"SISTEMA DE INVESTIMENTO:")
         print(CBLUE2+"1-Inserir")
         print("2-Pesquisar")
@@ -76,7 +75,7 @@ def validCod():
         print(ERROR+"O codigo do investimento não pode ser menor do que 0 caracteres"+STOPCOLOR);
         cod = input("Insira o codigo do investimento: ");
         codTam = len(cod)
-    return cod
+    return int(cod)
 
 def validUser():
     user = input("Insira seu usuario: ");
@@ -160,8 +159,8 @@ def pesq(data):
         if data[i] == cod:
             return i;
         else:
-            print(ERROR+"O codigo do investimento não foi encontado!"+STOPCOLOR)
             i = i + 1
+    print(ERROR+"O codigo do investimento não foi encontado!"+STOPCOLOR)
     return -1
 
 def pesqEDel(data):
