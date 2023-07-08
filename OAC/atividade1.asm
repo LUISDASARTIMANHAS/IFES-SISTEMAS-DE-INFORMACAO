@@ -1,5 +1,7 @@
-; Somar R1 e R2 e salvar em R3
-ADC R3, R1    ; Adiciona o conteúdo de R1 ao conteúdo de R3, considerando o carry
-MOV R3, R2    ; Copia o conteúdo de R2 para o registrador R3
+; Somar 5 com 5 e salvar o resultado em um registrador diferente
+LDI R16, 5    ; Carrega o valor 5 para o registrador R16
+LDI R17, 6    ; Carrega o valor 6 para o registrador R17
+ADD R18, R16  ; Adiciona o valor de R16 ao registrador R18
+ADD R18, R17  ; Adiciona o valor de R17 ao registrador R18
 
-; R3 agora contém a soma de R1 e R2
+; O resultado da soma está no registrador R18
