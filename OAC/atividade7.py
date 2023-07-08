@@ -1,0 +1,1 @@
+# Atividade 7: Some os valores de $100 a $10A e coloque em R20. Lembre-se trabalhe com valores pequenos para evitar overflow. Inicie com alguns valores os endereços indicados antes de executar o código.
