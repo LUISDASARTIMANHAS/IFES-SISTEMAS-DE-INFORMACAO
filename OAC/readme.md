@@ -57,3 +57,15 @@ TST – Test for Zero or Minus
 ST carrega para a memória de forma indireta, (utilizando registradores Y,Z)
 
 LD carrega da memória de forma indireta, (utilizando registradores Y,Z)
+
+Iniciando um novo projeto no AVR simulator
+
+1- New project
+
+2- Device group: ATmega
+
+3- Devices: ATmega328P
+
+4- Pressione OK ate gerar o código
+
+5- Escreva seu codigo em cima do loop
