@@ -178,11 +178,12 @@ def pesqEDel(data,dataInv):
         print(ERROR+"Não foi possível deletar os dados a pesquisa não retornou."+STOPCOLOR)
 
 def listar(data,dataInv):
-    print(SYS+"\t +--------+-------+"+STOPCOLOR)
-    print("\t || Índice || Valor ||")
-    print("\t +--------+-------+"+STOPCOLOR)
+    print(SYS+"\t +---------------+--------+")
+    print(    "\t || informações || Valor ||")
+    print(    "\t +---------------+--------+"+STOPCOLOR)
     for i, DBCod in enumerate(data):
         DBInv = dataInv[i]
-        print(OK+"\t || Código do investimento: %d ||" %DBCod)
-        print("\t || Valor do Investimento: %f ||" %DBInv + STOPCOLOR)
-    print("+--------+-------+")
+        print(   "\t +-------------------------+")
+        print(OK+"\t || Código do investimento || %d" %DBCod)
+        print(   "\t || Valor do Investimento  || %f" %DBInv + STOPCOLOR)
+    print(       "\t +-------------------------+")
