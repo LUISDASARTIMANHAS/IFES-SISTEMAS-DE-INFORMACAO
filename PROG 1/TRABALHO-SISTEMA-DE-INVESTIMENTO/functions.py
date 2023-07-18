@@ -168,12 +168,12 @@ def pesq(data):
 
 def pesqEDel(data,dataInv):
     pos = pesq(data)
-    DBCod = data[pos]
-    DBInv = dataInv[pos]
     if(pos >= 0):
-        print(OK+"O Investimento: %d. Foi deletado com Sucesso." %DBCod + STOPCOLOR)
-        del(DBCod)
-        del(DBInv)
+        print(OK+
+              "O Investimento: %d. Foi deletado com Sucesso." %data[pos]
+              +STOPCOLOR)
+        del(data[pos])
+        del(dataInv[pos])
     else:
         print(ERROR+"Não foi possível deletar os dados a pesquisa não retornou."+STOPCOLOR)
 
@@ -183,6 +183,6 @@ def listar(data,dataInv):
     for i, DBCod in enumerate(data):
         DBInv = dataInv[i]
         print(   "\t +-------------------------+")
-        print(OK+"\t || Código do investimento|| %d" %DBCod)
-        print(   "\t || Valor do Investimento || %f" %DBInv + STOPCOLOR)
+        print(OK+"\t || Código do investimento || %d" %DBCod)
+        print(   "\t || Valor do Investimento  || %f" %DBInv + STOPCOLOR)
     print(       "\t +-------------------------+")
