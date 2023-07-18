@@ -4,7 +4,7 @@ CGREY    = '\33[90m'
 ERROR    = '\33[91m'
 OK  = '\33[92m'
 ALERT = '\33[93m'
-CBLUE2   = '\33[94m'
+SYS   = '\33[94m'
 CVIOLET2 = '\33[95m'
 CBEIGE2  = '\33[96m'
 STOPCOLOR  = '\33[97m'
@@ -50,14 +50,14 @@ def menu() :
     while op.isdigit() == False or int(op) < 0 or int(op) > 6:
         print("\n")
         print(ALERT+"SISTEMA DE INVESTIMENTO:")
-        print(CBLUE2+"1-Inserir")
+        print(SYS+"1-Inserir")
         print("2-Pesquisar")
         print("3-Atualizar")
         print("4-Maior")
         print(ERROR+"5-Excluir")
-        print(CBLUE2+"6-Listar")
+        print(SYS+"6-Listar")
         print(ERROR+"0-Sair")
-        op = input(CBLUE2+"Escolha sua opção: "+STOPCOLOR)
+        op = input(SYS+"Escolha sua opção: "+STOPCOLOR)
     return int(op)
 
 
@@ -161,16 +161,28 @@ def pesq(data):
             print(OK+"O código do investimento procurado foi encontrado!"+STOPCOLOR)
             return i;
         else:
-            print(CBLUE2+"SISTEMA: PROCURANDO..."+STOPCOLOR)
+            print(SYS+"SISTEMA: PROCURANDO..."+STOPCOLOR)
             i = i + 1
     print(ERROR+"O código do investimento não foi encontado!"+STOPCOLOR)
     return -1
 
-def pesqEDel(data):
+def pesqEDel(data,dataInv):
     pos = pesq(data)
-    DBCod= data[pos]
+    DBCod = data[pos]
+    DBInv = dataInv[pos]
     if(pos >= 0):
         print(OK+"O Investimento: %d. Foi deletado com Sucesso." %DBCod + STOPCOLOR)
-        del(pos)
+        del(DBCod)
+        del(DBInv)
     else:
         print(ERROR+"Não foi possível deletar os dados a pesquisa não retornou."+STOPCOLOR)
+
+def listar(data,dataInv):
+    print(SYS+"\t +--------+-------+"+STOPCOLOR)
+    print("\t || Índice || Valor ||")
+    print("\t +--------+-------+"+STOPCOLOR)
+    for i, DBCod in enumerate(data):
+        DBInv = dataInv[i]
+        print(OK+"\t || Código do investimento: %d ||" %DBCod)
+        print("\t || Valor do Investimento: %f ||" %DBInv + STOPCOLOR)
+    print("+--------+-------+")

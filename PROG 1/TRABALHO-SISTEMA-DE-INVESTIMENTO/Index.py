@@ -32,9 +32,10 @@ def main():
             # Chamar a função para pesquisar no vetor o maior elemento
         elif op == 5:
             print("\n\nEXCLUIR\n\n")
-            functions.pesqEDel(DBCod)
+            functions.pesqEDel(DBCod,DBInvest)
         elif(op == 6):
             print("\n\nLISTAR\n\n")
+            functions.listar(DBCod,DBInvest)
             # Listar todos os dados dos vetores
         else:
             print("Opção inválida!")
