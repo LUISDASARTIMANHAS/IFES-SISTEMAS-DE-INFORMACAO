@@ -93,21 +93,21 @@ def validCod():
     return int(cod)
 
 def validUser():
-    user = input("Insira seu usuario: ");
+    user = input(SYS +"Insira seu usuario: "+STOPCOLOR);
     nTam = len(user)
     
     while(nTam <= 4 ):
-        print("O nome não pode ser menor do que 6 caracteres");
-        user = input("Insira seu usuario: ");
+        print(ERROR+"O nome não pode ser menor do que 5 caracteres"+STOPCOLOR);
+        user = input(SYS +"Insira seu usuario: "+STOPCOLOR);
         nTam = len(user)
     return user
 
 def validSenha():
-    senha = input("Insira Sua senha: ");
+    senha = input(SYS +"Insira Sua senha: "+STOPCOLOR);
 
     while (len(senha) < 4):
-        print("A senha não pode ser menor do que 6 caracteres");
-        senha = input("Insira Sua senha: ");
+        print(ERROR+"A senha não pode ser menor do que 5 caracteres"+STOPCOLOR);
+        senha = input(SYS +"Insira Sua senha: "+STOPCOLOR);
     return senha
 
 def fatorial(num):
