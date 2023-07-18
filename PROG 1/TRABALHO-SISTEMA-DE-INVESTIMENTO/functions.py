@@ -50,13 +50,11 @@ def login() :
     DBSenha = "admin"
     user = validUser()
     senha = validSenha()
-    
 
-    while(user != DBAdmin) and (senha != DBSenha):
-        print(ERROR+"Usuário ou senha inválidos."+STOPCOLOR)
+    while(user != DBAdmin) or (senha != DBSenha):
+        print(ERROR+"\n Usuário ou senha inválidos."+STOPCOLOR)
         user = validUser()
         senha = validSenha()
-    return "conectado"
 
 
 
