@@ -3,8 +3,8 @@ functions.head()
 ###### PRINCIPAL ##########
 def main():
     op = 1
-    DBCod = []
-    DBInvest =[]
+    DBCod = [100,250,785]
+    DBInvest =[100,20,2000]
 
     while op != 0:
         op = functions.menu()
@@ -17,7 +17,8 @@ def main():
         elif op == 2:
             print("\n\nPESQUISAR\n\n")
             pos = functions.pesq(DBCod)
-            print(pos)
+            print("Código do investimento: %d" %DBCod[pos])
+            print("Valor do investimento: %d" %DBInvest[pos])
             # Imprimir os dados se encontrar
         elif op == 3:
             print("\n\nATUALIZAR\n\n")
