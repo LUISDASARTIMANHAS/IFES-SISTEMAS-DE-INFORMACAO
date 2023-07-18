@@ -97,7 +97,7 @@ def validUser():
     user = input("Insira seu usuario: ");
     nTam = len(user)
     
-    while(nTam <= 3 ):
+    while(nTam <= 4 ):
         print("O nome não pode ser menor do que 6 caracteres");
         user = input("Insira seu usuario: ");
         nTam = len(user)
@@ -106,7 +106,7 @@ def validUser():
 def validSenha():
     senha = input("Insira Sua senha: ");
 
-    while (len(senha) < 6):
+    while (len(senha) < 4):
         print("A senha não pode ser menor do que 6 caracteres");
         senha = input("Insira Sua senha: ");
     return senha
