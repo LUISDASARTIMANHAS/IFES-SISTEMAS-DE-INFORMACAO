@@ -45,6 +45,21 @@ def clear():
     print("\n" * 50) 
     print("\t Console Limpo!") 
 
+def login() :
+    DBAdmin = "admin"
+    DBSenha = "admin"
+    user = validUser()
+    senha = validSenha()
+    
+
+    while(user != DBAdmin) and (senha != DBSenha):
+        print(ERROR+"Usuário ou senha inválidos."+STOPCOLOR)
+        user = validUser()
+        senha = validSenha()
+    return "conectado"
+
+
+
 def menu() :
     op =""
     while op.isdigit() == False or int(op) < 0 or int(op) > 6:
@@ -88,6 +103,14 @@ def validUser():
         nTam = len(user)
     return user
 
+def validSenha():
+    senha = input("Insira Sua senha: ");
+
+    while (len(senha) < 6):
+        print("A senha não pode ser menor do que 6 caracteres");
+        senha = input("Insira Sua senha: ");
+    return senha
+
 def fatorial(num):
     fat = 1
 
@@ -96,12 +119,6 @@ def fatorial(num):
         num = num - 1
     
     return fat
-
-def imprimirArray(placeholder,data):
-    i = 0
-    while i < len(data):
-        print("%s %d: %.1f" % (placeholder,i, data[i]))
-        i = i + 1
 
 def validNum():
     num = int(input("Insira um número: "));

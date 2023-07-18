@@ -6,7 +6,7 @@ def main():
     DBCod = [100,250,785]
     DBInvest =[100,20,2000]
 
-    while op != 0:
+    while(op != 0):
         op = functions.menu()
         
         if op == 0:
@@ -38,4 +38,5 @@ def main():
             functions.listar(DBCod,DBInvest)
         else:
             print("Opção inválida!")
+functions.login()
 main()
