@@ -55,6 +55,7 @@ def login() :
         print(ERROR+"\n Usuário ou senha inválidos."+STOPCOLOR)
         user = validUser()
         senha = validSenha()
+    print(OK+"Bem Vindo %s" %DBAdmin +STOPCOLOR)
 
 
 

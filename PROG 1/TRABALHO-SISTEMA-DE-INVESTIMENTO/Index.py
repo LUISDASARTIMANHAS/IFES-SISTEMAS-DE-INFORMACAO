@@ -22,6 +22,7 @@ def main():
             # Imprimir os dados se encontrar
         elif op == 3:
             print("\n\nATUALIZAR\n\n")
+            functions.atualizar()
             # Ler a informação para pesquisar
             # Chamar a função para pesquisar no vetor
             # Ler os novos dados
