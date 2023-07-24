@@ -129,11 +129,12 @@ def validNum():
 
 def validTaxa():
     tax = int(input(SYS+"Insira a taxa de rendimento: "+STOPCOLOR));
-    
+
     while(tax <= 0 ) or (tax > 100):
         print(ERROR+"A taxa não pode ser menor do que 0 ou maior que 100!"+STOPCOLOR);
         tax = int(input(SYS+"Insira a taxa de rendimento: "+STOPCOLOR));
     porcent = (tax/100)
+    print(porcent)
     return porcent
 
 def lancarDado():
@@ -195,19 +196,17 @@ def listar(data,dataInv):
     for i, DBCod in enumerate(data):
         DBInv = dataInv[i]
         print(   "\t +-------------------------+")
-        print(OK+"\t || Código do investimento || %d" %DBCod)
-        print(   "\t || Valor do Investimento  || %f" %DBInv + STOPCOLOR)
+        print(OK+"\t || Código do investimento || %.2d" %DBCod)
+        print(   "\t || Valor do Investimento  || %0.2f" %DBInv + STOPCOLOR)
     print(       "\t +-------------------------+")
 
 def rendimento(data,dataInv):
     pos = pesq(data)
-    rendimento = validTaxa()
+    taxaRend = validTaxa()
     DBCod = data[pos]
     DBInv = dataInv[pos]
-    dataInv[pos] = rendimento * DBInv
-
-    print(OK+"O rendimento foi aplicado no valor do investimento!"+STOPCOLOR)
-    print(   "\t +-------------------------+")
-    print(OK+"\t || Código do investimento || %d" %DBCod)
-    print(   "\t || Valor do Investimento  || %f" %DBInv + STOPCOLOR)
-    print(   "\t +-------------------------+")
+    dataInv[pos] = taxaRend * DBInv
+    print(OK+
+          "O rendimento de %f foi aplicado no valor do investimento!" %taxaRend
+          +STOPCOLOR)
+    listar(DBCod,DBInv)
