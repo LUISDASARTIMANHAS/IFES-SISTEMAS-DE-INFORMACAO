@@ -128,12 +128,13 @@ def validNum():
     return num
 
 def validTaxa():
-    tax = int(input("Insira a taxa: "));
+    tax = int(input("Insira a taxa de rendimento: "));
     
     while(tax <= 0 ) or (tax >=100):
         print("A taxa não pode ser menor do que 0 ou maior que 100!");
         tax = int(input("Insira a taxa: "));
-    return tax
+    porcent = (tax/100)
+    return porcent
 
 def lancarDado():
     return random.randint(1,6)
@@ -150,11 +151,6 @@ def imprimirLinha(numLinha):
     while(cont <= numLinha):
         print(numLinha, end=" ")
         cont = cont+1
-
-def saldoSys(saldo,value):
-    saldo = saldo + (value)
-    print("Saldo Atual: %d" %saldo)
-    return saldo
 
 def gerarNumAleatorio(min,max):
     return random.randint(min,max)
@@ -203,6 +199,8 @@ def listar(data,dataInv):
         print(   "\t || Valor do Investimento  || %f" %DBInv + STOPCOLOR)
     print(       "\t +-------------------------+")
 
-def atualizar(data,dataInv,alterar):
+def rendimento(data,dataInv):
     pos = pesq(data)
-    invest = dataInv[pos]
+    rendimento = validTaxa()
+    DBinv = dataInv[pos]
+    
