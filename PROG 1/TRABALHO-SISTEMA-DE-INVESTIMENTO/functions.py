@@ -168,7 +168,7 @@ def searchParImpVetor(vetor,vetorPar,vetorImp):
 def pesq(data):
     cod = validCod()
     i = 0
-    while i < len(data) :
+    while i < len(data):
         if data[i] == cod:
             print(OK+"O código do investimento procurado foi encontrado!"+STOPCOLOR)
             return i;
@@ -202,5 +202,12 @@ def listar(data,dataInv):
 def rendimento(data,dataInv):
     pos = pesq(data)
     rendimento = validTaxa()
-    DBinv = dataInv[pos]
-    
+    DBCod = data[pos]
+    DBInv = dataInv[pos]
+    dataInv[pos] = rendimento * DBInv
+
+    print(OK+"O rendimento foi aplicado no valor do investimento!"+STOPCOLOR)
+    print(   "\t +-------------------------+")
+    print(OK+"\t || Código do investimento || %d" %DBCod)
+    print(   "\t || Valor do Investimento  || %f" %DBInv + STOPCOLOR)
+    print(   "\t +-------------------------+")
