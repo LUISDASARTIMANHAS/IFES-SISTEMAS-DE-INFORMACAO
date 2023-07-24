@@ -202,3 +202,7 @@ def listar(data,dataInv):
         print(OK+"\t || Código do investimento || %d" %DBCod)
         print(   "\t || Valor do Investimento  || %f" %DBInv + STOPCOLOR)
     print(       "\t +-------------------------+")
+
+def atualizar(data,dataInv,alterar):
+    pos = pesq(data)
+    invest = dataInv[pos]
