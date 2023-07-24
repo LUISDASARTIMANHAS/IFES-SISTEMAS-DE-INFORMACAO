@@ -92,6 +92,16 @@ def validCod():
         codTam = len(cod)
     return int(cod)
 
+def validInv():
+    inv = input("Insira o investimento (R$ 100): ");
+    invTam = len(inv)
+
+    while(invTam <= 0 ):
+        print(ERROR+"O investimento não pode ser menor do que R$ 0"+STOPCOLOR);
+        inv = input("Insira o investimento (R$ 100): ");
+        invTam = len(inv)
+    return float(inv)
+
 def validUser():
     user = input(SYS +"Insira seu usuario: "+STOPCOLOR);
     nTam = len(user)
@@ -179,6 +189,18 @@ def pesq(data):
     print(ERROR+"O código do investimento não foi encontado!"+STOPCOLOR)
     return -1
 
+def pesqInserir(data,cod):
+    i = 0
+    while i < len(data):
+        if data[i] == cod:
+            print(ERROR+"O código do investimento repetido foi encontrado!"+STOPCOLOR)
+            return i;
+        else:
+            print(SYS+"SISTEMA: PROCURANDO INVESTIMENTOS REPETIDOS..."+STOPCOLOR)
+            i = i + 1
+    print(OK+"O código do investimento repetido não foi encontado!"+STOPCOLOR)
+    return -1
+
 def pesqEDel(data,dataInv):
     pos = pesq(data)
     if(pos >= 0):
@@ -211,3 +233,17 @@ def rendimento(data,dataInv):
           "O rendimento de R$ %f foi aplicado no valor do investimento!" %taxaRend
           +STOPCOLOR)
     return "Sem falhas"
+
+def inserir(data,dataInv):
+    cod = validCod()
+    investimento = validInv()
+    pos = pesqInserir(data,cod)
+
+    if(pos == -1):
+        data.append(cod)
+        dataInv.append(investimento)
+    else:
+        print(ERROR + "O novo investimento não pode ser inserido!")
+        print("O código do investimento não pode ser repetido"+ STOPCOLOR)
+        inserir(data,dataInv)
+    print(OK + "Novo investimento inserido com sucesso!" + STOPCOLOR)

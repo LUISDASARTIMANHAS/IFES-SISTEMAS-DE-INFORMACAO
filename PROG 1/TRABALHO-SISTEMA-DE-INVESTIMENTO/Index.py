@@ -13,7 +13,7 @@ def main():
             functions.copy()
         elif (op == 1):
             print("\n\nINSERIR\n\n")
-            # Chamar a função para Inserir os dados nos vetores
+            functions.inserir(DBCod,DBInvest)
         elif (op == 2):
             print("\n\nPESQUISAR\n\n")
             pos = functions.pesq(DBCod)
