@@ -42,8 +42,8 @@ def copy():
     print("----------------------------------------------------")
 
 def clear():
-    print("\n" * 50) 
-    print("\t Console Limpo!") 
+    print("\n" * 50)
+    print("\t Console Limpo!")
 
 def login() :
     DBAdmin = "admin"
@@ -66,8 +66,8 @@ def menu() :
         print(ALERT+"SISTEMA DE INVESTIMENTO:")
         print(SYS+"1-Inserir")
         print("2-Pesquisar")
-        print("3-Atualizar")
-        print("4-Maior")
+        print("3-Aplicar Rendimento")
+        print("4-Maior Investimento")
         print(ERROR+"5-Excluir")
         print(SYS+"6-Listar")
         print(ERROR+"0-Sair")
@@ -197,18 +197,17 @@ def listar(data,dataInv):
         DBInv = dataInv[i]
         print(   "\t +-------------------------+")
         print(OK+"\t || Código do investimento || %.2d" %DBCod)
-        print(   "\t || Valor do Investimento  || %0.2f" %DBInv + STOPCOLOR)
+        print(   "\t || Valor do Investimento  || R$ %0.2f" %DBInv + STOPCOLOR)
     print(       "\t +-------------------------+")
 
 def rendimento(data,dataInv):
     pos = pesq(data)
     taxa = validTaxa()
-    DBCod = data[pos]
     DBInv = dataInv[pos]
     taxaRend = taxa * DBInv
     total = DBInv + taxaRend
     dataInv[pos] = total
     print(OK+
-          "O rendimento de %f foi aplicado no valor do investimento!" %taxaRend
+          "O rendimento de R$ %f foi aplicado no valor do investimento!" %taxaRend
           +STOPCOLOR)
     return "Sem falhas"
