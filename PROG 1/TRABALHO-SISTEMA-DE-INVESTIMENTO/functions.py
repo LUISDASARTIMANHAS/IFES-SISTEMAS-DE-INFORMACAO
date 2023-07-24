@@ -202,11 +202,13 @@ def listar(data,dataInv):
 
 def rendimento(data,dataInv):
     pos = pesq(data)
-    taxaRend = validTaxa()
+    taxa = validTaxa()
     DBCod = data[pos]
     DBInv = dataInv[pos]
-    dataInv[pos] = taxaRend * DBInv
+    taxaRend = taxa * DBInv
+    total = DBInv + taxaRend
+    dataInv[pos] = total
     print(OK+
           "O rendimento de %f foi aplicado no valor do investimento!" %taxaRend
           +STOPCOLOR)
-    listar(DBCod,DBInv)
+    return "Sem falhas"

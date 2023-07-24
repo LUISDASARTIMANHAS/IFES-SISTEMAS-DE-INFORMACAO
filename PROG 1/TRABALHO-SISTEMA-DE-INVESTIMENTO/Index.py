@@ -23,12 +23,9 @@ def main():
             # Imprimir os dados se encontrar
         elif (op == 3):
             print("\n\n Rendimento \n\n")
-            functions.rendimento(DBCod,DBInvest)
-            # Ler a informação para pesquisar
-            # Chamar a função para pesquisar no vetor
-            # Ler os novos dados
-            # Se encontrar, então atualizar o vetor, na posição pesquisada,
-            #    com os novos dados
+            rend = functions.rendimento(DBCod,DBInvest)
+            if(rend == "Sem falhas"):
+                functions.listar(DBCod,DBInvest)
         elif (op == 4):
             print("\n\nMAIOR\n\n")
             # Chamar a função para pesquisar no vet or o maior elemento
