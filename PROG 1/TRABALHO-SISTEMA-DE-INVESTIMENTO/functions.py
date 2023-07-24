@@ -128,11 +128,11 @@ def validNum():
     return num
 
 def validTaxa():
-    tax = int(input("Insira a taxa de rendimento: "));
+    tax = int(input(SYS+"Insira a taxa de rendimento: "+STOPCOLOR));
     
-    while(tax <= 0 ) or (tax >=100):
-        print("A taxa não pode ser menor do que 0 ou maior que 100!");
-        tax = int(input("Insira a taxa: "));
+    while(tax <= 0 ) or (tax > 100):
+        print(ERROR+"A taxa não pode ser menor do que 0 ou maior que 100!"+STOPCOLOR);
+        tax = int(input(SYS+"Insira a taxa de rendimento: "+STOPCOLOR));
     porcent = (tax/100)
     return porcent
 

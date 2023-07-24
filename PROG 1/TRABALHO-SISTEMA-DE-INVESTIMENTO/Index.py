@@ -23,7 +23,7 @@ def main():
             # Imprimir os dados se encontrar
         elif (op == 3):
             print("\n\n Rendimento \n\n")
-            functions.atualizar(DBCod,DBInvest)
+            functions.rendimento(DBCod,DBInvest)
             # Ler a informação para pesquisar
             # Chamar a função para pesquisar no vetor
             # Ler os novos dados
