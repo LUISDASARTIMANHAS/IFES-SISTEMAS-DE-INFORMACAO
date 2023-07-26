@@ -45,19 +45,6 @@ def clear():
     print("\n" * 50)
     print("\t Console Limpo!")
 
-def login() :
-    DBAdmin = "admin"
-    DBSenha = "admin"
-    user = validUser()
-    senha = validSenha()
-
-    while(user != DBAdmin) or (senha != DBSenha):
-        print(ERROR+"\n Usuário ou senha inválidos."+STOPCOLOR)
-        user = validUser()
-        senha = validSenha()
-    print(OK+"Bem Vindo %s" %DBAdmin +STOPCOLOR)
-
-
 
 def menu() :
     op =""
@@ -74,14 +61,7 @@ def menu() :
         op = input(SYS+"Escolha sua opção: "+STOPCOLOR)
     return int(op)
 
-
-def validNota():
-    nota = float(input("Insira uma Nota: "))
-    while(nota < 0) or ( nota > 10):
-        print("Nota Invalida!")
-        nota = float(input("Insira uma Nota: "))
-    return nota
-
+# leituras
 def validCod():
     cod = input("Insira o código do investimento: ");
     codTam = len(cod)
@@ -146,36 +126,10 @@ def validTaxa():
     porcent = (tax/100)
     print(porcent)
     return porcent
+# fim das leituras
 
-def lancarDado():
-    return random.randint(1,6)
 
-def sequencia(stop):
-    seq = 1
-    while(seq <= stop):
-        print(seq, end=" ")
-        seq = seq + 1
-    return True
-
-def imprimirLinha(numLinha):
-    cont = 0
-    while(cont <= numLinha):
-        print(numLinha, end=" ")
-        cont = cont+1
-
-def gerarNumAleatorio(min,max):
-    return random.randint(min,max)
-
-def searchParImpVetor(vetor,vetorPar,vetorImp):
-    i = 0
-    while i < len(vetor):
-        resto  = vetor[i] % 2
-        if(resto == 0):
-            vetorPar.append(vetor[i])
-        else:
-            vetorImp.append(vetor[i])
-        i = i + 1
-
+# funções
 def pesq(data):
     cod = validCod()
     i = 0
@@ -186,8 +140,58 @@ def pesq(data):
         else:
             print(SYS+"SISTEMA: PROCURANDO..."+STOPCOLOR)
             i = i + 1
-    print(ERROR+"O código do investimento não foi encontado!"+STOPCOLOR)
+    print(ERROR+"O código do investimento não esta repetido e não foi encontado!"+STOPCOLOR)
     return -1
+
+def inserir(data,dataInv):
+    cod = validCod()
+    investimento = validInv()
+    print(SYS+"SISTEMA: CONFIRME O CÓDIGO PARA CONTINUAR"+STOPCOLOR)
+    pos = pesq(data)
+
+    if(pos == -1):
+        data.append(cod)
+        dataInv.append(investimento)
+    else:
+        print(ERROR + "O novo investimento não pode ser inserido!")
+        print("O código do investimento não pode ser repetido"+ STOPCOLOR)
+        inserir(data,dataInv)
+    print(OK + "Novo investimento inserido com sucesso!" + STOPCOLOR)
+
+def rendimento(data,dataInv):
+    pos = pesq(data)
+    if(pos >=0 ):
+        taxa = validTaxa()
+        DBInv = dataInv[pos]
+        taxaRend = taxa * DBInv
+        total = DBInv + taxaRend
+        dataInv[pos] = total
+        print(OK+
+              "O rendimento de R$ %f foi aplicado no valor do investimento!" %taxaRend
+             +STOPCOLOR);
+    else:
+        print(ERROR+ "Não foi possivel aplicar o rendimento" +STOPCOLOR)
+
+def maior(data,dataInv):
+    i = 0
+    tam = len(dataInv)
+    if(tam >= 1):
+        maior = dataInv[i]
+        for i, DBInv in enumerate(dataInv):
+            if (DBInv >= maior):
+                maior = DBInv
+                cod = data[i]
+            else:
+                print(SYS+"SISTEMA: PROCURANDO..."+STOPCOLOR)
+                i = i + 1
+        print(   "\t +------------------------------+")
+        print(OK+"\t || Código do investimento      || %.2d" %cod)
+        print(   "\t || Maior Valor de Investimento || R$ %0.2f" %maior + STOPCOLOR)
+        print(   "\t +------------------------------+")
+    else:
+        print(ERROR+
+              "O banco de dados esta vazio, insira algo primeiro"
+              +STOPCOLOR)
 
 def pesqEDel(data,dataInv):
     pos = pesq(data)
@@ -209,34 +213,3 @@ def listar(data,dataInv):
         print(OK+"\t || Código do investimento || %.2d" %DBCod)
         print(   "\t || Valor do Investimento  || R$ %0.2f" %DBInv + STOPCOLOR)
     print(       "\t +-------------------------+")
-
-def rendimento(data,dataInv):
-    pos = pesq(data)
-    if(pos >=0 ):
-        taxa = validTaxa()
-        DBInv = dataInv[pos]
-        taxaRend = taxa * DBInv
-        total = DBInv + taxaRend
-        dataInv[pos] = total
-        print(OK+
-              "O rendimento de R$ %f foi aplicado no valor do investimento!" %taxaRend
-             +STOPCOLOR);
-    else:
-        print(ERROR+ "Não foi possivel aplicar o rendimento" +STOPCOLOR)
-
-def inserir(data,dataInv):
-    cod = validCod()
-    investimento = validInv()
-    pos = pesq(data,cod)
-
-    if(pos == -1):
-        data.append(cod)
-        dataInv.append(investimento)
-    else:
-        print(ERROR + "O novo investimento não pode ser inserido!")
-        print("O código do investimento não pode ser repetido"+ STOPCOLOR)
-        inserir(data,dataInv)
-    print(OK + "Novo investimento inserido com sucesso!" + STOPCOLOR)
-
-def maior():
-    print("em dev")
