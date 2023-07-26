@@ -23,9 +23,7 @@ def main():
             # Imprimir os dados se encontrar
         elif (op == 3):
             print("\n\n Rendimento \n\n")
-            rend = functions.rendimento(DBCod,DBInvest)
-            if(rend == "Sem falhas"):
-                functions.listar(DBCod,DBInvest)
+            functions.rendimento(DBCod,DBInvest)
         elif (op == 4):
             print("\n\nMAIOR\n\n")
             # Chamar a função para pesquisar no vet or o maior elemento

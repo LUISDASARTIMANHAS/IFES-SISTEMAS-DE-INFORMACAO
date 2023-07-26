@@ -189,18 +189,6 @@ def pesq(data):
     print(ERROR+"O código do investimento não foi encontado!"+STOPCOLOR)
     return -1
 
-def pesqInserir(data,cod):
-    i = 0
-    while i < len(data):
-        if data[i] == cod:
-            print(ERROR+"O código do investimento repetido foi encontrado!"+STOPCOLOR)
-            return i;
-        else:
-            print(SYS+"SISTEMA: PROCURANDO INVESTIMENTOS REPETIDOS..."+STOPCOLOR)
-            i = i + 1
-    print(OK+"O código do investimento repetido não foi encontado!"+STOPCOLOR)
-    return -1
-
 def pesqEDel(data,dataInv):
     pos = pesq(data)
     if(pos >= 0):
@@ -224,20 +212,22 @@ def listar(data,dataInv):
 
 def rendimento(data,dataInv):
     pos = pesq(data)
-    taxa = validTaxa()
-    DBInv = dataInv[pos]
-    taxaRend = taxa * DBInv
-    total = DBInv + taxaRend
-    dataInv[pos] = total
-    print(OK+
-          "O rendimento de R$ %f foi aplicado no valor do investimento!" %taxaRend
-          +STOPCOLOR)
-    return "Sem falhas"
+    if(pos >=0 ):
+        taxa = validTaxa()
+        DBInv = dataInv[pos]
+        taxaRend = taxa * DBInv
+        total = DBInv + taxaRend
+        dataInv[pos] = total
+        print(OK+
+              "O rendimento de R$ %f foi aplicado no valor do investimento!" %taxaRend
+             +STOPCOLOR);
+    else:
+        print(ERROR+ "Não foi possivel aplicar o rendimento" +STOPCOLOR)
 
 def inserir(data,dataInv):
     cod = validCod()
     investimento = validInv()
-    pos = pesqInserir(data,cod)
+    pos = pesq(data,cod)
 
     if(pos == -1):
         data.append(cod)
@@ -247,3 +237,6 @@ def inserir(data,dataInv):
         print("O código do investimento não pode ser repetido"+ STOPCOLOR)
         inserir(data,dataInv)
     print(OK + "Novo investimento inserido com sucesso!" + STOPCOLOR)
+
+def maior():
+    print("em dev")
