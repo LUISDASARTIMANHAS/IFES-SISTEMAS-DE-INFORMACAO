@@ -8,7 +8,6 @@ def main():
 
     while(op != 0):
         op = functions.menu()
-        
         if (op == 0):
             functions.copy()
         elif (op == 1):
@@ -23,12 +22,10 @@ def main():
             # Imprimir os dados se encontrar
         elif (op == 3):
             print("\n\n Rendimento \n\n")
-            rend = functions.rendimento(DBCod,DBInvest)
-            if(rend == "Sem falhas"):
-                functions.listar(DBCod,DBInvest)
+            functions.rendimento(DBCod,DBInvest)
         elif (op == 4):
             print("\n\nMAIOR\n\n")
-            # Chamar a função para pesquisar no vet or o maior elemento
+            functions.maior(DBCod,DBInvest)
         elif (op == 5):
             print("\n\nEXCLUIR\n\n")
             functions.pesqEDel(DBCod,DBInvest)
@@ -37,5 +34,4 @@ def main():
             functions.listar(DBCod,DBInvest)
         else:
             print("Opção inválida!")
-functions.login()
 main()
