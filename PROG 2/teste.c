@@ -1,7 +1,13 @@
 #include <stdlib.h>
 #include <stdio.h>
+// #include <functions.h>
 
-void main() {
-    int x = 10;
+int main() {
+    int x;
+    printf("Hello World! \n");
+    printf("Digite um numero!");
+    scanf("%d", &x);
+    
     printf("Xtt = %d", x);
+    return 0;
 }
