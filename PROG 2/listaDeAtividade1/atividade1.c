@@ -8,5 +8,7 @@
 
 int main(){
 int an;
-
+int r;
+int a1;
+int n;
 }
