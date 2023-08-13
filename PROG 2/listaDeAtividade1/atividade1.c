@@ -7,8 +7,7 @@
 // an = a1 + (n-1) x r
 
 int main(){
-int an;
-int r;
-int a1;
-int n;
+    int an, r, a1, n;
+    
+    an = a1 + (n - 1) * r;
 }
