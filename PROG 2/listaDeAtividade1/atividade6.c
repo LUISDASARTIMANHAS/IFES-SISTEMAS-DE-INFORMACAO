@@ -7,5 +7,13 @@
 // Faça agora o contrário, de Fahrenheit para Celsius.
 
 int main(){
+    int F,C;
+
+    printf("Informe os Fahrenheit (F): ");
+    scanf("%d", &F);
+
+    C = (C - 32) * (5/9);
+
+    printf("A conversao dos %d Fahrenheit em graus centígrados é de: %d\n", F, C);
     return 0;
 }
