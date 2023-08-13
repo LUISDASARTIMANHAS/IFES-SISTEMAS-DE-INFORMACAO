@@ -8,6 +8,16 @@
 
 int main(){
     int an, r, a1, n;
-    
+
+    printf("Informe o primeiro termo (a1): ");
+    scanf("%d", &a1);
+    printf("Informe a razão (r): ");
+    scanf("%d", &r);
+    printf("Informe a quantidade de termos (n): ");
+    scanf("%d", &n);
+
     an = a1 + (n - 1) * r;
+
+    printf("O %d e o termo da P.A. é: %d\n", n, an);
+    return 0;
 }
