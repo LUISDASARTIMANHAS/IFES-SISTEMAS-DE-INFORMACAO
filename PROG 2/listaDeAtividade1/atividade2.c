@@ -6,8 +6,8 @@
 // an = a1 x q^(n - 1)
 
 int main(){
-
-    an = a1 x q^(n - 1);
+    int an, a1, q, n;
+    an = a1 * q^(n - 1);
 
     return 0;
 }
