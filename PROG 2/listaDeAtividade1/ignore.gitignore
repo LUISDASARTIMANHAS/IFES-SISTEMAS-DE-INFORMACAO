@@ -1,4 +1,4 @@
-*.vscode
-*output
-*.exe
+*.vscode,
+*output,
+*.exe,
 *.json
