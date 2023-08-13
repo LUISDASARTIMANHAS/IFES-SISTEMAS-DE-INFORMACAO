@@ -1,4 +1,11 @@
-*.vscode,
-*output,
-*.exe,
+# Ignorar a pasta .vscode
+.vscode/
+
+# Ignorar arquivos de saída
+output/
+
+# Ignorar arquivos executáveis
+*.exe
+
+# Ignorar arquivos JSON
 *.json
