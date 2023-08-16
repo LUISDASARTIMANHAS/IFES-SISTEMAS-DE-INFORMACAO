@@ -1,5 +1,6 @@
 #include <stdlib.h>
 #include <stdio.h>
+#include <windows.h>
 #include "functions.c"
 
 // Construir um programa em C que leia dois números e efetue a adição. Caso o valor
@@ -8,14 +9,17 @@
 
 int main(){
     copy();
+    int num = input("text");
+    printf("numero %d", num);
     return 0;
 }
 
 
 
 int somar(int num1, int num2){
-
-    return 0;
+    int total = num1 + num2;
+    
+    return total;
 }
 
 // int main(){
