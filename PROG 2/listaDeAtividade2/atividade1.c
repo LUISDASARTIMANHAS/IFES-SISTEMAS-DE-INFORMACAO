@@ -3,32 +3,28 @@
 #include <windows.h>
 #include "functions.c"
 
-// Construir um programa em C que leia dois números e efetue a adição. Caso o valor
-// somado seja maior que 20, este deverá ser apresentado somando-se a ele mais 8. Caso o
-// valor somado seja menor ou igual a 20, este deverá ser apresentado subtraindo-se 5.
+// Construir um programa em C que leia dois números e efetue a adição.
+//  Caso o valor somado seja maior que 20, este deverá ser apresentado somando-se a ele mais 8.
+// Caso o valor somado seja menor ou igual a 20, este deverá ser apresentado subtraindo-se 5.
 
 int main(){
+    head();
+    int num,num2,soma;
+
+    printf("Insira um número: ");
+    num = input();
+
+    printf("Insira um número: ");
+    num2 = input();
+
+    soma = somar(num,num2);
+    if(soma >= 20){
+        soma = somar(soma,8);
+    }else{
+        soma = diminuir(soma,5);
+    }
+
+    printf("Total: %d", soma);
     copy();
-    int num = input("text");
-    printf("numero %d", num);
     return 0;
 }
-
-
-
-int somar(int num1, int num2){
-    int total = num1 + num2;
-    
-    return total;
-}
-
-// int main(){
-//     int v, raizV;
-//     printf("Informe a raiz (v): ");
-//     scanf("%d", &v);
-    
-//     raizV = ;
-
-//     printf("A raiz de %d é: %d\n", v,raizV);
-//     return 0;
-// }
