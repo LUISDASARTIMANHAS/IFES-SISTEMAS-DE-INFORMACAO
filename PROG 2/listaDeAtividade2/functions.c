@@ -40,14 +40,11 @@ int validNum(){
 }
 
 int validNota(){
-    printf("Insira uma Nota: ");
-    float nota = input();
-    
-    while((nota < 0) || ( nota > 10)){
-        printf("Nota Invalida!\n");
+    float nota;
+    do{
         printf("Insira uma Nota: ");
         nota = input();
-        }
+    }while ((nota < 0) || ( nota > 10));
     return nota;
 }
 
