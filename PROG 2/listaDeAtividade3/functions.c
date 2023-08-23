@@ -8,7 +8,7 @@ int head(){
     printf("\n ----------------------------------------------------");
     printf("\n\t LUIS_DAS_ARTIMANHAS & PINGOBRAS S.A");
     printf("\n\t Iniciando programa.....");
-    printf("\n----------------------------------------------------");
+    printf("\n----------------------------------------------------\n");
     return 0;
 }
 
@@ -17,28 +17,34 @@ int copy(){
     printf("\n\t DEVS:");
     printf("\n\t LUIS_DAS_ARTIMANHAS.");
     printf("\n\t PINGOBRAS S.A");
-    printf("\n----------------------------------------------------");
+    printf("\n----------------------------------------------------\n");
     return 0;
 }
 
 int input(){
-    int value = scanf("%d", &value);
-    return value;
-}
-int inputS(){
-    int value = scanf("%s", &value);
+    int value;
+    scanf("%d", &value);
     return value;
 }
 
-int validNota(){
-    printf("Insira uma Nota: ");
-    float nota = input();
+int validNum(){
+    printf("Insira um numero: ");
+    int num = input();
     
-    while((nota < 0) || ( nota > 10)){
-        printf("Nota Invalida!\n");
+    while(num < 0){
+        printf("Salario invalido.");
+        printf("Insira Seu salario: ");
+        num = input();
+    }
+    return num;
+}
+
+int validNota(){
+    float nota;
+    do{
         printf("Insira uma Nota: ");
         nota = input();
-        }
+    }while ((nota < 0) || ( nota > 10));
     return nota;
 }
 
@@ -123,17 +129,16 @@ int validSalario(){
 //         printf("A senha não pode ser men|| do que 6 caracteres");
 //         printf("Insira Sua senha: ");
 //         senha = input();
-        
 //     }
 //     return senha;
 // }
 
-int fatorial(int num){
-    int n, fat;
+int fatorial(){
+    int i,num, fat;
     printf("Informe o número: ");
-    scanf("%d", &n);
+    scanf("%d", &num);
     fat = 1;
-    for (int i=n ; i > 1 ; i--) {
+    for(i=num; i > 1 ; i--) {
         fat = fat * i;
     }
     return fat;
@@ -141,6 +146,11 @@ int fatorial(int num){
 
 int somar(int num1, int num2){
     int total = num1 + num2;
-    
+    printf("\nSomando os numeros: %d + %d\n", num1,num2);
+    return total;
+}
+int diminuir(int num1, int num2){
+    int total = num1 - num2;
+    printf("\n Subtraindo os numeros: %d - %d\n", num1,num2);
     return total;
 }
