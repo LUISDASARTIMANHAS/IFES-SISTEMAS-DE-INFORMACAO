@@ -1,8 +1,7 @@
-#include <stdlib.h>
-#include <stdio.h>
 #include <windows.h>
+#include <math.h>
 
-// SetConsoleOutputCP(65001);
+// SetConsoleOutputCP();
 
 int head(){
     printf("\n ----------------------------------------------------");
@@ -21,16 +20,16 @@ int copy(){
     return 0;
 }
 
-int input(){
-    int value;
-    scanf("%d", &value);
+float input(){
+    float value;
+    scanf("%f", &value);
     return value;
 }
 
 int validNum(){
     printf("Insira um numero: ");
     int num = input();
-    
+
     while(num < 0){
         printf("Salario invalido.");
         printf("Insira Seu salario: ");
@@ -46,6 +45,14 @@ int validNota(){
         nota = input();
     }while ((nota < 0) || ( nota > 10));
     return nota;
+}
+int validMatricula(){
+    float matricula;
+    do{
+        printf("Insira sua matricula: ");
+        matricula = input();
+    }while (matricula < 0);
+    return matricula;
 }
 
 // int validNome(){
@@ -133,6 +140,15 @@ int validSalario(){
 //     return senha;
 // }
 
+int validPreco(){
+    float prc;
+    do{
+        printf("Insira o preco do produto: ");
+        prc = input();
+    }while (prc < 1);
+    return prc;
+}
+
 int fatorial(){
     int i,num, fat;
     printf("Informe o número: ");
@@ -153,4 +169,18 @@ int diminuir(int num1, int num2){
     int total = num1 - num2;
     printf("\n Subtraindo os numeros: %d - %d\n", num1,num2);
     return total;
+}
+float calcMedia3(float n1,float n2,float n3){
+    float media = (n1 + n2 + n3 )/3;
+    return media;
+}
+int menuPay(){
+    printf("\n=======SELECIONAR FORMA DE PAGAMENTO=======\n");
+    printf("1-A vista\n");
+    printf("2-A prazo\n");
+    printf("=====================\n");
+    printf("Forma: ");
+    int opc = input();
+
+    return opc;
 }
