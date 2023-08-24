@@ -157,6 +157,17 @@ int fatorial(){
     }
     return fat;
 }
+int lerOpcaoCalc() {
+    int op;
+    printf("\n\nCALCULAR A ÁREA:\n");
+    printf("1-Retângulo\n");
+    printf("2-Círculo\n");
+    printf("0-Sair\n");
+    printf("Informe sua opção: ");
+    scanf("%d", &op);
+    // VALIDAR a opção entre 0, 1 e 2
+    return op;
+}
 
 int somar(int num1, int num2){
     int total = num1 + num2;

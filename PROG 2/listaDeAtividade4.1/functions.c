@@ -1,23 +1,22 @@
 #include <windows.h>
 #include <math.h>
+#define _USE_MATH_DEFINES
 
 // SetConsoleOutputCP();
 
-int head(){
+void head(){
     printf("\n ----------------------------------------------------");
     printf("\n\t LUIS_DAS_ARTIMANHAS & PINGOBRAS S.A");
     printf("\n\t Iniciando programa.....");
     printf("\n----------------------------------------------------\n");
-    return 0;
 }
 
-int copy(){
+void copy(){
     printf("\n----------------------------------------------------");
     printf("\n\t DEVS:");
     printf("\n\t LUIS_DAS_ARTIMANHAS.");
     printf("\n\t PINGOBRAS S.A");
     printf("\n----------------------------------------------------\n");
-    return 0;
 }
 
 float input(){
@@ -158,6 +157,17 @@ int fatorial(){
         fat = fat * i;
     }
     return fat;
+}
+int lerOpcaoCalc() {
+    int op;
+    printf("\n\nCALCULAR A ÁREA:\n");
+    printf("1-Retângulo\n");
+    printf("2-Círculo\n");
+    printf("0-Sair\n");
+    printf("Informe sua opção: ");
+    scanf("%d", &op);
+    // VALIDAR a opção entre 0, 1 e 2
+    return op;
 }
 
 int somar(int num1, int num2){
