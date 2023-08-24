@@ -1,5 +1,7 @@
 #include <stdlib.h>
 #include <stdio.h>
+#include <windows.h>
+#include "functions.c"
 
 // Uma P.A. (progressão aritmética) fica determinada pela sua razão (r) e pelo primeiro
 // termo(a1). Faça um programa em linguagem C, que seja capaz de determinar qualquer
