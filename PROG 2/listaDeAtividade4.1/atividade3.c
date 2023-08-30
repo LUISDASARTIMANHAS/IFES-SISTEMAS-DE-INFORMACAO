@@ -12,32 +12,25 @@
 
 int main(){
     head();
+    correct();
     
     int opcao;
     do {
-    opcao = lerOpcao();
+    opcao = lerOpcaoCalc();
     switch (opcao) {
     case 1:
-    printf("\n\tÁREA DO RETÂNGULO\n");
-    // Ler os dados para calcular a área do RETANGULO
-    // Chamar a função para calcular a área do RETANGULO
-    // Mostrar o resultado
-    break;
+        printf("\n\tÁREA DO RETÂNGULO\n");
+        float areaR = calcArRetangulo();
+        printf("A ÁREA DO RETÂNGULO e: %0.2f",areaR);
+        break;
     case 2:
-    printf("\n\tÁREA DO CÍRCULO\n");
-    // Ler os dados para calcular a área do CIRCULO
-    // Chamar a função para calcular a área do CIRCULO
-    // Mostrar o resultado
-    break;
+        printf("\n\tÁREA DO CÍRCULO\n");
+        float areaC = calcArCirculo();
+        printf("A ÁREA DO CÍRCULO e: %0.2f",areaC);
+        break;
     }
     } while ( opcao > 0);
 
     copy();
-    return 0;
-}
-
-
-int main() {
-    
     return 0;
 }
