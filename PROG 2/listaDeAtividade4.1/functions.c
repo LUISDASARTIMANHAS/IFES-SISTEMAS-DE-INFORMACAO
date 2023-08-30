@@ -1,7 +1,7 @@
 #include <windows.h>
 #define _USE_MATH_DEFINES
 #include <math.h>
-
+#include <time.h> // Para os números aleatórios
 
 int correct(){
     SetConsoleOutputCP(65001);
@@ -228,14 +228,29 @@ int menuPay(){
     return opc;
 }
 
-calcArRetangulo(){
+int calcArRetangulo(){
     float base = validBase();
     float altura = validAltura();
     float area = base * altura;
     return area;
 }
-calcArCirculo(){
+int calcArCirculo(){
     float raio = validRaio();
     float area = M_PI * raio;
     return area;
+}
+int lancarDado(){
+    return ( rand() % 6) + 1;
+}
+int jogarDados(){
+    int d1, d2, soma;
+    printf("\n\nVamos jogar os dados\n");
+    system("PAUSE");
+    d1 = lancarDado();
+    d2 = lancarDado();
+    soma = d1 + d2;
+    printf("Dado 1: %d\nDado 2: %d\n\n", d1, d2);
+    printf("SOMA: %d\n", soma);
+    printf("---------------------\n\n");
+    return soma;
 }
