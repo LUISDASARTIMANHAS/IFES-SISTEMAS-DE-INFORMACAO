@@ -1,8 +1,12 @@
 #include <windows.h>
+#define _USE_MATH_DEFINES
 #include <math.h>
 
-// SetConsoleOutputCP();
 
+int correct(){
+    SetConsoleOutputCP(65001);
+    return 0;
+}
 void head(){
     printf("\n ----------------------------------------------------");
     printf("\n\t LUIS_DAS_ARTIMANHAS & PINGOBRAS S.A");
@@ -137,7 +141,30 @@ int validSalario(){
 //     }
 //     return senha;
 // }
-
+int validAltura(){
+    float alt;
+    do{
+        printf("Insira a altura: ");
+        alt = input();
+    }while (alt < 0);
+    return alt;
+}
+int validBase(){
+    float base;
+    do{
+        printf("Insira a base: ");
+        base = input();
+    }while (base < 0);
+    return base;
+}
+int validRaio(){
+    float raio;
+    do{
+        printf("Insira o raio: ");
+        raio = input();
+    }while (raio < 0);
+    return (raio*raio);
+}
 int validPreco(){
     float prc;
     do{
@@ -146,7 +173,14 @@ int validPreco(){
     }while (prc < 1);
     return prc;
 }
-
+int validQTD(){
+    float qtd;
+    do{
+        printf("Insira a quantidade de produto: ");
+        qtd = input();
+    }while (qtd < 0);
+    return qtd;
+}
 int fatorial(){
     int i,num, fat;
     printf("Informe o número: ");
@@ -192,4 +226,16 @@ int menuPay(){
     int opc = input();
 
     return opc;
+}
+
+int calcArRetangulo(){
+    float base = validBase();
+    float altura = validAltura();
+    float area = base * altura;
+    return area;
+}
+int calcArCirculo(){
+    float raio = validRaio();
+    float area = M_PI * raio;
+    return area;
 }

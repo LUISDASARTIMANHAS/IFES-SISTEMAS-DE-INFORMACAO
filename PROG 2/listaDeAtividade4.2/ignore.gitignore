@@ -3,6 +3,8 @@
 
 # Ignorar arquivos de saída
 output/
+output/*
+output
 
 # Ignorar arquivos executáveis
 *.exe
