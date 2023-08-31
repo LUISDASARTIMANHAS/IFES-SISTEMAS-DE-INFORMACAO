@@ -1,6 +1,9 @@
 #include <windows.h>
 #define _USE_MATH_DEFINES
 #include <math.h>
+#include <stdlib.h>
+#include <stdio.h>
+#include <ctype.h>
 
 
 int correct(){
@@ -181,6 +184,13 @@ int validQTD(){
     }while (qtd < 0);
     return qtd;
 }
+void imprimirArray(int *array, int qtde){
+    int i;
+
+    for (i = 0; i < qtde; i++){
+        printf("%d  ",array[i]);
+    }
+}
 int fatorial(){
     int i,num, fat;
     printf("Informe o número: ");
@@ -238,4 +248,22 @@ int calcArCirculo(){
     float raio = validRaio();
     float area = M_PI * raio;
     return area;
+}
+
+void saveArray(int *i,int *array,int data){
+    char continuar;
+    do{
+        array[*i] = data;
+        (*i)++;
+        printf("\nDeseja continuar? ");
+        scanf(" %c",&continuar);
+    } while(toupper(continuar == "S"));
+}
+
+void removerArray(int *qtde, int *array, int pos){
+    int i;
+    for (i = pos; i < (*qtde)-1; i++){
+        array[i] = array[i+1];
+    }
+    (*qtde)--;
 }

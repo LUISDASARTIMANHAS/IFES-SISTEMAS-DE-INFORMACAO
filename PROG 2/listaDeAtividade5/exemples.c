@@ -1,12 +1,18 @@
 #include "functions.c"
 #include <stdlib.h>
 #include <stdio.h>
+#define MAX 500
 
 int main(){
     head();
-    int tamMax = 1000;
-    int data[tamMax], data2[tamMax];
+    int data[MAX];
+    int qtdData = 0;
 
+    saveArray(&qtdData,data,12);
+    saveArray(&qtdData,data,15);
+    saveArray(&qtdData,data,5);
+
+    imprimirArray(data,qtdData);
     copy();
     return 0;
 }
