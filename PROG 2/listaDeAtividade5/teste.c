@@ -4,17 +4,14 @@
 
 int main(){
     head();
-    int *data;
+    int *data,space;
     int elementos = 10;
-    alocarMEM(&data);
-    // printf("Entre com a quantidade de números: ");
-    // int quant_numeros = input();
-    // data = (int *) malloc (quant_numeros * sizeof (int) );
+    alocarMEM(&data,&space);
 
     saveArray(&elementos,data,12);
     saveArray(&elementos,data,15);
     saveArray(&elementos,data,5);
-    // autoMEM(data,elementos);
+    reAlocarMEM(&data,&space);
 
     imprimirArray(data,elementos);
     copy();

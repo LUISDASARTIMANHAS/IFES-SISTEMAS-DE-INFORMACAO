@@ -268,28 +268,19 @@ void removerArray(int *qtde, int *array, int pos){
     (*qtde)--;
 }
 
-void alocarMEM(int **database){
+void alocarMEM(int **database,int *space){
     printf("Entre com a quantidade de números: ");
     int quant_numeros = input();
-    *(*database) = (int *) malloc (quant_numeros * sizeof (int) );
+    *database = (int *) malloc (quant_numeros * sizeof (int) );
+    *space = quant_numeros;
 }
 
-void reAlocarMEM(int *database, int qtde){
-    printf("Voce tem alocado: %d",qtde);
+void reAlocarMEM(int **database, int *space){
+    printf("\nVoce tem alocado: %d \n",*space);
     printf("Entre com a quantidade a mais de elementos: ");
     int qtdeNova = input();
-    int tam = (qtdeNova+qtde) * sizeof (int);
-    database = (int *) realloc (database , tam );
-}
+    *space = (qtdeNova+(*space));
+    int tam = (*space) * sizeof (int);
 
-
-void autoMEM(int *database, int qtde,int space){
-    int tam = (qtde+100) * sizeof (int);
-    if(space-5 < qtde ){
-        printf("Voce tem alocado: %d",qtde);
-        printf("Estamos alocando %d mais espaço automaticamente... ",tam);
-        database = (int *) realloc (database , tam );
-    }else{
-        printf("Voce tem alocado: %d",qtde);
-    }
+    *database = (int *) realloc (*database , tam );
 }
