@@ -6,7 +6,6 @@
 int main(){
     head();
     int *data,space;
-    int elementos = 10;
     alocarMEM(&data,&space);
 
     

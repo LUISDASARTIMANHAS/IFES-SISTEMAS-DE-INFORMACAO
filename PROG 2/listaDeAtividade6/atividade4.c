@@ -9,7 +9,6 @@ int main(){
     int elementos = 10;
     alocarMEM(&data,&space);
 
-    
     copy();
     return 0;
 }
