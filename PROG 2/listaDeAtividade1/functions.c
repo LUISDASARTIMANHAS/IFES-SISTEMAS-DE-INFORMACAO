@@ -1,8 +1,16 @@
 #include <windows.h>
+#define _USE_MATH_DEFINES
 #include <math.h>
+#include <stdlib.h>
+#include <stdio.h>
+#include <ctype.h>
+#include <string.h>
 
-// SetConsoleOutputCP();
 
+int correct(){
+    SetConsoleOutputCP(65001);
+    return 0;
+}
 void head(){
     printf("\n ----------------------------------------------------");
     printf("\n\t LUIS_DAS_ARTIMANHAS & PINGOBRAS S.A");
@@ -137,7 +145,30 @@ int validSalario(){
 //     }
 //     return senha;
 // }
-
+int validAltura(){
+    float alt;
+    do{
+        printf("Insira a altura: ");
+        alt = input();
+    }while (alt < 0);
+    return alt;
+}
+int validBase(){
+    float base;
+    do{
+        printf("Insira a base: ");
+        base = input();
+    }while (base < 0);
+    return base;
+}
+int validRaio(){
+    float raio;
+    do{
+        printf("Insira o raio: ");
+        raio = input();
+    }while (raio < 0);
+    return (raio*raio);
+}
 int validPreco(){
     float prc;
     do{
@@ -146,7 +177,21 @@ int validPreco(){
     }while (prc < 1);
     return prc;
 }
+int validQTD(){
+    float qtd;
+    do{
+        printf("Insira a quantidade de produto: ");
+        qtd = input();
+    }while (qtd < 0);
+    return qtd;
+}
+void imprimirArray(int *array, int qtde){
+    int i;
 
+    for (i = 0; i < qtde; i++){
+        printf("%d  ",array[i]);
+    }
+}
 int fatorial(){
     int i,num, fat;
     printf("Informe o número: ");
@@ -192,4 +237,51 @@ int menuPay(){
     int opc = input();
 
     return opc;
+}
+
+int calcArRetangulo(){
+    float base = validBase();
+    float altura = validAltura();
+    float area = base * altura;
+    return area;
+}
+int calcArCirculo(){
+    float raio = validRaio();
+    float area = M_PI * raio;
+    return area;
+}
+
+void saveArray(int *i,int *array,int data){
+    char continuar;
+    do{
+        array[*i] = data;
+        (*i)++;
+        printf("\nDeseja continuar? ");
+        scanf(" %c",&continuar);
+    } while(toupper(continuar == "S"));
+}
+
+void removerArray(int *qtde, int *array, int pos){
+    int i;
+    for (i = pos; i < (*qtde)-1; i++){
+        array[i] = array[i+1];
+    }
+    (*qtde)--;
+}
+
+void alocarMEM(int **database,int *maxSpace){
+    printf("Entre com a quantidade de números: ");
+    int quant_numeros = input();
+    *database = (int *) malloc (quant_numeros * sizeof (int) );
+    *maxSpace = quant_numeros;
+}
+
+void reAlocarMEM(int **database, int *maxSpace){
+    printf("\nVoce tem alocado: %d \n",*maxSpace);
+    printf("Entre com a quantidade a mais de elementos: ");
+    int qtdeNova = input();
+    *maxSpace = (qtdeNova+(*maxSpace));
+    int tam = (*maxSpace) * sizeof (int);
+
+    *database = (int *) realloc (*database , tam );
 }
