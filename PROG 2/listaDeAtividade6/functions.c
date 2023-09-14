@@ -18,10 +18,7 @@ char ch;
         // printf("\n limpando: %c ",ch);
     } while( ch != EOF && ch != '\n' );
 }
-strTam(char *string,int max,  ){
-    pesqStr(string, max, )
 
-}
 void head(){
     printf("\n ----------------------------------------------------");
     printf("\n\t LUIS_DAS_ARTIMANHAS & PINGOBRAS S.A");
@@ -309,8 +306,9 @@ void reAlocarMEM(int **database, int *maxSpace){
 
     *database = (int *) realloc (*database , tam );
 }
-int pesqStr (char *data, int qtde, char pesq) {
+int pesqStr(char *data, int qtde, char pesq) {
     int i;
+    printf("%c, %d, %c",data,qtde,pesq);
     for (i = 0; i < qtde; i++) {
         if (data[i] == pesq)
         return i;

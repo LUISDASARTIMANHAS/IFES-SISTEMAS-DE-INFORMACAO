@@ -3,7 +3,10 @@
 #include <stdio.h>
 
 // Implemente manualmente a função strlen, ou seja, uma função que conta a quantidade de caracteres de uma string (obviamente não é permitido o uso da função strlen da biblioteca
-
+void strTam(char *str,int max){
+    int pos = pesqStr(str,max, "\n");
+    printf("\n posição: %d \n",pos);
+}
 
 int main(){
     correct();
@@ -15,6 +18,7 @@ int main(){
 
     printf("\nInsira uma frase\n");
     inputStr(string,maxSpace);
+    strTam(string,maxSpace);
 
     printf(string);
     copy();
