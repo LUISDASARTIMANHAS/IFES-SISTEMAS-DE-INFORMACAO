@@ -1,7 +1,11 @@
 #include <windows.h>
 #define _USE_MATH_DEFINES
 #include <math.h>
-#include <time.h> // Para os números aleatórios
+#include <stdlib.h>
+#include <stdio.h>
+#include <ctype.h>
+#include <string.h>
+
 
 int correct(){
     SetConsoleOutputCP(65001);
@@ -181,6 +185,13 @@ int validQTD(){
     }while (qtd < 0);
     return qtd;
 }
+void imprimirArray(int *array, int qtde){
+    int i;
+
+    for (i = 0; i < qtde; i++){
+        printf("%d  ",array[i]);
+    }
+}
 int fatorial(){
     int i,num, fat;
     printf("Informe o número: ");
@@ -239,18 +250,38 @@ int calcArCirculo(){
     float area = M_PI * raio;
     return area;
 }
-int lancarDado(){
-    return ( rand() % 6) + 1;
+
+void saveArray(int *i,int *array,int data){
+    char continuar;
+    do{
+        array[*i] = data;
+        (*i)++;
+        printf("\nDeseja continuar? ");
+        scanf(" %c",&continuar);
+    } while(toupper(continuar == "S"));
 }
-int jogarDados(){
-    int d1, d2, soma;
-    printf("\n\nVamos jogar os dados\n");
-    system("PAUSE");
-    d1 = lancarDado();
-    d2 = lancarDado();
-    soma = d1 + d2;
-    printf("Dado 1: %d\nDado 2: %d\n\n", d1, d2);
-    printf("SOMA: %d\n", soma);
-    printf("---------------------\n\n");
-    return soma;
+
+void removerArray(int *qtde, int *array, int pos){
+    int i;
+    for (i = pos; i < (*qtde)-1; i++){
+        array[i] = array[i+1];
+    }
+    (*qtde)--;
+}
+
+void alocarMEM(int **database,int *maxSpace){
+    printf("Entre com a quantidade de números: ");
+    int quant_numeros = input();
+    *database = (int *) malloc (quant_numeros * sizeof (int) );
+    *maxSpace = quant_numeros;
+}
+
+void reAlocarMEM(int **database, int *maxSpace){
+    printf("\nVoce tem alocado: %d \n",*maxSpace);
+    printf("Entre com a quantidade a mais de elementos: ");
+    int qtdeNova = input();
+    *maxSpace = (qtdeNova+(*maxSpace));
+    int tam = (*maxSpace) * sizeof (int);
+
+    *database = (int *) realloc (*database , tam );
 }
