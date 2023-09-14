@@ -4,6 +4,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <ctype.h>
+#include <string.h>
 
 
 int correct(){
@@ -268,19 +269,19 @@ void removerArray(int *qtde, int *array, int pos){
     (*qtde)--;
 }
 
-void alocarMEM(int **database,int *space){
+void alocarMEM(int **database,int *maxSpace){
     printf("Entre com a quantidade de números: ");
     int quant_numeros = input();
     *database = (int *) malloc (quant_numeros * sizeof (int) );
-    *space = quant_numeros;
+    *maxSpace = quant_numeros;
 }
 
-void reAlocarMEM(int **database, int *space){
-    printf("\nVoce tem alocado: %d \n",*space);
+void reAlocarMEM(int **database, int *maxSpace){
+    printf("\nVoce tem alocado: %d \n",*maxSpace);
     printf("Entre com a quantidade a mais de elementos: ");
     int qtdeNova = input();
-    *space = (qtdeNova+(*space));
-    int tam = (*space) * sizeof (int);
+    *maxSpace = (qtdeNova+(*maxSpace));
+    int tam = (*maxSpace) * sizeof (int);
 
     *database = (int *) realloc (*database , tam );
 }
