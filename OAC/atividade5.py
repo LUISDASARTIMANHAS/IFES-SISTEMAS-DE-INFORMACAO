@@ -1,1 +1,0 @@
-# Atividade 5: Multiplicar um número por 5 e salvar o valor no registrador R20. Coloque um valor pequeno na entrada, máximo 15 para evitar overflow. Não vale utilizar nesta atividade a instrução de multiplicação. E você deverá utilizar um loop de repetição.

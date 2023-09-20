@@ -1,1 +1,0 @@
-# Atividade 10: Carregue 10 valores , começando em $100 e ordene estes valores de forma crescente

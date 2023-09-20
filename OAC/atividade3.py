@@ -1,1 +1,0 @@
-# Atividade 3: Somar dois números, caso a soma dê mais de 30, subtrair 10, caso contrário, adicionar o valor atual da soma (isso equivale a multiplicar a soma atual por 2). Salvar o resultado no R20.
