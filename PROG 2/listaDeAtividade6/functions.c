@@ -31,6 +31,13 @@ float input(){
     scanf("%f", &value);
     return value;
 }
+char inputStr(){
+char*Retorno =  "hello !!\n"
+
+    fgets (<nome_da_string> , <tamanho> , <local>);
+    return(Retorno);
+}
+
 
 int validNum(){
     printf("Insira um numero: ");
