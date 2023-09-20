@@ -7,18 +7,10 @@
 #include <string.h>
 
 
-void correct(){
+int correct(){
     SetConsoleOutputCP(65001);
+    return 0;
 }
-
-void limparBuffer(){
-char ch;
-    do {
-        ch = fgetc(stdin);
-        // printf("\n limpando: %c ",ch);
-    } while( ch != EOF && ch != '\n' );
-}
-
 void head(){
     printf("\n ----------------------------------------------------");
     printf("\n\t LUIS_DAS_ARTIMANHAS & PINGOBRAS S.A");
@@ -38,11 +30,6 @@ float input(){
     float value;
     scanf("%f", &value);
     return value;
-}
-void inputStr(char *str,int max){
-    correct();
-    fgets(str , max ,stdin);
-    limparBuffer();
 }
 
 int validNum(){
@@ -198,14 +185,6 @@ int validQTD(){
     }while (qtd < 0);
     return qtd;
 }
-int pesquisar (int *vetor, int qtde, int pesq) {
-    int i;
-    for (i = 0; i < qtde; i++) {
-        if (vetor[i] == pesq)
-        return i;
-    }
-    return -1;
-}
 void imprimirArray(int *array, int qtde){
     int i;
 
@@ -305,43 +284,4 @@ void reAlocarMEM(int **database, int *maxSpace){
     int tam = (*maxSpace) * sizeof (int);
 
     *database = (int *) realloc (*database , tam );
-}
-int pesqStr(char *data, int qtde, char pesq) {
-    int i;
-    printf("%c, %d, %c",data,qtde,pesq);
-    for (i = 0; i < qtde; i++) {
-        if (data[i] == pesq)
-        return i;
-    }
-    return -1;
-}
-
-void autoAlocarMEM(int **database,int *maxSpace){
-    *database = (int *) malloc (100 * sizeof (int) );
-    *maxSpace = 100;
-    printf("\n Foram alocados: %d de memoria \n",*maxSpace);
-}
-
-void autoAlocarMEMStr(char **database,int *maxSpace){
-    *maxSpace = 100;
-    *database = (char *) malloc ((*maxSpace) * sizeof (char) );
-    printf("\n Foram alocados: %d de memoria char  \n",*maxSpace);
-}
-
-void autoReAlocarMEM(int **database, int *maxSpace){
-    printf("\nVoce tem alocado: %d \n",*maxSpace);
-    *maxSpace = (100+(*maxSpace));
-    int tam = (*maxSpace) * sizeof (int);
-
-    *database = (int *) realloc (*database , tam );
-    printf("\n Foram alocados: %d de memoria, total: %d \n", tam,*maxSpace);
-}
-
-void autoReAlocarMEMStr(char **database, int *maxSpace){
-    printf("\nVoce tem alocado: %d \n",*maxSpace);
-    *maxSpace = (100+(*maxSpace));
-    int tam = (*maxSpace) * sizeof (char);
-
-    *database = (char *) realloc (*database , tam );
-    printf("\n Foram alocados: %d de memoria char, total: %d \n", tam,*maxSpace);
 }
