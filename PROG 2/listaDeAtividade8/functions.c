@@ -6,6 +6,22 @@
 #include <ctype.h>
 #include <string.h>
 
+struct DatabaseData{
+    int dia;
+    int mes;
+    int ano;
+};
+typedef struct DatabaseData BancoDeDadosData;
+
+struct DatabasePonto{
+    int y;
+    int x;
+    int z;
+    int color;
+    int ponto;
+};
+typedef struct DatabasePonto BancoDeDadosCartesiano;
+
 struct Database
 {
     int codigo;
@@ -16,12 +32,10 @@ struct Database
 
     char charDado[200];
     char charDado2[200];
-
-    int data;
-    int mes;
-    int ano;
+    BancoDeDadosData date;
+    BancoDeDadosCartesiano planoCartesiano;
 };
-typedef struct Database Database;
+typedef struct Database BancoDeDados;
 
 int correct(){
     SetConsoleOutputCP(65001);
@@ -265,6 +279,17 @@ int calcArCirculo(){
     float raio = validRaio();
     float area = M_PI * raio;
     return area;
+}
+
+void lerData(BancoDeDados *data){
+    printf("Insira o Dia: ");
+    (*data).date.dia = input();
+
+    printf("Insira o Mês: ");
+    (*data).date.mes = input();
+
+    printf("Insira o Ano: ");
+    (*data).date.ano = input();
 }
 
 void saveArray(int *i,int *array,int data){
