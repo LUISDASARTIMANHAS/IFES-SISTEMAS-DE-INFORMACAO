@@ -88,17 +88,6 @@ int menuPay(){
     return opc;
 }
 
-int calcArRetangulo(){
-    float base = validBase();
-    float altura = validAltura();
-    float area = base * altura;
-    return area;
-}
-int calcArCirculo(){
-    float raio = validRaio();
-    float area = M_PI * raio;
-    return area;
-}
 
 void saveArray(int *i,int *array,int data){
     char continuar;
@@ -107,7 +96,7 @@ void saveArray(int *i,int *array,int data){
         (*i)++;
         printf("\nDeseja continuar? ");
         scanf(" %c",&continuar);
-    } while(toupper(continuar == "S"));
+    } while(toupper(continuar == 'S'));
 }
 
 void removerArray(int *qtde, int *array, int pos){
@@ -116,4 +105,29 @@ void removerArray(int *qtde, int *array, int pos){
         array[i] = array[i+1];
     }
     (*qtde)--;
+}
+
+void trocar(char msm[]) {
+    int i;
+    char e;
+    int tam = strlen(msm);
+    for (i = 0; i < tam; i++){
+        e = msm[i];
+
+        if(e == 'o'){
+            msm[i] = '0';
+        }else if (e == '0'){
+            msm[i] = 'o';
+        }
+
+        if(e == 'a'){
+            msm[i] = '@';
+        }else if (e == '@'){
+            msm[i] = 'a';
+        }
+    }
+}
+
+void separador(char data[],char impars[],char pars[]){
+    
 }
