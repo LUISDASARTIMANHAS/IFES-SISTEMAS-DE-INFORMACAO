@@ -7,7 +7,7 @@ output/*
 output
 
 # Ignorar arquivos executáveis
-*.exe
+* .exe
 
 # Ignorar arquivos JSON
-*.json
+* .json
