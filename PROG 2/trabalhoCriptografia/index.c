@@ -10,7 +10,7 @@ int main(){
     head();
     int tam =  strlen(MSM);
 
-    printf(tam);
+    printf("%d",tam);
     copy();
     return 0;
 }
