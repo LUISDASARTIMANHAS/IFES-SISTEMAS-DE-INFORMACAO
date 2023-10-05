@@ -14,7 +14,8 @@ int main(){
     trocar(dataString);
     separador(dataString,string1,string2);
 
-    printf("\n %s", dataString);
+    printf("\n\n %s", string1);
+    printf("\n\n %s", string2);
     copy();
     return 0;
 }
