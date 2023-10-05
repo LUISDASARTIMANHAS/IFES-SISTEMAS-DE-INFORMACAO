@@ -12,13 +12,15 @@ int correct(){
     return 0;
 }
 void head(){
+    correct();
     printf("\n ----------------------------------------------------");
     printf("\n\t LUIS_DAS_ARTIMANHAS & PINGOBRAS S.A");
-    printf("\n\t Iniciando programa.....");
+    printf("\n\t Iniciando o programa.....");
     printf("\n----------------------------------------------------\n");
 }
 
 void copy(){
+    correct();
     printf("\n----------------------------------------------------");
     printf("\n\t DEVS:");
     printf("\n\t LUIS_DAS_ARTIMANHAS.");
@@ -44,87 +46,6 @@ int validNum(){
     return num;
 }
 
-int validNota(){
-    float nota;
-    do{
-        printf("Insira uma Nota: ");
-        nota = input();
-    }while ((nota < 0) || ( nota > 10));
-    return nota;
-}
-int validMatricula(){
-    float matricula;
-    do{
-        printf("Insira sua matricula: ");
-        matricula = input();
-    }while (matricula < 0);
-    return matricula;
-}
-
-int validIdade(){
-    printf("Insira sua idade: ");
-    int idade = input();
-    while((idade <= 0) || (idade >= 50)){
-        printf("Idade invalida.");
-        printf("Insira sua idade: ");
-        idade = input();
-        
-    }
-    return idade;
-}
-
-int validSalario(){
-    printf("Insira seu salario: ");
-    int salario = input();
-    
-    while(salario < 0){
-        printf("Salario invalido.");
-        printf("Insira Seu salario: ");
-        salario = input();
-    }
-    return salario;
-}
-
-int validAltura(){
-    float alt;
-    do{
-        printf("Insira a altura: ");
-        alt = input();
-    }while (alt < 0);
-    return alt;
-}
-int validBase(){
-    float base;
-    do{
-        printf("Insira a base: ");
-        base = input();
-    }while (base < 0);
-    return base;
-}
-int validRaio(){
-    float raio;
-    do{
-        printf("Insira o raio: ");
-        raio = input();
-    }while (raio < 0);
-    return (raio*raio);
-}
-int validPreco(){
-    float prc;
-    do{
-        printf("Insira o preco do produto: ");
-        prc = input();
-    }while (prc < 1);
-    return prc;
-}
-int validQTD(){
-    float qtd;
-    do{
-        printf("Insira a quantidade de produto: ");
-        qtd = input();
-    }while (qtd < 0);
-    return qtd;
-}
 void imprimirArray(int *array, int qtde){
     int i;
 
@@ -142,18 +63,6 @@ int fatorial(){
     }
     return fat;
 }
-int lerOpcaoCalc() {
-    int op;
-    printf("\n\nCALCULAR A ÁREA:\n");
-    printf("1-Retângulo\n");
-    printf("2-Círculo\n");
-    printf("0-Sair\n");
-    printf("Informe sua opção: ");
-    scanf("%d", &op);
-    // VALIDAR a opção entre 0, 1 e 2
-    return op;
-}
-
 int somar(int num1, int num2){
     int total = num1 + num2;
     printf("\nSomando os numeros: %d + %d\n", num1,num2);
@@ -208,4 +117,3 @@ void removerArray(int *qtde, int *array, int pos){
     }
     (*qtde)--;
 }
-
