@@ -5,14 +5,15 @@
 int main(){
     correct();
     head();
-    char dataString[maxTam] = "Problemas Hiper-Interessantes com 0 (zero) e @.";
+    char dataString[maxTam];
     char string1[maxTam/2];
     char string2[maxTam/2];
     char cripto[maxTam];
-    // fgets(dataString, 1024, stdin);
+    validString(dataString,maxTam);
 
     trocar(dataString);
     separador(dataString,string1,string2);
+    intercalador(cripto,string1,string2);
 
     printf("\n----------------------------------------------------\n");
     printf("   \t STRING - 1: %s", string1);

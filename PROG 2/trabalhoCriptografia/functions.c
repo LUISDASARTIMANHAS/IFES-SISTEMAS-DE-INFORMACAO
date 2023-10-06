@@ -28,12 +28,19 @@ void copy(){
     printf("\n----------------------------------------------------\n");
 }
 
+// inputs personalizados e modificados
 float input(){
     float value;
     scanf("%f", &value);
     return value;
 }
 
+// validadores
+void validString(char data[],int tam){
+    printf("\n \t Espaço Maximo: %d", tam);
+    printf("\n \t Insira um texto: ");
+    fgets(data, tam, stdin);
+}
 int validNum(){
     printf("Insira um numero: ");
     int num = input();
@@ -53,40 +60,6 @@ void imprimirArray(int *array, int qtde){
         printf("%d  ",array[i]);
     }
 }
-int fatorial(){
-    int i,num, fat;
-    printf("Informe o número: ");
-    scanf("%d", &num);
-    fat = 1;
-    for(i=num; i > 1 ; i--) {
-        fat = fat * i;
-    }
-    return fat;
-}
-int somar(int num1, int num2){
-    int total = num1 + num2;
-    printf("\nSomando os numeros: %d + %d\n", num1,num2);
-    return total;
-}
-int diminuir(int num1, int num2){
-    int total = num1 - num2;
-    printf("\n Subtraindo os numeros: %d - %d\n", num1,num2);
-    return total;
-}
-float calcMedia3(float n1,float n2,float n3){
-    float media = (n1 + n2 + n3 )/3;
-    return media;
-}
-int menuPay(){
-    printf("\n=======SELECIONAR FORMA DE PAGAMENTO=======\n");
-    printf("1-A vista\n");
-    printf("2-A prazo\n");
-    printf("=====================\n");
-    printf("Forma: ");
-    int opc = input();
-
-    return opc;
-}
 void inversor(char database[]){
     int fim = strlen(database)-1;
     int i;
@@ -97,7 +70,6 @@ void inversor(char database[]){
         database[i] = database[fim];
         database[fim] = e;
     }
-    printf("%s",database);
 }
 
 void saveArray(int *i,int *array,int data){
@@ -140,7 +112,7 @@ void trocar(char msm[]) {
     }
 }
 
-void separador(char msm[],char impars[],char pars[]){
+void separador(char msm[],char pars[],char impars[]){
     int par = 0;
     int impar = 1;
     int i;
@@ -151,18 +123,17 @@ void separador(char msm[],char impars[],char pars[]){
         ePar = msm[par];
         eImpar= msm[impar];
 
-        pars[i] = eImpar;
-        impars[i] = ePar;
+        pars[i] = ePar;
+        impars[i] = eImpar;
     }
-    inversor(pars);
+    inversor(impars);
 }
 
-void intercalador(char cripto[],char impars[],char pars[]){
+void intercalador(char cripto[],char pars[],char impars[]){
     int i;
     int tam = strlen(cripto);
 
-    for (i = 0; i < tam; i++)
-    {
+    for (i = 0; i < tam; i++){
         /* code */
     }
     
