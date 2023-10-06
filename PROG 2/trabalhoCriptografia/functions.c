@@ -87,7 +87,18 @@ int menuPay(){
 
     return opc;
 }
+void inversor(char database[]){
+    int fim = strlen(database)-1;
+    int i;
+    char e;
 
+    for (i = 0; i < fim; i++,fim--){
+        e = database[i];
+        database[i] = database[fim];
+        database[fim] = e;
+    }
+    printf("%s",database);
+}
 
 void saveArray(int *i,int *array,int data){
     char continuar;
@@ -135,7 +146,7 @@ void separador(char msm[],char impars[],char pars[]){
     int i;
     char ePar,eImpar;
     int tam = strlen(msm);
-    // Segunda Etapa – Obter todos os caracteres da mensagem que estão em posições ímpares e colocar em uma string (string1). Obter todos os caracteres da mensagem que estão em posições pares, mas na ordem inversa, e colocar em outra string (string2). Considere todos os tipos de caracteres, como pontuação, espaços em branco e qualquer  símbolo que aparecer.
+
     for (i = 0; i < tam; i++,par=par+2,impar=impar+2){
         ePar = msm[par];
         eImpar= msm[impar];
@@ -143,5 +154,17 @@ void separador(char msm[],char impars[],char pars[]){
         pars[i] = eImpar;
         impars[i] = ePar;
     }
-
+    inversor(pars);
 }
+
+void intercalador(char cripto[],char impars[],char pars[]){
+    int i;
+    int tam = strlen(cripto);
+
+    for (i = 0; i < tam; i++)
+    {
+        /* code */
+    }
+    
+}
+// Terceira Etapa – Intercalar os elementos da string1 com os elementos da string2 para formar a mensagem criptografada. Primeiro pegue o primeiro elemento da string1 seguido do primeiro da string2, depois o segundo da string1 com o segundo da string2 e assim sucessivamente. Se uma das duas strings terminar, continue pegando apenas da outra string, até que todos os elementos tenham sido intercalados.
