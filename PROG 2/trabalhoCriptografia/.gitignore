@@ -11,3 +11,6 @@ output
 
 # Ignorar arquivos JSON
 * .json
+
+# Ignorar arquivos pdf
+* .pdf
