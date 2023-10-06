@@ -46,7 +46,6 @@ void validString(char data[],int tam){
     printf("\n \t Espaço Maximo: %d", tam);
     printf("\n \t Insira um texto: ");
     fgets(data, tam, stdin);
-    limparBuffer();
 }
 
 void inversor(char database[]){
@@ -80,6 +79,10 @@ void trocar(char msm[]) {
         }else if (e == '@'){
             msm[i] = 'a';
         }
+
+        if(e == '\n'){
+            msm[i] = '\0';
+        }
     }
 }
 
@@ -104,15 +107,20 @@ void separador(char msm[],char pars[],char impars[]){
 }
 
 void intercalador(char cripto[],char pars[],char impars[]){
-    int i;
-    int tam = strlen(pars)+strlen(impars);
-    char e1,e2;
+    int tamPars = strlen(pars);
+    int tamImpars = strlen(impars);
+    int tam = tamPars + tamImpars;
+    int k, j = 0;
+    int count;
 
-    for (i = 0; i < tam; i++){
-        e1 = pars[i];
-        e2 = impars[i];
-        cripto[i] = e1;
-        cripto[i+1] = e2;
+    for (count = 0; count < tam; count++){
+        if (count % 2 == 0){
+            cripto[count] = pars[j];
+            j++;
+        }else{
+            cripto[count] = impars[k];
+            k++;
+        }
     }
     cripto[tam] = '\0';
 }
