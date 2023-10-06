@@ -34,7 +34,6 @@ void limparBuffer(){
     } while (ch != EOF && ch != '\n');
 }
 
-
 // inputs personalizados e modificados
 float input(){
     float value;
@@ -47,27 +46,9 @@ void validString(char data[],int tam){
     printf("\n \t Espaço Maximo: %d", tam);
     printf("\n \t Insira um texto: ");
     fgets(data, tam, stdin);
-    limparBuffer()
-}
-int validNum(){
-    printf("Insira um numero: ");
-    int num = input();
-
-    while(num < 0){
-        printf("Salario invalido.");
-        printf("Insira Seu salario: ");
-        num = input();
-    }
-    return num;
+    limparBuffer();
 }
 
-void imprimirArray(int *array, int qtde){
-    int i;
-
-    for (i = 0; i < qtde; i++){
-        printf("%d  ",array[i]);
-    }
-}
 void inversor(char database[]){
     int fim = strlen(database)-1;
     int i;
@@ -78,24 +59,6 @@ void inversor(char database[]){
         database[i] = database[fim];
         database[fim] = e;
     }
-}
-
-void saveArray(int *i,int *array,int data){
-    char continuar;
-    do{
-        array[*i] = data;
-        (*i)++;
-        printf("\nDeseja continuar? ");
-        scanf(" %c",&continuar);
-    } while(toupper(continuar == 'S'));
-}
-
-void removerArray(int *qtde, int *array, int pos){
-    int i;
-    for (i = pos; i < (*qtde)-1; i++){
-        array[i] = array[i+1];
-    }
-    (*qtde)--;
 }
 
 void trocar(char msm[]) {
@@ -116,10 +79,6 @@ void trocar(char msm[]) {
             msm[i] = '@';
         }else if (e == '@'){
             msm[i] = 'a';
-        }
-
-        if(e == '\n'){
-            msm[i] = '\0';
         }
     }
 }
