@@ -27,6 +27,13 @@ void copy(){
     printf("\n\t PINGOBRAS S.A");
     printf("\n----------------------------------------------------\n");
 }
+void limparBuffer(){
+    int ch;
+    do{
+        ch = fgetc(stdin);
+    } while (ch != EOF && ch != '\n');
+}
+
 
 // inputs personalizados e modificados
 float input(){
@@ -40,6 +47,7 @@ void validString(char data[],int tam){
     printf("\n \t Espaço Maximo: %d", tam);
     printf("\n \t Insira um texto: ");
     fgets(data, tam, stdin);
+    limparBuffer()
 }
 int validNum(){
     printf("Insira um numero: ");
