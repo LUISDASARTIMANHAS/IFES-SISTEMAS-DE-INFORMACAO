@@ -130,25 +130,18 @@ void trocar(char msm[]) {
 }
 
 void separador(char msm[],char impars[],char pars[]){
-    int par,impar;
-    int count1 = 0;
-    int count2 = 0;
-    char e;
+    int par = 0;
+    int impar = 1;
+    int i;
+    char ePar,eImpar;
     int tam = strlen(msm);
-    // Segunda Etapa – Obter todos os caracteres da mensagem que estão em posições
-// ímpares e colocar em uma string (string1). Obter todos os caracteres da mensagem que estão em posições pares, mas na ordem inversa, e colocar em outra string (string2). Considere todos os tipos de caracteres, como pontuação, espaços em branco e qualquer  símbolo que aparecer.
-    for (par = 0; par < tam; par=par+2){
-        e = msm[par];
-        pars[count2] = e;
+    // Segunda Etapa – Obter todos os caracteres da mensagem que estão em posições ímpares e colocar em uma string (string1). Obter todos os caracteres da mensagem que estão em posições pares, mas na ordem inversa, e colocar em outra string (string2). Considere todos os tipos de caracteres, como pontuação, espaços em branco e qualquer  símbolo que aparecer.
+    for (i = 0; i < tam; i++,par=par+2,impar=impar+2){
+        ePar = msm[par];
+        eImpar= msm[impar];
 
-        printf("%c", e);
-        count1 = count1+1;
+        pars[i] = eImpar;
+        impars[i] = ePar;
     }
-    for (impar = 1; impar < tam; impar=impar+2){
-        e = msm[impar];
-        impars[count2] = e;
 
-        printf("%c", e);
-        count2 = count2+1;
-    }
 }
