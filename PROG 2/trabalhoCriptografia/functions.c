@@ -109,6 +109,10 @@ void trocar(char msm[]) {
         }else if (e == '@'){
             msm[i] = 'a';
         }
+
+        if(e == '\n'){
+            msm[i] = '\0';
+        }
     }
 }
 
@@ -118,6 +122,7 @@ void separador(char msm[],char pars[],char impars[]){
     int i;
     char ePar,eImpar;
     int tam = strlen(msm);
+    int tamSubsStrs = tam/2;
 
     for (i = 0; i < tam; i++,par=par+2,impar=impar+2){
         ePar = msm[par];
@@ -127,15 +132,21 @@ void separador(char msm[],char pars[],char impars[]){
         impars[i] = eImpar;
     }
     inversor(impars);
+    pars[tamSubsStrs] = '\0';
+    impars[tamSubsStrs] = '\0';
 }
 
 void intercalador(char cripto[],char pars[],char impars[]){
     int i;
-    int tam = strlen(cripto);
+    int tam = strlen(pars)+strlen(impars);
+    char e1,e2;
 
     for (i = 0; i < tam; i++){
-        /* code */
+        e1 = pars[i];
+        e2 = impars[i];
+        cripto[i] = e1;
+        cripto[i+1] = e2;
     }
-    
+    cripto[tam] = '\0';
 }
 // Terceira Etapa – Intercalar os elementos da string1 com os elementos da string2 para formar a mensagem criptografada. Primeiro pegue o primeiro elemento da string1 seguido do primeiro da string2, depois o segundo da string1 com o segundo da string2 e assim sucessivamente. Se uma das duas strings terminar, continue pegando apenas da outra string, até que todos os elementos tenham sido intercalados.
