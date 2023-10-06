@@ -1,4 +1,5 @@
 #include  "functions.c"
+#define databaseMaxTam 4096
 
 // Segunda Etapa – Obter todos os caracteres da mensagem que estão em posições
 // ímpares e colocar em uma string (string1). Obter todos os caracteres da mensagem que estão em posições pares, mas na ordem inversa, e colocar em outra string (string2). Considere todos os tipos de caracteres, como pontuação, espaços em branco e qualquer  símbolo que aparecer.
@@ -6,9 +7,10 @@
 int main(){
     correct();
     head();
-    char dataString[1024]="Problemas Hiper-Interessantes com 0 (zero) e @. ";
-    char string1[512];
-    char string2[512];
+    char dataString[databaseMaxTam] = "Problemas Hiper-Interessantes com 0 (zero) e @. ";
+    char string1[databaseMaxTam/2];
+    char string2[databaseMaxTam/2];
+    char cripto[databaseMaxTam];
     // fgets(dataString, 1024, stdin);
 
     trocar(dataString);
