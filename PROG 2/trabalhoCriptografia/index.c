@@ -20,8 +20,11 @@ int main(){
 
     printf("\n----------------------------------------------------\n");
     printf("   \t STRING - 1: %s", string1);
+    printf("\n \t TAMANHO - 1: %d", strlen(string1));
     printf("\n \t STRING - 2: %s", string2);
+    printf("\n \t TAMANHO - 2: %d", strlen(string2));
     printf("\n \t CRIPTO: %s", cripto);
+    printf("\n \t TAMANHO: %d", strlen(cripto));
     printf("\n----------------------------------------------------\n");
     copy();
     return 0;
