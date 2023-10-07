@@ -27,12 +27,6 @@ void copy(){
     printf("\n\t PINGOBRAS S.A");
     printf("\n----------------------------------------------------\n");
 }
-void limparBuffer(){
-    int ch;
-    do{
-        ch = fgetc(stdin);
-    } while (ch != EOF && ch != '\n');
-}
 
 // inputs personalizados e modificados
 float input(){
@@ -114,8 +108,7 @@ void intercalador(char cripto[],char pars[],char impars[]){
     int iPar=0;
     int iImpar=0;
     char ePar,eImpar;
-
-    printf("\ntamanhos %d", tam);
+    
     for (i = 0; i < tam; i++){
         ePar = pars[iPar];
         eImpar = impars[iImpar];
