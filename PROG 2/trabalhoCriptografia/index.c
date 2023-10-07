@@ -1,5 +1,5 @@
 #include  "functions.c"
-#define maxTam 100
+#define maxTam 1024
 // Terceira Etapa – Intercalar os elementos da string1 com os elementos da string2 para formar a mensagem criptografada. Primeiro pegue o primeiro elemento da string1 seguido do primeiro da string2, depois o segundo da string1 com o segundo da string2 e assim sucessivamente. Se uma das duas strings terminar, continue pegando apenas da outra string, até que todos os elementos tenham sido intercalados.
 
 // Problemas Hiper-Interessantes com 0 (zero) e @.
@@ -19,9 +19,9 @@ int main(){
     intercalador(cripto,string1,string2);
 
     printf("\n----------------------------------------------------\n");
-    printf("   \t STRING - 1: %s", string1);
+    printf("   \t STRING  - 1: %s", string1);
     printf("\n \t TAMANHO - 1: %d", strlen(string1));
-    printf("\n \t STRING - 2: %s", string2);
+    printf("\n \t STRING  - 2: %s", string2);
     printf("\n \t TAMANHO - 2: %d", strlen(string2));
     printf("\n \t CRIPTO: %s", cripto);
     printf("\n \t TAMANHO: %d", strlen(cripto));

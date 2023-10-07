@@ -110,17 +110,22 @@ void intercalador(char cripto[],char pars[],char impars[]){
     int tamPars = strlen(pars);
     int tamImpars = strlen(impars);
     int tam = (tamPars + tamImpars);
-    int k, j = 0;
-    int count;
+    int i;
+    int iPar=0;
+    int iImpar=0;
+    char ePar,eImpar;
 
-    for (count = 0; count < 100; count++){
-        printf("percorreu %d vezes", count);
-        if (count % 2 == 0){
-            cripto[count] = pars[j];
-            j++;
+    printf("\ntamanhos %d", tam);
+    for (i = 0; i < tam; i++){
+        ePar = pars[iPar];
+        eImpar = impars[iImpar];
+
+        if (i % 2 == 0){
+            cripto[i] = ePar;
+            iPar++;
         }else{
-            cripto[count] = impars[k];
-            k++;
+            cripto[i] = eImpar;
+            iImpar++;
         }
     }
     cripto[tam] = '\0';
