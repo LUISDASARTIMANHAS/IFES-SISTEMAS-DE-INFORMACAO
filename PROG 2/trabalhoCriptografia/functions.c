@@ -109,11 +109,12 @@ void separador(char msm[],char pars[],char impars[]){
 void intercalador(char cripto[],char pars[],char impars[]){
     int tamPars = strlen(pars);
     int tamImpars = strlen(impars);
-    int tam = tamPars + tamImpars;
+    int tam = (tamPars + tamImpars);
     int k, j = 0;
     int count;
 
-    for (count = 0; count < tam; count++){
+    for (count = 0; count < 100; count++){
+        printf("percorreu %d vezes", count);
         if (count % 2 == 0){
             cripto[count] = pars[j];
             j++;
