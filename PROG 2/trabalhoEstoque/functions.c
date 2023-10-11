@@ -36,8 +36,10 @@ float input(){
 }
 
 int menu() {
+    correct();
 	int op;
 	system("@cls||clear");  // LIMPA A TELA
+    head();
 	printf("\n\nSISTEMA De Estoque\n\n");
 	printf("1 - Inserir\n");
 	printf("2 - Pesquisar por número\n");
@@ -141,4 +143,8 @@ void intercalador(char cripto[],char pars[],char impars[]){
         }
     }
     cripto[tam] = '\0';
+}
+
+inserir(){
+    
 }
