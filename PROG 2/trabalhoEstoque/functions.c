@@ -161,10 +161,16 @@ void intercalador(char cripto[],char pars[],char impars[]){
     }
     cripto[tam] = '\0';
 }
-pesqCod(){
+void pesqCod(Produto produtos[],int *tam){
+
+}
+void pesqName(Produto produtos[],int tam){
+
+}
+void inserir(Produto produtos[],int *tam){
 
 }
 
-inserir(){
+void delete(Produto produtos[],int *tam){
 
 }

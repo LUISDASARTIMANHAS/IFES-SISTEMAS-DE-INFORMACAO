@@ -19,6 +19,7 @@
 int main() {
 	correct();
 	Produto produtos[MAXSPACE];
+	int *tam = 0;
 	int op;
 	do {
 		op = menu();
@@ -29,31 +30,31 @@ int main() {
 				break;
 			case 1:
 				// INSERIR
-				inserir();
+				inserir(produtos,&tam);
 				break;
 			case 2:
 				// PESQUISAR POR CODIGO/MATRICULA
-				pesqCod();
+				pesqCod(produtos,tam);
 				break;
 			case 3:
 				// PESQUISAR POR NOME
-				pesqName();
+				pesqName(produtos,tam);
 				break;
 			case 4:
 				// ATUALIZAR
-				update();
+				update(produtos,tam);
 				break;
 			case 5:
 				// MAIOR
-				finderMaior();
+				finderMaior(produtos,tam);
 				break;
 			case 6:
 				// EXCLUIR
-				delete();
+				delete(produtos,&tam);
 				break;
 			case 7:
 				// LISTAR
-				list();
+				list(produtos,tam);
 				break;
 			default:
 				printf ("\n\nOpção inválida!\n\n");
