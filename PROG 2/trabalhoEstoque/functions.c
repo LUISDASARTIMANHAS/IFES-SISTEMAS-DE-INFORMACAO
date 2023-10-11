@@ -35,6 +35,25 @@ float input(){
     return value;
 }
 
+int menu() {
+	int op;
+	system("@cls||clear");  // LIMPA A TELA
+	printf("\n\nSISTEMA De Estoque\n\n");
+	printf("1 - Inserir\n");
+	printf("2 - Pesquisar por número\n");
+	printf("3 - Pesquisar por nome\n");
+	printf("4 - Atualizar\n");
+	printf("5 - Maior\n");
+	printf("6 - Excluir\n");
+	printf("7 - Listar\n");
+	printf("0 - Sair\n");
+	do {
+		printf("Escolha sua opção: ");
+		scanf(" %d", &op);
+	} while(op < 0 || op > 7);
+	return op;
+}
+
 // validadores
 void validString(char data[],int tam){
     printf("\n \t Espaço Maximo: %d", tam);
