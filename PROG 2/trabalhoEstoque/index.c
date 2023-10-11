@@ -61,10 +61,7 @@ int main() {
 	return 0;
 }
 
-// Crie um sistema para gerenciar o estoque de uma empresa. Seu sistema deve ter:
-//  Estrutura Data, com dia, mês e ano.
-//  Estrutura Produto, que possui código, nome, preço, quantidade em estoque e data de validade (struct Data acima).
-// Seu sistema conterá um vetor de Produto e deve possuir as seguintes operações:
+// deve possuir as seguintes operações:
 //  Inserir produto: ler todos os dados de Data e Produto e inserir no vetor. Não deixar inserir código de produto repetido.
 //  Pesquisar por código: pedir o código do produto e pesquisar no vetor, imprimindo todos os dados de Produto e Data.
 //  Pesquisar por nome: pedir o nome do produto e pesquisar no vetor, imprimindo todos os dados de Produto e Data.

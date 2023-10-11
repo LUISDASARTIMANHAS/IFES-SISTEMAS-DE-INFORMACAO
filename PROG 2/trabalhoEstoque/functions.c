@@ -5,6 +5,24 @@
 #include <stdio.h>
 #include <ctype.h>
 #include <string.h>
+#define MAXSPACE 4096
+
+// Crie um sistema para gerenciar o estoque de uma empresa. Seu sistema deve ter:
+//  Estrutura Data, com dia, mês e ano.
+//  Estrutura Produto, que possui código, nome, preço, quantidade em estoque e data de validade (struct Data acima).
+// Seu sistema conterá um vetor de Produto
+struct Date{
+    int dia;
+    int mes;
+    int ano;
+};typedef struct Date Data;
+struct Produto{
+    int cod;
+    char nome[100];
+    float prise;
+    int quantidade;
+    Data validade;
+};typedef struct Produto Produto;
 
 
 int correct(){
@@ -144,7 +162,10 @@ void intercalador(char cripto[],char pars[],char impars[]){
     }
     cripto[tam] = '\0';
 }
+pesqCod(){
+
+}
 
 inserir(){
-    
+
 }
