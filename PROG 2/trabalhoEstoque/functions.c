@@ -80,6 +80,72 @@ void validString(char data[],int tam){
     fgets(data, tam, stdin);
 }
 
+int validSalario(){
+    printf("Insira seu salario: ");
+    int salario = input();
+    
+    while(salario < 0){
+        printf("Salario invalido.");
+        printf("Insira Seu salario: ");
+        salario = input();
+    }
+    return salario;
+}
+
+int validCod(){
+    int cod;
+    do{
+        printf("Insira o código do Produto: ");
+        cod = input();
+    }while (cod < 1);
+    return cod;
+}
+
+int validPreco(){
+    int prise;
+    do{
+        printf("Insira o preço do Produto: ");
+        prise = input();
+    }while (prise < 0);
+    return prise;
+}
+
+int validQuantidade(){
+    int qtd;
+    do{
+        printf("Insira a quantidade do Produto: ");
+        qtd = input();
+    }while (qtd < 0);
+    return qtd;
+}
+
+int validDia(){
+    int dia;
+    do{
+        printf("Insira o dia de validade: ");
+        dia = input();
+    }while ((dia < 0) || (dia > 31));
+    return dia;
+}
+
+int validMes(){
+    int mes;
+    do{
+        printf("Insira o mês de validade: ");
+        mes = input();
+    }while ((mes < 0)||(mes > 12));
+    return mes;
+}
+
+int validAno(){
+    int ano;
+    do{
+        printf("Insira o Ano de validade: ");
+        ano = input();
+    }while ((ano < 0)||(ano > 3050));
+    return ano;
+}
+
 void inversor(char database[]){
     int fim = strlen(database)-1;
     int i;
@@ -146,7 +212,7 @@ void intercalador(char cripto[],char pars[],char impars[]){
     int iPar=0;
     int iImpar=0;
     char ePar,eImpar;
-    
+
     for (i = 0; i < tam; i++){
         ePar = pars[iPar];
         eImpar = impars[iImpar];
@@ -161,16 +227,41 @@ void intercalador(char cripto[],char pars[],char impars[]){
     }
     cripto[tam] = '\0';
 }
-void pesqCod(Produto produtos[],int *tam){
+void pesqCod(Produto produtos[],int tam){
 
 }
 void pesqName(Produto produtos[],int tam){
 
 }
 void inserir(Produto produtos[],int *tam){
+    int i = 0;
+    Produto produto;
+        produto = produtos[i];
+        produto.cod = validCod();
+
+        printf("\nNome do Produto: ");
+        scanf("%[^\n]s", &produto.nome);
+
+        produto.prise = validPreco();
+        produto.quantidade = validQuantidade();
+        produto.validade.dia = validDia();
+        produto.validade.mes = validMes();
+        produto.validade.ano = validAno();
+
+}
+
+void update(Produto produtos[],int tam){
+
+}
+
+void finderMaior(Produto produtos[],int tam){
 
 }
 
 void delete(Produto produtos[],int *tam){
+
+}
+
+void list(Produto produtos[],int tam){
 
 }
