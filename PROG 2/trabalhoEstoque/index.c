@@ -34,20 +34,24 @@ int main() {
 				pesqCod();
 				break;
 			case 3:
-				pesqName();
 				// PESQUISAR POR NOME
+				pesqName();
 				break;
 			case 4:
 				// ATUALIZAR
+				update();
 				break;
 			case 5:
 				// MAIOR
+				finderMaior();
 				break;
 			case 6:
 				// EXCLUIR
+				delete();
 				break;
 			case 7:
 				// LISTAR
+				list();
 				break;
 			default:
 				printf ("\n\nOpção inválida!\n\n");
