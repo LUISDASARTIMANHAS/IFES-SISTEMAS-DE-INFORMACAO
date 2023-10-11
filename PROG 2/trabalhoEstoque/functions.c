@@ -5,7 +5,6 @@
 #include <stdio.h>
 #include <ctype.h>
 #include <string.h>
-#define MAXSPACE 1024
 
 // Crie um sistema para gerenciar o estoque de uma empresa. Seu sistema deve ter:
 //  Estrutura Data, com dia, mês e ano.

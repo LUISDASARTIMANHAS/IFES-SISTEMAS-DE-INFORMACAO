@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "functions.c"
+#define MAXSPACE 1024
 
 // OBS: Reutilize a função pesquisar por código. Ela será utilizada pelas funções inserir, aumentar preço, aplicar desconto e excluir.
 // Para isso seu sistema deve possuir o seguinte menu:
@@ -17,6 +18,7 @@
 // Escolha sua opção:
 int main() {
 	correct();
+	Produto produtos[MAXSPACE];
 	int op;
 	do {
 		op = menu();
