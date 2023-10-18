@@ -4,12 +4,13 @@
 
 
 int main(){
-    head();
     FILE * file;
+    char txt[1024];
+    file = abrirArquivo("../data/atividade.txt","r");
+    fscanf(file,"%s",&txt);
 
 
     fclose(file);
-    copy();
     return 0;
 }
 

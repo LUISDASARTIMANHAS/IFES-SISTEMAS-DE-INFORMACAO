@@ -43,7 +43,7 @@ int correct(){
 }
 void head(){
     FILE * logs;
-    logs = abrirArquivo("../data/logs.txt","a");
+    logs = fopen("../data/logs.txt","a+");
     printf("\n ----------------------------------------------------");
     printf("\n\t LUIS_DAS_ARTIMANHAS & PINGOBRAS S.A");
     printf("\n\t Iniciando programa.....");
@@ -58,7 +58,7 @@ void head(){
 
 void copy(){
     FILE * logs;
-    logs = abrirArquivo("../data/logs.txt","a");
+    logs = fopen("../data/logs.txt","a+");
     printf("\n----------------------------------------------------");
     printf("\n\t DEVS:");
     printf("\n\t LUIS_DAS_ARTIMANHAS.");
@@ -309,15 +309,15 @@ void lerData(BancoDeDados *data){
     (*data).date.ano = input();
 }
 
-void saveArray(int *i,int *array,int data){
-    char continuar;
-    do{
-        array[*i] = data;
-        (*i)++;
-        printf("\nDeseja continuar? ");
-        scanf(" %c",&continuar);
-    } while(toupper(continuar == "S"));
-}
+// void saveArray(int *i,int *array,int data){
+//     char continuar;
+//     do{
+//         array[*i] = data;
+//         (*i)++;
+//         printf("\nDeseja continuar? ");
+//         scanf(" %c",&continuar);
+//     } while(toupper(continuar == "S"));
+// }
 
 void removerArray(int *qtde, int *array, int pos){
     int i;
@@ -344,12 +344,22 @@ void reAlocarMEM(int **database, int *maxSpace){
     *database = (int *) realloc (*database , tam );
 }
 
-FILE* abrirArquivo(char *nomeArq, char *modo ){
-    FILE * file;
-    fopen(nomeArq,modo);
-    if(file == NULL){
+FILE * abrirArquivo(char *nomeArq, char *modo ){
+    FILE * arq;
+    arq = fopen(nomeArq,modo);
+    if(arq == NULL){
         printf("\n ERRO: Erro ao carregar o arquivo!");
         exit(-1);
     }
-    return file;
+    return arq;
 }
+
+// FILE * abrirLogs(){
+//     FILE * arq;
+//     arq = fopen("../data/logs.txt","w");
+//     if(arq == NULL){
+//         printf("\n ERRO: Erro ao carregar o arquivo!");
+//         exit(-1);
+//     }
+//     return arq;
+// }
