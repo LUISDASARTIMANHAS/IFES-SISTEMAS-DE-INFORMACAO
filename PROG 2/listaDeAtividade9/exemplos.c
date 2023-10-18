@@ -4,8 +4,12 @@
 
 
 int main(){
+    head();
     FILE * file;
 
-    file = fopen("logs.txt","r");
+    file = 
+
+    fclose(file);
+    copy();
     return 0;
 }

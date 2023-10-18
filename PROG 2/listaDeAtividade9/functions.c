@@ -42,18 +42,35 @@ int correct(){
     return 0;
 }
 void head(){
+    FILE * file;
+    file = abrirArquivo("../data/logs.txt","a+");
     printf("\n ----------------------------------------------------");
     printf("\n\t LUIS_DAS_ARTIMANHAS & PINGOBRAS S.A");
     printf("\n\t Iniciando programa.....");
     printf("\n----------------------------------------------------\n");
+    // save in file
+    fprintf(file,"\n ----------------------------------------------------");
+    fprintf(file,"\n\t LUIS_DAS_ARTIMANHAS & PINGOBRAS S.A");
+    fprintf(file,"\n\t Iniciando programa.....");
+    fprintf(file,"\n----------------------------------------------------\n");
+    fclose(file);
 }
 
 void copy(){
+    FILE * file;
+    file = abrirArquivo("../data/logs.txt","a+");
     printf("\n----------------------------------------------------");
     printf("\n\t DEVS:");
     printf("\n\t LUIS_DAS_ARTIMANHAS.");
     printf("\n\t PINGOBRAS S.A");
     printf("\n----------------------------------------------------\n");
+    // save in file
+    fprintf(file,"\n----------------------------------------------------");
+    fprintf(file,"\n\t DEVS:");
+    fprintf(file,"\n\t LUIS_DAS_ARTIMANHAS.");
+    fprintf(file,"\n\t PINGOBRAS S.A");
+    fprintf(file,"\n----------------------------------------------------\n");
+    fclose(file);
 }
 
 float input(){
@@ -325,4 +342,14 @@ void reAlocarMEM(int **database, int *maxSpace){
     int tam = (*maxSpace) * sizeof (int);
 
     *database = (int *) realloc (*database , tam );
+}
+
+FILE * abrirArquivo(char *nomeArq, char *modo ){
+    FILE * file;
+    fopen(nomeArq,modo);
+    if(file == NULL){
+        printf("\n ERRO: Erro ao carregar o arquivo!");
+        exit(-1);
+    }
+    return file;
 }
