@@ -5,8 +5,8 @@
 
 int main(){
     FILE * file;
-    char txt[1024];
-    file = abrirArquivo("../data/atividade.txt","r");
+    char txt;
+    file = abrirArquivo("../data/atividade.txt","a+");
     fscanf(file,"%s",&txt);
 
 
