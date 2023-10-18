@@ -42,35 +42,35 @@ int correct(){
     return 0;
 }
 void head(){
-    FILE * file;
-    file = abrirArquivo("../data/logs.txt","a+");
+    FILE * logs;
+    logs = abrirArquivo("../data/logs.txt","a");
     printf("\n ----------------------------------------------------");
     printf("\n\t LUIS_DAS_ARTIMANHAS & PINGOBRAS S.A");
     printf("\n\t Iniciando programa.....");
     printf("\n----------------------------------------------------\n");
-    // save in file
-    fprintf(file,"\n ----------------------------------------------------");
-    fprintf(file,"\n\t LUIS_DAS_ARTIMANHAS & PINGOBRAS S.A");
-    fprintf(file,"\n\t Iniciando programa.....");
-    fprintf(file,"\n----------------------------------------------------\n");
-    fclose(file);
+    // save in logs
+    fprintf(logs,"\n ----------------------------------------------------");
+    fprintf(logs,"\n\t LUIS_DAS_ARTIMANHAS & PINGOBRAS S.A");
+    fprintf(logs,"\n\t Iniciando programa.....");
+    fprintf(logs,"\n----------------------------------------------------\n");
+    fclose(logs);
 }
 
 void copy(){
-    FILE * file;
-    file = abrirArquivo("../data/logs.txt","a+");
+    FILE * logs;
+    logs = abrirArquivo("../data/logs.txt","a");
     printf("\n----------------------------------------------------");
     printf("\n\t DEVS:");
     printf("\n\t LUIS_DAS_ARTIMANHAS.");
     printf("\n\t PINGOBRAS S.A");
     printf("\n----------------------------------------------------\n");
-    // save in file
-    fprintf(file,"\n----------------------------------------------------");
-    fprintf(file,"\n\t DEVS:");
-    fprintf(file,"\n\t LUIS_DAS_ARTIMANHAS.");
-    fprintf(file,"\n\t PINGOBRAS S.A");
-    fprintf(file,"\n----------------------------------------------------\n");
-    fclose(file);
+    // save in logs
+    fprintf(logs,"\n----------------------------------------------------");
+    fprintf(logs,"\n\t DEVS:");
+    fprintf(logs,"\n\t LUIS_DAS_ARTIMANHAS.");
+    fprintf(logs,"\n\t PINGOBRAS S.A");
+    fprintf(logs,"\n----------------------------------------------------\n");
+    fclose(logs);
 }
 
 float input(){
@@ -344,7 +344,7 @@ void reAlocarMEM(int **database, int *maxSpace){
     *database = (int *) realloc (*database , tam );
 }
 
-FILE * abrirArquivo(char *nomeArq, char *modo ){
+FILE* abrirArquivo(char *nomeArq, char *modo ){
     FILE * file;
     fopen(nomeArq,modo);
     if(file == NULL){

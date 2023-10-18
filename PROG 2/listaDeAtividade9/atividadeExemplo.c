@@ -12,3 +12,5 @@ int main(){
     copy();
     return 0;
 }
+
+// contar quantas vezes a palavra aparece no arquivo
