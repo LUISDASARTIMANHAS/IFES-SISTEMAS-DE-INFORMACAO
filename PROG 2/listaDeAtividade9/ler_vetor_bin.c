@@ -21,27 +21,27 @@ FILE * abrirArquivo(char * nomeArq, char * modo) {
     }
     return arq;
 }
-
+void carregarArquivo(FILE * arquivo, dataProduto *vetProd, int *qtde){
+    fread(qtde,sizeof(int),1,arquivo);
+    fread(vetProd,sizeof(dataProduto),*qtde,arquivo);
+}
+void listar(dataProduto *vetProd, int qtde){
+    int i;
+    for (i = 0; i < qtde; i++){
+        printf("%3d|%-50s|%5d|%10.2f|\n", vetProd[i].cod, vetProd[i].nome, vetProd[i].qtde, vetProd[i].preco  );
+    }
+}
 
 int main () {
     FILE * arquivo;
-    dataProduto prod;
+    dataProduto vetProd[1000];
+    int qtde = 0;
     arquivo = abrirArquivo("../data/estoque.bin", "rb");
-    
-    fread(&prod,sizeof(dataProduto),1,arquivo);
-    while(!feof(arquivo)){
-        printf("%3d|%-50s|%5d|%10.2f|\n", prod.cod, prod.nome, prod.qtde, prod.preco  );
-        fread(&prod,sizeof(dataProduto),1,arquivo);
-    
-        // fread(&cod,sizeof(int),1,arquivo);
-        // if(!feof(arquivo)){
-        //     fread(nome,sizeof(char)*50,1,arquivo);
-        //     fread(&preco,sizeof(int),1,arquivo);
-        //     fread(&qtde,sizeof(int),1,arquivo);
-        // }
-    }
 
+    carregarArquivo(arquivo, vetProd, &qtde);
     fclose(arquivo);
+    listar(vetProd,qtde);
+
     printf("FIM");
     return 0;
 }

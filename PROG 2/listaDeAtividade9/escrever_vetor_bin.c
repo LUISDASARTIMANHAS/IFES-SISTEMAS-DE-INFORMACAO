@@ -11,7 +11,6 @@ struct Produto{
 };
 typedef struct Produto dataProduto;
 
-
 FILE * abrirArquivo(char * nomeArq, char * modo) {
     // ABRIR o arquivo
     FILE * arq;
@@ -22,33 +21,36 @@ FILE * abrirArquivo(char * nomeArq, char * modo) {
     }
     return arq;
 }
-
-
-int main () {
-    FILE * arquivo;
+void gravarArquivo(FILE * arquivo, dataProduto *vetProd, int qtde){
+    fwrite(&qtde,sizeof(int),1,arquivo);
+    fwrite(vetProd,sizeof(dataProduto),qtde,arquivo);
+}
+void simularDados(dataProduto * vetProd, int *qtde){
     int i;
     char codStr[TAM+1];
     dataProduto prod;
-
-    arquivo = abrirArquivo("../data/estoque.bin", "wb");
-    
-    for (i=1; i <= 100; i++) {
+    *qtde = 389;
+    for (i=0; i <= *qtde; i++) {
         prod.cod = i;
         strcpy(prod.nome, "Produto ");
         itoa(prod.cod, codStr, 10);
         strcat(prod.nome, codStr );
         prod.preco = prod.cod * 2.1;
         prod.qtde = prod.cod * 10;
-
-        fwrite(&prod,sizeof(dataProduto),1,arquivo);
-        // fwrite(&cod,sizeof(int),1,arquivo);
-        // fwrite(nome,TAM * sizeof(char),1,arquivo);
-        // fwrite(&preco,sizeof(int),1,arquivo);
-        // fwrite(&qtde,sizeof(int),1,arquivo);
-
+        vetProd[i] = prod;
     }
+}
+
+int main () {
+    FILE * arquivo;
+    dataProduto vetProd[1000];
+    int qtde = 100;
+    simularDados(vetProd, &qtde);
     
+    arquivo = abrirArquivo("../data/estoque.bin", "wb");
+    gravarArquivo(arquivo, vetProd, &qtde);
     fclose(arquivo);
+
     printf("FIM");
     return 0;
 }
