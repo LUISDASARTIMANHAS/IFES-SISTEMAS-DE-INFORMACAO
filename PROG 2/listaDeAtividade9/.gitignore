@@ -11,3 +11,5 @@ output
 
 # Ignorar arquivos JSON
 *.json
+
+*.bin
