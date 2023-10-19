@@ -6,9 +6,11 @@
 int main(){
     FILE * file;
     char txt;
-    file = abrirArquivo("../data/atividade.txt","a+");
+    file = lerArquivo("../data/atividade.txt");
+    while(!feof(file)){
     fscanf(file,"%s",&txt);
-
+    printf("%c",txt);
+    }
 
     fclose(file);
     return 0;

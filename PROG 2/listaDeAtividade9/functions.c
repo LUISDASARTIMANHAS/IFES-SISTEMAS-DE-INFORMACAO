@@ -344,6 +344,16 @@ void reAlocarMEM(int **database, int *maxSpace){
     *database = (int *) realloc (*database , tam );
 }
 
+FILE * lerArquivo(char *nomeArq){
+    FILE * arq;
+    arq = fopen(nomeArq,"r");
+    if(arq == NULL){
+        printf("\n ERRO: Não foi possível ler o arquivo! arquivo não existe!!");
+        exit(-1);
+    }
+    return arq;
+}
+
 FILE * abrirArquivo(char *nomeArq, char *modo ){
     FILE * arq;
     arq = fopen(nomeArq,modo);
