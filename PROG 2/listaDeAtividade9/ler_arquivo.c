@@ -21,7 +21,7 @@ int main () {
     int cod;
     char nome[100];
     float preco;
-    int qtde;
+    int qtde ;
 
 
     arquivo = abrirArquivo("../data/estoque.txt", "r");
@@ -32,9 +32,9 @@ int main () {
         fscanf(arquivo, "%d" , &qtde);
         fscanf(arquivo, "%f" , &preco);
 
-        printf("%3d|%-50s|%5d|%10.2f|\n", cod, nome, qtde, preco  );
+        printf("%3d|%-50s|%5d|%10.2f|\n", cod, nome, qtde , preco  );
     }
 
-      
+    fclose(arquivo);
     return 0;
 }
