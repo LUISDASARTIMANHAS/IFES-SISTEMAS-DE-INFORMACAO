@@ -19,22 +19,23 @@ FILE * abrirArquivo(char * nomeArq, char * modo) {
 int main () {
     FILE * arquivo; 
 
-    int i, cod;
-    char nome[100], codStr[10];
+    int cod;
+    char nome[TAM];
     float preco;
     int qtde;
 
     arquivo = abrirArquivo("../data/estoque.bin", "rb");
-    
-    for (i=1; i <= 100; i++) {
-        
+
+    while(!feof(arquivo)){
         fread(&cod,sizeof(int),1,arquivo);
-        fread(nome,sizeof(char)*50,1,arquivo);
-        fread(&preco,sizeof(int),1,arquivo);
-        fread(&qtde,sizeof(int),1,arquivo);
-        printf("%3d|%-50s|%5d|%10.2f|\n", cod, nome, qtde, preco  );
+        if(!feof(arquivo)){
+            fread(nome,sizeof(char)*50,1,arquivo);
+            fread(&preco,sizeof(int),1,arquivo);
+            fread(&qtde,sizeof(int),1,arquivo);
+            printf("%3d|%-50s|%5d|%10.2f|\n", cod, nome, qtde, preco  );
+        }
     }
-    
+
     fclose(arquivo);
     printf("FIM");
     return 0;
