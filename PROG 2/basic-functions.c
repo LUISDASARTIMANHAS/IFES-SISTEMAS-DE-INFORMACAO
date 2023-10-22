@@ -12,18 +12,54 @@ int correct(){
     return 0;
 }
 void head(){
+    FILE * logs;
+    logs = fopen("../data/logs.txt","a+");
     printf("\n ----------------------------------------------------");
     printf("\n\t LUIS_DAS_ARTIMANHAS & PINGOBRAS S.A");
     printf("\n\t Iniciando programa.....");
     printf("\n----------------------------------------------------\n");
+    // save in logs
+    fprintf(logs,"\n ----------------------------------------------------");
+    fprintf(logs,"\n\t LUIS_DAS_ARTIMANHAS & PINGOBRAS S.A");
+    fprintf(logs,"\n\t Iniciando programa.....");
+    fprintf(logs,"\n----------------------------------------------------\n");
+    fclose(logs);
 }
 
 void copy(){
+    FILE * logs;
+    logs = fopen("../data/logs.txt","a+");
     printf("\n----------------------------------------------------");
     printf("\n\t DEVS:");
     printf("\n\t LUIS_DAS_ARTIMANHAS.");
     printf("\n\t PINGOBRAS S.A");
     printf("\n----------------------------------------------------\n");
+    // save in logs
+    fprintf(logs,"\n----------------------------------------------------");
+    fprintf(logs,"\n\t DEVS:");
+    fprintf(logs,"\n\t LUIS_DAS_ARTIMANHAS.");
+    fprintf(logs,"\n\t PINGOBRAS S.A");
+    fprintf(logs,"\n----------------------------------------------------\n");
+    fclose(logs);
+}
+
+FILE * abrirArquivo(char * nomeArq, char * modo) {
+    // ABRIR o arquivo
+    FILE * arq;
+    arq = fopen( nomeArq, modo );
+    if ( arq == NULL) {
+        printf("ERRO ao abrir o arquivo.");
+        exit(-1);
+    }
+    return arq;
+}
+void carregarArquivo(FILE * arquivo, Produto * vetProd, int *qtde) {
+    fread( qtde, sizeof(int), 1, arquivo  );
+    fread( vetProd, sizeof(Produto), *qtde, arquivo  );
+}
+void gravarArquivo(FILE * arquivo, Produto * vetProd, int qtde) {
+    fwrite( &qtde, sizeof(int), 1, arquivo  );
+    fwrite( vetProd, sizeof(Produto), qtde, arquivo  );
 }
 
 float input(){
