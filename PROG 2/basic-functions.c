@@ -5,7 +5,13 @@
 #include <stdio.h>
 #include <ctype.h>
 #include <string.h>
-
+struct Produto {
+    int codigo;
+    char nome[101];
+    float preco;
+    int qtde;
+};
+typedef struct Produto Produto;
 
 int correct(){
     SetConsoleOutputCP(65001);
