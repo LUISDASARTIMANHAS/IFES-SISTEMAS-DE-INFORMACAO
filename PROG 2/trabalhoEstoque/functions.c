@@ -23,6 +23,24 @@ struct Produto{
     Data validade;
 };typedef struct Produto Produto;
 
+FILE * abrirArquivo(char * nomeArq, char * modo) {
+    // ABRIR o arquivo
+    FILE * arq;
+    arq = fopen( nomeArq, modo );
+    if ( arq == NULL) {
+        printf("ERRO ao abrir o arquivo.");
+        exit(-1);
+    }
+    return arq;
+}
+void carregarArquivo(FILE * arquivo, Produto * vetProd, int *qtde) {
+    fread( qtde, sizeof(int), 1, arquivo  );
+    fread( vetProd, sizeof(Produto), *qtde, arquivo  );
+}
+void gravarArquivo(FILE * arquivo, Produto * vetProd, int qtde) {
+    fwrite( &qtde, sizeof(int), 1, arquivo  );
+    fwrite( vetProd, sizeof(Produto), qtde, arquivo  );
+}
 
 int correct(){
     SetConsoleOutputCP(65001);
