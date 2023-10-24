@@ -6,10 +6,6 @@
 #include <ctype.h>
 #include <string.h>
 
-// Crie um sistema para gerenciar o estoque de uma empresa. Seu sistema deve ter:
-//  Estrutura Data, com dia, mês e ano.
-//  Estrutura Produto, que possui código, nome, preço, quantidade em estoque e data de validade (struct Data acima).
-// Seu sistema conterá um vetor de Produto
 struct Date{
     int dia;
     int mes;
@@ -32,6 +28,11 @@ FILE * abrirArquivo(char * nomeArq, char * modo) {
         exit(-1);
     }
     return arq;
+}
+void limparBuffer(){
+    // Limpar o buffer
+    int c;
+    while ((c = getchar()) != '\n' && c != EOF);
 }
 void carregarArquivo(FILE * arquivo, Produto * vetProd, int *qtde) {
     fread( qtde, sizeof(int), 1, arquivo  );
@@ -68,6 +69,11 @@ float input(){
     float value;
     scanf("%f", &value);
     return value;
+}
+void lerString(char *destino) {
+    fflush(stdout);
+    scanf(" %100[^\n]", destino); // Limita o tamanho da entrada
+    limparBuffer();
 }
 
 int menu() {
@@ -262,9 +268,9 @@ void inserir(Produto produtos[],int *tam){
 
     produto = produtos[*tam];
     printf("\n Nome do Produto: ");
-    scanf(" %100[^\n]s", &nome);
+    lerString(&nome);
     produto.cod = cod;
-    produto.nome = nome;
+    strcpy(produto.nome, nome);
     produto.prise = prise;
     produto.quantidade = qtde;
     produto.validade.dia = day;
