@@ -73,8 +73,7 @@ float input(){
 int menu() {
     correct();
 	int op;
-	system("@cls||clear");  // LIMPA A TELA
-    head();
+	// system("@cls||clear");  // LIMPA A TELA
 	printf("\n\nSISTEMA De Estoque\n\n");
 	printf("1 - Inserir\n");
 	printf("2 - Pesquisar por número\n");
@@ -252,19 +251,19 @@ void pesqName(Produto produtos[],int tam){
 
 }
 void inserir(Produto produtos[],int *tam){
-    int i = 0;
     Produto produto;
-    produto = produtos[i];
 
+
+    produto = produtos[*tam];
     printf("\n Nome do Produto: ");
-    scanf("%s", &produto.nome);
-
+    scanf("%s", produto.nome);
     produto.cod = validCod();
     produto.prise = validPreco();
     produto.quantidade = validQuantidade();
     produto.validade.dia = validDia();
     produto.validade.mes = validMes();
     produto.validade.ano = validAno();
+    (*tam)++;
 
 }
 

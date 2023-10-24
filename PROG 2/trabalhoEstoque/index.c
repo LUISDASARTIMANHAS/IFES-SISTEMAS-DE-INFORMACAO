@@ -23,6 +23,7 @@ int main() {
 	int tam = 0;
 	int op;
 	database = abrirArquivo("../data/database.bin", "rb");
+	carregarArquivo(database,produtos,&tam);
 	do {
 		op = menu();
 		switch ( op ) {
