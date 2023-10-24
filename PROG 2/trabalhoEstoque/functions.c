@@ -17,7 +17,7 @@ struct Date{
 };typedef struct Date Data;
 struct Produto{
     int cod;
-    char nome[100];
+    char nome[101];
     float prise;
     int quantidade;
     Data validade;
@@ -262,8 +262,9 @@ void inserir(Produto produtos[],int *tam){
 
     produto = produtos[*tam];
     printf("\n Nome do Produto: ");
-    scanf("%s", produto.nome);
+    scanf(" %100[^\n]s", &nome);
     produto.cod = cod;
+    produto.nome = nome;
     produto.prise = prise;
     produto.quantidade = qtde;
     produto.validade.dia = day;
