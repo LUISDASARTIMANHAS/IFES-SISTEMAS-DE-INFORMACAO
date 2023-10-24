@@ -113,7 +113,7 @@ int validSalario(){
 int validCod(){
     int cod;
     do{
-        printf("Insira o código do Produto: ");
+        printf("\n Insira o código do Produto: ");
         cod = input();
     }while (cod < 1);
     return cod;
@@ -254,17 +254,17 @@ void pesqName(Produto produtos[],int tam){
 void inserir(Produto produtos[],int *tam){
     int i = 0;
     Produto produto;
-        produto = produtos[i];
-        produto.cod = validCod();
+    produto = produtos[i];
 
-        printf("\nNome do Produto: ");
-        scanf("%[^\n]s", &produto.nome);
+    printf("\n Nome do Produto: ");
+    scanf("%s", &produto.nome);
 
-        produto.prise = validPreco();
-        produto.quantidade = validQuantidade();
-        produto.validade.dia = validDia();
-        produto.validade.mes = validMes();
-        produto.validade.ano = validAno();
+    produto.cod = validCod();
+    produto.prise = validPreco();
+    produto.quantidade = validQuantidade();
+    produto.validade.dia = validDia();
+    produto.validade.mes = validMes();
+    produto.validade.ano = validAno();
 
 }
 
@@ -281,5 +281,16 @@ void delete(Produto produtos[],int *tam){
 }
 
 void list(Produto produtos[],int tam){
+    int i;
+    Produto produto;
 
+    for (i = 0; i < tam; i++){
+        produto = produtos[i];
+        printf("\n======================\n");
+        printf("   \t Codigo do produto: %d", produto.cod);
+        printf("\n \t Preço do produto: %f", produto.prise);
+        printf("\n \t Quantidade do produto: %d", produto.quantidade);
+        printf("\n \t Data de validade do produto: %d/%d/%d", produto.validade.dia,produto.validade.mes,produto.validade.ano);
+        printf("\n======================\n");
+    }
 }

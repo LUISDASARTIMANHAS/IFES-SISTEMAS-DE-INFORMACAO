@@ -19,8 +19,10 @@
 int main() {
 	correct();
 	Produto produtos[MAXSPACE];
-	int *tam = 0;
+	FILE *database;
+	int tam = 0;
 	int op;
+	database = abrirArquivo("../data/database.bin", "rb");
 	do {
 		op = menu();
 		switch ( op ) {
@@ -60,7 +62,7 @@ int main() {
 				printf ("\n\nOpção inválida!\n\n");
 		}
 	} while (op != 0);
-	
+	fclose(database);
 	return 0;
 }
 
