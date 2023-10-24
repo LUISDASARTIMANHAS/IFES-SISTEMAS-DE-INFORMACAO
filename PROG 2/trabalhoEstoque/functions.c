@@ -268,7 +268,7 @@ void inserir(Produto produtos[],int *tam){
 
     produto = produtos[*tam];
     printf("\n Nome do Produto: ");
-    lerString(&nome);
+    lerString(nome);
     produto.cod = cod;
     strcpy(produto.nome, nome);
     produto.prise = prise;
