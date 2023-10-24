@@ -252,17 +252,23 @@ void pesqName(Produto produtos[],int tam){
 }
 void inserir(Produto produtos[],int *tam){
     Produto produto;
-
+    float prise = validPreco();
+    char nome[101];
+    int cod = validCod();
+    int qtde = validQuantidade();
+    int day = validDia();
+    int month = validMes();
+    int year = validAno();
 
     produto = produtos[*tam];
     printf("\n Nome do Produto: ");
     scanf("%s", produto.nome);
-    produto.cod = validCod();
-    produto.prise = validPreco();
-    produto.quantidade = validQuantidade();
-    produto.validade.dia = validDia();
-    produto.validade.mes = validMes();
-    produto.validade.ano = validAno();
+    produto.cod = cod;
+    produto.prise = prise;
+    produto.quantidade = qtde;
+    produto.validade.dia = day;
+    produto.validade.mes = month;
+    produto.validade.ano = year;
     (*tam)++;
 
 }
