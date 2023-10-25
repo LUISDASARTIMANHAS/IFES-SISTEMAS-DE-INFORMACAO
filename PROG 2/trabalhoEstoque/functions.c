@@ -11,13 +11,13 @@ struct Date{
     int mes;
     int ano;
 };typedef struct Date Data;
-struct Produto{
+struct ClassProduto{
     int cod;
     char nome[101];
     float prise;
     int quantidade;
     Data validade;
-};typedef struct Produto Produto;
+};typedef struct ClassProduto Produto;
 
 FILE * abrirArquivo(char * nomeArq, char * modo) {
     // ABRIR o arquivo
@@ -250,14 +250,13 @@ void intercalador(char cripto[],char pars[],char impars[]){
     }
     cripto[tam] = '\0';
 }
-void pesqCod(Produto produtos[],int tam){
+// void pesqCod(Produto produtos[],int tam){
 
-}
-void pesqName(Produto produtos[],int tam){
+// }
+// void pesqName(Produto produtos[],int tam){
 
-}
+// }
 void inserir(Produto produtos[],int *tam){
-    Produto produto;
     float prise = validPreco();
     char nome[101];
     int cod = validCod();
@@ -265,32 +264,53 @@ void inserir(Produto produtos[],int *tam){
     int day = validDia();
     int month = validMes();
     int year = validAno();
+    Produto produtoTemp = produtos[*tam];
 
-    produto = produtos[*tam];
     printf("\n Nome do Produto: ");
-    lerString(nome);
-    produto.cod = cod;
-    strcpy(produto.nome, nome);
-    produto.prise = prise;
-    produto.quantidade = qtde;
-    produto.validade.dia = day;
-    produto.validade.mes = month;
-    produto.validade.ano = year;
+    scanf("%s", nome);
+
+    produtoTemp.cod = cod;
+    strcpy(produtoTemp.nome, nome);
+    produtoTemp.prise = prise;
+    produtoTemp.quantidade = qtde;
+    produtoTemp.validade.dia = day;
+    produtoTemp.validade.mes = month;
+    produtoTemp.validade.ano = year;
     (*tam)++;
 
 }
 
-void update(Produto produtos[],int tam){
+// void update(Produto produtos[],int tam){
 
+// }
+
+void finderMaior(Produto produtos[],int *tam){
+    int i,cod,maior;
+
+    if(*tam >= 1){
+        for(i =0; i >= *tam; i++){
+            Produto produtoTemp = produtos[i];
+            if (produtoTemp.prise >= maior){
+                maior = produtoTemp.prise;
+                cod = produtoTemp.cod;
+            }
+            else{
+                printf("\n SISTEMA: PROCURANDO...");
+                i = i + 1;
+            }
+        }
+        printf("\n \t +------------------------------+ \n");
+        printf("   \t || Código do Produto      || %.2d", cod);
+        printf("\n \t || Maior Valor do Produto || R$ %0.2d", maior);
+        printf("\n \t +------------------------------+ \n");
+    }else{
+        print("\n O banco de dados esta vazio, insira algo primeiro");
+        }
 }
 
-void finderMaior(Produto produtos[],int tam){
+// void delete(Produto produtos[],int *tam){
 
-}
-
-void delete(Produto produtos[],int *tam){
-
-}
+// }
 
 void list(Produto produtos[],int tam){
     int i;
