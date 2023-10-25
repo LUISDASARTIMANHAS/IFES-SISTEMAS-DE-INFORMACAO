@@ -265,8 +265,7 @@ void inserir(Produto produtos[],int *tam){
     int month = validMes();
     int year = validAno();
     printf("\nInsira o nome do Produto: ");
-    // inputS(nome);
-    scanf(" %100[^\n]s", &nome);
+    inputS(nome);
 
     strcpy(produtos[*tam].nome,nome);
     produtos[*tam].cod = cod;
