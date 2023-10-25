@@ -24,11 +24,13 @@ int main() {
 	int op;
 	database = abrirArquivo("../data/database.bin", "rb");
 	carregarArquivo(database,produtos,&tam);
+	fclose(database);
 	do {
 		op = menu();
 		switch ( op ) {
 			case 0:
 				// SAIR. NÃO PRECISA FAZER NADA
+				gravarArquivo(database,produtos,tam);
 				copy();
 				break;
 			case 1:
@@ -63,7 +65,6 @@ int main() {
 				printf ("\n\nOpção inválida!\n\n");
 		}
 	} while (op != 0);
-	fclose(database);
 	return 0;
 }
 

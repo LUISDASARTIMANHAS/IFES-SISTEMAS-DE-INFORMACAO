@@ -29,18 +29,16 @@ FILE * abrirArquivo(char * nomeArq, char * modo) {
     }
     return arq;
 }
-void limparBuffer(){
-    // Limpar o buffer
-    int c;
-    while ((c = getchar()) != '\n' && c != EOF);
-}
 void carregarArquivo(FILE * arquivo, Produto * vetProd, int *qtde) {
     fread( qtde, sizeof(int), 1, arquivo  );
     fread( vetProd, sizeof(Produto), *qtde, arquivo  );
 }
 void gravarArquivo(FILE * arquivo, Produto * vetProd, int qtde) {
+    FILE *databaseW;
+    databaseW = abrirArquivo("../data/database.bin", "wb");
     fwrite( &qtde, sizeof(int), 1, arquivo  );
     fwrite( vetProd, sizeof(Produto), qtde, arquivo  );
+    fclose(databaseW);
 }
 
 int correct(){
@@ -70,10 +68,8 @@ float input(){
     scanf("%f", &value);
     return value;
 }
-void lerString(char *destino) {
-    fflush(stdout);
-    scanf(" %100[^\n]", destino); // Limita o tamanho da entrada
-    limparBuffer();
+void inputS(char destino[]){
+    scanf(" %100[^\n]s", destino);
 }
 
 int menu() {
@@ -118,7 +114,7 @@ int validSalario(){
 int validCod(){
     int cod;
     do{
-        printf("\n Insira o código do Produto: ");
+        printf("\nInsira o código do Produto: ");
         cod = input();
     }while (cod < 1);
     return cod;
@@ -250,32 +246,35 @@ void intercalador(char cripto[],char pars[],char impars[]){
     }
     cripto[tam] = '\0';
 }
-// void pesqCod(Produto produtos[],int tam){
+void pesqCod(Produto produtos[],int tam){
+    if(tam >= 1){
 
-// }
+    }else{
+        printf("\n O banco de dados esta vazio, insira algo primeiro");
+    }
+}
 // void pesqName(Produto produtos[],int tam){
 
 // }
 void inserir(Produto produtos[],int *tam){
-    float prise = validPreco();
     char nome[101];
+    float prise = validPreco();
     int cod = validCod();
     int qtde = validQuantidade();
     int day = validDia();
     int month = validMes();
     int year = validAno();
-    Produto produtoTemp = produtos[*tam];
+    printf("\nInsira o nome do Produto: ");
+    // inputS(nome);
+    scanf(" %100[^\n]s", &nome);
 
-    printf("\n Nome do Produto: ");
-    scanf("%s", nome);
-
-    produtoTemp.cod = cod;
-    strcpy(produtoTemp.nome, nome);
-    produtoTemp.prise = prise;
-    produtoTemp.quantidade = qtde;
-    produtoTemp.validade.dia = day;
-    produtoTemp.validade.mes = month;
-    produtoTemp.validade.ano = year;
+    strcpy(produtos[*tam].nome,nome);
+    produtos[*tam].cod = cod;
+    produtos[*tam].prise = prise;
+    produtos[*tam].quantidade = qtde;
+    produtos[*tam].validade.dia = day;
+    produtos[*tam].validade.mes = month;
+    produtos[*tam].validade.ano = year;
     (*tam)++;
 
 }
@@ -303,9 +302,10 @@ void finderMaior(Produto produtos[],int tam){
         printf("   \t || Código do Produto      || %.2d", cod);
         printf("\n \t || Maior Valor do Produto || R$ %.2d", maior);
         printf("\n \t +------------------------------+ \n");
-    }else{
+    }
+    else{
         printf("\n O banco de dados esta vazio, insira algo primeiro");
-        }
+    }
 }
 
 // void delete(Produto produtos[],int *tam){
@@ -319,10 +319,11 @@ void list(Produto produtos[],int tam){
     for (i = 0; i < tam; i++){
         produto = produtos[i];
         printf("\n======================\n");
-        printf("   \t Codigo do produto: %d", produto.cod);
-        printf("\n \t Preço do produto: %f", produto.prise);
-        printf("\n \t Quantidade do produto: %d", produto.quantidade);
-        printf("\n \t Data de validade do produto: %d/%d/%d", produto.validade.dia,produto.validade.mes,produto.validade.ano);
+        printf("   \t Nome do produto: %s", produtos[i].nome);
+        printf("\n \t Codigo do produto: %d", produtos[i].cod);
+        printf("\n \t Preço do produto: %0.2f", produtos[i].prise);
+        printf("\n \t Quantidade do produto: %d", produtos[i].quantidade);
+        printf("\n \t Data de validade do produto: %0.2d/%d/%d", produtos[i].validade.dia,produtos[i].validade.mes,produtos[i].validade.ano);
         printf("\n======================\n");
     }
 }
