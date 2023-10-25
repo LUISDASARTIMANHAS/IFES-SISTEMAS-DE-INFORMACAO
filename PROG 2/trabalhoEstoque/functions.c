@@ -284,27 +284,27 @@ void inserir(Produto produtos[],int *tam){
 
 // }
 
-void finderMaior(Produto produtos[],int *tam){
+void finderMaior(Produto produtos[],int tam){
     int i,cod,maior;
 
-    if(*tam >= 1){
-        for(i =0; i >= *tam; i++){
+    if(tam >= 1){
+        for(i =0; i >= tam; i++){
             Produto produtoTemp = produtos[i];
+
             if (produtoTemp.prise >= maior){
                 maior = produtoTemp.prise;
                 cod = produtoTemp.cod;
             }
             else{
                 printf("\n SISTEMA: PROCURANDO...");
-                i = i + 1;
             }
         }
         printf("\n \t +------------------------------+ \n");
         printf("   \t || Código do Produto      || %.2d", cod);
-        printf("\n \t || Maior Valor do Produto || R$ %0.2d", maior);
+        printf("\n \t || Maior Valor do Produto || R$ %.2d", maior);
         printf("\n \t +------------------------------+ \n");
     }else{
-        print("\n O banco de dados esta vazio, insira algo primeiro");
+        printf("\n O banco de dados esta vazio, insira algo primeiro");
         }
 }
 

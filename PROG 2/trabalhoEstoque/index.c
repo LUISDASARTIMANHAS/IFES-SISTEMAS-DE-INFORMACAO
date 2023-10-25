@@ -37,15 +37,15 @@ int main() {
 				break;
 			case 2:
 				// PESQUISAR POR CODIGO/MATRICULA
-				pesqCod(produtos,tam);
+				// pesqCod(produtos,tam);
 				break;
 			case 3:
 				// PESQUISAR POR NOME
-				pesqName(produtos,tam);
+				// pesqName(produtos,tam);
 				break;
 			case 4:
 				// ATUALIZAR
-				update(produtos,tam);
+				// update(produtos,tam);
 				break;
 			case 5:
 				// MAIOR
@@ -53,7 +53,7 @@ int main() {
 				break;
 			case 6:
 				// EXCLUIR
-				delete(produtos,&tam);
+				// delete(produtos,&tam);
 				break;
 			case 7:
 				// LISTAR
