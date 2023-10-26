@@ -18,6 +18,7 @@
 // Escolha sua opção:
 int main() {
 	correct();
+	head();
 	Produto produtos[MAXSPACE];
 	int tam = 0;
 	int op;

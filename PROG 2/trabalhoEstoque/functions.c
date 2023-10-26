@@ -6,6 +6,16 @@
 #include <ctype.h>
 #include <string.h>
 
+// definindo cores
+// Defina constantes para as sequências de escape ANSI das cores
+#define RED "\x1b[31m"
+#define BLUE "\x1b[34m"
+#define GREEN "\x1b[32m"
+#define YELLOW "\x1b[33m"
+#define RESET "\x1b[0m"
+
+#define SEPARETOR BLUE "\n=====================================\n"  RESET
+
 struct Date{
     int dia;
     int mes;
@@ -24,7 +34,7 @@ FILE * abrirArquivo(char * nomeArq, char * modo) {
     FILE * arq;
     arq = fopen( nomeArq, modo );
     if ( arq == NULL) {
-        printf("ERRO ao abrir o arquivo.");
+        printf(RED "ERRO ao abrir o arquivo." RESET);
         exit(-1);
     }
     return arq;
@@ -50,19 +60,19 @@ int correct(){
 }
 void head(){
     correct();
-    printf("\n ----------------------------------------------------");
-    printf("\n\t LUIS_DAS_ARTIMANHAS & PINGOBRAS S.A");
-    printf("\n\t Iniciando o programa.....");
-    printf("\n----------------------------------------------------\n");
+    printf(SEPARETOR);
+    printf(BLUE"\n\t LUIS_DAS_ARTIMANHAS & PINGOBRAS S.A");
+    printf("\n\t Iniciando o programa....." RESET);
+    printf(SEPARETOR);
 }
 
 void copy(){
     correct();
-    printf("\n----------------------------------------------------");
-    printf("\n\t DEVS:");
+    printf(SEPARETOR);
+    printf(BLUE "\n\t DEVS:");
     printf("\n\t LUIS_DAS_ARTIMANHAS.");
-    printf("\n\t PINGOBRAS S.A");
-    printf("\n----------------------------------------------------\n");
+    printf("\n\t PINGOBRAS S.A" RESET);
+    printf(SEPARETOR);
 }
 
 // inputs personalizados e modificados
@@ -79,45 +89,27 @@ int menu() {
     correct();
 	int op;
 	// system("@cls||clear");  // LIMPA A TELA
-	printf("\n\nSISTEMA De Estoque\n\n");
-	printf("1 - Inserir\n");
+	printf(BLUE "\n\nSISTEMA DE ESTOQUE\n\n" RESET);
+	printf(GREEN "1 - Inserir\n");
 	printf("2 - Pesquisar por número\n");
 	printf("3 - Pesquisar por nome\n");
 	printf("4 - Atualizar\n");
-	printf("5 - Maior\n");
-	printf("6 - Excluir\n");
-	printf("7 - Listar\n");
-	printf("0 - Sair\n");
+	printf("5 - Maior\n" RESET);
+	printf(RED "6 - Excluir\n" RESET);
+	printf(GREEN "7 - Listar\n"  RESET);
+	printf(RED "0 - Sair\n" RESET);
 	do {
-		printf("Escolha sua opção: ");
+		printf(YELLOW "Escolha sua opção: " RESET);
 		scanf(" %d", &op);
 	} while(op < 0 || op > 7);
 	return op;
 }
 
 // validadores
-void validString(char data[],int tam){
-    printf("\n \t Espaço Maximo: %d", tam);
-    printf("\n \t Insira um texto: ");
-    fgets(data, tam, stdin);
-}
-
-int validSalario(){
-    printf("Insira seu salario: ");
-    int salario = input();
-    
-    while(salario < 0){
-        printf("Salario invalido.");
-        printf("Insira Seu salario: ");
-        salario = input();
-    }
-    return salario;
-}
-
 int validCod(){
     int cod;
     do{
-        printf("\nInsira o código do Produto: ");
+        printf(YELLOW "\nInsira o código do Produto: " RESET);
         cod = input();
     }while (cod < 1);
     return cod;
@@ -126,7 +118,7 @@ int validCod(){
 int validPreco(){
     int prise;
     do{
-        printf("Insira o preço do Produto: ");
+        printf(YELLOW "\nInsira o preço do Produto: " RESET);
         prise = input();
     }while (prise < 0);
     return prise;
@@ -135,7 +127,7 @@ int validPreco(){
 int validQuantidade(){
     int qtd;
     do{
-        printf("Insira a quantidade do Produto: ");
+        printf(YELLOW "\nInsira a quantidade do Produto: " RESET);
         qtd = input();
     }while (qtd < 0);
     return qtd;
@@ -144,7 +136,7 @@ int validQuantidade(){
 int validDia(){
     int dia;
     do{
-        printf("Insira o dia de validade: ");
+        printf(YELLOW "\nInsira o dia de validade: " RESET);
         dia = input();
     }while ((dia < 0) || (dia > 31));
     return dia;
@@ -153,7 +145,7 @@ int validDia(){
 int validMes(){
     int mes;
     do{
-        printf("Insira o mês de validade: ");
+        printf(YELLOW "\nInsira o mês de validade: " RESET);
         mes = input();
     }while ((mes < 0)||(mes > 12));
     return mes;
@@ -162,9 +154,9 @@ int validMes(){
 int validAno(){
     int ano;
     do{
-        printf("Insira o Ano de validade: ");
+        printf(YELLOW "\nInsira o Ano de validade: " RESET);
         ano = input();
-    }while ((ano < 0)||(ano > 3050));
+    }while ((ano < 1900)||(ano > 3050));
     return ano;
 }
 
@@ -177,32 +169,6 @@ void inversor(char database[]){
         e = database[i];
         database[i] = database[fim];
         database[fim] = e;
-    }
-}
-
-void trocar(char msm[]) {
-    int i;
-    char e;
-    int tam = strlen(msm);
-
-    for (i = 0; i < tam; i++){
-        e = msm[i];
-
-        if(e == 'o'){
-            msm[i] = '0';
-        }else if (e == '0'){
-            msm[i] = 'o';
-        }
-
-        if(e == 'a'){
-            msm[i] = '@';
-        }else if (e == '@'){
-            msm[i] = 'a';
-        }
-
-        if(e == '\n'){
-            msm[i] = '\0';
-        }
     }
 }
 
@@ -255,17 +221,17 @@ int pesqCod(Produto produtos[],int tam){
         int i;
         for(i=0; i <= tam; i++){
             if(produtos[i].cod == cod){
-                printf("\nO código do investimento procurado foi encontrado!");
+                printf(GREEN "\nO código do investimento procurado foi encontrado!" RESET);
                 return i;
             }
             else{
-                printf("\nSISTEMA: PROCURANDO...");
+                printf(BLUE "\nSISTEMA: PROCURANDO..." RESET);
             }
         }
-        printf("\nO código do investimento não esta repetido e não foi encontado!");
+        printf(RED "\nO código do investimento não esta repetido e não foi encontado!" RESET);
         return -1;
     }else{
-        printf("\n O banco de dados esta vazio, insira algo primeiro");
+        printf(RED "\n O banco de dados esta vazio, insira algo primeiro" RESET);
     }
 }
 void pesqName(Produto produtos[],int tam){
@@ -279,7 +245,7 @@ void inserir(Produto produtos[],int *tam){
     int day = validDia();
     int month = validMes();
     int year = validAno();
-    printf("\nInsira o nome do Produto: ");
+    printf(YELLOW "\nInsira o nome do Produto: " RESET);
     inputS(nome);
 
     strcpy(produtos[*tam].nome,nome);
@@ -309,13 +275,13 @@ void finderMaior(Produto produtos[],int tam){
                 cod = produtoTemp.cod;
             }
             else{
-                printf("\n SISTEMA: PROCURANDO...");
+                printf(BLUE "\n SISTEMA: PROCURANDO..." RESET);
             }
         }
-        printf("\n \t +------------------------------+ \n");
-        printf("   \t || Código do Produto      || %d", cod);
-        printf("\n \t || Preço Maior do Produto || R$ %0.2d", maior);
-        printf("\n \t +------------------------------+ \n");
+        printf(SEPARETOR);
+        printf(BLUE "   \t || Código do Produto      || %d", cod);
+        printf(     "\n \t || Preço Maior do Produto || R$ %0.2d", maior,RESET);
+        printf(SEPARETOR);
     }
     else{
         printf("\n O banco de dados esta vazio, insira algo primeiro");
@@ -330,12 +296,12 @@ void list(Produto produtos[],int tam){
     int i;
 
     for (i = 0; i < tam; i++){
-        printf("\n======================\n");
-        printf("   \t Nome do produto: %s", produtos[i].nome);
+        printf(SEPARETOR);
+        printf(BLUE "   \t Nome do produto: %s", produtos[i].nome);
         printf("\n \t Codigo do produto: %d", produtos[i].cod);
         printf("\n \t Preço do produto: %0.2f", produtos[i].prise);
         printf("\n \t Quantidade do produto: %d", produtos[i].quantidade);
-        printf("\n \t Data de validade do produto: %0.2d/%0.2d/%0.2d", produtos[i].validade.dia,produtos[i].validade.mes,produtos[i].validade.ano);
-        printf("\n======================\n");
+        printf("\n \t Data de validade do produto: %0.2d/%0.2d/%0.2d", produtos[i].validade.dia,produtos[i].validade.mes,produtos[i].validade.ano,RESET);
+        printf(SEPARETOR);
     }
 }
