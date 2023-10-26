@@ -6,7 +6,6 @@
 #include <ctype.h>
 #include <string.h>
 
-// definindo cores
 // Defina constantes para as sequências de escape ANSI das cores
 #define RED "\x1b[31m"
 #define BLUE "\x1b[34m"
