@@ -171,6 +171,7 @@ void inversor(char database[]){
     }
 }
 
+
 void separador(char msm[],char pars[],char impars[]){
     int par = 0;
     int impar = 1;
@@ -190,6 +191,7 @@ void separador(char msm[],char pars[],char impars[]){
     pars[tamSubsStrs] = '\0';
     impars[tamSubsStrs] = '\0';
 }
+
 
 void intercalador(char cripto[],char pars[],char impars[]){
     int tamPars = strlen(pars);
@@ -214,13 +216,22 @@ void intercalador(char cripto[],char pars[],char impars[]){
     }
     cripto[tam] = '\0';
 }
+
+
 int pesqCod(Produto produtos[],int tam){
     if(tam >= 1){
         int cod = validCod();
         int i;
         for(i=0; i <= tam; i++){
             if(produtos[i].cod == cod){
-                printf(GREEN "\nO código do investimento procurado foi encontrado!" RESET);
+                printf(GREEN "\nO Produto procurado foi encontrado!" RESET);
+                printf(SEPARETOR);
+                printf(BLUE "   \t Nome do produto: %s", produtos[i].nome);
+                printf(     "\n \t Codigo do produto: %d", produtos[i].cod);
+                printf(     "\n \t Preço do produto: %0.2f", produtos[i].prise);
+                printf(     "\n \t Quantidade do produto: %d", produtos[i].quantidade);
+                printf(     "\n \t Data de validade do produto: %0.2d/%0.2d/%0.2d", produtos[i].validade.dia,produtos[i].validade.mes,produtos[i].validade.ano,RESET);
+                printf(SEPARETOR);
                 return i;
             }
             else{
@@ -233,9 +244,13 @@ int pesqCod(Produto produtos[],int tam){
         printf(RED "\n O banco de dados esta vazio, insira algo primeiro" RESET);
     }
 }
+
+
 void pesqName(Produto produtos[],int tam){
 
 }
+
+
 void inserir(Produto produtos[],int *tam){
     char nome[101];
     float prise = validPreco();
@@ -257,6 +272,7 @@ void inserir(Produto produtos[],int *tam){
     (*tam)++;
 
 }
+
 
 // void update(Produto produtos[],int tam){
 
@@ -291,16 +307,17 @@ void finderMaior(Produto produtos[],int tam){
 
 // }
 
+
 void list(Produto produtos[],int tam){
     int i;
 
     for (i = 0; i < tam; i++){
         printf(SEPARETOR);
         printf(BLUE "   \t Nome do produto: %s", produtos[i].nome);
-        printf("\n \t Codigo do produto: %d", produtos[i].cod);
-        printf("\n \t Preço do produto: %0.2f", produtos[i].prise);
-        printf("\n \t Quantidade do produto: %d", produtos[i].quantidade);
-        printf("\n \t Data de validade do produto: %0.2d/%0.2d/%0.2d", produtos[i].validade.dia,produtos[i].validade.mes,produtos[i].validade.ano,RESET);
+        printf(     "\n \t Codigo do produto: %d", produtos[i].cod);
+        printf(     "\n \t Preço do produto: %0.2f", produtos[i].prise);
+        printf(     "\n \t Quantidade do produto: %d", produtos[i].quantidade);
+        printf(     "\n \t Data de validade do produto: %0.2d/%0.2d/%0.2d", produtos[i].validade.dia,produtos[i].validade.mes,produtos[i].validade.ano,RESET);
         printf(SEPARETOR);
     }
 }
