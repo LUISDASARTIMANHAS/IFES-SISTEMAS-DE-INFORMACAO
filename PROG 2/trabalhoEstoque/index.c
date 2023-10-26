@@ -19,18 +19,15 @@
 int main() {
 	correct();
 	Produto produtos[MAXSPACE];
-	FILE *database;
 	int tam = 0;
 	int op;
-	database = abrirArquivo("../data/database.bin", "rb");
-	carregarArquivo(database,produtos,&tam);
-	fclose(database);
+	carregarDatabase(produtos,&tam);
 	do {
 		op = menu();
 		switch ( op ) {
 			case 0:
 				// SAIR. NÃO PRECISA FAZER NADA
-				gravarArquivo(database,produtos,tam);
+				gravarDatabase(produtos,tam);
 				copy();
 				break;
 			case 1:
@@ -39,7 +36,7 @@ int main() {
 				break;
 			case 2:
 				// PESQUISAR POR CODIGO/MATRICULA
-				// pesqCod(produtos,tam);
+				pesqCod(produtos,tam);
 				break;
 			case 3:
 				// PESQUISAR POR NOME

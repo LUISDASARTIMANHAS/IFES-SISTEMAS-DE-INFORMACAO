@@ -29,15 +29,18 @@ FILE * abrirArquivo(char * nomeArq, char * modo) {
     }
     return arq;
 }
-void carregarArquivo(FILE * arquivo, Produto * vetProd, int *qtde) {
-    fread( qtde, sizeof(int), 1, arquivo  );
-    fread( vetProd, sizeof(Produto), *qtde, arquivo  );
+void carregarDatabase( Produto * vetProd, int *qtde) {
+    FILE * databaseR;
+    databaseR = abrirArquivo("../data/database.bin", "rb");
+    fread( qtde, sizeof(int), 1, databaseR  );
+    fread( vetProd, sizeof(Produto), *qtde, databaseR  );
+    fclose(databaseR);
 }
-void gravarArquivo(FILE * arquivo, Produto * vetProd, int qtde) {
+void gravarDatabase(Produto * vetProd, int qtde) {
     FILE *databaseW;
     databaseW = abrirArquivo("../data/database.bin", "wb");
-    fwrite( &qtde, sizeof(int), 1, arquivo  );
-    fwrite( vetProd, sizeof(Produto), qtde, arquivo  );
+    fwrite( &qtde, sizeof(int), 1, databaseW  );
+    fwrite( vetProd, sizeof(Produto), qtde, databaseW  );
     fclose(databaseW);
 }
 
@@ -246,16 +249,28 @@ void intercalador(char cripto[],char pars[],char impars[]){
     }
     cripto[tam] = '\0';
 }
-void pesqCod(Produto produtos[],int tam){
+int pesqCod(Produto produtos[],int tam){
     if(tam >= 1){
-
+        int cod = validCod();
+        int i;
+        for(i=0; i <= tam; i++){
+            if(produtos[i].cod == cod){
+                printf("\nO código do investimento procurado foi encontrado!");
+                return i;
+            }
+            else{
+                printf("\nSISTEMA: PROCURANDO...");
+            }
+        }
+        printf("\nO código do investimento não esta repetido e não foi encontado!");
+        return -1;
     }else{
         printf("\n O banco de dados esta vazio, insira algo primeiro");
     }
 }
-// void pesqName(Produto produtos[],int tam){
+void pesqName(Produto produtos[],int tam){
 
-// }
+}
 void inserir(Produto produtos[],int *tam){
     char nome[101];
     float prise = validPreco();
@@ -298,8 +313,8 @@ void finderMaior(Produto produtos[],int tam){
             }
         }
         printf("\n \t +------------------------------+ \n");
-        printf("   \t || Código do Produto      || %.2d", cod);
-        printf("\n \t || Maior Valor do Produto || R$ %.2d", maior);
+        printf("   \t || Código do Produto      || %d", cod);
+        printf("\n \t || Preço Maior do Produto || R$ %0.2d", maior);
         printf("\n \t +------------------------------+ \n");
     }
     else{
@@ -313,16 +328,14 @@ void finderMaior(Produto produtos[],int tam){
 
 void list(Produto produtos[],int tam){
     int i;
-    Produto produto;
 
     for (i = 0; i < tam; i++){
-        produto = produtos[i];
         printf("\n======================\n");
         printf("   \t Nome do produto: %s", produtos[i].nome);
         printf("\n \t Codigo do produto: %d", produtos[i].cod);
         printf("\n \t Preço do produto: %0.2f", produtos[i].prise);
         printf("\n \t Quantidade do produto: %d", produtos[i].quantidade);
-        printf("\n \t Data de validade do produto: %0.2d/%d/%d", produtos[i].validade.dia,produtos[i].validade.mes,produtos[i].validade.ano);
+        printf("\n \t Data de validade do produto: %0.2d/%0.2d/%0.2d", produtos[i].validade.dia,produtos[i].validade.mes,produtos[i].validade.ano);
         printf("\n======================\n");
     }
 }
