@@ -114,8 +114,8 @@ int validCod(){
     return cod;
 }
 
-int validPreco(){
-    int prise;
+float validPreco(){
+    float prise;
     do{
         printf(YELLOW "\nInsira o preço do Produto: " RESET);
         prise = input();
@@ -295,7 +295,7 @@ void finderMaior(Produto produtos[],int tam){
         }
         printf(SEPARETOR);
         printf(BLUE "   \t || Código do Produto      || %d", cod);
-        printf(     "\n \t || Preço Maior do Produto || R$ %0.2d", maior,RESET);
+        printf(     "\n \t || Preço Maior do Produto || R$ %0.2f", maior,RESET);
         printf(SEPARETOR);
     }
     else{
