@@ -13,7 +13,7 @@
 #define YELLOW "\x1b[33m"
 #define RESET "\x1b[0m"
 
-#define SEPARETOR BLUE "\n=====================================\n"  RESET
+#define SEPARETOR BLUE "\n================================================\n"  RESET
 
 struct Date{
     int dia;
@@ -159,83 +159,26 @@ int validAno(){
     return ano;
 }
 
-void inversor(char database[]){
-    int fim = strlen(database)-1;
-    int i;
-    char e;
-
-    for (i = 0; i < fim; i++,fim--){
-        e = database[i];
-        database[i] = database[fim];
-        database[fim] = e;
-    }
-}
-
-
-void separador(char msm[],char pars[],char impars[]){
-    int par = 0;
-    int impar = 1;
-    int i;
-    char ePar,eImpar;
-    int tam = strlen(msm);
-    int tamSubsStrs = tam/2;
-
-    for (i = 0; i < tam; i++,par=par+2,impar=impar+2){
-        ePar = msm[par];
-        eImpar= msm[impar];
-
-        pars[i] = ePar;
-        impars[i] = eImpar;
-    }
-    inversor(impars);
-    pars[tamSubsStrs] = '\0';
-    impars[tamSubsStrs] = '\0';
-}
-
-
-void intercalador(char cripto[],char pars[],char impars[]){
-    int tamPars = strlen(pars);
-    int tamImpars = strlen(impars);
-    int tam = (tamPars + tamImpars);
-    int i;
-    int iPar=0;
-    int iImpar=0;
-    char ePar,eImpar;
-
-    for (i = 0; i < tam; i++){
-        ePar = pars[iPar];
-        eImpar = impars[iImpar];
-
-        if (i % 2 == 0){
-            cripto[i] = ePar;
-            iPar++;
-        }else{
-            cripto[i] = eImpar;
-            iImpar++;
-        }
-    }
-    cripto[tam] = '\0';
-}
-
-
 int pesqCod(Produto produtos[],int tam){
     if(tam >= 1){
         int cod = validCod();
         int i;
         for(i=0; i <= tam; i++){
+            Produto produtoTemp = produtos[i];
+
             if(produtos[i].cod == cod){
-                printf(GREEN "\nO Produto procurado foi encontrado!" RESET);
+                printf(GREEN,"\nO Produto procurado foi encontrado!",RESET);
                 printf(SEPARETOR);
-                printf(BLUE "   \t Nome do produto: %s", produtos[i].nome);
-                printf(     "\n \t Codigo do produto: %d", produtos[i].cod);
-                printf(     "\n \t Preço do produto: %0.2f", produtos[i].prise);
-                printf(     "\n \t Quantidade do produto: %d", produtos[i].quantidade);
-                printf(     "\n \t Data de validade do produto: %0.2d/%0.2d/%0.2d", produtos[i].validade.dia,produtos[i].validade.mes,produtos[i].validade.ano,RESET);
+                printf(BLUE,"   \t Nome do produto: %s", produtoTemp.nome);
+                printf(     "\n \t Codigo do produto: %d", produtoTemp.cod);
+                printf(     "\n \t Preço do produto: %0.2f", produtoTemp.prise);
+                printf(     "\n \t Quantidade do produto: %d", produtoTemp.quantidade);
+                printf(     "\n \t Data de validade do produto: %0.2d/%0.2d/%0.2d", produtoTemp.validade.dia,produtoTemp.validade.mes,produtoTemp.validade.ano,RESET);
                 printf(SEPARETOR);
                 return i;
             }
             else{
-                printf(BLUE "\nSISTEMA: PROCURANDO..." RESET);
+                printf(BLUE,"\nSISTEMA: PROCURANDO...",RESET);
             }
         }
         printf(RED "\nO código do investimento não esta repetido e não foi encontado!" RESET);
@@ -279,23 +222,38 @@ void inserir(Produto produtos[],int *tam){
 // }
 
 void finderMaior(Produto produtos[],int tam){
-    int i,cod,maior;
+    char nome[101];
+    int cod;
+    int qtde;
+    int maior = 0;
+    int i;
+    int day,month,year;
+    float prise;
 
     if(tam >= 1){
-        for(i =0; i >= tam; i++){
+        for(i =0; i <= tam; i++){
             Produto produtoTemp = produtos[i];
 
             if (produtoTemp.prise >= maior){
                 maior = produtoTemp.prise;
+                strcpy(nome,produtoTemp.nome);
                 cod = produtoTemp.cod;
+                prise = produtoTemp.prise;
+                qtde = produtoTemp.quantidade;
+                day = produtoTemp.validade.dia;
+                month = produtoTemp.validade.mes;
+                year = produtoTemp.validade.ano;
             }
             else{
-                printf(BLUE "\n SISTEMA: PROCURANDO..." RESET);
+                printf(BLUE,"\n SISTEMA: PROCURANDO...",RESET);
             }
         }
         printf(SEPARETOR);
-        printf(BLUE "   \t || Código do Produto      || %d", cod);
-        printf(     "\n \t || Preço Maior do Produto || R$ %0.2f", maior,RESET);
+        printf(BLUE,"   \t Nome do produto: %s", nome);
+        printf(     "\n \t Codigo do produto: %d", cod);
+        printf(     "\n \t Preço do produto: %0.2f", prise);
+        printf(     "\n \t Quantidade do produto: %d", qtde);
+        printf(     "\n \t Data de validade do produto: %0.2d/%0.2d/%0.2d", day,month,year,RESET);
         printf(SEPARETOR);
     }
     else{
@@ -312,12 +270,13 @@ void list(Produto produtos[],int tam){
     int i;
 
     for (i = 0; i < tam; i++){
+        Produto produtoTemp = produtos[i];
         printf(SEPARETOR);
-        printf(BLUE "   \t Nome do produto: %s", produtos[i].nome);
-        printf(     "\n \t Codigo do produto: %d", produtos[i].cod);
-        printf(     "\n \t Preço do produto: %0.2f", produtos[i].prise);
-        printf(     "\n \t Quantidade do produto: %d", produtos[i].quantidade);
-        printf(     "\n \t Data de validade do produto: %0.2d/%0.2d/%0.2d", produtos[i].validade.dia,produtos[i].validade.mes,produtos[i].validade.ano,RESET);
+        printf(BLUE,"   \t Nome do produto: %s", produtoTemp.nome);
+        printf(     "\n \t Codigo do produto: %d", produtoTemp.cod);
+        printf(     "\n \t Preço do produto: %0.2f", produtoTemp.prise);
+        printf(     "\n \t Quantidade do produto: %d", produtoTemp.quantidade);
+        printf(     "\n \t Data de validade do produto: %0.2d/%0.2d/%0.2d", produtoTemp.validade.dia,produtoTemp.validade.mes,produtoTemp.validade.ano,RESET);
         printf(SEPARETOR);
     }
 }
