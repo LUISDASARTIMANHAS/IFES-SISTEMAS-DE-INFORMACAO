@@ -41,7 +41,7 @@ int main() {
 				break;
 			case 3:
 				// PESQUISAR POR NOME
-				// pesqName(produtos,tam);
+				pesqName(produtos,tam);
 				break;
 			case 4:
 				// ATUALIZAR

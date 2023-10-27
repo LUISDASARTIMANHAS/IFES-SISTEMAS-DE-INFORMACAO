@@ -105,6 +105,13 @@ int menu() {
 }
 
 // validadores
+void validNome(char destino[]){
+    do{
+        printf(YELLOW "\nInsira o nome do Produto: " RESET);
+        inputS(destino);
+    }while (strlen(destino) < 3);
+}
+
 int validCod(){
     int cod;
     do{
@@ -167,9 +174,9 @@ int pesqCod(Produto produtos[],int tam){
             Produto produtoTemp = produtos[i];
 
             if(produtos[i].cod == cod){
-                printf(GREEN,"\nO Produto procurado foi encontrado!",RESET);
+                printf(GREEN"\nO Produto procurado foi encontrado!",RESET);
                 printf(SEPARETOR);
-                printf(BLUE,"   \t Nome do produto: %s", produtoTemp.nome);
+                printf(BLUE"   \t Nome do produto: %s", produtoTemp.nome);
                 printf(     "\n \t Codigo do produto: %d", produtoTemp.cod);
                 printf(     "\n \t Preço do produto: %0.2f", produtoTemp.prise);
                 printf(     "\n \t Quantidade do produto: %d", produtoTemp.quantidade);
@@ -178,10 +185,10 @@ int pesqCod(Produto produtos[],int tam){
                 return i;
             }
             else{
-                printf(BLUE,"\nSISTEMA: PROCURANDO...",RESET);
+                printf(BLUE"\nSISTEMA: PROCURANDO...",RESET);
             }
         }
-        printf(RED "\nO código do investimento não esta repetido e não foi encontado!" RESET);
+        printf(RED "\nO Produto não esta repetido e não foi encontado!" RESET);
         return -1;
     }else{
         printf(RED "\n O banco de dados esta vazio, insira algo primeiro" RESET);
@@ -189,23 +196,51 @@ int pesqCod(Produto produtos[],int tam){
 }
 
 
-void pesqName(Produto produtos[],int tam){
+int pesqName(Produto produtos[],int tam){
+    if(tam >= 1){
+        char pesq[101];
+        int i;
+        int comparador = 1;
+        validNome(pesq);
 
+        for(i=0; i <= tam; i++){
+            Produto produtoTemp = produtos[i];
+            comparador = strcmp(produtoTemp.nome, pesq);
+
+            if(comparador == 0){
+                printf(GREEN"\nO Produto procurado foi encontrado!",RESET);
+                printf(SEPARETOR);
+                printf(BLUE"   \t Nome do produto: %s", produtoTemp.nome);
+                printf(     "\n \t Codigo do produto: %d", produtoTemp.cod);
+                printf(     "\n \t Preço do produto: %0.2f", produtoTemp.prise);
+                printf(     "\n \t Quantidade do produto: %d", produtoTemp.quantidade);
+                printf(     "\n \t Data de validade do produto: %0.2d/%0.2d/%0.2d", produtoTemp.validade.dia,produtoTemp.validade.mes,produtoTemp.validade.ano,RESET);
+                printf(SEPARETOR);
+                return i;
+            }
+            else{
+                printf(BLUE"\nSISTEMA: PROCURANDO...",RESET);
+            }
+        }
+        printf(RED "\nO Produto não foi encontado!" RESET);
+        return -1;
+    }else{
+        printf(RED "\n O banco de dados esta vazio, insira algo primeiro" RESET);
+    }
 }
 
 
 void inserir(Produto produtos[],int *tam){
-    char nome[101];
+    char name[101];
+    validNome(name);
     float prise = validPreco();
     int cod = validCod();
     int qtde = validQuantidade();
     int day = validDia();
     int month = validMes();
     int year = validAno();
-    printf(YELLOW "\nInsira o nome do Produto: " RESET);
-    inputS(nome);
 
-    strcpy(produtos[*tam].nome,nome);
+    strcpy(produtos[*tam].nome,name);
     produtos[*tam].cod = cod;
     produtos[*tam].prise = prise;
     produtos[*tam].quantidade = qtde;
@@ -245,11 +280,11 @@ void finderMaior(Produto produtos[],int tam){
                 year = produtoTemp.validade.ano;
             }
             else{
-                printf(BLUE,"\n SISTEMA: PROCURANDO...",RESET);
+                printf(BLUE"\n SISTEMA: PROCURANDO...",RESET);
             }
         }
         printf(SEPARETOR);
-        printf(BLUE,"   \t Nome do produto: %s", nome);
+        printf(BLUE"   \t Nome do produto: %s", nome);
         printf(     "\n \t Codigo do produto: %d", cod);
         printf(     "\n \t Preço do produto: %0.2f", prise);
         printf(     "\n \t Quantidade do produto: %d", qtde);
@@ -272,7 +307,7 @@ void list(Produto produtos[],int tam){
     for (i = 0; i < tam; i++){
         Produto produtoTemp = produtos[i];
         printf(SEPARETOR);
-        printf(BLUE,"   \t Nome do produto: %s", produtoTemp.nome);
+        printf(BLUE"   \t Nome do produto: %s", produtoTemp.nome);
         printf(     "\n \t Codigo do produto: %d", produtoTemp.cod);
         printf(     "\n \t Preço do produto: %0.2f", produtoTemp.prise);
         printf(     "\n \t Quantidade do produto: %d", produtoTemp.quantidade);
