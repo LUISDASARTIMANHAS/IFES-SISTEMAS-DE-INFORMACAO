@@ -39,6 +39,7 @@ FILE * abrirArquivo(char * nomeArq, char * modo) {
     return arq;
 }
 void carregarDatabase( Produto * vetProd, int *qtde) {
+    printf(BLUE "\nSISTEMA: Carregando Autosave..." RESET);
     FILE * databaseR;
     databaseR = abrirArquivo("../data/database.bin", "rb");
     fread( qtde, sizeof(int), 1, databaseR  );
@@ -46,11 +47,13 @@ void carregarDatabase( Produto * vetProd, int *qtde) {
     fclose(databaseR);
 }
 void gravarDatabase(Produto * vetProd, int qtde) {
+    printf(BLUE "\nSISTEMA: SALVANDO DADOS..." RESET);
     FILE *databaseW;
     databaseW = abrirArquivo("../data/database.bin", "wb");
     fwrite( &qtde, sizeof(int), 1, databaseW  );
     fwrite( vetProd, sizeof(Produto), qtde, databaseW  );
     fclose(databaseW);
+    printf(GREEN "\nSISTEMA: Autosave concluido!" RESET);
 }
 
 int correct(){
@@ -305,10 +308,20 @@ void finderMaior(Produto produtos[],int tam){
     }
 }
 
-// void delete(Produto produtos[],int *tam){
+void delete(Produto produtos[],int *tam){
+    int i;
+    printf(YELLOW"\nALERTA: Tenha certeza que o codigo do produto esta certo!");
+    printf("\nALERTA: ERROS no codigo do produto ocasionarão em exclusão permanente de um produto incorreto!"RESET);
+    int pos = validCod();
 
-// }
-
+    for (i = pos; i < *tam- 1; i++) {
+        produtos[i] = produtos[i+1];
+    }
+    (*tam)--;
+    printf(SEPARETOR);
+    printf(BLUE"\nSISTEMA: Produto deletado com sucesso!"RESET);
+    printf(SEPARETOR);
+}
 
 void list(Produto produtos[],int tam){
     int i;

@@ -53,7 +53,7 @@ int main() {
 				break;
 			case 6:
 				// EXCLUIR
-				// delete(produtos,&tam);
+				delete(produtos,&tam);
 				break;
 			case 7:
 				// LISTAR
