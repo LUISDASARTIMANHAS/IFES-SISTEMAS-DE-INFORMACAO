@@ -45,7 +45,7 @@ int main() {
 				break;
 			case 4:
 				// ATUALIZAR
-				// update(produtos,tam);
+				update(produtos,tam);
 				break;
 			case 5:
 				// MAIOR
@@ -67,11 +67,6 @@ int main() {
 }
 
 // deve possuir as seguintes operações:
-//  Inserir produto: ler todos os dados de Data e Produto e inserir no vetor. Não deixar inserir código de produto repetido.
-//  Pesquisar por código: pedir o código do produto e pesquisar no vetor, imprimindo todos os dados de Produto e Data.
-//  Pesquisar por nome: pedir o nome do produto e pesquisar no vetor, imprimindo todos os dados de Produto e Data.
 //  Atualizar preço: pedir o código do produto e a porcentagem de aumento ou
 // desconto. Pesquisar o código do produto no vetor e aplicar o aumento ou desconto no preço.
-//  Maior preço: pesquisar qual é o produto com maior preço e mostrar todos os dados de Produto e Data.
 //  Excluir: pedir o código do produto e excluir do vetor.
-//  Listar: mostrar todas os produtos e seu respectivo preço.

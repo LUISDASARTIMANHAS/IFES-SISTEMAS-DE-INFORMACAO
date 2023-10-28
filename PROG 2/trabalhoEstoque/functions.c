@@ -124,6 +124,22 @@ int validCod(){
     return cod;
 }
 
+float validTaxa(){
+    float porcent;
+    printf(BLUE "\nSISTEMA: use '-' para aplicar descontos de 0 a 100" RESET);
+    printf(YELLOW "\nInsira a porcentagem de aumento ou desconto: " RESET);
+    int tax = input();
+
+    while((tax <= 0 ) || (tax > 100)){
+        printf(RED "\nA taxa não pode ser menor do que 0 ou maior que 100!" RESET);
+        printf(BLUE "\nSISTEMA: use '-' para aplicar descontos de 0 a 100" RESET);
+        printf(YELLOW "\nInsira a porcentagem de aumento ou desconto: " RESET);
+        tax = input();
+    }
+    porcent = (tax/100);
+    return porcent;
+}
+
 float validPreco(){
     float prise;
     do{
@@ -264,9 +280,26 @@ void inserir(Produto produtos[],int *tam){
 }
 
 
-// void update(Produto produtos[],int tam){
+void update(Produto produtos[],int tam){
+    int pos = pesqCod(produtos, tam);
+    float taxa;
+    float taxaRend;
+    float total;
 
-// }
+    if(pos >= 0 ){
+        float prodPrise = produtos[pos].prise;
+        taxa = validTaxa();
+
+        taxaRend = taxa * prodPrise;
+        total = prodPrise + taxaRend;
+        produtos[pos].prise = total;
+
+        printf(BLUE "SISTEMA: O rendimento ou desconto de R$ %f foi aplicado no valor do produto!",taxaRend,RESET);
+    }
+    else{
+        printf(RED "Não foi possivel aplicar o rendimento" RESET);
+    }
+}
 
 void finderMaior(Produto produtos[],int tam){
     char nome[101];
