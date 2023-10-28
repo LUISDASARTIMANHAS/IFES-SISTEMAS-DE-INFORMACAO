@@ -177,7 +177,7 @@ int pesqCod(Produto produtos[],int tam){
                 printf(GREEN"\nO Produto procurado foi encontrado!",RESET);
                 printf(SEPARETOR);
                 printf(BLUE"   \t Nome do produto: %s", produtoTemp.nome);
-                printf(     "\n \t Codigo do produto: %d", produtoTemp.cod);
+                printf(     "\n \t código do produto: %d", produtoTemp.cod);
                 printf(     "\n \t Preço do produto: %0.2f", produtoTemp.prise);
                 printf(     "\n \t Quantidade do produto: %d", produtoTemp.quantidade);
                 printf(     "\n \t Data de validade do produto: %0.2d/%0.2d/%0.2d", produtoTemp.validade.dia,produtoTemp.validade.mes,produtoTemp.validade.ano,RESET);
@@ -211,7 +211,7 @@ int pesqName(Produto produtos[],int tam){
                 printf(GREEN"\nO Produto procurado foi encontrado!",RESET);
                 printf(SEPARETOR);
                 printf(BLUE"   \t Nome do produto: %s", produtoTemp.nome);
-                printf(     "\n \t Codigo do produto: %d", produtoTemp.cod);
+                printf(     "\n \t código do produto: %d", produtoTemp.cod);
                 printf(     "\n \t Preço do produto: %0.2f", produtoTemp.prise);
                 printf(     "\n \t Quantidade do produto: %d", produtoTemp.quantidade);
                 printf(     "\n \t Data de validade do produto: %0.2d/%0.2d/%0.2d", produtoTemp.validade.dia,produtoTemp.validade.mes,produtoTemp.validade.ano,RESET);
@@ -234,12 +234,15 @@ void inserir(Produto produtos[],int *tam){
     char name[101];
     validNome(name);
     float prise = validPreco();
-    int cod = validCod();
     int qtde = validQuantidade();
     int day = validDia();
     int month = validMes();
     int year = validAno();
+    int cod = validCod();
+    printf(BLUE"\nSISTEMA: Confirme o codigo do produto!"RESET);
+    int pesq = pesqCod(produtos,*tam);
 
+    if(pesq == -1){
     strcpy(produtos[*tam].nome,name);
     produtos[*tam].cod = cod;
     produtos[*tam].prise = prise;
@@ -248,7 +251,13 @@ void inserir(Produto produtos[],int *tam){
     produtos[*tam].validade.mes = month;
     produtos[*tam].validade.ano = year;
     (*tam)++;
-
+    }
+    else{
+        printf(SEPARETOR);
+        printf(RED"\nERRO: O código do produto já existe!"RESET);
+        printf(BLUE"\nSISTEMA: Saindo para o menu para preservar os arquivos!"RESET);
+        printf(SEPARETOR);
+    }
 }
 
 
@@ -285,7 +294,7 @@ void finderMaior(Produto produtos[],int tam){
         }
         printf(SEPARETOR);
         printf(BLUE"   \t Nome do produto: %s", nome);
-        printf(     "\n \t Codigo do produto: %d", cod);
+        printf(     "\n \t código do produto: %d", cod);
         printf(     "\n \t Preço do produto: %0.2f", prise);
         printf(     "\n \t Quantidade do produto: %d", qtde);
         printf(     "\n \t Data de validade do produto: %0.2d/%0.2d/%0.2d", day,month,year,RESET);
@@ -308,7 +317,7 @@ void list(Produto produtos[],int tam){
         Produto produtoTemp = produtos[i];
         printf(SEPARETOR);
         printf(BLUE"   \t Nome do produto: %s", produtoTemp.nome);
-        printf(     "\n \t Codigo do produto: %d", produtoTemp.cod);
+        printf(     "\n \t código do produto: %d", produtoTemp.cod);
         printf(     "\n \t Preço do produto: %0.2f", produtoTemp.prise);
         printf(     "\n \t Quantidade do produto: %d", produtoTemp.quantidade);
         printf(     "\n \t Data de validade do produto: %0.2d/%0.2d/%0.2d", produtoTemp.validade.dia,produtoTemp.validade.mes,produtoTemp.validade.ano,RESET);
