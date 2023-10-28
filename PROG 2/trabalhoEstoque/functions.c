@@ -126,13 +126,11 @@ int validCod(){
 
 float validTaxa(){
     float porcent;
-    printf(BLUE "\nSISTEMA: use '-' para aplicar descontos de 0 a 100" RESET);
     printf(YELLOW "\nInsira a porcentagem de aumento ou desconto: " RESET);
     int tax = input();
 
     while((tax <= 0 ) || (tax > 100)){
-        printf(RED "\nA taxa não pode ser menor do que 0 ou maior que 100!" RESET);
-        printf(BLUE "\nSISTEMA: use '-' para aplicar descontos de 0 a 100" RESET);
+        printf(RED "\nA taxa não pode ser menor do que 0 ou maior que 100!\n" RESET);
         printf(YELLOW "\nInsira a porcentagem de aumento ou desconto: " RESET);
         tax = input();
     }
@@ -184,6 +182,22 @@ int validAno(){
     }while ((ano < 1900)||(ano > 3050));
     return ano;
 }
+
+int menuUpdate() {
+    correct();
+	int op;
+	// system("@cls||clear");  // LIMPA A TELA
+	printf(BLUE "\n\nSISTEMA DE ESTOQUE\n\n" RESET);
+	printf(GREEN "1 - Aplicar desconto\n");
+	printf("2 - Aplicar aumento\n");
+	do {
+		printf(YELLOW "Escolha sua opção: " RESET);
+		scanf(" %d", &op);
+	} while(op < 1 || op > 2);
+	return op;
+}
+
+// funções
 
 int pesqCod(Produto produtos[],int tam){
     if(tam >= 1){
@@ -281,6 +295,7 @@ void inserir(Produto produtos[],int *tam){
 
 
 void update(Produto produtos[],int tam){
+    int op;
     int pos = pesqCod(produtos, tam);
     float taxa;
     float taxaRend;
@@ -289,9 +304,21 @@ void update(Produto produtos[],int tam){
     if(pos >= 0 ){
         float prodPrise = produtos[pos].prise;
         taxa = validTaxa();
-
+        op = menuUpdate();
         taxaRend = taxa * prodPrise;
-        total = prodPrise + taxaRend;
+
+        switch ( op ) {
+            case 1:
+                //desconto
+                total = prodPrise - taxaRend;
+            break;
+            case 2:
+                //aumento
+                total = prodPrise + taxaRend;
+            break;
+            default:
+            printf ("\n\nOpção inválida!\n\n");
+            }
         produtos[pos].prise = total;
 
         printf(BLUE "SISTEMA: O rendimento ou desconto de R$ %f foi aplicado no valor do produto!",taxaRend,RESET);
