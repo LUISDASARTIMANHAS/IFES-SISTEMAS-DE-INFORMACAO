@@ -216,8 +216,7 @@ int pesqCod(Produto produtos[],int tam){
                 printf(     "\n \t Data de validade do produto: %0.2d/%0.2d/%0.2d", produtoTemp.validade.dia,produtoTemp.validade.mes,produtoTemp.validade.ano,RESET);
                 printf(SEPARETOR);
                 return i;
-            }
-            else{
+            }else{
                 printf(BLUE"\nSISTEMA: PROCURANDO...",RESET);
             }
         }
@@ -250,8 +249,7 @@ int pesqName(Produto produtos[],int tam){
                 printf(     "\n \t Data de validade do produto: %0.2d/%0.2d/%0.2d", produtoTemp.validade.dia,produtoTemp.validade.mes,produtoTemp.validade.ano,RESET);
                 printf(SEPARETOR);
                 return i;
-            }
-            else{
+            }else{
                 printf(BLUE"\nSISTEMA: PROCURANDO...",RESET);
             }
         }
@@ -284,8 +282,7 @@ void inserir(Produto produtos[],int *tam){
     produtos[*tam].validade.mes = month;
     produtos[*tam].validade.ano = year;
     (*tam)++;
-    }
-    else{
+    }else{
         printf(SEPARETOR);
         printf(RED"\nERRO: O código do produto já existe!"RESET);
         printf(BLUE"\nSISTEMA: Saindo para o menu para preservar os arquivos!"RESET);
@@ -300,31 +297,33 @@ void update(Produto produtos[],int tam){
     float taxa;
     float taxaRend;
     float total;
+    if(tam >= 1){
+        if(pos > 0 ){
+            float prodPrise = produtos[pos].prise;
+            taxa = validTaxa();
+            op = menuUpdate();
+            taxaRend = taxa * prodPrise;
 
-    if(pos > 0 ){
-        float prodPrise = produtos[pos].prise;
-        taxa = validTaxa();
-        op = menuUpdate();
-        taxaRend = taxa * prodPrise;
+            switch ( op ) {
+                case 1:
+                    //desconto
+                    total = prodPrise - taxaRend;
+                break;
+                case 2:
+                    //aumento
+                    total = prodPrise + taxaRend;
+                break;
+                default:
+                printf ("\n\nOpção inválida!\n\n");
+                }
+            produtos[pos].prise = total;
 
-        switch ( op ) {
-            case 1:
-                //desconto
-                total = prodPrise - taxaRend;
-            break;
-            case 2:
-                //aumento
-                total = prodPrise + taxaRend;
-            break;
-            default:
-            printf ("\n\nOpção inválida!\n\n");
-            }
-        produtos[pos].prise = total;
-
-        printf(BLUE "SISTEMA: O rendimento ou desconto de R$ %f foi aplicado no valor do produto!",taxaRend,RESET);
-    }
-    else{
-        printf(RED "Não foi possivel aplicar o rendimento" RESET);
+            printf(BLUE "SISTEMA: O rendimento ou desconto de R$ %f foi aplicado no valor do produto!",taxaRend,RESET);
+        }else{
+            printf(RED "Não foi possivel aplicar o rendimento" RESET);
+        }
+    }else{
+        printf("\n O banco de dados esta vazio, insira algo primeiro");
     }
 }
 
@@ -350,8 +349,7 @@ void finderMaior(Produto produtos[],int tam){
                 day = produtoTemp.validade.dia;
                 month = produtoTemp.validade.mes;
                 year = produtoTemp.validade.ano;
-            }
-            else{
+            }else{
                 printf(BLUE"\n SISTEMA: PROCURANDO...",RESET);
             }
         }
@@ -362,20 +360,19 @@ void finderMaior(Produto produtos[],int tam){
         printf(     "\n \t Quantidade do produto: %d", qtde);
         printf(     "\n \t Data de validade do produto: %0.2d/%0.2d/%0.2d", day,month,year,RESET);
         printf(SEPARETOR);
-    }
-    else{
+    }else{
         printf(RED "\nSISTEMA: O banco de dados esta vazio, insira algo primeiro" RESET);
     }
 }
 
 void delete(Produto produtos[],int *tam){
     int i;
-    if(tam >= 1){
+    if((*tam) >= 1){
         printf(YELLOW"\nALERTA: Tenha certeza que o código do produto esta certo!");
         printf("\nALERTA: ERROS no código do produto ocasionarão em exclusão permanente de um produto incorreto!"RESET);
         int pos = validCod();
 
-        if(pos > 0){
+        if(pos != -1){
             for (i = pos; i < (*tam- 1); i++) {
             produtos[i] = produtos[i+1];
         }
@@ -383,12 +380,10 @@ void delete(Produto produtos[],int *tam){
         printf(SEPARETOR);
         printf(BLUE"\nSISTEMA: Produto deletado com sucesso!"RESET);
         printf(SEPARETOR);
-        }
-        else{
+        }else{
             printf(RED "\nSISTEMA: O código do produto e invalido ou não esta cadastrado!" RESET);
         }
-    }
-    else{
+    }else{
         printf(RED "\nSISTEMA: O banco de dados esta vazio, insira algo primeiro" RESET);
     }
 }
@@ -406,8 +401,7 @@ void list(Produto produtos[],int tam){
             printf(     "\n \t Data de validade do produto: %0.2d/%0.2d/%0.2d", produtoTemp.validade.dia,produtoTemp.validade.mes,produtoTemp.validade.ano,RESET);
             printf(SEPARETOR);
         }
-    }
-    else{
+    }else{
         printf(RED "\nSISTEMA: O banco de dados esta vazio, insira algo primeiro" RESET);
     }
 }
