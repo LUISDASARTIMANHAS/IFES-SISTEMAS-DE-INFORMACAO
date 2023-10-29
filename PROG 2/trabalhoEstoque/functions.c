@@ -370,7 +370,7 @@ void delete(Produto produtos[],int *tam){
     if((*tam) >= 1){
         printf(YELLOW"\nALERTA: Tenha certeza que o código do produto esta certo!");
         printf("\nALERTA: ERROS no código do produto ocasionarão em exclusão permanente de um produto incorreto!"RESET);
-        int pos = validCod();
+        int pos = pesqCod(produtos,tam);
 
         if(pos != -1){
             for (i = pos; i < (*tam- 1); i++) {
