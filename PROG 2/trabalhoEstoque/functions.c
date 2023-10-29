@@ -161,7 +161,7 @@ int validDia(){
     do{
         printf(YELLOW "\nInsira o dia de validade: " RESET);
         dia = input();
-    }while ((dia < 0) || (dia > 31));
+    }while ((dia < 1) || (dia > 31));
     return dia;
 }
 
@@ -170,7 +170,7 @@ int validMes(){
     do{
         printf(YELLOW "\nInsira o mês de validade: " RESET);
         mes = input();
-    }while ((mes < 0)||(mes > 12));
+    }while ((mes < 1)||(mes > 12));
     return mes;
 }
 
@@ -224,7 +224,7 @@ int pesqCod(Produto produtos[],int tam){
         printf(RED "\nO Produto não esta repetido e não foi encontado!" RESET);
         return -1;
     }else{
-        printf(RED "\n O banco de dados esta vazio, insira algo primeiro" RESET);
+        printf(RED "\nSISTEMA: O banco de dados esta vazio, insira algo primeiro" RESET);
     }
 }
 
@@ -258,7 +258,7 @@ int pesqName(Produto produtos[],int tam){
         printf(RED "\nO Produto não foi encontado!" RESET);
         return -1;
     }else{
-        printf(RED "\n O banco de dados esta vazio, insira algo primeiro" RESET);
+        printf(RED "\nSISTEMA: O banco de dados esta vazio, insira algo primeiro" RESET);
     }
 }
 
@@ -272,7 +272,7 @@ void inserir(Produto produtos[],int *tam){
     int month = validMes();
     int year = validAno();
     int cod = validCod();
-    printf(BLUE"\nSISTEMA: Confirme o codigo do produto!"RESET);
+    printf(BLUE"\nSISTEMA: Confirme o código do produto!"RESET);
     int pesq = pesqCod(produtos,*tam);
 
     if(pesq == -1){
@@ -301,7 +301,7 @@ void update(Produto produtos[],int tam){
     float taxaRend;
     float total;
 
-    if(pos >= 0 ){
+    if(pos > 0 ){
         float prodPrise = produtos[pos].prise;
         taxa = validTaxa();
         op = menuUpdate();
@@ -338,7 +338,7 @@ void finderMaior(Produto produtos[],int tam){
     float prise;
 
     if(tam >= 1){
-        for(i =0; i <= tam; i++){
+        for(i = 0; i <= tam; i++){
             Produto produtoTemp = produtos[i];
 
             if (produtoTemp.prise >= maior){
@@ -364,36 +364,50 @@ void finderMaior(Produto produtos[],int tam){
         printf(SEPARETOR);
     }
     else{
-        printf("\n O banco de dados esta vazio, insira algo primeiro");
+        printf(RED "\nSISTEMA: O banco de dados esta vazio, insira algo primeiro" RESET);
     }
 }
 
 void delete(Produto produtos[],int *tam){
     int i;
-    printf(YELLOW"\nALERTA: Tenha certeza que o codigo do produto esta certo!");
-    printf("\nALERTA: ERROS no codigo do produto ocasionarão em exclusão permanente de um produto incorreto!"RESET);
-    int pos = validCod();
+    if(tam >= 1){
+        printf(YELLOW"\nALERTA: Tenha certeza que o código do produto esta certo!");
+        printf("\nALERTA: ERROS no código do produto ocasionarão em exclusão permanente de um produto incorreto!"RESET);
+        int pos = validCod();
 
-    for (i = pos; i < *tam- 1; i++) {
-        produtos[i] = produtos[i+1];
+        if(pos > 0){
+            for (i = pos; i < (*tam- 1); i++) {
+            produtos[i] = produtos[i+1];
+        }
+        (*tam)--;
+        printf(SEPARETOR);
+        printf(BLUE"\nSISTEMA: Produto deletado com sucesso!"RESET);
+        printf(SEPARETOR);
+        }
+        else{
+            printf(RED "\nSISTEMA: O código do produto e invalido ou não esta cadastrado!" RESET);
+        }
     }
-    (*tam)--;
-    printf(SEPARETOR);
-    printf(BLUE"\nSISTEMA: Produto deletado com sucesso!"RESET);
-    printf(SEPARETOR);
+    else{
+        printf(RED "\nSISTEMA: O banco de dados esta vazio, insira algo primeiro" RESET);
+    }
 }
 
 void list(Produto produtos[],int tam){
     int i;
-
-    for (i = 0; i < tam; i++){
-        Produto produtoTemp = produtos[i];
-        printf(SEPARETOR);
-        printf(BLUE"   \t Nome do produto: %s", produtoTemp.nome);
-        printf(     "\n \t código do produto: %d", produtoTemp.cod);
-        printf(     "\n \t Preço do produto: %0.2f", produtoTemp.prise);
-        printf(     "\n \t Quantidade do produto: %d", produtoTemp.quantidade);
-        printf(     "\n \t Data de validade do produto: %0.2d/%0.2d/%0.2d", produtoTemp.validade.dia,produtoTemp.validade.mes,produtoTemp.validade.ano,RESET);
-        printf(SEPARETOR);
+    if(tam >= 1){
+        for (i = 0; i < tam; i++){
+            Produto produtoTemp = produtos[i];
+            printf(SEPARETOR);
+            printf(BLUE"   \t Nome do produto: %s", produtoTemp.nome);
+            printf(     "\n \t código do produto: %d", produtoTemp.cod);
+            printf(     "\n \t Preço do produto: %0.2f", produtoTemp.prise);
+            printf(     "\n \t Quantidade do produto: %d", produtoTemp.quantidade);
+            printf(     "\n \t Data de validade do produto: %0.2d/%0.2d/%0.2d", produtoTemp.validade.dia,produtoTemp.validade.mes,produtoTemp.validade.ano,RESET);
+            printf(SEPARETOR);
+        }
+    }
+    else{
+        printf(RED "\nSISTEMA: O banco de dados esta vazio, insira algo primeiro" RESET);
     }
 }
