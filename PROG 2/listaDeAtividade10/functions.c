@@ -23,6 +23,25 @@ struct ClassDatabase {
 };
 typedef struct ClassDatabase Database;
 
+FILE * abrirArquivo(char * nomeArq, char * modo) {
+    // ABRIR o arquivo
+    FILE * arq;
+    arq = fopen( nomeArq, modo );
+    if ( arq == NULL) {
+        printf(RED "ERRO ao abrir o arquivo." RESET);
+        exit(-1);
+    }
+    return arq;
+}
+void carregarArquivo(FILE * arquivo, Database * vetProd, int *qtde) {
+    fread( qtde, sizeof(int), 1, arquivo  );
+    fread( vetProd, sizeof(Database), *qtde, arquivo  );
+}
+void gravarArquivo(FILE * arquivo, Database * vetProd, int qtde) {
+    fwrite( &qtde, sizeof(int), 1, arquivo  );
+    fwrite( vetProd, sizeof(Database), qtde, arquivo  );
+}
+
 int correct(){
     SetConsoleOutputCP(65001);
     return 0;
@@ -44,7 +63,7 @@ void head(){
 }
 
 void copy(){
-    FILE * logs;
+    FILE *logs;
     logs = abrirArquivo("../data/logs.txt","a+");
     correct();
     printf(SEPARETOR);
@@ -59,25 +78,6 @@ void copy(){
     fprintf(logs,"\n\t PINGOBRAS S.A");
     fprintf(logs,"\n----------------------------------------------------\n");
     fclose(logs);
-}
-
-FILE * abrirArquivo(char * nomeArq, char * modo) {
-    // ABRIR o arquivo
-    FILE * arq;
-    arq = fopen( nomeArq, modo );
-    if ( arq == NULL) {
-        printf(RED "ERRO ao abrir o arquivo." RESET);
-        exit(-1);
-    }
-    return arq;
-}
-void carregarArquivo(FILE * arquivo, Database * vetProd, int *qtde) {
-    fread( qtde, sizeof(int), 1, arquivo  );
-    fread( vetProd, sizeof(Database), *qtde, arquivo  );
-}
-void gravarArquivo(FILE * arquivo, Database * vetProd, int qtde) {
-    fwrite( &qtde, sizeof(int), 1, arquivo  );
-    fwrite( vetProd, sizeof(Database), qtde, arquivo  );
 }
 
 
@@ -273,7 +273,17 @@ else {
 return (n * fatorialRec(n-1) );
 }
 }
-
+int multiplicComSoma (int a, int b) {
+if ( a == 0 || b == 0 ) {
+return 0;
+}
+else if ( b == 1) {
+return a;
+}
+else {
+return (a + multiplicComSoma (a, b-1) );
+}
+}
 int lerOpcaoCalc() {
     int op;
     printf("\n\nCALCULAR A ÁREA:\n");
@@ -621,5 +631,29 @@ void list(Produto produtos[],int tam){
         }
     }else{
         printf(RED "\nSISTEMA: O banco de dados esta vazio, insira algo primeiro" RESET);
+    }
+}
+
+long seqFibonacci(int termos){
+    //  f1:1, f1:1, f2:2, 3, 5, 8, 13, 21, 34, 55:10
+    long i;
+    long f1 = 1;
+    long f2 = 1;
+    long f3;
+
+    for (i = 2; i < termos; i++){
+        f3 = f1+f2;
+        f1 = f2;
+        f2 = f3;
+        printf("\n %d",f2);
+    }
+    return f2;
+}
+
+long reqSeqFibonacci(int termos){
+    if ((termos == 1) || (termos == 2)){
+        return 1;
+    }else{
+        return reqSeqFibonacci(termos-1) + reqSeqFibonacci(termos-2);
     }
 }
