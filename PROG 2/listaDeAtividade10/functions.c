@@ -265,6 +265,15 @@ int fatorial(){
     }
     return fat;
 }
+int fatorialRec (int n) {
+if ( n == 0) {
+return 1;
+}
+else {
+return (n * fatorialRec(n-1) );
+}
+}
+
 int lerOpcaoCalc() {
     int op;
     printf("\n\nCALCULAR A ÁREA:\n");
