@@ -657,3 +657,12 @@ long reqSeqFibonacci(int termos){
         return reqSeqFibonacci(termos-1) + reqSeqFibonacci(termos-2);
     }
 }
+
+void imprimirRecus(char data[],int tam){
+    if (tam == 1){
+        printf("%d  ",data[0]);
+    }else{
+        imprimirRecus(data,tam-1);
+        printf("%d  ",data[tam-1]);
+    }
+}
