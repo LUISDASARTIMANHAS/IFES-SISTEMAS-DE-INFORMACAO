@@ -7,8 +7,6 @@ int main(){
     head();
     int valor;
     int num = 48;
-
-    // valor = reqSeqFibonacci(num);
     valor = seqFibonacci(num);
 
     printf("\n Valor do termo: %d",valor);
