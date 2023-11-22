@@ -16,8 +16,30 @@ void insertionSort(int vet[], int tam){
         }
         vet[j+1] = valor;
     }
-
 }
+
+void buscaBinaria(int vetor[],int pesq, int tam){
+        int meio;
+        int fim = tam-1;
+        int ini = 0;
+        int count = 0;
+
+        while(ini<=fim){
+            meio = (ini+fim)/2;
+
+            if(pesq == vetor[meio]){
+                printf("Executado: %d",count);
+                return meio;
+            }else if(pesq > vetor[meio]){
+                ini=meio+1;
+            }else{
+                fim = meio-1;
+            }
+            count++;
+        }
+        printf("Executado: %d", count);
+        return -1;
+    }
 
 int main(){
     head();
