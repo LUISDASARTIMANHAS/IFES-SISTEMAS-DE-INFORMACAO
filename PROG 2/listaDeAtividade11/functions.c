@@ -685,10 +685,10 @@ void insertionSort(int vet[], int tam){
     }
     printf("\n Trocas: %d",trocas);
 }
-void insertionSortAdaptado(long int vet[],long int tam, long int pos, long int h){
+int insertionSortAdaptado(long int vet[],long int tam, long int pos, long int h){
     long int i,j;
     long int valor;
-    long int trocas = 0;
+    int trocas = 0;
 
     for (i = pos + h; i < tam; i= i + h){
         valor = vet[i];
@@ -701,7 +701,7 @@ void insertionSortAdaptado(long int vet[],long int tam, long int pos, long int h
         }
         vet[j+h] = valor;
     }
-    printf("\n Trocas: %d",trocas);
+    return trocas;
 }
 
 int buscaBinaria(int vetor[],int pesq, int tam){
@@ -729,6 +729,7 @@ int buscaBinaria(int vetor[],int pesq, int tam){
 
 void shellSort(int vet[], int tam){
     int h,ini;
+    int trocas = 0;
 
     for (h = 1; h < tam; h=3*h+1){
         printf("\n H: %d",h);
@@ -736,7 +737,9 @@ void shellSort(int vet[], int tam){
 
     for (h = (h-1)/3; h > 0;h = (h-1)/3){
         for (ini = 0; ini < h; ini++){
-            insertionSortAdaptado(vet,tam,ini,h);
+            trocas = trocas + insertionSortAdaptado(vet,tam,ini,h);
         }
     }
+    printf("\n Trocas: %d",trocas);
+    imprimirArray(vet,1000);
 }
