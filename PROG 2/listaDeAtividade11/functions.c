@@ -252,7 +252,7 @@ void imprimirArray(int *array, int qtde){
     int i;
 
     for (i = 0; i < qtde; i++){
-        printf("%d  ",array[i]);
+        printf("%d ",array[i]);
     }
 }
 int fatorial(){
@@ -742,4 +742,84 @@ void shellSort(int vet[], int tam){
     }
     printf("\n Trocas: %d",trocas);
     imprimirArray(vet,1000);
+}
+
+void bubbleSort(int vet[],int tam){
+    int i,aux;
+    int exe = 0;
+    int trocas = 1;
+    int fim = tam-1;
+
+    do{
+        trocas = 0;
+        for (i = 0; i < fim; i++){
+            if (vet[i] > vet[i+1]){
+                aux = vet[i];
+                vet[i] = vet[i+1];
+                vet[i+1] = aux;
+                trocas++;
+                exe++;
+            }
+        }
+        fim--;
+    }while(trocas > 0);
+    imprimirArray(vet,tam);
+    printf("\n Trocas: %d\n",exe);
+}
+
+void shakeSort(int vet[],int tam){
+    int i,f,aux;
+    int exe = 0;
+    int trocas = 1;
+    int fim = tam-1;
+    int ini = 0;
+
+    do{
+        trocas = 0;
+        for (i = ini, f = fim; i < fim; i++,f--){
+            if (vet[i] > vet[i+1]){
+                aux = vet[i];
+                vet[i] = vet[i+1];
+                vet[i+1] = aux;
+                trocas++;
+                exe++;
+            }
+            if (vet[f] < vet[f-1]){
+                aux = vet[f];
+                vet[f] = vet[f-1];
+                vet[f-1] = aux;
+                trocas++;
+                exe++;
+            }
+        }
+        fim--;
+        ini++;
+        imprimirArray(vet,tam);
+        printf("\n");
+    }while(trocas > 0);
+    imprimirArray(vet,tam);
+    printf("\n Trocas: %d\n",exe);
+}
+
+void combSort(int vet[],int tam){
+    int i,aux;
+    int exe = 0;
+    int trocas = 1;
+    int fim = tam-1;
+
+    do{
+        trocas = 0;
+        for (i = 0; i < fim; i++){
+            if (vet[i] > vet[i+1]){
+                aux = vet[i];
+                vet[i] = vet[i+1];
+                vet[i+1] = aux;
+                trocas++;
+                exe++;
+            }
+        }
+        fim--;
+    }while(trocas > 0);
+    imprimirArray(vet,tam);
+    printf("\n Trocas: %d\n",exe);
 }
