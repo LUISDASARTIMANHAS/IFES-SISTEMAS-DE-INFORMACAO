@@ -730,6 +730,8 @@ int buscaBinaria(int vetor[],int pesq, int tam){
 void shellSort(int vet[], int tam){
     int h,ini;
     int trocas = 0;
+    FILE * logs;
+    logs = abrirArquivo("../data/logs.txt","a+");
 
     for (h = 1; h < tam; h=3*h+1){
         printf("\n H: %d",h);
@@ -742,6 +744,9 @@ void shellSort(int vet[], int tam){
     }
     printf("\n Trocas: %d",trocas);
     imprimirArray(vet,1000);
+    fprintf(logs,"\n shellSort executou as trocas");
+    fprintf(logs,"\n Trocas: %d\n",trocas);
+    fclose(logs);
 }
 
 void bubbleSort(int vet[],int tam){
@@ -749,6 +754,8 @@ void bubbleSort(int vet[],int tam){
     int exe = 0;
     int trocas = 1;
     int fim = tam-1;
+    FILE * logs;
+    logs = abrirArquivo("../data/logs.txt","a+");
 
     do{
         trocas = 0;
@@ -765,6 +772,9 @@ void bubbleSort(int vet[],int tam){
     }while(trocas > 0);
     imprimirArray(vet,tam);
     printf("\n Trocas: %d\n",exe);
+    fprintf(logs,"\n bubbleSort executou as trocas");
+    fprintf(logs,"\n Trocas: %d\n",exe);
+    fclose(logs);
 }
 
 void shakeSort(int vet[],int tam){
@@ -773,6 +783,8 @@ void shakeSort(int vet[],int tam){
     int trocas = 1;
     int fim = tam-1;
     int ini = 0;
+    FILE * logs;
+    logs = abrirArquivo("../data/logs.txt","a+");
 
     do{
         trocas = 0;
@@ -799,6 +811,9 @@ void shakeSort(int vet[],int tam){
     }while(trocas > 0);
     imprimirArray(vet,tam);
     printf("\n Trocas: %d\n",exe);
+    fprintf(logs,"\n shakeSort executou as trocas");
+    fprintf(logs,"\n Trocas: %d\n",exe);
+    fclose(logs);
 }
 
 void combSort(int vet[],int tam){
