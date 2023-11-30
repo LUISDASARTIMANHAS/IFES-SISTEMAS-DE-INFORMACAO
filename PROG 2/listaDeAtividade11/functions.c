@@ -5,6 +5,7 @@
 #include <stdio.h>
 #include <ctype.h>
 #include <string.h>
+#include "./libs/algoritmos.c"
 
 // Defina constantes para as sequências de escape ANSI das cores
 #define RED "\x1b[31m"
@@ -667,6 +668,7 @@ void imprimirRecus(char data[],int tam){
     }
 }
 
+// algoritmos
 void insertionSort(int vet[], int tam){
     long int i,j;
     long int valor;
@@ -770,6 +772,7 @@ void bubbleSort(int vet[],int tam){
         }
         fim--;
     }while(trocas > 0);
+
     imprimirArray(vet,tam);
     printf("\n Trocas: %d\n",exe);
     fprintf(logs,"\n bubbleSort executou as trocas");
@@ -818,23 +821,32 @@ void shakeSort(int vet[],int tam){
 
 void combSort(int vet[],int tam){
     int i,aux;
+    int h = tam;
     int exe = 0;
     int trocas = 1;
     int fim = tam-1;
 
     do{
         trocas = 0;
+        h = (h / (10/13));
+        if (h == 9 || h == 10){
+            h = 11;
+        }
         for (i = 0; i < fim; i++){
-            if (vet[i] > vet[i+1]){
+            if (vet[i] > vet[i+h]){
                 aux = vet[i];
-                vet[i] = vet[i+1];
-                vet[i+1] = aux;
+                vet[i] = vet[i+h];
+                vet[i+h] = aux;
                 trocas++;
                 exe++;
             }
         }
+        if (h < 1){
+            tam--;
+        }
         fim--;
-    }while(trocas > 0);
+        printf("\n H: %d\n",h);
+    }while((trocas > 0) && (h > 1) );
     imprimirArray(vet,tam);
     printf("\n Trocas: %d\n",exe);
 }
