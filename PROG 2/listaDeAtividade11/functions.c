@@ -824,15 +824,20 @@ void combSort(int vet[],int tam){
     int h = tam;
     int exe = 0;
     int trocas = 1;
-    int fim = tam-1;
 
     do{
         trocas = 0;
-        h = (h / (10/13));
+        h = (h / 1.3);
         if (h == 9 || h == 10){
             h = 11;
+        }else if (h <1){
+            h = 1;
         }
-        for (i = 0; i < fim; i++){
+
+        if (h < 1){
+            tam--;
+        }
+        for (i = 0; i < tam-h; i++){
             if (vet[i] > vet[i+h]){
                 aux = vet[i];
                 vet[i] = vet[i+h];
@@ -841,12 +846,9 @@ void combSort(int vet[],int tam){
                 exe++;
             }
         }
-        if (h < 1){
-            tam--;
-        }
-        fim--;
-        printf("\n H: %d\n",h);
-    }while((trocas > 0) && (h > 1) );
+        printf("\n H: %d",h);
+    }while((trocas > 0) || (h > 1) );
+    printf("\n");
     imprimirArray(vet,tam);
     printf("\n Trocas: %d\n",exe);
 }
