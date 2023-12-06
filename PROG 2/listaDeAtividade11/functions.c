@@ -861,9 +861,10 @@ void combSort(int vet[],int tam){
 }
 
 void quickSort(int vet[], int ini, int fim){
-    int posPivo = particao(vet,ini,fim);
+    int posPivo;
 
     if (ini < fim){
+        posPivo = particao(vet,ini,fim);
         quickSort(vet, ini, posPivo - 1);
         quickSort(vet, posPivo + 1, fim);
     }
@@ -884,7 +885,6 @@ int particao(int vet[], int ini,int fim){
             trocar(vet, i, f);
             i++;
             f--;
-            printf("\n Trocou!");
         }
     }
     trocar(vet, ini, f);
