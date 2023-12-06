@@ -391,6 +391,12 @@ void gravarDatabase(Produto * vetProd, int qtde) {
     printf(GREEN "\nSISTEMA: Autosave concluido!" RESET);
 }
 
+void trocar(int vet[],int i,int f){
+    int aux;
+    aux = vet[i];
+    vet[i] = vet[f];
+    vet[f] = aux;
+}
 
 int menu() {
     correct();
@@ -427,6 +433,7 @@ int menuUpdate() {
 }
 
 // funções
+
 
 int pesqCod(Produto produtos[],int tam){
     if(tam >= 1){
@@ -852,3 +859,36 @@ void combSort(int vet[],int tam){
     imprimirArray(vet,tam);
     printf("\n Trocas: %d\n",exe);
 }
+
+void quickSort(int vet[], int ini, int fim){
+    int i,aux;
+    int posPivo = particao(vet,ini,fim);
+
+    if (ini < fim){
+        quickSort(vet, ini, posPivo - 1);
+        quickSort(vet, posPivo + 1, fim);
+    }
+}
+
+int particao(int vet[], int ini,int fim){
+    int pivo = vet[ini];
+    int i = ini + 1;
+    int f = fim;
+
+    while (i <= f){
+        if (vet[i] <= pivo){
+            i++;
+        }else if (vet[f] > pivo){
+            f--;
+        }
+        else{
+            trocar(vet, i, f);
+            i++;
+            f--;
+            printf("\n Trocou!");
+        }
+    }
+    trocar(vet, ini, f);
+    return f;
+}
+
