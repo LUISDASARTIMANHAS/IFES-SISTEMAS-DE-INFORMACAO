@@ -861,7 +861,6 @@ void combSort(int vet[],int tam){
 }
 
 void quickSort(int vet[], int ini, int fim){
-    int i,aux;
     int posPivo = particao(vet,ini,fim);
 
     if (ini < fim){
