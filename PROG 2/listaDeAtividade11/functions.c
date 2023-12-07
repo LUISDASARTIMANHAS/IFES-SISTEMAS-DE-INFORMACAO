@@ -23,6 +23,15 @@ struct ClassDatabase {
 };
 typedef struct ClassDatabase Database;
 
+void gerarAleatorio(long int * vetor, long int tam) {
+    long int i;
+    for(i=0; i< tam; i++){
+          vetor[i] = ( rand() % tam) * ( rand() % tam) + 1;
+  //      vetor[i] = ( rand() % (3*n) ) + 1;
+ //       printf("\n %ld", vetor[i]);
+    }
+}
+
 void trocar(int vet[],int i,int f){
     int aux;
     aux = vet[i];
@@ -294,7 +303,7 @@ int validQTD(){
     }while (qtd < 0);
     return qtd;
 }
-void imprimirArray(int *array, int qtde){
+void imprimirArray(int array[], int qtde){
     int i;
 
     for (i = 0; i < qtde; i++){
@@ -312,24 +321,26 @@ int fatorial(){
     return fat;
 }
 int fatorialRec (int n) {
-if ( n == 0) {
-return 1;
-}
-else {
-return (n * fatorialRec(n-1) );
-}
-}
+    if ( n == 0) {
+        return 1;
+    }
+    else {
+        return (n * fatorialRec(n-1) );
+    }
+    }
+
 int multiplicComSoma (int a, int b) {
-if ( a == 0 || b == 0 ) {
-return 0;
+    if ( a == 0 || b == 0 ) {
+        return 0;
+    }
+    else if ( b == 1) {
+        return a;
+    }
+    else {
+        return (a + multiplicComSoma (a, b-1) );
+    }
 }
-else if ( b == 1) {
-return a;
-}
-else {
-return (a + multiplicComSoma (a, b-1) );
-}
-}
+
 int lerOpcaoCalc() {
     int op;
     printf("\n\nCALCULAR A ÁREA:\n");
@@ -698,43 +709,6 @@ void imprimirRecus(char data[],int tam){
 }
 
 // algoritmos
-void insertionSort(int vet[], int tam){
-    long int i,j;
-    long int valor;
-    long int trocas = 0;
-
-    for (i = 1; i < tam; i++){
-        valor = vet[i];
-        j = i - 1;
-
-        while ((j >= 0) && (valor < vet[j])){
-            vet[j+1] = vet[j];
-            j--;
-            trocas++;
-        }
-        vet[j+1] = valor;
-    }
-    printf("\n Trocas: %d",trocas);
-}
-int insertionSortAdaptado(int vet[],int tam, int pos, int h){
-    int i,j;
-    int valor;
-    int trocas = 0;
-
-    for (i = pos + h; i < tam; i= i + h){
-        valor = vet[i];
-        j = i - h;
-
-        while ((j >= 0) && (valor < vet[j])){
-            vet[j+h] = vet[j];
-            j= j - h;
-            trocas++;
-        }
-        vet[j+h] = valor;
-    }
-    return trocas;
-}
-
 int buscaBinaria(int vetor[],int pesq, int tam){
     int meio;
     int fim = tam-1;
@@ -758,13 +732,50 @@ int buscaBinaria(int vetor[],int pesq, int tam){
     return -1;
 }
 
+void insertionSort(int vet[], int tam){
+    int i,j;
+    int valor;
+    int trocas = 0;
+
+    for (i = 1; i < tam; i++){
+        valor = vet[i];
+        j = i - 1;
+
+        while ((j >= 0) && (valor < vet[j])){
+            vet[j+1] = vet[j];
+            j--;
+            trocas++;
+        }
+        vet[j+1] = valor;
+    }
+    printf("\n Trocas: %d \n",trocas);
+}
+int insertionSortAdaptado(int vet[],int tam, int pos, int h){
+    int i,j;
+    int valor;
+    int trocas = 0;
+
+    for (i = pos + h; i < tam; i= i + h){
+        valor = vet[i];
+        j = i - h;
+
+        while ((j >= 0) && (valor < vet[j])){
+            vet[j+h] = vet[j];
+            j= j - h;
+            trocas++;
+        }
+        vet[j+h] = valor;
+    }
+    return trocas;
+}
+
 void shellSort(int vet[], int tam){
     int h,ini;
     int trocas = 0;
     FILE * logs;
     logs = abrirArquivo("../data/logs.txt","a+");
 
-    for (h = 1; h < tam; h=3*h+1){
+    for (h = 1; h <= tam; h=3*h+1){
         printf("\n H: %d",h);
     }
 
@@ -914,13 +925,61 @@ int particao(int vet[], int ini,int fim){
 }
 
 void selectSort(int vet[], int tam){
-    int posMaior = pesqMaiorElemento(vet,tam);
+    int posMaior;
     int i;
+    int trocas = 0;
 
-    for (i = tam; i > 1; i--){
-        if (posMaior != i - 1){
-            trocar(vet, posMaior, tam-1);
+    for ( i = tam; i > 1; i--) {
+        posMaior = pesqMaiorElemento(vet,i);
+        if ( posMaior != i-1 ) {
+            trocar(vet, posMaior, i-1);
+            trocas++;
         }
     }
+    printf("\nTROCAS: %ld\n", trocas);
+
 }
 
+void atualizarHeap(long int * vetor, long int raiz, long int n ) {
+	int filhoEsq = 2 * raiz + 1;
+	int filhoDir = 2 * raiz + 2;
+
+	int maior;
+	if ( filhoEsq >= n) {
+		// SEM NENHUM FILHO
+		return;
+	} else if ( filhoDir >= n ){
+		// SOMENTE o FILHO DA ESQUERDA
+		maior = filhoEsq;
+	} else if ( vetor[filhoEsq] > vetor[filhoDir]  ) {
+		maior = filhoEsq;
+	} else {
+		maior = filhoDir;
+	}
+
+	if ( vetor[maior] > vetor[raiz]  ) {
+		trocar(vetor, maior, raiz);	
+		atualizarHeap(vetor, maior, n);
+	} else {
+		return;
+	}
+}
+
+void construirHeap(int vet[],int tam){
+    int i;
+
+	for(i = (tam/2)-1; i>=0; i--) {
+		atualizarHeap(vet, i, tam);
+	}
+}
+
+void heapSort(int * vetor, int tam ) {
+	long int n = tam;
+	construirHeap(vetor,n);
+	while (n > 1) {	
+		trocar(vetor,0,n-1);
+		n--;
+		atualizarHeap(vetor,0,n);
+	}
+//	printf("\n\nTROCAS: %ld", trocas);
+}

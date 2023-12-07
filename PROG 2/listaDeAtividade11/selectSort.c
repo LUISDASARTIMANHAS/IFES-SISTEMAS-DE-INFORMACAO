@@ -10,6 +10,7 @@ int main(){
     // int data3[TAM] = {30,24,17,16,9,5,2,1};
 
     selectSort(data2,TAM);
+    imprimirArray(data2,TAM);
 
     copy();
     return 0;

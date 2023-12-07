@@ -6,7 +6,7 @@
 int main(){
     head();
     int data2[TAM] = {9,7,2,4,3,5,9,2,3};
-    shellSort(data2,TAM);
+    shellSort(data2,TAM-1);
     copy();
     return 0;
 }
