@@ -5,7 +5,6 @@
 #include <stdio.h>
 #include <ctype.h>
 #include <string.h>
-#include "./libs/algoritmos.c"
 
 // Defina constantes para as sequências de escape ANSI das cores
 #define RED "\x1b[31m"
@@ -16,6 +15,63 @@
 
 #define SEPARETOR BLUE "\n================================================\n"  RESET
 
+// inputs personalizados e modificados
+float input(){
+    float value;
+    scanf("%f", &value);
+    return value;
+}
+void inputS(char destino[]){
+    scanf(" %100[^\n]s", destino);
+}
+
+void alocarMEM(int **database,int *maxSpace){
+    printf("Entre com a quantidade de números: ");
+    int quant_numeros = input();
+    *database = (int *) malloc (quant_numeros * sizeof (int) );
+    *maxSpace = quant_numeros;
+}
+
+void reAlocarMEM(int **database, int *maxSpace){
+    printf("\nVoce tem alocado: %d \n",*maxSpace);
+    printf("Entre com a quantidade a mais de elementos: ");
+    int qtdeNova = input();
+    *maxSpace = (qtdeNova+(*maxSpace));
+    int tam = (*maxSpace) * sizeof (int);
+
+    *database = (int *) realloc (*database , tam );
+}
+
+int pesqMaiorElemento(int vet[],int tam){
+    int maior = 0;
+    int i;
+
+    for (i = 0; i <= tam; i++){
+        if (vet[i] > vet[maior]){
+            maior = i;
+        }
+    }
+    return maior;
+}
+
+int pesqMenorElemento(int vet[],int tam){
+    int menor = 0;
+    int i;
+
+    for (i = 0; i <= tam; i++){
+        if (vet[i] < vet[menor]){
+            menor = i;
+        }
+    }
+    return menor;
+}
+
+void trocar(int vet[],int i,int f){
+    int aux;
+    aux = vet[i];
+    vet[i] = vet[f];
+    vet[f] = aux;
+}
 struct ClassDatabase {
     int codigo;
     char nome[101];
@@ -80,18 +136,6 @@ void copy(){
     fprintf(logs,"\n----------------------------------------------------\n");
     fclose(logs);
 }
-
-
-// inputs personalizados e modificados
-float input(){
-    float value;
-    scanf("%f", &value);
-    return value;
-}
-void inputS(char destino[]){
-    scanf(" %100[^\n]s", destino);
-}
-
 
 // validadores
 void validNome(char destino[]){
@@ -341,23 +385,6 @@ void removerArray(int *qtde, int *array, int pos){
     (*qtde)--;
 }
 
-void alocarMEM(int **database,int *maxSpace){
-    printf("Entre com a quantidade de números: ");
-    int quant_numeros = input();
-    *database = (int *) malloc (quant_numeros * sizeof (int) );
-    *maxSpace = quant_numeros;
-}
-
-void reAlocarMEM(int **database, int *maxSpace){
-    printf("\nVoce tem alocado: %d \n",*maxSpace);
-    printf("Entre com a quantidade a mais de elementos: ");
-    int qtdeNova = input();
-    *maxSpace = (qtdeNova+(*maxSpace));
-    int tam = (*maxSpace) * sizeof (int);
-
-    *database = (int *) realloc (*database , tam );
-}
-
 // funções do trabalho
 
 struct Date{
@@ -391,12 +418,7 @@ void gravarDatabase(Produto * vetProd, int qtde) {
     printf(GREEN "\nSISTEMA: Autosave concluido!" RESET);
 }
 
-void trocar(int vet[],int i,int f){
-    int aux;
-    aux = vet[i];
-    vet[i] = vet[f];
-    vet[f] = aux;
-}
+
 
 int menu() {
     correct();
@@ -462,7 +484,6 @@ int pesqCod(Produto produtos[],int tam){
         printf(RED "\nSISTEMA: O banco de dados esta vazio, insira algo primeiro" RESET);
     }
 }
-
 
 int pesqName(Produto produtos[],int tam){
     if(tam >= 1){
@@ -694,9 +715,9 @@ void insertionSort(int vet[], int tam){
     }
     printf("\n Trocas: %d",trocas);
 }
-int insertionSortAdaptado(long int vet[],long int tam, long int pos, long int h){
-    long int i,j;
-    long int valor;
+int insertionSortAdaptado(int vet[],int tam, int pos, int h){
+    int i,j;
+    int valor;
     int trocas = 0;
 
     for (i = pos + h; i < tam; i= i + h){
@@ -889,5 +910,16 @@ int particao(int vet[], int ini,int fim){
     }
     trocar(vet, ini, f);
     return f;
+}
+
+void selectSort(int vet[], int tam){
+    int posMaior = pesqMaiorElemento(vet,tam);
+    int i;
+
+    for (i = tam; i > 1; i--){
+        if (posMaior != i - 1){
+            torcar(vet, posMaior, tam-1);
+        }
+    }
 }
 
