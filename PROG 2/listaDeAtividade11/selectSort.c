@@ -1,7 +1,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include "functions.c"
-#define TAM 8
+#define TAM 9
 
 
 int main(){
