@@ -919,7 +919,7 @@ void selectSort(int vet[], int tam){
 
     for (i = tam; i > 1; i--){
         if (posMaior != i - 1){
-            // torcar(vet, posMaior, tam-1);
+            trocar(vet, posMaior, tam-1);
         }
     }
 }
