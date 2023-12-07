@@ -15,6 +15,21 @@
 
 #define SEPARETOR BLUE "\n================================================\n"  RESET
 
+struct ClassDatabase {
+    int codigo;
+    char nome[101];
+    float preco;
+    int qtde;
+};
+typedef struct ClassDatabase Database;
+
+void trocar(int vet[],int i,int f){
+    int aux;
+    aux = vet[i];
+    vet[i] = vet[f];
+    vet[f] = aux;
+}
+
 // inputs personalizados e modificados
 float input(){
     float value;
@@ -65,20 +80,6 @@ int pesqMenorElemento(int vet[],int tam){
     }
     return menor;
 }
-
-void trocar(int vet[],int i,int f){
-    int aux;
-    aux = vet[i];
-    vet[i] = vet[f];
-    vet[f] = aux;
-}
-struct ClassDatabase {
-    int codigo;
-    char nome[101];
-    float preco;
-    int qtde;
-};
-typedef struct ClassDatabase Database;
 
 FILE * abrirArquivo(char * nomeArq, char * modo) {
     // ABRIR o arquivo
@@ -497,17 +498,17 @@ int pesqName(Produto produtos[],int tam){
             comparador = strcmp(produtoTemp.nome, pesq);
 
             if(comparador == 0){
-                printf(GREEN"\nO Produto procurado foi encontrado!",RESET);
+                printf(GREEN"%s\nO Produto procurado foi encontrado!",RESET);
                 printf(SEPARETOR);
                 printf(BLUE"   \t Nome do produto: %s", produtoTemp.nome);
                 printf(     "\n \t código do produto: %d", produtoTemp.cod);
                 printf(     "\n \t Preço do produto: %0.2f", produtoTemp.prise);
                 printf(     "\n \t Quantidade do produto: %d", produtoTemp.quantidade);
-                printf(     "\n \t Data de validade do produto: %0.2d/%0.2d/%0.2d", produtoTemp.validade.dia,produtoTemp.validade.mes,produtoTemp.validade.ano,RESET);
+                printf(     "\n \t Data de validade do produto: %0.2d/%0.2d/%.02d", produtoTemp.validade.dia,produtoTemp.validade.mes,produtoTemp.validade.ano,RESET);
                 printf(SEPARETOR);
                 return i;
             }else{
-                printf(BLUE"\nSISTEMA: PROCURANDO...",RESET);
+                printf(BLUE"%s\nSISTEMA: PROCURANDO...",RESET);
             }
         }
         printf(RED "\nO Produto não foi encontado!" RESET);
@@ -918,7 +919,7 @@ void selectSort(int vet[], int tam){
 
     for (i = tam; i > 1; i--){
         if (posMaior != i - 1){
-            torcar(vet, posMaior, tam-1);
+            // torcar(vet, posMaior, tam-1);
         }
     }
 }
