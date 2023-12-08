@@ -5,7 +5,7 @@
 #include <stdio.h>
 #include <ctype.h>
 #include <string.h>
-
+int soma;
 // Defina constantes para as sequências de escape ANSI das cores
 #define RED "\x1b[31m"
 #define BLUE "\x1b[34m"
@@ -940,7 +940,7 @@ void selectSort(int vet[], int tam){
 
 }
 
-void atualizarHeap(long int * vetor, long int raiz, long int n ) {
+void atualizarHeap(long int vetor[], long int raiz, long int n ) {
 	int filhoEsq = 2 * raiz + 1;
 	int filhoDir = 2 * raiz + 2;
 
@@ -958,7 +958,7 @@ void atualizarHeap(long int * vetor, long int raiz, long int n ) {
 	}
 
 	if ( vetor[maior] > vetor[raiz]  ) {
-		trocar(vetor, maior, raiz);	
+		trocar(vetor, maior, raiz);
 		atualizarHeap(vetor, maior, n);
 	} else {
 		return;
@@ -973,13 +973,14 @@ void construirHeap(int vet[],int tam){
 	}
 }
 
-void heapSort(int * vetor, int tam ) {
+void heapSort(int vetor[], int tam ) {
 	long int n = tam;
 	construirHeap(vetor,n);
-	while (n > 1) {	
+	while (n > 1) {
 		trocar(vetor,0,n-1);
 		n--;
 		atualizarHeap(vetor,0,n);
+        soma++;
 	}
-//	printf("\n\nTROCAS: %ld", trocas);
+	printf("\n\nTROCAS: %d", soma);
 }
