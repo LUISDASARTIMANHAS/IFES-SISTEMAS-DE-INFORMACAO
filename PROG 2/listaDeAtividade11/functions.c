@@ -5,7 +5,7 @@
 #include <stdio.h>
 #include <ctype.h>
 #include <string.h>
-int soma;
+
 // Defina constantes para as sequências de escape ANSI das cores
 #define RED "\x1b[31m"
 #define BLUE "\x1b[34m"
@@ -980,7 +980,6 @@ void heapSort(int vetor[], int tam ) {
 		trocar(vetor,0,n-1);
 		n--;
 		atualizarHeap(vetor,0,n);
-        soma++;
 	}
-	printf("\n\nTROCAS: %d", soma);
+	printf("\n\nTROCAS");
 }
