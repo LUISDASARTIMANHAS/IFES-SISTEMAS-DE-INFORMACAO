@@ -51,11 +51,11 @@ int main() {
 				break;
 			case 8:
 				// QUICKSORT
-				quickSort(produtos,0,tam);
+				quickSort(produtos,0,tam-1);
 				break;
 			case 9:
 				// HEAPSORT
-				list(produtos,tam);
+				heapSort(produtos,tam);
 				break;
 			default:
 				printf ("\n\nOpção inválida!\n\n");
