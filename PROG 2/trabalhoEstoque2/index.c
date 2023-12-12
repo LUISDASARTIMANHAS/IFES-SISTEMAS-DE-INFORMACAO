@@ -49,6 +49,14 @@ int main() {
 				// LISTAR
 				list(produtos,tam);
 				break;
+			case 8:
+				// QUICKSORT
+				quickSort(produtos,0,tam);
+				break;
+			case 9:
+				// HEAPSORT
+				list(produtos,tam);
+				break;
 			default:
 				printf ("\n\nOpção inválida!\n\n");
 		}

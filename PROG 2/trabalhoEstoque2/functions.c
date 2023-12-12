@@ -28,6 +28,13 @@ struct ClassProduto{
     Data validade;
 };typedef struct ClassProduto Produto;
 
+void trocarProduto(Produto vet[],int i,int f){
+    Produto aux;
+    aux = vet[i];
+    vet[i] = vet[f];
+    vet[f] = aux;
+}
+
 FILE * abrirArquivo(char * nomeArq, char * modo) {
     // ABRIR o arquivo
     FILE * arq;
@@ -98,12 +105,14 @@ int menu() {
 	printf("4 - Atualizar\n");
 	printf("5 - Maior\n" RESET);
 	printf(RED "6 - Excluir\n" RESET);
-	printf(GREEN "7 - Listar\n"  RESET);
+	printf(GREEN "7 - Listar\n");
+    printf("8 - Ordenar sistema por quicksort\n" );
+    printf("9 - Ordenar sistema por heapsort\n"  RESET);
 	printf(RED "0 - Sair\n" RESET);
 	do {
 		printf(YELLOW "Escolha sua opção: " RESET);
 		scanf(" %d", &op);
-	} while(op < 0 || op > 7);
+	} while(op < 0 || op > 9);
 	return op;
 }
 
@@ -225,6 +234,7 @@ int pesqCod(Produto produtos[],int tam){
     }else{
         printf(RED "\nSISTEMA: O banco de dados esta vazio, insira algo primeiro" RESET);
     }
+    return -1;
 }
 
 
@@ -258,6 +268,7 @@ int pesqName(Produto produtos[],int tam){
     }else{
         printf(RED "\nSISTEMA: O banco de dados esta vazio, insira algo primeiro" RESET);
     }
+    return -1;
 }
 
 
@@ -405,3 +416,35 @@ void list(Produto produtos[],int tam){
         printf(RED "\nSISTEMA: O banco de dados esta vazio, insira algo primeiro" RESET);
     }
 }
+
+int particao(Produto vet[], int ini,int fim){
+    int pivo = vet[ini].cod;
+    int i = ini + 1;
+    int f = fim;
+
+    while (i <= f){
+        if (vet[i].cod <= pivo){
+            i++;
+        }else if (vet[f].cod > pivo){
+            f--;
+        }
+        else{
+            trocarProduto(vet, i, f);
+            i++;
+            f--;
+        }
+    }
+    trocarProduto(vet, ini, f);
+    return f;
+}
+
+void quickSort(Produto vet[], int ini, int fim){
+    int posPivo;
+
+    if (ini < fim){
+        posPivo = particao(vet,ini,fim);
+        quickSort(vet, ini, posPivo - 1);
+        quickSort(vet, posPivo + 1, fim);
+    }
+}
+
