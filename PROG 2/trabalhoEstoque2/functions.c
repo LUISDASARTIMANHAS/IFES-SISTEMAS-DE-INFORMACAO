@@ -448,3 +448,46 @@ void quickSort(Produto vet[], int ini, int fim){
     }
 }
 
+void atualizarHeap(Produto vetor[], int raiz, int n ) {
+	int filhoEsq = 2 * raiz + 1;
+	int filhoDir = 2 * raiz + 2;
+
+	int maior;
+	if ( filhoEsq >= n) {
+		// SEM NENHUM FILHO
+		return;
+	} else if ( filhoDir >= n ){
+		// SOMENTE o FILHO DA ESQUERDA
+		maior = filhoEsq;
+	} else if ( vetor[filhoEsq].cod > vetor[filhoDir].cod  ) {
+		maior = filhoEsq;
+	} else {
+		maior = filhoDir;
+	}
+
+	if ( vetor[maior].cod > vetor[raiz].cod  ) {
+		trocarProduto(vetor, maior, raiz);
+		atualizarHeap(vetor, maior, n);
+	} else {
+		return;
+	}
+}
+
+void construirHeap(Produto vet[],int tam){
+    int i;
+
+	for(i = (tam/2)-1; i>=0; i--) {
+		atualizarHeap(vet, i, tam);
+	}
+}
+
+void heapSort(Produto vetor[], int tam ) {
+	int n = tam;
+    printf(BLUE "\nSISTEMA: Organizando o banco de dados... \n Isso pode levar um tempo, por favor, aguarde enquanto o sistema está organizando as informações." RESET);
+	construirHeap(vetor,n);
+	while (n > 1) {
+		trocarProduto(vetor,0,n-1);
+		n--;
+		atualizarHeap(vetor,0,n);
+	}
+}
