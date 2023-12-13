@@ -62,7 +62,6 @@ void simularDados (Produto * vet, int * qtde ) {
         temp.validade.ano = aleatorio(30);
 
         itoa(temp.nome, codStr, 7);
-
         strcpy(temp.nome, "Produto ");
         strcat(temp.nome, codStr );
 
@@ -71,7 +70,7 @@ void simularDados (Produto * vet, int * qtde ) {
 }
 
 int main () {
-    FILE * arquivo; 
+    FILE * arquivo;
     Produto vetor[TAM_VETOR];
     int qtde = TAM_VETOR;
 
