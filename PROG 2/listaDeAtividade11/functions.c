@@ -785,7 +785,6 @@ void shellSort(int vet[], int tam){
         }
     }
     printf("\n Trocas: %d",trocas);
-    imprimirArray(vet,1000);
     fprintf(logs,"\n shellSort executou as trocas");
     fprintf(logs,"\n Trocas: %d\n",trocas);
     fclose(logs);
@@ -940,7 +939,7 @@ void selectSort(int vet[], int tam){
 
 }
 
-void atualizarHeap(long int vetor[], long int raiz, long int n ) {
+void atualizarHeap(int vetor[], int raiz, int n ) {
 	int filhoEsq = 2 * raiz + 1;
 	int filhoDir = 2 * raiz + 2;
 
@@ -982,4 +981,54 @@ void heapSort(int vetor[], int tam ) {
 		atualizarHeap(vetor,0,n);
 	}
 	printf("\n\nTROCAS");
+}
+
+void intercalar(int vet[],int i1,int f1,int i2,int f2){
+    int tam = f2 - i1 + 1;
+    int i = 0;
+    int vetAux[tam];
+    int bytes = tam*sizeof(int);
+
+    while ((i1 <= f1) && (i2 <= f2)){
+        if (vet[i1] <= vet[i2]){
+            vetAux[i] = vet[i1];
+            i++;
+            i1++;
+        }else{
+            vetAux[i] = vet[i2];
+            i++;
+            i1++;
+        }
+    }
+    while (i1 <= f1){
+        vetAux[i] = vet[i1];
+        i++;
+        i1++;
+    }
+    while (i2 <= f2){
+        vetAux[i] = vet[i2];
+        i++;
+        i2++;
+    }
+
+    memcpy(&vet[i1],vetAux,bytes);
+    free(vetAux);
+    // if (&vet != vetAux){
+        // free(vetAux);
+    // }
+}
+
+void mergeSort(int vet[],int ini, int fim){
+    // dividir em 2
+    int meio = (ini+fim)/2;
+    int ini2 = meio+1;
+
+    if (ini < fim){
+        // ordena um lado
+        mergeSort(vet,ini,meio);
+        // ordena o outro lado
+        mergeSort(vet,ini2,fim);
+        // intercalar
+        intercalar(vet,ini,meio,ini2,fim);
+    }
 }
