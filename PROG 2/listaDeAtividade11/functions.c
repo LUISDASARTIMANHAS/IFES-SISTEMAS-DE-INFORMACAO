@@ -987,7 +987,6 @@ void intercalar(int vet[],int i1,int f1,int i2,int f2){
     int tam = f2 - i1 + 1;
     int i = 0;
     int vetAux[tam];
-    int bytes = tam*sizeof(int);
 
     while ((i1 <= f1) && (i2 <= f2)){
         if (vet[i1] <= vet[i2]){
@@ -1011,7 +1010,7 @@ void intercalar(int vet[],int i1,int f1,int i2,int f2){
         i2++;
     }
 
-    memcpy(&vet[i1],vetAux,bytes);
+    memcpy(&vet[i1],vetAux,tam*sizeof(int));
     free(vetAux);
     // if (&vet != vetAux){
         // free(vetAux);
