@@ -50,12 +50,8 @@ int main() {
 				list(produtos,tam);
 				break;
 			case 8:
-				// QUICKSORT
-				quickSort(produtos,0,tam-1);
-				break;
-			case 9:
-				// HEAPSORT
-				heapSort(produtos,tam);
+				// ORDENAR POR QUICKSORT E HEAPSORT
+				ordenar(produtos,tam);
 				break;
 			default:
 				printf ("\n\nOpção inválida!\n\n");

@@ -116,6 +116,21 @@ int menu() {
 	return op;
 }
 
+int menuOrdenar() {
+    correct();
+	int op;
+	// system("@cls||clear");  // LIMPA A TELA
+	printf(BLUE "\n\nSISTEMA DE ESTOQUE\n\n" RESET);
+    printf(GREEN"1 - Ordenar sistema por quicksort\n" );
+    printf("2 - Ordenar sistema por heapsort\n"  RESET);
+	printf(RED "0 - Sair\n" RESET);
+	do {
+		printf(YELLOW "Escolha sua opção: " RESET);
+		scanf(" %d", &op);
+	} while(op < 0 || op > 9);
+	return op;
+}
+
 // validadores
 void validNome(char destino[]){
     do{
@@ -415,6 +430,25 @@ void list(Produto produtos[],int tam){
     }else{
         printf(RED "\nSISTEMA: O banco de dados esta vazio, insira algo primeiro" RESET);
     }
+}
+
+void ordenar(Produto vetor[],int tam){
+    int op;
+    do{
+        op = menuOrdenar();
+        switch ( op ) {
+            case 1:
+                // QUICKSORT
+                quickSort(vetor,0,tam-1);
+            break;
+            case 2:
+                // HEAPSORT
+                heapSort(vetor,tam);
+            break;
+            default:
+                printf ("\n\nOpção inválida!\n\n");
+        }
+    } while (op != 0);
 }
 
 int particao(Produto vet[], int ini,int fim){
