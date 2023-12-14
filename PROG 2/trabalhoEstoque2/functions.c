@@ -122,7 +122,7 @@ int menuOrdenar() {
 	printf(BLUE "\n\nSISTEMA DE ESTOQUE\n\n" RESET);
     printf(GREEN"1 - Ordenar sistema por quicksort\n" );
     printf("2 - Ordenar sistema por heapsort\n"  RESET);
-	printf(RED "0 - Sair\n" RESET);
+	printf(RED "0 - Voltar\n" RESET);
 	do {
 		printf(YELLOW "Escolha sua opção: " RESET);
 		scanf(" %d", &op);
@@ -431,25 +431,6 @@ void list(Produto produtos[],int tam){
     }
 }
 
-void ordenar(Produto vetor[],int tam){
-    int op;
-    do{
-        op = menuOrdenar();
-        switch ( op ) {
-            case 1:
-                // QUICKSORT
-                quickSort(vetor,0,tam-1);
-            break;
-            case 2:
-                // HEAPSORT
-                heapSort(vetor,tam);
-            break;
-            default:
-                printf ("\n\nOpção inválida!\n\n");
-        }
-    } while (op != 0);
-}
-
 int particao(Produto vet[], int ini,int fim){
     int pivo = vet[ini].cod;
     int i = ini + 1;
@@ -523,4 +504,23 @@ void heapSort(Produto vetor[], int tam ) {
 		n--;
 		atualizarHeap(vetor,0,n);
 	}
+}
+
+void ordenar(Produto vetor[],int tam){
+    int op;
+    do{
+        op = menuOrdenar();
+        switch ( op ) {
+            case 1:
+                // QUICKSORT
+                quickSort(vetor,0,tam-1);
+            break;
+            case 2:
+                // HEAPSORT
+                heapSort(vetor,tam);
+            break;
+            default:
+                printf(RED"\n\nVoltando ao Menu Principal!\n\n"RESET);
+        }
+    } while (op != 0);
 }
