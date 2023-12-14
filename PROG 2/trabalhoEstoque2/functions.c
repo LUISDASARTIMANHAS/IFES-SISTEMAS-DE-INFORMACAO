@@ -106,13 +106,12 @@ int menu() {
 	printf("5 - Maior\n" RESET);
 	printf(RED "6 - Excluir\n" RESET);
 	printf(GREEN "7 - Listar\n");
-    printf("8 - Ordenar sistema por quicksort\n" );
-    printf("9 - Ordenar sistema por heapsort\n"  RESET);
+    printf("8 - Ordenar Sistema \n"  RESET);
 	printf(RED "0 - Sair\n" RESET);
 	do {
 		printf(YELLOW "Escolha sua opção: " RESET);
 		scanf(" %d", &op);
-	} while(op < 0 || op > 9);
+	} while(op < 0 || op > 8);
 	return op;
 }
 
@@ -127,7 +126,7 @@ int menuOrdenar() {
 	do {
 		printf(YELLOW "Escolha sua opção: " RESET);
 		scanf(" %d", &op);
-	} while(op < 0 || op > 9);
+	} while(op < 0 || op > 2);
 	return op;
 }
 
