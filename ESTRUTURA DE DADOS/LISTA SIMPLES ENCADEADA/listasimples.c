@@ -4,8 +4,6 @@
 
 TLista lista; //variável global
 
-void inicializa(TLista *L);
-void insere(TLista *L;int valor);
 
 int main(){
     head();

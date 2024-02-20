@@ -25,7 +25,8 @@ typedef struct ClassDatabase Database;
 
 struct tipoElemento {
 	int valor;
-	tipoElemento *prox;
+    * anterior;
+	* prox;
 };
 typedef struct tipoElemento TElemento;
 
@@ -647,8 +648,8 @@ void inicializa(TLista *L){
 	L->total = 0;
 }
 
-void insere(Tlista *L; int valor){
-    TElemento *novo = (TElemento *)malloc(sizeof(TElemento))
+void insere(TLista *L, int valor){
+    TElemento *novo = (TElemento *)malloc(sizeof(TElemento));
     novo ->valor = valor;
     novo ->prox = NULL;
 
@@ -657,7 +658,7 @@ void insere(Tlista *L; int valor){
         L->fim = novo;
         L->total = 1;
     }else{
-        TElemento *atual = L -> inicio
+        TElemento *atual = L -> inicio;
         TElemento *anterior = NULL;
         while (atual != NULL){
             if(atual -> valor >= novo -> valor){
@@ -665,10 +666,10 @@ void insere(Tlista *L; int valor){
                     novo->prox = atual;
                     L->inicio = novo;
                 }else{
-                    novo->prox = atual
-                    anterior->prox = novo
+                    novo->prox = atual;
+                    anterior->prox = novo;
                 }
-                break
+                break;
             }
             anterior = atual;
             atual = atual->prox;
