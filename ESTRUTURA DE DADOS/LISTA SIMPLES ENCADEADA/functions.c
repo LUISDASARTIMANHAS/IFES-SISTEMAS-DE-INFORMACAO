@@ -23,26 +23,22 @@ struct ClassDatabase {
 };
 typedef struct ClassDatabase Database;
 
-struct tipoElemento {
-	int valor;
-    * anterior;
-	* prox;
-};
-typedef struct tipoElemento TElemento;
-
-struct tipoLista {
-    TElemento *inicio;
-    TElemento *fim;
-    int total;
-};
-typedef struct tipoLista TLista;
-
-TLista lista; //variável global
-
 int correct(){
     SetConsoleOutputCP(65001);
     return 0;
 }
+
+FILE * abrirArquivo(char * nomeArq, char * modo) {
+    // ABRIR o arquivo
+    FILE * arq;
+    arq = fopen( nomeArq, modo );
+    if ( arq == NULL) {
+        printf(RED "ERRO ao abrir o arquivo." RESET);
+        exit(-1);
+    }
+    return arq;
+}
+
 void head(){
     correct();
     FILE * logs;
@@ -77,16 +73,6 @@ void copy(){
     fclose(logs);
 }
 
-FILE * abrirArquivo(char * nomeArq, char * modo) {
-    // ABRIR o arquivo
-    FILE * arq;
-    arq = fopen( nomeArq, modo );
-    if ( arq == NULL) {
-        printf(RED "ERRO ao abrir o arquivo." RESET);
-        exit(-1);
-    }
-    return arq;
-}
 void carregarArquivo(FILE * arquivo, Database * vetProd, int *qtde) {
     fread( qtde, sizeof(int), 1, arquivo  );
     fread( vetProd, sizeof(Database), *qtde, arquivo  );
@@ -640,6 +626,8 @@ void list(Produto produtos[],int tam){
     }else{
         printf(RED "\nSISTEMA: O banco de dados esta vazio, insira algo primeiro" RESET);
     }
+<<<<<<< HEAD
+=======
 }
 
 void inicializa(TLista *L){
@@ -676,4 +664,5 @@ void insere(TLista *L, int valor){
         }
         L->total++;
     }
+>>>>>>> 97e658f1dac61203242a4fa27c9eed141d061bd3
 }
