@@ -191,9 +191,9 @@ void escolheCentroides(TLista *L){
 void distribuiElementos(TLista *L){
 	TElemento *usuario = L->inicio;
 	TElemento *admin = L->inicio;
-	float distância = RAIZ Quadrada de X
-
-X = Quadrado(IDADEs - IDADEn) + Quadrado(ALTURAs - ALTURAn) + Quadrado(PESOs - PESOn)
+	float X = raizQuadrada(IDADEs - IDADEn) + raizQuadrada(ALTURAs - ALTURAn) + raizQuadrada(PESOs - PESOn)
+	float distância = raizQuadrada(x);
+	
 
 
 	//Esta fun��o percorre a Lista com todos os TElementos.
@@ -215,11 +215,8 @@ void ordenaPorGrupo(TLista *L){
 }
 //============================================================================
 
-float raizQuadrada(){
+float raizQuadrada(float num){
 	#include <math.h>
-	float res = sqrt()
-
-	
-
+	float res = sqrt(num);
 	return res;
 }
