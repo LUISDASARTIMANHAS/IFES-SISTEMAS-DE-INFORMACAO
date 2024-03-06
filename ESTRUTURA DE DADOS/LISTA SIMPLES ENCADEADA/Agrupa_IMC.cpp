@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "functions.c"
 
 typedef char string[40];
 
@@ -188,21 +189,21 @@ void escolheCentroides(TLista *L){
 }
 //============================================================================
 void distribuiElementos(TLista *L){
-	TElemento *atual = L->inicio;
-	TElemento *centro = L->inicio;
+	TElemento *usuario = L->inicio;
+	TElemento *admin = L->inicio;
+	float distância = RAIZ Quadrada de X
+
+X = Quadrado(IDADEs - IDADEn) + Quadrado(ALTURAs - ALTURAn) + Quadrado(PESOs - PESOn)
+
+
 	//Esta fun��o percorre a Lista com todos os TElementos.
 	//Cada TElemento encontrado que N�O seja um CENTR�IDE deve ter a sua dist�ncia euclidiana
 	//calculada em rela��o a todos os CENTR�IDES existentes.
 	//Esse TElemento dever� pertecer ao mesmo GRUPO do CENTR�IDE menos distante dele.
 	
-	while(atual != NULL){
-		if(atual->centroide == 1){
-			centro ->atual
-			while
-			}
-		}
-		atual = atual->prox
-		}
+	while(usuario != NULL){
+
+		usuario = usuario->prox;
 	}
 }
 //============================================================================
@@ -214,3 +215,11 @@ void ordenaPorGrupo(TLista *L){
 }
 //============================================================================
 
+float raizQuadrada(){
+	#include <math.h>
+	float res = sqrt()
+
+	
+
+	return res;
+}
