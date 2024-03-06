@@ -90,7 +90,7 @@ void insere(TLista *L, float idade, float altura, float peso, string nome){
 			if(strcmp(atual->nome, novo->nome)== 1){
 				
 				if(atual == L->inicio){
-					//Inserir novo no início da Lista.
+					//Inserir novo no inï¿½cio da Lista.
 					novo->prox = atual;
 					L->inicio = novo;	
 				} else {
@@ -139,10 +139,10 @@ void exibe(TLista L){
 }
 //============================================================================
 void escolheCentroides(TLista *L){
-   //Função que escolhe randomicamente um centroide para cada grupo.
-   //O usuário-final define a quantidade de grupos existentes (k) durante a execução
+   //Funï¿½ï¿½o que escolhe randomicamente um centroide para cada grupo.
+   //O usuï¿½rio-final define a quantidade de grupos existentes (k) durante a execuï¿½ï¿½o
    //do programa.
-   //Esta função sorteia um TElemento para Centróide de cada grupo.
+   //Esta funï¿½ï¿½o sorteia um TElemento para Centrï¿½ide de cada grupo.
    
   int grupo = L->k;
   int posicao = 0;
@@ -157,7 +157,7 @@ void escolheCentroides(TLista *L){
 	pos = 0;
 	while(atual != NULL){
 		if(pos == posicao){
-			//Encontrado TElemento a ser Transformado em Centróide	...
+			//Encontrado TElemento a ser Transformado em Centrï¿½ide	...
 			if(atual->centroide == 0){
 				
 			
@@ -179,7 +179,7 @@ void escolheCentroides(TLista *L){
 		}//if
 		pos++;
 	}//while
-	grupo--;  			
+	grupo--;
   }//while
   
   printf("\n\n Processo de escolha dos CENTROIDES concluido!\n\n");
@@ -188,17 +188,27 @@ void escolheCentroides(TLista *L){
 }
 //============================================================================
 void distribuiElementos(TLista *L){
-	//Esta função percorre a Lista com todos os TElementos.
-	//Cada TElemento encontrado que NÃO seja um CENTRÓIDE deve ter a sua distância euclidiana
-	//calculada em relação a todos os CENTRÓIDES existentes.
-	//Esse TElemento deverá pertecer ao mesmo GRUPO do CENTRóIDE menos distante dele.
+	TElemento *atual = L->inicio;
+	TElemento *centro = L->inicio;
+	//Esta funï¿½ï¿½o percorre a Lista com todos os TElementos.
+	//Cada TElemento encontrado que Nï¿½O seja um CENTRï¿½IDE deve ter a sua distï¿½ncia euclidiana
+	//calculada em relaï¿½ï¿½o a todos os CENTRï¿½IDES existentes.
+	//Esse TElemento deverï¿½ pertecer ao mesmo GRUPO do CENTRï¿½IDE menos distante dele.
 	
-	
+	while(atual != NULL){
+		if(atual->centroide == 1){
+			centro ->atual
+			while
+			}
+		}
+		atual = atual->prox
+		}
+	}
 }
 //============================================================================
 void ordenaPorGrupo(TLista *L){
 //Reordena os elementos da Lista por GRUPO. Ao final do processo os ELementos da Lista
-//que pertencerem ao mesmo grupo deverão estar agrupados de maneira contigua.
+//que pertencerem ao mesmo grupo deverï¿½o estar agrupados de maneira contigua.
 	
 	
 }
