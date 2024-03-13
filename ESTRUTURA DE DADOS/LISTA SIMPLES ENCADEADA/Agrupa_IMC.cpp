@@ -189,11 +189,11 @@ void escolheCentroides(TLista *L){
 }
 //============================================================================
 void distribuiElementos(TLista *L){
-	TElemento *usuario = L->inicio;
-	TElemento *admin = L->inicio;
-	float X = raizQuadrada(IDADEs - IDADEn) + raizQuadrada(ALTURAs - ALTURAn) + raizQuadrada(PESOs - PESOn)
-	float distância = raizQuadrada(x);
-	
+	TElemento *atual, *centroide, *menorDist;
+	// float X = raizQuadrada(IDADEs - IDADEn) + raizQuadrada(ALTURAs - ALTURAn) + raizQuadrada(PESOs - PESOn)
+	// float distância = raizQuadrada(x);
+	float menor, temp;
+	atual = L->inicio;
 
 
 	//Esta fun��o percorre a Lista com todos os TElementos.
@@ -201,9 +201,12 @@ void distribuiElementos(TLista *L){
 	//calculada em rela��o a todos os CENTR�IDES existentes.
 	//Esse TElemento dever� pertecer ao mesmo GRUPO do CENTR�IDE menos distante dele.
 	
-	while(usuario != NULL){
+	while(atual != NULL){
+		if(atual->centroide){
+			centroide = L->inicio;
+		}
 
-		usuario = usuario->prox;
+		atual = atual->prox;
 	}
 }
 //============================================================================
