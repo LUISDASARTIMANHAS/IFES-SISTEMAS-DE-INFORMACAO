@@ -5,7 +5,7 @@
 #include <stdio.h>
 #include <ctype.h>
 #include <string.h>
-#include "functions.c"
+//#include "functions.c"
 
 // Defina constantes para as sequências de escape ANSI das cores
 #define RED "\x1b[31m"
@@ -17,9 +17,6 @@
 #define SEPARETOR BLUE "\n================================================\n"  RESET
 
 typedef char string[40];
-void inicializa(TLista *L);
-void entradaDeDados(TLista *L);
-void insere(TLista *L, string titulo, int ano);
 
 typedef struct tipoFilme {
 	string titulo;
@@ -35,11 +32,30 @@ typedef struct tipoLista {
 }TLista;
 
 TLista lista;
-
+void correct();
 void inicializa(TLista *L);
+int menu();
+void inicializa(TLista *L);
+void entradaDeDados(TLista *L);
+void insere(TLista *L, string titulo, int ano);
+
+// inputs personalizados e modificados
+float input(){
+    float value;
+    scanf("%f", &value);
+    return value;
+}
+void inputS(char destino[]){
+    scanf(" %100[^\n]s", destino);
+}
+
+void correct(){
+    SetConsoleOutputCP(65001);
+}
 
 int main(){
 	int op;
+	correct();
 	inicializa(&lista);
 	do{
 		op = menu();
@@ -146,3 +162,22 @@ void selecionaFilmeExclusao(TLista *L){
 	
 }
 //============================================================================
+
+int menu() {
+	int op;
+	// system("@cls||clear");  // LIMPA A TELA
+	printf(BLUE "\n\nSISTEMA DE ESTOQUE\n\n" RESET);
+	printf(GREEN "1 - Inserir\n");
+	printf("2 - Pesquisar por número\n");
+	printf("3 - Pesquisar por nome\n");
+	printf("4 - Atualizar\n");
+	printf("5 - Maior\n" RESET);
+	printf(RED "6 - Excluir\n" RESET);
+	printf(GREEN "7 - Listar\n"  RESET);
+	printf(RED "0 - Sair\n" RESET);
+	do {
+		printf(YELLOW "Escolha sua opção: " RESET);
+		scanf(" %d", &op);
+	} while(op < 0 || op > 7);
+	return op;
+}

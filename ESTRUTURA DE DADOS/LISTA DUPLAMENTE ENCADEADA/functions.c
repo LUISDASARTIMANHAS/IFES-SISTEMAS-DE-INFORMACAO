@@ -15,6 +15,7 @@
 
 #define SEPARETOR BLUE "\n================================================\n"  RESET
 
+typedef char string[40];
 struct ClassDatabase {
     int codigo;
     char nome[101];
