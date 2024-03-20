@@ -5,7 +5,7 @@
 #include <stdio.h>
 #include <ctype.h>
 #include <string.h>
-//#include "functions.c"
+#include "functions.c"
 
 // Defina constantes para as sequências de escape ANSI das cores
 #define RED "\x1b[31m"
@@ -32,7 +32,6 @@ typedef struct tipoLista {
 }TLista;
 
 TLista lista;
-void correct();
 void inicializa(TLista *L);
 int menu();
 void inicializa(TLista *L);
@@ -47,10 +46,6 @@ float input(){
 }
 void inputS(char destino[]){
     scanf(" %100[^\n]s", destino);
-}
-
-void correct(){
-    SetConsoleOutputCP(65001);
 }
 
 int main(){
