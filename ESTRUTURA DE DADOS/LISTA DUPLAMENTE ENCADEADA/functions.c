@@ -23,8 +23,31 @@ struct ClassDatabase {
     char nome[101];
     float preco;
     int qtde;
-};
-typedef struct ClassDatabase Database;
+}; typedef struct ClassDatabase Database;
+
+typedef struct ClassDatabaseTipoAtor {
+    string nome;
+    ClassDatabaseTipoAtor *prox;
+}TAtor;
+
+typedef struct ClassDatabaseTipoElenco {
+    TAtor *ator;
+    ClassDatabaseTipoElenco *prox;
+}TElenco;
+
+typedef struct ClassDatabaseTipoFilme {
+    string titulo;
+    int anoProducao;
+    ClassDatabaseTipoFilme *ante,*prox;
+    TElenco *elenco;
+}TFilme;
+
+typedef struct ClassDatabaseFilme {
+    TFilme *inicioF;
+    TFilme *fimF;
+    TAtor *inicioA;
+    TAtor *fimA;
+}TLista;
 
 FILE * abrirArquivo(char * nomeArq, char * modo) {
     // ABRIR o arquivo
@@ -88,6 +111,7 @@ void copy(){
 // inputs personalizados e modificados
 float input(){
     float value;
+    fflush(stdin);
     scanf("%f", &value);
     return value;
 }

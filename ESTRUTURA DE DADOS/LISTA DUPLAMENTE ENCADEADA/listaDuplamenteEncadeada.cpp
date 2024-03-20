@@ -1,22 +1,6 @@
-#include <windows.h>
-#define _USE_MATH_DEFINES
-#include <math.h>
 #include <stdlib.h>
 #include <stdio.h>
-#include <ctype.h>
-#include <string.h>
 #include "functions.c"
-
-// Defina constantes para as sequências de escape ANSI das cores
-#define RED "\x1b[31m"
-#define BLUE "\x1b[34m"
-#define GREEN "\x1b[32m"
-#define YELLOW "\x1b[33m"
-#define RESET "\x1b[0m"
-
-#define SEPARETOR BLUE "\n================================================\n"  RESET
-
-typedef char string[40];
 
 typedef struct tipoFilme {
 	string titulo;
@@ -33,27 +17,17 @@ typedef struct tipoLista {
 
 TLista lista;
 void inicializa(TLista *L);
-int menu();
+int myMenu();
 void inicializa(TLista *L);
 void entradaDeDados(TLista *L);
 void insere(TLista *L, string titulo, int ano);
-
-// inputs personalizados e modificados
-float input(){
-    float value;
-    scanf("%f", &value);
-    return value;
-}
-void inputS(char destino[]){
-    scanf(" %100[^\n]s", destino);
-}
 
 int main(){
 	int op;
 	correct();
 	inicializa(&lista);
 	do{
-		op = menu();
+		op = myMenu();
 		switch (op){
 		case 1:
 			entradaDeDados(&lista);
@@ -158,7 +132,7 @@ void selecionaFilmeExclusao(TLista *L){
 }
 //============================================================================
 
-int menu() {
+int myMenu() {
 	int op;
 	// system("@cls||clear");  // LIMPA A TELA
 	printf(BLUE "\n\nSISTEMA DE ESTOQUE\n\n" RESET);
