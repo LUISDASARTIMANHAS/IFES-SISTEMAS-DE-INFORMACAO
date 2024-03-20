@@ -41,7 +41,7 @@ void cadastraAtor(TLista *DB){
     printf("\n\n\t=====| INSERE ATOR|=====\n\n");
     printf("\tInforme o nome do ator: ");
     fflush(stdin);
-    inputS(&nome);
+    inputS(nome);
 }
 
 // ====================================== FIM DA BASE ============================

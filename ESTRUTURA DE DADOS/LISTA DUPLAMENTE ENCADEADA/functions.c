@@ -116,6 +116,7 @@ float input(){
     return value;
 }
 void inputS(char destino[]){
+    fflush(stdin);
     scanf(" %100[^\n]s", destino);
 }
 
