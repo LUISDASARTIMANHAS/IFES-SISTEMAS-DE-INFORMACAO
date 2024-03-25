@@ -44,6 +44,20 @@ void cadastraAtor(TLista *DB){
     inputS(nome);
 }
 
+void exibeAtores(TLista *L){
+	TAtor *atual = L->inicioA;
+	int cont = 0;
+	
+	printf("\n\n");
+	printf("+----------------------------------------------------+\n");
+	while (atual != NULL)	{
+		printf("\t(%d) - %s.\n", ++cont, atual->nome);
+		atual = atual->prox;
+	}//while
+	printf("+----------------------------------------------------+\n\n\n");
+	system("PAUSE");
+}
+
 // ====================================== FIM DA BASE ============================
 
 void inicializa(TLista *DB){
@@ -52,10 +66,28 @@ void inicializa(TLista *DB){
     DB->fimF = NULL;
     DB->fimA = NULL;
 
-    insereAtor(DB,"Tobey Maguire");
-    insereAtor(DB,"Christen Dusten");
-    insereAtor(DB,"Chartol");
-    insereAtor(DB,"Tobey Maguire");
+    insereAtor(L,"Tobey Maguire");
+	insereAtor(L,"Christen Dusten");
+	insereAtor(L,"Charlton Heston");
+	insereAtor(L,"Sofia Loren");
+	insereAtor(L,"Kirk Douglas");
+	insereAtor(L,"Michael Douglas");
+	insereAtor(L,"Mira Sorvino");
+	insereAtor(L,"Tom Cruise");
+	insereAtor(L,"Jennifer Connelly");
+	insereAtor(L,"Kelly McGillis");
+	insereAtor(L,"Kathleen Turner");
+	insereAtor(L,"Danny DeVito");
+	insereAtor(L,"Sylvester Stallone");
+	insereAtor(L,"Talia Shire");
+	insereAtor(L,"Hayley Atwell");
+	insereAtor(L,"Chris Evans");
+	insereAtor(L,"Sebastian Stan");
+	insereAtor(L,"Sidney Potier");
+	insereAtor(L,"Charlie Chaplin");
+	insereAtor(L,"Paulette Goddard");
+	insereAtor(L,"Bruce Willis");
+	insereAtor(L,"Cybill Shepherd");
 }
 
 int main(){
