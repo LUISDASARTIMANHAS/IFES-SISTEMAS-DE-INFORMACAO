@@ -70,6 +70,7 @@ void inicializa(TLista *L){
 	insereAtor(L,"Paulette Goddard");
 	insereAtor(L,"Bruce Willis");
 	insereAtor(L,"Cybill Shepherd");
+	exibeAtores(L);
 	
 }
 //=================================================================
@@ -101,7 +102,7 @@ void insereAtor(TLista *L, string nome){
 					novo->prox = anterior->prox;
 					anterior->prox = novo;
 				}//if
-				
+				break;
 			}//if
 		    anterior = atual;
 			atual = atual->prox;
