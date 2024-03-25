@@ -197,7 +197,6 @@ void inicializa(TLista *DB){
 }
 
 int main(){
-    printf("INICIALIZA");
     inicializa(&lista);
     return 0;
 }
