@@ -1,3 +1,4 @@
+// Produzido por LUCAS GARCIA & LUIS AUGUSTO DE SOUZA
 // ============================= BASE ======================
 #include <windows.h>
 #define _USE_MATH_DEFINES
@@ -7,6 +8,9 @@
 #include <ctype.h>
 #include <string.h>
 // Defina constantes para as sequências de escape ANSI das cores
+
+#define DEV1 "LUIS AUGUSTO DE SOUZA"
+#define DEV2 "LUCAS GARCIA"
 
 // RED ERROR
 #define RED "\x1b[31m"
@@ -68,12 +72,12 @@ void head(){
     FILE * logs;
     logs = abrirArquivo("../data/logs.txt","a+");
     printf(SEPARETOR);
-    printf(BLUE"\n\t LUIS_DAS_ARTIMANHAS & PINGOBRAS S.A");
+    printf(BLUE"\n\t %s & %s",DEV1,DEV2);
     printf("\n\t Iniciando o programa....." RESET);
     printf(SEPARETOR);
     // save in logs
     fprintf(logs,SEPARETOR);
-    fprintf(logs,"\n\t LUIS_DAS_ARTIMANHAS & PINGOBRAS S.A");
+    fprintf(logs,"\n\t %s & %s",DEV1,DEV2);
     fprintf(logs,"\n\t Iniciando programa.....");
     fprintf(logs,SEPARETOR);
     fclose(logs);
@@ -85,14 +89,14 @@ void copy(){
     correct();
     printf(SEPARETOR);
     printf(BLUE "\n\t DEVS:");
-    printf("\n\t LUIS_DAS_ARTIMANHAS.");
-    printf("\n\t PINGOBRAS S.A" RESET);
+    printf("\n\t %s",DEV1);
+    printf("\n\t %s",DEV2);
     printf(SEPARETOR);
     // save in logs
     fprintf(logs,"\n----------------------------------------------------");
     fprintf(logs,"\n\t DEVS:");
-    fprintf(logs,"\n\t LUIS_DAS_ARTIMANHAS.");
-    fprintf(logs,"\n\t PINGOBRAS S.A");
+    fprintf(logs,"\n\t %s",DEV1);
+    fprintf(logs,"\n\t %s",DEV2);
     fprintf(logs,"\n----------------------------------------------------\n");
     fclose(logs);
 }

@@ -1,3 +1,4 @@
+// Produzido por LUCAS GARCIA & LUIS AUGUSTO DE SOUZA
 // ============================= BASE ======================
 #include <windows.h>
 #define _USE_MATH_DEFINES
@@ -84,7 +85,6 @@ int menu() {
 	} while(op < 0 || op > 10);
 	return op;
 }
-
 
 // void insereAtor(TLista *DB, string nome){
 //     TAtor *novo = (TAtor *)malloc(sizeof(TAtor));
