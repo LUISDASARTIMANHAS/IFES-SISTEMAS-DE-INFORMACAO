@@ -62,7 +62,7 @@ typedef struct ClassDatabaseTipoLista {
 
 // ============================= FIM DO BASE ======================
 int menu(){
-    int op;
+	int op;
 	printf("\n\n\t\t====| MENU |=====\n\n");
 	printf("\t0 - Sair (Encerrar a Aplicacao).\n\n");
 	printf("\t1 - Inserir DISCIPLINA.\n");
@@ -75,9 +75,11 @@ int menu(){
 	printf("\t8 - Inserir HISTORICO para ALUNO.\n");
 	printf("\t9 - Exibir HISTORICO de ALUNO.\n");
 	printf("\t10 - Excluir HISTORICO de ALUNO.\n\n");
-	printf("Digite a opçao: ");
-    scanf("%d", &op);
-    return op;
+	do {
+		printf(YELLOW "Escolha sua opção: " RESET);
+		scanf(" %d", &op);
+	} while(op < 0 || op > 10);
+	return op;
 }
 // void insereAtor(TLista *DB, string nome){
 //     TAtor *novo = (TAtor *)malloc(sizeof(TAtor));
