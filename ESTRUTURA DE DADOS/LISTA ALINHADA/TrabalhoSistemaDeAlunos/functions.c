@@ -61,32 +61,24 @@ typedef struct ClassDatabaseTipoLista {
 
 
 // ============================= FIM DO BASE ======================
-
-
-int menu() {
-    correct();
-	int op;
-	// system("@cls||clear");  // LIMPA A TELA
-
-    printf(BLUE "\n\n\t\t =====| MENU |=====\n\n");
-    printf(RED "\t0 - Sair (Encerrar a Aplicacao).\n\n");
-    printf(BLUE "\t1 - Inserir DISCIPLINA.\n\n");
-    printf("\t2 - Exibe Todas as DICIPLINAS.\n\n");
-    printf("\t3 - Inserir CURSO.\n\n");
-    printf("\t4 - Exibe Todos os CURSOS.\n\n");
-    printf("\t5 - Inserir ALUNO em CURSO.\n\n");
-    printf("\t6 - Exibe Todos os ALUNOS de CURSO especifico.\n\n");
-    printf(RED "\t7 - Excluir ALUNO de CURSO.\n\n");
-    printf(BLUE "\t8 - Inserir HISTORICO para ALUNO.\n\n");
-    printf("\t9 - Exibe HISTORICO de ALUNO.\n\n");
-    printf(RED "\t10 - Excluir HISTORICO de ALUNO.\n\n" RESET);
-	do {
-		printf(YELLOW "Escolha sua opção: " RESET);
-		scanf(" %d", &op);
-	} while(op < 0 || op > 10);
-	return op;
+int menu(){
+    int op;
+	printf("\n\n\t\t====| MENU |=====\n\n");
+	printf("\t0 - Sair (Encerrar a Aplicacao).\n\n");
+	printf("\t1 - Inserir DISCIPLINA.\n");
+	printf("\t2 - Exibe Todas as DISCIPLINAS.\n\n");
+	printf("\t3 - Inserir CURSO.\n");
+	printf("\t4 - Exibir Todos os CURSOS.\n\n");
+	printf("\t5 - Inserir ALUNO em CURSO.\n");
+	printf("\t6 - Exibir Todos os ALUNOS de CURSO especifico.\n");
+	printf("\t7 - Excluir ALUNO de CURSO.\n\n");
+	printf("\t8 - Inserir HISTORICO para ALUNO.\n");
+	printf("\t9 - Exibir HISTORICO de ALUNO.\n");
+	printf("\t10 - Excluir HISTORICO de ALUNO.\n\n");
+	printf("Digite a opçao: ");
+    scanf("%d", &op);
+    return op;
 }
-
 // void insereAtor(TLista *DB, string nome){
 //     TAtor *novo = (TAtor *)malloc(sizeof(TAtor));
 //     TAtor *atual = DB->inicioA;

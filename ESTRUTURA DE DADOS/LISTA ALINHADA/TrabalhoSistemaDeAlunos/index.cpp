@@ -28,24 +28,7 @@ int main(){
     return 0;
 }
 //===================================================================
-int menu(){
-    int op;
-	printf("\n\n\t\t====| MENU |=====\n\n");
-	printf("\t0 - Sair (Encerrar a Aplicacao).\n\n");
-	printf("\t1 - Inserir DISCIPLINA.\n");
-	printf("\t2 - Exibe Todas as DISCIPLINAS.\n\n");
-	printf("\t3 - Inserir CURSO.\n");
-	printf("\t4 - Exibir Todos os CURSOS.\n\n");
-	printf("\t5 - Inserir ALUNO em CURSO.\n");
-	printf("\t6 - Exibir Todos os ALUNOS de CURSO especifico.\n");
-	printf("\t7 - Excluir ALUNO de CURSO.\n\n");
-	printf("\t8 - Inserir HISTORICO para ALUNO.\n");
-	printf("\t9 - Exibir HISTORICO de ALUNO.\n");
-	printf("\t10 - Excluir HISTORICO de ALUNO.\n\n");
-	printf("Digite a opçao: ");
-    scanf("%d", &op);
-    return op;
-}
+
 
 void inicializa(TLista *lista){
     lista->inicioC = NULL;
