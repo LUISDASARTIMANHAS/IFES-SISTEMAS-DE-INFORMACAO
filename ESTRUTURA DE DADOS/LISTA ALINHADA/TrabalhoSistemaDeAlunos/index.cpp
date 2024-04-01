@@ -17,7 +17,7 @@ TLista listas;
 void insereDisciplina(TLista *lista, string Disciplina, int cargaHoraria){
     int inseriu = 0;
     TDisciplina *novo = (TDisciplina *)malloc(sizeof(TDisciplina));
-    novo->cargaHoraria;
+    novo->cargaHoraria = cargaHoraria;
 	strcpy(novo->nome, Disciplina);
    
     novo->prox = NULL;
