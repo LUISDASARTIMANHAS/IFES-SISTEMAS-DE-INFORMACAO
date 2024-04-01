@@ -76,7 +76,7 @@ int menu(){
 	printf("\t9 - Exibir HISTORICO de ALUNO.\n");
 	printf("\t10 - Excluir HISTORICO de ALUNO.\n\n");
 	do {
-		printf(YELLOW "Escolha sua opção: " RESET);
+		printf("Escolha sua opção: ");
 		scanf(" %d", &op);
 	} while(op < 0 || op > 10);
 	return op;
