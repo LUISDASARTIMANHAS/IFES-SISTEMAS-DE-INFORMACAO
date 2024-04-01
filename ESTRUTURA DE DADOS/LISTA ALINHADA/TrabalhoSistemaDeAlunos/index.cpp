@@ -97,7 +97,7 @@ void realizaOpcaoDesejada(TLista *listas, int op){
         break;
     
     case 3:
-        // insereDisciplina(listas);
+        exibeTodasDisciplina(listas);
         break;
     
     case 4:
@@ -129,6 +129,7 @@ void realizaOpcaoDesejada(TLista *listas, int op){
         break;
     
     default:
+        printf("\nERRO: Opção invalida, tente novamente\n");
         break;
     }
 }
