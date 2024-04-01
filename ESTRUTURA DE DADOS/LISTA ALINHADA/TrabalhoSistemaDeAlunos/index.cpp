@@ -11,28 +11,8 @@
 
 TLista listas;
 
-void inicializa(TLista *lista){
-    lista->inicioC = NULL;
-    lista->inicioD = NULL;
-    lista->fimC = NULL;
-    lista->fimD = NULL;
-    lista->total = 0;
-    insereDisciplina(lista, "Prog",30);   
-}
 
-void cadastraDisciplina(TLista *lista){
-    int cargaHoraria;
-    string nome;
 
-    printf("Digite o nome da Disciplina: ");
-    scanf(" %39[^\n]s", cargaHoraria);
-    fflush(stdin);
-    printf("Digite qual e a carga horaria: ");
-    scanf("%d", nome);
-    fflush(stdin);
-
-    insereDisciplina(lista, nome, cargaHoraria);
-}
 
 void insereDisciplina(TLista *lista, string Disciplina, int cargaHoraria){
     int inseriu = 0;
@@ -80,6 +60,20 @@ void insereDisciplina(TLista *lista, string Disciplina, int cargaHoraria){
     }
 }
 
+void cadastraDisciplina(TLista *lista){
+    int cargaHoraria;
+    string nome;
+
+    printf("Digite o nome da Disciplina: ");
+    scanf(" %39[^\n]s", nome);
+    fflush(stdin);
+    printf("Digite qual e a carga horaria: ");
+    scanf("%d", cargaHoraria);
+    // fflush(stdin);
+
+    insereDisciplina(lista, nome, cargaHoraria);
+}
+
 void exibeDisciplina(TLista *L){
 	TDisciplina *atual = L->inicioD;
 	int cont = 0;
@@ -95,7 +89,7 @@ void exibeDisciplina(TLista *L){
 void realizaOpcaoDesejada(TLista *listas, int op){
     switch (op){
     case 1:
-        insereDisciplina(listas);
+        cadastraDisciplina(listas);
         break;
     
     case 2:
@@ -103,40 +97,49 @@ void realizaOpcaoDesejada(TLista *listas, int op){
         break;
     
     case 3:
-        insereDisciplina(listas);
+        // insereDisciplina(listas);
         break;
     
     case 4:
-        insereDisciplina(listas);
+        // insereDisciplina(listas);
         break;
     
     case 5:
-        insereDisciplina(listas);
+        // insereDisciplina(listas);
         break;
     
     case 6:
-        insereDisciplina(listas);
+        // insereDisciplina(listas);
         break;
     
     case 7:
-        insereDisciplina(listas);
+        // insereDisciplina(listas);
         break;
     
     case 8:
-        insereDisciplina(listas);
+        // insereDisciplina(listas);
         break;
     
     case 9:
-        insereDisciplina(listas);
+        // insereDisciplina(listas);
         break;
     
     case 10:
-        insereDisciplina(listas);
+        // insereDisciplina(listas);
         break;
     
     default:
         break;
     }
+}
+
+void inicializa(TLista *lista){
+    lista->inicioC = NULL;
+    lista->inicioD = NULL;
+    lista->fimC = NULL;
+    lista->fimD = NULL;
+    lista->total = 0;
+    insereDisciplina(lista, "Prog",30);   
 }
 //===================================================================
 int main(){

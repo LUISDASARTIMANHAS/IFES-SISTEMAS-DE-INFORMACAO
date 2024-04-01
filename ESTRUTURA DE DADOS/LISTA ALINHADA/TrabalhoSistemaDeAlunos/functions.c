@@ -7,7 +7,7 @@
 #include <stdio.h>
 #include <ctype.h>
 #include <string.h>
-#include "utils.c"
+// #include "utils.c"
 // Defina constantes para as sequências de escape ANSI das cores
 
 // RED ERROR
