@@ -7,43 +7,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-
-typedef char string[40];
-
-typedef struct tipoDisciplina {
-	string nome;
-	int cargaHoraria;
-	tipoDisciplina *prox;
-}TDisciplina;
-
-typedef struct tipoHistorico {
-	TDisciplina *disciplina;
-	float nota;
-	float percentualFrequencia;
-	string condicao; // Aprovado, Reprovado ou Cursando.
-	tipoHistorico *prox;	
-}THistorico;
-
-typedef struct tipoAluno {
-	string nome;
-	char sexo;
-	THistorico *historico;
-	tipoAluno *ante, *prox;
-}TAluno;
-
-typedef struct tipoCurso {
-	string nome;
-	TAluno *alunos;
-	tipoCurso *ante, *prox;
-}TCurso;
-
-typedef struct tipoLista {
-	TCurso *inicioC;
-	TCurso *fimC;
-	TDisciplina *inicioD;
-	TDisciplina *fimD;
-    int total;
-}TLista;
+#include "functions.c"
 
 TLista listas;
 
@@ -88,7 +52,7 @@ void inicializa(TLista *lista){
     lista->inicioD = NULL;
     lista->fimC = NULL;
     lista->fimD = NULL;
-    lista->total = 0;        
+    lista->total = 0;       
 }
 
 void cadastraDisciplina(TDisciplina *novo){

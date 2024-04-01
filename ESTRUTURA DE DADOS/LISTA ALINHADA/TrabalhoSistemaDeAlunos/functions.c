@@ -56,6 +56,7 @@ typedef struct ClassDatabaseTipoLista {
     TCurso *fimC;
     TDisciplina *inicioD;
     TDisciplina *fimD;
+	int total;
 }TLista;
 
 
