@@ -12,54 +12,6 @@
 TLista listas;
 
 
-
-
-void insereDisciplina(TLista *lista, string Disciplina, int cargaHoraria){
-    int inseriu = 0;
-    TDisciplina *novo = (TDisciplina *)malloc(sizeof(TDisciplina));
-    novo->cargaHoraria = cargaHoraria;
-	strcpy(novo->nome, Disciplina);
-   
-    novo->prox = NULL;
-    if (lista->inicioD == NULL){
-        //Lista encontra-se vazia.
-        //Inserir o primeiro e unico elemento da lista ate agora
-        lista->inicioD = novo;
-        lista->fimD = novo;
-        lista->total = 1;
-        inseriu = 1;
-    }else{
-        //Lista ja possui pelo menos 1 elemento
-        TDisciplina *atual = lista->inicioD;
-        TDisciplina *anterior = NULL;
-        while (atual != NULL){
-            if (strcmp(atual->nome,novo->nome) == 1){
-                if (atual == lista->inicioD){
-                    //Inserir novo no inicio da lista
-                    novo->prox = atual;
-                    lista->inicioD = novo;
-                }else{
-                    //Inserir novo no meio da lista
-                    novo->prox = atual;
-                    anterior->prox = novo;
-                }
-                inseriu = 1;
-                lista->total++;
-                break;
-            }
-            anterior = atual;
-            atual = atual->prox; //move para o próximo elemento
-        }
-        if (!inseriu){
-            //Inserir elemento no fim da lista
-            lista->fimD->prox = novo;
-            lista->fimD = novo;
-            lista->total++;
-        }
-        lista->total++;
-    }
-}
-
 void cadastraDisciplina(TLista *lista){
     int cargaHoraria;
     string nome;
@@ -68,16 +20,16 @@ void cadastraDisciplina(TLista *lista){
     scanf(" %39[^\n]s", nome);
     fflush(stdin);
     printf("Digite qual e a carga horaria: ");
-    scanf("%d", cargaHoraria);
+    scanf("%d", &cargaHoraria);
     // fflush(stdin);
 
     insereDisciplina(lista, nome, cargaHoraria);
 }
 
-void exibeDisciplina(TLista *L){
+void exibeTodasDisciplina(TLista *L){
 	TDisciplina *atual = L->inicioD;
 	int cont = 0;
-	printf("\n\n\t\t===| EXIBE LISTA COMPLETA |===\n\n");
+	printf("\n\n\t\t===| EXIBE TODAS AS DISCIPLINAS |===\n\n");
 	while (atual != NULL){
 		printf("(%d) - %s - %dH.\n",cont+1, atual->nome, atual->cargaHoraria);
 		atual = atual->prox;
@@ -97,7 +49,7 @@ void realizaOpcaoDesejada(TLista *listas, int op){
         break;
     
     case 3:
-        // exibeTodasDisciplina(listas);
+        cadastraCurso(listas);
         break;
     
     case 4:
@@ -117,7 +69,7 @@ void realizaOpcaoDesejada(TLista *listas, int op){
         break;
     
     case 8:
-        // insereDisciplina(listas);
+        // insereHistorico(listas);
         break;
     
     case 9:
@@ -140,7 +92,10 @@ void inicializa(TLista *lista){
     lista->fimC = NULL;
     lista->fimD = NULL;
     lista->total = 0;
-    insereDisciplina(lista, "Prog",30);   
+    insereDisciplina(lista, "Prog1",60);  
+    insereDisciplina(lista, "Math",90);  
+    insereDisciplina(lista, "ED",30);  
+    insereDisciplina(lista, "POO",60);   
 }
 //===================================================================
 int main(){

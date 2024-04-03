@@ -81,6 +81,68 @@ int menu(){
 	} while(op < 0 || op > 10);
 	return op;
 }
+
+
+void insereDisciplina(TLista *lista, string disciplina, int cargaHoraria){
+    int inseriu = 0;
+    TDisciplina *novo = (TDisciplina *)malloc(sizeof(TDisciplina));
+    novo->cargaHoraria = cargaHoraria;
+	strcpy(novo->nome, disciplina);
+   
+    novo->prox = NULL;
+    if (lista->inicioD == NULL){
+        //Lista encontra-se vazia.
+        //Inserir o primeiro e unico elemento da lista ate agora
+        lista->inicioD = novo;
+        lista->fimD = novo;
+        lista->total = 1;
+        inseriu = 1;
+    }else{
+        //Lista ja possui pelo menos 1 elemento
+        TDisciplina *atual = lista->inicioD;
+        TDisciplina *anterior = NULL;
+        while (atual != NULL){
+            if (strcmp(atual->nome,novo->nome) == 1){
+                if (atual == lista->inicioD){
+                    //Inserir novo no inicio da lista
+                    novo->prox = atual;
+                    lista->inicioD = novo;
+                }else{
+                    //Inserir novo no meio da lista
+                    novo->prox = atual;
+                    anterior->prox = novo;
+                }
+                inseriu = 1;
+                lista->total++;
+                break;
+            }
+            anterior = atual;
+            atual = atual->prox; //move para o próximo elemento
+        }
+        if (!inseriu){
+            //Inserir elemento no fim da lista
+            lista->fimD->prox = novo;
+            lista->fimD = novo;
+            lista->total++;
+        }
+        lista->total++;
+    }
+    printf("\n\t Disciplina  %s Inserida!", disciplina);
+}
+
+// ================ EXIBES =============== 
+
+void exibeDisciplina(TLista *L){
+	TDisciplina *atual = L->inicioD;
+	int cont = 0;
+	printf("\n\n\t\t===| EXIBE TODAS AS DISCIPLINAS |===\n\n");
+	while (atual != NULL){
+		printf("(%d) - %s - %dH.\n",cont+1, atual->nome, atual->cargaHoraria);
+		atual = atual->prox;
+        cont++;
+	}
+	printf("\n\n");
+}
 // void insereAtor(TLista *DB, string nome){
 //     TAtor *novo = (TAtor *)malloc(sizeof(TAtor));
 //     TAtor *atual = DB->inicioA;
