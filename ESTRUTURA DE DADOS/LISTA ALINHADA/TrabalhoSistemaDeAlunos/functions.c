@@ -132,8 +132,8 @@ void insereDisciplina(TLista *lista, string disciplina, int cargaHoraria){
 
 // ================ EXIBES =============== 
 
-void exibeDisciplina(TLista *L){
-	TDisciplina *atual = L->inicioD;
+void exibeDisciplina(TLista *lista){
+	TDisciplina *atual = lista->inicioD;
 	int cont = 0;
 	printf("\n\n\t\t===| EXIBE TODAS AS DISCIPLINAS |===\n\n");
 	while (atual != NULL){
@@ -142,6 +142,30 @@ void exibeDisciplina(TLista *L){
         cont++;
 	}
 	printf("\n\n");
+}
+
+void exibeCurso(TLista *lista){
+   TCurso *atual = lista->inicioC;
+	int cont = 0;
+	printf("\n\n\t\t===| EXIBE TODAS OS CURSOS |===\n\n");
+	while (atual != NULL){
+		printf("(%d) - %s.\n",cont+1,atual->nome );
+		atual = atual->prox;
+        cont++;
+	}
+	printf("\n\n"); 
+}
+
+void exibeAlunosEmCurso(TLista *lista){
+    TCurso *atual = lista->inicioC;
+	int cont = 0;
+	printf("\n\n\t\t===| EXIBE TODAS OS CURSOS |===\n\n");
+	while (atual != NULL){
+		printf("(%d) - %s.\n",cont+1,atual->nome );
+		atual = atual->prox;
+        cont++;
+	}
+	printf("\n\n"); 
 }
 // void insereAtor(TLista *DB, string nome){
 //     TAtor *novo = (TAtor *)malloc(sizeof(TAtor));

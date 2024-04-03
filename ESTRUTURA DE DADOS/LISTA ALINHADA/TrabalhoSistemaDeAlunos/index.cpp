@@ -49,19 +49,19 @@ void realizaOpcaoDesejada(TLista *listas, int op){
         break;
     
     case 3:
-        cadastraCurso(listas);
-        break;
-    
-    case 4:
         // cadastraCurso(listas);
         break;
     
+    case 4:
+        exibeCurso(listas);
+        break;
+    
     case 5:
-        // exibeTodosCursos(listas);
+        // insereAlunoEmCurso(listas);
         break;
     
     case 6:
-        // insereAlunoEmCurso(listas);
+        exibeAlunosEmCurso(listas);
         break;
     
     case 7:
