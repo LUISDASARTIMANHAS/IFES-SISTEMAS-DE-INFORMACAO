@@ -459,11 +459,11 @@ int menu(){
 }
 
 
-void insereDisciplina(TLista *lista, string disciplina, int cargaHoraria){
+void insereDisciplina(TLista *lista, string nome, int cargaHoraria){
     int inseriu = 0;
     TDisciplina *novo = (TDisciplina *)malloc(sizeof(TDisciplina));
     novo->cargaHoraria = cargaHoraria;
-	strcpy(novo->nome, disciplina);
+	strcpy(novo->nome, nome);
    
     novo->prox = NULL;
     if (lista->inicioD == NULL){
@@ -503,7 +503,7 @@ void insereDisciplina(TLista *lista, string disciplina, int cargaHoraria){
         }
         lista->total++;
     }
-    printf("\n\t Disciplina  %s Inserida!", disciplina);
+    printf("\n\t Disciplina  %s Inserida!", nome);
 }
 
 
@@ -582,8 +582,21 @@ void insereCurso(TLista *lista, string nome){
         }
     }
     lista->total++;
+    printf("\n\t Curso  %s Inserido!", nome);
 }
 
+
+TCurso *localizaCurso(TLista *lista, string titulo){
+	TCurso *atual = lista->inicioC;
+	
+	while (atual != NULL){
+		if(strcmp(atual->nome, titulo) == 0){
+			break;
+		}//if
+		atual = atual->prox;
+	}//while
+	return atual;
+}
 
 // ================ EXIBES =============== 
 
@@ -611,18 +624,34 @@ void exibeCurso(TLista *lista){
 	printf("\n\n"); 
 }
 
+
 void exibeAlunosEmCurso(TLista *lista){
-    TCurso *atual = lista->inicioC;
 	int cont = 0;
-	printf("\n\n\t\t===| EXIBE TODAS OS CURSOS |===\n\n");
-	while (atual != NULL){
-		printf("(%d) - %s.\n",cont+1,atual->nome );
-		atual = atual->prox;
-        cont++;
+	TCurso *curso;
+	TAluno *aluno = curso->alunos;
+	string nome;
+	
+	printf("\n\n\t\t===| EXIBE TODOS OS ALUNOS EM UM CURSO |===\n\n");
+	printf("\tInforme o NOME do CURSO: ");
+
+	scanf(" %39[^\n]s", nome);
+	fflush(stdin);
+	
+	curso = localizaCurso(lista, nome);
+	
+	if(curso == NULL){
+		printf("\n\n\tERRO: Curso procurado NAO foi encontrado.\n\tCURSO: %s.\n\n",curso->nome);
+		system("PAUSE");
+	} else {
+		printf("O CURSO %s tem os seguintes ALUNOS matriculados", curso->nome);
+		while (aluno->prox != NULL){
+			printf("(%d) - %s - %s.\n",cont+1,aluno->nome, aluno->sexo );
+			aluno = aluno->prox;
+			cont++;
+		}
 	}
 	printf("\n\n"); 
 }
-
 TLista listas;
 
 
