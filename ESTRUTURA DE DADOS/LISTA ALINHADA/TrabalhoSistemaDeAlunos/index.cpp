@@ -84,6 +84,8 @@ void inicializa(TLista *lista){
     insereDisciplina(lista, "Math",90);  
     insereDisciplina(lista, "ED",30);  
     insereDisciplina(lista, "POO",60);   
+
+    exibeDisciplina(lista);
 }
 //===================================================================
 int main(){
