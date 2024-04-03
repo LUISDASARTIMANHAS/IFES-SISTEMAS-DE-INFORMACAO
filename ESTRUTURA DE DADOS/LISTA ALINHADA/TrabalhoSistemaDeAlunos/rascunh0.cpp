@@ -108,51 +108,21 @@ TDisciplina *defineHisitorico(TLista *lista, string nome){
 	return atual;
 }
 
-void insereHistorico(TLista *lista, TDisciplina *disciplina, float nota, float percentual, string condicao){
-	int inseriu = 0;
-    THistorico *novo = (TDisciplina *)malloc(sizeof(TDisciplina));
-    novo->disciplina = disciplina;
-    novo->nota = nota;
-    novo->percentualFrequencia = percentual;
-    strcpy(novo->condicao,condicao);
-    novo->prox = NULL;
-    if (lista->inicioD == NULL){
-        //Lista encontra-se vazia.
-        //Inserir o primeiro e unico elemento da lista ate agora
-        lista->inicioD = novo;
-        lista->fimD = novo;
-        lista->total = 1;
-        inseriu = 1;
-    }else{
-        //Lista ja possui pelo menos 1 elemento
-        THistorico *atual = lista->inicioD;
-        THistorico *anterior = NULL;
-        while (atual != NULL){
-            if (strcmp(atual->nome,novo->nome) == 1){
-                if (atual == lista->inicioD){
-                    //Inserir novo no inicio da lista
-                    novo->prox = atual;
-                    lista->inicioD = novo;
-                }else{
-                    //Inserir novo no meio da lista
-                    novo->prox = atual;
-                    anterior->prox = novo;
-                }
-                inseriu = 1;
-                lista->total++;
-                break;
-            }
-            anterior = atual;
-            atual = atual->prox; //move para o próximo elemento
-        }
-        if (!inseriu){
-            //Inserir elemento no fim da lista
-            lista->fimD->prox = novo;
-            lista->fimD = novo;
-            lista->total++;
-        }
-        lista->total++;
-    }
+TDisciplina *pesquisarDisciplina(string nome){
+	
+}
+
+void insereHistorico(TAluno *aluno, THistorico *historico){
+	string nomeDisci;
+	printf("Digite o nome da disciplina: ");
+	scanf(" %39[^\n]s", nomeDisci);
+	historico->disciplina = pesquisarDisciplina(nomeDisci);
+	printf("Digite a nota que o aluno teve nessa disciplina: ");
+	scanf("%f", &historico->nota);
+	printf("Digite o percentual de presença que o aluno teve nessa disciplina: ");
+	scanf("%f", &historico->percentualFrequencia);
+	printf("Digite a condiçao que esse aluno esta nessa disciplina(Aprovado/Reprovado/Cursando): ");
+	scanf(" %39[^\n]s", historico->condicao);
 }
 
 int menu(){
@@ -188,7 +158,9 @@ void inicializa(TLista *lista){
 	insereDisciplina(lista,"OAC",60);
 	insereDisciplina(lista,"Adm Financeira",60);
 	insereDisciplina(lista,"Redes",60);
-	insereDisciplina(lista,"SO",60);      
+	insereDisciplina(lista,"SO",60);     
+	
+	insereHistorico(lista,);
 }
 
 void cadastraDisciplina(TLista *lista){
