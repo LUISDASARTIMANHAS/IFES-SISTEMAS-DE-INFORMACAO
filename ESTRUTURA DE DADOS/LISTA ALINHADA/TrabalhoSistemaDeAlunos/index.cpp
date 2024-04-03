@@ -21,21 +21,9 @@ void cadastraDisciplina(TLista *lista){
     fflush(stdin);
     printf("Digite qual e a carga horaria: ");
     scanf("%d", &cargaHoraria);
-    // fflush(stdin);
+    fflush(stdin);
 
     insereDisciplina(lista, nome, cargaHoraria);
-}
-
-void exibeTodasDisciplina(TLista *L){
-	TDisciplina *atual = L->inicioD;
-	int cont = 0;
-	printf("\n\n\t\t===| EXIBE TODAS AS DISCIPLINAS |===\n\n");
-	while (atual != NULL){
-		printf("(%d) - %s - %dH.\n",cont+1, atual->nome, atual->cargaHoraria);
-		atual = atual->prox;
-        cont++;
-	}
-	printf("\n\n");
 }
 
 void realizaOpcaoDesejada(TLista *listas, int op){

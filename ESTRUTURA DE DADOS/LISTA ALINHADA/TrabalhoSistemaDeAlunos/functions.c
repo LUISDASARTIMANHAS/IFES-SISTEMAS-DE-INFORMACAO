@@ -83,11 +83,11 @@ int menu(){
 }
 
 
-void insereDisciplina(TLista *lista, string disciplina, int cargaHoraria){
+void insereDisciplina(TLista *lista, string nome, int cargaHoraria){
     int inseriu = 0;
     TDisciplina *novo = (TDisciplina *)malloc(sizeof(TDisciplina));
     novo->cargaHoraria = cargaHoraria;
-	strcpy(novo->nome, disciplina);
+	strcpy(novo->nome, nome);
    
     novo->prox = NULL;
     if (lista->inicioD == NULL){
@@ -127,7 +127,67 @@ void insereDisciplina(TLista *lista, string disciplina, int cargaHoraria){
         }
         lista->total++;
     }
-    printf("\n\t Disciplina  %s Inserida!", disciplina);
+    printf("\n\t Disciplina  %s Inserida!", nome);
+}
+
+
+void insereCurso(TLista *lista, string nome){
+    TCurso *novo = (TCurso *)malloc(sizeof(TCurso));
+    TCurso *atual;
+    int flag = 0;
+    novo->prox = NULL;
+    novo->ante = NULL;
+    if (lista->inicioC == NULL){
+        //Lista encontra-se vazia.
+        //Inserir o primeiro e unico elemento da lista ate agora
+        lista->inicioC = novo;
+        lista->fimC = novo;
+        flag = 1;
+    }else{
+        //Lista ja possui pelo menos 1 elemento
+        atual = lista->inicioC;
+        while (atual != NULL){
+            if (strcmp(atual->nome,novo->nome) > 0){
+                //encontrada a posiçao para a inserçao do novo Tfilme
+                flag = 1;
+                
+                if (atual == lista->inicioC){
+                    //Inserir novo no inicio da lista
+                    novo->prox = atual;
+                    atual->ante = novo;
+                    lista->inicioC = novo;
+                }else{
+                    //Inserir novo no meio da lista
+                    novo->prox = atual;
+                    novo->ante = atual->ante;
+                    atual->ante->prox = novo;
+                    atual->ante = novo;
+                }
+                break;
+            }
+            atual = atual->prox; //move para o próximo elemento
+        }
+        if (flag == 0){
+            //inserir o novo como o ultimo Tfilme da lista
+            lista->fimC->prox = novo;
+            novo->ante = lista->fimC;
+            lista->fimC = novo;
+        }
+    }
+    lista->total++;
+	printf("\n\t Curso  %s Inserido!", nome);
+}
+
+TCurso *localizaCurso(TLista *lista, string titulo){
+	TCurso *atual = lista->inicioC;
+	
+	while (atual != NULL){
+		if(strcmp(atual->nome, titulo) == 0){
+			break;
+		}//if
+		atual = atual->prox;
+	}//while
+	return atual;
 }
 
 // ================ EXIBES =============== 
@@ -147,7 +207,7 @@ void exibeDisciplina(TLista *lista){
 void exibeCurso(TLista *lista){
    TCurso *atual = lista->inicioC;
 	int cont = 0;
-	printf("\n\n\t\t===| EXIBE TODAS OS CURSOS |===\n\n");
+	printf("\n\n\t\t===| EXIBE TODOS OS CURSOS |===\n\n");
 	while (atual != NULL){
 		printf("(%d) - %s.\n",cont+1,atual->nome );
 		atual = atual->prox;
@@ -157,13 +217,29 @@ void exibeCurso(TLista *lista){
 }
 
 void exibeAlunosEmCurso(TLista *lista){
-    TCurso *atual = lista->inicioC;
 	int cont = 0;
-	printf("\n\n\t\t===| EXIBE TODAS OS CURSOS |===\n\n");
-	while (atual != NULL){
-		printf("(%d) - %s.\n",cont+1,atual->nome );
-		atual = atual->prox;
-        cont++;
+	TCurso *curso;
+	TAluno *aluno = curso->alunos;
+	string nome;
+	
+	printf("\n\n\t\t===| EXIBE TODOS OS ALUNOS EM UM CURSO |===\n\n");
+	printf("\tInforme o NOME do CURSO: ");
+
+	scanf(" %39[^\n]s", nome);
+	fflush(stdin);
+	
+	curso = localizaCurso(lista, nome);
+	
+	if(curso == NULL){
+		printf("\n\n\tERRO: Curso procurado NAO foi encontrado.\n\tCURSO: %s.\n\n",curso->nome);
+		system("PAUSE");
+	} else {
+		printf("O CURSO %s tem os seguintes ALUNOS matriculados", curso->nome);
+		while (aluno->prox != NULL){
+			printf("(%d) - %s - %s.\n",cont+1,aluno->nome, aluno->sexo );
+			aluno = aluno->prox;
+			cont++;
+		}
 	}
 	printf("\n\n"); 
 }
