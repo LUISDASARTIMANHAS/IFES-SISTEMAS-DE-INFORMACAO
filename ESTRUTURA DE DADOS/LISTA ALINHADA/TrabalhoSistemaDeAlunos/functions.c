@@ -205,6 +205,18 @@ TCurso *localizaCurso(TLista *lista, string titulo){
 	return atual;
 }
 
+TAluno *localizaAluno(TLista *lista, string titulo){
+	TAluno *atual= atual->prox;
+	
+	while (atual != NULL){
+		if(strcmp(atual->nome, titulo) == 0){
+			break;
+		}//if
+		atual = atual->prox;
+	}//while
+	return atual;
+}
+
 
 // =================== CADASTROS ===========
 void cadastraDisciplina(TLista *lista){
@@ -217,6 +229,56 @@ void cadastraDisciplina(TLista *lista){
     cargaHoraria = input();
 
     insereDisciplina(lista, nome, cargaHoraria);
+}
+
+void cadastraCurso(TLista *lista){
+    string nome;
+
+    printf("Digite o nome do Curso: ");
+    inputS(nome);
+
+    // insereCurso(lista, nome);
+}
+
+void cadastraAlunoEmCurso(TLista *lista){
+    // int cargaHoraria;
+    string alunoNome;
+    string cursoNome;
+    TCurso *curso;
+    TAluno *aluno;
+
+    printf("Digite o nome do ALUNO: ");
+    inputS(alunoNome);
+    printf("Digite o nome do Curso: ");
+    inputS(cursoNome);
+
+    curso = localizaCurso(lista,cursoNome);
+    aluno = localizaAluno(lista,alunoNome);
+
+    if(curso == NULL || aluno == NULL){
+		printf("\n\n\tERRO: Curso  ou aluno procurado NAO foi encontrado.\n\tCURSO: %s.\n\n",curso->nome);
+		system("PAUSE");
+	} else {
+		// insereAlunoEmCurso(lista, aluno, curso);
+	}
+}
+
+void cadastraHistorico(TLista *lista){
+    string disciplina;
+    string aluno;
+    int nota;
+    float percentualFrequencia;
+
+    printf("Digite o nome do ALUNO: ");
+    inputS(aluno);
+    printf("Digite o nome da Disciplina onde deseja cadastrar o Historico: ");
+    inputS(disciplina);
+    printf("Digite qual e a nota do aluno: ");
+    nota = input();
+    printf("Digite qual e o percentual de frequencia do aluno: ");
+    percentualFrequencia = input();
+
+    // insereHistorico(lista, disciplina, nota, percentualFrequencia);
 }
 
 
@@ -232,7 +294,7 @@ void exibeDisciplina(TLista *lista){
         cont++;
 	}
     if(atual != NULL){
-        printf("Não foram encontradas Disciplinas Cadastradas");
+        printf("Nao foram encontradas Disciplinas Cadastradas");
     }
 	printf("\n\n");
 }
@@ -240,14 +302,15 @@ void exibeDisciplina(TLista *lista){
 void exibeCurso(TLista *lista){
    TCurso *atual = lista->inicioC;
 	int cont = 0;
+
 	printf("\n\n\t\t===| EXIBE TODOS OS CURSOS |===\n\n");
 	while (atual != NULL){
 		printf("(%d) - %s.\n",cont+1,atual->nome );
 		atual = atual->prox;
         cont++;
 	}
-    if(atual != NULL){
-        printf("Não foram encontrados Cursos Cadastrados");
+    if(atual == NULL){
+        printf("Nao foram encontrados Cursos Cadastrados");
     }
 	printf("\n\n"); 
 }
@@ -255,14 +318,13 @@ void exibeCurso(TLista *lista){
 void exibeAlunosEmCurso(TLista *lista){
 	int cont = 0;
 	TCurso *curso;
-	TAluno *aluno = curso->alunos;
+	TAluno *aluno;
 	string nome;
 	
 	printf("\n\n\t\t===| EXIBE TODOS OS ALUNOS EM UM CURSO |===\n\n");
 	printf("\tInforme o NOME do CURSO: ");
-
-	scanf(" %39[^\n]s", nome);
-	fflush(stdin);
+    fflush(stdin);
+    inputS(nome);
 	
 	curso = localizaCurso(lista, nome);
 	
@@ -279,6 +341,28 @@ void exibeAlunosEmCurso(TLista *lista){
 	}
 	printf("\n\n"); 
 }
+
+void exibeHistorico(TLista *lista){
+    THistorico *atual;
+    int cont = 0;
+	
+
+	printf("\n\n\t\t===| EXIBE HISTORICO DE ALUNO |===\n\n");
+	while (atual != NULL){
+		printf("(%d) - %s.\n",cont+1,atual->disciplina->nome);
+        printf("- Frequencia: %d% \n", atual->percentualFrequencia);
+        printf("- Nota: %d \n", atual->nota);
+        printf("- Situacao: %s \n", atual->condicao);
+		atual = atual->prox;
+        cont++;
+	}
+    if(atual == NULL){
+        printf("Nao foram encontrados HISTORICOS Cadastrados");
+    }
+	printf("\n\n");
+}
+
+
 // void insereAtor(TLista *DB, string nome){
 //     TAtor *novo = (TAtor *)malloc(sizeof(TAtor));
 //     TAtor *atual = DB->inicioA;

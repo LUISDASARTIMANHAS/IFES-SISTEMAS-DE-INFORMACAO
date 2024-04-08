@@ -13,45 +13,6 @@
 
 TLista listas;
 
-void cadastraCurso(TLista *lista){
-    // int cargaHoraria;
-    // string nome;
-
-    // printf("Digite o nome da Disciplina: ");
-    // printf("Digite qual e a carga horaria: ");
-
-    // insereCurso(lista, nome, cargaHoraria);
-}
-
-void cadastraAlunoEmCurso(TLista *lista){
-    // int cargaHoraria;
-    // string nome;
-
-    // printf("Digite o nome da Disciplina: ");
-    // printf("Digite qual e a carga horaria: ");
-
-    // insereAlunoEmCurso(lista, nome, cargaHoraria);
-}
-
-void cadastraHistorico(TLista *lista){
-    string disciplina;
-    string condicao;
-    int nota;
-    float percentualFrequencia;
-
-    printf("Digite o nome da Disciplina onde deseja cadastrar o Historico: ");
-    inputS(disciplina);
-    printf("Digite qual e a nota do aluno: ");
-    nota = input();
-    printf("Digite qual e o percentual de frequencia do aluno: ");
-    percentualFrequencia = input();
-
-    // insereHistorico(lista, disciplina, nota, percentualFrequencia);
-}
-
-void exibeHistorico(TLista *lista){
-
-}
 
 void realizaOpcaoDesejada(TLista *listas){
     int op;
@@ -70,7 +31,8 @@ void realizaOpcaoDesejada(TLista *listas){
 
         case 3:
         // Inserir CURSO
-        cadastraCurso(listas);
+        // cadastraCurso(listas);
+        printf("\tINDISPONIVEL!");
         break;
 
         case 4:
@@ -80,7 +42,8 @@ void realizaOpcaoDesejada(TLista *listas){
 
         case 5:
         // Inserir ALUNO em CURSO
-        cadastraAlunoEmCurso(listas);
+        // cadastraAlunoEmCurso(listas);
+        printf("INDISPONIVEL!");
         break;
 
         case 6:
@@ -91,6 +54,7 @@ void realizaOpcaoDesejada(TLista *listas){
         case 7:
         // Excluir ALUNO de CURSO
         // excluiAlunoEmCurso(listas);
+        printf("INDISPONIVEL!");
         break;
 
         case 8:
@@ -105,6 +69,7 @@ void realizaOpcaoDesejada(TLista *listas){
 
         case 10:
         // Excluir HISTORICO de ALUNO
+        printf("INDISPONIVEL!");
         // excluiHistorico(listas);
         break;
     default:
@@ -124,11 +89,25 @@ void inicializa(TLista *lista){
     insereDisciplina(lista, "Math",90);
     insereDisciplina(lista, "ED",30);
     insereDisciplina(lista, "POO",60);
+    insereDisciplina(lista, "A historia do captalismo conforme o shopping",30);
+    insereDisciplina(lista, "Como matar bitters de maneira eficiente ",30);
+    insereDisciplina(lista, "Principios do Mainbus",60);
+    insereDisciplina(lista, "Principios do Mainbus",60);
+    insereDisciplina(lista, "Mecatrônica: Como ter seus robôs ajudantes",45);
+    insereDisciplina(lista, "Quimica e engenharia da petrophisto",20);
+    insereDisciplina(lista, "Mecatrônica: Como ter seus robôs ajudantes",45);
+    insereDisciplina(lista, "Energia sustentável aplicada na prática e consumo adequado",20);
+    insereDisciplina(lista, "Terapia de Grupo para Jogadores de Factorio: Lidando com a Síndrome do 'Só Mais um Minuto",100);
+    insereDisciplina(lista, "Manobra de veículos",15);
+    insereDisciplina(lista, "Logística interna: Organização de inventário",10);
+    insereDisciplina(lista, "Perfeccionismo Aplicado à Engenharia: Como Gastar 10 Horas Para Ajustar Um Transportador",60);
+    insereDisciplina(lista, "As leis da cimetria aplicadas na prática",60);
     exibeDisciplina(lista);
 
     // insereCurso(lista, "ADMINISTRACAO");
     // insereCurso(lista, "ARQUITETURA");
     // insereCurso(lista, "SISTEMAS DE INFORMACAO");
+    // insereCurso(lista, "Factoriologia: Curso Avançado em Engenharia de Precisão e Perfeccionismo");
     // exibeCurso(lista);
 
     // insereAlunoEmCurso(lista, "Luis");
@@ -138,7 +117,7 @@ void inicializa(TLista *lista){
     // insereAlunoEmCurso(lista, "Caio");
     // insereAlunoEmCurso(lista, "Bob o pato");
     // insereAlunoEmCurso(lista, "Sans");
-    // exibeAlunosEmCurso(lista);
+    exibeAlunosEmCurso(lista);
 
     // insereHistorico(lista, "Prog1", 10, 50);
     // insereHistorico(lista, "Math", 30, 100);
