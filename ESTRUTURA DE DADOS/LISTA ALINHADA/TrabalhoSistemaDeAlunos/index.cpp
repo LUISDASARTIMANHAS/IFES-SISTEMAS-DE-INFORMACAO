@@ -1,5 +1,3 @@
-// <code-runner> --compile-options -static -static-libgcc -static-libstdc++ </code-runner>
-
 // Produzido por LUCAS GARCIA & LUIS AUGUSTO DE SOUZA
 /* 
   Tarefa Avaliativa (Semana 08).
@@ -31,8 +29,7 @@ void realizaOpcaoDesejada(TLista *listas){
 
         case 3:
         // Inserir CURSO
-        // cadastraCurso(listas);
-        printf("\tINDISPONIVEL!");
+        cadastraCurso(listas);
         break;
 
         case 4:
@@ -42,8 +39,7 @@ void realizaOpcaoDesejada(TLista *listas){
 
         case 5:
         // Inserir ALUNO em CURSO
-        // cadastraAlunoEmCurso(listas);
-        printf("INDISPONIVEL!");
+        cadastraAlunoEmCurso(listas);
         break;
 
         case 6:
@@ -108,7 +104,7 @@ void inicializa(TLista *lista){
     // insereCurso(lista, "ARQUITETURA");
     // insereCurso(lista, "SISTEMAS DE INFORMACAO");
     // insereCurso(lista, "Factoriologia: Curso Avançado em Engenharia de Precisão e Perfeccionismo");
-    // exibeCurso(lista);
+    exibeCurso(lista);
 
     // insereAlunoEmCurso(lista, "Luis");
     // insereAlunoEmCurso(lista, "Lucas");
@@ -123,7 +119,7 @@ void inicializa(TLista *lista){
     // insereHistorico(lista, "Math", 30, 100);
     // insereHistorico(lista, "ED", 20, 98);
     // insereHistorico(lista, "POO", 10, 50);
-    exibeHistorico(lista);
+    // exibeHistorico(lista);
 }
 //===================================================================
 int main(){
