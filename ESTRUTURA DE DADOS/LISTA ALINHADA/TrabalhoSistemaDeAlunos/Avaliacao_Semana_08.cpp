@@ -59,7 +59,4 @@ int menu(){
 	printf("\t8 - Inserir HISTORICO para ALUNO.\n");
 	printf("\t9 - Exibir HISTORICO de ALUNO.\n");
 	printf("\t10 - Excluir HISTORICO de ALUNO.\n\n");
-	
-	
-	
 }

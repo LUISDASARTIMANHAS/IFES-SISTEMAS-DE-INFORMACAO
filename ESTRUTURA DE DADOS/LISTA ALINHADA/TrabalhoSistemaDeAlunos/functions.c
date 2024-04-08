@@ -35,7 +35,7 @@ typedef struct ClassDatabaseTipoHistorico {
 	float nota;
 	float percentualFrequencia;
 	string condicao; // Aprovado, Reprovado ou Cursando.
-	ClassDatabaseTipoHistorico *prox;	
+	ClassDatabaseTipoHistorico *prox;
 }THistorico;
 
 typedef struct ClassDatabaseTipoAluno {
@@ -58,6 +58,19 @@ typedef struct ClassDatabaseTipoLista {
     TDisciplina *fimD;
 	int total;
 }TLista;
+
+// inputs personalizados e modificados EX: variavel = input();
+float input(){
+    float value;
+    fflush(stdin);
+    scanf("%f", &value);
+    return value;
+}
+// inputs personalizados e modificados EX: inputS(&variavel);
+void inputS(char destino[]){
+    fflush(stdin);
+    scanf(" %100[^\n]s", destino);
+}
 
 
 // ============================= FIM DO BASE ======================
@@ -82,6 +95,8 @@ int menu(){
 	return op;
 }
 
+
+// =================== INSERES ==============
 
 void insereDisciplina(TLista *lista, string nome, int cargaHoraria){
     int inseriu = 0;
@@ -190,6 +205,21 @@ TCurso *localizaCurso(TLista *lista, string titulo){
 	return atual;
 }
 
+
+// =================== CADASTROS ===========
+void cadastraDisciplina(TLista *lista){
+    int cargaHoraria;
+    string nome;
+
+    printf("Digite o nome da Disciplina: ");
+    inputS(nome);
+    printf("Digite qual e a carga horaria: ");
+    cargaHoraria = input();
+
+    insereDisciplina(lista, nome, cargaHoraria);
+}
+
+
 // ================ EXIBES =============== 
 
 void exibeDisciplina(TLista *lista){
@@ -201,6 +231,9 @@ void exibeDisciplina(TLista *lista){
 		atual = atual->prox;
         cont++;
 	}
+    if(atual != NULL){
+        printf("Não foram encontradas Disciplinas Cadastradas");
+    }
 	printf("\n\n");
 }
 
@@ -213,6 +246,9 @@ void exibeCurso(TLista *lista){
 		atual = atual->prox;
         cont++;
 	}
+    if(atual != NULL){
+        printf("Não foram encontrados Cursos Cadastrados");
+    }
 	printf("\n\n"); 
 }
 
