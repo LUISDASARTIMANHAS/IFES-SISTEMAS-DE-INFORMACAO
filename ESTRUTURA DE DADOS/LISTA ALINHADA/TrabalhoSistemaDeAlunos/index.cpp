@@ -100,10 +100,10 @@ void inicializa(TLista *lista){
     insereDisciplina(lista, "As leis da cimetria aplicadas na prática",60);
     exibeDisciplina(lista);
 
-    // insereCurso(lista, "ADMINISTRACAO");
-    // insereCurso(lista, "ARQUITETURA");
-    // insereCurso(lista, "SISTEMAS DE INFORMACAO");
-    // insereCurso(lista, "Factoriologia: Curso Avançado em Engenharia de Precisão e Perfeccionismo");
+    insereCurso(lista, "ADMINISTRACAO");
+    insereCurso(lista, "ARQUITETURA");
+    insereCurso(lista, "SISTEMAS DE INFORMACAO");
+    insereCurso(lista, "Factoriologia: Curso Avançado em Engenharia de Precisão e Perfeccionismo");
     exibeCurso(lista);
 
     // insereAlunoEmCurso(lista, "Luis");

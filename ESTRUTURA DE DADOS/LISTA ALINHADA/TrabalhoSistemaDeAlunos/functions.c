@@ -146,52 +146,225 @@ void insereDisciplina(TLista *lista, string nome, int cargaHoraria){
 }
 
 
-void insereCurso(TLista *lista, string nome){
+void insereCurso(TLista *lista, string nome) {
     TCurso *novo = (TCurso *)malloc(sizeof(TCurso));
-    TCurso *atual;
-    int flag = 0;
+    strcpy(novo->nome, nome);
+    novo->alunos = NULL;
     novo->prox = NULL;
     novo->ante = NULL;
-    if (lista->inicioC == NULL){
-        //Lista encontra-se vazia.
-        //Inserir o primeiro e unico elemento da lista ate agora
+
+    if (lista->inicioC == NULL) {
+        // Lista encontra-se vazia.
+        // Inserir o primeiro e único elemento da lista até agora
         lista->inicioC = novo;
         lista->fimC = novo;
-        flag = 1;
-    }else{
-        //Lista ja possui pelo menos 1 elemento
-        atual = lista->inicioC;
-        while (atual != NULL){
-            if (strcmp(atual->nome,novo->nome) > 0){
-                //encontrada a posiçao para a inserçao do novo Tfilme
-                flag = 1;
-                
-                if (atual == lista->inicioC){
-                    //Inserir novo no inicio da lista
+        lista->total = 1;
+    } else {
+        // Lista já possui pelo menos 1 elemento
+        TCurso *atual = lista->inicioC;
+        while (atual != NULL) {
+            if (strcmp(atual->nome, novo->nome) > 0) {
+                if (atual == lista->inicioC) {
+                    // Inserir novo no início da lista
                     novo->prox = atual;
                     atual->ante = novo;
                     lista->inicioC = novo;
-                }else{
-                    //Inserir novo no meio da lista
+                } else {
+                    // Inserir novo no meio da lista
                     novo->prox = atual;
                     novo->ante = atual->ante;
                     atual->ante->prox = novo;
                     atual->ante = novo;
                 }
-                break;
+                lista->total++;
+                return;
             }
-            atual = atual->prox; //move para o próximo elemento
+            atual = atual->prox; // Move para o próximo elemento
         }
-        if (flag == 0){
-            //inserir o novo como o ultimo Tfilme da lista
-            lista->fimC->prox = novo;
-            novo->ante = lista->fimC;
-            lista->fimC = novo;
-        }
+        // Inserir elemento no fim da lista
+        lista->fimC->prox = novo;
+        novo->ante = lista->fimC;
+        lista->fimC = novo;
+        lista->total++;
     }
-    lista->total++;
-	printf("\n\t Curso  %s Inserido!", nome);
 }
+
+void insereAlunoEmCurso(TLista *lista, string nomeCurso,string nomeAluno,char sexoAluno) {
+    TCurso *curso = localizaCurso(lista, nomeCurso);
+
+    if (curso == NULL) {
+        printf("\n\n\tERRO: Curso procurado NAO foi encontrado.\n\n");
+        return;
+    }
+
+    //cadastraAluno(nomeAluno,&sexoAluno);
+
+    TAluno *novoAluno = (TAluno *)malloc(sizeof(TAluno));
+    strcpy(novoAluno->nome, nomeAluno);
+    novoAluno->sexo = sexoAluno;
+    novoAluno->historico = NULL;
+    novoAluno->prox = NULL;
+    novoAluno->ante = NULL;
+
+    if (curso->alunos == NULL) {
+        curso->alunos = novoAluno;
+    } else {
+        TAluno *atual = curso->alunos;
+        while (atual->prox != NULL) {
+            atual = atual->prox;
+        }
+        atual->prox = novoAluno;
+        novoAluno->ante = atual;
+    }
+
+    printf("\n\n\tALUNO inserido com sucesso no CURSO %s.\n\n", nomeCurso);
+}
+
+void excluirAluno(TLista *lista) {
+    printf("\n\n\t\t===| EXCLUIR ALUNO DE CURSO |===\n\n");
+
+    string nomeCurso;
+    printf("\tInforme o NOME do CURSO: ");
+    scanf(" %39[^\n]s", nomeCurso);
+
+    TCurso *curso = localizaCurso(lista, nomeCurso);
+
+    if (curso == NULL) {
+        printf("\n\n\tERRO: Curso procurado NAO foi encontrado.\n\n");
+        return;
+    }
+
+    if (curso->alunos == NULL) {
+        printf("\n\n\tO CURSO %s ainda não possui ALUNOS cadastrados.\n\n", nomeCurso);
+        return;
+    }
+
+    string nomeAluno;
+    printf("\tInforme o NOME do ALUNO a ser excluído: ");
+    scanf(" %39[^\n]s", nomeAluno);
+
+    TAluno *alunoAtual = curso->alunos;
+    TAluno *alunoAnterior = NULL;
+
+    while (alunoAtual != NULL) {
+        if (strcmp(alunoAtual->nome, nomeAluno) == 0) {
+            if (alunoAnterior == NULL) {
+                curso->alunos = alunoAtual->prox;
+            } else {
+                alunoAnterior->prox = alunoAtual->prox;
+            }
+            free(alunoAtual);
+            printf("\n\n\tAluno \"%s\" excluído do curso %s.\n\n", nomeAluno, nomeCurso);
+            return;
+        }
+        alunoAnterior = alunoAtual;
+        alunoAtual = alunoAtual->prox;
+    }
+
+    printf("\n\n\tERRO: Aluno \"%s\" não encontrado no curso %s.\n\n", nomeAluno, nomeCurso);
+}
+
+void insereHistorico(string nomeAluno, TLista *lista, string nomeDisciplina) {
+    // Encontra o curso onde o aluno está matriculado
+    string nomeCurso;
+    printf("\tInforme o NOME do CURSO: ");
+    scanf(" %39[^\n]s", nomeCurso);
+
+    TCurso *curso = localizaCurso(lista, nomeCurso);
+
+    if (curso == NULL) {
+        printf("\n\n\tERRO: Curso procurado NAO foi encontrado.\n\n");
+        return;
+    }
+
+    // Pesquisa o aluno na lista de alunos do curso
+    TAluno *aluno = pesquisaAluno(curso, nomeAluno);
+
+    if (aluno == NULL) {
+        printf("\n\n\tERRO: Aluno \"%s\" não encontrado no curso %s.\n\n", nomeAluno, nomeCurso);
+        return;
+    }
+
+    // Encontra a disciplina na lista
+    TDisciplina *disciplina = defineDisciplina(lista, nomeDisciplina);
+
+    if (disciplina != NULL) {
+        // Cria um novo histórico e preenche suas informações
+        THistorico *novoHistorico = (THistorico *)malloc(sizeof(THistorico));
+        novoHistorico->disciplina = disciplina;
+        printf("Digite a nota que o aluno teve nessa disciplina: ");
+        scanf("%f", &novoHistorico->nota);
+        printf("Digite o percentual de presença que o aluno teve nessa disciplina: ");
+        scanf("%f", &novoHistorico->percentualFrequencia);
+        printf("Digite a condição que esse aluno está nessa disciplina (Aprovado/Reprovado/Cursando): ");
+        scanf(" %39[^\n]s", novoHistorico->condicao);
+
+        // Insere o novo histórico na lista de históricos do aluno
+        novoHistorico->prox = aluno->historico;
+        aluno->historico = novoHistorico;
+
+        printf("\n\n\tHistórico inserido com sucesso para a disciplina \"%s\".\n\n", nomeDisciplina);
+    }
+}
+
+void excluiHistoricoAluno(TLista *lista) {
+    printf("\n\n\t\t===| EXCLUIR HISTÓRICO DE ALUNO |===\n\n");
+
+    string nomeCurso, nomeAluno, nomeDisciplina;
+
+    printf("\tInforme o NOME do CURSO: ");
+    scanf(" %39[^\n]s", nomeCurso);
+
+    TCurso *curso = localizaCurso(lista, nomeCurso);
+
+    if (curso == NULL) {
+        printf("\n\n\tERRO: Curso procurado NAO foi encontrado.\n\n");
+        return;
+    }
+
+    printf("\tInforme o NOME do ALUNO: ");
+    scanf(" %39[^\n]s", nomeAluno);
+
+    TAluno *aluno = curso->alunos;
+
+    while (aluno != NULL) {
+        if (strcmp(aluno->nome, nomeAluno) == 0) {
+            printf("\tInforme o NOME da DISCIPLINA: ");
+            scanf(" %39[^\n]s", nomeDisciplina);
+
+            if (aluno->historico == NULL) {
+                printf("\n\n\tO ALUNO %s não possui histórico cadastrado.\n\n", nomeAluno);
+                return;
+            }
+
+            THistorico *historicoAtual = aluno->historico;
+            THistorico *historicoAnterior = NULL;
+
+            while (historicoAtual != NULL) {
+                if (strcmp(historicoAtual->disciplina->nome, nomeDisciplina) == 0) {
+                    if (historicoAnterior == NULL) {
+                        aluno->historico = historicoAtual->prox;
+                    } else {
+                        historicoAnterior->prox = historicoAtual->prox;
+                    }
+                    free(historicoAtual);
+                    printf("\n\n\tHISTÓRICO da DISCIPLINA \"%s\" excluído com sucesso para o ALUNO %s.\n\n", nomeDisciplina, nomeAluno);
+                    return;
+                }
+                historicoAnterior = historicoAtual;
+                historicoAtual = historicoAtual->prox;
+            }
+
+            printf("\n\n\tERRO: Histórico da disciplina \"%s\" não encontrado para o ALUNO %s.\n\n", nomeDisciplina, nomeAluno);
+            return;
+        }
+        aluno = aluno->prox;
+    }
+
+    printf("\n\n\tERRO: Aluno \"%s\" não encontrado no curso %s.\n\n", nomeAluno, nomeCurso);
+}
+
+// ============ LOCALIZADORES ==========
 
 TCurso *localizaCurso(TLista *lista, string titulo){
 	TCurso *atual = lista->inicioC;
@@ -217,6 +390,34 @@ TAluno *localizaAluno(TLista *lista, string titulo){
 	return atual;
 }
 
+TDisciplina *defineDisciplina(TLista *lista, string nomeDisciplina) {
+    TDisciplina *atual = lista->inicioD;
+    while (atual != NULL) {
+        if (strcmp(atual->nome, nomeDisciplina) == 0) {
+            return atual;
+        }
+        atual = atual->prox;
+    }
+    printf("\n\n\tERRO: Disciplina \"%s\" não encontrada.\n\n", nomeDisciplina);
+    return NULL;
+}
+
+TAluno *pesquisaAluno(TCurso *curso, string nomeAluno) {
+    if (curso == NULL || curso->alunos == NULL) {
+        return NULL;
+    }
+
+    TAluno *alunoAtual = curso->alunos;
+
+    while (alunoAtual != NULL) {
+        if (strcmp(alunoAtual->nome, nomeAluno) == 0) {
+            return alunoAtual; // Retorna o ponteiro para o aluno encontrado
+        }
+        alunoAtual = alunoAtual->prox;
+    }
+
+    return NULL; // Retorna NULL se o aluno não for encontrado
+}
 
 // =================== CADASTROS ===========
 void cadastraDisciplina(TLista *lista){
@@ -362,205 +563,3 @@ void exibeHistorico(TLista *lista){
     }
 	printf("\n\n");
 }
-
-
-// void insereAtor(TLista *DB, string nome){
-//     TAtor *novo = (TAtor *)malloc(sizeof(TAtor));
-//     TAtor *atual = DB->inicioA;
-//     TAtor *anterior = NULL;
-//     int inseriu = 0;
-    
-
-//     novo->prox = NULL;
-//     strcpy(novo->nome,nome);
-//     printf("\nINSERINDO ATOR: %s...",nome);
-
-//     if(DB->inicioA == NULL){
-//         DB->inicioA = novo;
-//         DB->fimA = novo;
-//     }else{
-//         while(atual != NULL){
-//             if (strcmp(atual->nome,novo->nome) > 0)	{
-//                 inseriu = 1;
-//                 if(atual == DB->inicioA)	{
-//                     novo->prox = atual;
-//                     DB->inicioA = novo;	
-//                 } else {
-//                     novo->prox = anterior->prox;
-//                     anterior->prox = novo;
-//                 }
-//                 break;
-//             }
-//             anterior = atual;
-//             atual = atual->prox;
-//         }
-        
-//         if(!inseriu){
-//             DB->fimA->prox = novo;
-//             DB->fimA = novo;
-//         }
-//     }
-// }
-
-// void insereFilme(TLista *DB, string titulo, int ano){
-//     TFilme *novo = (TFilme *)malloc(sizeof(TFilme));
-//     TFilme *atual = DB->inicioF;
-//     TFilme *anterior = NULL;
-//     int inseriu = 0;
-
-//     novo->ante = NULL;
-//     novo->prox = NULL;
-//     novo->elenco = NULL;
-//     novo->anoProducao = ano;
-//     strcpy(novo->titulo,titulo);
-//     printf("\nINSERINDO FILME: %s...",titulo);
-
-//     if(DB->inicioF == NULL){
-//         DB->inicioF = novo;
-//         DB->fimF = novo;
-//     }else{
-//         inseriu = 0;
-//         anterior = atual->ante;
-//         while(atual != NULL){
-//             if (strcmp(atual->titulo,novo->titulo) > 0)	{
-//                 inseriu = 1;
-//                 novo->prox = atual;
-//                 atual->ante = novo;
-
-//                 if(anterior == NULL){
-//                     DB->inicioF = novo;	
-//                 } else {
-//                     anterior->prox = novo;
-//                     novo->ante = anterior;
-//                 }
-//                 break;
-//             }
-//             atual = atual->prox;
-//         }
-        
-//         if(!inseriu){
-//             DB->fimF->prox = novo;
-//             novo->ante = DB->fimF;
-//             DB->fimF = novo;
-//         }
-//     }
-// }
-
-// void cadastraAtor(TLista *DB){
-//     string nome;
-
-//     printf("\n\n\t=====| INSERE ATOR|=====\n\n");
-//     printf("\tInforme o nome do ator: ");
-//     fflush(stdin);
-//     inputS(nome);
-
-//     insereAtor(DB, nome);
-// }
-
-// void cadastraFilme(TLista *DB){
-//     string titulo;
-//     int ano;
-
-
-//     printf("\n\n\t=====| CADASTRO DE FILMES |=====\n\n");
-//     printf(YELLOW"\tTITULO: ");
-//     fflush(stdin);
-//     inputS(titulo);
-
-//     printf("\n\n\tANO DE PRODUÇÃO: "RESET);
-//     fflush(stdin);
-//     ano = input();
-
-//     insereFilme(DB, titulo, ano);
-// }
-
-// void exibeAtores(TLista *DB){
-// 	TAtor *atual = DB->inicioA;
-// 	int cont = 0;
-	
-// 	printf("\n\n");
-// 	printf("+----------------------------------------------------+\n");
-// 	while (atual != NULL)	{
-// 		printf("\t(%d) - %s.\n", ++cont, atual->nome);
-// 		atual = atual->prox;
-// 	}//while
-// 	printf("+----------------------------------------------------+\n\n\n");
-// }
-
-// void exibeFilmes(TLista *DB){
-// 	TFilme *atual = DB->inicioF;
-//     TElenco *cursor;
-//     TAtor *ator;
-// 	int cont = 0;
-	
-// 	printf("\n\n");
-// 	printf(BLUE"+----------------------------------------------------+\n");
-// 	while (atual != NULL)	{
-// 		printf("\t(%d) - %s [%d].\n", ++cont, atual->titulo, atual->anoProducao);
-//         if (atual->elenco !=NULL){
-//             printf("\n");
-//             cursor = atual->elenco;
-//             while (cursor != NULL){
-
-//                 printf("\t\t%s\n",cursor->ator->nome);
-//                 cursor = cursor->prox;
-//             }
-            
-//         }
-        
-// 		atual = atual->prox;
-// 	}//while
-// 	printf("+----------------------------------------------------+\n\n\n"RESET);
-// }
-
-// TFilme *localizaFilme(TLista *DB, string titulo){
-// 	TFilme *atual = DB->inicioF;
-	
-// 	while (atual != NULL){
-// 		if(strcmp(atual->titulo, titulo) == 0){
-// 			break;
-// 		}//if
-// 		atual = atual->prox;
-// 	}//while
-// 	return atual;
-// }
-
-// TAtor *localizaAtor(TLista *DB, string nome){
-// 	TAtor *atual = DB->inicioA;
-	
-// 	while(atual != NULL)	{
-// 		if(strcmp(atual->nome, nome) == 0) {
-// 			break;
-// 		}//if
-// 		atual = atual->prox;
-// 	}//while
-// 	return atual;
-// }
-
-// void relacionarFilmeAtor(TFilme *filme, TAtor *a){
-// 	TElenco *novo = (TElenco *)malloc(sizeof(TElenco));
-	
-// 	novo->prox = NULL;
-// 	novo->ator = a;
-	
-// 	if(filme->elenco != NULL){
-// 	   TElenco *atual = filme->elenco;
-// 	   while(atual->prox != NULL){
-// 			atual = atual->prox;
-//        }//while
-// 	   atual->prox = novo;		
-// 	} else {
-// 	   filme->elenco = novo;
-// 	}//if
-// }
-
-// void criaElenco(TLista *DB, string titulo, string nomeAtor){
-// 	TFilme *f = localizaFilme(DB,titulo);
-// 	if(f != NULL){
-// 		TAtor *a = localizaAtor(DB, nomeAtor);
-		
-// 		if(a != NULL)	{
-// 			relacionarFilmeAtor(f,a);
-// 		}//if
-// 	}//if	
-// }
