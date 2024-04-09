@@ -96,6 +96,69 @@ int menu(){
 }
 
 
+// ============ LOCALIZADORES ==========
+
+TCurso *localizaCurso(TLista *lista, string titulo){
+	TCurso *curso = lista->inicioC;
+	
+	while (curso != NULL){
+		if(strcmp(curso->nome, titulo) == 0){
+			return curso;
+		}//if
+		curso = curso->prox;
+	}//while
+	return curso;
+}
+
+TAluno *localizaAluno(TLista *lista, string titulo, string nomeCurso){
+    TAluno *aluno;
+	TCurso *curso = localizaCurso(lista, nomeCurso);
+
+    if (curso == NULL) {
+        printf("\n\n\tERRO: Curso procurado NAO foi encontrado.\n\n");
+        return aluno;
+    }
+    aluno = curso->alunos;
+
+
+	while (aluno != NULL){
+		if(strcmp(aluno->nome, titulo) == 0){
+			break;
+		}//if
+		aluno = aluno->prox;
+	}//while
+	return aluno;
+}
+
+TDisciplina *defineDisciplina(TLista *lista, string nomeDisciplina) {
+    TDisciplina *atual = lista->inicioD;
+    while (atual != NULL) {
+        if (strcmp(atual->nome, nomeDisciplina) == 0) {
+            return atual;
+        }
+        atual = atual->prox;
+    }
+    printf("\n\n\tERRO: Disciplina \"%s\" não encontrada.\n\n", nomeDisciplina);
+    return NULL;
+}
+
+TAluno *pesquisaAluno(TCurso *curso, string nomeAluno) {
+    if (curso == NULL || curso->alunos == NULL) {
+        return NULL;
+    }
+
+    TAluno *alunoAtual = curso->alunos;
+
+    while (alunoAtual != NULL) {
+        if (strcmp(alunoAtual->nome, nomeAluno) == 0) {
+            return alunoAtual; // Retorna o ponteiro para o aluno encontrado
+        }
+        alunoAtual = alunoAtual->prox;
+    }
+
+    return NULL; // Retorna NULL se o aluno não for encontrado
+}
+
 // =================== INSERES ==============
 
 void insereDisciplina(TLista *lista, string nome, int cargaHoraria){
@@ -197,8 +260,6 @@ void insereAlunoEmCurso(TLista *lista, string nomeCurso,string nomeAluno,char se
         return;
     }
 
-    //cadastraAluno(nomeAluno,&sexoAluno);
-
     TAluno *novoAluno = (TAluno *)malloc(sizeof(TAluno));
     strcpy(novoAluno->nome, nomeAluno);
     novoAluno->sexo = sexoAluno;
@@ -220,7 +281,7 @@ void insereAlunoEmCurso(TLista *lista, string nomeCurso,string nomeAluno,char se
     printf("\n\n\tALUNO inserido com sucesso no CURSO %s.\n\n", nomeCurso);
 }
 
-void excluirAluno(TLista *lista) {
+void excluiAlunoEmCurso(TLista *lista) {
     printf("\n\n\t\t===| EXCLUIR ALUNO DE CURSO |===\n\n");
 
     string nomeCurso;
@@ -231,11 +292,13 @@ void excluirAluno(TLista *lista) {
 
     if (curso == NULL) {
         printf("\n\n\tERRO: Curso procurado NAO foi encontrado.\n\n");
+        system("PAUSE");
         return;
     }
 
     if (curso->alunos == NULL) {
         printf("\n\n\tO CURSO %s ainda não possui ALUNOS cadastrados.\n\n", nomeCurso);
+        system("PAUSE");
         return;
     }
 
@@ -255,6 +318,7 @@ void excluirAluno(TLista *lista) {
             }
             free(alunoAtual);
             printf("\n\n\tAluno \"%s\" excluído do curso %s.\n\n", nomeAluno, nomeCurso);
+            system("PAUSE");
             return;
         }
         alunoAnterior = alunoAtual;
@@ -262,14 +326,11 @@ void excluirAluno(TLista *lista) {
     }
 
     printf("\n\n\tERRO: Aluno \"%s\" não encontrado no curso %s.\n\n", nomeAluno, nomeCurso);
+    system("PAUSE");
 }
 
-void insereHistorico(string nomeAluno, TLista *lista, string nomeDisciplina) {
+void insereHistorico(TLista *lista, string nomeAluno, string nomeDisciplina, string nomeCurso) {
     // Encontra o curso onde o aluno está matriculado
-    string nomeCurso;
-    printf("\tInforme o NOME do CURSO: ");
-    scanf(" %39[^\n]s", nomeCurso);
-
     TCurso *curso = localizaCurso(lista, nomeCurso);
 
     if (curso == NULL) {
@@ -307,7 +368,8 @@ void insereHistorico(string nomeAluno, TLista *lista, string nomeDisciplina) {
     }
 }
 
-void excluiHistoricoAluno(TLista *lista) {
+
+void excluiHistorico(TLista *lista) {
     printf("\n\n\t\t===| EXCLUIR HISTÓRICO DE ALUNO |===\n\n");
 
     string nomeCurso, nomeAluno, nomeDisciplina;
@@ -364,61 +426,6 @@ void excluiHistoricoAluno(TLista *lista) {
     printf("\n\n\tERRO: Aluno \"%s\" não encontrado no curso %s.\n\n", nomeAluno, nomeCurso);
 }
 
-// ============ LOCALIZADORES ==========
-
-TCurso *localizaCurso(TLista *lista, string titulo){
-	TCurso *atual = lista->inicioC;
-	
-	while (atual != NULL){
-		if(strcmp(atual->nome, titulo) == 0){
-			break;
-		}//if
-		atual = atual->prox;
-	}//while
-	return atual;
-}
-
-TAluno *localizaAluno(TLista *lista, string titulo){
-	TAluno *atual= atual->prox;
-	
-	while (atual != NULL){
-		if(strcmp(atual->nome, titulo) == 0){
-			break;
-		}//if
-		atual = atual->prox;
-	}//while
-	return atual;
-}
-
-TDisciplina *defineDisciplina(TLista *lista, string nomeDisciplina) {
-    TDisciplina *atual = lista->inicioD;
-    while (atual != NULL) {
-        if (strcmp(atual->nome, nomeDisciplina) == 0) {
-            return atual;
-        }
-        atual = atual->prox;
-    }
-    printf("\n\n\tERRO: Disciplina \"%s\" não encontrada.\n\n", nomeDisciplina);
-    return NULL;
-}
-
-TAluno *pesquisaAluno(TCurso *curso, string nomeAluno) {
-    if (curso == NULL || curso->alunos == NULL) {
-        return NULL;
-    }
-
-    TAluno *alunoAtual = curso->alunos;
-
-    while (alunoAtual != NULL) {
-        if (strcmp(alunoAtual->nome, nomeAluno) == 0) {
-            return alunoAtual; // Retorna o ponteiro para o aluno encontrado
-        }
-        alunoAtual = alunoAtual->prox;
-    }
-
-    return NULL; // Retorna NULL se o aluno não for encontrado
-}
-
 // =================== CADASTROS ===========
 void cadastraDisciplina(TLista *lista){
     int cargaHoraria;
@@ -438,48 +445,47 @@ void cadastraCurso(TLista *lista){
     printf("Digite o nome do Curso: ");
     inputS(nome);
 
-    // insereCurso(lista, nome);
+    insereCurso(lista, nome);
 }
 
 void cadastraAlunoEmCurso(TLista *lista){
     // int cargaHoraria;
     string alunoNome;
     string cursoNome;
+    char sexo;
     TCurso *curso;
     TAluno *aluno;
 
     printf("Digite o nome do ALUNO: ");
     inputS(alunoNome);
+    printf("Digite o Sexo do ALUNO  (M,F): ");
+    inputS(&sexo);
     printf("Digite o nome do Curso: ");
     inputS(cursoNome);
 
-    curso = localizaCurso(lista,cursoNome);
-    aluno = localizaAluno(lista,alunoNome);
+    // curso = localizaCurso(lista,cursoNome);
+    // aluno = localizaAluno(lista,alunoNome);
 
-    if(curso == NULL || aluno == NULL){
-		printf("\n\n\tERRO: Curso ou Aluno procurado NAO foi encontrado.\n\tCURSO: %s.\n\n",curso->nome);
-		system("PAUSE");
-	} else {
-		// insereAlunoEmCurso(lista, aluno, curso);
-	}
+    // if(curso == NULL || aluno == NULL){
+	// 	printf("\n\n\tERRO: Curso ou Aluno procurado NAO foi encontrado.\n\tCURSO: %s.\n\n",curso->nome);
+	// 	system("PAUSE");
+	// } else {
+		insereAlunoEmCurso(lista, cursoNome, alunoNome, sexo);
+	// }
 }
 
 void cadastraHistorico(TLista *lista){
     string disciplina;
     string aluno;
-    int nota;
-    float percentualFrequencia;
+    string curso;
 
     printf("Digite o nome do ALUNO: ");
     inputS(aluno);
-    printf("Digite o nome da Disciplina onde deseja cadastrar o Historico: ");
+    printf("Digite o nome do CURSO: ");
+    inputS(curso);
+    printf("Digite o nome da DISCIPLINA: ");
     inputS(disciplina);
-    printf("Digite qual e a nota do aluno: ");
-    nota = input();
-    printf("Digite qual e o percentual de frequencia do aluno: ");
-    percentualFrequencia = input();
-
-    // insereHistorico(lista, disciplina, nota, percentualFrequencia);
+    insereHistorico(lista, aluno, disciplina, curso);
 }
 
 
@@ -497,6 +503,7 @@ void exibeDisciplina(TLista *lista){
     if(disciplina != NULL){
         printf("Nao foram encontradas Disciplinas Cadastradas");
     }
+    system("PAUSE");
 	printf("\n\n");
 }
 
@@ -505,14 +512,15 @@ void exibeCurso(TLista *lista){
 	int cont = 0;
 
 	printf("\n\n\t\t===| EXIBE TODOS OS CURSOS |===\n\n");
-	while (curso != NULL){
-		printf("(%d) - %s.\n",cont+1,curso->nome );
-		curso = curso->prox;
+    while (curso->prox != NULL){
+        printf("(%d) - %s.\n",cont+1,curso->nome);
+        curso = curso->prox;
         cont++;
-	}
-    if(curso == NULL){
+    }
+    if(curso->prox != NULL){
         printf("Nao foram encontrados Cursos Cadastrados");
     }
+    system("PAUSE");
 	printf("\n\n"); 
 }
 
@@ -524,7 +532,6 @@ void exibeAlunosEmCurso(TLista *lista){
 	
 	printf("\n\n\t\t===| EXIBE TODOS OS ALUNOS EM UM CURSO |===\n\n");
 	printf("\tInforme o NOME do CURSO: ");
-    fflush(stdin);
     inputS(nome);
 	
 	curso = localizaCurso(lista, nome);
@@ -534,13 +541,15 @@ void exibeAlunosEmCurso(TLista *lista){
         printf("\n\t CURSO ENCONTRADO: %s. \n\n", curso->nome);
 		system("PAUSE");
 	} else {
-		printf("O CURSO %s tem os seguintes ALUNOS matriculados", curso->nome);
-		while (aluno->prox != NULL){
-			printf("(%d) - %s - %s.\n",cont+1,aluno->nome, aluno->sexo );
+        aluno = curso->alunos;
+		printf("\n\nO CURSO %s tem os seguintes ALUNOS matriculados\n", curso->nome);
+		while (aluno != NULL){
+			printf("(%d) - %s - %c.\n",cont+1,aluno->nome, aluno->sexo);
 			aluno = aluno->prox;
 			cont++;
 		}
 	}
+    system("PAUSE");
 	printf("\n\n"); 
 }
 
@@ -561,5 +570,53 @@ void exibeHistorico(TLista *lista){
     if(historico->prox == NULL){
         printf("Nao foram encontrados HISTORICOS Cadastrados");
     }
+    system("PAUSE");
 	printf("\n\n");
+}
+
+void exibeHistoricoAluno(TLista *lista) {
+    printf("\n\n\t\t===| EXIBIR HISTÓRICO DE ALUNO |===\n\n");
+
+    string nomeCurso, nomeAluno;
+
+    printf("\tInforme o NOME do CURSO: ");
+    scanf(" %39[^\n]s", nomeCurso);
+
+    TCurso *curso = localizaCurso(lista, nomeCurso);
+
+    if (curso == NULL) {
+        printf("\n\n\tERRO: Curso procurado NAO foi encontrado.\n\n");
+        return;
+    }
+
+    printf("\tInforme o NOME do ALUNO: ");
+    scanf(" %39[^\n]s", nomeAluno);
+
+    TAluno *aluno = curso->alunos;
+
+    while (aluno != NULL) {
+        if (strcmp(aluno->nome, nomeAluno) == 0) {
+            if (aluno->historico == NULL) {
+                printf("\n\n\tO ALUNO %s não possui histórico cadastrado.\n\n", nomeAluno);
+                return;
+            }
+
+            printf("\n\n\t===| HISTÓRICO DO ALUNO %s |===\n\n", nomeAluno);
+            THistorico *historico = aluno->historico;
+            int cont = 1;
+
+            while (historico != NULL) {
+                printf("\t%d. DISCIPLINA: %s, NOTA: %.2f, PERCENTUAL DE FREQUÊNCIA: %.2f, CONDIÇÃO: %s\n",
+                       cont, historico->disciplina->nome, historico->nota, historico->percentualFrequencia, historico->condicao);
+                historico = historico->prox;
+                cont++;
+            }
+
+            printf("\n\n");
+            return;
+        }
+        aluno = aluno->prox;
+    }
+
+    printf("\n\n\tERRO: Aluno \"%s\" não encontrado no curso %s.\n\n", nomeAluno, nomeCurso);
 }

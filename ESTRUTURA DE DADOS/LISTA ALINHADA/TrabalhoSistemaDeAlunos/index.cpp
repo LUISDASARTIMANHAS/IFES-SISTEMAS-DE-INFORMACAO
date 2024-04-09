@@ -49,8 +49,7 @@ void realizaOpcaoDesejada(TLista *listas){
 
         case 7:
         // Excluir ALUNO de CURSO
-        // excluiAlunoEmCurso(listas);
-        printf("INDISPONIVEL!");
+        excluiAlunoEmCurso(listas);
         break;
 
         case 8:
@@ -60,13 +59,12 @@ void realizaOpcaoDesejada(TLista *listas){
 
         case 9:
         // Exibir HISTORICO de ALUNO.
-        exibeHistorico(listas);
+        exibeHistoricoAluno(listas);
         break;
 
         case 10:
         // Excluir HISTORICO de ALUNO
-        printf("INDISPONIVEL!");
-        // excluiHistorico(listas);
+        excluiHistorico(listas);
         break;
     default:
         printf("\nERRO: Opção invalida, tente novamente\n");
@@ -81,6 +79,7 @@ void inicializa(TLista *lista){
     lista->fimC = NULL;
     lista->fimD = NULL;
     lista->total = 0;
+
     insereDisciplina(lista, "Prog1",60);
     insereDisciplina(lista, "Math",90);
     insereDisciplina(lista, "ED",30);
@@ -98,28 +97,20 @@ void inicializa(TLista *lista){
     insereDisciplina(lista, "Logística interna: Organização de inventário",10);
     insereDisciplina(lista, "Perfeccionismo Aplicado à Engenharia: Como Gastar 10 Horas Para Ajustar Um Transportador",60);
     insereDisciplina(lista, "As leis da cimetria aplicadas na prática",60);
-    exibeDisciplina(lista);
 
     insereCurso(lista, "ADMINISTRACAO");
     insereCurso(lista, "ARQUITETURA");
     insereCurso(lista, "SISTEMAS DE INFORMACAO");
     insereCurso(lista, "Factoriologia: Curso Avançado em Engenharia de Precisão e Perfeccionismo");
-    exibeCurso(lista);
 
-    // insereAlunoEmCurso(lista, "Luis");
-    // insereAlunoEmCurso(lista, "Lucas");
-    // insereAlunoEmCurso(lista, "Mephisto");
-    // insereAlunoEmCurso(lista, "Soul");
-    // insereAlunoEmCurso(lista, "Caio");
-    // insereAlunoEmCurso(lista, "Bob o pato");
-    // insereAlunoEmCurso(lista, "Sans");
-    exibeAlunosEmCurso(lista);
-
-    // insereHistorico(lista, "Prog1", 10, 50);
-    // insereHistorico(lista, "Math", 30, 100);
-    // insereHistorico(lista, "ED", 20, 98);
-    // insereHistorico(lista, "POO", 10, 50);
-    // exibeHistorico(lista);
+    insereAlunoEmCurso(lista, "SISTEMAS DE INFORMACAO", "Luis", 'M');
+    insereAlunoEmCurso(lista, "SISTEMAS DE INFORMACAO", "Lucas", 'M');
+    insereAlunoEmCurso(lista, "Factoriologia: Curso Avançado em Engenharia de Precisão e Perfeccionismo", "Mephisto", 'M');
+    insereAlunoEmCurso(lista, "Factoriologia: Curso Avançado em Engenharia de Precisão e Perfeccionismo", "Soul", 'M');
+    insereAlunoEmCurso(lista, "Factoriologia: Curso Avançado em Engenharia de Precisão e Perfeccionismo", "Caio", 'M');
+    insereAlunoEmCurso(lista, "Factoriologia: Curso Avançado em Engenharia de Precisão e Perfeccionismo", "Bob o pato", 'M');
+    insereAlunoEmCurso(lista, "Factoriologia: Curso Avançado em Engenharia de Precisão e Perfeccionismo", "Sans", 'M');
+    printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
 }
 //===================================================================
 int main(){
