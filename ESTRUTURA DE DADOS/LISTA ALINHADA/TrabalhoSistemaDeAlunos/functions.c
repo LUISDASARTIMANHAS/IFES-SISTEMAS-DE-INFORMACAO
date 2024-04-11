@@ -72,6 +72,21 @@ void inputS(char destino[]){
     scanf(" %100[^\n]s", destino);
 }
 
+char validSexo() {
+    char sx;
+    
+    printf("Insira seu sexo(F/M): ");
+    scanf(" %c", &sx);
+    sx = toupper(sx);
+    while (sx != 'F' && sx != 'M') {
+        printf("Sexo invalido.\n");
+        printf("Insira seu sexo(F/M): ");
+        scanf(" %c", &sx);
+        sx = toupper(sx);
+    }
+    return sx;
+}
+
 
 // ============================= FIM DO BASE ======================
 int menu(){
@@ -98,11 +113,11 @@ int menu(){
 
 // ============ LOCALIZADORES ==========
 
-TCurso *localizaCurso(TLista *lista, string titulo){
+TCurso *localizaCurso(TLista *lista, string nomeCurso){
 	TCurso *curso = lista->inicioC;
 	
 	while (curso != NULL){
-		if(strcmp(curso->nome, titulo) == 0){
+		if(strcmp(curso->nome, nomeCurso) == 0){
 			return curso;
 		}//if
 		curso = curso->prox;
@@ -167,6 +182,14 @@ void insereDisciplina(TLista *lista, string nome, int cargaHoraria){
     novo->cargaHoraria = cargaHoraria;
 	strcpy(novo->nome, nome);
 
+    // procura por diciplinas iguais
+    TDisciplina *disciplina = defineDisciplina(lista, nome);
+
+    if(disciplina){
+        printf("\n\t Disciplina  %s Ja existe! Por favor insira outro nome.", nome);
+        return;
+    }
+
     novo->prox = NULL;
     if (lista->inicioD == NULL){
         //Lista encontra-se vazia.
@@ -216,6 +239,14 @@ void insereCurso(TLista *lista, string nome) {
     novo->prox = NULL;
     novo->ante = NULL;
 
+    // procura por cursos iguais
+    TCurso *curso = localizaCurso(lista, nome);
+
+    if(curso != NULL){
+        printf("\n\t Curso  %s Ja existe! Por favor insira outro nome.", nome);
+        return;
+    }
+
     if (lista->inicioC == NULL) {
         // Lista encontra-se vazia.
         // Inserir o primeiro e único elemento da lista até agora
@@ -254,9 +285,15 @@ void insereCurso(TLista *lista, string nome) {
 
 void insereAlunoEmCurso(TLista *lista, string nomeCurso,string nomeAluno,char sexoAluno) {
     TCurso *curso = localizaCurso(lista, nomeCurso);
-
+    // procura por cursos iguais
+    TAluno *aluno = localizaAluno(lista, nomeAluno, nomeCurso);
+    
     if (curso == NULL) {
         printf("\n\n\tERRO: Curso procurado NAO foi encontrado.\n\n");
+        return;
+    }
+    if(aluno != NULL){
+        printf("\n\t Aluno  %s Ja existe! Por favor insira outro nome.", nomeAluno);
         return;
     }
 
@@ -303,7 +340,7 @@ void excluiAlunoEmCurso(TLista *lista) {
     }
 
     string nomeAluno;
-    printf("\tInforme o NOME do ALUNO a ser excluído: ");
+    printf("\tInforme o NOME do ALUNO a ser excluido: ");
     inputS(nomeAluno);
 
     TAluno *alunoAtual = curso->alunos;
@@ -453,25 +490,15 @@ void cadastraAlunoEmCurso(TLista *lista){
     string alunoNome;
     string cursoNome;
     char sexo;
-    TCurso *curso;
-    TAluno *aluno;
 
     printf("Digite o nome do ALUNO: ");
     inputS(alunoNome);
-    printf("Digite o Sexo do ALUNO  (M,F): ");
-    inputS(&sexo);
+    sexo = validSexo();
     printf("Digite o nome do Curso: ");
     inputS(cursoNome);
 
-    // curso = localizaCurso(lista,cursoNome);
-    // aluno = localizaAluno(lista,alunoNome);
+	insereAlunoEmCurso(lista, cursoNome, alunoNome, sexo);
 
-    // if(curso == NULL || aluno == NULL){
-	// 	printf("\n\n\tERRO: Curso ou Aluno procurado NAO foi encontrado.\n\tCURSO: %s.\n\n",curso->nome);
-	// 	system("PAUSE");
-	// } else {
-		insereAlunoEmCurso(lista, cursoNome, alunoNome, sexo);
-	// }
 }
 
 void cadastraHistorico(TLista *lista){
@@ -509,11 +536,11 @@ void exibeDisciplina(TLista *lista){
 
 void exibeCurso(TLista *lista){
    TCurso *curso = lista->inicioC;
-	int cont = 0;
+	int cont = 1;
 
 	printf("\n\n\t\t===| EXIBE TODOS OS CURSOS |===\n\n");
     while (curso->prox != NULL){
-        printf("(%d) - %s.\n",cont+1,curso->nome);
+        printf("\n\t(%d) - %s.\n",cont,curso->nome);
         curso = curso->prox;
         cont++;
     }
@@ -588,7 +615,7 @@ void exibeHistoricoAluno(TLista *lista) {
                 printf("\n\t(%d) - DISCIPLINA %s.",cont,historico->disciplina->nome);
                 printf("\n\t- Frequencia: %.2f% \n", historico->percentualFrequencia);
                 printf("\n\t- Nota: %.2f", historico->nota);
-                printf("\n\t- Situacao: %s", historico->condicao);
+                printf("\n\t- Situacao: %s\n", historico->condicao);
                 historico = historico->prox;
                 cont++;
             }

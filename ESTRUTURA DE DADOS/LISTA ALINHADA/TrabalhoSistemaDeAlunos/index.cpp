@@ -67,7 +67,7 @@ void realizaOpcaoDesejada(TLista *listas){
         excluiHistorico(listas);
         break;
     default:
-        printf("\nERRO: Opção invalida, tente novamente\n");
+        printf("\nSaindo do programa e encerrando a aplicacao\n");
         break;
     }
     } while (op != 0);
