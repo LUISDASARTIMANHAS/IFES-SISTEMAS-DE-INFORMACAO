@@ -230,7 +230,7 @@ void insereDisciplina(TLista *lista, string nome, int cargaHoraria){
         }
         lista->total++;
     }
-    printf("\n\t Disciplina  %s Inserida!", nome);
+    printf("\n\n\t Disciplina  %s Inserida!", nome);
 }
 
 
