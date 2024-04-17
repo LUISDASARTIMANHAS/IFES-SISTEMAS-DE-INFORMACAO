@@ -8,7 +8,7 @@
 #include <ctype.h>
 #include <string.h>
 // #include "utils.c"
-// Defina constantes para as sequências de escape ANSI das cores
+// Defina constantes para as sequÃªncias de escape ANSI das cores
 
 // RED ERROR
 #define RED "\x1b[31m"
@@ -21,6 +21,7 @@
 // RESET REDEFINIR
 #define RESET "\x1b[0m"
 #define SEPARETOR BLUE "\n================================================\n"  RESET
+
 
 typedef char string[101];
 
@@ -66,14 +67,20 @@ float input(){
     scanf("%f", &value);
     return value;
 }
+
+float inputNovo(){
+    int value;
+    do{
+    	fflush(stdin);
+    	scanf("%d", &value);
+	}while(value != 1 && value != 0);
+    return value;
+}
+
 // inputs personalizados e modificados EX: inputS(&variavel);
 void inputS(char destino[]){
     fflush(stdin);
     scanf(" %100[^\n]s", destino);
-}
-
-void correct(){
-    SetConsoleOutputCP(65001);
 }
 
 char validSexo() {
@@ -173,6 +180,7 @@ TAluno *pesquisaAluno(TCurso *curso, string nomeAluno) {
         }
         alunoAtual = alunoAtual->prox;
     }
+
     return NULL; // Retorna NULL se o aluno nao for encontrado
 }
 
@@ -251,17 +259,17 @@ void insereCurso(TLista *lista, string nome) {
 
     if (lista->inicioC == NULL) {
         // Lista encontra-se vazia.
-        // Inserir o primeiro e único elemento da lista até agora
+        // Inserir o primeiro e Ãºnico elemento da lista atÃ© agora
         lista->inicioC = novo;
         lista->fimC = novo;
         lista->total = 1;
     } else {
-        // Lista já possui pelo menos 1 elemento
+        // Lista jÃ¡ possui pelo menos 1 elemento
         TCurso *atual = lista->inicioC;
         while (atual != NULL) {
             if (strcmp(atual->nome, novo->nome) > 0) {
                 if (atual == lista->inicioC) {
-                    // Inserir novo no início da lista
+                    // Inserir novo no inÃ­cio da lista
                     novo->prox = atual;
                     atual->ante = novo;
                     lista->inicioC = novo;
@@ -317,7 +325,7 @@ void insereAlunoEmCurso(TLista *lista, string nomeCurso,string nomeAluno,char se
         novoAluno->ante = atual;
     }
 
-    printf("\n\n\tALUNO inserido com sucesso no CURSO %s.\n\n", nomeCurso);
+    printf("\n\n\tALUNO %s inserido com sucesso no CURSO %s.\n\n",nomeAluno, nomeCurso);
 }
 
 void excluiAlunoEmCurso(TLista *lista) {
@@ -369,7 +377,7 @@ void excluiAlunoEmCurso(TLista *lista) {
 }
 
 void insereHistorico(TLista *lista, string nomeAluno, string nomeDisciplina, string nomeCurso) {
-    // Encontra o curso onde o aluno está matriculado
+    // Encontra o curso onde o aluno estÃ¡ matriculado
     TCurso *curso = localizaCurso(lista, nomeCurso);
 
     if (curso == NULL) {
@@ -389,14 +397,14 @@ void insereHistorico(TLista *lista, string nomeAluno, string nomeDisciplina, str
     TDisciplina *disciplina = defineDisciplina(lista, nomeDisciplina);
 
     if (disciplina != NULL) {
-        // Cria um novo historico e preenche suas informações
+        // Cria um novo historico e preenche suas informaÃ§Ãµes
         THistorico *novoHistorico = (THistorico *)malloc(sizeof(THistorico));
         novoHistorico->disciplina = disciplina;
         printf("Digite a nota que o aluno teve nessa disciplina: ");
         scanf("%f", &novoHistorico->nota);
-        printf("Digite o percentual de presença que o aluno teve nessa disciplina: ");
+        printf("Digite o percentual de presenÃ§a que o aluno teve nessa disciplina: ");
         scanf("%f", &novoHistorico->percentualFrequencia);
-        printf("Digite a condiçao que esse aluno está nessa disciplina (Aprovado/Reprovado/Cursando): ");
+        printf("Digite a condiÃ§ao que esse aluno estÃ¡ nessa disciplina (Aprovado/Reprovado/Cursando): ");
         inputS(novoHistorico->condicao);
 
         // Insere o novo historico na lista de historicos do aluno
@@ -449,7 +457,7 @@ void excluiHistorico(TLista *lista) {
                         historicoAnterior->prox = historicoAtual->prox;
                     }
                     free(historicoAtual);
-                    printf("\n\n\tHISToRICO da DISCIPLINA \"%s\" excluído com sucesso para o ALUNO %s.\n\n", nomeDisciplina, nomeAluno);
+                    printf("\n\n\tHISToRICO da DISCIPLINA \"%s\" excluÃ­do com sucesso para o ALUNO %s.\n\n", nomeDisciplina, nomeAluno);
                     return;
                 }
                 historicoAnterior = historicoAtual;
@@ -479,12 +487,17 @@ void cadastraDisciplina(TLista *lista){
 }
 
 void cadastraCurso(TLista *lista){
+    int repete = 0;
     string nome;
-
-    printf("Digite o nome do Curso: ");
-    inputS(nome);
-
-    insereCurso(lista, nome);
+    do{
+    	printf("Digite o nome do Curso: ");
+    	inputS(nome);
+    	
+    	insereCurso(lista, nome);
+    	
+    	printf("Deseja inserir outro curso(Sim - 1, Não - 0): ");
+    	repete = inputNovo();
+	}while(repete == 1);
 }
 
 void cadastraAlunoEmCurso(TLista *lista){
@@ -492,14 +505,20 @@ void cadastraAlunoEmCurso(TLista *lista){
     string alunoNome;
     string cursoNome;
     char sexo;
-
-    printf("Digite o nome do ALUNO: ");
-    inputS(alunoNome);
-    sexo = validSexo();
-    printf("Digite o nome do Curso: ");
+	
+	printf("Digite o nome do Curso: ");
     inputS(cursoNome);
-
-	insereAlunoEmCurso(lista, cursoNome, alunoNome, sexo);
+    
+    int repete = 0;
+    
+	do{
+		printf("Digite o nome do ALUNO: ");
+    	inputS(alunoNome);
+    	sexo = validSexo();
+    	insereAlunoEmCurso(lista, cursoNome, alunoNome, sexo);
+		printf("Deseja inserir outro aluno(Sim - 1, Não - 0): ");
+    	repete = inputNovo();
+	}while(repete == 1);
 
 }
 
@@ -512,9 +531,16 @@ void cadastraHistorico(TLista *lista){
     inputS(aluno);
     printf("Digite o nome do CURSO: ");
     inputS(curso);
-    printf("Digite o nome da DISCIPLINA: ");
-    inputS(disciplina);
-    insereHistorico(lista, aluno, disciplina, curso);
+    
+    int repete = 0;
+    
+    do{
+    	printf("Digite o nome da DISCIPLINA: ");
+    	inputS(disciplina);
+    	insereHistorico(lista, aluno, disciplina, curso);
+    	printf("Deseja inserir outra disciplina(Sim - 1, Não - 0): ");
+    	repete = inputNovo();
+	}while(repete == 1);
 }
 
 
@@ -569,7 +595,7 @@ void exibeAlunosEmCurso(TLista *lista){
 		printf("\n\n\tERRO: Curso procurado %s NAO foi encontrado.\n\t.", nome);
 	} else {
         aluno = curso->alunos;
-		printf("\n\nO CURSO %s tem os seguintes ALUNOS matriculados\n", curso->nome);
+		printf("\n\n\tO CURSO %s tem os seguintes ALUNOS matriculados\n", curso->nome);
 		while (aluno != NULL){
 			printf("(%d) - %s - %c.\n",cont+1,aluno->nome, aluno->sexo);
 			aluno = aluno->prox;
