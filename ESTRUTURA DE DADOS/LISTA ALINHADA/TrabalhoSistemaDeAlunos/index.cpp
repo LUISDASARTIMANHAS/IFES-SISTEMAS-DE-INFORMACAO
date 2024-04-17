@@ -88,27 +88,27 @@ void inicializa(TLista *lista){
     insereDisciplina(lista, "A historia do captalismo conforme o shopping",30);
     insereDisciplina(lista, "Como matar bitters de maneira eficiente ",30);
     insereDisciplina(lista, "Principios do Mainbus",60);
-    insereDisciplina(lista, "MecatrÃ´nica: Como ter seus robÃ´s ajudantes",45);
+    insereDisciplina(lista, "Mecatronica: Como ter seus robôs ajudantes",45);
     insereDisciplina(lista, "Quimica e engenharia da petrophisto",20);
-    insereDisciplina(lista, "Energia sustentÃ¡vel aplicada na prÃ¡tica e consumo adequado",20);
-    insereDisciplina(lista, "Terapia de Grupo para Jogadores de Factorio: Lidando com a SÃ­ndrome do 'SÃ³ Mais um Minuto",100);
-    insereDisciplina(lista, "Manobra de veÃ­culos",15);
-    insereDisciplina(lista, "LogÃ­stica interna: OrganizaÃ§Ã£o de inventÃ¡rio",10);
-    insereDisciplina(lista, "Perfeccionismo Aplicado Ã  Engenharia: Como Gastar 10 Horas Para Ajustar Um Transportador",60);
-    insereDisciplina(lista, "As leis da cimetria aplicadas na prÃ¡tica",60);
+    insereDisciplina(lista, "Energia Sustentável aplicada na prática e consumo adequado",20);
+    insereDisciplina(lista, "Terapia de Grupo para Jogadores de Factorio: Lidando com a Síndrome do só Mais um Minuto",100);
+    insereDisciplina(lista, "Manobra de veículos",15);
+    insereDisciplina(lista, "Logística interna: Organizações de inventário",10);
+    insereDisciplina(lista, "Perfeccionismo Aplicado A Engenharia: Como Gastar 10 Horas Para Ajustar Um Transportador",60);
+    insereDisciplina(lista, "As leis da cimetria aplicadas na prática",60);
 
     insereCurso(lista, "ADMINISTRACAO");
     insereCurso(lista, "ARQUITETURA");
     insereCurso(lista, "SISTEMAS DE INFORMACAO");
-    insereCurso(lista, "Factoriologia: Curso AvanÃ§ado em Engenharia de PrecisÃ£o e Perfeccionismo");
+    insereCurso(lista, "Factoriologia: Curso Avançado em Engenharia de Precisão e Perfeccionismo");
 
     insereAlunoEmCurso(lista, "SISTEMAS DE INFORMACAO", "Luis", 'M');
     insereAlunoEmCurso(lista, "SISTEMAS DE INFORMACAO", "Lucas", 'M');
-    insereAlunoEmCurso(lista, "Factoriologia: Curso AvanÃ§ado em Engenharia de PrecisÃ£o e Perfeccionismo", "Mephisto", 'M');
-    insereAlunoEmCurso(lista, "Factoriologia: Curso AvanÃ§ado em Engenharia de PrecisÃ£o e Perfeccionismo", "Soul", 'M');
-    insereAlunoEmCurso(lista, "Factoriologia: Curso AvanÃ§ado em Engenharia de PrecisÃ£o e Perfeccionismo", "Caio", 'M');
-    insereAlunoEmCurso(lista, "Factoriologia: Curso AvanÃ§ado em Engenharia de PrecisÃ£o e Perfeccionismo", "Bob o pato", 'M');
-    insereAlunoEmCurso(lista, "Factoriologia: Curso AvanÃ§ado em Engenharia de PrecisÃ£o e Perfeccionismo", "Sans", 'M');
+    insereAlunoEmCurso(lista, "Factoriologia: Curso Avançado em Engenharia de PrecisÃ£o e Perfeccionismo", "Mephisto", 'M');
+    insereAlunoEmCurso(lista, "Factoriologia: Curso Avançado em Engenharia de PrecisÃ£o e Perfeccionismo", "Soul", 'M');
+    insereAlunoEmCurso(lista, "Factoriologia: Curso Avançado em Engenharia de PrecisÃ£o e Perfeccionismo", "Caio", 'M');
+    insereAlunoEmCurso(lista, "Factoriologia: Curso Avançado em Engenharia de PrecisÃ£o e Perfeccionismo", "Bob o pato", 'M');
+    insereAlunoEmCurso(lista, "Factoriologia: Curso Avançado em Engenharia de PrecisÃ£o e Perfeccionismo", "Sans", 'M');
     printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
     
 }
