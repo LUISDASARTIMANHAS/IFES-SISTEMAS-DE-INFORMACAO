@@ -114,6 +114,7 @@ void inicializa(TLista *lista){
 }
 //===================================================================
 int main(){
+    correct();
     inicializa(&listas);
     realizaOpcaoDesejada(&listas);
     return 0;

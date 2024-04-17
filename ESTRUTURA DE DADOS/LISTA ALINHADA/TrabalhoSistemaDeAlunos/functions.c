@@ -72,6 +72,10 @@ void inputS(char destino[]){
     scanf(" %100[^\n]s", destino);
 }
 
+void correct(){
+    SetConsoleOutputCP(65001);
+}
+
 char validSexo() {
     char sx;
     
@@ -153,7 +157,6 @@ TDisciplina *defineDisciplina(TLista *lista, string nomeDisciplina) {
         }
         atual = atual->prox;
     }
-    printf("\n\n\tERRO: Disciplina \"%s\" nao encontrada.\n\n", nomeDisciplina);
     return NULL;
 }
 
@@ -170,7 +173,6 @@ TAluno *pesquisaAluno(TCurso *curso, string nomeAluno) {
         }
         alunoAtual = alunoAtual->prox;
     }
-
     return NULL; // Retorna NULL se o aluno nao for encontrado
 }
 
@@ -565,8 +567,6 @@ void exibeAlunosEmCurso(TLista *lista){
 	
 	if(curso == NULL){
 		printf("\n\n\tERRO: Curso procurado %s NAO foi encontrado.\n\t.", nome);
-        printf("\n\t CURSO ENCONTRADO: %s. \n\n", curso->nome);
-		system("PAUSE");
 	} else {
         aluno = curso->alunos;
 		printf("\n\nO CURSO %s tem os seguintes ALUNOS matriculados\n", curso->nome);
