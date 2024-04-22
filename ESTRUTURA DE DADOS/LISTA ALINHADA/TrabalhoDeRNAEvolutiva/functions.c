@@ -93,7 +93,7 @@ float input(){
     return value;
 }
 
-float inputNovo(){
+float inputBoleano(){
     int value;
     do{
     	fflush(stdin);
