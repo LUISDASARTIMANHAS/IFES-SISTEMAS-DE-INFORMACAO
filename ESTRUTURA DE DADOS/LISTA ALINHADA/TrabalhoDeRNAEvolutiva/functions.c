@@ -261,6 +261,17 @@ void cruzamento(TLista *L){
 	   descendentes. E cada descendente herda segmentos
 	   do c�digo gen�tico de seus pais.
 	*/
+	char filho[6];
+	char filho2[6];
+	for (int iFilhos = 0, iPaes = 0; iPaes < tam; iPaes++,iFilhos++) {
+	    if(iPaes <= 2){
+	        filho[iFilhos] = pai[iPaes]
+	        filho2[iFilhos] = mae[iPaes]
+	    }else{
+	        filho[iFilhos] = mae[iPaes]
+	        filho2[iFilhos] = pai[iPaes]
+	    }
+	}
 	
 }
 //==============================================================
