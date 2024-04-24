@@ -12,17 +12,17 @@
 	(4) - 1   1   1
 
 
-	Learning Rate: 10.00
-	Sinapse Threshold: 10.00
-	Populacao MAXIMA: 10.
-	10 MUTACOES a cada sequencia de 10 GERACOES.
-	TOTAL de GERACOES: 10.
+	Learning Rate: 0.00
+	Sinapse Threshold: 0.00
+	Populacao MAXIMA: 0.
+	0 MUTACOES a cada sequencia de 0 GERACOES.
+	TOTAL de GERACOES: 0.
 
 
 
 
-	INICIO DO TREINAMENTO: Dia: 17   Mes: 3   Ano: 124
+	INICIO DO TREINAMENTO: Dia: 24   Mes: 4   Ano: 2024
 
 Dia da Semana: 3.
-14:50:56.
+14:47:44.
 

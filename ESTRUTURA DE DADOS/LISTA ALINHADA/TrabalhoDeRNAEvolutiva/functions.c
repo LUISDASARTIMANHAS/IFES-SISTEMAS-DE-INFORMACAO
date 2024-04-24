@@ -407,8 +407,8 @@ void treinamento(TLista *L){
 	data_hora_atual = localtime(&segundos);
 	
 	fprintf(L->fp,"Dia: %d", data_hora_atual->tm_mday);
-	fprintf(L->fp,"   Mes: %d", data_hora_atual->tm_mon);
-	fprintf(L->fp,"   Ano: %d\n\n", data_hora_atual->tm_year);
+	fprintf(L->fp,"   Mes: %d", data_hora_atual->tm_mon+1);
+	fprintf(L->fp,"   Ano: %d\n\n", data_hora_atual->tm_year+1900);
 	
 	fprintf(L->fp,"Dia da Semana: %d.\n", data_hora_atual->tm_wday);
 	
