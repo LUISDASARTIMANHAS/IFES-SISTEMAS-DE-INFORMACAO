@@ -313,7 +313,6 @@ void promoveMutacoes(TLista *L){
 	/* Altera o c�digo gen�tico de um n�mero espec�fico
 	   de indiv�duos (= L->Qtd_Mutacoes_por_vez). */
 	   
-	   while (L->Qtd_Mutacoes_por_vez >= 0){
 		// escolha ramdomica do individuo
 		// escolha ramdomica do gene 
 		//  escolha ramdomica do sentido para cima(+)
@@ -327,7 +326,6 @@ void promoveMutacoes(TLista *L){
 	  	//[0.8, 0.7, 0.3 + 0.2 , 0.6, 0.5, 0.4] 
 		//[0.8, 0.7, 0.5 , 0.6, 0.5, 0.4] 
 		// total de erros volta a ser -1
-	   }
 	   
 }
 
