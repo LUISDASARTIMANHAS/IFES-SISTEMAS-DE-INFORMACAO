@@ -148,6 +148,18 @@ int menu(){
 
 
 
+//==================== LOCALIZADORES ================
+TIndividuo *localizaIndividuoProx(TLista *lista, string nomeAluno, string nomeCurso){
+    TIndividuo *individuo;
+
+	while (individuo != NULL){
+		if(individuo->numero){
+			break;
+		}//if
+		individuo = individuo->prox;
+	}//while
+	return individuo;
+}
 //====================================================
 void geraIndividuos(TLista *L){
 	TIndividuo *novo;
@@ -261,37 +273,104 @@ void cruzamento(TLista *L){
 	   descendentes. E cada descendente herda segmentos
 	   do c�digo gen�tico de seus pais.
 	*/
-	char filho[6];
-	char filho2[6];
-	for (int iFilhos = 0, iPaes = 0; iPaes < MAX_Pesos; iPaes++,iFilhos++) {
-	    if(iPaes <= 2){
-	        filho[iFilhos] = pai[iPaes];
-	        filho2[iFilhos] = mae[iPaes];
-	    }else{
-	        filho[iFilhos] = mae[iPaes];
-	        filho2[iFilhos] = pai[iPaes];
-	    }
-	}
+	// TIndividuo *filhote1 = (TIndividuo *)malloc(sizeof(TIndividuo));
+	// TIndividuo *filhote2 = (TIndividuo *)malloc(sizeof(TIndividuo));
+
+	// filhote1->prox = NULL;
+	// filhote1->erros = -1;
+	// filhote1->genes;
+	// filhote1->numero = 0;
+
+	// filhote2->prox = NULL;
+	// filhote2->erros = -1;
+	// filhote2->genes;
+	// filhote2->numero = 0;
+
+	// for (int iFilhos = 0, iPaes = 0; iPaes < iPaes.genes; iPaes++,iFilhos++) {
+	//     if(iPaes <= 2){
+	//         filhote1[iFilhos] = pai[iPaes];
+	//         filhote2[iFilhos] = mae[iPaes];
+	//     }else{
+	//         filhote1[iFilhos] = mae[iPaes];
+	//         filhote2[iFilhos] = pai[iPaes];
+	//     }
+	// }
 	
+	
+	// if(L->neuronios == NULL){
+	// 	L->neuronios = novo;
+	// } else {
+	// 	TNeuronio *atual = L->neuronios;
+		
+	// 	while(atual->prox != NULL){
+	// 		atual = atual->prox;
+	// 	}//while
+	// 	atual->prox = novo;
+	// }//if
 }
 //==============================================================
 void promoveMutacoes(TLista *L){
 	/* Altera o c�digo gen�tico de um n�mero espec�fico
 	   de indiv�duos (= L->Qtd_Mutacoes_por_vez). */
 	   
+	   while (L->Qtd_Mutacoes_por_vez >= 0){
+		// escolha ramdomica do individuo
+		// escolha ramdomica do gene 
+		//  escolha ramdomica do sentido para cima(+)
+		//  para baix (-)
+		// [0.8, 0.7, 0.3, 0.6, 0.5, 0.4]
+
+		//  mudanca pra cima 
+		// gene 2 e igual a posicao do vetor [2]
+		// taxa de aprendizado 0.2
+
+	  	//[0.8, 0.7, 0.3 + 0.2 , 0.6, 0.5, 0.4] 
+		//[0.8, 0.7, 0.5 , 0.6, 0.5, 0.4] 
+		// total de erros volta a ser -1
+	   }
 	   
 }
 
 //=============================================================
+float calcSomaPeso(float n1, float n2, float peso1, float peso2){
+	float soma;
+
+	soma  = n1 * peso1 + n2 * peso2;
+	return soma;
+}
+
+void verificar(TIndividuo *indv, float n1, float n5, float soma, float sinapseThreshold, float resultadoEsperado){
+	if(soma >= sinapseThreshold){
+		n1 = 1;
+	}else{
+		n1 = 0;
+	}
+	if(resultadoEsperado == n5){
+			indv->erros++;
+	}
+}
+
 void avaliacaoIndividuos(TLista *L){
 	/*
 	Avalia o grau de adapta��o de cada indiv�duo ao ambiente
 	em termos de quantidade de erros cometidos nas li��es da 
 	RNA. O objetivo � MINIMIZAR esses ERROS at� ZERO.
 	*/
-	
-
+	// TIndividuo *indv = indv->prox;
+	// float n1,n2,n3,n4,n5; 
+	// float peso13,peso21;
+	// float soma3;
+	// peso13 = indv[0];
+	// peso21 = indv[2];
+	// n1 = licao.p;
+	// n2 = licao.p;
+	// soma3 = calcSomaPeso(n1,n2,peso13,peso23);
+	// verificar();
 }
+
+
+//a sacada do menos 1 so vai ler o individuo que estão no total de erros
+
 //==============================================================
 void ordenamentoIndividuos(TLista *L){
 	/* Reordena os indiv�duos por ordem ascendente de erros:
@@ -306,6 +385,11 @@ void poda(TLista *L){
 	   fim da Lista) at� que a popula��o volte ao seu
 	   Limite estabelecido na configura��o inicial 
 	   (L->Qtd_Populacao). */
+
+	//    while ( L->Qtd_Populacao =< 0){
+	// 	/* code */
+	//    }
+	   
 	   
 }
 //=============================================================
