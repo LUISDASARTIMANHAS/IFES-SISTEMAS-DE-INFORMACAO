@@ -263,13 +263,13 @@ void cruzamento(TLista *L){
 	*/
 	char filho[6];
 	char filho2[6];
-	for (int iFilhos = 0, iPaes = 0; iPaes < tam; iPaes++,iFilhos++) {
+	for (int iFilhos = 0, iPaes = 0; iPaes < MAX_Pesos; iPaes++,iFilhos++) {
 	    if(iPaes <= 2){
-	        filho[iFilhos] = pai[iPaes]
-	        filho2[iFilhos] = mae[iPaes]
+	        filho[iFilhos] = pai[iPaes];
+	        filho2[iFilhos] = mae[iPaes];
 	    }else{
-	        filho[iFilhos] = mae[iPaes]
-	        filho2[iFilhos] = pai[iPaes]
+	        filho[iFilhos] = mae[iPaes];
+	        filho2[iFilhos] = pai[iPaes];
 	    }
 	}
 	
