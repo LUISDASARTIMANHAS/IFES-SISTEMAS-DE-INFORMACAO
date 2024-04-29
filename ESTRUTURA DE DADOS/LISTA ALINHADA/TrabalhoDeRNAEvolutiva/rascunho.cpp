@@ -328,9 +328,13 @@ void treinamento(TLista *L){
 }
 
 void insereNoFinal(TLista *L,TIndividuo *descendente1, TIndividuo *descendente2, TIndividuo *fimLista){
+	printf("\n\t fim da lista -> descendente1");
 	fimLista->prox = descendente1;
+	printf("\n\t descendente1 -> descendente2");
 	descendente1->prox = descendente2;
+	printf("\n\t descendente2 -> NULL");
 	descendente2->prox = NULL;
+	printf("\n\t fim da lista -> descendente2");
 	fimLista->prox = descendente2;
 }
 //=============================================================
