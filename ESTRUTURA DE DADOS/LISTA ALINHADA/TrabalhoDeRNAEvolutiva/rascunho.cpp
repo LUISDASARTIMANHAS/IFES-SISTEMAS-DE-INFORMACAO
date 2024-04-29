@@ -326,6 +326,13 @@ void treinamento(TLista *L){
 	}//for
 	
 }
+
+void insereNoFinal(TLista *L,TIndividuo *descendente1, TIndividuo *descendente2, TIndividuo *fimLista){
+	fimLista->prox = descendente1;
+	descendente1->prox = descendente2;
+	descendente2->prox = NULL;
+	fimLista->prox = descendente2;
+}
 //=============================================================
 void cruzamento(TLista *L){
     TIndividuo *pai1, *pai2, *descendente1, *descendente2;
