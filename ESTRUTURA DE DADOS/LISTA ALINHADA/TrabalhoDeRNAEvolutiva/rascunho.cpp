@@ -1,5 +1,4 @@
-#include <iostream>
- /*
+/*
   Rede Neural Artificial Evolutiva (RNA-E)
   
   Os pesos são atualizados a partir de um algoritmo
@@ -331,12 +330,12 @@ void treinamento(TLista *L){
 void cruzamento(TLista *L){
     TIndividuo *pai1, *pai2, *descendente1, *descendente2;
     int pontoCorte, i;
-
     // Percorre a lista de indivíduos
     pai1 = L->populacao;
+	TLista listaFilhos;
     while (pai1 != NULL) {
         pai2 = pai1->prox;
-
+		printf("cruzando individuo %d com individuo %d\n",pai1->numero,pai2->numero);
         // Verifica se há um par de pais disponíveis
         if (pai2 != NULL) {
             // Cria os descendentes
@@ -366,8 +365,10 @@ void cruzamento(TLista *L){
             descendente2->erros = -1;
 
             // Insere os descendentes na população
-            pai1->prox = descendente1;
-            pai1 = descendente2->prox;
+			if (listaFilhos.individuoAtual == NULL){
+				listaFilhos.populacao = descendente1;
+			}
+
 
             // Atualiza o número total de indivíduos na população
             L->totalIndividuos += 2;
@@ -375,6 +376,7 @@ void cruzamento(TLista *L){
             // Se não houver par de pais disponíveis, interrompe o loop
             break;
         }
+		
     }
 
     // Liga o último indivíduo da lista principal com o primeiro da lista de filhos
@@ -411,8 +413,8 @@ void avaliacaoIndividuos(TLista *L){
                 n2 = licaoAtual->q;
 
                 // Calcula a soma ponderada nos neurônios da primeira camada
-                float soma_n3 = n1 * peso13 + n2 * peso23;
-                float soma_n4 = n1 * peso13 + n2 * peso23;
+                float soma_n3 = (n1 * peso13) + (n2 * peso23);
+                float soma_n4 = (n1 * peso13) + (n2 * peso23);
 
                 // Aplica a função de ativação nos neurônios da primeira camada
                 int excitado_n3 = (soma_n3 >= L->sinapseThreshold) ? 1 : 0;
@@ -437,7 +439,7 @@ void avaliacaoIndividuos(TLista *L){
             // Atualiza a quantidade de erros do indivíduo
             atual->erros = erros;
         }
-
+		//if(total de erros para repassar)
         // Avança para o próximo indivíduo na população
         atual = atual->prox;
     }
