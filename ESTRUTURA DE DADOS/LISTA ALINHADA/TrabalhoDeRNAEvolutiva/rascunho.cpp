@@ -338,27 +338,28 @@ void insereNoFinal(TLista *L,TIndividuo *descendente1, TIndividuo *descendente2,
 	fimLista->prox = descendente2;
 }
 //=============================================================
-void cruzamento(TLista *L){
-    TIndividuo *pai1, *pai2, *descendente1, *descendente2;
-    int pontoCorte, i;
-    // Percorre a lista de indivíduos
+void cruzamento(TLista *L) {
+    TIndividuo *pai1, *pai2, *descendente1, *descendente2, *fimLista;
+
+    // Inicializa o ponteiro fimLista no final da lista de individuos
+    fimLista = L->populacao;
+    while (fimLista->prox != NULL) {
+        fimLista = fimLista->prox;
+    }
+
+    // Começa com o primeiro indivíduo original
     pai1 = L->populacao;
-	TLista listaFilhos;
     while (pai1 != NULL) {
+        // Verifica se há outro indivíduo original após pai1
         pai2 = pai1->prox;
-		printf("cruzando individuo %d com individuo %d\n",pai1->numero,pai2->numero);
-        // Verifica se há um par de pais disponíveis
         if (pai2 != NULL) {
             // Cria os descendentes
             descendente1 = (TIndividuo *)malloc(sizeof(TIndividuo));
             descendente2 = (TIndividuo *)malloc(sizeof(TIndividuo));
 
-            // Define o ponto de corte
-            pontoCorte = MAX_Pesos / 2;
-
-            // Realiza o cruzamento nos pontos de corte
-            for (i = 0; i < MAX_Pesos; i++) {
-                if (i < pontoCorte) {
+            // Realiza o cruzamento na metade dos genes
+            for (int i = 0; i < MAX_Pesos; i++) {
+                if (i < MAX_Pesos / 2) {
                     descendente1->genes[i] = pai1->genes[i];
                     descendente2->genes[i] = pai2->genes[i];
                 } else {
@@ -376,26 +377,21 @@ void cruzamento(TLista *L){
             descendente2->erros = -1;
 
             // Insere os descendentes na população
-			if (listaFilhos.individuoAtual == NULL){
-				listaFilhos.populacao = descendente1;
-			}
-
+            if (L->populacao == NULL) {
+                L->populacao = descendente1;
+            } else {
+                fimLista->prox = descendente1;
+            }
 
             // Atualiza o número total de indivíduos na população
             L->totalIndividuos += 2;
         } else {
-            // Se não houver par de pais disponíveis, interrompe o loop
+            // Se não houver outro indivíduo original, termina a iteração
             break;
         }
-		
+        // Avança para o próximo indivíduo original na lista
+        pai1 = pai1->prox;
     }
-
-    // Liga o último indivíduo da lista principal com o primeiro da lista de filhos
-    TIndividuo *atual = L->populacao;
-    while (atual->prox != NULL) {
-        atual = atual->prox;
-    }
-    atual->prox = L->populacao->prox;
 }
 //==============================================================
 void avaliacaoIndividuos(TLista *L){
@@ -502,28 +498,15 @@ void ordenamentoIndividuos(TLista *L) {
 //==============================================================
 void promoveMutacoes(TLista *L) {
     int num_mutacoes = 0;
-
-    // Seleciona um indivíduo aleatório
-    int index = rand() % L->totalIndividuos;
     TIndividuo *atual = L->populacao;
-    for (int i = 0; i < index; i++) {
+
+    while (atual != NULL) {
+        if (num_mutacoes < L->Qtd_Mutacoes_por_vez && atual->erros > 0) {
+            atual->genes[rand() % MAX_Pesos] += (rand() % 2 == 0) ? -L->learningRate : L->learningRate;
+            num_mutacoes++;
+        }
+
         atual = atual->prox;
-    }
-
-    // Seleciona um gene aleatório para mutação
-    int gene_index = rand() % MAX_Pesos;
-
-    // Escolhe aleatoriamente se irá aumentar ou diminuir o valor do gene
-    int direction = rand() % 2 == 0 ? -1 : 1; // -1 para diminuir, 1 para aumentar
-
-    // Realiza a mutação no gene selecionado
-    atual->genes[gene_index] += direction * L->learningRate;
-
-    // Garante que o gene mutado permaneça no intervalo [0, 1]
-    if (atual->genes[gene_index] < 0) {
-        atual->genes[gene_index] = 0;
-    } else if (atual->genes[gene_index] > 1) {
-        atual->genes[gene_index] = 1;
     }
 }
 //==============================================================
@@ -544,15 +527,25 @@ void poda(TLista *L) {
 
     // Remove os indivíduos menos aptos até que o número de indivíduos volte ao limite
     for (int i = 0; i < num_excesso; i++) {
-        anterior->prox = NULL; // Remove a referência para o último indivíduo
-        free(atual); // Libera a memória do último indivíduo
-        atual = anterior; // Atualiza o último indivíduo para o anterior
-        anterior = NULL; // Atualiza o anterior para NULL
+        if (atual == L->populacao) {
+            // Caso especial: a lista de indivíduos tem apenas um elemento
+            L->populacao = atual->prox;
+            free(atual);
+            atual = L->populacao;
+            anterior = NULL;
+        } else {
+            anterior->prox = atual->prox;
+            free(atual);
+            atual = anterior->prox;
+        }
+
         L->totalIndividuos--; // Atualiza o número total de indivíduos na população
-        // Encontra o novo último indivíduo da população
-        while (atual->prox != NULL) {
-            anterior = atual;
-            atual = atual->prox;
+
+        // Atualiza o último indivíduo para o anterior
+        if (anterior != NULL) {
+            while (anterior->prox != NULL) {
+                anterior = anterior->prox;
+            }
         }
     }
 }
