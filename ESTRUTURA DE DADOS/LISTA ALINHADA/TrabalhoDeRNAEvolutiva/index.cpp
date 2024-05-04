@@ -16,6 +16,47 @@
 
 TLista listas;
 
+//=============================================================
+void treinamento(TLista *L){
+	printf("\n\n\t\t=====| INICIADO TREINAMENTO |=====\n\n");
+	fprintf(L->fp,"\n\n\tINICIO DO TREINAMENTO: ");
+	//ponteiro para a struct que armazena data e hora:
+	struct tm *data_hora_atual;
+	//vari�vel do tipo time_t para armazenar o tempo em segundos.
+	time_t segundos;
+	//Obetendo o tempo em segundos.
+	time(&segundos);
+	//Para converter de segundos para o tempo local
+	//utilizamos a fun��o localtime().
+	data_hora_atual = localtime(&segundos);
+	
+	fprintf(L->fp,"Dia: %d", data_hora_atual->tm_mday);
+	fprintf(L->fp,"   Mes: %d", data_hora_atual->tm_mon+1);
+	fprintf(L->fp,"   Ano: %d\n\n", data_hora_atual->tm_year+1900);
+	
+	fprintf(L->fp,"Dia da Semana: %d.\n", data_hora_atual->tm_wday);
+	
+	fprintf(L->fp,"%d", data_hora_atual->tm_hour);
+	fprintf(L->fp,":%d", data_hora_atual->tm_min);
+	fprintf(L->fp,":%d.\n\n", data_hora_atual->tm_sec);
+	
+	int i;
+	for(i= 0; i < L->Total_geracoes; i++){
+		cruzamento(L);
+		
+		if((i % L->Qtd_Geracoes_para_Mutacoes) == 0){
+			promoveMutacoes(L);
+		}//if
+		
+		avaliacaoIndividuos(L);
+		
+		ordenamentoIndividuos(L);
+		
+		poda(L);
+		
+	}//for
+	
+}
 
 //===| Fun��es |======================================
 void inicializa(TLista *L){
