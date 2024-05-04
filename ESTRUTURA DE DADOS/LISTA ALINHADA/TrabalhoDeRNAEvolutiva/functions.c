@@ -108,22 +108,16 @@ void inputS(char destino[]){
     scanf(" %100[^\n]s", destino);
 }
 
-char validSexo() {
-    char sx;
-    
-    printf("Insira seu sexo(F/M): ");
-    scanf(" %c", &sx);
-    sx = toupper(sx);
-    while (sx != 'F' && sx != 'M') {
-        printf("Sexo invalido.\n");
-        printf("Insira seu sexo(F/M): ");
-        scanf(" %c", &sx);
-        sx = toupper(sx);
+FILE * abrirArquivo(char * nomeArq, char * modo) {
+    // ABRIR o arquivo
+    FILE * arq;
+    arq = fopen( nomeArq, modo );
+    if ( arq == NULL) {
+        printf("\n\n\t ERRO ao abrir o arquivo. \n\n");
+        return NULL;
     }
-    return sx;
+    return arq;
 }
-
-
 // ============================= FIM DO BASE ======================
 int menu(){
 	int op;
@@ -146,7 +140,23 @@ int menu(){
 	return op;
 }
 
+void printIndividuos(TLista *L) {
+    TIndividuo *atual = L->populacao;
+    int i = 1;
 
+    printf("\n\t TABELA DE INDIVIDUOS:\n");
+    fprintf(L->fp,"\n\t TABELA DE INDIVIDUOS:\n");
+    printf("| \t=========================================================== \t|\n");
+    fprintf(L->fp,"| \t=========================================================== \t|\n");
+    while (atual!= NULL) {
+        printf("| \t(%d) \t| number = %d \t| address = %p \t| errors = %d \t|\n", i, atual->numero, &atual, atual->erros);
+        atual = atual->prox;
+        // fprintf(L->fp,"| \t(%d) \t| number = %d \t| address = %p \t| errors = %d \t|\n", i, atual->numero, &atual, atual->erros);
+        i++;
+    }
+    printf("| \t=========================================================== \t|\n");
+    fprintf(L->fp,"| \t=========================================================== \t|\n");
+}
 
 //==================== LOCALIZADORES ================
 TIndividuo *localizaIndividuoProx(TLista *lista, string nomeAluno, string nomeCurso){

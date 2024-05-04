@@ -55,7 +55,9 @@ void treinamento(TLista *L){
 		poda(L);
 		
 	}//for
-	
+	printf("Salvando dados...");
+	fclose(L->fp);
+	printf("Salvo com sucesso!");
 }
 
 //===| Fun��es |======================================
@@ -125,8 +127,11 @@ void inicializa(TLista *L){
 	estabelecendoSinapse(L,3,5, 1);
 	estabelecendoSinapse(L,4,5, 1);
 	
-	// L->fp = fopen("RNA_EVOLUTIVA_RELATORIO.TXT","w");
-    L->fp = fopen("../data/RNA_EVOLUTIVA_RELATORIO.TXT","w");
+	L->fp = abrirArquivo("data/RNA_EVOLUTIVA_RELATORIO.TXT", "w");
+    if(L->fp == NULL){
+        printf("Reabrindo arquivo no local da execucao");
+        L->fp = abrirArquivo("RNA_EVOLUTIVA_RELATORIO.TXT", "w");
+    }
 	
 	fprintf(L->fp,"\n\t\t=====| REDE NEURAL ARTIFICIAL EVOLUTIVA |=====\n\n");
 	fprintf(L->fp,"\tOBJETIVO: %s.\n\n\tLicoes:\n", L->objetivo);
@@ -154,6 +159,7 @@ void inicializa(TLista *L){
 
 //===| Programa Principal |===========================
 int main(){
+	SetConsoleOutputCP(65001);
 	inicializa(&listas);
 	treinamento(&listas);
 }
