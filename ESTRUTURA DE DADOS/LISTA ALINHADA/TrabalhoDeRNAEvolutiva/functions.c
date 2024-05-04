@@ -371,7 +371,6 @@ void promoveMutacoes(TLista *L){
 	  	//[0.8, 0.7, 0.3 + 0.2 , 0.6, 0.5, 0.4] 
 		//[0.8, 0.7, 0.5 , 0.6, 0.5, 0.4] 
 		// total de erros volta a ser -1
-	   
 }
 
 //=============================================================
@@ -382,15 +381,13 @@ float calcSomaPeso(float n1, float n2, float peso1, float peso2){
 	return soma;
 }
 
-void verificar(TIndividuo *indv, float n1, float n5, float soma, float sinapseThreshold, float resultadoEsperado){
+float verificar(float n1, float soma, float sinapseThreshold){
 	if(soma >= sinapseThreshold){
 		n1 = 1;
 	}else{
 		n1 = 0;
 	}
-	if(resultadoEsperado == n5){
-			indv->erros++;
-	}
+	return n1;
 }
 
 void avaliacaoIndividuos(TLista *L){
@@ -399,16 +396,47 @@ void avaliacaoIndividuos(TLista *L){
 	em termos de quantidade de erros cometidos nas li��es da 
 	RNA. O objetivo � MINIMIZAR esses ERROS at� ZERO.
 	*/
-	// TIndividuo *indv = indv->prox;
-	// float n1,n2,n3,n4,n5; 
-	// float peso13,peso21;
-	// float soma3;
-	// peso13 = indv[0];
-	// peso21 = indv[2];
-	// n1 = licao.p;
-	// n2 = licao.p;
-	// soma3 = calcSomaPeso(n1,n2,peso13,peso23);
-	// verificar();
+	TIndividuo *atual = (TIndividuo *)malloc(sizeof(TIndividuo));
+    TLicao *licaoAtual = (TLicao *)malloc(sizeof(TLicao));
+    atual = L->populacao;
+    while (atual != NULL){
+        if (atual->erros == -1){
+            atual->erros = 0;
+            licaoAtual = L->licoes;
+            while(licaoAtual != NULL){
+				float sinapseThreshold = L->sinapseThreshold;
+                float n3,soma3,n1,n2;
+                float peso13 = atual->genes[0];
+                float peso23 = atual->genes[2];
+
+				float n4,soma4;
+                float peso14 = atual->genes[1];
+                float peso24 = atual->genes[3];
+
+				float n5, soma5;
+                float peso15 = atual->genes[4];
+                float peso25 = atual->genes[5];
+
+                n1 = L->licoes->p;
+                n2 = L->licoes->q;
+                soma3 = calcSomaPeso(n1,n2,peso13,peso23);
+				n3 = verificar(n3,soma3,sinapseThreshold);
+
+                soma4 = calcSomaPeso(n2,n3,peso14,peso24);
+				n4 = verificar(n4,soma4,sinapseThreshold);
+
+                soma5 = calcSomaPeso(n3,n4,peso15,peso25);
+				n5 = verificar(n5,soma5,sinapseThreshold);
+
+                if (L->licoes->resultadoEsperado != n5){
+                    printf("Cometeu erro\n");
+                    atual->erros++;
+                }
+                licaoAtual = licaoAtual->prox;
+            }
+        }
+        atual = atual->prox;
+    }
 }
 
 
