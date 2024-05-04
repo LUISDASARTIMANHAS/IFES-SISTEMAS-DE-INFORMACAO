@@ -318,64 +318,55 @@ void printIndividuos(TLista *L) {
     TIndividuo *atual = L->populacao;
     int i = 1;
 
-    printf("\nList of individuals:\n");
+    printf("\n\t TABELA DE INDIVIDUOS:\n");
+    printf("| \t=========================================================== \t|\n");
     while (atual!= NULL) {
-        printf("Individual %d: number = %d, address = %p, errors = %d\n", i, atual->numero, (void *)atual, atual->erros);
+        printf("| \t(%d) \t| number = %d \t| address = %p \t| errors = %d \t|\n", i, atual->numero, (void *)atual, atual->erros);
         atual = atual->prox;
         i++;
     }
+    printf("| \t=========================================================== \t|\n");
 }
 //=============================================================
-void treinamento(TLista *L)
-{
-    printf("\n\n\t\t=====| INICIADO TREINAMENTO |=====\n\n");
-    fprintf(L->fp, "\n\n\tINICIO DO TREINAMENTO: ");
-    // ponteiro para a struct que armazena data e hora:
-    struct tm *data_hora_atual;
-    // variável do tipo time_t para armazenar o tempo em segundos.
-    time_t segundos;
-    // Obetendo o tempo em segundos.
-    time(&segundos);
-    // Para converter de segundos para o tempo local
-    // utilizamos a função localtime().
-    data_hora_atual = localtime(&segundos);
-
-    fprintf(L->fp, "Dia: %d", data_hora_atual->tm_mday);
-    fprintf(L->fp, "   Mes: %d", data_hora_atual->tm_mon);
-    fprintf(L->fp, "   Ano: %d\n\n", data_hora_atual->tm_year);
-
-    fprintf(L->fp, "Dia da Semana: %d.\n", data_hora_atual->tm_wday);
-
-    fprintf(L->fp, "%d", data_hora_atual->tm_hour);
-    fprintf(L->fp, ":%d", data_hora_atual->tm_min);
-    fprintf(L->fp, ":%d.\n\n", data_hora_atual->tm_sec);
-
-    // int i;
-    // for (i = 0; i < L->Total_geracoes; i++)
-    // {
-    //     printf("etapa cruzamento\n");
-    //     cruzamento(L);
-    //     printIndividuos(L);
-    //     if ((i % L->Qtd_Geracoes_para_Mutacoes) == 0)
-    //     {
-    //         printf("promovel mutacao\n");
-    //         promoveMutacoes(L);
-    //     } // if
-    //     printf("etapa da avaliacao de indivíduos\n");
-    //     avaliacaoIndividuos(L);
-    //     printf("etapa do ordenamento\n");
-    //     ordenamentoIndividuos(L);
-    //     printf("etapa da poda\n");
-    //     poda(L);
-    //     printf("Fim do primeiro loop\n");
-    // } // for
-    printf("etapa cruzamento\n");
-    cruzamento(L);
-    printIndividuos(L);
-    printf("etapa da avaliacao de indivíduos\n");
-    avaliacaoIndividuos(L);
-    printIndividuos(L);
-
+void treinamento(TLista *L){
+	printf("\n\n\t\t=====| INICIADO TREINAMENTO |=====\n\n");
+	fprintf(L->fp,"\n\n\tINICIO DO TREINAMENTO: ");
+	//ponteiro para a struct que armazena data e hora:
+	struct tm *data_hora_atual;
+	//vari�vel do tipo time_t para armazenar o tempo em segundos.
+	time_t segundos;
+	//Obetendo o tempo em segundos.
+	time(&segundos);
+	//Para converter de segundos para o tempo local
+	//utilizamos a fun��o localtime().
+	data_hora_atual = localtime(&segundos);
+	
+	fprintf(L->fp,"Dia: %d", data_hora_atual->tm_mday);
+	fprintf(L->fp,"   Mes: %d", data_hora_atual->tm_mon+1);
+	fprintf(L->fp,"   Ano: %d\n\n", data_hora_atual->tm_year+1900);
+	
+	fprintf(L->fp,"Dia da Semana: %d.\n", data_hora_atual->tm_wday);
+	
+	fprintf(L->fp,"%d", data_hora_atual->tm_hour);
+	fprintf(L->fp,":%d", data_hora_atual->tm_min);
+	fprintf(L->fp,":%d.\n\n", data_hora_atual->tm_sec);
+	
+	int i;
+	for(i= 0; i < L->Total_geracoes; i++){
+		cruzamento(L);
+		
+		if((i % L->Qtd_Geracoes_para_Mutacoes) == 0){
+			promoveMutacoes(L);
+		}//if
+		
+		avaliacaoIndividuos(L);
+		
+		ordenamentoIndividuos(L);
+		
+		poda(L);
+		
+	}//for
+	
 }
 //=============================================================
 void cruzamento(TLista *L)
@@ -448,7 +439,8 @@ void cruzamento(TLista *L)
         // Avança para o próximo indivíduo original na lista
         pai1 = pai1->prox;
     }
-    //printIndividuos(L);
+    printIndividuos(L);
+    system("PAUSE");
 }
 //==============================================================
 void avaliacaoIndividuos(TLista *L)
@@ -513,7 +505,8 @@ void avaliacaoIndividuos(TLista *L)
         //  Avança para o próximo indivíduo na população
         atual = atual->prox;
     }
-    //printIndividuos(L);
+    printIndividuos(L);
+    system("PAUSE");
 }
 //==============================================================
 void ordenamentoIndividuos(TLista *L)
@@ -564,7 +557,8 @@ void ordenamentoIndividuos(TLista *L)
         // Avança para o próximo indivíduo na lista
         atual = atual->prox;
     }
-    //printIndividuos(L);
+    printIndividuos(L);
+    system("PAUSE");
 }
 //==============================================================
 void promoveMutacoes(TLista *L)
