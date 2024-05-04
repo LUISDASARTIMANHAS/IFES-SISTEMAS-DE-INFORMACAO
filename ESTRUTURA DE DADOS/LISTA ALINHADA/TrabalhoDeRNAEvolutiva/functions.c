@@ -159,7 +159,7 @@ void printIndividuos(TLista *L) {
 }
 
 //==================== LOCALIZADORES ================
-TIndividuo *localizaIndividuoProx(TLista *lista, string nomeAluno, string nomeCurso){
+TIndividuo *localizaIndividuoProx(TLista *lista){
     TIndividuo *individuo;
 
 	while (individuo != NULL){
@@ -276,47 +276,82 @@ void estabelecendoSinapse(TLista *L,int neuronioDe, int neuronioAte, int camada)
 		atual->prox = novo;
 	}//if
 }
-//=============================================================
+
+// ====================CRUZAMENTO====================
+
+void insere(TLista *lista, TIndividuo *filho){
+    int inseriu = 0;
+    if (lista->populacao == NULL){
+        //Lista encontra-se vazia.
+        //Inserir o primeiro e unico elemento da lista ate agora
+        lista->populacao = filho;
+        lista->populacao->prox = NULL;
+        lista->totalIndividuos = 1;
+        inseriu = 1;
+    }else{
+        //Lista ja possui pelo menos 1 elemento
+        TIndividuo *atual = lista->populacao;
+        TIndividuo *anterior = NULL;
+        while (atual != NULL){
+            if (atual->numero > filho->numero){
+                if (atual == lista->populacao){
+                    // Inserir novo no inicio da lista
+                    filho->prox = atual;
+                    lista->populacao = filho;
+                }else{
+                    //Inserir novo no meio da lista
+                    filho->prox = atual;
+                    anterior->prox = filho;
+                }
+                inseriu = 1;
+                lista->totalIndividuos++;
+                break;
+            }
+            anterior = atual;
+            atual = atual->prox; //move para o próximo elemento
+        }
+        if (!inseriu){
+            //Inserir elemento no fim da lista
+            lista->populacao->prox = filho;
+            lista->populacao = filho;
+            lista->totalIndividuos++;
+        }
+        lista->totalIndividuos++;
+    }
+}
 void cruzamento(TLista *L){
-	/* Fun��o respons�vel pelo cruzamento de individuos.
-	   Cada casal (selecionado por proximidade) gera dois
-	   descendentes. E cada descendente herda segmentos
-	   do c�digo gen�tico de seus pais.
-	*/
-	// TIndividuo *filhote1 = (TIndividuo *)malloc(sizeof(TIndividuo));
-	// TIndividuo *filhote2 = (TIndividuo *)malloc(sizeof(TIndividuo));
+	/*Essa funçao deve ler cada um dos individuos da lista e cruza-los, ou seja pegar metade
+    dos genes de cada um dos pais selecionados e usar metade dos genes do primeiro individuo usado
+    e depois usar a outra metade de genes tirados do segundo individuo selecionado, devem ser feitos 2 individuos
+    novos de cada par de individuos selecionados da lista, esses individuos novos devem ser colocados em uma lista 
+    auxiliar e apos isso devem ser alocados para a lista principal de forma que a lista principal tenha todos 
+    os individuos interligados, no inicio os individuos originais e depois os individuos criados do cruzamento*/
+    TIndividuo *pai1, *pai2, *filho1, *filho2;
+    pai1 = L->populacao;
+    pai2 = pai1->prox;
+    while (pai2 != NULL) {
+        printf("Cruzando individuo %d com %d\n", pai1->numero, pai2->numero);
 
-	// filhote1->prox = NULL;
-	// filhote1->erros = -1;
-	// filhote1->genes;
-	// filhote1->numero = 0;
-
-	// filhote2->prox = NULL;
-	// filhote2->erros = -1;
-	// filhote2->genes;
-	// filhote2->numero = 0;
-
-	// for (int iFilhos = 0, iPaes = 0; iPaes < iPaes.genes; iPaes++,iFilhos++) {
-	//     if(iPaes <= 2){
-	//         filhote1[iFilhos] = pai[iPaes];
-	//         filhote2[iFilhos] = mae[iPaes];
-	//     }else{
-	//         filhote1[iFilhos] = mae[iPaes];
-	//         filhote2[iFilhos] = pai[iPaes];
-	//     }
-	// }
-	
-	
-	// if(L->neuronios == NULL){
-	// 	L->neuronios = novo;
-	// } else {
-	// 	TNeuronio *atual = L->neuronios;
-		
-	// 	while(atual->prox != NULL){
-	// 		atual = atual->prox;
-	// 	}//while
-	// 	atual->prox = novo;
-	// }//if
+        filho1 = (TIndividuo *)malloc(sizeof(TIndividuo));
+        filho2 = (TIndividuo *)malloc(sizeof(TIndividuo));
+        int metade = MAX_Pesos / 2;
+        for (int j = 0; j < metade; j++) {
+            filho1->genes[j] = pai1->genes[j];
+            filho2->genes[j] = pai2->genes[j];
+        }
+        for (int j = metade; j < MAX_Pesos; j++) {
+            filho1->genes[j] = pai2->genes[j];
+            filho2->genes[j] = pai1->genes[j];
+        }
+        filho1->erros = -1;
+        filho2->erros = -1;
+        filho1->prox = NULL;
+        filho2->prox = NULL;
+        insere(L, filho1);
+        insere(L, filho2);
+        pai1 = pai2;
+        pai2 = pai2->prox;
+    }
 }
 //==============================================================
 void promoveMutacoes(TLista *L){
