@@ -41,14 +41,14 @@ typedef struct tipoLicao {
 	int p;  //proposi��o P
 	int q;	//Proposi��o Q
 	int resultadoEsperado; //Proposi��o Composta P "E" Q (A Classe)
-	tipoLicao *prox;
+	struct tipoLicao *prox;
 }TLicao;
 
 typedef struct tipoIndividuo {
 	float genes[MAX_Pesos];
 	int erros;
 	int numero; //numero identificador
-	tipoIndividuo  *prox;
+	struct tipoIndividuo  *prox;
 }TIndividuo;
 
 typedef struct tipoSinapse {
@@ -56,14 +56,14 @@ typedef struct tipoSinapse {
 	int neuronio_origem;
 	int neuronio_destino;
 	float peso;
-	tipoSinapse *prox;
+	struct tipoSinapse *prox;
 }TSinapse;
 
 typedef struct tipoNeuronio {
 	int neuronio;
 	float soma;
 	float peso;
-	tipoNeuronio *prox;
+	struct tipoNeuronio *prox;
 }TNeuronio;
 
 typedef struct tipoLista{
@@ -117,6 +117,51 @@ FILE * abrirArquivo(char * nomeArq, char * modo) {
         return NULL;
     }
     return arq;
+}
+
+
+void atualizarHeap(int vetor[], int raiz, int n ) {
+	int filhoEsq = 2 * raiz + 1;
+	int filhoDir = 2 * raiz + 2;
+
+	int maior;
+	if ( filhoEsq >= n) {
+		// SEM NENHUM FILHO
+		return;
+	} else if ( filhoDir >= n ){
+		// SOMENTE o FILHO DA ESQUERDA
+		maior = filhoEsq;
+	} else if ( vetor[filhoEsq] > vetor[filhoDir]  ) {
+		maior = filhoEsq;
+	} else {
+		maior = filhoDir;
+	}
+
+	if ( vetor[maior] > vetor[raiz]  ) {
+		trocar(vetor, maior, raiz);
+		atualizarHeap(vetor, maior, n);
+	} else {
+		return;
+	}
+}
+
+void construirHeap(int vet[],int tam){
+    int i;
+
+	for(i = (tam/2)-1; i>=0; i--) {
+		atualizarHeap(vet, i, tam);
+	}
+}
+
+void heapSort(int vetor[], int tam ) {
+	long int n = tam;
+	construirHeap(vetor,n);
+	while (n > 1) {
+		trocar(vetor,0,n-1);
+		n--;
+		atualizarHeap(vetor,0,n);
+	}
+	printf("\n\nTROCAS");
 }
 // ============================= FIM DO BASE ======================
 int menu(){
@@ -398,11 +443,14 @@ void avaliacaoIndividuos(TLista *L){
 	*/
 	TIndividuo *atual = (TIndividuo *)malloc(sizeof(TIndividuo));
     TLicao *licaoAtual = (TLicao *)malloc(sizeof(TLicao));
+
     atual = L->populacao;
+
     while (atual != NULL){
         if (atual->erros == -1){
             atual->erros = 0;
             licaoAtual = L->licoes;
+
             while(licaoAtual != NULL){
 				float sinapseThreshold = L->sinapseThreshold;
                 float n3,soma3,n1,n2;
