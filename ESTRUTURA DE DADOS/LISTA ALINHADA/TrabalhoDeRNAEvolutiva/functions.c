@@ -439,9 +439,6 @@ void avaliacaoIndividuos(TLista *L){
     }
 }
 
-
-//a sacada do menos 1 so vai ler o individuo que estão no total de erros
-
 //==============================================================
 void ordenamentoIndividuos(TLista *L){
 	/* Reordena os indiv�duos por ordem ascendente de erros:
