@@ -83,7 +83,7 @@ void treinamento(TLista *L);
 void cruzamento(TLista *L);
 void avaliacaoIndividuos(TLista *L);
 void ordenamentoIndividuos(TLista *L);
-void promoveMutacoes(TLista *L);
+void promoveMutacoes(TLista *L,float learningRate);
 void poda(TLista *L);
 //===| Programa Principal |===========================
 int main(){
@@ -169,11 +169,7 @@ void inicializa(TLista *L){
 	estabelecendoSinapse(L,3,5, 1);
 	estabelecendoSinapse(L,4,5, 1);
 	
-	L->fp = abrirArquivo("data/RNA_EVOLUTIVA_RELATORIO.TXT", "w");
-    if(L->fp == NULL){
-        printf("Reabrindo arquivo no local da execucao");
-        L->fp = abrirArquivo("RNA_EVOLUTIVA_RELATORIO.TXT", "w");
-    }
+	L->fp = fopen("RNA_EVOLUTIVA_RELATORIO.TXT","w");
 	
 	fprintf(L->fp,"\n\t\t=====| REDE NEURAL ARTIFICIAL EVOLUTIVA |=====\n\n");
 	fprintf(L->fp,"\tOBJETIVO: %s.\n\n\tLicoes:\n", L->objetivo);
@@ -197,132 +193,124 @@ void inicializa(TLista *L){
 	printf("\n\n\tConfiguracao FINALIZADA!!!\n\n");
 	
 }
+
 //====================================================
-void geraIndividuos(TLista *L)
-{
-    TIndividuo *novo;
-    int i, x;
-
-    srand((unsigned)time(NULL));
-
-    for (i = 0; i < L->Qtd_Populacao; i++)
-    {
-        novo = (TIndividuo *)malloc(sizeof(TIndividuo));
-
-        novo->prox = NULL;
-        novo->numero = i + 1; // Correção aqui
-        novo->erros = -1;
-
-        for (x = 0; x < MAX_Pesos; x++)
-        {
-            novo->genes[x] = rand() % 101;
-            novo->genes[x] = novo->genes[x] / 100;
-        } // for
-
-        if (L->populacao == NULL)
-        {
-            L->populacao = novo;
-        }
-        else
-        {
-            TIndividuo *atual = L->populacao;
-
-            while (atual->prox != NULL)
-            {
-                atual = atual->prox;
-            } // while
-
-            atual->prox = novo;
-        } // if
-
-        L->totalIndividuos++;
-    } // for
+void geraIndividuos(TLista *L){
+	TIndividuo *novo;
+	int i, x;
+	
+    srand( (unsigned)time(NULL) );
+    
+    for(i= 0; i < L->Qtd_Populacao; i++){
+    	novo = (TIndividuo *)malloc(sizeof(TIndividuo));
+		
+		novo->prox = NULL;
+		novo->numero = i+1;		
+		novo->erros = -1;
+		
+		for(x=0; x < MAX_Pesos; x++){
+			novo->genes[x] = rand() % 101;
+			novo->genes[x] = novo->genes[x] / 100;
+		}//for
+		
+		if(L->populacao == NULL){
+			L->populacao = novo;
+		} else {
+			TIndividuo *atual = L->populacao;
+			
+			while(atual->prox != NULL){
+				atual = atual->prox;
+			}//while
+			
+			atual->prox = novo;
+		}//if
+		
+		L->totalIndividuos++;
+	}//for
 }
 //=====================================================
 void geraLicoes(TLista *L){
-    // TLicao *novo;
-    // int p, q;
+	TLicao *novo;
+	int p,q;
+	
+	insereLicao(L, 0, 0, 0);
+	insereLicao(L, 0, 1, 0);
+	insereLicao(L, 1, 0, 0);
+	insereLicao(L, 1, 1, 1);
 
-    insereLicao(L, 0, 0, 0);
-    insereLicao(L, 0, 1, 0);
-    insereLicao(L, 1, 0, 0);
-    insereLicao(L, 1, 1, 1);
 }
 //=====================================================
-void insereLicao(TLista *L, int p, int q, int resultado)
-{
-    TLicao *novo = (TLicao *)malloc(sizeof(TLicao));
-
-    novo->prox = NULL;
-    novo->p = p;
-    novo->q = q;
-    novo->resultadoEsperado = resultado;
-
-    if (L->licoes == NULL)
-    {
-        L->licoes = novo;
-    }
-    else
-    {
-        TLicao *atual = L->licoes;
-
-        while (atual->prox != NULL)
-        {
-            atual = atual->prox;
-        } // while
-        atual->prox = novo;
-    } // if
+void insereLicao(TLista *L, int p, int q, int resultado){
+	TLicao *novo = (TLicao *)malloc(sizeof(TLicao));
+	
+	novo->prox = NULL;
+	novo->p = p;
+	novo->q = q;
+	novo->resultadoEsperado = resultado;
+	
+	if(L->licoes == NULL){
+		L->licoes = novo;
+	} else {
+		TLicao *atual = L->licoes;
+		
+		while(atual->prox != NULL){
+			atual = atual->prox;			
+		}//while
+		atual->prox = novo;
+	}//if
 }
 //======================================================
-void insereNeuronio(TLista *L, int neuronio)
-{
-    TNeuronio *novo = (TNeuronio *)malloc(sizeof(TNeuronio));
-    novo->prox = NULL;
-    novo->neuronio = neuronio;
-    novo->peso = 0;
-    novo->soma = 0;
-
-    if (L->neuronios == NULL)
-    {
-        L->neuronios = novo;
-    }
-    else
-    {
-        TNeuronio *atual = L->neuronios;
-
-        while (atual->prox != NULL)
-        {
-            atual = atual->prox;
-        } // while
-        atual->prox = novo;
-    } // if
+void insereNeuronio(TLista *L, int neuronio){
+	TNeuronio *novo = (TNeuronio *)malloc(sizeof(TNeuronio));
+	novo->prox = NULL;
+	novo->neuronio = neuronio;
+	novo->peso = 0;
+	novo->soma = 0;
+	
+	if(L->neuronios == NULL){
+		L->neuronios = novo;
+	} else {
+		TNeuronio *atual = L->neuronios;
+		
+		while(atual->prox != NULL){
+			atual = atual->prox;
+		}//while
+		atual->prox = novo;
+	}//if
 }
 //======================================================
-void estabelecendoSinapse(TLista *L, int neuronioDe, int neuronioAte, int camada)
-{
-    TSinapse *novo = (TSinapse *)malloc(sizeof(TSinapse));
-    TSinapse *atual;
-
-    novo->prox = NULL;
-    novo->neuronio_origem = neuronioDe;
-    novo->neuronio_destino = neuronioAte;
-    novo->camada = camada;
-    novo->peso = 0;
-
-    if (L->pesos == NULL)
-    {
-        L->pesos = novo;
+void estabelecendoSinapse(TLista *L,int neuronioDe, int neuronioAte, int camada){
+	TSinapse *novo = (TSinapse *)malloc(sizeof(TSinapse));
+	TSinapse *atual;
+	
+	novo->prox = NULL;
+	novo->neuronio_origem = neuronioDe;
+	novo->neuronio_destino = neuronioAte;
+	novo->camada = camada;
+	novo->peso = 0;
+	
+	if(L->pesos == NULL){
+		L->pesos = novo;
+	} else {
+		atual = L->pesos;
+		
+		while(atual->prox != NULL){
+			atual = atual->prox;
+		}//while
+		atual->prox = novo;
+	}//if
+}
+//=============================================================
+int contaIndividuos(TLista *lista){
+    TIndividuo *atual = (TIndividuo *)malloc(sizeof(TIndividuo));
+    atual = lista->populacao;
+    int cont = 0;
+    while (atual != NULL){
+        atual = atual->prox;
+        cont++;
     }
-    else
-    {
-        atual = L->pesos;
-
-        while (atual->prox != NULL)
-        {
-            atual = atual->prox;
-        } // while
-        atual->prox = novo;
-    } // if
+    printf("O numero de individuos e: %d\n", cont);
+    return cont;
 }
 //=============================================================
 void descobreFimLista(TLista *L){
@@ -383,61 +371,95 @@ void treinamento(TLista *L){
 	fprintf(L->fp,":%d.\n\n", data_hora_atual->tm_sec);
 	
 	int i;
-	//for(i= 0; i < L->Total_geracoes; i++){
+	for(i= 0; i < L->Total_geracoes; i++){
 		cruzamento(L);
-		printIndividuos(L);
+        contaIndividuos(L);
 		if((i % L->Qtd_Geracoes_para_Mutacoes) == 0){
-			promoveMutacoes(L);
+			promoveMutacoes(L,L->learningRate);
 		}//if
 		avaliacaoIndividuos(L);
 		ordenamentoIndividuos(L);
 		poda(L);
-		printIndividuos(L);
-	//}//for
+        contaIndividuos(L);
+	}//for
 	printf("Salvando dados...");
 	fclose(L->fp);
 	printf("Salvo com sucesso!");
 }
 //=============================================================
-void inserirNoFim(TLista *lista, TIndividuo *filho) {
-    // Acessar o último nó da lista
-    TIndividuo *atual = lista->fimLista;
-    printf("Chegou aqui1\n");
-    // Atualizar o último nó da lista para o novo nó
-    lista->fimLista = filho;
-    printf("Chegou aqui2\n");
-    // Se a lista estiver vazia, o novo individuo sera o primeiro
-    if (atual == NULL) {
-        lista->populacao = filho;
-    } else {
-        // O próximo nó do último nó da lista deve ser o novo nó
-        atual->prox = filho;
+void inserirNoFimAux(TLista *L, TIndividuo *individuo) {
+    if (L->populacao == NULL) { // Se a lista estiver vazia
+        L->populacao = individuo;
+        L->totalIndividuos++;
+        return;
     }
-    // Incrementar o contador de elementos da lista
-    lista->totalIndividuos++;
-    printf("Chegou aqui3\n");
-    // Imprimir uma mensagem de confirmação
-    printf("Elemento inserido no fim da lista\n");
+    TIndividuo *aux = L->populacao;
+    while (aux->prox != NULL) { // Percorre até o último elemento da lista
+        aux = aux->prox;
+    }
+    aux->prox = individuo; // Adiciona o novo indivíduo ao final da lista
+    L->totalIndividuos++;
+}
+
+void inserirNoFim(TLista *L, TIndividuo *individuo) {
+    TIndividuo *clone = (TIndividuo *)malloc(sizeof(TIndividuo)); // Clonar o indivíduo
+    memcpy(clone, individuo, sizeof(TIndividuo));
+    clone->prox = NULL;
+    inserirNoFimAux(L, clone);
+}
+
+//==============================================================
+float randomFloat(float min, float max) {
+    float scale = rand() / (float) RAND_MAX; 
+    return min + scale * ( max - min ); 
+}
+
+void promoveMutacoes(TLista *L, float learningRate) {
+    // Verificar se a lista está vazia
+    if (L->populacao == NULL) {
+        printf("Lista de individuos vazia.\n");
+        return;
+    }
+
+    // Escolher um indivíduo aleatório
+    int index = rand() % L->totalIndividuos;
+    TIndividuo *individuo = L->populacao;
+
+    // Percorrer até o índice do indivíduo escolhido
+    for (int i = 0; i < index; i++) {
+        individuo = individuo->prox;
+    }
+
+    // Escolher um gene aleatório
+    int geneIndex = rand() % MAX_Pesos;
+
+    // Escolher aleatoriamente se a mutação será para cima ou para baixo
+    int upOrDown = rand() % 2; // 0 para baixo, 1 para cima
+
+    // Aplicar a mutação
+    if (upOrDown == 0) {
+        individuo->genes[geneIndex] -= learningRate; // Diminuir do valor do gene
+    } else {
+        individuo->genes[geneIndex] += learningRate; // Somar ao valor do gene
+    }
+
+    printf("Mutacao promovida com sucesso.\n");
 }
 //=============================================================
-void cruzamento(TLista *L){
-    /*Essa funçao deve ler cada um dos individuos da lista e cruza-los, ou seja pegar metade
-    dos genes de cada um dos pais selecionados e usar metade dos genes do primeiro individuo usado
-    e depois usar a outra metade de genes tirados do segundo individuo selecionado, devem ser feitos 2 individuos
-    novos de cada par de individuos selecionados da lista, esses individuos novos devem ser colocados em uma lista 
-    auxiliar e apos isso devem ser alocados para a lista principal de forma que a lista principal tenha todos 
-    os individuos interligados, no inicio os individuos originais e depois os individuos criados do cruzamento*/
+void cruzamento(TLista *L) {
     TIndividuo *pai1, *pai2, *filho1, *filho2;
     pai1 = L->populacao;
     pai2 = pai1->prox;
     int cont = L->totalIndividuos + 1;
-    while (pai2!= NULL) { // Iterate until the end of the list
+    int individuosCruzados = 0; 
+    int totalPais = L->totalIndividuos;
+
+    while (individuosCruzados < totalPais / 2) { // cruzar até a metade dos pais
         printf("Cruzando individuo %d com %d\n", pai1->numero, pai2->numero);
         filho1 = (TIndividuo *)malloc(sizeof(TIndividuo));
         filho2 = (TIndividuo *)malloc(sizeof(TIndividuo));
         filho1->prox = NULL;
         filho2->prox = NULL;
-        printf("Passou aqui1\n");
         int metade = MAX_Pesos / 2;
         for (int j = 0; j < metade; j++) {
             filho1->genes[j] = pai1->genes[j];
@@ -447,20 +469,22 @@ void cruzamento(TLista *L){
             filho1->genes[j] = pai2->genes[j];
             filho2->genes[j] = pai1->genes[j];
         }
-        printf("Passou aqui2\n");
         filho1->erros = -1;
         filho2->erros = -1;
         filho1->numero = cont;
-        filho2->numero = cont+1;
-        printf("Passou aqui3\n");
+        filho2->numero = cont + 1;
         cont = cont + 2;
-        inserirNoFim(L, filho1);
-        inserirNoFim(L, filho2);
-        printf("Passou aqui4\n");
-        if (pai1->prox == NULL) break; // Break the loop if at the end of the list
-        pai1 = pai1->prox;
-        pai2 = pai2->prox;
-        printf("Passou aqui5\n");
+        inserirNoFimAux(L, filho1);
+        inserirNoFimAux(L, filho2);
+        individuosCruzados += 1;
+        
+        // Avançar para os próximos pais, garantindo que não ultrapassemos o final da lista
+        if (pai1->prox != NULL) {
+            pai1 = pai1->prox;
+        }
+        if (pai2->prox != NULL) {
+            pai2 = pai2->prox;
+        }
     }
 }
 //==============================================================
@@ -559,10 +583,6 @@ void ordenamentoIndividuos(TLista *L){
     } while (trocou);
 }
 //==============================================================
-void promoveMutacoes(TLista *L){
-    
-}
-//==============================================================
 void poda(TLista *L){
 	// Verificar se o número total de indivíduos na lista é maior do que o máximo permitido
     if (L->totalIndividuos > L->Qtd_Populacao) {
@@ -574,14 +594,14 @@ void poda(TLista *L){
         TIndividuo *anterior = NULL;
 
         // Avançar até o último indivíduo da lista
-        while (atual != NULL && excedente > 0) {
+        while (atual!= NULL && excedente > 0) {
             anterior = atual;
             atual = atual->prox;
             excedente--;
         }
 
         // Se houver algum nó anterior, significa que precisamos cortar a lista
-        if (anterior != NULL) {
+        if (anterior!= NULL) {
             // Atualizar o ponteiro para o último nó da lista
             L->fimLista = anterior;
 
