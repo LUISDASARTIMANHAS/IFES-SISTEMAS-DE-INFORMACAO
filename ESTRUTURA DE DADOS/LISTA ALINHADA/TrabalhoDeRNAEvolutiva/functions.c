@@ -87,38 +87,42 @@ typedef struct tipoLista{
 
 // inputs personalizados e modificados EX: variavel = input();
 float input(){
-    float value;
-    fflush(stdin);
-    scanf("%f", &value);
-    return value;
+	float value;
+	fflush(stdin);
+	scanf("%f", &value);
+	return value;
 }
 
 float inputBoleano(){
-    int value;
-    do{
-    	fflush(stdin);
-    	scanf("%d", &value);
+	int value;
+	do{
+		fflush(stdin);
+		scanf("%d", &value);
 	}while(value != 1 && value != 0);
-    return value;
+	return value;
 }
 
 // inputs personalizados e modificados EX: inputS(&variavel);
 void inputS(char destino[]){
-    fflush(stdin);
-    scanf(" %100[^\n]s", destino);
+	fflush(stdin);
+	scanf(" %100[^\n]s", destino);
 }
 
 FILE * abrirArquivo(char * nomeArq, char * modo) {
-    // ABRIR o arquivo
-    FILE * arq;
-    arq = fopen( nomeArq, modo );
-    if ( arq == NULL) {
-        printf("\n\n\t ERRO ao abrir o arquivo. \n\n");
-        return NULL;
-    }
-    return arq;
+	// ABRIR o arquivo
+	FILE * arq;
+	arq = fopen( nomeArq, modo );
+	if ( arq == NULL) {
+		printf("\n\n\t ERRO ao abrir o arquivo. \n\n");
+		return NULL;
+	}
+	return arq;
 }
 
+// gera um numero aleatorio no intervalo n,
+int aleatorio(int n){
+    return (rand() % (n+1));
+}
 
 // void atualizarHeap(int vetor[], int raiz, int n ) {
 // 	int filhoEsq = 2 * raiz + 1;
@@ -176,26 +180,26 @@ int menu(){
 }
 
 void exibeIndividuos(TLista *L) {
-    TIndividuo *atual = L->populacao;
-    int i = 1;
+	TIndividuo *atual = L->populacao;
+	int i = 1;
 
-    printf("\n\t TABELA DE INDIVIDUOS:\n");
-    fprintf(L->fp,"\n\t TABELA DE INDIVIDUOS:\n");
-    printf("| \t=========================================================== \t|\n");
-    fprintf(L->fp,"| \t=========================================================== \t|\n");
-    while (atual!= NULL) {
-        printf("| \t(%d) \t| numero = %d \t| endr = %p \t| err = %d \t| %d -> %d \t|\n", i, atual->numero, &atual, atual->erros,atual->numero,atual->prox->numero);
-        atual = atual->prox;
-        // fprintf(L->fp,"| \t(%d) \t| number = %d \t| address = %p \t| errors = %d \t|\n", i, atual->numero, &atual, atual->erros);
-        i++;
-    }
-    printf("| \t=========================================================== \t|\n");
-    fprintf(L->fp,"| \t=========================================================== \t|\n");
+	printf("\n\t TABELA DE INDIVIDUOS:\n");
+	fprintf(L->fp,"\n\t TABELA DE INDIVIDUOS:\n");
+	printf("| \t=========================================================== \t|\n");
+	fprintf(L->fp,"| \t=========================================================== \t|\n");
+	while (atual!= NULL) {
+		printf("| \t(%d) \t| numero = %d \t| endr = %p \t| err = %d \t| %d -> %d \t|\n", i, atual->numero, &atual, atual->erros,atual->numero,atual->prox->numero);
+		atual = atual->prox;
+		// fprintf(L->fp,"| \t(%d) \t| number = %d \t| address = %p \t| errors = %d \t|\n", i, atual->numero, &atual, atual->erros);
+		i++;
+	}
+	printf("| \t=========================================================== \t|\n");
+	fprintf(L->fp,"| \t=========================================================== \t|\n");
 }
 
 //==================== LOCALIZADORES ================
 TIndividuo *localizaIndividuoProx(TLista *lista){
-    TIndividuo *individuo;
+	TIndividuo *individuo;
 
 	while (individuo != NULL){
 		if(individuo->numero){
@@ -210,10 +214,10 @@ void geraIndividuos(TLista *L){
 	TIndividuo *novo;
 	int i, x;
 	
-    srand( (unsigned)time(NULL) );
-    
-    for(i= 0; i < L->Qtd_Populacao; i++){
-    	novo = (TIndividuo *)malloc(sizeof(TIndividuo));
+	srand( (unsigned)time(NULL) );
+	
+	for(i= 0; i < L->Qtd_Populacao; i++){
+		novo = (TIndividuo *)malloc(sizeof(TIndividuo));
 		
 		novo->prox = NULL;
 		novo->numero = i+1;		
@@ -330,38 +334,48 @@ void estabelecendoSinapse(TLista *L,int neuronioDe, int neuronioAte, int camada)
 // }
 void cruzamento(TLista *L){
 	/*Essa funçao deve ler cada um dos individuos da lista e cruza-los, ou seja pegar metade
-    dos genes de cada um dos pais selecionados e usar metade dos genes do primeiro individuo usado
-    e depois usar a outra metade de genes tirados do segundo individuo selecionado, devem ser feitos 2 individuos
-    novos de cada par de individuos selecionados da lista, esses individuos novos devem ser colocados em uma lista 
-    auxiliar e apos isso devem ser alocados para a lista principal de forma que a lista principal tenha todos 
-    os individuos interligados, no inicio os individuos originais e depois os individuos criados do cruzamento*/
-    TIndividuo *pai1, *pai2, *filho1, *filho2;
-    pai1 = L->populacao;
-    pai2 = pai1->prox;
-    while (pai2 != NULL) {
-        printf("Cruzando individuo %d com %d\n", pai1->numero, pai2->numero);
+	dos genes de cada um dos pais selecionados e usar metade dos genes do primeiro individuo usado
+	e depois usar a outra metade de genes tirados do segundo individuo selecionado, devem ser feitos 2 individuos
+	novos de cada par de individuos selecionados da lista, esses individuos novos devem ser colocados em uma lista 
+	auxiliar e apos isso devem ser alocados para a lista principal de forma que a lista principal tenha todos 
+	os individuos interligados, no inicio os individuos originais e depois os individuos criados do cruzamento*/
+	TIndividuo *pai1, *pai2, *filho1, *filho2;
+	pai1 = L->populacao;
+	pai2 = pai1->prox;
+	while (pai2 != NULL) {
+		printf("Cruzando individuo %d com %d\n", pai1->numero, pai2->numero);
 
-        filho1 = (TIndividuo *)malloc(sizeof(TIndividuo));
-        filho2 = (TIndividuo *)malloc(sizeof(TIndividuo));
-        int metade = MAX_Pesos / 2;
+		filho1 = (TIndividuo *)malloc(sizeof(TIndividuo));
+		filho2 = (TIndividuo *)malloc(sizeof(TIndividuo));
+		int metade = MAX_Pesos / 2;
 		pai2 = pai2->prox;
 		pai1 = pai1->prox;
-    }
+	}
 	exibeIndividuos(L);
 }
 //==============================================================
 void promoveMutacoes(TLista *L){
 	/* Altera o c�digo gen�tico de um n�mero espec�fico
 	de indiv�duos (= L->Qtd_Mutacoes_por_vez). */
-	
+
 	// escolha ramdomica do individuo
-	// escolha ramdomica do gene 
-	//  escolha ramdomica do sentido para cima(+)
-	//  para baix (-)
+	int numIndividuoAleatorio = aleatorio(L->totalIndividuos);
+	int negative = aleatorio(1);
+	int genePos = aleatorio(5);
+	TIndividuo *atual = L->populacao;
+
+	printf("Individuo Sorteado: %d",numIndividuoAleatorio);
+	while (atual->numero != numIndividuoAleatorio){
+		atual = atual->prox;
+	}
+
+
+	// escolha ramdomica do gene escolha ramdomica do sentido para cima(+) ou para baixo (-)
 	// [0.8, 0.7, 0.3, 0.6, 0.5, 0.4]
 
+	// ex:
 	//  mudanca pra cima 
-	// gene 2 e igual a posicao do vetor [2]
+	// genePos 2 e igual a posicao do vetor [2]
 	// taxa de aprendizado 0.2
 
 	//[0.8, 0.7, 0.3 + 0.2 , 0.6, 0.5, 0.4] 
@@ -394,49 +408,49 @@ void avaliacaoIndividuos(TLista *L){
 	RNA. O objetivo � MINIMIZAR esses ERROS at� ZERO.
 	*/
 	TIndividuo *atual = (TIndividuo *)malloc(sizeof(TIndividuo));
-    TLicao *licaoAtual = (TLicao *)malloc(sizeof(TLicao));
+	TLicao *licaoAtual = (TLicao *)malloc(sizeof(TLicao));
 
-    atual = L->populacao;
+	atual = L->populacao;
 
-    while (atual != NULL){
-        if (atual->erros == -1){
-            atual->erros = 0;
-            licaoAtual = L->licoes;
+	while (atual != NULL){
+		if (atual->erros == -1){
+			atual->erros = 0;
+			licaoAtual = L->licoes;
 
-            while(licaoAtual != NULL){
+			while(licaoAtual != NULL){
 				float sinapseThreshold = L->sinapseThreshold;
-                float n3,soma3,n1,n2;
-                float peso13 = atual->genes[0];
-                float peso23 = atual->genes[2];
+				float n3,soma3,n1,n2;
+				float peso13 = atual->genes[0];
+				float peso23 = atual->genes[2];
 
 				float n4,soma4;
-                float peso14 = atual->genes[1];
-                float peso24 = atual->genes[3];
+				float peso14 = atual->genes[1];
+				float peso24 = atual->genes[3];
 
 				float n5, soma5;
-                float peso15 = atual->genes[4];
-                float peso25 = atual->genes[5];
+				float peso15 = atual->genes[4];
+				float peso25 = atual->genes[5];
 
-                n1 = L->licoes->p;
-                n2 = L->licoes->q;
-                soma3 = calcSomaPeso(n1,n2,peso13,peso23);
+				n1 = L->licoes->p;
+				n2 = L->licoes->q;
+				soma3 = calcSomaPeso(n1,n2,peso13,peso23);
 				n3 = verificar(n3,soma3,sinapseThreshold);
 
-                soma4 = calcSomaPeso(n2,n3,peso14,peso24);
+				soma4 = calcSomaPeso(n2,n3,peso14,peso24);
 				n4 = verificar(n4,soma4,sinapseThreshold);
 
-                soma5 = calcSomaPeso(n3,n4,peso15,peso25);
+				soma5 = calcSomaPeso(n3,n4,peso15,peso25);
 				n5 = verificar(n5,soma5,sinapseThreshold);
 
-                if (L->licoes->resultadoEsperado != n5){
-                    printf("Cometeu erro\n");
-                    atual->erros++;
-                }
-                licaoAtual = licaoAtual->prox;
-            }
-        }
-        atual = atual->prox;
-    }
+				if (L->licoes->resultadoEsperado != n5){
+					printf("Cometeu erro\n");
+					atual->erros++;
+				}
+				licaoAtual = licaoAtual->prox;
+			}
+		}
+		atual = atual->prox;
+	}
 	exibeIndividuos(L);
 }
 
