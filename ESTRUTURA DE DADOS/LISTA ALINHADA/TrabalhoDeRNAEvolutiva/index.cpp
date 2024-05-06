@@ -55,9 +55,9 @@ void treinamento(TLista *L){
 		poda(L);
 		
 	}//for
-	printf("Salvando dados...");
+	printf("Salvando dados...\n");
 	fclose(L->fp);
-	printf("Salvo com sucesso!");
+	printf("Salvo com sucesso!\n");
 }
 
 //===| Fun��es |======================================

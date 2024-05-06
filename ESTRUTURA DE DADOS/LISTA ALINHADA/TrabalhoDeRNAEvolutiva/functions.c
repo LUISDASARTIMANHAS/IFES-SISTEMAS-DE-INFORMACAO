@@ -162,20 +162,10 @@ int menu(){
 	int op;
 	printf("\n\n\t\t====| MENU |=====\n\n");
 	printf("\t0 - Sair (Encerrar a Aplicacao).\n\n");
-	printf("\t1 - Inserir DISCIPLINA.\n");
-	printf("\t2 - Exibe Todas as DISCIPLINAS.\n\n");
-	printf("\t3 - Inserir CURSO.\n");
-	printf("\t4 - Exibir Todos os CURSOS.\n\n");
-	printf("\t5 - Inserir ALUNO em CURSO.\n");
-	printf("\t6 - Exibir Todos os ALUNOS de CURSO especifico.\n");
-	printf("\t7 - Excluir ALUNO de CURSO.\n\n");
-	printf("\t8 - Inserir HISTORICO para ALUNO.\n");
-	printf("\t9 - Exibir HISTORICO de ALUNO.\n");
-	printf("\t10 - Excluir HISTORICO de ALUNO.\n\n");
 	do {
 		printf("Escolha sua opcao: ");
 		scanf(" %d", &op);
-	} while(op < 0 || op > 10);
+	} while(op < 0 || op > 1);
 	return op;
 }
 
@@ -193,7 +183,11 @@ void exibeIndividuos(TLista *L) {
 		printf("\t| numero = %d ",atual->numero);
 		printf("\t| endr = %p ",&atual);
 		printf("\t| err = %d ",atual->erros);
-		printf("\t| %d -> %d ",atual->numero,atual->prox->numero);
+		if(atual->prox == NULL){
+			printf("\t| %d -> NULL ",atual->numero);
+		}else{
+			printf("\t| %d -> %d ",atual->numero,atual->prox->numero);
+		}
 		printf("\t| genes = ");
 		for (j = 0; j < MAX_Pesos; j++){
 			printf("%.2f,",atual->genes[j]);
@@ -210,16 +204,18 @@ void exibeIndividuos(TLista *L) {
 }
 
 //==================== LOCALIZADORES ================
-TIndividuo *localizaIndividuoProx(TLista *lista){
-	TIndividuo *individuo;
-
-	while (individuo != NULL){
-		if(individuo->numero){
-			break;
-		}//if
-		individuo = individuo->prox;
-	}//while
-	return individuo;
+TIndividuo *localizaIndividuoFinal(TLista *lista){
+	TIndividuo *fimLista;
+	// TIndividuo *atual = lista->populacao;
+	TIndividuo *atual = (TIndividuo *)malloc(sizeof(TIndividuo));
+			
+			while(atual->prox != NULL){
+				atual = atual->prox;
+			}//while
+			
+			fimLista = atual->prox;
+			printf("\t| numero = %d ",fimLista->numero);
+	return fimLista;
 }
 //====================================================
 void geraIndividuos(TLista *L){
@@ -329,6 +325,28 @@ void estabelecendoSinapse(TLista *L,int neuronioDe, int neuronioAte, int camada)
 }
 
 // ====================CRUZAMENTO====================
+void inserirNoFim(TLista *lista, TIndividuo *filho) {
+    // Acessar o último nó da lista
+	TIndividuo *fimLista = localizaIndividuoFinal(L);
+    TIndividuo *atual = fimLista;
+    printf("Chegou aqui1\n");
+    // Atualizar o último nó da lista para o novo nó
+    fimLista = filho;
+    printf("Chegou aqui2\n");
+    // Se a lista estiver vazia, o novo individuo sera o primeiro
+    if (atual == NULL) {
+        lista->populacao = filho;
+    } else {
+        // O próximo nó do último nó da lista deve ser o novo nó
+        atual->prox = filho;
+    }
+    // Incrementar o contador de elementos da lista
+    lista->totalIndividuos++;
+    printf("Chegou aqui3\n");
+    // Imprimir uma mensagem de confirmação
+    printf("Elemento inserido no fim da lista\n");
+}
+
 void geraFilhos(TLista *L, TIndividuo *pai,TIndividuo *mae){
 	int metade = MAX_Pesos / 2;
 	int iFilhos,iPaes;
@@ -338,6 +356,7 @@ void geraFilhos(TLista *L, TIndividuo *pai,TIndividuo *mae){
 	TIndividuo *fimLista;
 
 	L->totalIndividuos = L->totalIndividuos + 1;
+	// L->totalIndividuos + 1;
 	filho1->numero = L->totalIndividuos;
 	L->totalIndividuos = L->totalIndividuos + 1;
 	filho2->numero = L->totalIndividuos;
@@ -354,26 +373,10 @@ void geraFilhos(TLista *L, TIndividuo *pai,TIndividuo *mae){
 			filho2->genes[iFilhos] = pai->genes[iPaes];
 		}
 	}
-	while (pai->prox !=NULL){
-		if (pai->prox == NULL){
-			printf("%d",pai->numero);
-			// fimLista = pai;
-			pai->prox = filho1;
-			filho1->prox = filho2;
-			filho2->prox = NULL;
-		}
-		pai = pai->prox;
-	}
-	printf("\t| numero = %d ",filho1->numero);
-		printf("\t| endr = %p ",&filho1);
-		printf("\t| err = %d ",filho1->erros);
-		printf("\t| %d -> %d ",filho1->numero,filho2->numero);
-		printf("\t| genes = ");
-		for (j = 0; j < MAX_Pesos; j++){
-			printf("%.2f,",filho1->genes[j]);
-		}
-		printf("\t|\n");
+	inserirNoFim(L, filho1);
+	inserirNoFim(L, filho2);
 }
+
 void cruzamento(TLista *L){
 	/*Essa funçao deve ler cada um dos individuos da lista e cruza-los, ou seja pegar metade
 	dos genes de cada um dos pais selecionados e usar metade dos genes do primeiro individuo usado
@@ -388,8 +391,9 @@ void cruzamento(TLista *L){
 		printf("Cruzando individuo %d com %d\n", pai1->numero, pai2->numero);
 
 		geraFilhos(L, pai1,pai2);
-		pai2 = pai2->prox;
-		pai1 = pai1->prox;
+		if (pai1->prox == NULL) break; // Break the loop if at the end of the list
+        pai1 = pai1->prox;
+        pai2 = pai2->prox;
 	}
 	exibeIndividuos(L);
 }
