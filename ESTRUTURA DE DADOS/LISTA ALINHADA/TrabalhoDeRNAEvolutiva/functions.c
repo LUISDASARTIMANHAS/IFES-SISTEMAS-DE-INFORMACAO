@@ -41,14 +41,14 @@ typedef struct tipoLicao {
 	int p;  //proposi��o P
 	int q;	//Proposi��o Q
 	int resultadoEsperado; //Proposi��o Composta P "E" Q (A Classe)
-	struct tipoLicao *prox;
+	tipoLicao *prox;
 }TLicao;
 
 typedef struct tipoIndividuo {
 	float genes[MAX_Pesos];
 	int erros;
 	int numero; //numero identificador
-	struct tipoIndividuo  *prox;
+	tipoIndividuo  *prox;
 }TIndividuo;
 
 typedef struct tipoSinapse {
@@ -56,14 +56,14 @@ typedef struct tipoSinapse {
 	int neuronio_origem;
 	int neuronio_destino;
 	float peso;
-	struct tipoSinapse *prox;
+	tipoSinapse *prox;
 }TSinapse;
 
 typedef struct tipoNeuronio {
 	int neuronio;
 	float soma;
 	float peso;
-	struct tipoNeuronio *prox;
+	tipoNeuronio *prox;
 }TNeuronio;
 
 typedef struct tipoLista{
@@ -313,6 +313,21 @@ void estabelecendoSinapse(TLista *L,int neuronioDe, int neuronioAte, int camada)
 }
 
 // ====================CRUZAMENTO====================
+// void geraFilhos(TIndividuo *filho1,TIndividuo *filho2 ,TIndividuo *filho1,TIndividuo *filho2 ){
+// 	char filho[];
+// 	char filho2 [];
+// 	for (let iFilhos = 0, iPaes = 0; iPaes < 6; iPaes++,iFilhos++) {
+// 		if(iPaes <= 2){
+// 			filho[iFilhos] = pai[iPaes]
+// 			filho2[iFilhos] = mae[iPaes]
+// 		}else{
+// 			filho[iFilhos] = mae[iPaes]
+// 			filho2[iFilhos] = pai[iPaes]
+// 		}
+// 		console.log(filho)
+// 		console.log(filho2)
+// 	}
+// }
 void cruzamento(TLista *L){
 	/*Essa funçao deve ler cada um dos individuos da lista e cruza-los, ou seja pegar metade
     dos genes de cada um dos pais selecionados e usar metade dos genes do primeiro individuo usado
@@ -326,31 +341,33 @@ void cruzamento(TLista *L){
     while (pai2 != NULL) {
         printf("Cruzando individuo %d com %d\n", pai1->numero, pai2->numero);
 
-        // filho1 = (TIndividuo *)malloc(sizeof(TIndividuo));
-        // filho2 = (TIndividuo *)malloc(sizeof(TIndividuo));
+        filho1 = (TIndividuo *)malloc(sizeof(TIndividuo));
+        filho2 = (TIndividuo *)malloc(sizeof(TIndividuo));
         int metade = MAX_Pesos / 2;
-		
+		pai2 = pai2->prox;
+		pai1 = pai1->prox;
     }
 	exibeIndividuos(L);
 }
 //==============================================================
 void promoveMutacoes(TLista *L){
 	/* Altera o c�digo gen�tico de um n�mero espec�fico
-	   de indiv�duos (= L->Qtd_Mutacoes_por_vez). */
-	   
-		// escolha ramdomica do individuo
-		// escolha ramdomica do gene 
-		//  escolha ramdomica do sentido para cima(+)
-		//  para baix (-)
-		// [0.8, 0.7, 0.3, 0.6, 0.5, 0.4]
+	de indiv�duos (= L->Qtd_Mutacoes_por_vez). */
+	
+	// escolha ramdomica do individuo
+	// escolha ramdomica do gene 
+	//  escolha ramdomica do sentido para cima(+)
+	//  para baix (-)
+	// [0.8, 0.7, 0.3, 0.6, 0.5, 0.4]
 
-		//  mudanca pra cima 
-		// gene 2 e igual a posicao do vetor [2]
-		// taxa de aprendizado 0.2
+	//  mudanca pra cima 
+	// gene 2 e igual a posicao do vetor [2]
+	// taxa de aprendizado 0.2
 
-	  	//[0.8, 0.7, 0.3 + 0.2 , 0.6, 0.5, 0.4] 
-		//[0.8, 0.7, 0.5 , 0.6, 0.5, 0.4] 
-		// total de erros volta a ser -1
+	//[0.8, 0.7, 0.3 + 0.2 , 0.6, 0.5, 0.4] 
+	//[0.8, 0.7, 0.5 , 0.6, 0.5, 0.4] 
+	// total de erros volta a ser -1
+	exibeIndividuos(L);
 }
 
 //=============================================================
@@ -420,6 +437,7 @@ void avaliacaoIndividuos(TLista *L){
         }
         atual = atual->prox;
     }
+	exibeIndividuos(L);
 }
 
 //==============================================================
@@ -447,6 +465,6 @@ void poda(TLista *L){
 	//    while ( L->Qtd_Populacao =< 0){
 	// 	/* code */
 	//    }
-	   
-	   
+
+	exibeIndividuos(L);
 }
