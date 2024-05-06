@@ -1,3 +1,4 @@
+#include <iostream>
 /*
     Rede Neural Artificial Evolutiva (RNA-E)
     Os pesos são atualizados a partir de um algoritmo genético que busca minimizar os erros na fase de treinamento.
@@ -211,7 +212,7 @@ void geraIndividuos(TLista *L)
         novo = (TIndividuo *)malloc(sizeof(TIndividuo));
 
         novo->prox = NULL;
-        novo->numero = i + 1;
+        novo->numero = i + 1; // Correção aqui
         novo->erros = -1;
 
         for (x = 0; x < MAX_Pesos; x++)
@@ -338,11 +339,23 @@ void descobreFimLista(TLista *L){
 void printIndividuos(TLista *L) {
     TIndividuo *atual = L->populacao;
     int i = 1;
-    int j = 0;
-    printf("List of individuals:\n");
-    while (atual != NULL){
-        printf("Individual %d: number = %d, address = %p, errors = %d\n", i, atual->numero, (void *)atual, atual->erros);
-        printf("Genes: %.2f %.2f %.2f %.2f %.2f %.2f\n",atual->genes[j],atual->genes[j+1],atual->genes[j+2],atual->genes[j+3],atual->genes[j+4],atual->genes[j+5]);
+    printf("Lista de individuos:\n");
+    while (atual!= NULL) {
+        printf("Individuo %d:\n", i);
+        printf("  Numero: %d\n", atual->numero);
+        printf("  Endereco de memoria: %p\n", (void *)atual);
+        printf("  Genes: ");
+        for (int j = 0; j < MAX_Pesos; j++) {
+            printf("%.2f ", atual->genes[j]);
+        }
+        printf("\n");
+        printf("  Erros: %d\n", atual->erros);
+        if (atual->prox!= NULL) {
+            printf("  Proximo individuo: %p\n", (void *)atual->prox);
+        } else {
+            printf("  Proximo individuo: NULL\n");
+        }
+        printf("\n");
         atual = atual->prox;
         i++;
     }
@@ -353,12 +366,12 @@ void treinamento(TLista *L){
 	fprintf(L->fp,"\n\n\tINICIO DO TREINAMENTO: ");
 	//ponteiro para a struct que armazena data e hora:
 	struct tm *data_hora_atual;
-	//vari�vel do tipo time_t para armazenar o tempo em segundos.
+	//vari?vel do tipo time_t para armazenar o tempo em segundos.
 	time_t segundos;
 	//Obetendo o tempo em segundos.
 	time(&segundos);
 	//Para converter de segundos para o tempo local
-	//utilizamos a fun��o localtime().
+	//utilizamos a fun??o localtime().
 	data_hora_atual = localtime(&segundos);
 	
 	fprintf(L->fp,"Dia: %d", data_hora_atual->tm_mday);
@@ -372,20 +385,17 @@ void treinamento(TLista *L){
 	fprintf(L->fp,":%d.\n\n", data_hora_atual->tm_sec);
 	
 	int i;
-	for(i= 0; i < L->Total_geracoes; i++){
+	//for(i= 0; i < L->Total_geracoes; i++){
 		cruzamento(L);
-		
+		printIndividuos(L);
 		if((i % L->Qtd_Geracoes_para_Mutacoes) == 0){
 			promoveMutacoes(L);
 		}//if
-		
 		avaliacaoIndividuos(L);
-		
 		ordenamentoIndividuos(L);
-		
 		poda(L);
-		
-	}//for
+		printIndividuos(L);
+	//}//for
 	printf("Salvando dados...");
 	fclose(L->fp);
 	printf("Salvo com sucesso!");
@@ -405,11 +415,12 @@ void insere(TLista *lista, TIndividuo *filho){
         TIndividuo *atual = lista->populacao;
         TIndividuo *anterior = NULL;
         while (atual != NULL){
-            if (atual->numero > filho->numero){
+            if (atual->numero < filho->numero){
                 if (atual == lista->populacao){
                     //Inserir novo no inicio da lista
                     filho->prox = atual;
                     lista->populacao = filho;
+                    printf("Nao deve cair aqui\n");
                 }else{
                     //Inserir novo no meio da lista
                     filho->prox = atual;
@@ -427,6 +438,7 @@ void insere(TLista *lista, TIndividuo *filho){
             lista->fimLista->prox = filho;
             lista->fimLista = filho;
             lista->totalIndividuos++;
+            printf("Deve cair aqui\n");
         }
         lista->totalIndividuos++;
     }
@@ -441,8 +453,13 @@ void cruzamento(TLista *L){
     os individuos interligados, no inicio os individuos originais e depois os individuos criados do cruzamento*/
     TIndividuo *pai1, *pai2, *filho1, *filho2;
     pai1 = L->populacao;
-    pai2 = pai1->prox;
+	pai2 = pai1->prox;
+	int cont = L->totalIndividuos + 1;
     while (pai2 != NULL) {
+    	// Se pai2 é nulo, interrompa o loop
+    	if (pai2 == NULL) {
+        	break;
+    	}
         printf("Cruzando individuo %d com %d\n", pai1->numero, pai2->numero);
 
         filho1 = (TIndividuo *)malloc(sizeof(TIndividuo));
@@ -458,66 +475,111 @@ void cruzamento(TLista *L){
         }
         filho1->erros = -1;
         filho2->erros = -1;
+        filho1->numero = cont;
+        filho2->numero = cont+1;
+        cont = cont + 2;
         filho1->prox = NULL;
         filho2->prox = NULL;
         insere(L, filho1);
         insere(L, filho2);
         pai1 = pai2;
-        pai2 = pai2->prox;
+    	pai2 = pai2->prox;
     }
 }
 //==============================================================
-void avaliacaoIndividuos(TLista *L){
-    TIndividuo *atual = (TIndividuo *)malloc(sizeof(TIndividuo));
-    TLicao *licaoAtual = (TLicao *)malloc(sizeof(TLicao));
-    atual = L->populacao;
-    while (atual != NULL){
-        if (atual->erros == -1){
+void avaliacaoIndividuos(TLista *L) {
+    TIndividuo *atual = L->populacao;
+    
+    while (atual != NULL) {
+        if (atual->erros == -1) {
             atual->erros = 0;
-            licaoAtual = L->licoes;
-            while(licaoAtual != NULL){
-                float n3,soma3,n1,n2;
+            TLicao *licaoAtual = L->licoes; // Corrigido aqui
+            
+            while (licaoAtual != NULL) {
+                float n3, soma3, n1, n2;
                 float peso13 = atual->genes[0];
                 float peso23 = atual->genes[2];
-                n1 = L->licoes->p;
-                n2 = L->licoes->q;
-                soma3 = (n1*peso13) + (n2*peso23);
-                if (soma3 >= L->sinapseThreshold){
+                n1 = licaoAtual->p; // Corrigido aqui
+                n2 = licaoAtual->q; // Corrigido aqui
+                soma3 = (n1 * peso13) + (n2 * peso23);
+                
+                if (soma3 >= L->sinapseThreshold) {
                     n3 = 1;
-                }else{
+                } else {
                     n3 = 0;
                 }
-                float n4,soma4;
+                
+                float n4, soma4;
                 float peso14 = atual->genes[1];
                 float peso24 = atual->genes[3];
-                soma4 = (n2*peso14) + (n3*peso24);
-                if (soma4 >= L->sinapseThreshold){
+                soma4 = (n2 * peso14) + (n3 * peso24);
+                
+                if (soma4 >= L->sinapseThreshold) {
                     n4 = 1;
-                }else{
+                } else {
                     n4 = 0;
                 }
+                
                 float n5, soma5;
                 float peso15 = atual->genes[4];
                 float peso25 = atual->genes[5];
-                soma5 = (n3*peso15) + (n4*peso25);
-                if (soma5 >= L->sinapseThreshold){
+                soma5 = (n3 * peso15) + (n4 * peso25);
+                
+                if (soma5 >= L->sinapseThreshold) {
                     n5 = 1;
-                }else{
+                } else {
                     n5 = 0;
                 }
-                if (L->licoes->resultadoEsperado != n5){
+                
+                if (licaoAtual->resultadoEsperado != n5) { // Corrigido aqui
                     printf("Cometeu erro\n");
                     atual->erros++;
                 }
+                
                 licaoAtual = licaoAtual->prox;
             }
         }
+        
         atual = atual->prox;
     }
 }
 //==============================================================
 void ordenamentoIndividuos(TLista *L){
-    
+    TIndividuo *atual, *anterior, *temp;
+    int trocou;
+
+    // Se a lista estiver vazia ou tiver apenas um elemento, não há nada a ordenar
+    if (L->populacao == NULL || L->populacao->prox == NULL) {
+        return;
+    }
+
+    do {
+        trocou = 0;
+        atual = L->populacao;
+        anterior = NULL;
+
+        while (atual->prox != NULL) {
+            // Se o número de erros do próximo indivíduo for maior que o atual, troque-os de lugar
+            if (atual->erros > atual->prox->erros) {
+                temp = atual->prox;
+                atual->prox = atual->prox->prox;
+                temp->prox = atual;
+
+                if (anterior != NULL) {
+                    anterior->prox = temp;
+                } else {
+                    // Se anterior for NULL, significa que estamos trocando o primeiro elemento da lista
+                    L->populacao = temp;
+                }
+
+                anterior = temp;
+                trocou = 1;
+            } else {
+                anterior = atual;
+                atual = atual->prox;
+            }
+        }
+    } while (trocou);
 }
 //==============================================================
 void promoveMutacoes(TLista *L){
@@ -525,6 +587,38 @@ void promoveMutacoes(TLista *L){
 }
 //==============================================================
 void poda(TLista *L){
+	// Verificar se o número total de indivíduos na lista é maior do que o máximo permitido
+    if (L->totalIndividuos > L->Qtd_Populacao) {
+        // Calcular quantos indivíduos excedentes precisam ser removidos
+        int excedente = L->totalIndividuos - L->Qtd_Populacao;
 
+        // Remover os indivíduos excedentes
+        TIndividuo *atual = L->populacao;
+        TIndividuo *anterior = NULL;
+
+        // Avançar até o último indivíduo da lista
+        while (atual != NULL && excedente > 0) {
+            anterior = atual;
+            atual = atual->prox;
+            excedente--;
+        }
+
+        // Se houver algum nó anterior, significa que precisamos cortar a lista
+        if (anterior != NULL) {
+            // Atualizar o ponteiro para o último nó da lista
+            L->fimLista = anterior;
+
+            // Definir o próximo nó após o último nó como NULL
+            anterior->prox = NULL;
+
+            // Atualizar o número total de indivíduos na lista
+            L->totalIndividuos = L->Qtd_Populacao;
+        } else {
+            // Se não houver nenhum nó anterior, significa que a lista inteira deve ser removida
+            L->populacao = NULL;
+            L->fimLista = NULL;
+            L->totalIndividuos = 0;
+        }
+    }
 }
-//=============================================================
+//==============================================================
