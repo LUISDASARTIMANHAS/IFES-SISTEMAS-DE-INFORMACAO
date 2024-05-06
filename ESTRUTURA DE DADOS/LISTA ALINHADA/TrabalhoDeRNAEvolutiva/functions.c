@@ -182,19 +182,31 @@ int menu(){
 void exibeIndividuos(TLista *L) {
 	TIndividuo *atual = L->populacao;
 	int i = 1;
+	int j;
+	int bytes;
 
 	printf("\n\t TABELA DE INDIVIDUOS:\n");
 	fprintf(L->fp,"\n\t TABELA DE INDIVIDUOS:\n");
-	printf("| \t=========================================================== \t|\n");
-	fprintf(L->fp,"| \t=========================================================== \t|\n");
-	while (atual!= NULL) {
-		printf("| \t(%d) \t| numero = %d \t| endr = %p \t| err = %d \t| %d -> %d \t|\n", i, atual->numero, &atual, atual->erros,atual->numero,atual->prox->numero);
-		atual = atual->prox;
-		// fprintf(L->fp,"| \t(%d) \t| number = %d \t| address = %p \t| errors = %d \t|\n", i, atual->numero, &atual, atual->erros);
+	while (atual->prox != NULL) {
+		// printf("| \t(%d) \t| numero = %d \t| endr = %p \t| err = %d \t| %d -> %d \t|\n", i, atual->numero, &atual, atual->erros,atual->numero,atual->prox->numero);
+		printf("| \t(%d) ",i);
+		printf("\t| numero = %d ",atual->numero);
+		printf("\t| endr = %p ",&atual);
+		printf("\t| err = %d ",atual->erros);
+		printf("\t| %d -> %d ",atual->numero,atual->prox->numero);
+		printf("\t| genes = ");
+		for (j = 0; j < MAX_Pesos; j++){
+			printf("%.2f,",atual->genes[j]);
+		}
+		printf("\t|\n");
+
+		fprintf(L->fp,"| \t(%d) \t| number = %d \t| address = %p \t| errors = %d \t|\n", i, atual->numero, &atual, atual->erros);
 		i++;
+		atual = atual->prox;
 	}
-	printf("| \t=========================================================== \t|\n");
-	fprintf(L->fp,"| \t=========================================================== \t|\n");
+	bytes = sizeof(TIndividuo) * i;
+	printf("TAM %dMbytes\n", bytes/1024);
+	fprintf(L->fp,"TAM %dMbytes\n", bytes/1024);
 }
 
 //==================== LOCALIZADORES ================
@@ -317,21 +329,28 @@ void estabelecendoSinapse(TLista *L,int neuronioDe, int neuronioAte, int camada)
 }
 
 // ====================CRUZAMENTO====================
-// void geraFilhos(TIndividuo *filho1,TIndividuo *filho2 ,TIndividuo *filho1,TIndividuo *filho2 ){
-// 	char filho[];
-// 	char filho2 [];
-// 	for (let iFilhos = 0, iPaes = 0; iPaes < 6; iPaes++,iFilhos++) {
-// 		if(iPaes <= 2){
-// 			filho[iFilhos] = pai[iPaes]
-// 			filho2[iFilhos] = mae[iPaes]
-// 		}else{
-// 			filho[iFilhos] = mae[iPaes]
-// 			filho2[iFilhos] = pai[iPaes]
-// 		}
-// 		console.log(filho)
-// 		console.log(filho2)
-// 	}
-// }
+void geraFilhos(TIndividuo *pai,TIndividuo *mae ,TIndividuo *filho1,TIndividuo *filho2 ){
+	int metade = MAX_Pesos / 2;
+	int iFilhos,iPaes;
+
+	for (iFilhos = 0, iPaes = 0; iPaes < MAX_Pesos; iPaes++,iFilhos++) {
+		if(iPaes <= 2){
+			filho1->genes[iFilhos] = pai->genes[iPaes];
+			filho2->genes[iFilhos] = mae->genes[iPaes];
+		}else{
+			filho1->genes[iFilhos] = mae->genes[iPaes];
+			filho2->genes[iFilhos] = pai->genes[iPaes];
+		}
+	}
+	while (mae->prox !=NULL){
+		if (mae->prox == NULL){
+			printf("%d",mae->numero);
+		}
+		mae = mae->prox;
+	}
+	filho1->prox = filho2;
+	filho2->prox = NULL;
+}
 void cruzamento(TLista *L){
 	/*Essa funçao deve ler cada um dos individuos da lista e cruza-los, ou seja pegar metade
 	dos genes de cada um dos pais selecionados e usar metade dos genes do primeiro individuo usado
@@ -347,7 +366,8 @@ void cruzamento(TLista *L){
 
 		filho1 = (TIndividuo *)malloc(sizeof(TIndividuo));
 		filho2 = (TIndividuo *)malloc(sizeof(TIndividuo));
-		int metade = MAX_Pesos / 2;
+
+		geraFilhos(pai1,pai2,filho1,filho2);
 		pai2 = pai2->prox;
 		pai1 = pai1->prox;
 	}
@@ -369,18 +389,22 @@ void promoveMutacoes(TLista *L){
 		atual = atual->prox;
 	}
 
-
 	// escolha ramdomica do gene escolha ramdomica do sentido para cima(+) ou para baixo (-)
+	if(negative == 1){
+		atual->genes[genePos] = atual->genes[genePos] - L->learningRate;
+	}else{
+		atual->genes[genePos] = atual->genes[genePos] + L->learningRate;
+	}
+	// total de erros volta a ser -1
+	atual->erros = -1;
 	// [0.8, 0.7, 0.3, 0.6, 0.5, 0.4]
-
 	// ex:
-	//  mudanca pra cima 
+	//  mudanca pra cima
 	// genePos 2 e igual a posicao do vetor [2]
 	// taxa de aprendizado 0.2
 
 	//[0.8, 0.7, 0.3 + 0.2 , 0.6, 0.5, 0.4] 
 	//[0.8, 0.7, 0.5 , 0.6, 0.5, 0.4] 
-	// total de erros volta a ser -1
 	exibeIndividuos(L);
 }
 
@@ -409,9 +433,9 @@ void avaliacaoIndividuos(TLista *L){
 	*/
 	TIndividuo *atual = (TIndividuo *)malloc(sizeof(TIndividuo));
 	TLicao *licaoAtual = (TLicao *)malloc(sizeof(TLicao));
-
 	atual = L->populacao;
 
+	printf("AVALIANDO INDIVIDUOS...");
 	while (atual != NULL){
 		if (atual->erros == -1){
 			atual->erros = 0;
