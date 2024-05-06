@@ -5,7 +5,6 @@
 
 */
 
-#include <windows.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -87,9 +86,8 @@ void ordenamentoIndividuos(TLista *L);
 void promoveMutacoes(TLista *L);
 void poda(TLista *L);
 //===| Programa Principal |===========================
-int main()
-{
-    SetConsoleOutputCP(65001);
+int main(){
+    
     inicializa(&lista);
     treinamento(&lista);
 }
@@ -401,47 +399,25 @@ void treinamento(TLista *L){
 	printf("Salvo com sucesso!");
 }
 //=============================================================
-void insere(TLista *lista, TIndividuo *filho){
-    int inseriu = 0;
-    if (lista->populacao == NULL){
-        //Lista encontra-se vazia.
-        //Inserir o primeiro e unico elemento da lista ate agora
+void inserirNoFim(TLista *lista, TIndividuo *filho) {
+    // Acessar o último nó da lista
+    TIndividuo *atual = lista->fimLista;
+    printf("Chegou aqui1\n");
+    // Atualizar o último nó da lista para o novo nó
+    lista->fimLista = filho;
+    printf("Chegou aqui2\n");
+    // Se a lista estiver vazia, o novo individuo sera o primeiro
+    if (atual == NULL) {
         lista->populacao = filho;
-        lista->populacao->prox = NULL;
-        lista->totalIndividuos = 1;
-        inseriu = 1;
-    }else{
-        //Lista ja possui pelo menos 1 elemento
-        TIndividuo *atual = lista->populacao;
-        TIndividuo *anterior = NULL;
-        while (atual != NULL){
-            if (atual->numero < filho->numero){
-                if (atual == lista->populacao){
-                    //Inserir novo no inicio da lista
-                    filho->prox = atual;
-                    lista->populacao = filho;
-                    printf("Nao deve cair aqui\n");
-                }else{
-                    //Inserir novo no meio da lista
-                    filho->prox = atual;
-                    anterior->prox = filho;
-                }
-                inseriu = 1;
-                lista->totalIndividuos++;
-                break;
-            }
-            anterior = atual;
-            atual = atual->prox; //move para o próximo elemento
-        }
-        if (!inseriu){
-            //Inserir elemento no fim da lista
-            lista->fimLista->prox = filho;
-            lista->fimLista = filho;
-            lista->totalIndividuos++;
-            printf("Deve cair aqui\n");
-        }
-        lista->totalIndividuos++;
+    } else {
+        // O próximo nó do último nó da lista deve ser o novo nó
+        atual->prox = filho;
     }
+    // Incrementar o contador de elementos da lista
+    lista->totalIndividuos++;
+    printf("Chegou aqui3\n");
+    // Imprimir uma mensagem de confirmação
+    printf("Elemento inserido no fim da lista\n");
 }
 //=============================================================
 void cruzamento(TLista *L){
@@ -453,17 +429,15 @@ void cruzamento(TLista *L){
     os individuos interligados, no inicio os individuos originais e depois os individuos criados do cruzamento*/
     TIndividuo *pai1, *pai2, *filho1, *filho2;
     pai1 = L->populacao;
-	pai2 = pai1->prox;
-	int cont = L->totalIndividuos + 1;
-    while (pai2 != NULL) {
-    	// Se pai2 é nulo, interrompa o loop
-    	if (pai2 == NULL) {
-        	break;
-    	}
+    pai2 = pai1->prox;
+    int cont = L->totalIndividuos + 1;
+    while (pai2!= NULL) { // Iterate until the end of the list
         printf("Cruzando individuo %d com %d\n", pai1->numero, pai2->numero);
-
         filho1 = (TIndividuo *)malloc(sizeof(TIndividuo));
         filho2 = (TIndividuo *)malloc(sizeof(TIndividuo));
+        filho1->prox = NULL;
+        filho2->prox = NULL;
+        printf("Passou aqui1\n");
         int metade = MAX_Pesos / 2;
         for (int j = 0; j < metade; j++) {
             filho1->genes[j] = pai1->genes[j];
@@ -473,17 +447,20 @@ void cruzamento(TLista *L){
             filho1->genes[j] = pai2->genes[j];
             filho2->genes[j] = pai1->genes[j];
         }
+        printf("Passou aqui2\n");
         filho1->erros = -1;
         filho2->erros = -1;
         filho1->numero = cont;
         filho2->numero = cont+1;
+        printf("Passou aqui3\n");
         cont = cont + 2;
-        filho1->prox = NULL;
-        filho2->prox = NULL;
-        insere(L, filho1);
-        insere(L, filho2);
-        pai1 = pai2;
-    	pai2 = pai2->prox;
+        inserirNoFim(L, filho1);
+        inserirNoFim(L, filho2);
+        printf("Passou aqui4\n");
+        if (pai1->prox == NULL) break; // Break the loop if at the end of the list
+        pai1 = pai1->prox;
+        pai2 = pai2->prox;
+        printf("Passou aqui5\n");
     }
 }
 //==============================================================
