@@ -74,6 +74,7 @@ typedef struct tipoLista{
 	TNeuronio *neuronios;
 	TSinapse *pesos;
 	TIndividuo *populacao;
+	TIndividuo *fimLista;
 	TIndividuo *individuoAtual;
 	int totalIndividuos;
 	int Qtd_Populacao;
@@ -123,39 +124,6 @@ FILE * abrirArquivo(char * nomeArq, char * modo) {
 int aleatorio(int n){
     return (rand() % (n+1));
 }
-
-// void atualizarHeap(int vetor[], int raiz, int n ) {
-// 	int filhoEsq = 2 * raiz + 1;
-// 	int filhoDir = 2 * raiz + 2;
-
-// 	int maior;
-// 	if ( filhoEsq >= n) {
-// 		// SEM NENHUM FILHO
-// 		return;
-// 	} else if ( filhoDir >= n ){
-// 		// SOMENTE o FILHO DA ESQUERDA
-// 		maior = filhoEsq;
-// 	} else if ( vetor[filhoEsq] > vetor[filhoDir]  ) {
-// 		maior = filhoEsq;
-// 	} else {
-// 		maior = filhoDir;
-// 	}
-
-// 	if ( vetor[maior] > vetor[raiz]  ) {
-// 		trocar(vetor, maior, raiz);
-// 		atualizarHeap(vetor, maior, n);
-// 	} else {
-// 		return;
-// 	}
-// }
-
-// void construirHeap(int vet[],int tam){
-//     int i;
-
-// 	for(i = (tam/2)-1; i>=0; i--) {
-// 		atualizarHeap(vet, i, tam);
-// 	}
-// }
 
 // ============================= FIM DO BASE ======================
 int menu(){
@@ -325,38 +293,33 @@ void estabelecendoSinapse(TLista *L,int neuronioDe, int neuronioAte, int camada)
 }
 
 // ====================CRUZAMENTO====================
-void inserirNoFim(TLista *lista, TIndividuo *filho) {
-    // Acessar o último nó da lista
-	TIndividuo *fimLista = localizaIndividuoFinal(L);
-    TIndividuo *atual = fimLista;
-    printf("Chegou aqui1\n");
-    // Atualizar o último nó da lista para o novo nó
-    fimLista = filho;
-    printf("Chegou aqui2\n");
-    // Se a lista estiver vazia, o novo individuo sera o primeiro
-    if (atual == NULL) {
-        lista->populacao = filho;
-    } else {
-        // O próximo nó do último nó da lista deve ser o novo nó
-        atual->prox = filho;
+void inserirNoFimAux(TLista *L, TIndividuo *individuo) {
+    if (L->populacao == NULL) { // Se a lista estiver vazia
+        L->populacao = individuo;
+        L->totalIndividuos++;
+        return;
     }
-    // Incrementar o contador de elementos da lista
-    lista->totalIndividuos++;
-    printf("Chegou aqui3\n");
-    // Imprimir uma mensagem de confirmação
-    printf("Elemento inserido no fim da lista\n");
+    TIndividuo *aux = L->populacao;
+    while (aux->prox != NULL) { // Percorre até o último elemento da lista
+        aux = aux->prox;
+    }
+    aux->prox = individuo; // Adiciona o novo indivíduo ao final da lista
+    L->totalIndividuos++;
+}
+
+void inserirNoFim(TLista *L, TIndividuo *individuo) {
+    TIndividuo *clone = (TIndividuo *)malloc(sizeof(TIndividuo)); // Clonar o indivíduo
+    memcpy(clone, individuo, sizeof(TIndividuo));
+    clone->prox = NULL;
+    inserirNoFimAux(L, clone);
 }
 
 void geraFilhos(TLista *L, TIndividuo *pai,TIndividuo *mae){
-	int metade = MAX_Pesos / 2;
 	int iFilhos,iPaes;
-	int j;
 	TIndividuo *filho1 = (TIndividuo *)malloc(sizeof(TIndividuo));
 	TIndividuo *filho2 = (TIndividuo *)malloc(sizeof(TIndividuo));
-	TIndividuo *fimLista;
 
 	L->totalIndividuos = L->totalIndividuos + 1;
-	// L->totalIndividuos + 1;
 	filho1->numero = L->totalIndividuos;
 	L->totalIndividuos = L->totalIndividuos + 1;
 	filho2->numero = L->totalIndividuos;
@@ -384,16 +347,24 @@ void cruzamento(TLista *L){
 	novos de cada par de individuos selecionados da lista, esses individuos novos devem ser colocados em uma lista 
 	auxiliar e apos isso devem ser alocados para a lista principal de forma que a lista principal tenha todos 
 	os individuos interligados, no inicio os individuos originais e depois os individuos criados do cruzamento*/
-	TIndividuo *pai1, *pai2;
-	pai1 = L->populacao;
-	pai2 = pai1->prox;
-	while (pai2 != NULL) {
+	TIndividuo *pai1 = L->populacao;
+	TIndividuo *pai2 = pai1->prox;
+	int individuosCruzados = 0;
+    int totalPais = L->totalIndividuos;
+
+	while (individuosCruzados < totalPais / 2) {
 		printf("Cruzando individuo %d com %d\n", pai1->numero, pai2->numero);
 
 		geraFilhos(L, pai1,pai2);
-		if (pai1->prox == NULL) break; // Break the loop if at the end of the list
-        pai1 = pai1->prox;
-        pai2 = pai2->prox;
+		individuosCruzados += 1;
+        
+        // Avançar para os próximos pais, garantindo que não ultrapassemos o final da lista
+        if (pai1->prox != NULL) {
+            pai1 = pai1->prox;
+        }
+        if (pai2->prox != NULL) {
+            pai2 = pai2->prox;
+        }
 	}
 	exibeIndividuos(L);
 }
@@ -442,8 +413,10 @@ float calcSomaPeso(float n1, float n2, float peso1, float peso2){
 
 float verificar(float n1, float soma, float sinapseThreshold){
 	if(soma >= sinapseThreshold){
+		printf("Cometeu erro\n");
 		n1 = 1;
 	}else{
+		printf("Passou no teste\n");
 		n1 = 0;
 	}
 	return n1;
@@ -506,16 +479,41 @@ void avaliacaoIndividuos(TLista *L){
 void ordenamentoIndividuos(TLista *L){
 	/* Reordena os indiv�duos por ordem ascendente de erros: 
 	os indiv�duos que cometeram menos erros dever�o permanecer no in�cio da Lista e os que cometeram mais erros dever�o ficar no final da mesma Lista. */
-	// int n = L->totalIndividuos;
-	// TIndividuo pop =  L->populacao;
-	
-	// construirHeap(pop,n);
-	// while (n > 1) {
-	// 	trocar(pop,0,n-1);
-	// 	n--;
-	// 	atualizarHeap(pop,0,n);
-	// }
-	// printf("\n\nTROCAS");
+	TIndividuo *atual, *anterior, *temp;
+    int trocou;
+
+    // Se a lista estiver vazia ou tiver apenas um elemento, não há nada a ordenar
+    if (L->populacao == NULL || L->populacao->prox == NULL) {
+        return;
+    }
+
+    do {
+        trocou = 0;
+        atual = L->populacao;
+        anterior = NULL;
+
+        while (atual->prox != NULL) {
+            // Se o número de erros do próximo indivíduo for maior que o atual, troque-os de lugar
+            if (atual->erros > atual->prox->erros) {
+                temp = atual->prox;
+                atual->prox = atual->prox->prox;
+                temp->prox = atual;
+
+                if (anterior != NULL) {
+                    anterior->prox = temp;
+                } else {
+                    // Se anterior for NULL, significa que estamos trocando o primeiro elemento da lista
+                    L->populacao = temp;
+                }
+
+                anterior = temp;
+                trocou = 1;
+            } else {
+                anterior = atual;
+                atual = atual->prox;
+            }
+        }
+    } while (trocou);
 }
 //==============================================================
 void poda(TLista *L){
@@ -524,9 +522,37 @@ void poda(TLista *L){
 	   Limite estabelecido na configura��o inicial 
 	   (L->Qtd_Populacao). */
 
-	//    while ( L->Qtd_Populacao =< 0){
-	// 	/* code */
-	//    }
+	if (L->totalIndividuos > L->Qtd_Populacao) {
+        // Calcular quantos indivíduos excedentes precisam ser removidos
+        int excedente = L->totalIndividuos - L->Qtd_Populacao;
 
+        // Remover os indivíduos excedentes
+        TIndividuo *atual = L->populacao;
+        TIndividuo *anterior = NULL;
+
+        // Avançar até o último indivíduo da lista
+        while (atual!= NULL && excedente > 0) {
+            anterior = atual;
+            atual = atual->prox;
+            excedente--;
+        }
+
+        // Se houver algum nó anterior, significa que precisamos cortar a lista
+        if (anterior!= NULL) {
+            // Atualizar o ponteiro para o último nó da lista
+            L->fimLista = anterior;
+
+            // Definir o próximo nó após o último nó como NULL
+            anterior->prox = NULL;
+
+            // Atualizar o número total de indivíduos na lista
+            L->totalIndividuos = L->Qtd_Populacao;
+        } else {
+            // Se não houver nenhum nó anterior, significa que a lista inteira deve ser removida
+            L->populacao = NULL;
+            L->fimLista = NULL;
+            L->totalIndividuos = 0;
+        }
+    }
 	exibeIndividuos(L);
 }
