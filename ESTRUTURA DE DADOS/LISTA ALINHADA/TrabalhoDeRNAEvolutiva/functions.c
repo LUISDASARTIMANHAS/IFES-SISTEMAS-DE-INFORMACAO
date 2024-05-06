@@ -187,7 +187,7 @@ void exibeIndividuos(TLista *L) {
 
 	printf("\n\t TABELA DE INDIVIDUOS:\n");
 	fprintf(L->fp,"\n\t TABELA DE INDIVIDUOS:\n");
-	while (atual->prox != NULL) {
+	while (atual != NULL) {
 		// printf("| \t(%d) \t| numero = %d \t| endr = %p \t| err = %d \t| %d -> %d \t|\n", i, atual->numero, &atual, atual->erros,atual->numero,atual->prox->numero);
 		printf("| \t(%d) ",i);
 		printf("\t| numero = %d ",atual->numero);
@@ -329,10 +329,22 @@ void estabelecendoSinapse(TLista *L,int neuronioDe, int neuronioAte, int camada)
 }
 
 // ====================CRUZAMENTO====================
-void geraFilhos(TIndividuo *pai,TIndividuo *mae ,TIndividuo *filho1,TIndividuo *filho2 ){
+void geraFilhos(TLista *L, TIndividuo *pai,TIndividuo *mae){
 	int metade = MAX_Pesos / 2;
 	int iFilhos,iPaes;
+	int j;
+	TIndividuo *filho1 = (TIndividuo *)malloc(sizeof(TIndividuo));
+	TIndividuo *filho2 = (TIndividuo *)malloc(sizeof(TIndividuo));
+	TIndividuo *fimLista;
 
+	L->totalIndividuos = L->totalIndividuos + 1;
+	filho1->numero = L->totalIndividuos;
+	L->totalIndividuos = L->totalIndividuos + 1;
+	filho2->numero = L->totalIndividuos;
+	filho1->erros = -1;
+	filho2->erros = -1;
+	filho1->prox = NULL;
+	filho2->prox = NULL;
 	for (iFilhos = 0, iPaes = 0; iPaes < MAX_Pesos; iPaes++,iFilhos++) {
 		if(iPaes <= 2){
 			filho1->genes[iFilhos] = pai->genes[iPaes];
@@ -342,14 +354,25 @@ void geraFilhos(TIndividuo *pai,TIndividuo *mae ,TIndividuo *filho1,TIndividuo *
 			filho2->genes[iFilhos] = pai->genes[iPaes];
 		}
 	}
-	while (mae->prox !=NULL){
-		if (mae->prox == NULL){
-			printf("%d",mae->numero);
+	while (pai->prox !=NULL){
+		if (pai->prox == NULL){
+			printf("%d",pai->numero);
+			// fimLista = pai;
+			pai->prox = filho1;
+			filho1->prox = filho2;
+			filho2->prox = NULL;
 		}
-		mae = mae->prox;
+		pai = pai->prox;
 	}
-	filho1->prox = filho2;
-	filho2->prox = NULL;
+	printf("\t| numero = %d ",filho1->numero);
+		printf("\t| endr = %p ",&filho1);
+		printf("\t| err = %d ",filho1->erros);
+		printf("\t| %d -> %d ",filho1->numero,filho2->numero);
+		printf("\t| genes = ");
+		for (j = 0; j < MAX_Pesos; j++){
+			printf("%.2f,",filho1->genes[j]);
+		}
+		printf("\t|\n");
 }
 void cruzamento(TLista *L){
 	/*Essa funçao deve ler cada um dos individuos da lista e cruza-los, ou seja pegar metade
@@ -358,16 +381,13 @@ void cruzamento(TLista *L){
 	novos de cada par de individuos selecionados da lista, esses individuos novos devem ser colocados em uma lista 
 	auxiliar e apos isso devem ser alocados para a lista principal de forma que a lista principal tenha todos 
 	os individuos interligados, no inicio os individuos originais e depois os individuos criados do cruzamento*/
-	TIndividuo *pai1, *pai2, *filho1, *filho2;
+	TIndividuo *pai1, *pai2;
 	pai1 = L->populacao;
 	pai2 = pai1->prox;
 	while (pai2 != NULL) {
 		printf("Cruzando individuo %d com %d\n", pai1->numero, pai2->numero);
 
-		filho1 = (TIndividuo *)malloc(sizeof(TIndividuo));
-		filho2 = (TIndividuo *)malloc(sizeof(TIndividuo));
-
-		geraFilhos(pai1,pai2,filho1,filho2);
+		geraFilhos(L, pai1,pai2);
 		pai2 = pai2->prox;
 		pai1 = pai1->prox;
 	}

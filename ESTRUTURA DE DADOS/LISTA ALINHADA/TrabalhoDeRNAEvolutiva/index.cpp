@@ -126,13 +126,9 @@ void inicializa(TLista *L){
 	estabelecendoSinapse(L,2,4,0);
 	estabelecendoSinapse(L,3,5, 1);
 	estabelecendoSinapse(L,4,5, 1);
-	
-	L->fp = abrirArquivo("data/RNA_EVOLUTIVA_RELATORIO.TXT", "w");
-    if(L->fp == NULL){
-        printf("Reabrindo arquivo no local da execucao");
-        L->fp = abrirArquivo("RNA_EVOLUTIVA_RELATORIO.TXT", "w");
-    }
-	
+
+    L->fp = abrirArquivo("RNA_EVOLUTIVA_RELATORIO.TXT", "w");
+    
 	fprintf(L->fp,"\n\t\t=====| REDE NEURAL ARTIFICIAL EVOLUTIVA |=====\n\n");
 	fprintf(L->fp,"\tOBJETIVO: %s.\n\n\tLicoes:\n", L->objetivo);
 	fprintf(L->fp,"\t LICAO    P    Q  (Resultado Esperado)\n");
