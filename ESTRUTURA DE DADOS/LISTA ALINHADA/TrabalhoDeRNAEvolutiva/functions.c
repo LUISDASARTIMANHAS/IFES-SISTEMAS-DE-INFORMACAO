@@ -125,6 +125,10 @@ int aleatorio(int n){
     return (rand() % (n+1));
 }
 
+void printRel(TLista *L, string text){
+	fprintf(L->fp,"%s",text);
+}
+
 // ============================= FIM DO BASE ======================
 int menu(){
 	int op;
@@ -144,7 +148,6 @@ void exibeIndividuos(TLista *L) {
 	int bytes;
 
 	printf("\n\t TABELA DE INDIVIDUOS:\n");
-	fprintf(L->fp,"\n\t TABELA DE INDIVIDUOS:\n");
 	while (atual != NULL) {
 		// printf("| \t(%d) \t| numero = %d \t| endr = %p \t| err = %d \t| %d -> %d \t|\n", i, atual->numero, &atual, atual->erros,atual->numero,atual->prox->numero);
 		printf("| \t(%d) ",i);
@@ -162,13 +165,23 @@ void exibeIndividuos(TLista *L) {
 		}
 		printf("\t|\n");
 
-		fprintf(L->fp,"| \t(%d) \t| number = %d \t| address = %p \t| errors = %d \t|\n", i, atual->numero, &atual, atual->erros);
-		i++;
+
+		// on file
+		fprintf(L->fp,"| \t(%d) ",i);
+		fprintf(L->fp,"\t| numero = %d ",atual->numero);
+		fprintf(L->fp,"\t| endr = %p ",&atual);
+		fprintf(L->fp,"\t| err = %d ",atual->erros);
+		if(atual->prox == NULL){
+			fprintf(L->fp,"\t| %d -> NULL ",atual->numero);
+		}else{
+			fprintf(L->fp,"\t| %d -> %d ",atual->numero,atual->prox->numero);
+		}
+		fprintf(L->fp,"\t|\n");
+
 		atual = atual->prox;
 	}
 	bytes = sizeof(TIndividuo) * i;
 	printf("TAM %dMbytes\n", bytes/1024);
-	fprintf(L->fp,"TAM %dMbytes\n", bytes/1024);
 }
 
 //==================== LOCALIZADORES ================
@@ -185,6 +198,62 @@ TIndividuo *localizaIndividuoFinal(TLista *lista){
 			printf("\t| numero = %d ",fimLista->numero);
 	return fimLista;
 }
+
+TIndividuo *localizaMelhorIndividuo(TLista *lista){
+	TIndividuo *melhorIndv;
+	// TIndividuo *atual = lista->populacao;
+	TIndividuo *atual = (TIndividuo *)malloc(sizeof(TIndividuo));
+
+			while(atual->prox != NULL){
+				if (atual->erros == 0){
+					melhorIndv = atual;
+				}
+				atual = atual->prox;
+			}//while
+	return melhorIndv;
+}
+
+TIndividuo *localizaPiorIndividuo(TLista *lista){
+	TIndividuo *piorIndv;
+	// TIndividuo *atual = lista->populacao;
+	TIndividuo *atual = (TIndividuo *)malloc(sizeof(TIndividuo));
+
+			while(atual->prox != NULL){
+				if (atual->erros >= 1){
+					piorIndv = atual;
+				}
+				atual = atual->prox;
+			}//while
+	return piorIndv;
+}
+
+// ===========================================================
+void geraRelatorio(TLista *L){
+	TIndividuo *atual = L->populacao;
+	TIndividuo *melhorIndv = localizaMelhorIndividuo(L);
+	tipoIndividuo *piorIndv = localizaPiorIndividuo(L);
+	FILE *rel = L->fp;
+	int bytes = sizeof(TIndividuo);
+
+	
+	// fprintf(rel,"\n\t TABELA DE INDIVIDUOS:\n");
+	// 	fprintf(rel,"| \t(%d) ",i);
+	// 	fprintf(rel,"\t| numero = %d ",atual->numero);
+	// 	fprintf(rel,"\t| endr = %p ",&atual);
+	// 	fprintf(rel,"\t| err = %d ",atual->erros);
+	// 	if(atual->prox == NULL){
+	// 		fprintf(rel,"\t| %d -> NULL ",atual->numero);
+	// 	}else{
+	// 		fprintf(rel,"\t| %d -> %d ",atual->numero,atual->prox->numero);
+	// 	}
+	// 	fprintf(rel,"\t|\n");
+
+	// 	atual = atual->prox;
+	// }
+	fprintf(rel,"TAM %dMbytes\n", bytes/1024);
+	fprintf(rel,"MELHOR INDVIDUO: %\n", bytes/1024);
+}
+
 //====================================================
 void geraIndividuos(TLista *L){
 	TIndividuo *novo;
@@ -371,50 +440,49 @@ void cruzamento(TLista *L){
 void promoveMutacoes(TLista *L){
 	/* Altera o c�digo gen�tico de um n�mero espec�fico
 	de indiv�duos (= L->Qtd_Mutacoes_por_vez). */
+	// Verificar se a lista está vazia
+    if (L->populacao == NULL) {
+        printf("Lista de individuos vazia.\n");
+        return;
+    }
 
-	// escolha ramdomica do individuo
-	int numIndividuoAleatorio = aleatorio(L->totalIndividuos);
-	int negative = aleatorio(1);
-	int genePos = aleatorio(5);
-	TIndividuo *atual = L->populacao;
+    // Escolher um indivíduo aleatório
+    int index = rand() % L->totalIndividuos;
+    TIndividuo *individuo = L->populacao;
 
-	printf("Individuo Sorteado: %d",numIndividuoAleatorio);
-	while (atual->numero != numIndividuoAleatorio){
-		atual = atual->prox;
-	}
+    // Percorrer até o índice do indivíduo escolhido
+    for (int i = 0; i < index; i++) {
+        individuo = individuo->prox;
+    }
 
-	// escolha ramdomica do gene escolha ramdomica do sentido para cima(+) ou para baixo (-)
-	if(negative == 1){
-		atual->genes[genePos] = atual->genes[genePos] - L->learningRate;
-	}else{
-		atual->genes[genePos] = atual->genes[genePos] + L->learningRate;
-	}
-	// total de erros volta a ser -1
-	atual->erros = -1;
-	// [0.8, 0.7, 0.3, 0.6, 0.5, 0.4]
-	// ex:
-	//  mudanca pra cima
-	// genePos 2 e igual a posicao do vetor [2]
-	// taxa de aprendizado 0.2
+    // Escolher um gene aleatório
+    int geneIndex = rand() % MAX_Pesos;
 
-	//[0.8, 0.7, 0.3 + 0.2 , 0.6, 0.5, 0.4] 
-	//[0.8, 0.7, 0.5 , 0.6, 0.5, 0.4] 
+    // Escolher aleatoriamente se a mutação será para cima ou para baixo
+    int upOrDown = rand() % 2; // 0 para baixo, 1 para cima
+
+    // Aplicar a mutação
+    if (upOrDown == 0) {
+        individuo->genes[geneIndex] -= L->learningRate; // Diminuir do valor do gene
+    } else {
+        individuo->genes[geneIndex] += L->learningRate; // Somar ao valor do gene
+    }
+
+    printf("Mutacao promovida com sucesso.\n");
 }
 
 //=============================================================
 float calcSomaPeso(float n1, float n2, float peso1, float peso2){
 	float soma;
 
-	soma  = n1 * peso1 + n2 * peso2;
+	soma  =(n1 * peso1) + (n2 * peso2);
 	return soma;
 }
 
 float verificar(float n1, float soma, float sinapseThreshold){
 	if(soma >= sinapseThreshold){
-		printf("Cometeu erro\n");
 		n1 = 1;
 	}else{
-		printf("Passou no teste\n");
 		n1 = 0;
 	}
 	return n1;
@@ -450,8 +518,8 @@ void avaliacaoIndividuos(TLista *L){
 				float peso15 = atual->genes[4];
 				float peso25 = atual->genes[5];
 
-				n1 = L->licoes->p;
-				n2 = L->licoes->q;
+				n1 = licaoAtual->p;
+				n2 = licaoAtual->q;
 				soma3 = calcSomaPeso(n1,n2,peso13,peso23);
 				n3 = verificar(n3,soma3,sinapseThreshold);
 
@@ -461,7 +529,7 @@ void avaliacaoIndividuos(TLista *L){
 				soma5 = calcSomaPeso(n3,n4,peso15,peso25);
 				n5 = verificar(n5,soma5,sinapseThreshold);
 
-				if (L->licoes->resultadoEsperado != n5){
+				if (licaoAtual->resultadoEsperado != n5){
 					printf("Cometeu erro\n");
 					atual->erros++;
 				}

@@ -56,6 +56,7 @@ void treinamento(TLista *L){
 		
 	}//for
 	printf("Salvando dados...\n");
+	geraRelatorio(L);
 	fclose(L->fp);
 	printf("Salvo com sucesso!\n");
 }
@@ -149,7 +150,6 @@ void inicializa(TLista *L){
 	fprintf(L->fp,"\tTOTAL de GERACOES: %d.\n\n\n", L->Total_geracoes);
 	
 	printf("\n\n\tConfiguracao FINALIZADA!!!\n\n");
-	
 }
 
 
