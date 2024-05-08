@@ -87,11 +87,44 @@ void promoveMutacoes(TLista *L,float learningRate);
 void poda(TLista *L);
 //===| Programa Principal |===========================
 int main(){
-    
     inicializa(&lista);
     treinamento(&lista);
 }
 //===| Funções |======================================
+void exibeIndividuos(TLista *L) {
+	TIndividuo *atual = L->populacao;
+	int i = 1;
+	int j;
+	int bytes;
+
+	printf("\n\t TABELA DE INDIVIDUOS:\n");
+	fprintf(L->fp,"\n\t TABELA DE INDIVIDUOS:\n");
+	while (atual != NULL) {
+		// printf("| \t(%d) \t| numero = %d \t| endr = %p \t| err = %d \t| %d -> %d \t|\n", i, atual->numero, &atual, atual->erros,atual->numero,atual->prox->numero);
+		printf("| \t(%d) ",i);
+		printf("\t| numero = %d ",atual->numero);
+		printf("\t| endr = %p ",&atual);
+		printf("\t| err = %d ",atual->erros);
+		if(atual->prox == NULL){
+			printf("\t| %d -> NULL ",atual->numero);
+		}else{
+			printf("\t| %d -> %d ",atual->numero,atual->prox->numero);
+		}
+		printf("\t| genes = ");
+		for (j = 0; j < MAX_Pesos; j++){
+			printf("%.2f,",atual->genes[j]);
+		}
+		printf("\t|\n");
+
+		fprintf(L->fp,"| \t(%d) \t| number = %d \t| address = %p \t| errors = %d \t|\n", i, atual->numero, &atual, atual->erros);
+		i++;
+		atual = atual->prox;
+	}
+	bytes = sizeof(TIndividuo) * i;
+	printf("TAM %dMbytes\n", bytes/1024);
+	fprintf(L->fp,"TAM %dMbytes\n", bytes/1024);
+}
+
 FILE * abrirArquivo(char * nomeArq, char * modo) {
     // ABRIR o arquivo
     FILE * arq;
@@ -373,14 +406,15 @@ void treinamento(TLista *L){
 	int i;
 	for(i= 0; i < L->Total_geracoes; i++){
 		cruzamento(L);
-        contaIndividuos(L);
+        //contaIndividuos(L);
 		if((i % L->Qtd_Geracoes_para_Mutacoes) == 0){
 			promoveMutacoes(L,L->learningRate);
 		}//if
 		avaliacaoIndividuos(L);
 		ordenamentoIndividuos(L);
 		poda(L);
-        contaIndividuos(L);
+        //contaIndividuos(L);
+        exibeIndividuos(L);
 	}//for
 	printf("Salvando dados...");
 	fclose(L->fp);
@@ -443,7 +477,7 @@ void promoveMutacoes(TLista *L, float learningRate) {
         individuo->genes[geneIndex] += learningRate; // Somar ao valor do gene
     }
 
-    printf("Mutacao promovida com sucesso.\n");
+    //printf("Mutacao promovida com sucesso.\n");
 }
 //=============================================================
 void cruzamento(TLista *L) {
@@ -455,7 +489,7 @@ void cruzamento(TLista *L) {
     int totalPais = L->totalIndividuos;
 
     while (individuosCruzados < totalPais / 2) { // cruzar até a metade dos pais
-        printf("Cruzando individuo %d com %d\n", pai1->numero, pai2->numero);
+        //printf("Cruzando individuo %d com %d\n", pai1->numero, pai2->numero);
         filho1 = (TIndividuo *)malloc(sizeof(TIndividuo));
         filho2 = (TIndividuo *)malloc(sizeof(TIndividuo));
         filho1->prox = NULL;
@@ -533,7 +567,7 @@ void avaliacaoIndividuos(TLista *L) {
                 }
                 
                 if (licaoAtual->resultadoEsperado != n5) { // Corrigido aqui
-                    printf("Cometeu erro\n");
+                    //printf("Cometeu erro\n");
                     atual->erros++;
                 }
                 
