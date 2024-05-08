@@ -366,7 +366,6 @@ void cruzamento(TLista *L){
             pai2 = pai2->prox;
         }
 	}
-	exibeIndividuos(L);
 }
 //==============================================================
 void promoveMutacoes(TLista *L){
@@ -400,7 +399,6 @@ void promoveMutacoes(TLista *L){
 
 	//[0.8, 0.7, 0.3 + 0.2 , 0.6, 0.5, 0.4] 
 	//[0.8, 0.7, 0.5 , 0.6, 0.5, 0.4] 
-	exibeIndividuos(L);
 }
 
 //=============================================================
@@ -472,7 +470,6 @@ void avaliacaoIndividuos(TLista *L){
 		}
 		atual = atual->prox;
 	}
-	exibeIndividuos(L);
 }
 
 //==============================================================
