@@ -461,6 +461,7 @@ void promoveMutacoes(TLista *L){
     }
 
     printf("Mutacao promovida com sucesso.\n");
+	exibeIndividuos(L);
 }
 
 //=============================================================
@@ -611,5 +612,4 @@ void poda(TLista *L){
             L->totalIndividuos = 0;
         }
     }
-	// exibeIndividuos(L);
 }
