@@ -1,6 +1,6 @@
 @ECHO OFF
 :autocompile
-set versao=9
+set versao=11
 	cls
 	%*
 	echo aguardando timeout
@@ -11,6 +11,8 @@ set versao=9
 
 	g++ -Wall -g3 -Wextra -static -static-libgcc -static-libstdc++ index.cpp -o "builds/TrabalhoDeRNAEvolutiva.V%versao%-autoCompile.exe"
 	echo TrabalhoDeRNAEvolutiva.V%versao%-autoCompile.exe Compilado!
+
+	g++ -Wall -g3 -Wextra -static -static-libgcc -static-libstdc++ index.cpp -o "builds/debug.exe"
 
 	tar -a -c -f "zip/TrabalhoDeRnaEvolutiva.zip" *data *.cpp functions.c *builds
 

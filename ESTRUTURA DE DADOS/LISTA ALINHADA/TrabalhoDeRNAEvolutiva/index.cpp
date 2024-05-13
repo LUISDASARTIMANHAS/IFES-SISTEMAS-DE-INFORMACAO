@@ -43,7 +43,7 @@ void treinamento(TLista *L){
 	int i;
 	for(i= 0; i < L->Total_geracoes; i++){
 		printf("\n\n\t=====================================\n\n\t");
-		printf("\t INICIANDO GERACAO: %d",i);
+		printf("\t INICIANDO GERACAO: %d",L->geracao_atual);
 		printf("\n\n\t=====================================\n\n\t");
 		cruzamento(L);
 		
@@ -57,7 +57,7 @@ void treinamento(TLista *L){
 		ordenamentoIndividuos(L);
 		
 		poda(L);
-		
+		L->geracao_atual++;
 	}//for
 	printf("Salvando dados...\n");
 	geraRelatorio(L);

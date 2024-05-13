@@ -428,25 +428,24 @@ void promoveMutacoes(TLista *L){
 	/* Altera o c�digo gen�tico de um n�mero espec�fico
 	de indiv�duos (= L->Qtd_Mutacoes_por_vez). */
 	// Verificar se a lista está vazia
+	int i;
+	    // Escolher um gene aleatório
+    int geneIndex = rand() % MAX_Pesos;
+    // Escolher aleatoriamente se a mutação será para cima ou para baixo
+    int upOrDown = rand() % 2; // 0 para baixo, 1 para cima
+	// Escolher um indivíduo aleatório
+    int index = rand() % L->totalIndividuos;
+    TIndividuo *individuo = L->populacao;
+
+
     if (L->populacao == NULL) {
         printf("Lista de individuos vazia.\n");
         return;
     }
-
-    // Escolher um indivíduo aleatório
-    int index = rand() % L->totalIndividuos;
-    TIndividuo *individuo = L->populacao;
-
     // Percorrer até o índice do indivíduo escolhido
-    for (int i = 0; i < index; i++) {
+    for (i = 0; i < index; i++) {
         individuo = individuo->prox;
     }
-
-    // Escolher um gene aleatório
-    int geneIndex = rand() % MAX_Pesos;
-
-    // Escolher aleatoriamente se a mutação será para cima ou para baixo
-    int upOrDown = rand() % 2; // 0 para baixo, 1 para cima
 
     // Aplicar a mutação
     if (upOrDown == 0) {
