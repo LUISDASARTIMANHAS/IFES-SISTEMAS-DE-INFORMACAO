@@ -42,10 +42,14 @@ void treinamento(TLista *L){
 	
 	int i;
 	for(i= 0; i < L->Total_geracoes; i++){
+		printf("\n\n\t=====================================\n\n\t");
+		printf("\t INICIANDO GERACAO: %d",i);
+		printf("\n\n\t=====================================\n\n\t");
 		cruzamento(L);
 		
 		if((i % L->Qtd_Geracoes_para_Mutacoes) == 0){
 			promoveMutacoes(L);
+			// geraRelatorio(L);
 		}//if
 		
 		avaliacaoIndividuos(L);
@@ -59,6 +63,7 @@ void treinamento(TLista *L){
 	geraRelatorio(L);
 	fclose(L->fp);
 	printf("Salvo com sucesso!\n");
+	system("PAUSE");
 }
 
 //===| Fun��es |======================================
@@ -99,16 +104,16 @@ void inicializa(TLista *L){
 	printf("\n\tSugestao: 3 mutacoes por intervalo.\n\tValor: ");
 	scanf("%d", &L->Qtd_Mutacoes_por_vez);
 	
-	printf("\n\nSINAPSE THRESHOLD (Limiar das Conexoes entre Neuronios):\n");
-	printf("Define a intensidade do sinal que sensibiliza cada neuronio.\n\n");
+	printf("\n\n\tSINAPSE THRESHOLD (Limiar das Conexoes entre Neuronios):\n");
+	printf("\tDefine a intensidade do sinal que sensibiliza cada neuronio.\n\n");
 	printf("\tInforme o SINAPSE THRESHOLD:\n\tSugestao: 0.60\n\tValor: ");
 	scanf("%f",&L->sinapseThreshold);
 	
-	printf("\n\nLEARNING RATE (Taxa de Aprendizado): variacao dos pesos em cada ajuste (Aprendizado).\n");
+	printf("\n\n\tLEARNING RATE (Taxa de Aprendizado): variacao dos pesos em cada ajuste (Aprendizado).\n");
 	printf("\n\tLEARNING RATE:\n\tSugestao: 0.20\n\tValor: ");
 	scanf("%f",&L->learningRate);
 	
-	strcpy(L->objetivo,"Aprendizado da Funcao Logica P E Q");
+	strcpy(L->objetivo,"\tAprendizado da Funcao Logica P E Q");
 	
 	printf("\n\n\tDefinindo as LICOES a serem aprendidas pela Rede Neural Artificial.\n\n");
 	geraLicoes(L);
@@ -150,6 +155,8 @@ void inicializa(TLista *L){
 	fprintf(L->fp,"\tTOTAL de GERACOES: %d.\n\n\n", L->Total_geracoes);
 	
 	printf("\n\n\tConfiguracao FINALIZADA!!!\n\n");
+	fclose(L->fp);
+	L->fp = abrirArquivo("RNA_EVOLUTIVA_RELATORIO.TXT", "a+");
 }
 
 

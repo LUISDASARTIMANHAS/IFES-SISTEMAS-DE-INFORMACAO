@@ -164,21 +164,8 @@ void exibeIndividuos(TLista *L) {
 			printf("%.2f,",atual->genes[j]);
 		}
 		printf("\t|\n");
-
-
-		// on file
-		fprintf(L->fp,"| \t(%d) ",i);
-		fprintf(L->fp,"\t| numero = %d ",atual->numero);
-		fprintf(L->fp,"\t| endr = %p ",&atual);
-		fprintf(L->fp,"\t| err = %d ",atual->erros);
-		if(atual->prox == NULL){
-			fprintf(L->fp,"\t| %d -> NULL ",atual->numero);
-		}else{
-			fprintf(L->fp,"\t| %d -> %d ",atual->numero,atual->prox->numero);
-		}
-		fprintf(L->fp,"\t|\n");
-
 		atual = atual->prox;
+		i++;
 	}
 	bytes = sizeof(TIndividuo) * i;
 	printf("TAM %dMbytes\n", bytes/1024);
@@ -201,11 +188,10 @@ TIndividuo *localizaIndividuoFinal(TLista *lista){
 
 TIndividuo *localizaMelhorIndividuo(TLista *lista){
 	TIndividuo *melhorIndv;
-	// TIndividuo *atual = lista->populacao;
-	TIndividuo *atual = (TIndividuo *)malloc(sizeof(TIndividuo));
+	TIndividuo *atual = lista->populacao;
 
 			while(atual->prox != NULL){
-				if (atual->erros == 0){
+				if (atual->erros < 1 ){
 					melhorIndv = atual;
 				}
 				atual = atual->prox;
@@ -215,11 +201,10 @@ TIndividuo *localizaMelhorIndividuo(TLista *lista){
 
 TIndividuo *localizaPiorIndividuo(TLista *lista){
 	TIndividuo *piorIndv;
-	// TIndividuo *atual = lista->populacao;
-	TIndividuo *atual = (TIndividuo *)malloc(sizeof(TIndividuo));
+	TIndividuo *atual = lista->populacao;
 
 			while(atual->prox != NULL){
-				if (atual->erros >= 1){
+				if (atual->erros > 0){
 					piorIndv = atual;
 				}
 				atual = atual->prox;
@@ -228,30 +213,32 @@ TIndividuo *localizaPiorIndividuo(TLista *lista){
 }
 
 // ===========================================================
+void geraTabela(FILE *arq, TIndividuo *indv){
+		fprintf(arq,"\t| numero = %d ",indv->numero);
+		fprintf(arq,"\t| endr = %p ",&indv);
+		fprintf(arq,"\t| err = %d ",indv->erros);
+		if(indv->prox == NULL){
+			fprintf(arq,"\t| %d -> NULL ",indv->numero);
+		}else{
+			fprintf(arq,"\t| %d -> %d ",indv->numero,indv->prox->numero);
+		}
+		fprintf(arq,"\t|\n");
+}
+
 void geraRelatorio(TLista *L){
-	TIndividuo *atual = L->populacao;
 	TIndividuo *melhorIndv = localizaMelhorIndividuo(L);
-	tipoIndividuo *piorIndv = localizaPiorIndividuo(L);
+	TIndividuo *piorIndv = localizaPiorIndividuo(L);
 	FILE *rel = L->fp;
-	int bytes = sizeof(TIndividuo);
+	int totalDeGeracoes = L->Total_geracoes;
+	int totalDeindv = L->totalIndividuos;
+	int bytes = sizeof(TIndividuo) * totalDeindv * totalDeGeracoes;
 
-	
-	// fprintf(rel,"\n\t TABELA DE INDIVIDUOS:\n");
-	// 	fprintf(rel,"| \t(%d) ",i);
-	// 	fprintf(rel,"\t| numero = %d ",atual->numero);
-	// 	fprintf(rel,"\t| endr = %p ",&atual);
-	// 	fprintf(rel,"\t| err = %d ",atual->erros);
-	// 	if(atual->prox == NULL){
-	// 		fprintf(rel,"\t| %d -> NULL ",atual->numero);
-	// 	}else{
-	// 		fprintf(rel,"\t| %d -> %d ",atual->numero,atual->prox->numero);
-	// 	}
-	// 	fprintf(rel,"\t|\n");
-
-	// 	atual = atual->prox;
-	// }
+	fprintf(rel,"\n\t TABELA DE INDIVIDUOS:\n");
+	fprintf(rel,"\n\t Melhor Individuo:\n");
+	geraTabela(rel,melhorIndv);
+	fprintf(rel,"\n\t Pior Individuo:\n");
+	geraTabela(rel,piorIndv);
 	fprintf(rel,"TAM %dMbytes\n", bytes/1024);
-	fprintf(rel,"MELHOR INDVIDUO: %\n", bytes/1024);
 }
 
 //====================================================
