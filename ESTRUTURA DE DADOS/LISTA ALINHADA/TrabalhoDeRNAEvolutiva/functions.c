@@ -76,6 +76,8 @@ typedef struct tipoLista{
 	TIndividuo *populacao;
 	TIndividuo *fimLista;
 	TIndividuo *individuoAtual;
+	TIndividuo *melhorIndv;
+	TIndividuo *piorIndv;
 	int totalIndividuos;
 	int Qtd_Populacao;
 	int Qtd_Mutacoes_por_vez;
@@ -186,30 +188,42 @@ TIndividuo *localizaIndividuoFinal(TLista *lista){
 	return fimLista;
 }
 
-TIndividuo *localizaMelhorIndividuo(TLista *lista){
-	TIndividuo *melhorIndv;
+void localizaMelhorIndividuo(TLista *lista){
+	TIndividuo *melhorIndv = lista->melhorIndv;
 	TIndividuo *atual = lista->populacao;
 
-			while(atual->prox != NULL){
-				if (atual->erros < 1 ){
-					melhorIndv = atual;
-				}
-				atual = atual->prox;
-			}//while
-	return melhorIndv;
+	while(atual->prox != NULL){
+		if (atual->erros < 1 ){
+			melhorIndv = atual;
+			lista->melhorIndv = melhorIndv;
+		}
+		atual = atual->prox;
+	}//while
+	// if(melhorIndv->erros < 1){
+	// 	return melhorIndv;
+	// }else{
+	// 	TIndividuo *melhorIndv = localizaMelhorIndividuo(lista);
+	// 	return melhorIndv;
+	// }
 }
 
-TIndividuo *localizaPiorIndividuo(TLista *lista){
-	TIndividuo *piorIndv;
+void localizaPiorIndividuo(TLista *lista){
+	TIndividuo *piorIndv = lista->piorIndv;
 	TIndividuo *atual = lista->populacao;
 
-			while(atual->prox != NULL){
-				if (atual->erros > 0){
-					piorIndv = atual;
-				}
-				atual = atual->prox;
-			}//while
-	return piorIndv;
+	while(atual->prox != NULL){
+		if (atual->erros > 0){
+			piorIndv = atual;
+			lista->piorIndv = piorIndv;
+		}
+		atual = atual->prox;
+	}//while
+	// if(piorIndv->erros > 0){
+	// 	return piorIndv;
+	// }else{
+	// 	TIndividuo *piorIndv = localizaPiorIndividuo(lista);
+	// 	return piorIndv;
+	// }
 }
 
 // ===========================================================

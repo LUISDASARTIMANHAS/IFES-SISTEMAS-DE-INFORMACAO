@@ -46,6 +46,8 @@ void treinamento(TLista *L){
 		printf("\t INICIANDO GERACAO: %d",L->geracao_atual);
 		printf("\n\n\t=====================================\n\n\t");
 		cruzamento(L);
+		localizaMelhorIndividuo(L);
+		localizaPiorIndividuo(L);
 		
 		if((i % L->Qtd_Geracoes_para_Mutacoes) == 0){
 			promoveMutacoes(L);
