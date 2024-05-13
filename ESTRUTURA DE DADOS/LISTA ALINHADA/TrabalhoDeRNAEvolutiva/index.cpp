@@ -61,7 +61,7 @@ void treinamento(TLista *L){
 	}//for
 	printf("Salvando dados...\n");
 	geraRelatorio(L);
-	fclose(L->fp);
+ 	fclose(L->fp);
 	printf("Salvo com sucesso!\n");
 	system("PAUSE");
 }
