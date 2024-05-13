@@ -24,7 +24,7 @@
 	INICIO DO TREINAMENTO: Dia: 13   Mes: 5   Ano: 2024
 
 Dia da Semana: 1.
-16:54:59.
+17:3:19.
 
 
 	 TABELA DE INDIVIDUOS:
@@ -33,7 +33,7 @@ Dia da Semana: 1.
 	| numero = 897 	| endr = 0067FE84 	| err = 0 	| 897 -> 898 	|
 
 	 Pior Individuo:
-	| numero = 171 	| endr = 0067FE84 	| err = 1 	| 171 -> 322 	|
+	| numero = 207 	| endr = 0067FE84 	| err = 1 	| 207 -> 313 	|
 TAMANHO DO PROGRAMA: 
 ESPACO EM 1054.69Mbytes
 ESPACO EM 1.03Gbytes
