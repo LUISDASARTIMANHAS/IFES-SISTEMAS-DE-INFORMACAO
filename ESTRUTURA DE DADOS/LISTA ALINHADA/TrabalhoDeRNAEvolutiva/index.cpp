@@ -157,8 +157,8 @@ void inicializa(TLista *L){
 	fprintf(L->fp,"\tTOTAL de GERACOES: %d.\n\n\n", L->Total_geracoes);
 	
 	printf("\n\n\tConfiguracao FINALIZADA!!!\n\n");
-	fclose(L->fp);
-	L->fp = abrirArquivo("RNA_EVOLUTIVA_RELATORIO.TXT", "a+");
+	// fclose(L->fp);
+	// L->fp = abrirArquivo("RNA_EVOLUTIVA_RELATORIO.TXT", "a+");
 }
 
 

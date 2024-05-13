@@ -1,6 +1,6 @@
 @ECHO OFF
 :autocompile
-set versao=11
+set versao=12
 	cls
 	%*
 	echo aguardando timeout

@@ -199,12 +199,6 @@ void localizaMelhorIndividuo(TLista *lista){
 		}
 		atual = atual->prox;
 	}//while
-	// if(melhorIndv->erros < 1){
-	// 	return melhorIndv;
-	// }else{
-	// 	TIndividuo *melhorIndv = localizaMelhorIndividuo(lista);
-	// 	return melhorIndv;
-	// }
 }
 
 void localizaPiorIndividuo(TLista *lista){
@@ -218,41 +212,39 @@ void localizaPiorIndividuo(TLista *lista){
 		}
 		atual = atual->prox;
 	}//while
-	// if(piorIndv->erros > 0){
-	// 	return piorIndv;
-	// }else{
-	// 	TIndividuo *piorIndv = localizaPiorIndividuo(lista);
-	// 	return piorIndv;
-	// }
 }
 
 // ===========================================================
 void geraTabela(FILE *arq, TIndividuo *indv){
+	TIndividuo *indvProx = indv->prox;
 		fprintf(arq,"\t| numero = %d ",indv->numero);
 		fprintf(arq,"\t| endr = %p ",&indv);
 		fprintf(arq,"\t| err = %d ",indv->erros);
 		if(indv->prox == NULL){
 			fprintf(arq,"\t| %d -> NULL ",indv->numero);
 		}else{
-			fprintf(arq,"\t| %d -> %d ",indv->numero,indv->prox->numero);
+			fprintf(arq,"\t| %d -> %d ",indv->numero,indvProx->numero);
 		}
 		fprintf(arq,"\t|\n");
 }
 
 void geraRelatorio(TLista *L){
-	TIndividuo *melhorIndv = localizaMelhorIndividuo(L);
-	TIndividuo *piorIndv = localizaPiorIndividuo(L);
+	TIndividuo *melhorIndv = L->melhorIndv;
+	TIndividuo *piorIndv = L->piorIndv;
 	FILE *rel = L->fp;
 	int totalDeGeracoes = L->Total_geracoes;
 	int totalDeindv = L->totalIndividuos;
-	int bytes = sizeof(TIndividuo) * totalDeindv * totalDeGeracoes;
+	float bytes = sizeof(TIndividuo) * totalDeindv * totalDeGeracoes;
+	float Mbytes = bytes/1024;
 
 	fprintf(rel,"\n\t TABELA DE INDIVIDUOS:\n");
 	fprintf(rel,"\n\t Melhor Individuo:\n");
 	geraTabela(rel,melhorIndv);
 	fprintf(rel,"\n\t Pior Individuo:\n");
 	geraTabela(rel,piorIndv);
-	fprintf(rel,"TAM %dMbytes\n", bytes/1024);
+	fprintf(rel,"TAMANHO DO PROGRAMA: \n");
+	fprintf(rel,"ESPACO EM %.2fMbytes\n",Mbytes);
+	fprintf(rel,"ESPACO EM %.2fGbytes\n",Mbytes/1024);
 }
 
 //====================================================
@@ -619,5 +611,5 @@ void poda(TLista *L){
             L->totalIndividuos = 0;
         }
     }
-	exibeIndividuos(L);
+	// exibeIndividuos(L);
 }
