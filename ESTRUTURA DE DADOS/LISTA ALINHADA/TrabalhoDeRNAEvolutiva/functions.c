@@ -122,6 +122,16 @@ FILE * abrirArquivo(char * nomeArq, char * modo) {
 	return arq;
 }
 
+FILE * autosave(TLista *lista, char * nomeArq){
+	FILE *arq;
+	arq = lista->fp;
+	printf("\n\n\t AUTOSAVE EM ANDAMENTO.... \n\n");
+	fclose(arq);
+	printf("\n\n\t AUTOSAVE COMPLETO!. \n\n");
+	arq = abrirArquivo(nomeArq,"a+");
+	return arq;
+}
+
 // gera um numero aleatorio no intervalo n,
 int aleatorio(int n){
     return (rand() % (n+1));

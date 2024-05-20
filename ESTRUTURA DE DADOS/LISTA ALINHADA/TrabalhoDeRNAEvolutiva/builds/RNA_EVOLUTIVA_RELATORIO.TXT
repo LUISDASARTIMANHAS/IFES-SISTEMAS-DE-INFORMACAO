@@ -14,26 +14,15 @@
 
 	Learning Rate: 0.20
 	Sinapse Threshold: 0.60
-	Populacao MAXIMA: 300.
+	Populacao MAXIMA: 10.
 	3 MUTACOES a cada sequencia de 5 GERACOES.
-	TOTAL de GERACOES: 100.
+	TOTAL de GERACOES: 10.
 
 
 
 
-	INICIO DO TREINAMENTO: Dia: 13   Mes: 5   Ano: 2024
+	INICIO DO TREINAMENTO: Dia: 19   Mes: 5   Ano: 2024
 
-Dia da Semana: 1.
-17:3:19.
+Dia da Semana: 0.
+22:34:1.
 
-
-	 TABELA DE INDIVIDUOS:
-
-	 Melhor Individuo:
-	| numero = 897 	| endr = 0067FE84 	| err = 0 	| 897 -> 898 	|
-
-	 Pior Individuo:
-	| numero = 207 	| endr = 0067FE84 	| err = 1 	| 207 -> 313 	|
-TAMANHO DO PROGRAMA: 
-ESPACO EM 1054.69Mbytes
-ESPACO EM 1.03Gbytes
