@@ -175,17 +175,12 @@ void exibeIndividuos(TLista *L) {
 
 //==================== LOCALIZADORES ================
 TIndividuo *localizaIndividuoFinal(TLista *lista){
-	TIndividuo *fimLista;
-	// TIndividuo *atual = lista->populacao;
-	TIndividuo *atual = (TIndividuo *)malloc(sizeof(TIndividuo));
+	TIndividuo *atual = lista->populacao;
 			
 			while(atual->prox != NULL){
 				atual = atual->prox;
 			}//while
-			
-			fimLista = atual->prox;
-			printf("\t| numero = %d ",fimLista->numero);
-	return fimLista;
+	return atual;
 }
 
 void localizaMelhorIndividuo(TLista *lista){
@@ -242,6 +237,10 @@ void geraRelatorio(TLista *L){
 	geraTabela(rel,melhorIndv);
 	fprintf(rel,"\n\t Pior Individuo:\n");
 	geraTabela(rel,piorIndv);
+	fprintf(rel,"\n\t Primeiro Individuo:\n");
+	geraTabela(rel,L->populacao);
+	fprintf(rel,"\n\t Ultimo Individuo:\n");
+	geraTabela(rel,L->fimLista);
 	fprintf(rel,"TAMANHO DO PROGRAMA: \n");
 	fprintf(rel,"ESPACO EM %.2fMbytes\n",Mbytes);
 	fprintf(rel,"ESPACO EM %.2fGbytes\n",Mbytes/1024);
@@ -612,4 +611,5 @@ void poda(TLista *L){
             L->totalIndividuos = 0;
         }
     }
+	exibeIndividuos(L);
 }
