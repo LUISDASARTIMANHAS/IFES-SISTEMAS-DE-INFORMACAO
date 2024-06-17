@@ -1,0 +1,45 @@
+
+		=====| REDE NEURAL ARTIFICIAL EVOLUTIVA |=====
+
+	OBJETIVO: 	Aprendizado da Funcao Logica P E Q.
+
+	Licoes:
+	 LICAO    P    Q  (Resultado Esperado)
+	+------+----+----+---------------------+
+	(1) - 0   0   0
+	(2) - 0   1   0
+	(3) - 1   0   0
+	(4) - 1   1   1
+
+
+	Learning Rate: 0.20
+	Sinapse Threshold: 0.60
+	Populacao MAXIMA: 300.
+	3 MUTACOES a cada sequencia de 5 GERACOES.
+	TOTAL de GERACOES: 100.
+
+
+
+
+	INICIO DO TREINAMENTO: Dia: 17   Mes: 6   Ano: 2024
+
+Dia da Semana: 1.
+13:20:52.
+
+
+	 TABELA DE INDIVIDUOS:
+
+	 Melhor Individuo:
+	| numero = 897 	| endr = 0067FE84 	| err = 0 	| 897 -> 898 	|
+
+	 Pior Individuo:
+	| numero = 220 	| endr = 0067FE84 	| err = 1 	| 220 -> 310 	|
+
+	 Primeiro Individuo:
+	| numero = 3 	| endr = 0067FE84 	| err = 0 	| 3 -> 5 	|
+
+	 Ultimo Individuo:
+	| numero = 705 	| endr = 0067FE84 	| err = 0 	| 705 -> NULL 	|
+TAMANHO DO PROGRAMA: 
+ESPACO EM 1054.69Mbytes
+ESPACO EM 1.03Gbytes
