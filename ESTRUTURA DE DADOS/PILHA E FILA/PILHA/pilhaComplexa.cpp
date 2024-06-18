@@ -11,24 +11,6 @@ void inicializa(TPilha *P){
     P->topo = NULL;
 }
 
-void empilharPilha(TPilha *P, int valor){
-    Pilha *novo = (Pilha*)malloc(sizeof(Pilha));
-
-    novo->ante = NULL;
-    novo->prox = NULL;
-    novo->digito = valor;
-
-    if (P->topo == NULL){
-        // pilha vazia
-        P->base = novo;
-        P->topo = novo;
-    }else{
-        P->topo->prox = novo;
-        novo->ante = P->topo;
-        P->topo = novo;
-    }
-}
-
 void desmembraPilha(TPilha *P, int num){
     int res, quoc = num;
 
@@ -38,22 +20,6 @@ void desmembraPilha(TPilha *P, int num){
     } while (quoc > 0);
 }
 
-int desempilharPilha(TPilha *P){
-    Pilha *atual;
-    int res;
-
-    if (P->topo != NULL){
-        atual = P->topo;
-        P->topo = P->topo->ante;
-        P->topo->prox = atual;
-        res = P->topo->digito;
-        free(atual);
-    }else{
-        res = -1;
-    }
-    return res;
-}
-
 int remontarPilha(TPilha *P){
     int valor = 0;
     int fator = 1;
@@ -61,7 +27,7 @@ int remontarPilha(TPilha *P){
     while (P->topo != NULL){
         valor = valor + (desempilharPilha(P) * fator);
     }
-    
+
     return valor;
 }
 //===| Programa Principal |===========================
