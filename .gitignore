@@ -10,6 +10,18 @@ end_of_line = crlf
 charset = utf-8
 trim_trailing_whitespace = false
 insert_final_newline = false
+
+# Arquivos padrão vscode e git
 .vscode
 .github
-output/*.exe
+
+# Ignorar arquivos de saída
+output/
+output/*
+output
+
+# Ignorar arquivos JSON
+*.json
+
+# Ignorar arquivos BIN
+*.bin
