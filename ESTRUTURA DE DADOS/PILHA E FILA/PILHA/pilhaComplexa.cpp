@@ -66,7 +66,7 @@ int desempilharPilha(TPilha *P){
     if (P->topo != NULL){
         atual = P->topo;
         P->topo = P->topo->ante;
-        P->topo->prox = NULL;
+        P->topo->prox = atual;
         res = P->topo->digito;
         free(atual);
     }else{
