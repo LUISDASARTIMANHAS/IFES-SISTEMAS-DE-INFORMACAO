@@ -1,12 +1,3 @@
-// Produzido por LUCAS GARCIA & LUIS AUGUSTO DE SOUZA
-/*
-  Rede Neural Artificial Evolutiva (RNA-E)
-  
-  Os pesos s�o atualizados a partir de um algoritmo
-  gen�tico que busca minimizar os erros na fase de
-  treinamento.
-  
-*/
 // ============================= BASE ======================
 #include <windows.h>
 #define _USE_MATH_DEFINES
@@ -16,115 +7,58 @@
 #include <ctype.h>
 #include <string.h>
 #include <time.h>
-// #include "utils.c"
-// Defina constantes para as sequÃªncias de escape ANSI das cores
 
-// RED ERROR
+// Defina constantes para as sequências de escape ANSI das cores
 #define RED "\x1b[31m"
-// BLUE SISTEMA
 #define BLUE "\x1b[34m"
-// GREEN OK 
 #define GREEN "\x1b[32m"
-// YELLOW PERGUNTAS
 #define YELLOW "\x1b[33m"
-// RESET REDEFINIR
 #define RESET "\x1b[0m"
+
 #define SEPARETOR BLUE "\n================================================\n"  RESET
 
-#define MAX_Entradas 2
-#define MAX_Pesos 6
+typedef char string[101];
 
-//===| Estrutura de Dados |==========================
-typedef char string[60];
+struct ClassDatabase {
+    int codigo;
+    char nome[101];
+    float preco;
+    int qtde;
+};
+typedef struct ClassDatabase Database;
+struct ClassPilha{
+    int digito;
+    Pilha *prox,*ante;
+};
+typedef struct ClassPilha Pilha;
 
-typedef struct tipoLicao {
-	int p;  //proposi��o P
-	int q;	//Proposi��o Q
-	int resultadoEsperado; //Proposi��o Composta P "E" Q (A Classe)
-	tipoLicao *prox;
-}TLicao;
-
-typedef struct tipoIndividuo {
-	float genes[MAX_Pesos];
-	int erros;
-	int numero; //numero identificador
-	tipoIndividuo  *prox;
-}TIndividuo;
-
-typedef struct tipoSinapse {
-	int camada;
-	int neuronio_origem;
-	int neuronio_destino;
-	float peso;
-	tipoSinapse *prox;
-}TSinapse;
-
-typedef struct tipoNeuronio {
-	int neuronio;
-	float soma;
-	float peso;
-	tipoNeuronio *prox;
-}TNeuronio;
-
-typedef struct tipoLista{
-	FILE *fp; //Arquivo de Sa�da (Relat�rio).
-	string objetivo;
-	TLicao *licoes; //Conjunto de li��es a serem aprendidas
-	float entradas[MAX_Entradas];
-	TNeuronio *neuronios;
-	TSinapse *pesos;
-	TIndividuo *populacao;
-	TIndividuo *fimLista;
-	TIndividuo *individuoAtual;
-	TIndividuo *melhorIndv;
-	TIndividuo *piorIndv;
-	int totalIndividuos;
-	int Qtd_Populacao;
-	int Qtd_Mutacoes_por_vez;
-	int Total_geracoes;
-	int geracao_atual;
-	int Qtd_Geracoes_para_Mutacoes; 
-	float sinapseThreshold;
-	float learningRate;
-}TLista;
-
-// inputs personalizados e modificados EX: variavel = input();
-float input(){
-	float value;
-	fflush(stdin);
-	scanf("%f", &value);
-	return value;
-}
-
-float inputBoleano(){
-	int value;
-	do{
-		fflush(stdin);
-		scanf("%d", &value);
-	}while(value != 1 && value != 0);
-	return value;
-}
-
-// inputs personalizados e modificados EX: inputS(&variavel);
-void inputS(char destino[]){
-	fflush(stdin);
-	scanf(" %100[^\n]s", destino);
-}
+struct ClassTipoPilha{
+    int digito;
+    Pilha *topo;
+    Pilha *base;
+};
+typedef struct ClassTipoPilha TPilha;
 
 FILE * abrirArquivo(char * nomeArq, char * modo) {
-	// ABRIR o arquivo
-	FILE * arq;
-	arq = fopen( nomeArq, modo );
-	if ( arq == NULL) {
-		printf("\n\n\t ERRO ao abrir o arquivo. \n\n");
-		return NULL;
-	}
-	return arq;
+    // ABRIR o arquivo
+    FILE * arq;
+    arq = fopen( nomeArq, modo );
+    if ( arq == NULL) {
+        printf(RED "ERRO ao abrir o arquivo." RESET);
+        exit(-1);
+    }
+    return arq;
+}
+void carregarArquivo(FILE * arquivo, Database * vetProd, int *qtde) {
+    fread( qtde, sizeof(int), 1, arquivo  );
+    fread( vetProd, sizeof(Database), *qtde, arquivo  );
+}
+void gravarArquivo(FILE * arquivo, Database * vetProd, int qtde) {
+    fwrite( &qtde, sizeof(int), 1, arquivo  );
+    fwrite( vetProd, sizeof(Database), qtde, arquivo  );
 }
 
-FILE * autosave(TLista *lista, char * nomeArq){
-	FILE *arq;
-	arq = lista->fp;
+FILE * autosave(FILE *arq, char * nomeArq){
 	printf("\n\n\t AUTOSAVE EM ANDAMENTO.... \n\n");
 	fclose(arq);
 	printf("\n\n\t AUTOSAVE COMPLETO!. \n\n");
@@ -137,338 +71,319 @@ int aleatorio(int n){
     return (rand() % (n+1));
 }
 
-void printRel(TLista *L, string text){
-	fprintf(L->fp,"%s",text);
+void correct(){
+    SetConsoleOutputCP(65001);
 }
 
 // ============================= FIM DO BASE ======================
-int menu(){
-	int op;
-	printf("\n\n\t\t====| MENU |=====\n\n");
-	printf("\t0 - Sair (Encerrar a Aplicacao).\n\n");
-	do {
-		printf("Escolha sua opcao: ");
-		scanf(" %d", &op);
-	} while(op < 0 || op > 1);
-	return op;
+
+void head(){
+    correct();
+    FILE * logs;
+    logs = abrirArquivo("../data/logs.txt","a+");
+    printf(SEPARETOR);
+    printf(BLUE"\n\t LUIS_DAS_ARTIMANHAS & PINGOBRAS S.A");
+    printf("\n\t Iniciando o programa....." RESET);
+    printf(SEPARETOR);
+    // save in logs
+    fprintf(logs,SEPARETOR);
+    fprintf(logs,"\n\t LUIS_DAS_ARTIMANHAS & PINGOBRAS S.A");
+    fprintf(logs,"\n\t Iniciando programa.....");
+    fprintf(logs,SEPARETOR);
+    fclose(logs);
 }
 
-void exibeIndividuos(TLista *L) {
-	TIndividuo *atual = L->populacao;
-	int i = 1;
-	int j;
-	int bytes;
-
-	printf("\n\t TABELA DE INDIVIDUOS:\n");
-	while (atual != NULL) {
-		// printf("| \t(%d) \t| numero = %d \t| endr = %p \t| err = %d \t| %d -> %d \t|\n", i, atual->numero, &atual, atual->erros,atual->numero,atual->prox->numero);
-		printf("| \t(%d) ",i);
-		printf("\t| numero = %d ",atual->numero);
-		printf("\t| endr = %p ",&atual);
-		printf("\t| err = %d ",atual->erros);
-		if(atual->prox == NULL){
-			printf("\t| %d -> NULL ",atual->numero);
-		}else{
-			printf("\t| %d -> %d ",atual->numero,atual->prox->numero);
-		}
-		printf("\t| genes = ");
-		for (j = 0; j < MAX_Pesos; j++){
-			printf("%.2f,",atual->genes[j]);
-		}
-		printf("\t|\n");
-		atual = atual->prox;
-		i++;
-	}
-	bytes = sizeof(TIndividuo) * i;
-	printf("TAM %dMbytes\n", bytes/1024);
+void copy(){
+    FILE * logs;
+    logs = abrirArquivo("../data/logs.txt","a+");
+    correct();
+    printf(SEPARETOR);
+    printf(BLUE "\n\t DEVS:");
+    printf("\n\t LUIS_DAS_ARTIMANHAS.");
+    printf("\n\t PINGOBRAS S.A" RESET);
+    printf(SEPARETOR);
+    // save in logs
+    fprintf(logs,"\n----------------------------------------------------");
+    fprintf(logs,"\n\t DEVS:");
+    fprintf(logs,"\n\t LUIS_DAS_ARTIMANHAS.");
+    fprintf(logs,"\n\t PINGOBRAS S.A");
+    fprintf(logs,"\n----------------------------------------------------\n");
+    fclose(logs);
 }
 
-//==================== LOCALIZADORES ================
-TIndividuo *localizaIndividuoFinal(TLista *lista){
-	TIndividuo *atual = lista->populacao;
-			
-			while(atual->prox != NULL){
-				atual = atual->prox;
-			}//while
-	return atual;
+// inputs personalizados e modificados
+float input(){
+    float value;
+    scanf("%f", &value);
+    return value;
+}
+float inputBoleano(){
+	int value;
+	do{
+		fflush(stdin);
+		scanf("%d", &value);
+	}while(value != 1 && value != 0);
+	return value;
+}
+void inputS(char destino[]){
+    scanf(" %100[^\n]s", destino);
 }
 
-void localizaMelhorIndividuo(TLista *lista){
-	TIndividuo *melhorIndv = lista->melhorIndv;
-	TIndividuo *atual = lista->populacao;
 
-	while(atual->prox != NULL){
-		if (atual->erros < 1 ){
-			melhorIndv = atual;
-			lista->melhorIndv = melhorIndv;
-		}
-		atual = atual->prox;
-	}//while
+// validadores
+void validNome(char destino[]){
+    do{
+        printf(YELLOW "\nInsira o nome do Produto: " RESET);
+        inputS(destino);
+    }while (strlen(destino) < 3);
 }
 
-void localizaPiorIndividuo(TLista *lista){
-	TIndividuo *piorIndv = lista->piorIndv;
-	TIndividuo *atual = lista->populacao;
-
-	while(atual->prox != NULL){
-		if (atual->erros > 0){
-			piorIndv = atual;
-			lista->piorIndv = piorIndv;
-		}
-		atual = atual->prox;
-	}//while
+int validCod(){
+    int cod;
+    do{
+        printf(YELLOW "\nInsira o código do Produto: " RESET);
+        cod = input();
+    }while (cod < 1);
+    return cod;
 }
 
-// ===========================================================
-void geraTabela(FILE *arq, TIndividuo *indv){
-	TIndividuo *indvProx = indv->prox;
-		fprintf(arq,"\t| numero = %d ",indv->numero);
-		fprintf(arq,"\t| endr = %p ",&indv);
-		fprintf(arq,"\t| err = %d ",indv->erros);
-		if(indv->prox == NULL){
-			fprintf(arq,"\t| %d -> NULL ",indv->numero);
-		}else{
-			fprintf(arq,"\t| %d -> %d ",indv->numero,indvProx->numero);
-		}
-		fprintf(arq,"\t|\n");
-}
+float validTaxa(){
+    float porcent;
+    printf(YELLOW "\nInsira a porcentagem de aumento ou desconto: " RESET);
+    int tax = input();
 
-void geraRelatorio(TLista *L){
-	TIndividuo *melhorIndv = L->melhorIndv;
-	TIndividuo *piorIndv = L->piorIndv;
-	FILE *rel = L->fp;
-	int totalDeGeracoes = L->Total_geracoes;
-	int totalDeindv = L->totalIndividuos;
-	float bytes = sizeof(TIndividuo) * totalDeindv * totalDeGeracoes;
-	float Mbytes = bytes/1024;
-
-	fprintf(rel,"\n\t TABELA DE INDIVIDUOS:\n");
-	fprintf(rel,"\n\t Melhor Individuo:\n");
-	geraTabela(rel,melhorIndv);
-	fprintf(rel,"\n\t Pior Individuo:\n");
-	geraTabela(rel,piorIndv);
-	fprintf(rel,"\n\t Primeiro Individuo:\n");
-	geraTabela(rel,L->populacao);
-	fprintf(rel,"\n\t Ultimo Individuo:\n");
-	geraTabela(rel,L->fimLista);
-	fprintf(rel,"TAMANHO DO PROGRAMA: \n");
-	fprintf(rel,"ESPACO EM %.2fMbytes\n",Mbytes);
-	fprintf(rel,"ESPACO EM %.2fGbytes\n",Mbytes/1024);
-}
-
-//====================================================
-void geraIndividuos(TLista *L){
-	TIndividuo *novo;
-	int i, x;
-	
-	srand( (unsigned)time(NULL) );
-	
-	for(i= 0; i < L->Qtd_Populacao; i++){
-		novo = (TIndividuo *)malloc(sizeof(TIndividuo));
-		
-		novo->prox = NULL;
-		novo->numero = i+1;		
-		novo->erros = -1;
-		
-		for(x=0; x < MAX_Pesos; x++){
-			novo->genes[x] = rand() % 101;
-			novo->genes[x] = novo->genes[x] / 100;
-		}//for
-		
-		if(L->populacao == NULL){
-			L->populacao = novo;
-		} else {
-			TIndividuo *atual = L->populacao;
-			
-			while(atual->prox != NULL){
-				atual = atual->prox;
-			}//while
-			
-			atual->prox = novo;
-		}//if
-		
-		L->totalIndividuos++;
-	}//for
-}
-//=====================================================
-void insereLicao(TLista *L, int p, int q, int resultado){
-	TLicao *novo = (TLicao *)malloc(sizeof(TLicao));
-	
-	novo->prox = NULL;
-	novo->p = p;
-	novo->q = q;
-	novo->resultadoEsperado = resultado;
-	
-	if(L->licoes == NULL){
-		L->licoes = novo;
-	} else {
-		TLicao *atual = L->licoes;
-		
-		while(atual->prox != NULL){
-			atual = atual->prox;			
-		}//while
-		atual->prox = novo;
-	}//if
-}
-//=====================================================
-void geraLicoes(TLista *L){
-	TLicao *novo;
-	int p,q;
-	
-	insereLicao(L, 0, 0, 0);
-	insereLicao(L, 0, 1, 0);
-	insereLicao(L, 1, 0, 0);
-	insereLicao(L, 1, 1, 1);
-
-}
-//======================================================
-void insereNeuronio(TLista *L, int neuronio){
-	TNeuronio *novo = (TNeuronio *)malloc(sizeof(TNeuronio));
-	novo->prox = NULL;
-	novo->neuronio = neuronio;
-	novo->peso = 0;
-	novo->soma = 0;
-	
-	if(L->neuronios == NULL){
-		L->neuronios = novo;
-	} else {
-		TNeuronio *atual = L->neuronios;
-		
-		while(atual->prox != NULL){
-			atual = atual->prox;
-		}//while
-		atual->prox = novo;
-	}//if
-}
-//======================================================
-void estabelecendoSinapse(TLista *L,int neuronioDe, int neuronioAte, int camada){
-	TSinapse *novo = (TSinapse *)malloc(sizeof(TSinapse));
-	TSinapse *atual;
-	
-	novo->prox = NULL;
-	novo->neuronio_origem = neuronioDe;
-	novo->neuronio_destino = neuronioAte;
-	novo->camada = camada;
-	novo->peso = 0;
-	
-	if(L->pesos == NULL){
-		L->pesos = novo;
-	} else {
-		atual = L->pesos;
-		
-		while(atual->prox != NULL){
-			atual = atual->prox;
-		}//while
-		atual->prox = novo;
-	}//if
-}
-
-// ====================CRUZAMENTO====================
-void inserirNoFimAux(TLista *L, TIndividuo *individuo) {
-    if (L->populacao == NULL) { // Se a lista estiver vazia
-        L->populacao = individuo;
-        L->totalIndividuos++;
-        return;
+    while((tax <= 0 ) || (tax > 100)){
+        printf(RED "\nA taxa não pode ser menor do que 0 ou maior que 100!\n" RESET);
+        printf(YELLOW "\nInsira a porcentagem de aumento ou desconto: " RESET);
+        tax = input();
     }
-    TIndividuo *aux = L->populacao;
-    while (aux->prox != NULL) { // Percorre até o último elemento da lista
-        aux = aux->prox;
+    porcent = (tax/100);
+    return porcent;
+}
+
+int validQuantidade(){
+    int qtd;
+    do{
+        printf(YELLOW "\nInsira a quantidade do Produto: " RESET);
+        qtd = input();
+    }while (qtd < 0);
+    return qtd;
+}
+
+int validDia(){
+    int dia;
+    do{
+        printf(YELLOW "\nInsira o dia de validade: " RESET);
+        dia = input();
+    }while ((dia < 1) || (dia > 31));
+    return dia;
+}
+
+int validMes(){
+    int mes;
+    do{
+        printf(YELLOW "\nInsira o mês de validade: " RESET);
+        mes = input();
+    }while ((mes < 1)||(mes > 12));
+    return mes;
+}
+
+int validAno(){
+    int ano;
+    do{
+        printf(YELLOW "\nInsira o Ano de validade: " RESET);
+        ano = input();
+    }while ((ano < 1900)||(ano > 3050));
+    return ano;
+}
+int validNum(){
+    printf("Insira um numero: ");
+    int num = input();
+
+    while(num < 0){
+        printf("Salario invalido.");
+        printf("Insira Seu salario: ");
+        num = input();
     }
-    aux->prox = individuo; // Adiciona o novo indivíduo ao final da lista
-    L->totalIndividuos++;
+    return num;
 }
-
-void inserirNoFim(TLista *L, TIndividuo *individuo) {
-    TIndividuo *clone = (TIndividuo *)malloc(sizeof(TIndividuo)); // Clonar o indivíduo
-    memcpy(clone, individuo, sizeof(TIndividuo));
-    clone->prox = NULL;
-    inserirNoFimAux(L, clone);
+int validNota(){
+    float nota;
+    do{
+        printf("Insira uma Nota: ");
+        nota = input();
+    }while ((nota < 0) || ( nota > 10));
+    return nota;
 }
-
-void geraFilhos(TLista *L, TIndividuo *pai,TIndividuo *mae){
-	int iFilhos,iPaes;
-	TIndividuo *filho1 = (TIndividuo *)malloc(sizeof(TIndividuo));
-	TIndividuo *filho2 = (TIndividuo *)malloc(sizeof(TIndividuo));
-
-	L->totalIndividuos = L->totalIndividuos + 1;
-	filho1->numero = L->totalIndividuos;
-	L->totalIndividuos = L->totalIndividuos + 1;
-	filho2->numero = L->totalIndividuos;
-	filho1->erros = -1;
-	filho2->erros = -1;
-	filho1->prox = NULL;
-	filho2->prox = NULL;
-	for (iFilhos = 0, iPaes = 0; iPaes < MAX_Pesos; iPaes++,iFilhos++) {
-		if(iPaes <= 2){
-			filho1->genes[iFilhos] = pai->genes[iPaes];
-			filho2->genes[iFilhos] = mae->genes[iPaes];
-		}else{
-			filho1->genes[iFilhos] = mae->genes[iPaes];
-			filho2->genes[iFilhos] = pai->genes[iPaes];
-		}
-	}
-	inserirNoFim(L, filho1);
-	inserirNoFim(L, filho2);
+int validMatricula(){
+    float matricula;
+    do{
+        printf("Insira sua matricula: ");
+        matricula = input();
+    }while (matricula < 0);
+    return matricula;
 }
-
-void cruzamento(TLista *L){
-	/*Essa funçao deve ler cada um dos individuos da lista e cruza-los, ou seja pegar metade
-	dos genes de cada um dos pais selecionados e usar metade dos genes do primeiro individuo usado
-	e depois usar a outra metade de genes tirados do segundo individuo selecionado, devem ser feitos 2 individuos
-	novos de cada par de individuos selecionados da lista, esses individuos novos devem ser colocados em uma lista 
-	auxiliar e apos isso devem ser alocados para a lista principal de forma que a lista principal tenha todos 
-	os individuos interligados, no inicio os individuos originais e depois os individuos criados do cruzamento*/
-	TIndividuo *pai1 = L->populacao;
-	TIndividuo *pai2 = pai1->prox;
-	int individuosCruzados = 0;
-    int totalPais = L->totalIndividuos;
-
-	while (individuosCruzados < totalPais / 2) {
-		printf("Cruzando individuo %d com %d\n", pai1->numero, pai2->numero);
-
-		geraFilhos(L, pai1,pai2);
-		individuosCruzados += 1;
+float validPreco(){
+    float prise;
+    do{
+        printf(YELLOW "\nInsira o preço do Produto: " RESET);
+        prise = input();
+    }while (prise < 0);
+    return prise;
+}
+int validIdade(){
+    printf("Insira sua idade: ");
+    int idade = input();
+    while((idade <= 0) || (idade >= 50)){
+        printf("Idade invalida.");
+        printf("Insira sua idade: ");
+        idade = input();
         
-        // Avançar para os próximos pais, garantindo que não ultrapassemos o final da lista
-        if (pai1->prox != NULL) {
-            pai1 = pai1->prox;
-        }
-        if (pai2->prox != NULL) {
-            pai2 = pai2->prox;
-        }
-	}
+    }
+    return idade;
 }
-//==============================================================
-void promoveMutacoes(TLista *L){
-	/* Altera o c�digo gen�tico de um n�mero espec�fico
-	de indiv�duos (= L->Qtd_Mutacoes_por_vez). */
-	// Verificar se a lista está vazia
-	int i;
-	    // Escolher um gene aleatório
-    int geneIndex = rand() % MAX_Pesos;
-    // Escolher aleatoriamente se a mutação será para cima ou para baixo
-    int upOrDown = rand() % 2; // 0 para baixo, 1 para cima
-	// Escolher um indivíduo aleatório
-    int index = rand() % L->totalIndividuos;
-    TIndividuo *individuo = L->populacao;
-
-
-    if (L->populacao == NULL) {
-        printf("Lista de individuos vazia.\n");
-        return;
+int validSalario(){
+    printf("Insira seu salario: ");
+    int salario = input();
+    
+    while(salario < 0){
+        printf("Salario invalido.");
+        printf("Insira Seu salario: ");
+        salario = input();
     }
-    // Percorrer até o índice do indivíduo escolhido
-    for (i = 0; i < index; i++) {
-        individuo = individuo->prox;
-    }
+    return salario;
+}
+int validAltura(){
+    float alt;
+    do{
+        printf("Insira a altura: ");
+        alt = input();
+    }while (alt < 0);
+    return alt;
+}
+int validBase(){
+    float base;
+    do{
+        printf("Insira a base: ");
+        base = input();
+    }while (base < 0);
+    return base;
+}
+int validRaio(){
+    float raio;
+    do{
+        printf("Insira o raio: ");
+        raio = input();
+    }while (raio < 0);
+    return (raio*raio);
+}
 
-    // Aplicar a mutação
-    if (upOrDown == 0) {
-        individuo->genes[geneIndex] -= L->learningRate; // Diminuir do valor do gene
-    } else {
-        individuo->genes[geneIndex] += L->learningRate; // Somar ao valor do gene
-    }
+int validQTD(){
+    float qtd;
+    do{
+        printf("Insira a quantidade de produto: ");
+        qtd = input();
+    }while (qtd < 0);
+    return qtd;
+}
+void imprimirArray(int *array, int qtde){
+    int i;
 
-    printf("Mutacao promovida com sucesso.\n");
-	exibeIndividuos(L);
+    for (i = 0; i < qtde; i++){
+        printf("%d  ",array[i]);
+    }
+}
+int fatorial(){
+    int i,num, fat;
+    printf("Informe o número: ");
+    scanf("%d", &num);
+    fat = 1;
+    for(i=num; i > 1 ; i--) {
+        fat = fat * i;
+    }
+    return fat;
+}
+int lerOpcaoCalc() {
+    int op;
+    printf("\n\nCALCULAR A ÁREA:\n");
+    printf("1-Retângulo\n");
+    printf("2-Círculo\n");
+    printf("0-Sair\n");
+    printf("Informe sua opção: ");
+    scanf("%d", &op);
+    // VALIDAR a opção entre 0, 1 e 2
+    return op;
+}
+
+int somar(int num1, int num2){
+    int total = num1 + num2;
+    printf("\nSomando os numeros: %d + %d\n", num1,num2);
+    return total;
+}
+int diminuir(int num1, int num2){
+    int total = num1 - num2;
+    printf("\n Subtraindo os numeros: %d - %d\n", num1,num2);
+    return total;
+}
+float calcMedia3(float n1,float n2,float n3){
+    float media = (n1 + n2 + n3 )/3;
+    return media;
+}
+int menuPay(){
+    printf("\n=======SELECIONAR FORMA DE PAGAMENTO=======\n");
+    printf("1-A vista\n");
+    printf("2-A prazo\n");
+    printf("=====================\n");
+    printf("Forma: ");
+    int opc = input();
+
+    return opc;
+}
+
+int calcArRetangulo(){
+    float base = validBase();
+    float altura = validAltura();
+    float area = base * altura;
+    return area;
+}
+int calcArCirculo(){
+    float raio = validRaio();
+    float area = M_PI * raio;
+    return area;
+}
+
+// void saveArray(int *i,int *array,int data){
+//     char continuar;
+//     do{
+//         array[*i] = data;
+//         (*i)++;
+//         printf("\nDeseja continuar? ");
+//         scanf(" %c",&continuar);
+//         continuar = toupper(continuar);
+//     } while(continuar == "S");
+// }
+
+void removerArray(int *qtde, int *array, int pos){
+    int i;
+    for (i = pos; i < (*qtde)-1; i++){
+        array[i] = array[i+1];
+    }
+    (*qtde)--;
+}
+
+void alocarMEM(int **database,int *maxSpace){
+    printf("Entre com a quantidade de números: ");
+    int quant_numeros = input();
+    *database = (int *) malloc (quant_numeros * sizeof (int) );
+    *maxSpace = quant_numeros;
+}
+
+void reAlocarMEM(int **database, int *maxSpace){
+    printf("\nVoce tem alocado: %d \n",*maxSpace);
+    printf("Entre com a quantidade a mais de elementos: ");
+    int qtdeNova = input();
+    *maxSpace = (qtdeNova+(*maxSpace));
+    int tam = (*maxSpace) * sizeof (int);
+
+    *database = (int *) realloc (*database , tam );
 }

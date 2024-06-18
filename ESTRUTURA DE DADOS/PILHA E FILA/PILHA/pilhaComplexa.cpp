@@ -1,29 +1,8 @@
-// Produzido por LUCAS GARCIA & LUIS AUGUSTO DE SOUZA
-/*
-  Rede Neural Artificial Evolutiva (RNA-E)
-  
-  Os pesos s�o atualizados a partir de um algoritmo
-  gen�tico que busca minimizar os erros na fase de
-  treinamento.
-  
-*/
-
 #include <windows.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include "functions.c"
-
-typedef struct pilhaComplexa{
-    int digito;
-    pilhaComplexa *prox,*ante;
-}TElemento;
-
-typedef struct tipoPilha{
-    int digito;
-    TElemento *topo;
-    TElemento *base;
-}TPilha;
 
 TPilha pilha;
 
@@ -33,7 +12,7 @@ void inicializa(TPilha *P){
 }
 
 void empilharPilha(TPilha *P, int valor){
-    TElemento *novo = (TElemento*)malloc(sizeof(TElemento));
+    Pilha *novo = (Pilha*)malloc(sizeof(Pilha));
 
     novo->ante = NULL;
     novo->prox = NULL;
@@ -60,7 +39,7 @@ void desmembraPilha(TPilha *P, int num){
 }
 
 int desempilharPilha(TPilha *P){
-    TElemento *atual;
+    Pilha *atual;
     int res;
 
     if (P->topo != NULL){
