@@ -480,7 +480,7 @@ int desempilharPilha(TPilha *P){
             P->topo->prox = NULL;
             P->base = NULL;
         }
-        res = P->topo->digito;
+        res = atual->digito;
         free(atual);
     }else{
         res = -1;
@@ -492,6 +492,7 @@ void desmembrarPilha(TPilha *P, int num){
     int quoc = num;
 
     do{
+        printf("\n>>> %d em %d\n", quoc%10, quoc);
         empilharPilha(P,(quoc % 10));
         quoc = quoc/10;
     } while (quoc > 0);
@@ -503,6 +504,9 @@ int remontarPilha(TPilha *P){
 
     while (P->topo != NULL){
         valor = valor + (desempilharPilha(P) * fator);
+        fator = fator * 10;
+
+        printf("\n\n valor= %d    fator= %d",valor, fator);
     }
 
     return valor;
