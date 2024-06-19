@@ -28,7 +28,7 @@ struct ClassDatabase {
 typedef struct ClassDatabase Database;
 struct ClassPilha{
     int digito;
-    Pilha *prox,*ante;
+    ClassPilha *prox,*ante;
 };
 typedef struct ClassPilha Pilha;
 
@@ -75,6 +75,12 @@ void correct(){
     SetConsoleOutputCP(65001);
 }
 
+void trocar(int vet[],int i,int f){
+    int aux;
+    aux = vet[i];
+    vet[i] = vet[f];
+    vet[f] = aux;
+}
 // ============================= FIM DO BASE ======================
 
 void head(){
@@ -303,6 +309,15 @@ int fatorial(){
     }
     return fat;
 }
+int fatorialAuto(int num){
+    int i, fat;
+    fat = 1;
+    for(i=num; i > 1 ; i--) {
+        fat = fat * i;
+        printf("\n Efetuando Fatorial !%d\n",i);
+    }
+    return fat;
+}
 int lerOpcaoCalc() {
     int op;
     printf("\n\nCALCULAR A ÁREA:\n");
@@ -363,6 +378,54 @@ int calcArCirculo(){
 //     } while(continuar == "S");
 // }
 
+// ============= heapSort =========
+
+void atualizarHeap(int vetor[], int raiz, int n ) {
+	int filhoEsq = 2 * raiz + 1;
+	int filhoDir = 2 * raiz + 2;
+
+	int maior;
+	if ( filhoEsq >= n) {
+		// SEM NENHUM FILHO
+		return;
+	} else if ( filhoDir >= n ){
+		// SOMENTE o FILHO DA ESQUERDA
+		maior = filhoEsq;
+	} else if ( vetor[filhoEsq] > vetor[filhoDir]  ) {
+		maior = filhoEsq;
+	} else {
+		maior = filhoDir;
+	}
+
+	if ( vetor[maior] > vetor[raiz]  ) {
+		trocar(vetor, maior, raiz);
+		atualizarHeap(vetor, maior, n);
+	} else {
+		return;
+	}
+}
+
+void construirHeap(int vet[],int tam){
+    int i;
+
+	for(i = (tam/2)-1; i>=0; i--) {
+		atualizarHeap(vet, i, tam);
+	}
+}
+
+void heapSort(int vetor[], int tam ) {
+	long int n = tam;
+	construirHeap(vetor,n);
+	while (n > 1) {
+		trocar(vetor,0,n-1);
+		n--;
+		atualizarHeap(vetor,0,n);
+	}
+	printf("\n\nTROCAS");
+}
+
+// ============= heapSort =========
+
 void removerArray(int *qtde, int *array, int pos){
     int i;
     for (i = pos; i < (*qtde)-1; i++){
@@ -413,11 +476,34 @@ int desempilharPilha(TPilha *P){
     if (P->topo != NULL){
         atual = P->topo;
         P->topo = P->topo->ante;
-        P->topo->prox = atual;
+        if (P->topo != NULL){
+            P->topo->prox = NULL;
+            P->base = NULL;
+        }
         res = P->topo->digito;
         free(atual);
     }else{
         res = -1;
     }
     return res;
+}
+
+void desmembrarPilha(TPilha *P, int num){
+    int quoc = num;
+
+    do{
+        empilharPilha(P,(quoc % 10));
+        quoc = quoc/10;
+    } while (quoc > 0);
+}
+
+int remontarPilha(TPilha *P){
+    int valor = 0;
+    int fator = 1;
+
+    while (P->topo != NULL){
+        valor = valor + (desempilharPilha(P) * fator);
+    }
+
+    return valor;
 }
