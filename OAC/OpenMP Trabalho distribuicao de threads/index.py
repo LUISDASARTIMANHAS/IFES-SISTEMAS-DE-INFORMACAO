@@ -1,5 +1,7 @@
 import time
+from numba import jit, njit
 
+@njit
 def valor_com_imposto(qtde):
     for i in range(qtde):
         novo_valor = qtde * 1.1
