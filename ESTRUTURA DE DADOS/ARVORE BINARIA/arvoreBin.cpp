@@ -11,6 +11,12 @@ void inicializa(TNo **R){
     (*R) = NULL;
 }
 
+// balanceamento -2 ou maior que 2 esta desbalanceada
+// algoritimo de insercção faz ajustes para manter o balanceamento 
+// apenas movendo a raiz pode ser que balanceie a arvore
+//  vasculhar o proximo nivel para ver se esta balanceado
+
+
 //===| Programa Principal |===========================
 int main(){
     inicializa(&raiz);

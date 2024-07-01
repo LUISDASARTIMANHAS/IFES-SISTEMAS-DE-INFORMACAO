@@ -530,10 +530,10 @@ TNo *criaNo(int valor){
 
 void insereArvBin(TNo **R, int valor){
     printf("\n\n Executando inserção %d",valor);
-    if ((*R) == NULL){
+    if (*R == NULL){
         // Arvore vazia
         printf("\n\n Criando arvore porque estava vazia!");
-        (*R) = criaNo(valor);
+        *R = criaNo(valor);
     }else if (valor >= (*R)->valor){
         // inserção a direita
         if ((*R)->dir == NULL){
@@ -580,19 +580,19 @@ void caminhamentoPosOrdemBin(TNo *R){
 }
 
 TNo *buscaArvBin(TNo **R, int args){
-    if ((*R) != NULL){
-        return NULL;
-    }else if (args == (*R)->valor){
-        // No encontrado
-        return (*R);
-    }else if (args > (*R)->valor){
-        // Descendo a direita
-        printf("\n Visitando %d e Descendo pela Direita.",(*R)->valor);
-        return buscaArvBin(&(*R)->dir,args);
-    }else{
-        // Descendo a Esqueda
-        printf("\n Visitando %d e Descendo pela Esquerda.",(*R)->valor);
-        return buscaArvBin(&(*R)->esq,args);
+	if(*R == NULL){
+		return NULL;
+	} else if(args == (*R)->valor){
+		//No Encontrado.
+		return *R;
+	} else if(args > (*R)->valor){
+		//Desce pela Direita.
+		printf("\n Visitando %d e DESCENDO pela DIREITA...", (*R)->valor);
+		return buscaArvBin(&(*R)->dir, args);
+	} else {
+		//Desce pela Esquerda.
+		printf("\n Visitando %d e DESCENDO pela ESQUERDA...", (*R)->valor);
+		return buscaArvBin(&(*R)->esq, args);
     }
 }
 
@@ -600,5 +600,5 @@ TNo *removeNoArvBin(TNo **R, int args){
     if ((*R) != NULL){
         /* code */
     }
-    
+
 }
