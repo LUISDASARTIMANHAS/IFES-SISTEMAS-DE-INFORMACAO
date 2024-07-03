@@ -33,7 +33,7 @@ void insere(TNo **raiz, char *nome){
         // arvore vazia
         // printf("Primeiro no da arvore\n");
         *raiz = criaNo(nome,(*raiz));
-    }else if (strcmp(nome,(*raiz)->nome) > 0){
+    }else if (strcmp((*raiz)->nome,nome) < 0){
         // insere na direita
         if ((*raiz)->dir == NULL){
             (*raiz)->dir = criaNo(nome,(*raiz));
@@ -125,7 +125,21 @@ TNo* exclui(TNo **raiz, int argumento) {
     return *raiz;
 }
 //===============================================================
+void imprimeArvore(TNo *no) {
+    if (no == NULL) {
+        return;
+    }
 
+    // Imprime o nó atual
+    printf("Nó: %s, Antecedente: %s, Profundidade: %d\n",
+           no->nome,
+           no->raiz ? no->raiz->nome : "NULL",
+           no->nivelProfundidade);
+
+    // Percorre os filhos do nó atual
+    imprimeArvore(no->esq);
+    imprimeArvore(no->dir);
+}
 //===============================================================
 
 //===============================================================
@@ -140,6 +154,7 @@ int main(){
     insere(&raiz,"Xuxa");
     caminhamentoEmOrdem(raiz);
     printf("\t\t caminhamento em ordem \t\n");
+    printf("Impressão da árvore com antecedente e profundidade:\n");
+    imprimeArvore(raiz);
     return 0;
 }
-
