@@ -24,7 +24,7 @@ Se houver um desbalanceamento  na subárvore da esquerda do filho da direita do 
 TNo *raiz;
 
 void inicializa(TNo **R){
-	printf("\t\t=====|  BINARIA AVL |=====");
+	printf("\n\n\t\t=====| ARVORE BINARIA AVL |=====\n");
     insereAVL(&raiz,"Astolfo",0);
     insereAVL(&raiz,"Julia",0);
     insereAVL(&raiz,"Anakin",0);
@@ -33,7 +33,7 @@ void inicializa(TNo **R){
     insereAVL(&raiz,"Kleiton",0);
     insereAVL(&raiz,"Xuxa",0);
 
-    printf("\t\t caminhamento em ordem \t\n");
+    printf("\n\t\t caminhamento em ordem \t\n");
     caminhamentoEmOrdemAVL(raiz);
     imprimeArvore(raiz);
 }
