@@ -1,6 +1,6 @@
 // Produzido por LUCAS GARCIA & LUIS AUGUSTO DE SOUZA
 /*
-    ARVORE BINARIA AVL
+     BINARIA AVL
     balanceamento -2 ou maior que 2 esta desbalanceada
     algoritimo de insercção faz ajustes para manter o balanceamento 
     apenas movendo a raiz pode ser que balanceie a arvore
@@ -16,8 +16,8 @@
 TNo *raiz;
 
 void inicializa(TNo **R){
-	printf("\t\t=====| ARVORE BINARIA AVL |=====");
-    insereAVL(&raiz,"Asdrubal",0);
+	printf("\t\t=====|  BINARIA AVL |=====");
+    insereAVL(&raiz,"Astolfo",0);
     insereAVL(&raiz,"Julia",0);
     insereAVL(&raiz,"Anakin",0);
     insereAVL(&raiz,"Jack",0);
@@ -27,7 +27,7 @@ void inicializa(TNo **R){
 
     printf("\t\t caminhamento em ordem \t\n");
     caminhamentoEmOrdemAVL(raiz);
-    imprimeArvore(raiz);
+    imprime(raiz);
 }
 
 //===| Programa Principal |===========================
