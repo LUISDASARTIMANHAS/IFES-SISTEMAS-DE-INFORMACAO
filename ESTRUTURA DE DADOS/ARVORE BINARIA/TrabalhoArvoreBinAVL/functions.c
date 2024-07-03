@@ -610,38 +610,44 @@ TNo *removeNoArvBin(TNo **R, int args){
 // ============== FUNÇÕES O TRABALHO ========================
 
 
-TNo *criaNoAVL(char *nome, TNo *raiz){
+TNo *criaNoAVL(char *nome, TNo *raiz,int profundidade){
     TNo *novo = (TNo *)malloc(sizeof(TNo));
     strcpy(novo->nome,nome);
-    novo->nivelProfundidade = 1;
+    novo->nivelProfundidade = profundidade;
     novo->raiz = raiz;
     novo->esq = NULL;
     novo->dir = NULL;
     return novo;
 }
 
-void insereAVL(TNo **raiz, char *nome){
+void insereAVL(TNo **raiz, char *nome,int profundidade){
+    if (profundidade == NULL){
+        profundidade = 0;
+    }
+    
     if(*raiz == NULL){
         // arvore vazia
         // printf("Primeiro no da arvore\n");
-        *raiz = criaNoAVL(nome,(*raiz));
+        *raiz = criaNoAVL(nome,(*raiz),profundidade);
     }else if (strcmp(nome,(*raiz)->nome) > 0){
         // insere na direita
         if ((*raiz)->dir == NULL){
-            (*raiz)->dir = criaNoAVL(nome,(*raiz));
+            (*raiz)->dir = criaNoAVL(nome,(*raiz),profundidade);
             // printf("Foi inserido na direita\n");
         }else{
             // printf("chama a funçao para a direita\n");
-            insereAVL(&(*raiz)->dir,nome);
+            profundidade++;
+            insereAVL(&(*raiz)->dir,nome,profundidade);
         }   
     }else{
         // insere na esquerda
         if ((*raiz)->esq == NULL){
             // printf("Foi inserido na esquerda\n");
-            (*raiz)->esq = criaNoAVL(nome,(*raiz));
+            (*raiz)->esq = criaNoAVL(nome,(*raiz),profundidade);
         }else{
             // printf("chama a funçao para a esquerda\n");
-            insereAVL(&(*raiz)->esq,nome);
+            profundidade++;
+            insereAVL(&(*raiz)->esq,nome,profundidade);
         }
     }   
 }
@@ -671,3 +677,19 @@ void caminhamentoPosOrdem(TNo *raiz){
     }
 } 
 //===============================================================
+
+void imprimeArvore(TNo *no) {
+    if (no == NULL) {
+        return;
+    }
+
+    // Imprime o nó atual
+    printf("Nó: %s, Antecedente: %s, Profundidade: %d\n",
+           no->nome,
+           no->raiz ? no->raiz->nome : "NULL",
+           no->nivelProfundidade);
+
+    // Percorre os filhos do nó atual
+    imprimeArvore(no->esq);
+    imprimeArvore(no->dir);
+}
