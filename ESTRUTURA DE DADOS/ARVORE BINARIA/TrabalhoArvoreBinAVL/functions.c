@@ -21,7 +21,7 @@ typedef char string[101];
 
 struct ClassDatabase {
     int codigo;
-    char nome[101];
+    string nome;
     float preco;
     int qtde;
 };
@@ -42,8 +42,11 @@ typedef struct ClassTipoPilha TPilha;
 
 struct ClassTipoNo{
     int valor;
+    int nivelProfundidade;
     ClassTipoNo *esq;
     ClassTipoNo *dir;
+    ClassTipoNo *raiz;
+    string nome;
 };
 typedef struct ClassTipoNo TNo;
 
@@ -602,3 +605,69 @@ TNo *removeNoArvBin(TNo **R, int args){
     }
 
 }
+
+
+// ============== FUNÇÕES O TRABALHO ========================
+
+
+TNo *criaNoAVL(char *nome, TNo *raiz){
+    TNo *novo = (TNo *)malloc(sizeof(TNo));
+    strcpy(novo->nome,nome);
+    novo->nivelProfundidade = 1;
+    novo->raiz = raiz;
+    novo->esq = NULL;
+    novo->dir = NULL;
+    return novo;
+}
+
+void insereAVL(TNo **raiz, char *nome){
+    if(*raiz == NULL){
+        // arvore vazia
+        // printf("Primeiro no da arvore\n");
+        *raiz = criaNoAVL(nome,(*raiz));
+    }else if (strcmp(nome,(*raiz)->nome) > 0){
+        // insere na direita
+        if ((*raiz)->dir == NULL){
+            (*raiz)->dir = criaNoAVL(nome,(*raiz));
+            // printf("Foi inserido na direita\n");
+        }else{
+            // printf("chama a funçao para a direita\n");
+            insereAVL(&(*raiz)->dir,nome);
+        }   
+    }else{
+        // insere na esquerda
+        if ((*raiz)->esq == NULL){
+            // printf("Foi inserido na esquerda\n");
+            (*raiz)->esq = criaNoAVL(nome,(*raiz));
+        }else{
+            // printf("chama a funçao para a esquerda\n");
+            insereAVL(&(*raiz)->esq,nome);
+        }
+    }   
+}
+
+//===============================================================
+void caminhamentoEmOrdemAVL(TNo *raiz){
+    if(raiz != NULL){
+        caminhamentoEmOrdemAVL(raiz->esq);
+        printf("%s, ",raiz->nome);
+        caminhamentoEmOrdemAVL(raiz->dir);
+    }    
+}
+//===============================================================
+void caminhamentoPreOrdem(TNo *raiz){
+    if(raiz != NULL){
+        printf("%s, ",raiz->nome);
+        caminhamentoPreOrdem(raiz->esq);
+        caminhamentoPreOrdem(raiz->dir);
+    }   
+}
+//===============================================================
+void caminhamentoPosOrdem(TNo *raiz){
+    if(raiz != NULL){
+        caminhamentoPosOrdem(raiz->esq);
+        caminhamentoPosOrdem(raiz->dir);
+        printf("%s, ",raiz->nome);
+    }
+} 
+//===============================================================

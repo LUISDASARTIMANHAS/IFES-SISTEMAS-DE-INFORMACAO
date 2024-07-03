@@ -17,7 +17,16 @@ TNo *raiz;
 
 void inicializa(TNo **R){
 	printf("\t\t=====| ARVORE BINARIA AVL |=====");
-	
+    insereAVL(&raiz,"Asdrubal");
+    insereAVL(&raiz,"Julia");
+    insereAVL(&raiz,"Anakin");
+    insereAVL(&raiz,"Jack");
+    insereAVL(&raiz,"Ortencio");
+    insereAVL(&raiz,"Kleiton");
+    insereAVL(&raiz,"Xuxa");
+
+    printf("\t\t caminhamento em ordem \t\n");
+    caminhamentoEmOrdemAVL(raiz);
 }
 
 //===| Programa Principal |===========================
