@@ -27,7 +27,7 @@ void inicializa(TNo **R){
 
     printf("\t\t caminhamento em ordem \t\n");
     caminhamentoEmOrdemAVL(raiz);
-    imprime(raiz);
+    imprimeArvore(raiz);
 }
 
 //===| Programa Principal |===========================
