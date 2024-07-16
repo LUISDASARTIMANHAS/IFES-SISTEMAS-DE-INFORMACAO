@@ -6,6 +6,7 @@
 #include <stdio.h>
 #include <ctype.h>
 #include <string.h>
+#include <time.h>
 
 // Defina constantes para as sequências de escape ANSI das cores
 #define RED "\x1b[31m"
@@ -26,6 +27,26 @@ struct ClassDatabase {
 };
 typedef struct ClassDatabase Database;
 
+struct ClassPilha{
+    int digito;
+    ClassPilha *prox,*ante;
+};
+typedef struct ClassPilha Pilha;
+
+struct ClassTipoPilha{
+    int digito;
+    Pilha *topo;
+    Pilha *base;
+};
+typedef struct ClassTipoPilha TPilha;
+
+struct ClassTipoNo{
+    int valor;
+    ClassTipoNo *esq;
+    ClassTipoNo *dir;
+};
+typedef struct ClassTipoNo TNo;
+
 FILE * abrirArquivo(char * nomeArq, char * modo) {
     // ABRIR o arquivo
     FILE * arq;
@@ -45,10 +66,29 @@ void gravarArquivo(FILE * arquivo, Database * vetProd, int qtde) {
     fwrite( vetProd, sizeof(Database), qtde, arquivo  );
 }
 
+FILE * autosave(FILE *arq, char * nomeArq){
+	printf("\n\n\t AUTOSAVE EM ANDAMENTO.... \n\n");
+	fclose(arq);
+	printf("\n\n\t AUTOSAVE COMPLETO!. \n\n");
+	arq = abrirArquivo(nomeArq,"a+");
+	return arq;
+}
+
+// gera um numero aleatorio no intervalo n,
+int aleatorio(int n){
+    return (rand() % (n+1));
+}
+
 void correct(){
     SetConsoleOutputCP(65001);
 }
 
+void trocar(int vet[],int i,int f){
+    int aux;
+    aux = vet[i];
+    vet[i] = vet[f];
+    vet[f] = aux;
+}
 // ============================= FIM DO BASE ======================
 
 void head(){
@@ -90,6 +130,14 @@ float input(){
     float value;
     scanf("%f", &value);
     return value;
+}
+float inputBoleano(){
+	int value;
+	do{
+		fflush(stdin);
+		scanf("%d", &value);
+	}while(value != 1 && value != 0);
+	return value;
 }
 void inputS(char destino[]){
     scanf(" %100[^\n]s", destino);
@@ -269,6 +317,15 @@ int fatorial(){
     }
     return fat;
 }
+int fatorialAuto(int num){
+    int i, fat;
+    fat = 1;
+    for(i=num; i > 1 ; i--) {
+        fat = fat * i;
+        printf("\n Efetuando Fatorial !%d\n",i);
+    }
+    return fat;
+}
 int lerOpcaoCalc() {
     int op;
     printf("\n\nCALCULAR A ÁREA:\n");
@@ -329,6 +386,54 @@ int calcArCirculo(){
 //     } while(continuar == "S");
 // }
 
+// ============= heapSort =========
+
+void atualizarHeap(int vetor[], int raiz, int n ) {
+	int filhoEsq = 2 * raiz + 1;
+	int filhoDir = 2 * raiz + 2;
+
+	int maior;
+	if ( filhoEsq >= n) {
+		// SEM NENHUM FILHO
+		return;
+	} else if ( filhoDir >= n ){
+		// SOMENTE o FILHO DA ESQUERDA
+		maior = filhoEsq;
+	} else if ( vetor[filhoEsq] > vetor[filhoDir]  ) {
+		maior = filhoEsq;
+	} else {
+		maior = filhoDir;
+	}
+
+	if ( vetor[maior] > vetor[raiz]  ) {
+		trocar(vetor, maior, raiz);
+		atualizarHeap(vetor, maior, n);
+	} else {
+		return;
+	}
+}
+
+void construirHeap(int vet[],int tam){
+    int i;
+
+	for(i = (tam/2)-1; i>=0; i--) {
+		atualizarHeap(vet, i, tam);
+	}
+}
+
+void heapSort(int vetor[], int tam ) {
+	long int n = tam;
+	construirHeap(vetor,n);
+	while (n > 1) {
+		trocar(vetor,0,n-1);
+		n--;
+		atualizarHeap(vetor,0,n);
+	}
+	printf("\n\nTROCAS");
+}
+
+// ============= heapSort =========
+
 void removerArray(int *qtde, int *array, int pos){
     int i;
     for (i = pos; i < (*qtde)-1; i++){
@@ -352,4 +457,148 @@ void reAlocarMEM(int **database, int *maxSpace){
     int tam = (*maxSpace) * sizeof (int);
 
     *database = (int *) realloc (*database , tam );
+}
+
+void empilharPilha(TPilha *P, int valor){
+    Pilha *novo = (Pilha*)malloc(sizeof(Pilha));
+
+    novo->ante = NULL;
+    novo->prox = NULL;
+    novo->digito = valor;
+
+    if (P->topo == NULL){
+        // pilha vazia
+        P->base = novo;
+        P->topo = novo;
+    }else{
+        P->topo->prox = novo;
+        novo->ante = P->topo;
+        P->topo = novo;
+    }
+}
+
+int desempilharPilha(TPilha *P){
+    Pilha *atual;
+    int res;
+
+    if (P->topo != NULL){
+        atual = P->topo;
+        P->topo = P->topo->ante;
+        if (P->topo != NULL){
+            P->topo->prox = NULL;
+            P->base = NULL;
+        }
+        res = atual->digito;
+        free(atual);
+    }else{
+        res = -1;
+    }
+    return res;
+}
+
+void desmembrarPilha(TPilha *P, int num){
+    int quoc = num;
+
+    do{
+        printf("\n>>> %d em %d\n", quoc%10, quoc);
+        empilharPilha(P,(quoc % 10));
+        quoc = quoc/10;
+    } while (quoc > 0);
+}
+
+int remontarPilha(TPilha *P){
+    int valor = 0;
+    int fator = 1;
+
+    while (P->topo != NULL){
+        valor = valor + (desempilharPilha(P) * fator);
+        fator = fator * 10;
+
+        printf("\n\n valor= %d    fator= %d",valor, fator);
+    }
+
+    return valor;
+}
+
+TNo *criaNo(int valor){
+    TNo *novo = (TNo *)malloc(sizeof(TNo));
+    novo->valor = valor;
+    novo->esq = NULL;
+    novo->dir = NULL;
+    return novo;
+}
+
+void insereArvBin(TNo **R, int valor){
+    printf("\n\n Executando inserção %d",valor);
+    if (*R == NULL){
+        // Arvore vazia
+        printf("\n\n Criando arvore porque estava vazia!");
+        *R = criaNo(valor);
+    }else if (valor >= (*R)->valor){
+        // inserção a direita
+        if ((*R)->dir == NULL){
+            printf("\n\n Inserção a direita.");
+            (*R)->dir = criaNo(valor);
+        }else{
+            printf("\n\n Descendo a Direita.");
+            insereArvBin(&(*R)->dir,valor);
+        }
+    }else{
+        // inserção a esquerda
+        if ((*R)->esq == NULL){
+            printf("\n\n Inserção a esquerda.");
+            (*R)->esq = criaNo(valor);
+        }else{
+            printf("\n\n Descendo a esquerda.");
+            insereArvBin(&(*R)->esq,valor);
+        }
+    }
+}
+
+void caminhamentoEmOrdemBin(TNo *R){
+    if (R != NULL){
+        caminhamentoEmOrdemBin(R->esq);
+        printf("%d, ",R->valor);
+        caminhamentoEmOrdemBin(R->dir);
+    }
+}
+
+void caminhamentoPreOrdemBin(TNo *R){
+    if (R != NULL){
+        printf("%d, ",R->valor);
+        caminhamentoPreOrdemBin(R->esq);
+        caminhamentoPreOrdemBin(R->dir);
+    }
+}
+
+void caminhamentoPosOrdemBin(TNo *R){
+    if (R != NULL){
+        caminhamentoPosOrdemBin(R->esq);
+        caminhamentoPosOrdemBin(R->dir);
+        printf("%d, ",R->valor);
+    }
+}
+
+TNo *buscaArvBin(TNo **R, int args){
+	if(*R == NULL){
+		return NULL;
+	} else if(args == (*R)->valor){
+		//No Encontrado.
+		return *R;
+	} else if(args > (*R)->valor){
+		//Desce pela Direita.
+		printf("\n Visitando %d e DESCENDO pela DIREITA...", (*R)->valor);
+		return buscaArvBin(&(*R)->dir, args);
+	} else {
+		//Desce pela Esquerda.
+		printf("\n Visitando %d e DESCENDO pela ESQUERDA...", (*R)->valor);
+		return buscaArvBin(&(*R)->esq, args);
+    }
+}
+
+TNo *removeNoArvBin(TNo **R, int args){
+    if ((*R) != NULL){
+        /* code */
+    }
+
 }
