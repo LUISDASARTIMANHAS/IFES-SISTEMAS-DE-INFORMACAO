@@ -1,15 +1,18 @@
 @ECHO OFF
 set /p versao=Insira a versao: V
+set fileName=TrabalhoArvoreBinAVL
 
-g++ -Wall -g3 -Wextra -static -static-libgcc -static-libstdc++ rascunho.cpp -o "builds/RascunhoTrabalhoDeRNAEvolutiva.V%versao%.exe"
+g++ -Wall -g3 -Wextra -static -static-libgcc -static-libstdc++ rascunho.cpp -o "builds/%fileName%.V%versao%.exe"
 
-del "builds/debug.exe"
+if exist "builds/debug.exe" (
+   del "builds/debug.exe"
+)
 g++ -Wall -g3 -Wextra -static -static-libgcc -static-libstdc++ index.cpp -o "builds/debug.exe"
 
-g++ -Wall -g3 -Wextra -static -static-libgcc -static-libstdc++ index.cpp -o "builds/TrabalhoDeRNAEvolutiva.V%versao%.exe"
+g++ -Wall -g3 -Wextra -static -static-libgcc -static-libstdc++ index.cpp -o "builds/%fileName%.V%versao%.exe"
 
-tar -a -c -f "zip/TrabalhoDeRnaEvolutiva.zip" *data *.cpp functions.c *builds
+tar -a -c -f "zip/%fileName%.zip" *data *.cpp functions.c *builds
 
-msg * /v /w RascunhoTrabalhoSistemaDeAlunos.V%versao%.exe foi compilado!
+msg * /v /w %fileName%.V%versao%.exe foi compilado!
 
-start "builds/RascunhoTrabalhoDeRNAEvolutiva.V%versao%.exe"
+start "" "builds/%fileName%.V%versao%.exe"
