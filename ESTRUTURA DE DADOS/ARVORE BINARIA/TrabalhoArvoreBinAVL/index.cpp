@@ -35,15 +35,17 @@ void inicializa(TNo **R){
 
     printf("\n\t\t caminhamento em ordem \t\n");
     caminhamentoEmOrdemAVL(raiz);
-    printf("Impressão da árvore com antecedente e profundidade:\n");
+    printf("\n\nImpressão da árvore com antecedente e profundidade:\n");
     imprimeArvore(raiz);
 
+    system("PAUSE");
     raiz = excluiAVL(raiz, "Ortencio");
 
     caminhamentoEmOrdemAVL(raiz);
-    printf("\t\t caminhamento em ordem após exclusão de Ortencio \t\n");
-    printf("Impressão da árvore com antecedente e profundidade após exclusão:\n");
+    printf("\n\n\t\t caminhamento em ordem após exclusão de Ortencio \t\n");
+    printf("\nImpressão da árvore com antecedente e profundidade após exclusão:\n");
     imprimeArvore(raiz);
+    system("PAUSE");
 }
 
 //===| Programa Principal |===========================
