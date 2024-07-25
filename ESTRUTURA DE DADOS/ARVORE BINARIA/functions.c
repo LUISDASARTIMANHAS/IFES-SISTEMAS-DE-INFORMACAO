@@ -597,8 +597,14 @@ TNo *buscaArvBin(TNo **R, int args){
 }
 
 TNo *removeNoArvBin(TNo **R, int args){
-    if ((*R) != NULL){
-        /* code */
+    if (*R == NULL){
+        return *R;
+    }else {
+        TNo* noADeletar = buscaArvBin(&(*R),args);
+        //No Encontrado.
+        if (noADeletar != NULL) {
+            free(noADeletar);
+        }
     }
-
+    return *R;
 }

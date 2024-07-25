@@ -1,2 +1,5 @@
-del "debug.exe"
-g++ -Wall -g3 -Wextra -static -static-libgcc -static-libstdc++ index.cpp -o "/debug.exe"
+set fileName=index
+if EXIST "debug.exe" (
+   del "debug.exe"
+) 
+g++ -Wall -g3 -Wextra -static -static-libgcc -static-libstdc++ %fileName%.cpp -o "/debug.exe"

@@ -531,7 +531,7 @@ TNo *criaNo(int valor){
     return novo;
 }
 
-void insereArvBin(TNo **R, int valor){
+void insereAVLArvBin(TNo **R, int valor){
     printf("\n\n Executando inserção %d",valor);
     if (*R == NULL){
         // Arvore vazia
@@ -544,7 +544,7 @@ void insereArvBin(TNo **R, int valor){
             (*R)->dir = criaNo(valor);
         }else{
             printf("\n\n Descendo a Direita.");
-            insereArvBin(&(*R)->dir,valor);
+            insereAVLArvBin(&(*R)->dir,valor);
         }
     }else{
         // inserção a esquerda
@@ -553,7 +553,7 @@ void insereArvBin(TNo **R, int valor){
             (*R)->esq = criaNo(valor);
         }else{
             printf("\n\n Descendo a esquerda.");
-            insereArvBin(&(*R)->esq,valor);
+            insereAVLArvBin(&(*R)->esq,valor);
         }
     }
 }
@@ -600,56 +600,179 @@ TNo *buscaArvBin(TNo **R, int args){
 }
 
 TNo *removeNoArvBin(TNo **R, int args){
-    if ((*R) != NULL){
-        /* code */
+    if (*R == NULL){
+        return *R;
+    }else {
+        TNo* noADeletar = buscaArvBin(&(*R),args);
+        //No Encontrado.
+        if (noADeletar != NULL) {
+            free(noADeletar);
+        }
     }
-
+    return *R;
 }
 
 
 // ============== FUNÇÕES O TRABALHO ========================
 
-
-TNo *criaNoAVL(char *nome, TNo *raiz,int profundidade){
+TNo *criaNoAVL(char *nome, TNo *raiz){
     TNo *novo = (TNo *)malloc(sizeof(TNo));
     strcpy(novo->nome,nome);
-    novo->nivelProfundidade = profundidade;
+    novo->nivelProfundidade = 1;
     novo->raiz = raiz;
     novo->esq = NULL;
     novo->dir = NULL;
     return novo;
 }
 
-void insereAVL(TNo **raiz, char *nome,int profundidade){
-    if (profundidade == NULL){
-        profundidade = 0;
+TNo *minValueNodeAVL(TNo *no) {
+    TNo *atual = no;
+    while (atual->esq != NULL)
+        atual = atual->esq;
+    return atual;
+}
+
+int max(int a, int b) {
+    return (a > b) ? a : b;
+}
+
+int nivelProfundidade(TNo *N) {
+    if (N == NULL)
+        return 0;
+    return N->nivelProfundidade;
+}
+
+TNo *rotacaoDireita(TNo *y) {
+    TNo *x = y->esq;
+    TNo *T2 = x->dir;
+
+    x->dir = y;
+    y->esq = T2;
+
+    if (T2 != NULL)
+        T2->raiz = y;
+
+    x->raiz = y->raiz;
+    y->raiz = x;
+
+    y->nivelProfundidade = max(nivelProfundidade(y->esq), nivelProfundidade(y->dir)) + 1;
+    x->nivelProfundidade = max(nivelProfundidade(x->esq), nivelProfundidade(x->dir)) + 1;
+
+    return x;
+}
+
+TNo *rotacaoEsquerda(TNo *x) {
+    TNo *y = x->dir;
+    TNo *T2 = y->esq;
+
+    y->esq = x;
+    x->dir = T2;
+
+    if (T2 != NULL)
+        T2->raiz = x;
+
+    y->raiz = x->raiz;
+    x->raiz = y;
+
+    x->nivelProfundidade = max(nivelProfundidade(x->esq), nivelProfundidade(x->dir)) + 1;
+    y->nivelProfundidade = max(nivelProfundidade(y->esq), nivelProfundidade(y->dir)) + 1;
+
+    return y;
+}
+//======================================================================
+int getBalanco(TNo *N) {
+    if (N == NULL)
+        return 0;
+    return nivelProfundidade(N->esq) - nivelProfundidade(N->dir);
+}
+
+TNo *insereAVL(TNo *no, char *nome) {
+    if (no == NULL)
+        return criaNoAVL(nome, no);
+
+    if (strcmp(nome, no->nome) < 0) {
+        no->esq = insereAVL(no->esq, nome);
+        no->esq->raiz = no;
+    } else if (strcmp(nome, no->nome) > 0) {
+        no->dir = insereAVL(no->dir, nome);
+        no->dir->raiz = no;
+    } else {
+        return no;
     }
-    
-    if(*raiz == NULL){
-        // arvore vazia
-        // printf("Primeiro no da arvore\n");
-        *raiz = criaNoAVL(nome,(*raiz),profundidade);
-    }else if (strcmp(nome,(*raiz)->nome) > 0){
-        // insere na direita
-        if ((*raiz)->dir == NULL){
-            (*raiz)->dir = criaNoAVL(nome,(*raiz),profundidade);
-            // printf("Foi inserido na direita\n");
-        }else{
-            // printf("chama a funçao para a direita\n");
-            profundidade++;
-            insereAVL(&(*raiz)->dir,nome,profundidade);
-        }   
-    }else{
-        // insere na esquerda
-        if ((*raiz)->esq == NULL){
-            // printf("Foi inserido na esquerda\n");
-            (*raiz)->esq = criaNoAVL(nome,(*raiz),profundidade);
-        }else{
-            // printf("chama a funçao para a esquerda\n");
-            profundidade++;
-            insereAVL(&(*raiz)->esq,nome,profundidade);
+
+    no->nivelProfundidade = 1 + max(nivelProfundidade(no->esq), nivelProfundidade(no->dir));
+
+    int balanco = getBalanco(no);
+
+    if (balanco > 1 && strcmp(nome, no->esq->nome) < 0)
+        return rotacaoDireita(no);
+
+    if (balanco < -1 && strcmp(nome, no->dir->nome) > 0)
+        return rotacaoEsquerda(no);
+
+    if (balanco > 1 && strcmp(nome, no->esq->nome) > 0) {
+        no->esq = rotacaoEsquerda(no->esq);
+        return rotacaoDireita(no);
+    }
+
+    if (balanco < -1 && strcmp(nome, no->dir->nome) < 0) {
+        no->dir = rotacaoDireita(no->dir);
+        return rotacaoEsquerda(no);
+    }
+
+    return no;   
+}
+
+TNo *exclui(TNo *no, char *nome) {
+    if (no == NULL)
+        return no;
+
+    if (strcmp(nome, no->nome) < 0) {
+        no->esq = exclui(no->esq, nome);
+    } else if (strcmp(nome, no->nome) > 0) {
+        no->dir = exclui(no->dir, nome);
+    } else {
+        if ((no->esq == NULL) || (no->dir == NULL)) {
+            TNo *temp = no->esq ? no->esq : no->dir;
+
+            if (temp == NULL) {
+                temp = no;
+                no = NULL;
+            } else {
+                *no = *temp;
+            }
+            free(temp);
+        } else {
+            TNo *temp = minValueNodeAVL(no->dir);
+            strcpy(no->nome, temp->nome);
+            no->dir = exclui(no->dir, temp->nome);
         }
-    }   
+    }
+
+    if (no == NULL)
+        return no;
+
+    no->nivelProfundidade = 1 + max(nivelProfundidade(no->esq), nivelProfundidade(no->dir));
+
+    int balanco = getBalanco(no);
+
+    if (balanco > 1 && getBalanco(no->esq) >= 0)
+        return rotacaoDireita(no);
+
+    if (balanco > 1 && getBalanco(no->esq) < 0) {
+        no->esq = rotacaoEsquerda(no->esq);
+        return rotacaoDireita(no);
+    }
+
+    if (balanco < -1 && getBalanco(no->dir) <= 0)
+        return rotacaoEsquerda(no);
+
+    if (balanco < -1 && getBalanco(no->dir) > 0) {
+        no->dir = rotacaoDireita(no->dir);
+        return rotacaoEsquerda(no);
+    }
+
+    return no;
 }
 
 //===============================================================
