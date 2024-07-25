@@ -1,0 +1,87 @@
+Exercícios - Primeira Instrução MIPS
+Considere os seguintes registradores para cada variável: a = $s0, b = $s1, c = $s2, d = $s3, e = $s4, f = $s5.
+1. a = b – c
+
+$s1= b
+$s2 = c
+
+SUB $t1,$s1,$s2
+
+
+2. b = a + c
+
+$s0= a
+$s2 = c
+
+ADD $t1,$s0,$s2
+
+
+3. d = (a + b – c)
+
+$s0 = a
+$s1= b
+$s2 = c
+$s3 = d
+
+ADD $t1,$s0,$s1
+SUB $t1,$t1,$s2
+
+
+4. f = (a + b) – d
+
+$s0 = a
+$s1= b
+$s3 = d
+$s5 = f
+
+ADD $t1,$s0,$s1
+SUB $t1,$t1,$s3
+
+
+5. c = a – ( b + d)
+
+$s0 = a
+$s1= b
+$s2 = c
+$s3 = d
+
+ADD $t1,$s1,$s3
+SUB $t1,$s0,$t1
+
+
+6. e = ( a – ( b – c )
+
+$s0 = a
+$s1= b
+$s2 = c
+$s4 = e
+
+SUB $T1,$s1,$s2
+SUB $T1,$s0,$t1
+
+
+7. e = ( a – ( b – c ) + f )
+
+$s0 = a
+$s1= b
+$s2 = c
+$s4 = e
+$s5 = f
+
+SUB $t1,$s1,$s2
+SUB $t1,$s0,$t1
+ADD $T1,$t1,$s5
+
+
+8. f = e – (a – b ) + ( b – c )
+
+$s0 = a
+$s1= b
+$s2 = c
+$s4 = e
+$s5 = f
+
+SUB $t1,$s0,$s1
+SUB $t2,$s1,$t2
+SUB $t1,$s4,$t1
+ADD $T1,$t1,$t2
