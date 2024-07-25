@@ -723,14 +723,14 @@ TNo *insereAVL(TNo *no, char *nome) {
     return no;   
 }
 
-TNo *exclui(TNo *no, char *nome) {
+TNo *excluiAVL(TNo *no, char *nome) {
     if (no == NULL)
         return no;
 
     if (strcmp(nome, no->nome) < 0) {
-        no->esq = exclui(no->esq, nome);
+        no->esq = excluiAVL(no->esq, nome);
     } else if (strcmp(nome, no->nome) > 0) {
-        no->dir = exclui(no->dir, nome);
+        no->dir = excluiAVL(no->dir, nome);
     } else {
         if ((no->esq == NULL) || (no->dir == NULL)) {
             TNo *temp = no->esq ? no->esq : no->dir;
@@ -745,7 +745,7 @@ TNo *exclui(TNo *no, char *nome) {
         } else {
             TNo *temp = minValueNodeAVL(no->dir);
             strcpy(no->nome, temp->nome);
-            no->dir = exclui(no->dir, temp->nome);
+            no->dir = excluiAVL(no->dir, temp->nome);
         }
     }
 

@@ -25,13 +25,13 @@ TNo *raiz;
 
 void inicializa(TNo **R){
 	printf("\n\n\t\t=====| ARVORE BINARIA AVL |=====\n");
-    insereAVL(&raiz,"Astolfo",0);
-    insereAVL(&raiz,"Julia",0);
-    insereAVL(&raiz,"Anakin",0);
-    insereAVL(&raiz,"Jack",0);
-    insereAVL(&raiz,"Ortencio",0);
-    insereAVL(&raiz,"Kleiton",0);
-    insereAVL(&raiz,"Xuxa",0);
+    raiz = insereAVL(raiz,"Astolfo");
+    raiz = insereAVL(raiz,"Julia");
+    raiz = insereAVL(raiz,"Anakin");
+    raiz = insereAVL(raiz,"Jack");
+    raiz = insereAVL(raiz,"Ortencio");
+    raiz = insereAVL(raiz,"Kleiton");
+    raiz = insereAVL(raiz,"Xuxa");
 
     printf("\n\t\t caminhamento em ordem \t\n");
     caminhamentoEmOrdemAVL(raiz);
@@ -40,7 +40,7 @@ void inicializa(TNo **R){
 
     raiz = excluiAVL(raiz, "Ortencio");
 
-    caminhamentoEmOrdem(raiz);
+    caminhamentoEmOrdemAVL(raiz);
     printf("\t\t caminhamento em ordem após exclusão de Ortencio \t\n");
     printf("Impressão da árvore com antecedente e profundidade após exclusão:\n");
     imprimeArvore(raiz);
