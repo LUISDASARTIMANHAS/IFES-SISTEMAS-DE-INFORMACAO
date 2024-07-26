@@ -1,3 +1,4 @@
+#  tempo sem paralelo 11 segundos
 import time
 import numpy as np
 from numba import njit
