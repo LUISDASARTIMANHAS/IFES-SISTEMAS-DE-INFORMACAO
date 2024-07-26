@@ -8,7 +8,7 @@ MarkupSafe==2.1.5
 matplotlib-inline==0.1.7
 mistune==3.0.2
 numba==0.60.0
-numpy==2.0.0
+numpy==2.0.1
 packaging==24.1
 pandocfilters==1.5.1
 parso==0.8.4
