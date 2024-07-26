@@ -7,10 +7,10 @@ from matplotlib import pyplot as plt
 import matplotlib.image as mpimg
 import seaborn as sns
 
-imagem_1 = Image.open ("/home/maker/Documentos/Eduardo/Ifes/OAC/Programas/creation.jpg")
+imagem_1 = Image.open ("/data/img/creation.jpg")
 # Carrega a imagem como um array de pixels
-data = mpimg.imread("/home/maker/Documentos/Eduardo/Ifes/OAC/Programas/japanese.png")
-imagem_2 = Image.open ("/home/maker/Documentos/Eduardo/Ifes/OAC/Programas/japanese.png")
+data = mpimg.imread("/data/img/japanese.png")
+imagem_2 = Image.open ("/data/img/japanese.png")
 
 def imprime_figura ():
     
