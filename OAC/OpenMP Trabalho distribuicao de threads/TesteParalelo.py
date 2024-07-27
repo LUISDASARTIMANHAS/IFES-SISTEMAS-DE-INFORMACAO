@@ -85,6 +85,7 @@ def valor_com_imposto(qtde):
     for i in range(qtde):
         novo_valor = qtde * 1.1
 
+@njit
 def investimento (juros_ao_mes, anos, capital_inicial):
     capital = 0
     meses = anos * 12
