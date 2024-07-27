@@ -14,7 +14,6 @@ imagem_1 = Image.open("./data/img/creation.jpg")
 data = mpimg.imread("./data/img/japanese.png")
 imagem_2 = Image.open("./data/img/japanese.png")
 
-
 def imprime_figura ():
     # Sumarizando detalhes sobre a imagem
     # Modo da imagem
@@ -85,7 +84,6 @@ def valor_com_imposto(qtde):
     for i in range(qtde):
         novo_valor = qtde * 1.1
 
-@njit
 def investimento (juros_ao_mes, anos, capital_inicial):
     capital = 0
     meses = anos * 12
