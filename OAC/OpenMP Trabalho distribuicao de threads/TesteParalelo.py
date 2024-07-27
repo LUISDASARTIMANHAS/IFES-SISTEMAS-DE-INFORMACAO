@@ -1,20 +1,21 @@
 #  tempo sem paralelo 11 segundos
 import time
 import numpy as np
-from numba import njit
+from numba import njit,jit
 from PIL import Image, ImageFilter
 import matplotlib.pyplot as plt
 from matplotlib import pyplot as plt
 import matplotlib.image as mpimg
 import seaborn as sns
 
-imagem_1 = Image.open ("./data/img/creation.jpg")
+
+imagem_1 = Image.open("./data/img/creation.jpg")
 # Carrega a imagem como um array de pixels
 data = mpimg.imread("./data/img/japanese.png")
-imagem_2 = Image.open ("./data/img/japanese.png")
+imagem_2 = Image.open("./data/img/japanese.png")
+
 
 def imprime_figura ():
-    
     # Sumarizando detalhes sobre a imagem
     # Modo da imagem
     print(imagem_1.mode)
@@ -25,7 +26,6 @@ def imprime_figura ():
 
     # Apresentando a imagem
     imagem_1.show()
-
 
 def imagem_como_array_de_pixels ():
     
@@ -49,6 +49,7 @@ def filtro_gaussian_blur ():
     # Mostra a imagem
     img_filter.show()
     
+
 def grafico_de_calor_de_uma_matriz ():
     
     #Cria uma matriz de dados 
@@ -57,15 +58,16 @@ def grafico_de_calor_de_uma_matriz ():
     plt.imshow(dados, cmap="hot")
     #Adiciona uma barra de cores à visualização
     plt.colorbar()
-    
+
 def visualização_mapa_de_densidade ():
     #Carregua um conjunto de dados adequado para a visualização
     dados = sns.load_dataset("iris")
     #Utilize a função “imshow” para exibir o mapa de densidade
     sns.kdeplot(dados["sepal_width"], dados["sepal_length"], cmap="viridis", shade=True)
 
-
 array = np.random.randint(1000, 10000, 10000000)
+
+@njit
 def preco_com_imposto(lista):
     aumento_total = 0
     for item in lista:
@@ -77,12 +79,11 @@ def preco_com_imposto(lista):
     return aumento_total
 
 
-
+@njit
 def valor_com_imposto(qtde):
     for i in range(qtde):
         novo_valor = qtde * 1.1
-
-
+@njit
 def investimento (juros_ao_mes, anos, capital_inicial):
     capital = 0
     meses = anos * 12
