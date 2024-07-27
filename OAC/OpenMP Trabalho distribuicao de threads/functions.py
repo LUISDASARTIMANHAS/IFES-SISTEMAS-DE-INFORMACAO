@@ -1,3 +1,5 @@
+# PRODUZIDO POR LUIS AUGUSTO DE SOUZA, GABY MANTHAY, ARTHUR FERNANDES DE PAIVA COSTA
+
 import numpy as np
 from numba import njit
 from PIL import Image, ImageFilter
