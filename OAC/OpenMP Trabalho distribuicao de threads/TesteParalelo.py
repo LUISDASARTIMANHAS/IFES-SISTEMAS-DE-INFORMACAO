@@ -69,7 +69,6 @@ array = np.random.randint(1000, 10000, 10000000)
 
 #  PRIMORDIAL PARA PERFORMANCE
 @njit
-
 def preco_com_imposto(lista):
     aumento_total = 0
     for item in lista:
@@ -99,86 +98,38 @@ def investimento (juros_ao_mes, anos, capital_inicial):
 class _Grafo:
     def __init__(self):
         self.vertices = {}
-        self.adicionar_aresta((0, 4), (0, 3))
-        self.adicionar_aresta((0, 4), (1, 4))
+        self.inicializa_grafo()
 
-        self.adicionar_aresta((0, 3), (0, 4))
-        self.adicionar_aresta((0, 3), (1, 3))
-        self.adicionar_aresta((0, 3), (0, 2))
+    def inicializa_grafo(self):
+        arestas = [
+            ((0, 4), (0, 3)), ((0, 4), (1, 4)),
+            ((0, 3), (0, 4)), ((0, 3), (1, 3)), ((0, 3), (0, 2)),
+            ((0, 2), (0, 1)), ((0, 2), (0, 3)),
+            ((0, 1), (0, 0)), ((0, 1), (0, 2)), ((0, 1), (1, 1)),
+            ((1, 1), (1, 0)), ((1, 1), (0, 1)), ((1, 1), (1, 2)), ((1, 1), (2, 1)),
+            ((1, 3), (0, 3)), ((1, 3), (1, 2)), ((1, 3), (1, 4)), ((1, 3), (2, 3)),
+            ((2, 0), (1, 0)), ((2, 0), (2, 1)),
+            ((2, 1), (1, 1)), ((2, 1), (3, 1)), ((2, 1), (2, 2)), ((2, 1), (2, 0)),
+            ((2, 2), (2, 1)), ((2, 2), (2, 3)), ((2, 2), (3, 2)),
+            ((2, 3), (1, 3)), ((2, 3), (2, 2)), ((2, 3), (2, 4)), ((2, 3), (3, 3)),
+            ((2, 4), (3, 4)), ((2, 4), (2, 3)),
+            ((3, 1), (3, 0)), ((3, 1), (2, 1)), ((3, 1), (4, 1)),
+            ((3, 3), (3, 4)), ((3, 3), (2, 3)), ((3, 3), (4, 3)),
+            ((4, 0), (3, 0)), ((4, 0), (5, 0)), ((4, 0), (4, 1)),
+            ((4, 1), (3, 1)), ((4, 1), (4, 2)), ((4, 1), (4, 0)),
+            ((4, 2), (3, 2)), ((4, 2), (5, 2)), ((4, 2), (4, 1)), ((4, 2), (4, 3)),
+            ((4, 3), (4, 2)), ((4, 3), (3, 3)), ((4, 3), (4, 4)),
+            ((4, 4), (4, 3)), ((4, 4), (5, 4))
+        ]
 
-        self.adicionar_aresta((0, 2), (0, 1))
-        self.adicionar_aresta((0, 2), (0, 3))
-
-        self.adicionar_aresta((0, 1), (0, 0))
-        self.adicionar_aresta((0, 1), (0, 2))
-        self.adicionar_aresta((0, 1), (1, 1))
-
-        self.adicionar_aresta((1, 1), (1, 0))
-        self.adicionar_aresta((1, 1), (0, 1))
-        self.adicionar_aresta((1, 1), (1, 2))
-        self.adicionar_aresta((1, 1), (2, 1))
-
-
-        self.adicionar_aresta((1, 3), (0, 3))
-        self.adicionar_aresta((1, 3), (1, 2))
-        self.adicionar_aresta((1, 3), (1, 4))
-        self.adicionar_aresta((1, 3), (2, 3))
-
-        self.adicionar_aresta((2, 0), (1, 0))
-        self.adicionar_aresta((2, 0), (2, 1))
-
-        self.adicionar_aresta((2, 1), (1, 1))
-        self.adicionar_aresta((2, 1), (3, 1))
-        self.adicionar_aresta((2, 1), (2, 2))
-        self.adicionar_aresta((2, 1), (2, 0))
-
-        self.adicionar_aresta((2, 2), (2, 1))
-        self.adicionar_aresta((2, 2), (2, 3))
-        self.adicionar_aresta((2, 2), (3, 2))
-
-        self.adicionar_aresta((2, 3), (1, 3))
-        self.adicionar_aresta((2, 3), (2, 2))
-        self.adicionar_aresta((2, 3), (2, 4))
-        self.adicionar_aresta((2, 3), (3, 3))
-
-        self.adicionar_aresta((2, 4), (3, 4))
-        self.adicionar_aresta((2, 4), (2, 3))
-
-        self.adicionar_aresta((3, 1), (3, 0))
-        self.adicionar_aresta((3, 1), (2, 1))
-        self.adicionar_aresta((3, 1), (4, 1))
-
-        self.adicionar_aresta((3, 3), (3, 4))
-        self.adicionar_aresta((3, 3), (2, 3))
-        self.adicionar_aresta((3, 3), (4, 3))
-
-        self.adicionar_aresta((4, 0), (3, 0))
-        self.adicionar_aresta((4, 0), (5, 0))
-        self.adicionar_aresta((4, 0), (4, 1))
-
-        self.adicionar_aresta((4, 1), (3, 1))
-        self.adicionar_aresta((4, 1), (4, 2))
-        self.adicionar_aresta((4, 1), (4, 0))
-
-        self.adicionar_aresta((4, 2), (3, 2))
-        self.adicionar_aresta((4, 2), (5, 2))
-        self.adicionar_aresta((4, 2), (4, 1))
-        self.adicionar_aresta((4, 2), (4, 3))
-
-        self.adicionar_aresta((4, 3), (4, 2))
-        self.adicionar_aresta((4, 3), (3, 3))
-        self.adicionar_aresta((4, 3), (4, 4))
-
-        self.adicionar_aresta((4, 4), (4, 3))
-        self.adicionar_aresta((4, 4), (5, 4))
+        for aresta in arestas:
+            self.adicionar_aresta(aresta[0], aresta[1])
 
     def remover_no(self, no):
         if no in self.vertices:
-            # Remova todas as arestas conectadas a este nó
             for vertice in self.vertices:
                 if no in self.vertices[vertice]:
                     del self.vertices[vertice][no]
-            # Remova o nó
             del self.vertices[no]
         else:
             print(f"O nó {no} não existe no grafo.")
@@ -192,18 +143,16 @@ class _Grafo:
 
     def adicionar_vertice(self, coordenada):
         self.vertices[coordenada] = {}
-            
+
     def adicionar_aresta(self, origem, destino):
         if origem not in self.vertices:
             self.adicionar_vertice(origem)
         if destino not in self.vertices:
             self.adicionar_vertice(destino)
-            
-        # Calcula a distância Euclidiana entre as coordenadas
+
         x1, y1 = origem
         x2, y2 = destino
-        distancia = ((x1 - x2)**2 + (y1 - y2)**2) ** 0.5
-        
+        distancia = ((x1 - x2) ** 2 + (y1 - y2) ** 2) ** 0.5
         self.vertices[origem][destino] = distancia
 
     def dijkstra(self, origem, destino):
