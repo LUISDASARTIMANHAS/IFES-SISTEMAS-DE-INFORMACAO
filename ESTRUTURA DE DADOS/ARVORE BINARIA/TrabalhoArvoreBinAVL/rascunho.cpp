@@ -12,7 +12,7 @@ typedef struct tipoNo {
 
 TNo *raiz; // raiz inicial da arvore
 //=============================================================================
-int nivelProfundidade(TNo *N) {
+int altura(TNo *N) {
     if (N == NULL) {
         return 0;
     } else {
@@ -31,12 +31,11 @@ int max(int a, int b) {
 int getBalanco(TNo *N) {
     if (N == NULL) {
         return 0;
-    } else {
-        return nivelProfundidade(N->esq) - nivelProfundidade(N->dir);
     }
+    return altura(N->esq) - altura(N->dir);
 }
 //=============================================================================
-TNo *criaNoAVL(char *nome, TNo *raiz) {
+TNo *criaNo(char *nome, TNo *raiz) {
     TNo *novo = (TNo *)malloc(sizeof(TNo));
     strcpy(novo->nome, nome);
     novo->nivelProfundidade = 1;
@@ -47,7 +46,7 @@ TNo *criaNoAVL(char *nome, TNo *raiz) {
 }
 //=============================================================================
 void inicializa(TNo **raiz, char *nome) {
-    *raiz = criaNoAVL(nome, NULL);
+    *raiz = criaNo(nome, NULL);
 }
 //=============================================================================
 TNo *rotacaoDireita(TNo *y) {
@@ -63,8 +62,8 @@ TNo *rotacaoDireita(TNo *y) {
     x->raiz = y->raiz;
     y->raiz = x;
 
-    y->nivelProfundidade = max(nivelProfundidade(y->esq), nivelProfundidade(y->dir)) + 1;
-    x->nivelProfundidade = max(nivelProfundidade(x->esq), nivelProfundidade(x->dir)) + 1;
+    y->nivelProfundidade = max(altura(y->esq), altura(y->dir)) + 1;
+    x->nivelProfundidade = max(altura(x->esq), altura(x->dir)) + 1;
 
     return x;
 }
@@ -82,8 +81,8 @@ TNo *rotacaoEsquerda(TNo *x) {
     y->raiz = x->raiz;
     x->raiz = y;
 
-    x->nivelProfundidade = max(nivelProfundidade(x->esq), nivelProfundidade(x->dir)) + 1;
-    y->nivelProfundidade = max(nivelProfundidade(y->esq), nivelProfundidade(y->dir)) + 1;
+    x->nivelProfundidade = max(altura(x->esq), altura(x->dir)) + 1;
+    y->nivelProfundidade = max(altura(y->esq), altura(y->dir)) + 1;
 
     return y;
 }
@@ -110,26 +109,26 @@ TNo *balancearNo(TNo *no) {
     return no;
 }
 //=============================================================================
-TNo *insereAVLArvBin(TNo *no, char *nome) {
+TNo *insere(TNo *no, char *nome) {
     if (no == NULL) {
-        return criaNoAVL(nome, no);
+        return criaNo(nome, no);
     }
 
     if (strcmp(nome, no->nome) < 0) {
-        no->esq = insereAVLArvBin(no->esq, nome);
+        no->esq = insere(no->esq, nome);
         no->esq->raiz = no;
     } else if (strcmp(nome, no->nome) > 0) {
-        no->dir = insereAVLArvBin(no->dir, nome);
+        no->dir = insere(no->dir, nome);
         no->dir->raiz = no;
     } else {
         return no;
     }
 
-    no->nivelProfundidade = 1 + max(nivelProfundidade(no->esq), nivelProfundidade(no->dir));
+    no->nivelProfundidade = 1 + max(altura(no->esq), altura(no->dir));
     return balancearNo(no);
 }
 //=============================================================================
-TNo *minValueNodeAVL(TNo *no) {
+TNo *minValueNode(TNo *no) {
     TNo *atual = no;
     while (atual->esq != NULL) {
         atual = atual->esq;
@@ -137,15 +136,15 @@ TNo *minValueNodeAVL(TNo *no) {
     return atual;
 }
 //=============================================================================
-TNo *excluiAVL(TNo *no, char *nome) {
+TNo *exclui(TNo *no, char *nome) {
     if (no == NULL) {
         return no;
     }
 
     if (strcmp(nome, no->nome) < 0) {
-        no->esq = excluiAVL(no->esq, nome);
+        no->esq = exclui(no->esq, nome);
     } else if (strcmp(nome, no->nome) > 0) {
-        no->dir = excluiAVL(no->dir, nome);
+        no->dir = exclui(no->dir, nome);
     } else {
         if (no->esq == NULL || no->dir == NULL) {
             TNo *temp = no->esq;
@@ -161,9 +160,9 @@ TNo *excluiAVL(TNo *no, char *nome) {
             }
             free(temp);
         } else {
-            TNo *temp = minValueNodeAVL(no->dir);
+            TNo *temp = minValueNode(no->dir);
             strcpy(no->nome, temp->nome);
-            no->dir = excluiAVL(no->dir, temp->nome);
+            no->dir = exclui(no->dir, temp->nome);
         }
     }
 
@@ -171,7 +170,7 @@ TNo *excluiAVL(TNo *no, char *nome) {
         return no;
     }
 
-    no->nivelProfundidade = 1 + max(nivelProfundidade(no->esq), nivelProfundidade(no->dir));
+    no->nivelProfundidade = 1 + max(altura(no->esq), altura(no->dir));
     return balancearNo(no);
 }
 //=============================================================================
@@ -215,20 +214,20 @@ void imprimeArvore(TNo *no) {
 //=============================================================================
 int main() {
     inicializa(&raiz, "Zilian");
-    raiz = insereAVLArvBin(raiz, "Asdrubal");
-    raiz = insereAVLArvBin(raiz, "Julia");
-    raiz = insereAVLArvBin(raiz, "Anakin");
-    raiz = insereAVLArvBin(raiz, "Jack");
-    raiz = insereAVLArvBin(raiz, "Ortencio");
-    raiz = insereAVLArvBin(raiz, "Kleiton");
-    raiz = insereAVLArvBin(raiz, "Xuxa");
+    raiz = insere(raiz, "Asdrubal");
+    raiz = insere(raiz, "Julia");
+    raiz = insere(raiz, "Anakin");
+    raiz = insere(raiz, "Jack");
+    raiz = insere(raiz, "Ortencio");
+    raiz = insere(raiz, "Kleiton");
+    raiz = insere(raiz, "Xuxa");
 
     caminhamentoEmOrdem(raiz);
     printf("\t\t caminhamento em ordem \t\n");
     printf("Impressão da árvore com antecedente e profundidade:\n");
     imprimeArvore(raiz);
 
-    raiz = excluiAVL(raiz, "Ortencio");
+    raiz = exclui(raiz, "Ortencio");
 
     caminhamentoEmOrdem(raiz);
     printf("\t\t caminhamento em ordem após exclusão de Ortencio \t\n");
