@@ -531,33 +531,6 @@ TNo *criaNo(int valor){
     return novo;
 }
 
-void insereAVLArvBin(TNo **R, int valor){
-    printf("\n\n Executando inserção %d",valor);
-    if (*R == NULL){
-        // Arvore vazia
-        printf("\n\n Criando arvore porque estava vazia!");
-        *R = criaNo(valor);
-    }else if (valor >= (*R)->valor){
-        // inserção a direita
-        if ((*R)->dir == NULL){
-            printf("\n\n Inserção a direita.");
-            (*R)->dir = criaNo(valor);
-        }else{
-            printf("\n\n Descendo a Direita.");
-            insereAVLArvBin(&(*R)->dir,valor);
-        }
-    }else{
-        // inserção a esquerda
-        if ((*R)->esq == NULL){
-            printf("\n\n Inserção a esquerda.");
-            (*R)->esq = criaNo(valor);
-        }else{
-            printf("\n\n Descendo a esquerda.");
-            insereAVLArvBin(&(*R)->esq,valor);
-        }
-    }
-}
-
 void caminhamentoEmOrdemBin(TNo *R){
     if (R != NULL){
         caminhamentoEmOrdemBin(R->esq);
@@ -632,14 +605,39 @@ TNo *minValueNodeAVL(TNo *no) {
     return atual;
 }
 
+void insereAVLArvBin(TNo *no, char *nome){
+    if (no == NULL) {
+        return criaNoAVL(nome, no);
+    }
+
+    if (strcmp(nome, no->nome) < 0) {
+        no->esq = insereAVLArvBin(no->esq, nome);
+        no->esq->raiz = no;
+    } else if (strcmp(nome, no->nome) > 0) {
+        no->dir = insereAVLArvBin(no->dir, nome);
+        no->dir->raiz = no;
+    } else {
+        return no;
+    }
+
+    no->nivelProfundidade = 1 + max(altura(no->esq), altura(no->dir));
+    return balancearNo(no);
+}
+
+
 int max(int a, int b) {
-    return (a > b) ? a : b;
+    if (a > b) {
+        return a;
+    }
+        return b;
 }
 
 int nivelProfundidade(TNo *N) {
-    if (N == NULL)
+    if (N == NULL) {
         return 0;
+    }
     return N->nivelProfundidade;
+
 }
 
 TNo *rotacaoDireita(TNo *y) {
@@ -649,9 +647,9 @@ TNo *rotacaoDireita(TNo *y) {
     x->dir = y;
     y->esq = T2;
 
-    if (T2 != NULL)
+    if (T2 != NULL) {
         T2->raiz = y;
-
+    }
     x->raiz = y->raiz;
     y->raiz = x;
 
@@ -681,59 +679,27 @@ TNo *rotacaoEsquerda(TNo *x) {
 }
 //======================================================================
 int getBalanco(TNo *N) {
-    if (N == NULL)
+    if (N == NULL) {
         return 0;
+    }
     return nivelProfundidade(N->esq) - nivelProfundidade(N->dir);
 }
 
-TNo *insereAVL(TNo *no, char *nome) {
-    if (no == NULL)
-        return criaNoAVL(nome, no);
-
-    if (strcmp(nome, no->nome) < 0) {
-        no->esq = insereAVL(no->esq, nome);
-        no->esq->raiz = no;
-    } else if (strcmp(nome, no->nome) > 0) {
-        no->dir = insereAVL(no->dir, nome);
-        no->dir->raiz = no;
-    } else {
-        return no;
-    }
-
-    no->nivelProfundidade = 1 + max(nivelProfundidade(no->esq), nivelProfundidade(no->dir));
-
-    int balanco = getBalanco(no);
-
-    if (balanco > 1 && strcmp(nome, no->esq->nome) < 0)
-        return rotacaoDireita(no);
-
-    if (balanco < -1 && strcmp(nome, no->dir->nome) > 0)
-        return rotacaoEsquerda(no);
-
-    if (balanco > 1 && strcmp(nome, no->esq->nome) > 0) {
-        no->esq = rotacaoEsquerda(no->esq);
-        return rotacaoDireita(no);
-    }
-
-    if (balanco < -1 && strcmp(nome, no->dir->nome) < 0) {
-        no->dir = rotacaoDireita(no->dir);
-        return rotacaoEsquerda(no);
-    }
-
-    return no;   
-}
-
 TNo *excluiAVL(TNo *no, char *nome) {
-    if (no == NULL)
+    if (no == NULL) {
         return no;
+    }
 
     if (strcmp(nome, no->nome) < 0) {
         no->esq = excluiAVL(no->esq, nome);
     } else if (strcmp(nome, no->nome) > 0) {
         no->dir = excluiAVL(no->dir, nome);
     } else {
-        if ((no->esq == NULL) || (no->dir == NULL)) {
-            TNo *temp = no->esq ? no->esq : no->dir;
+        if (no->esq == NULL || no->dir == NULL) {
+            TNo *temp = no->esq;
+            if (temp == NULL) {
+                temp = no->dir;
+            }
 
             if (temp == NULL) {
                 temp = no;
@@ -749,30 +715,12 @@ TNo *excluiAVL(TNo *no, char *nome) {
         }
     }
 
-    if (no == NULL)
+    if (no == NULL) {
         return no;
+    }
 
     no->nivelProfundidade = 1 + max(nivelProfundidade(no->esq), nivelProfundidade(no->dir));
-
-    int balanco = getBalanco(no);
-
-    if (balanco > 1 && getBalanco(no->esq) >= 0)
-        return rotacaoDireita(no);
-
-    if (balanco > 1 && getBalanco(no->esq) < 0) {
-        no->esq = rotacaoEsquerda(no->esq);
-        return rotacaoDireita(no);
-    }
-
-    if (balanco < -1 && getBalanco(no->dir) <= 0)
-        return rotacaoEsquerda(no);
-
-    if (balanco < -1 && getBalanco(no->dir) > 0) {
-        no->dir = rotacaoDireita(no->dir);
-        return rotacaoEsquerda(no);
-    }
-
-    return no;
+    return balancearNo(no);
 }
 
 //===============================================================
