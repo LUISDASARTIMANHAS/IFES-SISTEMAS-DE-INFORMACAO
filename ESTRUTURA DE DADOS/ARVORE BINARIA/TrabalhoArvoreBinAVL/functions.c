@@ -598,32 +598,39 @@ TNo *criaNoAVL(char *nome, TNo *raiz){
     return novo;
 }
 
-TNo *minValueNodeAVL(TNo *no) {
-    TNo *atual = no;
-    while (atual->esq != NULL)
-        atual = atual->esq;
-    return atual;
+//===============================================================
+void caminhamentoEmOrdemAVL(TNo *raiz){
+    if(raiz != NULL){
+        caminhamentoEmOrdemAVL(raiz->esq);
+        printf("%s, ",raiz->nome);
+        caminhamentoEmOrdemAVL(raiz->dir);
+    }    
 }
-
-void insereAVLArvBin(TNo *no, char *nome){
-    if (no == NULL) {
-        return criaNoAVL(nome, no);
-    }
-
-    if (strcmp(nome, no->nome) < 0) {
-        no->esq = insereAVLArvBin(no->esq, nome);
-        no->esq->raiz = no;
-    } else if (strcmp(nome, no->nome) > 0) {
-        no->dir = insereAVLArvBin(no->dir, nome);
-        no->dir->raiz = no;
-    } else {
-        return no;
-    }
-
-    no->nivelProfundidade = 1 + max(altura(no->esq), altura(no->dir));
-    return balancearNo(no);
+//===============================================================
+void caminhamentoPreOrdem(TNo *raiz){
+    if(raiz != NULL){
+        printf("%s, ",raiz->nome);
+        caminhamentoPreOrdem(raiz->esq);
+        caminhamentoPreOrdem(raiz->dir);
+    }   
 }
+//===============================================================
+void caminhamentoPosOrdem(TNo *raiz){
+    if(raiz != NULL){
+        caminhamentoPosOrdem(raiz->esq);
+        caminhamentoPosOrdem(raiz->dir);
+        printf("%s, ",raiz->nome);
+    }
+} 
+//===============================================================
 
+int nivelProfundidade(TNo *N) {
+    if (N == NULL) {
+        return 0;
+    }
+    return N->nivelProfundidade;
+
+}
 
 int max(int a, int b) {
     if (a > b) {
@@ -632,12 +639,11 @@ int max(int a, int b) {
         return b;
 }
 
-int nivelProfundidade(TNo *N) {
-    if (N == NULL) {
-        return 0;
-    }
-    return N->nivelProfundidade;
-
+TNo *minValueNodeAVL(TNo *no) {
+    TNo *atual = no;
+    while (atual->esq != NULL)
+        atual = atual->esq;
+    return atual;
 }
 
 TNo *rotacaoDireita(TNo *y) {
@@ -658,7 +664,7 @@ TNo *rotacaoDireita(TNo *y) {
 
     return x;
 }
-
+//=============================================================================
 TNo *rotacaoEsquerda(TNo *x) {
     TNo *y = x->dir;
     TNo *T2 = y->esq;
@@ -666,9 +672,9 @@ TNo *rotacaoEsquerda(TNo *x) {
     y->esq = x;
     x->dir = T2;
 
-    if (T2 != NULL)
+    if (T2 != NULL) {
         T2->raiz = x;
-
+    }
     y->raiz = x->raiz;
     x->raiz = y;
 
@@ -677,11 +683,54 @@ TNo *rotacaoEsquerda(TNo *x) {
 
     return y;
 }
+
+TNo *balancearNo(TNo *no) {
+    int balanco = getBalanco(no);
+
+    if (balanco > 1) {
+        if (getBalanco(no->esq) >= 0) {
+            no = rotacaoDireita(no);
+        } else {
+            no->esq = rotacaoEsquerda(no->esq);
+            no = rotacaoDireita(no);
+        }
+    } else if (balanco < -1) {
+        if (getBalanco(no->dir) <= 0) {
+            no = rotacaoEsquerda(no);
+        } else {
+            no->dir = rotacaoDireita(no->dir);
+            no = rotacaoEsquerda(no);
+        }
+    }
+
+    return no;
+}
+
+TNo *insereAVL(TNo *no, char *nome){
+    if (no == NULL) {
+        return criaNoAVL(nome, no);
+    }
+
+    if (strcmp(nome, no->nome) < 0) {
+        no->esq = insereAVL(no->esq, nome);
+        no->esq->raiz = no;
+    } else if (strcmp(nome, no->nome) > 0) {
+        no->dir = insereAVL(no->dir, nome);
+        no->dir->raiz = no;
+    } else {
+        return no;
+    }
+
+    no->nivelProfundidade = 1 + max(nivelProfundidade(no->esq), nivelProfundidade(no->dir));
+    return balancearNo(no);
+}
+
 //======================================================================
 int getBalanco(TNo *N) {
     if (N == NULL) {
         return 0;
     }
+    
     return nivelProfundidade(N->esq) - nivelProfundidade(N->dir);
 }
 
@@ -722,32 +771,6 @@ TNo *excluiAVL(TNo *no, char *nome) {
     no->nivelProfundidade = 1 + max(nivelProfundidade(no->esq), nivelProfundidade(no->dir));
     return balancearNo(no);
 }
-
-//===============================================================
-void caminhamentoEmOrdemAVL(TNo *raiz){
-    if(raiz != NULL){
-        caminhamentoEmOrdemAVL(raiz->esq);
-        printf("%s, ",raiz->nome);
-        caminhamentoEmOrdemAVL(raiz->dir);
-    }    
-}
-//===============================================================
-void caminhamentoPreOrdem(TNo *raiz){
-    if(raiz != NULL){
-        printf("%s, ",raiz->nome);
-        caminhamentoPreOrdem(raiz->esq);
-        caminhamentoPreOrdem(raiz->dir);
-    }   
-}
-//===============================================================
-void caminhamentoPosOrdem(TNo *raiz){
-    if(raiz != NULL){
-        caminhamentoPosOrdem(raiz->esq);
-        caminhamentoPosOrdem(raiz->dir);
-        printf("%s, ",raiz->nome);
-    }
-} 
-//===============================================================
 
 void imprimeArvore(TNo *no) {
     if (no == NULL) {
