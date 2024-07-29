@@ -15,17 +15,15 @@ TNo *raiz; // raiz inicial da arvore
 int nivelProfundidade(TNo *N) {
     if (N == NULL) {
         return 0;
-    } else {
-        return N->nivelProfundidade;
     }
+    return N->nivelProfundidade;
 }
 //=============================================================================
 int max(int a, int b) {
     if (a > b) {
         return a;
-    } else {
-        return b;
     }
+    return b;
 }
 //=============================================================================
 int getBalanco(TNo *N) {
@@ -136,15 +134,15 @@ TNo *minValueNode(TNo *no) {
     return atual;
 }
 //=============================================================================
-TNo *exclui(TNo *no, char *nome) {
+TNo *excluiAVL(TNo *no, char *nome) {
     if (no == NULL) {
         return no;
     }
 
     if (strcmp(nome, no->nome) < 0) {
-        no->esq = exclui(no->esq, nome);
+        no->esq = excluiAVL(no->esq, nome);
     } else if (strcmp(nome, no->nome) > 0) {
-        no->dir = exclui(no->dir, nome);
+        no->dir = excluiAVL(no->dir, nome);
     } else {
         if (no->esq == NULL || no->dir == NULL) {
             TNo *temp = no->esq;
@@ -162,7 +160,7 @@ TNo *exclui(TNo *no, char *nome) {
         } else {
             TNo *temp = minValueNode(no->dir);
             strcpy(no->nome, temp->nome);
-            no->dir = exclui(no->dir, temp->nome);
+            no->dir = excluiAVL(no->dir, temp->nome);
         }
     }
 
@@ -227,7 +225,7 @@ int main() {
     printf("Impressão da árvore com antecedente e profundidade:\n");
     imprimeArvore(raiz);
 
-    raiz = exclui(raiz, "Ortencio");
+    raiz = excluiAVL(raiz, "Ortencio");
 
     caminhamentoEmOrdem(raiz);
     printf("\t\t caminhamento em ordem após exclusão de Ortencio \t\n");

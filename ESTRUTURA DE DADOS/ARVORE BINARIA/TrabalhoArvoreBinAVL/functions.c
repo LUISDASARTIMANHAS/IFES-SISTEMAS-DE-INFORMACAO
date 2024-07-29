@@ -624,12 +624,12 @@ void caminhamentoPosOrdem(TNo *raiz){
 } 
 //===============================================================
 
+// ======================== FUNÇÕES BASICAS ========================
 int nivelProfundidade(TNo *N) {
     if (N == NULL) {
         return 0;
     }
     return N->nivelProfundidade;
-
 }
 
 int max(int a, int b) {
@@ -637,6 +637,13 @@ int max(int a, int b) {
         return a;
     }
         return b;
+}
+
+int getBalanco(TNo *N) {
+    if (N == NULL) {
+        return 0;
+    }
+    return nivelProfundidade(N->esq) - nivelProfundidade(N->dir);
 }
 
 TNo *minValueNodeAVL(TNo *no) {
@@ -664,7 +671,6 @@ TNo *rotacaoDireita(TNo *y) {
 
     return x;
 }
-//=============================================================================
 TNo *rotacaoEsquerda(TNo *x) {
     TNo *y = x->dir;
     TNo *T2 = y->esq;
@@ -706,6 +712,8 @@ TNo *balancearNo(TNo *no) {
     return no;
 }
 
+// ======================== FIM DAS FUNÇÕES BASICAS ========================
+
 TNo *insereAVL(TNo *no, char *nome){
     if (no == NULL) {
         return criaNoAVL(nome, no);
@@ -723,15 +731,6 @@ TNo *insereAVL(TNo *no, char *nome){
 
     no->nivelProfundidade = 1 + max(nivelProfundidade(no->esq), nivelProfundidade(no->dir));
     return balancearNo(no);
-}
-
-//======================================================================
-int getBalanco(TNo *N) {
-    if (N == NULL) {
-        return 0;
-    }
-    
-    return nivelProfundidade(N->esq) - nivelProfundidade(N->dir);
 }
 
 TNo *excluiAVL(TNo *no, char *nome) {
@@ -778,10 +777,12 @@ void imprimeArvore(TNo *no) {
     }
 
     // Imprime o nó atual
-    printf("Nó: %s, Antecedente: %s, Profundidade: %d\n",
-           no->nome,
-           no->raiz ? no->raiz->nome : "NULL",
-           no->nivelProfundidade);
+    printf("Nó: %s, ",no->nome);
+    if(no->raiz == NULL){
+        printf("Antecedente: %s ","NULL");
+    }
+    printf("Antecedente: %s, ",no->raiz->nome);
+    printf("Profundidade: %d\n",no->nivelProfundidade);
 
     // Percorre os filhos do nó atual
     imprimeArvore(no->esq);
