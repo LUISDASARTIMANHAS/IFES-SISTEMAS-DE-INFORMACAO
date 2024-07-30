@@ -201,13 +201,28 @@ void imprimeArvore(TNo *no) {
         return;
     }
 
-    printf("Nó: %s, Antecedente: %s, Profundidade: %d\n",
-           no->nome,
-           no->raiz != NULL ? no->raiz->nome : "NULL",
-           no->nivelProfundidade);
+    // Imprime o nó atual
+    printf("\n\t\t| ");
+    printf("%d",no->nivelProfundidade);
+    printf(" \t\t| ");
+    printf("Nó: %s",no->nome);
+    printf(" \t| ");
+    if(no->raiz != NULL){
+        printf("Antecedente: %s",no->raiz->nome);
+    }else{
+        printf("Antecedente: %s","NULL");
+    }
+    printf("   \t|");
 
+    // Percorre os filhos do nó atual
     imprimeArvore(no->esq);
     imprimeArvore(no->dir);
+}
+
+void criaTabelaImpressaArvore(TNo *raiz){
+    printf("\n \t\t| Profundidade \t| Nó \t\t| Antecedente   \t| ");
+    imprimeArvore(raiz);
+    printf("\n \t\t=========================================================\n ");
 }
 //=============================================================================
 int main() {

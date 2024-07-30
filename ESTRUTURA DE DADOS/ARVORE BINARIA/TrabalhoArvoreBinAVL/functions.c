@@ -777,14 +777,25 @@ void imprimeArvore(TNo *no) {
     }
 
     // Imprime o nó atual
-    printf("Nó: %s, ",no->nome);
-    if(no->raiz == NULL){
-        printf("Antecedente: %s ","NULL");
+    printf("\n\t\t| ");
+    printf("%d",no->nivelProfundidade);
+    printf(" \t\t| ");
+    printf("Nó: %s",no->nome);
+    printf(" \t| ");
+    if(no->raiz != NULL){
+        printf("Antecedente: %s",no->raiz->nome);
+    }else{
+        printf("Antecedente: %s","NULL");
     }
-    printf("Antecedente: %s, ",no->raiz->nome);
-    printf("Profundidade: %d\n",no->nivelProfundidade);
+    printf("   \t|");
 
     // Percorre os filhos do nó atual
     imprimeArvore(no->esq);
     imprimeArvore(no->dir);
+}
+
+void criaTabelaImpressaArvore(TNo *raiz){
+    printf("\n \t\t| Profundidade \t| Nó \t\t| Antecedente   \t| ");
+    imprimeArvore(raiz);
+    printf("\n \t\t=========================================================\n ");
 }
