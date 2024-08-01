@@ -68,7 +68,7 @@ def visualização_mapa_de_densidade ():
 array = np.random.randint(1000, 10000, 10000000)
 
 #  PRIMORDIAL PARA PERFORMANCE
-@njit
+@njit(fastmath=True, parallel=True, cache=True, nogil=True)
 def preco_com_imposto(lista):
     aumento_total = 0
     for item in lista:
@@ -80,7 +80,7 @@ def preco_com_imposto(lista):
     return aumento_total
 
 #  PRIMORDIAL PARA PERFORMANCE
-@njit
+@njit(fastmath=True, parallel=True, cache=True, nogil=True)
 def valor_com_imposto(qtde):
     for i in range(qtde):
         novo_valor = qtde * 1.1
