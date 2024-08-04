@@ -9,10 +9,15 @@
 #include <time.h>
 
 // Defina constantes para as sequências de escape ANSI das cores
-#define RED "\x1b[31m"
+// EM CASO DE ERROS E FUNÇÕES DESTRUTIVAS
+#define RED "\x1b[31m" 
+// MENSAGEM DE INFORMAÇÃO OU SISTEMA
 #define BLUE "\x1b[34m"
+// MENSAGEM DE SUCESSO OU FUNÇÕES CONSTRUTIVAS
 #define GREEN "\x1b[32m"
+// MENSAGEMS DE AVISO OU PERGUNTA 
 #define YELLOW "\x1b[33m"
+// RESETA A COLORAÇÃO
 #define RESET "\x1b[0m"
 
 #define SEPARETOR BLUE "\n================================================\n"  RESET
@@ -469,18 +474,34 @@ TNo *criaNoAVL(char *nome, TNo *raiz){
     return novo;
 }
 
+void criaTabelaImpressaArvore(TNo *no){
+    // Imprime o nó atual
+    printf("\n\t\t| ");
+    printf("%d",no->nivelProfundidade);
+    printf(" \t\t| ");
+    printf("Nó: %s",no->nome);
+    printf(" \t| ");
+    if(no->raiz != NULL){
+        printf("Antecedente: %s",no->raiz->nome);
+    }else{
+        printf("Antecedente: %s","NULL");
+    }
+    printf("   \t|");
+}
+
+
 //===============================================================
 void caminhamentoEmOrdemAVL(TNo *raiz){
     if(raiz != NULL){
         caminhamentoEmOrdemAVL(raiz->esq);
-        printf("%s, ",raiz->nome);
+        criaTabelaImpressaArvore(raiz);
         caminhamentoEmOrdemAVL(raiz->dir);
     }    
 }
 //===============================================================
 void caminhamentoPreOrdem(TNo *raiz){
     if(raiz != NULL){
-        printf("%s, ",raiz->nome);
+        criaTabelaImpressaArvore(raiz);
         caminhamentoPreOrdem(raiz->esq);
         caminhamentoPreOrdem(raiz->dir);
     }   
@@ -490,7 +511,7 @@ void caminhamentoPosOrdem(TNo *raiz){
     if(raiz != NULL){
         caminhamentoPosOrdem(raiz->esq);
         caminhamentoPosOrdem(raiz->dir);
-        printf("%s, ",raiz->nome);
+        criaTabelaImpressaArvore(raiz);
     }
 } 
 //===============================================================
@@ -593,6 +614,7 @@ TNo *balancearNo(TNo *no) {
 
 TNo *insereAVL(TNo *no, char *nome){
     if (no == NULL) {
+        printf(GREEN "\n Usuario %s Foi inserido com sucesso!\n" RESET,nome);
         return criaNoAVL(nome, no);
     }
 
@@ -607,13 +629,12 @@ TNo *insereAVL(TNo *no, char *nome){
     }
 
     no->nivelProfundidade = 1 + max(nivelProfundidade(no->esq), nivelProfundidade(no->dir));
-    printf("\n Usuario %s Foi inserido com sucesso!\n",nome);
     return balancearNo(no);
 }
 
 TNo *excluiAVL(TNo *no, char *nome) {
     if (no == NULL) {
-        printf("\n Erro: Não foi possivel excuir usuario %s, Arvore vazia!\n",nome);
+        printf(RED "\n Erro: Não foi possivel excuir usuario %s, Arvore vazia!\n" RESET,nome);
         return no;
     }
 
@@ -647,35 +668,13 @@ TNo *excluiAVL(TNo *no, char *nome) {
     }
 
     no->nivelProfundidade = 1 + max(nivelProfundidade(no->esq), nivelProfundidade(no->dir));
-    printf("\n Usuario %s Foi Exluido com sucesso!\n",nome);
+    printf(GREEN "\n Usuario %s Foi Exluido com sucesso!\n" RESET,nome);
     return balancearNo(no);
 }
 
 void imprimeArvore(TNo *no) {
-    if (no == NULL) {
-        return;
-    }
-
     // Imprime o nó atual
-    printf("\n\t\t| ");
-    printf("%d",no->nivelProfundidade);
-    printf(" \t\t| ");
-    printf("Nó: %s",no->nome);
-    printf(" \t| ");
-    if(no->raiz != NULL){
-        printf("Antecedente: %s",no->raiz->nome);
-    }else{
-        printf("Antecedente: %s","NULL");
-    }
-    printf("   \t|");
-
-    // Percorre os filhos do nó atual
-    imprimeArvore(no->esq);
-    imprimeArvore(no->dir);
-}
-
-void criaTabelaImpressaArvore(TNo *raiz){
-    printf("\n \t\t| Profundidade \t| Nó \t\t| Antecedente   \t| ");
-    imprimeArvore(raiz);
-    printf("\n \t\t=========================================================\n ");
+    printf(BLUE "\n \t\t| Profundidade \t| Nó A - Z\t\t| Antecedente   \t| ");
+    caminhamentoPreOrdem(no);
+    printf("\n \t\t=========================================================\n " RESET);
 }

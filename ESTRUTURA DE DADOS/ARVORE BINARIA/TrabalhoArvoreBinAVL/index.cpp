@@ -44,17 +44,21 @@ void inicializa(TNo **R){
     raiz = insereAVL(raiz,"End");
 
     printf("\n\t\t caminhamento em ordem \t\n");
+    printf("\n \t\t| Profundidade \t| Nó A - Z \t\t| Antecedente   \t| ");
     caminhamentoEmOrdemAVL(raiz);
+    printf("\n \t\t=========================================================\n ");
     printf("\n\nImpressão da árvore com antecedente e profundidade:\n");
 
     system("PAUSE");
     raiz = excluiAVL(raiz, "Ortencio");
 
+    printf("\n \t\t| Profundidade \t| Nó A - Z \t\t| Antecedente   \t| ");
     caminhamentoEmOrdemAVL(raiz);
+    printf("\n \t\t=========================================================\n ");
 
     printf("\n\n\t\t caminhamento em ordem após exclusão de Ortencio \t\n");
     printf("\nImpressão da árvore com antecedente e profundidade após exclusão:\n");
-    criaTabelaImpressaArvore(raiz);
+    imprimeArvore(raiz);
     system("PAUSE");
 
     do{
@@ -62,43 +66,52 @@ void inicializa(TNo **R){
     switch (op){
         case 1:
         // Inserir
-        criaTabelaImpressaArvore(raiz);
+        imprimeArvore(raiz);
         printf("\n Insira um nome de Usuario: ");
         inputS(user);
         raiz = insereAVL(raiz,user);
         system("PAUSE");
         break;
+
         case 2:
         // Exluir
-        criaTabelaImpressaArvore(raiz);
+        imprimeArvore(raiz);
         printf("\n Insira um nome de Usuario: ");
         inputS(user);
         raiz = excluiAVL(raiz, user);
+        system("PAUSE");
         break;
         case 3:
         // Listar
-        criaTabelaImpressaArvore(raiz);
+        
+        imprimeArvore(raiz);
         system("PAUSE");
         break;
+
         case 4:
         // pre ordem
         printf("\n\t\t caminhamento em pre ordem \t\n");
+        printf("\n \t\t| Profundidade \t| Nó \t\t| Antecedente   \t| ");
         caminhamentoPreOrdem(raiz);
-        criaTabelaImpressaArvore(raiz);
+        printf("\n \t\t=========================================================\n ");
         system("PAUSE");
         break;
+        
         case 5:
         // em ordem
         printf("\n\t\t caminhamento em ordem \t\n");
+        printf("\n \t\t| Profundidade \t| Nó A - Z \t\t| Antecedente   \t| ");
         caminhamentoEmOrdemAVL(raiz);
-        criaTabelaImpressaArvore(raiz);
+        printf("\n \t\t=========================================================\n ");
         system("PAUSE");
         break;
+
         case 6:
         // pos ordem
         printf("\n\t\t caminhamento em pos ordem \t\n");
+        printf("\n \t\t| Profundidade \t| Nó \t\t| Antecedente   \t| ");
         caminhamentoPosOrdem(raiz);
-        criaTabelaImpressaArvore(raiz);
+        printf("\n \t\t=========================================================\n ");
         system("PAUSE");
         break;
     default:
