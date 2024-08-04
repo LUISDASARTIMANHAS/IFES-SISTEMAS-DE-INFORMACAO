@@ -634,7 +634,7 @@ TNo *insereAVL(TNo *no, char *nome){
 
 TNo *excluiAVL(TNo *no, char *nome) {
     if (no == NULL) {
-        printf(RED "\n Erro: Não foi possivel excuir usuario %s, Arvore vazia!\n" RESET,nome);
+        printf(RED "\n Erro: Não foi possivel excuir usuario %s, Não existe!\n" RESET,nome);
         return no;
     }
 
@@ -652,10 +652,10 @@ TNo *excluiAVL(TNo *no, char *nome) {
             if (temp == NULL) {
                 temp = no;
                 no = NULL;
+                printf(RED "\n Usuario %s Foi Excluido com sucesso!\n" RESET,nome);
             } else {
                 *no = *temp;
             }
-            printf(GREEN "\n Usuario %s Foi Excluido com sucesso!\n" RESET,nome);
             free(temp);
         } else {
             TNo *temp = minValueNodeAVL(no->dir);
