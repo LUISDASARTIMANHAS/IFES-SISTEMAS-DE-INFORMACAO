@@ -24,7 +24,9 @@ Se houver um desbalanceamento  na subárvore da esquerda do filho da direita do 
 TNo *raiz;
 
 void inicializa(TNo **R){
-	printf("\n\n\t\t=====| ARVORE BINARIA AVL |=====\n");
+    int op;
+    string user;
+
     raiz = criaNoAVL("Zilian",raiz);
     raiz = insereAVL(raiz,"Astolfo");
     raiz = insereAVL(raiz,"Julia");
@@ -33,11 +35,17 @@ void inicializa(TNo **R){
     raiz = insereAVL(raiz,"Ortencio");
     raiz = insereAVL(raiz,"Kleiton");
     raiz = insereAVL(raiz,"Xuxa");
+    raiz = insereAVL(raiz,"Mephisto");
+    raiz = insereAVL(raiz,"Soul");
+    raiz = insereAVL(raiz,"Bob");
+    raiz = insereAVL(raiz,"Ruben");
+    raiz = insereAVL(raiz,"Luis Augusto");
+    raiz = insereAVL(raiz,"Lucas Garcia");
+    raiz = insereAVL(raiz,"End");
 
     printf("\n\t\t caminhamento em ordem \t\n");
     caminhamentoEmOrdemAVL(raiz);
     printf("\n\nImpressão da árvore com antecedente e profundidade:\n");
-    criaTabelaImpressaArvore(raiz);
 
     system("PAUSE");
     raiz = excluiAVL(raiz, "Ortencio");
@@ -48,6 +56,56 @@ void inicializa(TNo **R){
     printf("\nImpressão da árvore com antecedente e profundidade após exclusão:\n");
     criaTabelaImpressaArvore(raiz);
     system("PAUSE");
+
+    do{
+        op = menu();
+    switch (op){
+        case 1:
+        // Inserir
+        criaTabelaImpressaArvore(raiz);
+        printf("\n Insira um nome de Usuario: ");
+        inputS(user);
+        raiz = insereAVL(raiz,user);
+        system("PAUSE");
+        break;
+        case 2:
+        // Exluir
+        criaTabelaImpressaArvore(raiz);
+        printf("\n Insira um nome de Usuario: ");
+        inputS(user);
+        raiz = excluiAVL(raiz, user);
+        break;
+        case 3:
+        // Listar
+        criaTabelaImpressaArvore(raiz);
+        system("PAUSE");
+        break;
+        case 4:
+        // pre ordem
+        printf("\n\t\t caminhamento em pre ordem \t\n");
+        caminhamentoPreOrdem(raiz);
+        criaTabelaImpressaArvore(raiz);
+        system("PAUSE");
+        break;
+        case 5:
+        // em ordem
+        printf("\n\t\t caminhamento em ordem \t\n");
+        caminhamentoEmOrdemAVL(raiz);
+        criaTabelaImpressaArvore(raiz);
+        system("PAUSE");
+        break;
+        case 6:
+        // pos ordem
+        printf("\n\t\t caminhamento em pos ordem \t\n");
+        caminhamentoPosOrdem(raiz);
+        criaTabelaImpressaArvore(raiz);
+        system("PAUSE");
+        break;
+    default:
+        printf("\nSaindo do programa e encerrando a aplicacao\n");
+        break;
+    }
+    } while (op != 0);
 }
 
 //===| Programa Principal |===========================

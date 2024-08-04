@@ -437,156 +437,27 @@ void heapSort(int vetor[], int tam ) {
 
 // ============= heapSort =========
 
-void removerArray(int *qtde, int *array, int pos){
-    int i;
-    for (i = pos; i < (*qtde)-1; i++){
-        array[i] = array[i+1];
-    }
-    (*qtde)--;
-}
-
-void alocarMEM(int **database,int *maxSpace){
-    printf("Entre com a quantidade de números: ");
-    int quant_numeros = input();
-    *database = (int *) malloc (quant_numeros * sizeof (int) );
-    *maxSpace = quant_numeros;
-}
-
-void reAlocarMEM(int **database, int *maxSpace){
-    printf("\nVoce tem alocado: %d \n",*maxSpace);
-    printf("Entre com a quantidade a mais de elementos: ");
-    int qtdeNova = input();
-    *maxSpace = (qtdeNova+(*maxSpace));
-    int tam = (*maxSpace) * sizeof (int);
-
-    *database = (int *) realloc (*database , tam );
-}
-
-void empilharPilha(TPilha *P, int valor){
-    Pilha *novo = (Pilha*)malloc(sizeof(Pilha));
-
-    novo->ante = NULL;
-    novo->prox = NULL;
-    novo->digito = valor;
-
-    if (P->topo == NULL){
-        // pilha vazia
-        P->base = novo;
-        P->topo = novo;
-    }else{
-        P->topo->prox = novo;
-        novo->ante = P->topo;
-        P->topo = novo;
-    }
-}
-
-int desempilharPilha(TPilha *P){
-    Pilha *atual;
-    int res;
-
-    if (P->topo != NULL){
-        atual = P->topo;
-        P->topo = P->topo->ante;
-        if (P->topo != NULL){
-            P->topo->prox = NULL;
-            P->base = NULL;
-        }
-        res = atual->digito;
-        free(atual);
-    }else{
-        res = -1;
-    }
-    return res;
-}
-
-void desmembrarPilha(TPilha *P, int num){
-    int quoc = num;
-
-    do{
-        printf("\n>>> %d em %d\n", quoc%10, quoc);
-        empilharPilha(P,(quoc % 10));
-        quoc = quoc/10;
-    } while (quoc > 0);
-}
-
-int remontarPilha(TPilha *P){
-    int valor = 0;
-    int fator = 1;
-
-    while (P->topo != NULL){
-        valor = valor + (desempilharPilha(P) * fator);
-        fator = fator * 10;
-
-        printf("\n\n valor= %d    fator= %d",valor, fator);
-    }
-
-    return valor;
-}
-
-TNo *criaNo(int valor){
-    TNo *novo = (TNo *)malloc(sizeof(TNo));
-    novo->valor = valor;
-    novo->esq = NULL;
-    novo->dir = NULL;
-    return novo;
-}
-
-void caminhamentoEmOrdemBin(TNo *R){
-    if (R != NULL){
-        caminhamentoEmOrdemBin(R->esq);
-        printf("%d, ",R->valor);
-        caminhamentoEmOrdemBin(R->dir);
-    }
-}
-
-void caminhamentoPreOrdemBin(TNo *R){
-    if (R != NULL){
-        printf("%d, ",R->valor);
-        caminhamentoPreOrdemBin(R->esq);
-        caminhamentoPreOrdemBin(R->dir);
-    }
-}
-
-void caminhamentoPosOrdemBin(TNo *R){
-    if (R != NULL){
-        caminhamentoPosOrdemBin(R->esq);
-        caminhamentoPosOrdemBin(R->dir);
-        printf("%d, ",R->valor);
-    }
-}
-
-TNo *buscaArvBin(TNo **R, int args){
-	if(*R == NULL){
-		return NULL;
-	} else if(args == (*R)->valor){
-		//No Encontrado.
-		return *R;
-	} else if(args > (*R)->valor){
-		//Desce pela Direita.
-		printf("\n Visitando %d e DESCENDO pela DIREITA...", (*R)->valor);
-		return buscaArvBin(&(*R)->dir, args);
-	} else {
-		//Desce pela Esquerda.
-		printf("\n Visitando %d e DESCENDO pela ESQUERDA...", (*R)->valor);
-		return buscaArvBin(&(*R)->esq, args);
-    }
-}
-
-TNo *removeNoArvBin(TNo **R, int args){
-    if (*R == NULL){
-        return *R;
-    }else {
-        TNo* noADeletar = buscaArvBin(&(*R),args);
-        //No Encontrado.
-        if (noADeletar != NULL) {
-            free(noADeletar);
-        }
-    }
-    return *R;
-}
-
 
 // ============== FUNÇÕES O TRABALHO ========================
+
+int menu() {
+    correct();
+	int op;
+	system("@cls||clear");  // LIMPA A TELA
+	printf(BLUE "\n\n\t\t =====| ARVORE BINARIA AVL |===== \n\n" RESET);
+	printf(GREEN "1 - Inserir\n");
+	printf(RED "2 - Excluir\n" RESET);
+	printf(GREEN "3 - Listar\n");
+    printf(GREEN "4 - Pre Ordem\n");
+    printf(GREEN "5 - Em Ordem\n");
+    printf(GREEN "6 - Pos Ordem\n"  RESET);
+	printf(RED "0 - Sair\n" RESET);
+	do {
+		printf(YELLOW "Escolha sua opção: " RESET);
+		scanf(" %d", &op);
+	} while(op < 0 || op > 6);
+	return op;
+}
 
 TNo *criaNoAVL(char *nome, TNo *raiz){
     TNo *novo = (TNo *)malloc(sizeof(TNo));
@@ -730,11 +601,13 @@ TNo *insereAVL(TNo *no, char *nome){
     }
 
     no->nivelProfundidade = 1 + max(nivelProfundidade(no->esq), nivelProfundidade(no->dir));
+    printf("\n Usuario %s Foi inserido com sucesso!\n",nome);
     return balancearNo(no);
 }
 
 TNo *excluiAVL(TNo *no, char *nome) {
     if (no == NULL) {
+        printf("\n Erro: Não foi possivel excuir usuario %s, Arvore vazia!\n",nome);
         return no;
     }
 
@@ -768,6 +641,7 @@ TNo *excluiAVL(TNo *no, char *nome) {
     }
 
     no->nivelProfundidade = 1 + max(nivelProfundidade(no->esq), nivelProfundidade(no->dir));
+    printf("\n Usuario %s Foi Exluido com sucesso!\n",nome);
     return balancearNo(no);
 }
 

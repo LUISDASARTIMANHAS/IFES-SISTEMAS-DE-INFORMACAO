@@ -306,6 +306,27 @@ int menuPay(){
     return opc;
 }
 
+
+int menu() {
+    correct();
+	int op;
+	// system("@cls||clear");  // LIMPA A TELA
+	printf(BLUE "\n\nSISTEMA DE ESTOQUE\n\n" RESET);
+	printf(GREEN "1 - Inserir\n");
+	printf("2 - Pesquisar por número\n");
+	printf("3 - Pesquisar por nome\n");
+	printf("4 - Atualizar\n");
+	printf("5 - Maior\n" RESET);
+	printf(RED "6 - Excluir\n" RESET);
+	printf(GREEN "7 - Listar\n"  RESET);
+	printf(RED "0 - Sair\n" RESET);
+	do {
+		printf(YELLOW "Escolha sua opção: " RESET);
+		scanf(" %d", &op);
+	} while(op < 0 || op > 7);
+	return op;
+}
+
 int calcArRetangulo(){
     float base = validBase();
     float altura = validAltura();
