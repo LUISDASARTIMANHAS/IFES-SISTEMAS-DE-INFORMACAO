@@ -12,7 +12,7 @@ g++ -Wall -g3 -Wextra -static -static-libgcc -static-libstdc++ index.cpp -o "bui
 
 g++ -Wall -g3 -Wextra -static -static-libgcc -static-libstdc++ index.cpp -o "builds/%fullFileName%.exe"
 
-tar -a -c -f "zip/%fullFileName%.zip" *data *builds *.cpp functions.c *.cmd
+tar -a -c -f "zip/%fullFileName%.zip" *data *builds *.cpp functions.c *.cmd *.pptx *.pdf
 
 msg * /v /w %fullFileName%.exe foi compilado!
 

@@ -12,7 +12,7 @@ A inserção em uma árvore AVL é similar à inserção em uma árvore binária
 Se houver um desbalanceamento na subárvore da direita do filho da esquerda do nó, faça uma rotação dupla à direita.
 Se houver um desbalanceamento na subárvore da esquerda do filho da esquerda do nó, faça uma rotação simples à direita.
 Se houver um desbalanceamento na subárvore da direita do filho da direita do nó, faça uma rotação simples à esquerda.
-Se houver um desbalanceamento  na subárvore da esquerda do filho da direita do nó, faça uma rotação dupla à esquerda.  
+Se houver um desbalanceamento  na subárvore da esquerda do filho da direita do nó, faça uma rotação dupla à esquerda.
 */
 
 #include <windows.h>

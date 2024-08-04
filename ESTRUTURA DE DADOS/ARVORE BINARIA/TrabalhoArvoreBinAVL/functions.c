@@ -565,16 +565,22 @@ TNo *balancearNo(TNo *no) {
     int balanco = getBalanco(no);
 
     if (balanco > 1) {
+	// Desbalanceada para a esquerda
         if (getBalanco(no->esq) >= 0) {
+		// Rotaçao simples à direita
             no = rotacaoDireita(no);
         } else {
+		// Rotaçao dupla à direita (esquerda-direita)
             no->esq = rotacaoEsquerda(no->esq);
             no = rotacaoDireita(no);
         }
     } else if (balanco < -1) {
+	    // Desbalanceada para a direita
         if (getBalanco(no->dir) <= 0) {
+		// Rotaçao simples à esquerda
             no = rotacaoEsquerda(no);
         } else {
+		// Rotaçao dupla à esquerda (direita-esquerda)
             no->dir = rotacaoDireita(no->dir);
             no = rotacaoEsquerda(no);
         }
