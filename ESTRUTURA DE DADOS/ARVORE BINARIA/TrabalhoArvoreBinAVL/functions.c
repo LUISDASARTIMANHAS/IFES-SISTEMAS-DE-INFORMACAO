@@ -655,6 +655,7 @@ TNo *excluiAVL(TNo *no, char *nome) {
             } else {
                 *no = *temp;
             }
+            printf(GREEN "\n Usuario %s Foi Excluido com sucesso!\n" RESET,nome);
             free(temp);
         } else {
             TNo *temp = minValueNodeAVL(no->dir);
@@ -668,13 +669,12 @@ TNo *excluiAVL(TNo *no, char *nome) {
     }
 
     no->nivelProfundidade = 1 + max(nivelProfundidade(no->esq), nivelProfundidade(no->dir));
-    printf(GREEN "\n Usuario %s Foi Exluido com sucesso!\n" RESET,nome);
     return balancearNo(no);
 }
 
 void imprimeArvore(TNo *no) {
     // Imprime o nó atual
-    printf(BLUE "\n \t\t| Profundidade \t| Nó A - Z\t\t| Antecedente   \t| ");
+    printf("\n \t\t| Profundidade \t| Nó A - Z\t\t| Antecedente   \t| ");
     caminhamentoPreOrdem(no);
-    printf("\n \t\t=========================================================\n " RESET);
+    printf("\n \t\t=========================================================\n ");
 }
