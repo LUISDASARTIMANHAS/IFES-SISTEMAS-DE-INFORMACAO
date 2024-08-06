@@ -1,0 +1,40 @@
+{
+    "title": "IFES-SISTEMAS-DE-INFORMACAO",
+    "description": "IFES-SISTEMAS-DE-INFORMACAO",
+    "author": "LUIS DAS ARTIMANHAS & pingobras S.A",
+    "contact": "luisaugustodesouza785@gmail.com",
+    "homepage": "https://pingobras.glitch.me",
+    "host-ip": "http://127.0.0.1/",
+    "hostname":"localhost:57374",
+    "license": "GNU General Public License v3.0",
+    "icon": "https://cdn.glitch.global/b39d6a4a-0e14-4b41-930d-29d3ccd6c137/PINGOBRAS icon.png?v=1665177105635",
+    "scripts": [
+      "alterar-tema.js",
+      "calcs.js",
+      "code-error.js",
+      "copyright.js",
+      "download.js",
+      "functions.js",
+      "functions.js",
+      "ip-info.js",
+      "links.js",
+      "load-host.js",
+      "load-scripts.js",
+      "main.js",
+      "network.js",
+      "relogio.js",
+      "script.js",
+      "time.js",
+      "worker.js"
+    ],
+    "css": [
+      "footer.css",
+      "style.css",
+      "btn.css",
+      "head.css",
+      "RGB.css",
+      "main.css",
+      "temas.css",
+      "bootstrap.css"
+    ]
+  }
