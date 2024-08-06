@@ -1,5 +1,5 @@
 (() => {
-  const url = "/src/data/info.json";
+  const url = "./src/data/info.json";
   const options = {
     method: "GET",
     mode: "cors",
