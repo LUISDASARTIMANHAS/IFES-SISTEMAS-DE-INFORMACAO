@@ -48,6 +48,14 @@ function importarCss(data) {
   const srcsLinksFonts = [
     "4.7.0/css/font-awesome.min.css"
   ];
+  const srcsLinksIfes = [
+    "html/mod_banners/css/banner-rotativo-home.css",
+    "bootstrap/css/bootstrap.min.css",
+    "css/custom.css",
+    "font-awesome/css/font-awesome.min.css",
+    "css/icones-bmp-verde.css",
+    "css/template-verde.css"
+  ];
 
   for (let i = 0; i < srcs.length; i++) {
     const src = srcs[i];
@@ -70,6 +78,17 @@ function importarCss(data) {
     head.appendChild(newLink);
 
     console.log("Novo Link de fonte css Num: " + srcsLinksFonts[i]);
+  }
+
+  for (let i = 0; i < srcsLinksIfes.length; i++) {
+    const head = document.querySelector("head");
+    var newLink = document.createElement("link");
+
+    newLink.setAttribute("href", "https://ifes.edu.br/templates/padraogoverno01/" + srcsLinksIfes[i]);
+    newLink.rel = "stylesheet";
+    head.appendChild(newLink);
+
+    console.log("Novo Link de IFES css Num: " + srcsLinksIfes[i]);
   }
 
 }
