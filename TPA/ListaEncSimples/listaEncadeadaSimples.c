@@ -161,17 +161,57 @@ void removerMatricula(TLista *L, int valor){
 	}
 }
 
-int menu(){
-    printf("\n\t\t======= =======\n");
-    printf("1-A vista\n");
-    printf("2-A prazo\n");
-    printf("=====================\n");
-    printf("Forma: ");
-    int opc = input();
-
-    return opc;
+int menu() {
+    correct();
+	int op;
+	// system("@cls||clear");  // LIMPA A TELA
+	printf(BLUE "\n\t\t SISTEMA DE ESTOQUE \t\t\n" RESET);
+	printf(GREEN "1 - Ler Arquivo de Dados\n");
+	printf("2 - Inserir Nova Matrícula\n");
+	printf(RED "3 - Remover Matrícula\n");
+	printf(GREEN"4 - Pesquisar Matrícula\n");
+	printf("5 - Total de Matrículas\n");
+	printf("6 - Imprimir Matrículas\n" RESET);
+	printf(RED "0 - Sair\n" RESET);
+	do {
+		printf(YELLOW "Escolha sua opção: " RESET);
+		scanf(" %d", &op);
+	} while(op < 0 || op > 6);
+	return op;
 }
 
 int main(){
 	inicializa(&lista);
+	correct();
+	int op;
+	do {
+		op = menu();
+		switch ( op ) {
+			case 0:
+				// SAIR. NÃO PRECISA FAZER NADA
+				EXIT_SUCCESS;
+				break;
+			case 1:
+				// Ler Arquivo de Dados
+				break;
+			case 2:
+				// Inserir Nova Matrícula
+				break;
+			case 3:
+				// Remover Matrícula
+				break;
+			case 4:
+				// Pesquisar Matrícula
+				break;
+			case 5:
+				// MAIOR
+				break;
+			case 6:
+				// EXCLUIR
+				break;
+			default:
+				printf ("\n\nOpção inválida!\n\n");
+		}
+	} while (op != 0);
+	return 0;
 }
