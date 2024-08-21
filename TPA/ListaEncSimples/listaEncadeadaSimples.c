@@ -27,25 +27,24 @@ FILE * lerArq(char *nomeArq){
         printf("\n ERRO: Erro ao carregar o arquivo!");
         exit(-1);
     }
-	printf("\n INFO: Arquivo %s carregado com sucesso!",nomeArq);
+	printf("\n INFO: Arquivo %s carregado com sucesso! \n",nomeArq);
     return arq;
 }
 
 void inicializa(TLista *L){
-	FILE *arquivo = lerArq("../lista_matricula.txt");
 	L->inicio = NULL;
 	L->fim = NULL;
 	L->total = 0;
+}
 
-	while ( ! feof(arquivo) ) { 
-        fscanf(arquivo, "%d" , &cod);
-        fscanf(arquivo, " %50[^\n]s" , nome);
-        fscanf(arquivo, "%d" , &qtde);
-        fscanf(arquivo, "%f" , &preco);
+void LerArquivodeDados(TLista *L){
+	int matricula;
+	FILE *arquivo = lerArq("../lista_matricula.txt");
 
-        printf("%3d|%-50s|%5d|%10.2f|\n", cod, nome, qtde , preco  );
+	while ( ! feof(arquivo) ) {
+        fscanf(arquivo, "%d" , &matricula);
+		inserirNovaMatricula(L,matricula);
     }
-	
 }
 
 void inserirNovaMatricula(TLista *L,int valor){
@@ -175,5 +174,4 @@ int menu(){
 
 int main(){
 	inicializa(&lista);
-	
 }
