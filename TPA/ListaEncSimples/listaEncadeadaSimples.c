@@ -2,10 +2,22 @@
 
 TLista lista;
 
-void inicializa(TLista *L){
-	L->inicio = NULL;
-	L->fim = NULL;
-	L->total = 0;
+// inputs personalizados e modificados
+float input(){
+    float value;
+    scanf("%f", &value);
+    return value;
+}
+float inputBoleano(){
+	int value;
+	do{
+		fflush(stdin);
+		scanf("%d", &value);
+	}while(value != 1 && value != 0);
+	return value;
+}
+void inputS(char destino[]){
+    scanf(" %100[^\n]s", destino);
 }
 
 FILE * lerArq(char *nomeArq){
@@ -15,7 +27,25 @@ FILE * lerArq(char *nomeArq){
         printf("\n ERRO: Erro ao carregar o arquivo!");
         exit(-1);
     }
+	printf("\n INFO: Arquivo %s carregado com sucesso!",nomeArq);
     return arq;
+}
+
+void inicializa(TLista *L){
+	FILE *arquivo = lerArq("../lista_matricula.txt");
+	L->inicio = NULL;
+	L->fim = NULL;
+	L->total = 0;
+
+	while ( ! feof(arquivo) ) { 
+        fscanf(arquivo, "%d" , &cod);
+        fscanf(arquivo, " %50[^\n]s" , nome);
+        fscanf(arquivo, "%d" , &qtde);
+        fscanf(arquivo, "%f" , &preco);
+
+        printf("%3d|%-50s|%5d|%10.2f|\n", cod, nome, qtde , preco  );
+    }
+	
 }
 
 void inserirNovaMatricula(TLista *L,int valor){
