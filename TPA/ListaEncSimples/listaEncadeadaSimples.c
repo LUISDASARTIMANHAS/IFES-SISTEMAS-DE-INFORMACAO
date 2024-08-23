@@ -1,3 +1,4 @@
+// Desenvolvido por LUIS AUGUSTO DE SOUZA 
 #include "listaEncadeadaSimples.h"
 
 TLista lista;
