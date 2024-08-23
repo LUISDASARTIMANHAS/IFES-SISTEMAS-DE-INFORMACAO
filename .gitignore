@@ -25,3 +25,4 @@ output
 
 # Ignorar arquivos BIN
 *.bin
+/POO1/ProjetodeTestes/target/
