@@ -2,6 +2,11 @@
 
 TLista lista;
 
+
+void correct(){
+    SetConsoleOutputCP(65001);
+}
+
 // inputs personalizados e modificados
 float input(){
     float value;
