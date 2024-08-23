@@ -42,17 +42,7 @@ void inicializa(TLista *L){
 	L->total = 0;
 }
 
-void LerArquivodeDados(TLista *L){
-	int matricula;
-	FILE *arquivo = lerArq("../lista_matricula.txt");
-
-	while ( ! feof(arquivo) ) {
-        fscanf(arquivo, "%d" , &matricula);
-		inserirNovaMatricula(L,matricula);
-    }
-}
-
-void inserirNovaMatricula(TLista *L,int valor){
+void CLIinserirNovaMatricula(TLista *L, int valor){
 	int inseriu = 0;
 	TElemento *novo = (TElemento *)malloc(sizeof(TElemento));
 	
@@ -72,6 +62,10 @@ void inserirNovaMatricula(TLista *L,int valor){
 		
 		while(atual != NULL){
 			if(atual->valor >= novo->valor)	{
+				if(atual->valor == novo->valor){
+					printf(RED "\nMatricula %d Já Existe!",valor,RESET);
+					return;
+				}
 				if(anterior == NULL){
 					//Inserir novo antes do primeiro da primeiro da lista.
 					novo->prox = atual;
@@ -81,6 +75,7 @@ void inserirNovaMatricula(TLista *L,int valor){
 					novo->prox = atual;
 					anterior->prox = novo;
 				}
+				printf(GREEN "\nMatricula %d Inserida com sucesso!",valor,RESET);
 				inseriu = 1;
 				L->total++;
 				break;
@@ -90,11 +85,29 @@ void inserirNovaMatricula(TLista *L,int valor){
 		}//while
 	}//if
 	if(!inseriu){
+		printf(GREEN "\nMatricula %d Inserida com sucesso no fim da lista!",valor,RESET);
 		// insere o Matrícula no fim da lista
 		L->fim->prox = novo;
 		L->fim = novo;
 		L->total++;
 	}
+}
+
+void LerArquivodeDados(TLista *L){
+	int matricula;
+	FILE *arquivo = lerArq("../lista_matricula.txt");
+
+	while ( ! feof(arquivo) ) {
+        fscanf(arquivo, "%d" , &matricula);
+		CLIinserirNovaMatricula(L,matricula);
+    }
+}
+
+void inserirNovaMatricula(TLista *L){
+	int valor;
+	printf(YELLOW "\n\t Insira o número de matrícula: ",RESET);
+	valor = input();
+	CLIinserirNovaMatricula(L,valor);
 }
 
 void imprimirMatricula(TLista L){
@@ -103,7 +116,7 @@ void imprimirMatricula(TLista L){
 
 	printf("\n\t\t===| EXIBE LISTA COMPLETA |===\n");
 	while(atual != NULL){
-		printf("(%d) - %d.\n",++count, atual->valor);
+		printf(BLUE "\n\t(%d) - %d.",++count, atual->valor,RESET);
 		atual = atual->prox;
 	}
 	printf("\n\n");
@@ -113,39 +126,41 @@ void totalDeMatriculas(TLista L){
 	TElemento *atual = L.inicio;
 	int count = 0;
 
-	printf("\n\t\t===| 5. Total de Matrículas |===\n");
+	printf(BLUE "\n\t\t=====| Total de Matrículas |=====\n",RESET);
 	while(atual != NULL){
-		printf("(%d) - %d.\n",++count, atual->valor);
+		count++;
 		atual = atual->prox;
 	}
+	printf(BLUE "\n TOTAL de Matrículas: %d",count,RESET);
 	printf("\n\n");
 }
 
-void pesquisarMatricula(TLista L,int valor){
+void pesquisarMatricula(TLista L){
 	TElemento *atual = L.inicio;
 	int count = 0;
+	int valor;
 
-	printf("\n\t\t===| EXIBE LISTA COMPLETA |===\n");
+	printf(YELLOW "\n\tInsira o número da matrícula que deseja pesquisar: ",RESET);
+	valor = input();
+
 	while(atual != NULL){
-		printf("(%d) - %d.\n",++count, atual->valor);
+		if(valor == atual->valor){
+			printf("(%d) - %d.",++count, atual->valor);
+		}
 		atual = atual->prox;
 	}
-	printf("\n\n");
+	if(atual == NULL){
+		printf(RED "\n Matrícula %d Não foi encontrada!\n",valor, RESET);
+	}
+	printf("\n");
 }
 //===============================================
-
-void removerMatricula(TLista *L, int valor){
+void CLIremoverMatricula(TLista *L, int valor){
 	TElemento *atual = L->inicio;
 	TElemento *anterior = NULL;
-	int count = 0;
 
 	while(atual != NULL){
-		if(count == 0){
-			printf("\n\t\tExcluino o Matrícula %d ...\n", atual->valor);
-			count++;
-		}
 		if(atual->valor == valor){
-			printf("\n\t\tEncontrado Matrícula a ser EXCLUIDO!\n");
 			if(L->inicio == L->fim){
 				L->inicio = NULL;
 				L->fim = NULL;
@@ -157,6 +172,7 @@ void removerMatricula(TLista *L, int valor){
 			}else{
 				anterior->prox = atual->prox;
 			}
+			printf(RED "\n Matrícula %d Foi EXCLUIDA com sucesso!\n",valor, RESET);
 			free(atual);
 			L->total--;
 			break;
@@ -164,13 +180,23 @@ void removerMatricula(TLista *L, int valor){
 		anterior = atual;
 		atual = atual->prox;
 	}
+	if(atual == NULL){
+		printf(RED "\n Matrícula %d Não foi encontrada!\n",valor, RESET);
+	}
+}
+
+void removerMatricula(TLista *L){
+	int valor;
+	printf(YELLOW "\n\t Insira o número da matrícula que deseja remover: ",RESET);
+	valor = input();
+	CLIremoverMatricula(L,valor);
 }
 
 int menu() {
     correct();
 	int op;
 	// system("@cls||clear");  // LIMPA A TELA
-	printf(BLUE "\n\t\t SISTEMA DE ESTOQUE \t\t\n" RESET);
+	printf(BLUE "\n\t\t =====| SISTEMA DE MATRICULA |=====\t\t\n" RESET);
 	printf(GREEN "1 - Ler Arquivo de Dados\n");
 	printf("2 - Inserir Nova Matrícula\n");
 	printf(RED "3 - Remover Matrícula\n");
@@ -198,21 +224,27 @@ int main(){
 				break;
 			case 1:
 				// Ler Arquivo de Dados
+				LerArquivodeDados(&lista);
 				break;
 			case 2:
 				// Inserir Nova Matrícula
+				inserirNovaMatricula(&lista);
 				break;
 			case 3:
 				// Remover Matrícula
+				removerMatricula(&lista);
 				break;
 			case 4:
 				// Pesquisar Matrícula
+				pesquisarMatricula(lista);
 				break;
 			case 5:
-				// MAIOR
+				// total De Matriculas
+				totalDeMatriculas(lista);
 				break;
 			case 6:
-				// EXCLUIR
+				// imprimir Matricula
+				imprimirMatricula(lista);
 				break;
 			default:
 				printf ("\n\nOpção inválida!\n\n");

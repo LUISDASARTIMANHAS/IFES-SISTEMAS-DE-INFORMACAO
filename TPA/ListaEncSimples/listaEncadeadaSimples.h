@@ -1,5 +1,11 @@
-#include <stdio.h>
+#include <windows.h>
+#define _USE_MATH_DEFINES
+#include <math.h>
 #include <stdlib.h>
+#include <stdio.h>
+#include <ctype.h>
+#include <string.h>
+#include <time.h>
 // Defina constantes para as sequências de escape ANSI das cores
 #define RED "\x1b[31m"
 #define BLUE "\x1b[34m"
@@ -21,9 +27,10 @@ typedef struct tipoLista {
 }TLista;
 
 void inicializa(TLista *L);
-void inserirNovaMatricula(TLista *L,int valor);
+void LerArquivodeDados(TLista *L);
+void inserirNovaMatricula(TLista *L);
 void imprimirMatricula(TLista L);
 void totalDeMatriculas(TLista L);
-void pesquisarMatricula(TLista L,int valor);
-void removerMatricula(TLista *L, int valor);
+void pesquisarMatricula(TLista L);
+void removerMatricula(TLista *L);
 int menu();
