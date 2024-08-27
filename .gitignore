@@ -26,3 +26,6 @@ output
 # Ignorar arquivos BIN
 *.bin
 /POO1/ProjetodeTestes/target/
+/POO1/OlaMundo5/nbproject/private/
+/POO1/OlaMundo5/build/
+/POO1/OlaMundo5/dist/
