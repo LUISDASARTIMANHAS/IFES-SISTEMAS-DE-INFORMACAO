@@ -28,13 +28,36 @@ void inputS(char destino[]){
 
 FILE * lerArq(char *nomeArq){
     FILE * arq;
-    arq = fopen(nomeArq,"r");
+    arq = fopen(nomeArq,"w+");
     if(arq == NULL){
         printf("\n ERRO: Erro ao carregar o arquivo!");
         exit(-1);
     }
 	printf("\n INFO: Arquivo %s carregado com sucesso! \n",nomeArq);
     return arq;
+}
+
+void escreverArq(FILE *arq, int matricula){
+	fprintf(arq, "\n%3d", matricula);
+}
+
+FILE * salvarAqr(TLista *L, char *nomeArq){
+	FILE *arq = lerArq(nomeArq);
+	FILE *newArq;
+	FILE *backupArq = lerArq("../backup.txt");
+	TElemento *atual = L->inicio;
+
+	printf("\n Salvando...\n");
+	while(atual != NULL){
+		escreverArq(arq,atual->valor);
+		escreverArq(backupArq,atual->valor);
+		atual = atual->prox;
+	}
+
+	fclose(arq);
+	printf("\n Autosave Completo!\n");
+	newArq = lerArq(nomeArq);
+	return newArq;
 }
 
 void inicializa(TLista *L){
@@ -198,12 +221,11 @@ int menu() {
 	int op;
 	// system("@cls||clear");  // LIMPA A TELA
 	printf(BLUE "\n\t\t =====| SISTEMA DE MATRICULA |=====\t\t\n" RESET);
-	printf(GREEN "1 - Ler Arquivo de Dados\n");
-	printf("2 - Inserir Nova Matrícula\n");
-	printf(RED "3 - Remover Matrícula\n");
-	printf(GREEN"4 - Pesquisar Matrícula\n");
-	printf("5 - Total de Matrículas\n");
-	printf("6 - Imprimir Matrículas\n" RESET);
+	printf("1 - Inserir Nova Matrícula\n");
+	printf(RED "2 - Remover Matrícula\n");
+	printf(GREEN"3 - Pesquisar Matrícula\n");
+	printf("4 - Total de Matrículas\n");
+	printf("5 - Imprimir Matrículas\n" RESET);
 	printf(RED "0 - Sair\n" RESET);
 	do {
 		printf(YELLOW "Escolha sua opção: " RESET);
@@ -215,6 +237,7 @@ int menu() {
 int main(){
 	inicializa(&lista);
 	correct();
+	LerArquivodeDados(&lista);
 	int op;
 	do {
 		op = menu();
@@ -224,26 +247,22 @@ int main(){
 				EXIT_SUCCESS;
 				break;
 			case 1:
-				// Ler Arquivo de Dados
-				LerArquivodeDados(&lista);
-				break;
-			case 2:
 				// Inserir Nova Matrícula
 				inserirNovaMatricula(&lista);
 				break;
-			case 3:
+			case 2:
 				// Remover Matrícula
 				removerMatricula(&lista);
 				break;
-			case 4:
+			case 3:
 				// Pesquisar Matrícula
 				pesquisarMatricula(lista);
 				break;
-			case 5:
+			case 4:
 				// total De Matriculas
 				totalDeMatriculas(lista);
 				break;
-			case 6:
+			case 5:
 				// imprimir Matricula
 				imprimirMatricula(lista);
 				break;
