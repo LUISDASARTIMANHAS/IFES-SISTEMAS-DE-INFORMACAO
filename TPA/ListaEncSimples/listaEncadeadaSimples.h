@@ -28,7 +28,6 @@ typedef struct tipoLista {
 }TLista;
 
 void inicializa(TLista *L);
-void LerArquivodeDados(TLista *L);
 void inserirNovaMatricula(TLista *L);
 void imprimirMatricula(TLista L);
 void totalDeMatriculas(TLista L);

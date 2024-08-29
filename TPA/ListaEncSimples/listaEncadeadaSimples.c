@@ -26,9 +26,9 @@ void inputS(char destino[]){
     scanf(" %100[^\n]s", destino);
 }
 
-FILE * lerArq(char *nomeArq){
+FILE * lerArq(char *nomeArq, char * modo){
     FILE * arq;
-    arq = fopen(nomeArq,"w+");
+    arq = fopen(nomeArq,modo);
     if(arq == NULL){
         printf("\n ERRO: Erro ao carregar o arquivo!");
         exit(-1);
@@ -41,11 +41,10 @@ void escreverArq(FILE *arq, int matricula){
 	fprintf(arq, "\n%3d", matricula);
 }
 
-FILE * salvarAqr(TLista *L, char *nomeArq){
-	FILE *arq = lerArq(nomeArq);
-	FILE *newArq;
-	FILE *backupArq = lerArq("../backup.txt");
-	TElemento *atual = L->inicio;
+void salvarAqr(TLista L){
+	FILE *arq = lerArq("../lista_matricula.txt","w");
+	FILE *backupArq = lerArq("../backup.txt","w");
+	TElemento *atual = L.inicio;
 
 	printf("\n Salvando...\n");
 	while(atual != NULL){
@@ -56,8 +55,6 @@ FILE * salvarAqr(TLista *L, char *nomeArq){
 
 	fclose(arq);
 	printf("\n Autosave Completo!\n");
-	newArq = lerArq(nomeArq);
-	return newArq;
 }
 
 void inicializa(TLista *L){
@@ -119,12 +116,13 @@ void CLIinserirNovaMatricula(TLista *L, int valor){
 
 void LerArquivodeDados(TLista *L){
 	int matricula;
-	FILE *arquivo = lerArq("../lista_matricula.txt");
+	FILE *arquivo = lerArq("../lista_matricula.txt","r");
 
 	while ( ! feof(arquivo) ) {
         fscanf(arquivo, "%d" , &matricula);
 		CLIinserirNovaMatricula(L,matricula);
     }
+	fclose(arquivo);
 }
 
 void inserirNovaMatricula(TLista *L){
@@ -244,7 +242,7 @@ int main(){
 		switch ( op ) {
 			case 0:
 				// SAIR. NÃO PRECISA FAZER NADA
-				EXIT_SUCCESS;
+				salvarAqr(lista);
 				break;
 			case 1:
 				// Inserir Nova Matrícula
