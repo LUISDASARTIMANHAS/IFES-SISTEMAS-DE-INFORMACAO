@@ -15,8 +15,8 @@ set fileName=ListaEncSimples
     if not exist "zip" (
         mkdir zip
     )    
-    tar -a -c -f "zip/%fileName%.zip" *data *builds *.h *.cpp *.c *.cmd
-    tar -a -c -f "../%fileName%.zip" *data *builds *.h *.cpp *.c *.cmd
+    tar -a -c -f "zip/%fileName%.zip" *data *builds *.h *.cpp *.c *.cmd *.txt
+    tar -a -c -f "../%fileName%.zip" *data *builds *.h *.cpp *.c *.cmd *.txt
     echo %fileName% foi compactado!
 
 goto autozip

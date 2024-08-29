@@ -12,7 +12,7 @@ g++ -Wall -g3 -Wextra -static -static-libgcc -static-libstdc++ listaEncadeadaSim
 
 g++ -Wall -g3 -Wextra -static -static-libgcc -static-libstdc++ listaEncadeadaSimples.c -o "builds/%fullFileName%.exe"
 
-tar -a -c -f "zip/%fullFileName%.zip" *data *builds *.cpp *.c *.cmd
+tar -a -c -f "zip/%fullFileName%.zip" *data *builds *.cpp *.c *.cmd *.txt
 
 msg * /v /w %fullFileName%.exe foi compilado!
 
