@@ -26,6 +26,10 @@ void inputS(char destino[]){
     scanf(" %100[^\n]s", destino);
 }
 
+int mod(int x, int y){
+	return x%y;
+}
+
 FILE * lerArq(char *nomeArq, char * modo){
     FILE * arq;
     arq = fopen(nomeArq,modo);
@@ -42,8 +46,8 @@ void escreverArq(FILE *arq, int matricula){
 }
 
 void salvarAqr(TLista L){
-	FILE *arq = lerArq("../lista_matricula.txt","w");
-	FILE *backupArq = lerArq("../backup.txt","w");
+	FILE *arq = lerArq("../data/lista_matricula.txt","w");
+	FILE *backupArq = lerArq("../data/backup.txt","w");
 	TElemento *atual = L.inicio;
 
 	printf("\n Salvando...\n");
@@ -116,7 +120,7 @@ void CLIinserirNovaMatricula(TLista *L, int valor){
 
 void LerArquivodeDados(TLista *L){
 	int matricula;
-	FILE *arquivo = lerArq("../lista_matricula.txt","r");
+	FILE *arquivo = lerArq("../data/lista_matricula.txt","r");
 
 	while ( ! feof(arquivo) ) {
         fscanf(arquivo, "%d" , &matricula);
