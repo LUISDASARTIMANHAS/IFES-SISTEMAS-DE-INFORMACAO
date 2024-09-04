@@ -1,4 +1,4 @@
-set fileName=pilhaComplexa
+set fileName=TabelaHash
 if EXIST "debug.exe" (
    del "debug.exe"
 ) 
