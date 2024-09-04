@@ -1,5 +1,5 @@
 @ECHO OFF
-set fileName=TabelaHash
+set fileName=tabelaHash
 :autozip
 	cls
 	%*

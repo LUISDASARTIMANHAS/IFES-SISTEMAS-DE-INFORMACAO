@@ -1,5 +1,5 @@
-// Desenvolvido por LUIS AUGUSTO DE SOUZA 
-#include "listaEncadeadaSimples.h"
+// Desenvolvido por Lucas Garcia de Souza & LUIS AUGUSTO DE SOUZA 
+#include "TabelaHash.h"
 
 TLista lista;
 

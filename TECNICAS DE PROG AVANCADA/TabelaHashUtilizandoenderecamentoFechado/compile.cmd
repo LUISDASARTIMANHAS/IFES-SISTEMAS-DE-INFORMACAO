@@ -1,6 +1,6 @@
 @ECHO OFF
 set /p versao=Insira a versao: V
-set fileName=TabelaHash
+set fileName=tabelaHash
 set fullFileName=%fileName%.V%versao%
 
 g++ -Wall -g3 -Wextra -static -static-libgcc -static-libstdc++ rascunho.cpp -o "builds/%fileName%.V%versao%.exe"

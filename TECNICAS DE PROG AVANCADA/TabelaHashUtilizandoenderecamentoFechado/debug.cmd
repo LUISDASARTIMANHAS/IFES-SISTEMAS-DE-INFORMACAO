@@ -1,4 +1,4 @@
-set fileName=TabelaHash
+set fileName=tabelaHash
 if EXIST "debug.exe" (
    del "debug.exe"
 ) 
