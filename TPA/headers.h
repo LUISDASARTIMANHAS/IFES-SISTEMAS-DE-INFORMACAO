@@ -1,5 +1,0 @@
-struct Tno{
-    
-};
-
-void remover();
