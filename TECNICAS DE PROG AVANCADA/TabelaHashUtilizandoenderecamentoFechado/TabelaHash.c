@@ -236,6 +236,24 @@ int menu() {
 	return op;
 }
 
+int menuHash() {
+    correct();
+	int op;
+	// system("@cls||clear");  // LIMPA A TELA
+	printf(BLUE "\n\t\t =====| Escolher Tamanho do Vetor Hash |=====\t\t\n" RESET);
+	printf("1 - 100%\n");
+	printf(RED "2 - 150%\n");
+	printf(GREEN"3 - Pesquisar Matrícula\n");
+	printf("4 - Total de Matrículas\n");
+	printf("5 - Imprimir Matrículas\n" RESET);
+	printf(RED "0 - Sair\n" RESET);
+	do {
+		printf(YELLOW "Escolha sua opção: " RESET);
+		scanf(" %d", &op);
+	} while(op < 0 || op > 6);
+	return op;
+}
+
 int main(){
 	inicializa(&lista);
 	correct();

@@ -24,8 +24,8 @@ typedef struct tipoLista{
 }TLista;
 
 typedef struct tipoTabelaHash {
-    TLista *vetorListas;  
-    int tamanho;          
+    TLista *vetorListas;
+    int tamanho;
 }TabelaHash;
 
 int funcaoHash(int matricula, int tamanho);
