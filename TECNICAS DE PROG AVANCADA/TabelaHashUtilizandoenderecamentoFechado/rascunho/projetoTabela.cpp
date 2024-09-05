@@ -24,7 +24,7 @@ void construirListaDoZero(TLista *lista){
 //=================================================
 void lerArquivo(TLista *lista, FILE *arquivoLista) {
     int matricula;
-    char nome[100];
+    char nome[100];  
     while (fscanf(arquivoLista, "%d\n", &matricula) != EOF) {
         fgets(nome, sizeof(nome), arquivoLista);  
         nome[strcspn(nome, "\n")] = 0;  
@@ -43,25 +43,25 @@ void inicializa(TLista *lista, FILE *arquivoLista) {
 }
 //=================================================
 void gravarListaEmArquivo(TLista *lista, FILE *arquivoLista) {
-    arquivoLista = abrirArquivo("../lista_matricula.txt", "w");
+    arquivoLista = abrirArquivo("matriculas.txt", "w");
     TElemento *atual = lista->inicio;
     while (atual != NULL) {
-        fprintf(arquivoLista, "%d\n%s\n", atual->valor, atual->nome); 
+        fprintf(arquivoLista, "%ld\n%s\n", atual->valor, atual->nome); 
         atual = atual->prox;
     }
     fclose(arquivoLista);
 }
 //=================================================
-int pesquisarMatricula2(TLista *lista, int matriculaBusca) {
+int pesquisarMatricula2(TLista *lista, long int matriculaBusca) {
     TElemento *atual = lista->inicio;
     while (atual != NULL) {
         if (atual->valor == matriculaBusca) {
-            printf("Matrícula %d encontrada. Nome: %s\n", matriculaBusca, atual->nome);
+            printf("Matrícula %ld encontrada. Nome: %s\n", matriculaBusca, atual->nome);
             return 1;  // Encontrado
         }
         atual = atual->prox;
     }
-    printf("Matrícula %d não encontrada na lista.\n", matriculaBusca);
+    printf("Matrícula %ld não encontrada na lista.\n", matriculaBusca);
     return 0;  // Não encontrado
 }
 //=================================================
@@ -80,7 +80,7 @@ int pesquisarMatricula(TLista *lista) {
     return matriculaBusca;
 }
 //=================================================
-void inserir(TLista *lista, int valor, char *nome) {
+void inserir(TLista *lista, long int valor, char *nome) {
     TElemento *novo = (TElemento *)malloc(sizeof(TElemento));
     novo->valor = valor;
     strcpy(novo->nome, nome); 
@@ -109,20 +109,19 @@ int pedirOpcao3() {
     return opcao;
     
 }
-
 //=================================================
 void exibeLista(TLista lista) {
     TElemento *atual = lista.inicio;
     int cont = 0;
     printf("\n\n\n\t\t===| EXIBE LISTA COMPLETA |===\n\n");
     while (atual != NULL) {
-        printf("Número %d da lista: Matrícula (%d), Nome: %s\n", ++cont, atual->valor, atual->nome);
+        printf("Número %d da lista: Matrícula (%ld), Nome: %s\n", ++cont, atual->valor, atual->nome);
         atual = atual->prox;
     }
 }
 
 //=================================================
-void excluirLista(TLista *lista, int valor){
+void excluirLista(TLista *lista, long int valor){
     TElemento *atual = lista->inicio;
     TElemento *anterior = NULL;
     while (atual != NULL) {
@@ -130,7 +129,7 @@ void excluirLista(TLista *lista, int valor){
             // Encontra o elemento a ser excluído
             if (atual == lista->inicio) {
                 // Exclusão do primeiro elemento da lista
-                printf("\n\n\tExcluindo o ELEMENTO %d ...\n", atual->valor);
+                printf("\n\n\tExcluindo o ELEMENTO %ld ...\n", atual->valor);
                 lista->inicio = atual->prox;
                 if (lista->inicio == NULL) {
                     // A lista tinha apenas um elemento
@@ -138,12 +137,12 @@ void excluirLista(TLista *lista, int valor){
                 }
             } else if (atual == lista->fim) {
                 // Exclusão do último elemento da lista
-                printf("\n\n\tExcluindo o ELEMENTO %d ...\n", atual->valor);
+                printf("\n\n\tExcluindo o ELEMENTO %ld ...\n", atual->valor);
                 lista->fim = anterior;
                 lista->fim->prox = NULL;
             } else {
                 // Exclusão de um elemento do meio da lista
-                printf("\n\n\tExcluindo o ELEMENTO %d ...\n", atual->valor);
+                printf("\n\n\tExcluindo o ELEMENTO %ld ...\n", atual->valor);
                 anterior->prox = atual->prox;
             }
             free(atual);
@@ -153,7 +152,7 @@ void excluirLista(TLista *lista, int valor){
         anterior = atual;
         atual = atual->prox; // move para o próximo elemento
     }
-    printf("Elemento %d não encontrado na lista.\n", valor);
+    printf("Elemento %ld não encontrado na lista.\n", valor);
 }
 //=================================================
 int pedirOpcao(){
@@ -197,7 +196,7 @@ void imprimirTabelaHash(TabelaHash *tabela) {
             printf("  (vazio)\n");
         } else {
             while (atual != NULL) {
-                printf("  Matrícula: %d\n", atual->valor);
+                printf("  Matrícula: %ld\n", atual->valor);
                 atual = atual->prox;
             }
         }
@@ -255,8 +254,8 @@ void menuPrincipal(TabelaHash *tabelaHash) {
 }
 
 //================================================
-int funcaoHash(int matricula, int tamanho) {
-    return matricula % tamanho;
+int funcaoHash(long int matricula, int tamanho) {
+    return (int) matricula % tamanho;
 }
 //================================================
 int contarMatriculas(FILE *arquivoLista) {
@@ -344,36 +343,36 @@ void executarMenu(TabelaHash *tabelaHash) {
     menuPrincipal(tabelaHash);
 }
 //================================================
-int pesquisarTabelaHash(TabelaHash *tabela, int matricula) {
+int pesquisarTabelaHash(TabelaHash *tabela, long int matricula) {
     int indice = funcaoHash(matricula, tabela->tamanho);
     if (pesquisarMatricula2(&tabela->vetorListas[indice], matricula)) {
-        printf("Matrícula %d encontrada na tabela hash.\n", matricula);
+        printf("Matrícula %ld encontrada na tabela hash.\n", matricula);
         return 1;  // Encontrado
     } else {
-        printf("Erro: A matrícula %d não foi encontrada na tabela.\n", matricula);
+        printf("Erro: A matrícula %ld não foi encontrada na tabela.\n", matricula);
         return 0;  // Não encontrado
     }
 }
 //================================================
-void inserirTabelaHash(TabelaHash *tabela, int matricula, char *nome) {
+void inserirTabelaHash(TabelaHash *tabela,long int matricula, char *nome) {
     int indice = funcaoHash(matricula, tabela->tamanho);
     if (pesquisarMatricula2(&tabela->vetorListas[indice], matricula)) {
-        printf("Erro: A matrícula %d já está presente na tabela.\n", matricula);
+        printf("Erro: A matrícula %ld já está presente na tabela.\n", matricula);
         return;
     }
     inserir(&tabela->vetorListas[indice], matricula, nome);
-    printf("Matrícula %d inserida com sucesso.\n", matricula);
+    printf("Matrícula %ld inserida com sucesso.\n", matricula);
 }
 
 //================================================
-void excluirTabelaHash(TabelaHash *tabela, int matricula) {
+void excluirTabelaHash(TabelaHash *tabela, long int matricula) {
     int indice = funcaoHash(matricula, tabela->tamanho);
     // Verifica se a matrícula está na lista antes de tentar removê-la
     if (pesquisarMatricula2(&tabela->vetorListas[indice], matricula)) {
         excluirLista(&tabela->vetorListas[indice], matricula);
-        printf("Matrícula %d removida com sucesso da tabela hash.\n", matricula);
+        printf("Matrícula %ld removida com sucesso da tabela hash.\n", matricula);
     } else {
-        printf("Erro: A matrícula %d não foi encontrada para remoção.\n", matricula);
+        printf("Erro: A matrícula %ld não foi encontrada para remoção.\n", matricula);
     }
 }
 //================================================
@@ -405,9 +404,8 @@ void liberarTabelaHash(TabelaHash *tabela) {
 }
 //================================================
 int main() {
-    SetConsoleOutputCP(65001);
     // Abrir o arquivo
-    FILE *arquivoLista = abrirArquivo("../lista_matricula.txt", "r");
+    FILE *arquivoLista = abrirArquivo("matriculas.txt", "r");
 
     // Inicializar a tabela hash
     TabelaHash tabelaHash;
