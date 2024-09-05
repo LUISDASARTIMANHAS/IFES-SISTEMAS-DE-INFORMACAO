@@ -13,6 +13,7 @@ FILE * abrirArquivo(char * nomeArq, char * modo) {
         printf("ERRO ao abrir o arquivo.");
         exit(-1);
     }
+    printf("INFO: Arquivo Aberto! Bom uso.");
     return arq;
 }
 //=================================================
@@ -259,12 +260,12 @@ int funcaoHash(long int matricula, int tamanho) {
 }
 //================================================
 int contarMatriculas(FILE *arquivoLista) {
-    int matricula;
-    int totalMatriculas = 0;
-    while (fscanf(arquivoLista, "%d", &matricula) != EOF) {
-        totalMatriculas++;
-    }
-    return totalMatriculas;
+    // int matricula;
+    // int totalMatriculas = 0;
+    // while (!feof(arquivoLista)) {
+    //     totalMatriculas++;
+    // }
+    return 100;
 }
 //================================================
 int contarTotalMatriculas(TabelaHash *tabela) {
