@@ -1,5 +1,11 @@
-#include <stdio.h>
+#include <windows.h>
+#define _USE_MATH_DEFINES
+#include <math.h>
 #include <stdlib.h>
+#include <stdio.h>
+#include <ctype.h>
+#include <string.h>
+#include <time.h>
 
 #define INICIO "------------INICIO------------" 
 #define RESULTADO "------------RESULTADO------------"
@@ -27,7 +33,7 @@ int ehPrimo(int num);
 int acharProximoPrimo(int num);
 void inicializarTabelaHash(TabelaHash *tabela, int tamanho);
 void inicializarTabela(TabelaHash *tabelaHash, FILE *arquivoLista);
-void lerEInserirMatrículas(TabelaHash *tabelaHash, FILE *arquivoLista);
+void lerEInserirMatriculas(TabelaHash *tabelaHash, FILE *arquivoLista);
 void executarMenu(TabelaHash *tabelaHash);
 int pesquisarTabelaHash(TabelaHash *tabela, int matricula);
 void inserirTabelaHash(TabelaHash *tabela, int matricula, char *nome);
