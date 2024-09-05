@@ -12,21 +12,18 @@ typedef char string[101];
 #define INICIO "------------INICIO------------"
 #define RESULTADO "------------RESULTADO------------"
 #define CORTE "------------------------"
-typedef struct tipoElemento
-{
+typedef struct tipoElemento{
     long int valor;
     string nome;
     struct tipoElemento *prox;
 } TElemento;
 
-typedef struct tipoLista
-{
+typedef struct tipoLista{
     TElemento *inicio, *fim;
     int total;
 } TLista;
 
-typedef struct tipoTabelaHash
-{
+typedef struct tipoTabelaHash{
     TLista *vetorListas;
     int tamanho;
 } TabelaHash;
