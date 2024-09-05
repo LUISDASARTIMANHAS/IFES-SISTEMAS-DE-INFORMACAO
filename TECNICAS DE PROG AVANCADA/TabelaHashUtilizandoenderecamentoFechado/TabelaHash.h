@@ -16,8 +16,11 @@
 
 #define SEPARETOR BLUE "\n================================================\n"  RESET
 
+typedef char string[101];
+
 typedef struct tipoElemento {
 	int valor;
+    string nome;
 	struct tipoElemento *prox;
 }TElemento;
 
@@ -25,9 +28,9 @@ typedef struct tipoLista {
     TElemento *inicio;
     TElemento *fim;
     int total;
+    int tamTabelaHash;
 }TLista;
 
-typedef char string[101];
 
 void inicializa(TLista *L);
 void inserirNovaMatricula(TLista *L);
@@ -37,3 +40,5 @@ void pesquisarMatricula(TLista L);
 void removerMatricula(TLista *L);
 int menu();
 int menuHash();
+
+void switchMenuHash();
