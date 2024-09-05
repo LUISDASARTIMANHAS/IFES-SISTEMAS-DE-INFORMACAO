@@ -10,6 +10,8 @@
 #define INICIO "------------INICIO------------" 
 #define RESULTADO "------------RESULTADO------------"
 #define CORTE "------------------------"
+
+typedef char string[101];
 typedef struct tipoElemento{
     int valor;                     
     char nome[100];                

@@ -27,6 +27,8 @@ typedef struct tipoLista {
     int total;
 }TLista;
 
+typedef char string[101];
+
 void inicializa(TLista *L);
 void inserirNovaMatricula(TLista *L);
 void imprimirMatricula(TLista L);

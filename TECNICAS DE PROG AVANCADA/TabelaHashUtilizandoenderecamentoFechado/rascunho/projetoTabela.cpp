@@ -24,7 +24,7 @@ void construirListaDoZero(TLista *lista){
 //=================================================
 void lerArquivo(TLista *lista, FILE *arquivoLista) {
     int matricula;
-    char nome[100];  
+    char nome[100];
     while (fscanf(arquivoLista, "%d\n", &matricula) != EOF) {
         fgets(nome, sizeof(nome), arquivoLista);  
         nome[strcspn(nome, "\n")] = 0;  
@@ -405,6 +405,7 @@ void liberarTabelaHash(TabelaHash *tabela) {
 }
 //================================================
 int main() {
+    SetConsoleOutputCP(65001);
     // Abrir o arquivo
     FILE *arquivoLista = abrirArquivo("../lista_matricula.txt", "r");
 
