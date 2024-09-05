@@ -46,7 +46,7 @@ void escreverArq(FILE *arq, int matricula){
 }
 
 void salvarAqr(TLista L){
-	FILE *arq = lerArq("../data/lista_matricula.txt","w");
+	FILE *arq = lerArq("../data/nomes_matriculas.txt","w");
 	FILE *backupArq = lerArq("../data/backup.txt","w");
 	TElemento *atual = L.inicio;
 
@@ -120,7 +120,7 @@ void CLIinserirNovaMatricula(TLista *L, int valor){
 
 void LerArquivodeDados(TLista *L){
 	int matricula;
-	FILE *arquivo = lerArq("../data/lista_matricula.txt","r");
+	FILE *arquivo = lerArq("../data/nomes_matriculas.txt","r");
 
 	while ( ! feof(arquivo) ) {
         fscanf(arquivo, "%d" , &matricula);

@@ -7,24 +7,29 @@
 #include <string.h>
 #include <time.h>
 
-#define INICIO "------------INICIO------------" 
+typedef char string[101];
+
+#define INICIO "------------INICIO------------"
 #define RESULTADO "------------RESULTADO------------"
 #define CORTE "------------------------"
-typedef struct tipoElemento{
-    long int valor;                     
-    char nome[100];                
-    struct tipoElemento *prox;     
+typedef struct tipoElemento
+{
+    long int valor;
+    string nome;
+    struct tipoElemento *prox;
 } TElemento;
 
-typedef struct tipoLista{
-    TElemento *inicio, *fim;    
-    int total;    
-}TLista;
+typedef struct tipoLista
+{
+    TElemento *inicio, *fim;
+    int total;
+} TLista;
 
-typedef struct tipoTabelaHash {
-    TLista *vetorListas;  
-    int tamanho;          
-}TabelaHash;
+typedef struct tipoTabelaHash
+{
+    TLista *vetorListas;
+    int tamanho;
+} TabelaHash;
 
 int funcaoHash(long int matricula, int tamanho);
 int contarMatriculas(FILE *arquivoLista);
@@ -40,12 +45,12 @@ void inserirTabelaHash(TabelaHash *tabela, long int matricula, char *nome);
 void excluirTabelaHash(TabelaHash *tabela, long int matricula);
 void exibeTabelaHash(TabelaHash *tabela);
 void liberarTabelaHash(TabelaHash *tabela);
-FILE * abrirArquivo(char * nomeArq, char * modo);
+FILE *abrirArquivo(char *nomeArq, char *modo);
 void construirListaDoZero(TLista *lista);
 void lerArquivo(TLista *lista, FILE *arquivoLista);
 void inicializa(TLista *lista, FILE *arquivoLista);
 void gravarListaEmArquivo(TLista *lista, FILE *arquivoLista);
-int pesquisarMatricula2(TLista *lista, long int matriculaBusca); 
+int pesquisarMatricula2(TLista *lista, long int matriculaBusca);
 int pesquisarMatricula(TLista *lista);
 void inserir(TLista *lista, long int valor, char *nome);
 int pedirOpcao3();
