@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "projetoTabela.h"
+
 //Feito por: Lucas Garcia de Souza
 
 //=================================================
@@ -50,7 +51,7 @@ void inicializa(TLista *lista, FILE *arquivoLista) {
 
 //=================================================
 void gravarListaEmArquivo(TLista *lista, FILE *arquivoLista) {
-    arquivoLista = abrirArquivo("../nomes_matriculas.txt", "w");
+    arquivoLista = abrirArquivo("nomes_matriculas.txt", "w");
     TElemento *atual = lista->inicio;
     while (atual != NULL) {
         fprintf(arquivoLista, "%ld\n%s\n", atual->valor, atual->nome);
@@ -437,7 +438,7 @@ void liberarTabelaHash(TabelaHash *tabela) {
 //=================================================
 int main() {
     // Abrir o arquivo
-    FILE *arquivoLista = abrirArquivo("../nomes_matriculas.txt", "r");
+    FILE *arquivoLista = abrirArquivo("nomes_matriculas.txt", "r");
 
     // Contar o número de matrículas no arquivo
     int totalMatriculas = contarMatriculas(arquivoLista);
@@ -449,15 +450,13 @@ int main() {
     // Inicializar a tabela de hash
     TabelaHash tabelaHash;
     inicializarTabela(&tabelaHash, arquivoLista);
-    printf(RED "Pulsos de clock até o momento: %ld\n", clock());
-    printf(RESET);
+    printf("Pulsos de clock até o momento: %ld\n", clock());
     // Ler e inserir as matrículas na tabela hash
     lerEInserirMatriculas(&tabelaHash, arquivoLista);
 
     // Fechar o arquivo
     fclose(arquivoLista);
-    printf(RED"Tempo de Execução: %ld\n", clock());
-    printf(RESET);
+    printf("Tempo de Execução: %ld\n", clock());
     // Executar o menu de opções
     executarMenu(&tabelaHash);
 
