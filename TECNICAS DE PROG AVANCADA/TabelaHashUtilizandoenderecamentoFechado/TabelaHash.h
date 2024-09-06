@@ -41,4 +41,4 @@ void removerMatricula(TLista *L);
 int menu();
 int menuHash();
 
-void switchMenuHash();
+int switchMenuHash();

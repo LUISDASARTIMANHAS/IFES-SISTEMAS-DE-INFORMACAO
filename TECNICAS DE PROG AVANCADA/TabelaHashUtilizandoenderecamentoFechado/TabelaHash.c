@@ -55,6 +55,7 @@ FILE * lerArq(char *nomeArq, char * modo){
 }
 
 void escreverArq(FILE *arq, int matricula, string nome){
+	fprintf(arq, "%s", nome);
 	fprintf(arq, "\n%3d", matricula);
 }
 
@@ -101,12 +102,12 @@ int switchMenuHash(){
 }
 
 void inicializa(TLista *L){
-	int fatorTamanhoTabelaHash = switchMenuHash();
-	int tamBaseDados = calculaBaseDados();
+	// int fatorTamanhoTabelaHash = switchMenuHash();
+	// int tamBaseDados = calculaBaseDados();
 	L->inicio = NULL;
 	L->fim = NULL;
 	L->total = 0;
-	L->tamTabelaHash = fatorTamanhoTabelaHash * tamBaseDados;
+	// L->tamTabelaHash = fatorTamanhoTabelaHash * tamBaseDados;
 }
 
 void CLIinserirNovaMatricula(TLista *L, int valor){
@@ -161,6 +162,7 @@ void CLIinserirNovaMatricula(TLista *L, int valor){
 }
 
 void LerArquivodeDados(TLista *L){
+	printf("Pulsos de clock até o momento: %ld\n", clock());
 	int matricula;
 	string nome;
 	FILE *arquivo = lerArq("../data/nomes_matriculas.txt","r");
@@ -299,27 +301,30 @@ int main(){
 	inicializa(&lista);
 	correct();
 	int op;
-
-    // LerArquivodeDados(&lista);
+	LerArquivodeDados(&lista);
     do{
         op = menuHash();
         switch (op){
         case 1:
             // Inserir Nova Matrícula
-            fatorTamanhoTabelaHash = 100;
+            // fatorTamanhoTabelaHash = 100;
             break;
         case 2:
             // Remover Matrícula
-            fatorTamanhoTabelaHash = 120;
+            // fatorTamanhoTabelaHash = 120;
             break;
         case 3:
             // Pesquisar Matrícula
-            fatorTamanhoTabelaHash = 150;
+            // fatorTamanhoTabelaHash = 150;
             break;
         default:
             printf("\n\nOpção inválida!\n\n");
         }
     } while (op != 0);
+
+	printf("printf Aleatório\n");
+	printf("Mais um teste da quantidade de pulsos de clock: %ld\n",
+		clock());
 
     return 0;
 }
