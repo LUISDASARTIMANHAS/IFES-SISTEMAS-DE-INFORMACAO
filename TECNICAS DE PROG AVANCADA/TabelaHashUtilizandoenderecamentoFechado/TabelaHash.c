@@ -40,6 +40,11 @@ double aleatorio_quebrado() {
     return (double)rand() / RAND_MAX;
 }
 
+// Gera um número aleatório entre min (inclusive) e max (exclusivo)
+double aleatorio_intervalo(double min, double max) {
+    return min + (max - min) * aleatorio_quebrado();
+}
+
 int mod(int x, int y){
 	return x%y;
 }

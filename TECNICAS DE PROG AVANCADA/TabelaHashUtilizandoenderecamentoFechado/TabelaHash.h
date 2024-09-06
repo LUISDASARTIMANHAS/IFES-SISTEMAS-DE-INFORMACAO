@@ -48,4 +48,5 @@ int menuMetodoHash();
 // gera um numero aleatorio no intervalo n,
 int aleatorio(int n);
 double aleatorio_quebrado();
+double aleatorio_intervalo(double min, double max);
 int switchMenuHash();
