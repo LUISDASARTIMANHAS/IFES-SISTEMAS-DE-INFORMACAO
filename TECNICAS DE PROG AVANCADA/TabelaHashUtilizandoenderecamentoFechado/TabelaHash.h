@@ -40,5 +40,6 @@ void pesquisarMatricula(TLista L);
 void removerMatricula(TLista *L);
 int menu();
 int menuHash();
+int menuMetodoHash();
 
 int switchMenuHash();

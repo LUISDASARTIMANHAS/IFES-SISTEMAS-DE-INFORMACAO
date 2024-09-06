@@ -110,7 +110,7 @@ void inicializa(TLista *L){
 	// L->tamTabelaHash = fatorTamanhoTabelaHash * tamBaseDados;
 }
 
-void CLIinserirNovaMatricula(TLista *L, int valor){
+void CLIinserirNovaMatricula(TLista *L, int valor,string nome){
 	int inseriu = 0;
 	TElemento *novo = (TElemento *)malloc(sizeof(TElemento));
 	
@@ -170,16 +170,19 @@ void LerArquivodeDados(TLista *L){
 	while ( ! feof(arquivo) ) {
 		fscanf(arquivo, "%s" , &nome);
         fscanf(arquivo, "%d" , &matricula);
-		CLIinserirNovaMatricula(L,matricula);
+		CLIinserirNovaMatricula(L,matricula,nome);
     }
 	fclose(arquivo);
 }
 
 void inserirNovaMatricula(TLista *L){
 	int valor;
+	string nome;
 	printf(YELLOW "\n\t Insira o número de matrícula: ",RESET);
 	valor = input();
-	CLIinserirNovaMatricula(L,valor);
+	printf(YELLOW "\n\t Insira o Nome do usuario de matrícula: ",RESET);
+	inputS(nome);
+	CLIinserirNovaMatricula(L,valor,nome);
 }
 
 void imprimirMatricula(TLista L){
@@ -282,6 +285,20 @@ int menu() {
 	return op;
 }
 
+int menuMetodoHash() {
+    correct();
+	int op;
+	// system("@cls||clear");  // LIMPA A TELA
+	printf(BLUE "\n\t\t =====| SELECIONAR METÓDO DE HASH |=====\t\t\n" RESET);
+	printf("1 - Resto da Divisão\n");
+	printf(RED "2 - Metódo da Multiplicação\n");
+	do {
+		printf(YELLOW "Escolha sua opção: " RESET);
+		scanf(" %d", &op);
+	} while(op < 0 || op > 2);
+	return op;
+}
+
 int menuHash() {
     correct();
 	int op;
@@ -321,10 +338,6 @@ int main(){
             printf("\n\nOpção inválida!\n\n");
         }
     } while (op != 0);
-
-	printf("printf Aleatório\n");
-	printf("Mais um teste da quantidade de pulsos de clock: %ld\n",
-		clock());
 
     return 0;
 }
