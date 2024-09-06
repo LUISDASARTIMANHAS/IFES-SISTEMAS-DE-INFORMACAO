@@ -449,15 +449,16 @@ int main() {
     // Inicializar a tabela de hash
     TabelaHash tabelaHash;
     inicializarTabela(&tabelaHash, arquivoLista);
-    printf(RED "Pulsos de clock até o momento: %ld\n", clock());
-    printf(RESET);
+    clock_t inicio = clock();
     // Ler e inserir as matrículas na tabela hash
     lerEInserirMatriculas(&tabelaHash, arquivoLista);
 
     // Fechar o arquivo
     fclose(arquivoLista);
-    printf(RED"Tempo de Execução: %ld\n", clock());
-    printf(RESET);
+    clock_t fim = clock();
+    double tempo_decorrido = (double)(fim - inicio) / CLOCKS_PER_SEC;
+
+    printf("Tempo de execucao: %f segundos\n", tempo_decorrido);
     // Executar o menu de opções
     executarMenu(&tabelaHash);
 

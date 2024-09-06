@@ -19,7 +19,7 @@
 typedef char string[101];
 
 typedef struct tipoElemento {
-	int valor;
+	long int valor;
     string nome;
 	struct tipoElemento *prox;
 }TElemento;
