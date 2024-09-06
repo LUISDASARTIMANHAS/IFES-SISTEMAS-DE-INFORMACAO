@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "projetoTabela.h"
+
 //Feito por: Lucas Garcia de Souza
 
 //=================================================
@@ -50,7 +51,7 @@ void inicializa(TLista *lista, FILE *arquivoLista) {
 
 //=================================================
 void gravarListaEmArquivo(TLista *lista, FILE *arquivoLista) {
-    arquivoLista = abrirArquivo("../nomes_matriculas.txt", "w");
+    arquivoLista = abrirArquivo("nomes_matriculas.txt", "w");
     TElemento *atual = lista->inicio;
     while (atual != NULL) {
         fprintf(arquivoLista, "%ld\n%s\n", atual->valor, atual->nome);
@@ -437,7 +438,7 @@ void liberarTabelaHash(TabelaHash *tabela) {
 //=================================================
 int main() {
     // Abrir o arquivo
-    FILE *arquivoLista = abrirArquivo("../nomes_matriculas.txt", "r");
+    FILE *arquivoLista = abrirArquivo("nomes_matriculas.txt", "r");
 
     // Contar o número de matrículas no arquivo
     int totalMatriculas = contarMatriculas(arquivoLista);
@@ -449,16 +450,24 @@ int main() {
     // Inicializar a tabela de hash
     TabelaHash tabelaHash;
     inicializarTabela(&tabelaHash, arquivoLista);
+<<<<<<< HEAD
     clock_t inicio = clock();
+=======
+    printf("Pulsos de clock até o momento: %ld\n", clock());
+>>>>>>> cd9515c162efc197637c119b59e90f3ad065f6f9
     // Ler e inserir as matrículas na tabela hash
     lerEInserirMatriculas(&tabelaHash, arquivoLista);
 
     // Fechar o arquivo
     fclose(arquivoLista);
+<<<<<<< HEAD
     clock_t fim = clock();
     double tempo_decorrido = (double)(fim - inicio) / CLOCKS_PER_SEC;
 
     printf("Tempo de execucao: %f segundos\n", tempo_decorrido);
+=======
+    printf("Tempo de Execução: %ld\n", clock());
+>>>>>>> cd9515c162efc197637c119b59e90f3ad065f6f9
     // Executar o menu de opções
     executarMenu(&tabelaHash);
 
