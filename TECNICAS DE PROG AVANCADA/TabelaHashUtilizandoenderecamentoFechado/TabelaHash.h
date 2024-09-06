@@ -41,5 +41,6 @@ void removerMatricula(TLista *L);
 int menu();
 int menuHash();
 int menuMetodoHash();
-
+// gera um numero aleatorio no intervalo n,
+int aleatorio(int n);
 int switchMenuHash();

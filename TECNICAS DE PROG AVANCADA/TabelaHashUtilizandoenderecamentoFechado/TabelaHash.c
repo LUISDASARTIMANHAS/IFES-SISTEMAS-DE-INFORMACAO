@@ -26,6 +26,11 @@ void inputS(char destino[]){
     scanf(" %100[^\n]s", destino);
 }
 
+// gera um numero aleatorio no intervalo n,
+int aleatorio(int n){
+    return (rand() % (n+1));
+}
+
 int mod(int x, int y){
 	return x%y;
 }
@@ -37,10 +42,6 @@ int calculaNumPrimoProx(int num){
 		fatorPrimo = fatorPrimo + 2;
 	}
 	return fatorPrimo;
-}
-
-int pesq(int matricula, TLista L){
-	mod(matricula, L.tamTabelaHash);
 }
 
 FILE * lerArq(char *nomeArq, char * modo){
