@@ -76,7 +76,17 @@ FILE * autosave(FILE *arq, char * nomeArq){
 
 // gera um numero aleatorio no intervalo n,
 int aleatorio(int n){
+    
     return (rand() % (n+1));
+}
+
+// Gera um número aleatório entre 0 (inclusive) e 1 (exclusivo)
+double aleatorio_quebrado() {
+    // Inicializa a semente para gerar números aleatórios diferentes a cada execução
+    srand(time(NULL));
+
+    // RAND_MAX é o maior valor que rand() pode retornar
+    return (double)rand() / RAND_MAX;
 }
 
 void correct(){

@@ -28,8 +28,12 @@ typedef struct tipoLista {
     TElemento *inicio;
     TElemento *fim;
     int total;
-    int tamTabelaHash;
 }TLista;
+
+typedef struct tipoTabelaHash{
+    TLista *vetorListas;
+    int tamanho;
+} TabelaHash;
 
 
 void inicializa(TLista *L);
@@ -43,4 +47,5 @@ int menuHash();
 int menuMetodoHash();
 // gera um numero aleatorio no intervalo n,
 int aleatorio(int n);
+double aleatorio_quebrado();
 int switchMenuHash();
