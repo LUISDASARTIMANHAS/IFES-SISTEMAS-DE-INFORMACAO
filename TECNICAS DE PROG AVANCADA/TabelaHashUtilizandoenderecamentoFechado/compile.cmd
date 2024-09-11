@@ -3,7 +3,7 @@ set /p versao=Insira a versao: V
 set fileName=tabelaHash
 set fullFileName=%fileName%.V%versao%
 
-g++ -Wall -g3 -Wextra -static -static-libgcc -static-libstdc++ rascunho.c -o "builds/%fileName%.V%versao%.exe"
+g++ -Wall -g3 -Wextra -static -static-libgcc -static-libstdc++ rascunho/projetoTabela.cpp -o "builds/rascunho.exe"
 
 if exist "builds/debug.exe" (
    del "builds/debug.exe"
