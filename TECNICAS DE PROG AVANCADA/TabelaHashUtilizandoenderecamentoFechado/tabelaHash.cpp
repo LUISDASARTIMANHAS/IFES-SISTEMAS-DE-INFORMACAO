@@ -1,5 +1,5 @@
 //Feito por: Lucas Garcia E Luis Augusto
-#include "projetoTabela.h"
+#include "tabelaHash.h"
 
 
 //=================================================

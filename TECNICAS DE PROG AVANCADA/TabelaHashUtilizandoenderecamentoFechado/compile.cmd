@@ -1,6 +1,6 @@
 @ECHO OFF
-@REM set /p versao=Insira a versao: V
-set versao=5
+set /p versao=Insira a versao: V
+@REM set versao=5
 set fileName=tabelaHash
 set fullFileName=%fileName%.V%versao%
 

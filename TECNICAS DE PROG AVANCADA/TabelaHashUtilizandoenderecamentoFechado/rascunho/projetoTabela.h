@@ -4,8 +4,11 @@
 #include <ctype.h>
 #include <string.h>
 #include <time.h>
+#include <windows.h>
+#define _USE_MATH_DEFINES
 
 typedef char string[101];
+typedef clock_t processTime;
 
 #define INICIO "------------INICIO------------"
 #define RESULTADO "------------RESULTADO------------"
