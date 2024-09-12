@@ -15,8 +15,8 @@ set fileName=tabelaHash
     if not exist "zip" (
         mkdir zip
     )   
-    tar -a -c -f "zip/%fileName%.zip" *data *builds *.h *.cpp functions.c *.cmd
-    tar -a -c -f "../%fileName%.zip" *data *builds *.h *.cpp functions.c *.cmd
+    tar -a -c -f "zip/%fileName%.zip" *data *builds *.h rascunho *.cpp functions.c *.cmd
+    tar -a -c -f "../%fileName%.zip" *data *builds *.h *rascunho *.cpp functions.c *.cmd
     echo %fileName% foi compactado!
 
 goto autozip
