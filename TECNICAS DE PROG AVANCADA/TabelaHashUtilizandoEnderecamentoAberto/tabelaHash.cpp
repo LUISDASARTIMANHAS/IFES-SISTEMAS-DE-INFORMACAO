@@ -53,14 +53,15 @@ long long int hash2(int k,int tamVetor){
     // Caso haja colisão, inicialmente calculamos h2(K),
     // que pode ser definida como:
     // h2(k) = 1 + ( k mod (N-1) )
-    int h1 = mod(k,tamVetor-1);
+    int h1 = hash(k,tamVetor-1);
     return 1 + h1;
 }
 
-long long int reHash(int i,int k){
+long long int reHash(int i,int k, int tamVetor){
+    // N eh o tamanho do vetor
     // rh(i,k) = ( i + h2(k) ) mod N
-    int h1 = mod(k,n-1);
-    return 1 + h1;
+    int h2 = hash2(k,tamVetor);
+    return mod((i +  h2), tamVetor);
 }
 
 //=================================================
