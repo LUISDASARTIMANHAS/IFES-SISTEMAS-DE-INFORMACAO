@@ -134,7 +134,7 @@ void inicializa(TLista *lista, FILE *arquivoLista) {
 //=================================================
 void salvarDadosNoArquivo(TabelaHash *tabela, FILE *arquivoLista) {
     // Abrir o arquivo no modo de escrita para sobrescrever os dados
-    arquivoLista = fopen("nomes_matriculas.txt", "w");
+    arquivoLista = fopen("../data/nomes_matriculas.txt", "w");
     if (arquivoLista == NULL) {
         printf("ERRO ao abrir o arquivo para gravação.\n");
         return;
@@ -560,7 +560,7 @@ void liberarTabelaHash(TabelaHash *tabela) {
 //================================================
 int main() {
     correct();
-    FILE *arquivoLista = abrirArquivo("nomes_matriculas.txt", "r");
+    FILE *arquivoLista = abrirArquivo("../data/nomes_matriculas.txt", "r");
     // Contar o número de matrículas no arquivo
     int totalMatriculas = contarMatriculas(arquivoLista);
     printf("Total de matrículas no arquivo: %d\n", totalMatriculas);
