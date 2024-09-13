@@ -6,6 +6,16 @@ void correct(){
 }
 
 // inputs personalizados e modificados
+int FileReadInt(FILE *arquivo){
+    int value;
+    fscanf(arquivo, "%d" , &value);
+    return value;
+}
+long long int FileReadLongLongInt(FILE *arquivo){
+    long long int value;
+    fscanf(arquivo, "%lld" , &value);
+    return value;
+}
 float input(){
     float value;
     scanf("%f", &value);
@@ -18,6 +28,10 @@ float inputBoleano(){
 		scanf("%d", &value);
 	}while(value != 1 && value != 0);
 	return value;
+}
+void FileReadString(FILE *arquivo,char destino[]){
+    int value;
+    fscanf(arquivo, "%s" , &destino);
 }
 void inputS(char destino[]){
     scanf(" %100[^\n]s", destino);
