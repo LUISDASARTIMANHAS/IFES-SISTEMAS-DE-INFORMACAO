@@ -1,5 +1,5 @@
 //Feito por: Lucas Garcia E Luis Augusto
-#include "tabelaHash.h"
+#include "TabelaHashEndAberto.h"
 
 void correct(){
     SetConsoleOutputCP(65001);
