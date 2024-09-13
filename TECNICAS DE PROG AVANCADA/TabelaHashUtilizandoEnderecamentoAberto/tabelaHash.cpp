@@ -41,14 +41,14 @@ int mod(int x, int y){
 	return (x%y);
 }
 
-long long int hash(int k,int tamVetor){
+long long int hash(long long int k,int tamVetor){
     // Para o primeiro cálculo:
     // h(k) = k mod N
     // N eh o tamanho do vetor
     return mod(k,tamVetor);
 }
 
-long long int hash2(int k,int tamVetor){
+long long int hash2(long long int k,int tamVetor){
     // N eh o tamanho do vetor
     // Caso haja colisão, inicialmente calculamos h2(K),
     // que pode ser definida como:
@@ -57,7 +57,7 @@ long long int hash2(int k,int tamVetor){
     return 1 + h1;
 }
 
-long long int reHash(int i,int k, int tamVetor){
+long long int reHash(long long int i,int k, int tamVetor){
     // N eh o tamanho do vetor
     // rh(i,k) = ( i + h2(k) ) mod N
     int h2 = hash2(k,tamVetor);
