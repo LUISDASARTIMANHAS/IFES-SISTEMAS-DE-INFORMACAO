@@ -1,6 +1,9 @@
 //Feito por: Lucas Garcia E Luis Augusto
 #include "tabelaHash.h"
 
+void correct(){
+    SetConsoleOutputCP(65001);
+}
 
 //=================================================
 FILE * abrirArquivo(char * nomeArq, char * modo) {
@@ -483,6 +486,7 @@ void liberarTabelaHash(TabelaHash *tabela) {
 }
 //================================================
 int main() {
+    correct();
     FILE *arquivoLista = abrirArquivo("nomes_matriculas.txt", "r");
     // Contar o número de matrículas no arquivo
     int totalMatriculas = contarMatriculas(arquivoLista);
