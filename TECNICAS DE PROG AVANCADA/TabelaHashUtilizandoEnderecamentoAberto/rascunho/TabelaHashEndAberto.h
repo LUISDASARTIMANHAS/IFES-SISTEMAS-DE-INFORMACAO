@@ -5,8 +5,6 @@
 #include <ctype.h>
 #include <string.h>
 #include <time.h>
-#include <windows.h>
-#define _USE_MATH_DEFINES
 
 typedef char string[101];
 typedef clock_t processTime;
@@ -14,16 +12,16 @@ typedef clock_t processTime;
 #define INICIO "------------INICIO------------"
 #define RESULTADO "------------RESULTADO------------"
 #define CORTE "------------------------"
-typedef struct tipoElemento{
-    long long int valor;
-    string nome;
-    int flag;
-    struct tipoElemento *prox;
+
+typedef struct tipoElemento {
+    long long int valor; // Valor da matrícula
+    string nome;         // Nome associado à matrícula
+    int flag;            // Flag para indicar o estado do elemento (0: vazio, 1: ocupado, 2: removido)
 } TElemento;
 
-typedef struct tipoTabelaHash{
-    TElemento *vetorElementos;
-    int tamanho;
+typedef struct tipoTabelaHash {
+    TElemento *vetor; // Vetor que armazena os elementos da tabela hash
+    int tamanho;      // Tamanho da tabela hash
 } TabelaHash;
 
 void salvarDadosNoArquivo(TabelaHash *tabela, FILE *arquivoLista);
@@ -34,24 +32,15 @@ int ehPrimo(int num);
 int acharProximoPrimo(int num);
 void inicializarTabelaHash(TabelaHash *tabela, int tamanho);
 void inicializarTabela(TabelaHash *tabelaHash, FILE *arquivoLista);
-void lerEInserirMatriculas(TabelaHash *tabelaHash, FILE *arquivoLista, int funcaoHashEscolhida);
-void executarMenu(TabelaHash *tabelaHash, int funcaoHashEscolhida);
-int pesquisarTabelaHash(TabelaHash *tabela, long long int matricula, int funcaoHashEscolhida);
-void inserirTabelaHash(TabelaHash *tabela, long long int matricula, char *nome, int funcaoHashEscolhida);
-void excluirTabelaHash(TabelaHash *tabela, long long int matricula, int funcaoHashEscolhida);
+void lerEInserirMatriculas(TabelaHash *tabelaHash, FILE *arquivoLista);
+void executarMenu(TabelaHash *tabelaHash);
+int pesquisarTabelaHash(TabelaHash *tabela, long long int matricula);
+void inserirTabelaHash(TabelaHash *tabela, long long int matricula, char *nome);
+void excluirTabelaHash(TabelaHash *tabela, long long int matricula);
 void exibeTabelaHash(TabelaHash *tabela);
 void liberarTabelaHash(TabelaHash *tabela);
 FILE *abrirArquivo(char *nomeArq, char *modo);
-// void construirListaDoZero(TLista *lista);
-// void lerArquivo(TLista *lista, FILE *arquivoLista);
-// void inicializa(TLista *lista, FILE *arquivoLista);
-// int pesquisarMatricula2(TLista *lista, long long int matriculaBusca);
-// int pesquisarMatricula(TLista *lista);
-// void inserir(TLista *lista, long long int valor, char *nome);
-int pedirOpcao3();
-// void exibeLista(TLista lista);
-// void excluirLista(TLista *lista, long long int valor);
+void calcularTempo(double ini, double fim);
 long long int pedirOpcao();
 long long int pedirNum(int caminhoASerEscolhido);
-void imprimirTabelaHash(TabelaHash *tabela);
-void menuPrincipal(TabelaHash *tabelaHash, int funcaoHashEscolhida);
+int pedirOpcao3();
