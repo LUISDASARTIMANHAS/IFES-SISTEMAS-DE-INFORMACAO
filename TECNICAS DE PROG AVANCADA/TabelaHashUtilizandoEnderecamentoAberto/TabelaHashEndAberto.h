@@ -7,7 +7,7 @@
 #include <time.h>
 #include <windows.h>
 #define _USE_MATH_DEFINES
-#include "utils.cpp"
+#include "data/libs/utils.cpp"
 
 typedef char string[101];
 typedef clock_t processTime;

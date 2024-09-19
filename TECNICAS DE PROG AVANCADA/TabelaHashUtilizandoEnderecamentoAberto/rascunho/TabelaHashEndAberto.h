@@ -5,7 +5,6 @@
 #include <ctype.h>
 #include <string.h>
 #include <time.h>
-#include "utils.cpp"
 
 typedef char string[101];
 typedef clock_t processTime;

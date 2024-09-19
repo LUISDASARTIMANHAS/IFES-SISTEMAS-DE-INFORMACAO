@@ -39,7 +39,6 @@ float inputBoleano(){
 	return value;
 }
 void FileReadString(FILE *arquivo,char destino[]){
-    int value;
     fscanf(arquivo, "%s" , &destino);
 }
 void inputS(char destino[]){
