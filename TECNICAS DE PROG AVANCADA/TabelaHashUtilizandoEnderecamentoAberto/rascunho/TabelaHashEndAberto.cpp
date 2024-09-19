@@ -52,12 +52,14 @@ void salvarDadosNoArquivo(TabelaHash *tabela, FILE *arquivoLista) {
 //=================================================
 int pedirOpcao3() {
     int opcao;
+    do{
     printf("Escolha o tamanho da tabela hash em relação ao número total de matrículas:\n");
     printf("1 - 120%% do número de matrículas\n");
     printf("2 - 150%% do número de matrículas\n");
     printf("3 - 180%% do número de matrículas\n");
     printf("Digite sua opção (1, 2 ou 3): ");
     scanf("%d", &opcao);
+    } while ((opcao < 1) || (opcao > 3));
     return opcao;
 }
 
