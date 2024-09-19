@@ -2,18 +2,24 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package IntroducaoOO;
+package lerguerreiros;
 
-//import Complementar.Compra;
+public class Leitor {
+    
+}
 
-public class Cliente {
-
-
+class Guerreiro{
     private String nome;
     private int idade;
     private double peso;
-    private static int qtd = 0;
-//    private Compra compra;
+    private int enegria = 100;
+
+    public Guerreiro(String nome, int idade, double peso, int enegria) {
+        this.nome = nome;
+        this.idade = idade;
+        this.peso = peso;
+        this.enegria = enegria;
+    }
 
     public String getNome() {
         return nome;
@@ -39,24 +45,11 @@ public class Cliente {
         this.peso = peso;
     }
 
-    public static int getQdtCli() {
-        return Cliente.qtd;
-    }
-    
-    public Cliente(String nome, int idade, double peso) {
-        this.nome = nome;
-        this.idade = idade;
-        this.peso = peso;
-        Cliente.qtd++;
+    public int getEnegria() {
+        return enegria;
     }
 
-    public Cliente(int idade, double peso) {
-        this.nome = "Anonimo";
-        this.idade = idade;
-        this.peso = peso;
-        Cliente.qtd++;
+    public void setEnegria(int enegria) {
+        this.enegria = enegria;
     }
-
-    
-    
 }
