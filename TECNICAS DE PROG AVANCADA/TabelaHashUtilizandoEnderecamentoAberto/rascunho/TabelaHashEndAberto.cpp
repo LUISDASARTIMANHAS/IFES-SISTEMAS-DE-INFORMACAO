@@ -183,7 +183,7 @@ int ehPrimo(int num) {
     if (num <= 1) return 0; // Números menores ou iguais a 1 não são primos
     if (num == 2) return 1; // 2 é primo
     if (num % 2 == 0) return 0; // Números pares não são primos
-    for (int i = 3; i <= sqrt(num); i += 2) {
+    for (int i = 3; i <= (num*0.5); i += 2) {
         if (num % i == 0) {
             return 0; // Não é primo
         }
