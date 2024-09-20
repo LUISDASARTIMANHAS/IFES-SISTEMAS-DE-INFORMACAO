@@ -28,7 +28,6 @@ if "%fileName%"=="" (
     echo Erro: Falha ao obter o nome do arquivo info.json.
     exit /b 1
 )
-set fileName=TabelaHashEndAberto
 set fullFileName=%fileName%.V%versao%
 
 g++ -Wall -g3 -Wextra -static -static-libgcc -static-libstdc++ "rascunho/%fileName%.cpp" -o "builds/rascunho.exe"
@@ -40,7 +39,7 @@ g++ -Wall -g3 -Wextra -static -static-libgcc -static-libstdc++ %fileName%.cpp -o
 
 g++ -Wall -g3 -Wextra -static -static-libgcc -static-libstdc++ %fileName%.cpp -o "builds/%fullFileName%.exe"
 
-tar -a -c -f "zip/%fullFileName%.zip" *data *builds *rascunho *.h *.cpp functions.c *.cmd
+tar -a -c -f "zip/%fullFileName%.zip" *data *builds *rascunho *.h *.c *.cpp functions.c *.cmd
 
 msg * /v /w %fullFileName%.exe foi compilado!
 
