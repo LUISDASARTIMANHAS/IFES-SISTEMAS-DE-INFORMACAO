@@ -14,37 +14,61 @@ Graduação - Presencial - Graduação Bacharelado - Sistemas de Informação - 
    - [Primeiro Programa em Java](https://www.youtube.com/watch?v=ILU4Ucbby-Y)
    - [Aspectos Fundamentais da Linguagem Java](https://www.youtube.com/watch?v=XmuxVBKPGvo)
    - Exemplos práticos e exercícios
-
-4. **Comandos Condicionais e de Repetição**
+   
+4. **Aspectos Fundamentais da Linguagem Java**
+   - [Aspectos Fundamentais da Linguagem Java](link)
+   - [Exemplos](link)
+   - [Lista de Exercícios 1 - Entrada e Saída](link)
+   - [Vídeo de Aspectos Fundamentais da Linguagem Java - 01](link)
+   - [Vídeo de Aspectos Fundamentais da Linguagem Java - 02](link)
+   - [Vídeo de Aspectos Fundamentais da Linguagem Java - 03](link)
+   - [Vídeo de Aspectos Fundamentais da Linguagem Java - 04](link)
+   - [Vídeo de Aspectos Fundamentais da Linguagem Java - 05](link)
+   - [Vídeo de Aspectos Fundamentais da Linguagem Java - 06](link)
+   - [Vídeo de Aspectos Fundamentais da Linguagem Java - 07](link)
+   
+5. **Comandos Condicionais e de Repetição**
    - [Apoio: Comandos Condicionais e de Repetição](link)
    - Exercícios de condicionais e repetição
 
-5. **Métodos e Leitura de Arquivos**
+6. **Criação de Métodos e Leitura de Arquivos**
    - [Criação de Métodos](link)
+   - [Exemplos de Métodos](link)
+   - [Lista de Exercícios 4 - Métodos Estáticos](link)
+   - [Criação de Métodos 01](link)
+   - [Criação de Métodos 02 - Recursividade](link)
+   - [Criação de Métodos 03 - Sobrecarga](link)
+   - [Criação de Métodos 04 e 05](link)
    - [Leitura e Escrita de Arquivos](link)
-   - Projetos práticos: Convertedora, MaiorMenorMedia
+   - [Exemplos de Leitura e Escrita](link)
+   - [Leitura de Arquivo e uso da classe Scanner](link)
+   - [Escrita de Arquivo (Classe Formatter)](link)
+   - [Leitura e escrita em arquivo (modo Append)](link)
+   - Projetos práticos: 
+     - [Projeto Convertedora](link)
+     - [Projeto MaiorMenorMedia](link)
 
-6. **Strings e Classes Utilitárias**
+7. **Strings e Classes Utilitárias**
    - [Classes Math, DecimalFormat e Locale](link)
    - Manipulação de Strings e exemplos práticos
 
-7. **Introdução à Orientação a Objetos**
+8. **Introdução à Orientação a Objetos**
    - [Introdução a Orientação a Objetos](link)
    - Exemplos de uso de objetos e construtores
 
-8. **Estruturas de Dados**
+9. **Estruturas de Dados**
    - [Estruturas de Dados](link)
    - Listas, vetores, matrizes, ArrayList, LinkedList
 
-9. **Associação e Herança**
+10. **Associação e Herança**
    - [Associação e Herança](link)
    - Exemplos práticos e exercícios de herança
 
-10. **Polimorfismo e a Classe Object**
+11. **Polimorfismo e a Classe Object**
     - [Polimorfismo e a Classe Object](link)
     - Sobrescrita de métodos, equals e toString
 
-11. **Trabalho Final de Programação Orientada a Objetos I**
+12. **Trabalho Final de Programação Orientada a Objetos I**
     - Descrição do projeto final e requisitos
 
 ## Recursos Adicionais
