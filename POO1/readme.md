@@ -9,7 +9,7 @@ Graduação - Presencial - Graduação Bacharelado - Sistemas de Informação - 
    - [Apostila de Linguagem de Programação (Técnico)](link)
 
 2. **Curiosidades**
-   - [Livro sobre Flutter](link)
+   - [Livro sobre Flutter](https://play.google.com/store/books/details/GIOVANY_FROSSARD_TEIXEIRA_Fundamentos_de_Flutter_e?id=vhEMEQAAQBAJ&hl=pt_BR&pli=1)
 
 3. **Introdução à Linguagem Java**
    - [Vídeo de Introdução a Linguagem Java](link)
