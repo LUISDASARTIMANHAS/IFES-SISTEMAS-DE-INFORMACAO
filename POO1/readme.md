@@ -10,11 +10,11 @@ Graduação - Presencial - Graduação Bacharelado - Sistemas de Informação - 
    - [Livro sobre Flutter](https://play.google.com/store/books/details/GIOVANY_FROSSARD_TEIXEIRA_Fundamentos_de_Flutter_e?id=vhEMEQAAQBAJ&hl=pt_BR&pli=1)
 
 3. **Introdução à Linguagem Java**
+   - [Introdução à Linguagem Java](link)
    - [Vídeo de Introdução a Linguagem Java](https://www.youtube.com/watch?v=AK1RgjVupHQ)
    - [Primeiro Programa em Java](https://www.youtube.com/watch?v=ILU4Ucbby-Y)
-   - [Aspectos Fundamentais da Linguagem Java](https://www.youtube.com/watch?v=XmuxVBKPGvo)
-   - Exemplos práticos e exercícios
-   
+   - [Refatorar/Renomear no NetBeans](https://www.youtube.com/watch?v=XmuxVBKPGvo)
+
 4. **Aspectos Fundamentais da Linguagem Java**
    - [Aspectos Fundamentais da Linguagem Java](link)
    - [Exemplos](link)
@@ -26,10 +26,12 @@ Graduação - Presencial - Graduação Bacharelado - Sistemas de Informação - 
    - [Vídeo de Aspectos Fundamentais da Linguagem Java - 05](link)
    - [Vídeo de Aspectos Fundamentais da Linguagem Java - 06](link)
    - [Vídeo de Aspectos Fundamentais da Linguagem Java - 07](link)
-   
+
 5. **Comandos Condicionais e de Repetição**
    - [Apoio: Comandos Condicionais e de Repetição](link)
-   - Exercícios de condicionais e repetição
+   - [Exemplos](link)
+   - [Lista de Exercícios 2 - Condicionais](link)
+   - [Lista de Exercícios 3 - Repetição](link)
 
 6. **Criação de Métodos e Leitura de Arquivos**
    - [Criação de Métodos](link)
@@ -48,28 +50,76 @@ Graduação - Presencial - Graduação Bacharelado - Sistemas de Informação - 
      - [Projeto Convertedora](link)
      - [Projeto MaiorMenorMedia](link)
 
-7. **Strings e Classes Utilitárias**
+7. **Classes Utilitárias**
    - [Classes Math, DecimalFormat e Locale](link)
-   - Manipulação de Strings e exemplos práticos
+   - [Exemplos da Classe Math](link)
+   - [Classe Math](link)
+   - [Classe DecimalFormat](link)
+   - [Classe Locale](link)
+   - [Classe String](link)
+   - Manipulação de Strings: 
+     - [Introdução a Strings, métodos length e charAt](link)
+     - [toLowerCase, toUpperCase e substring](link)
+     - [trim e replace](link)
+     - [valueOf e indexOf](link)
 
 8. **Introdução à Orientação a Objetos**
-   - [Introdução a Orientação a Objetos](link)
-   - Exemplos de uso de objetos e construtores
+   - [Introdução à Orientação a Objetos](link)
+   - [Definições iniciais](link)
+   - [Exemplo de Introdução OO - visibilidade de classes](link)
+   - [Utilização de objetos/Construtores](link)
+   - [Declaração de métodos e atributos](link)
 
 9. **Estruturas de Dados**
    - [Estruturas de Dados](link)
-   - Listas, vetores, matrizes, ArrayList, LinkedList
+   - [Exemplos de Estruturas de Dados](link)
+   - [Lista de Exercícios 5 - Classes, Objetos e Listas](link)
+   - [Introdução a Vetores e Matrizes](link)
+   - [Vetores de Objetos](link)
+   - [Introdução a Listas](link)
+   - [ArrayList](link)
+   - [LinkedList e Iterator](link)
+   - [removeIf e forEach](link)
+   - [Streams](link)
 
 10. **Associação e Herança**
-   - [Associação e Herança](link)
-   - Exemplos práticos e exercícios de herança
+    - [Associação e Herança](link)
+    - [Exemplos de Associação e Herança](link)
+    - [Complementação UML](link)
+    - [Lista de Exercícios 6 - Herança](link)
+    - [Vídeo sobre Associação](link)
+    - [Vídeo sobre Herança](link)
 
 11. **Polimorfismo e a Classe Object**
     - [Polimorfismo e a Classe Object](link)
-    - Sobrescrita de métodos, equals e toString
+    - [Exemplos de Polimorfismo](link)
+    - [Vídeo sobre Polimorfismo - Sobrescrita](link)
+    - [Vídeo sobre a Classe Object e o método toString](link)
+    - [Vídeo sobre o método equals](link)
 
 12. **Trabalho Final de Programação Orientada a Objetos I**
-    - Descrição do projeto final e requisitos
+    - [1º Trabalho de Programação Orientada a Objetos I](link)
+    - [Envie seu trabalho aqui](link)
+
+13. **Conteúdos Avançados**
+    - **Classes e Métodos Abstratos / Encapsulamento** (Não disponível)
+    - **Interfaces / Exceções** (Não disponível)
+    - **Interfaces Comparator e Comparable** (Não disponível)
+    - **Aplicação Completa - Divisão em Camadas** (Não disponível)
+    - **Serialização e Operador varargs (...)** (Não disponível)
+    - **HashMap e Generics** (Não disponível)
+    - **Reflection e Annotations** (Não disponível)
+    - **Thread** (Não disponível)
+    - **Funções Lambda** (Não disponível)
+    - **Princípios SOLID** (Não disponível)
+    - **Prova Final** (Tópico 20 - Não disponível)
+
+## Recursos Adicionais
+
+- Livros recomendados: [Lista de Livros](link)
+- Fórum de discussão: [Fórum de Notícias](link)
+- Vídeos complementares: [Lista de Vídeos](link)
+- Exemplos de códigos e projetos: [Repositório de Exemplos](link)
 
 ## Recursos Adicionais
 
