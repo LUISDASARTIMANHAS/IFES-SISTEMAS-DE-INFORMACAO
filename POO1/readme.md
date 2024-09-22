@@ -4,45 +4,50 @@ Graduação - Presencial - Graduação Bacharelado - Sistemas de Informação - 
 
 ## Programação Orientada a Objetos I (Bacharel em SIN - Col - 2011/1) - 60h - Giovany Frossard Teixeira
 
-# Ordem de Estudo Recomendada
+1. **Apostilas e Materiais de Apoio**
+   - [Apostila de Linguagem de Programação (Licenciatura em Informática)](link)
+   - [Apostila de Linguagem de Programação (Técnico)](link)
 
-1. **Introdução à Linguagem Java**
+2. **Curiosidades**
+   - [Livro sobre Flutter](link)
+
+3. **Introdução à Linguagem Java**
    - [Vídeo de Introdução a Linguagem Java](link)
    - [Primeiro Programa em Java](link)
    - [Aspectos Fundamentais da Linguagem Java](link)
    - Exemplos práticos e exercícios
 
-2. **Comandos Condicionais e de Repetição**
+4. **Comandos Condicionais e de Repetição**
    - [Apoio: Comandos Condicionais e de Repetição](link)
    - Exercícios de condicionais e repetição
 
-3. **Métodos e Leitura de Arquivos**
+5. **Métodos e Leitura de Arquivos**
    - [Criação de Métodos](link)
    - [Leitura e Escrita de Arquivos](link)
    - Projetos práticos: Convertedora, MaiorMenorMedia
 
-4. **Strings e Classes Utilitárias**
+6. **Strings e Classes Utilitárias**
    - [Classes Math, DecimalFormat e Locale](link)
    - Manipulação de Strings e exemplos práticos
 
-5. **Introdução à Orientação a Objetos**
+7. **Introdução à Orientação a Objetos**
    - [Introdução a Orientação a Objetos](link)
    - Exemplos de uso de objetos e construtores
 
-6. **Estruturas de Dados**
+8. **Estruturas de Dados**
    - [Estruturas de Dados](link)
    - Listas, vetores, matrizes, ArrayList, LinkedList
 
-7. **Associação e Herança**
+9. **Associação e Herança**
    - [Associação e Herança](link)
    - Exemplos práticos e exercícios de herança
 
-8. **Polimorfismo e a Classe Object**
-   - [Polimorfismo e a Classe Object](link)
-   - Sobrescrita de métodos, equals e toString
+10. **Polimorfismo e a Classe Object**
+    - [Polimorfismo e a Classe Object](link)
+    - Sobrescrita de métodos, equals e toString
 
-9. **Trabalho Final de Programação Orientada a Objetos I**
-   - Descrição do projeto final e requisitos
+11. **Trabalho Final de Programação Orientada a Objetos I**
+    - Descrição do projeto final e requisitos
 
 ## Recursos Adicionais
 
