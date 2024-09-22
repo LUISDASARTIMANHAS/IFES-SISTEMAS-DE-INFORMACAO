@@ -2,19 +2,17 @@
 
 Graduação - Presencial - Graduação Bacharelado - Sistemas de Informação - 2024/2
 
-## Programação Orientada a Objetos I (Bacharel em SIN - Col - 2011/1) - 60h - Giovany Frossard Teixeira
-
 1. **Apostilas e Materiais de Apoio**
-   - [Apostila de Linguagem de Programação (Licenciatura em Informática)](link)
-   - [Apostila de Linguagem de Programação (Técnico)](link)
+   - [Apostila de Linguagem de Programação (Licenciatura em Informática)](https://github.com/LUISDASARTIMANHAS/IFES-SISTEMAS-DE-INFORMACAO/blob/PROG/POO1/Apostila%20Linguagem%20de%20Programa%C3%A7%C3%A3o%20do%20curso%20de%20Licenciatura%20em%20Inform%C3%A1tica%20a%20dist%C3%A2nciaArquivo.pdf)
+   - [Apostila de Linguagem de Programação (Técnico)](https://github.com/LUISDASARTIMANHAS/IFES-SISTEMAS-DE-INFORMACAO/blob/PROG/POO1/Apostila%20de%20Linguagem%20de%20Programa%C3%A7%C3%A3o%20-%20T%C3%A9cnico%20a%20dist%C3%A2nciaArquivo.PDF)
 
 2. **Curiosidades**
    - [Livro sobre Flutter](https://play.google.com/store/books/details/GIOVANY_FROSSARD_TEIXEIRA_Fundamentos_de_Flutter_e?id=vhEMEQAAQBAJ&hl=pt_BR&pli=1)
 
 3. **Introdução à Linguagem Java**
-   - [Vídeo de Introdução a Linguagem Java](link)
-   - [Primeiro Programa em Java](link)
-   - [Aspectos Fundamentais da Linguagem Java](link)
+   - [Vídeo de Introdução a Linguagem Java](https://www.youtube.com/watch?v=AK1RgjVupHQ)
+   - [Primeiro Programa em Java](https://www.youtube.com/watch?v=ILU4Ucbby-Y)
+   - [Aspectos Fundamentais da Linguagem Java](https://www.youtube.com/watch?v=XmuxVBKPGvo)
    - Exemplos práticos e exercícios
 
 4. **Comandos Condicionais e de Repetição**
