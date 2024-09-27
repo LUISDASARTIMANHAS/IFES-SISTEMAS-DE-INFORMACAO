@@ -1,16 +1,13 @@
 (() => {
   function getData() {
-    const url = "https://pingobras-sg.glitch.me/api/ifes/horarios";
+    const url = "./src/data/horarios";
     const date = new Date();
     const id = Math.floor(Math.random() * 20242002);
     const options = {
       method: "GET",
       mode: "cors",
       headers: {
-        "content-type": "application/json;charset=utf-8",
-        Authorization: "API KEY IFES",
-        key: date.getUTCHours() * date.getFullYear() * id,
-        id: id,
+        "content-type": "application/json;charset=utf-8"
       },
     };
 
