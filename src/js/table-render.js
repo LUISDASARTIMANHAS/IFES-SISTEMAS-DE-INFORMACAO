@@ -1,6 +1,6 @@
 (() => {
   function getData() {
-    const url = "./src/data/horarios";
+    const url = "./src/data/horarios.json";
     const date = new Date();
     const id = Math.floor(Math.random() * 20242002);
     const options = {
