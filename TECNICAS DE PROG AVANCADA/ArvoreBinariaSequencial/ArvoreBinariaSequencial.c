@@ -1,5 +1,5 @@
 //Feito por: Lucas Garcia E Luis Augusto
-#include "ArvoreBinariaVetor.h"
+#include "ArvoreBinariaSequencial.h"
 
 //=================================================
 // Função para ler o arquivo
