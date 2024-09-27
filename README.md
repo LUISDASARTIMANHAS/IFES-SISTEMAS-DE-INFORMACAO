@@ -5,6 +5,10 @@ IFES/SI TURMA V6
 ```bash
 git clone https://github.com/LUISDASARTIMANHAS/IFES-SISTEMAS-DE-INFORMACAO.git
 ```
+## Clone PROG!
+```bash
+git clone -b PROG https://github.com/LUISDASARTIMANHAS/IFES-SISTEMAS-DE-INFORMACAO.git
+```
 
 # Website Blog
 https://luisdasartimanhas.github.io/IFES-SISTEMAS-DE-INFORMACAO/
