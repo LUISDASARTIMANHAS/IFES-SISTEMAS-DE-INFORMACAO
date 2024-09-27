@@ -35,8 +35,8 @@ float aleatorio(int n){
 }
 //=================================================
 void lerArquivo(TLista *lista, FILE *arquivoLista) {
-    char nome[100];
-    char matriculaStr[20];  
+    string nome;
+    string matriculaStr;  
     long long int matricula;
 
     while (fgets(nome, sizeof(nome), arquivoLista) != NULL) {
