@@ -8,11 +8,21 @@ public class Funcionario extends PessoaFisica {
 
     private String cartao;
 
+    public Funcionario(String cartao, String rg, int idade) {
+        super(rg, idade);
+        this.cartao = cartao;
+    }
+
     public String getCartao() {
         return cartao;
     }
 
     public void setCartao(String cartao) {
         this.cartao = cartao;
+    }
+    
+    @Override
+    public void imprimirNomeClasse() {
+        System.out.println("Classe Funcionario");
     }
 }
