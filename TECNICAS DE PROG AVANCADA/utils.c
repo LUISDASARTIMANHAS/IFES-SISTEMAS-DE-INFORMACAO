@@ -131,6 +131,11 @@ float input(){
     scanf("%f", &value);
     return value;
 }
+long long int inputDLLD(){
+    long long int value;
+    scanf("%lld", &value);
+    return value;
+}
 float inputBoleano(){
 	int value;
 	do{
