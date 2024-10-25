@@ -6,5 +6,4 @@ select cod_fita
 from locacao
 where dat_devolucao is null
 
-
 limit 10
