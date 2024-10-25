@@ -30,16 +30,27 @@ if "%fileName%"=="" (
 )
 set fullFileName=%fileName%.V%versao%
 
-g++ -Wall -g3 -Wextra -static -static-libgcc -static-libstdc++ "rascunho/%fileName%.cpp" -o "builds/rascunho.exe"
+if not exist "rascunho" (
+    mkdir "rascunho"
+)
+
+g++ -Wall -g3 -Wextra -static -static-libgcc -static-libstdc++ "rascunho/%fileName%.c" -o "builds/rascunho.exe"
+
+if not exist "builds" (
+    mkdir "builds"
+)
+if not exist "zip" (
+    mkdir "zip"
+)
 
 if exist "builds/debug.exe" (
    del "builds/debug.exe"
 )
-g++ -Wall -g3 -Wextra -static -static-libgcc -static-libstdc++ %fileName%.cpp -o "builds/debug.exe"
+g++ -Wall -g3 -Wextra -static -static-libgcc -static-libstdc++ %fileName%.c -o "builds/debug.exe"
 
-g++ -Wall -g3 -Wextra -static -static-libgcc -static-libstdc++ %fileName%.cpp -o "builds/%fullFileName%.exe"
+g++ -Wall -g3 -Wextra -static -static-libgcc -static-libstdc++ %fileName%.c -o "builds/%fullFileName%.exe"
 
-tar -a -c -f "zip/%fullFileName%.zip" *data *builds *rascunho *.h *.c *.cpp functions.c *.cmd
+tar -a -c -f "zip/%fullFileName%.zip" *data *builds *rascunho *.pdf *.h *.c *.c functions.c *.cmd
 
 msg * /v /w %fullFileName%.exe foi compilado!
 
