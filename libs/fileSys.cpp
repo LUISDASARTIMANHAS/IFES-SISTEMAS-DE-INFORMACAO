@@ -11,6 +11,29 @@ FILE *abrirArquivo(char *nomeArq, char *modo) {
     return arquivo;
 }
 
+/**
+ * @brief Calcula e exibe o tempo de execução em segundos.
+ * 
+ * @param ini Tempo inicial.
+ * @param fim Tempo final.
+ */
+double getTime() {
+    double tempo = clock();
+    return tempo;
+}
+
+/**
+ * @brief Calcula e exibe o tempo de execução em segundos.
+ * 
+ * @param ini Tempo inicial.
+ * @param fim Tempo final.
+ */
+void calcularTempo(double ini) {
+    double fim = getTime();
+    double tempoDecorrido = (double)(fim - ini) / CLOCKS_PER_SEC;
+    printf("Tempo de execucao: %f segundos\n", tempoDecorrido);
+}
+
     // fprintf(arquivo, "\n%3d %-50s %5d %10.2f", cod, nome, qtde, preco  );
 
 /**

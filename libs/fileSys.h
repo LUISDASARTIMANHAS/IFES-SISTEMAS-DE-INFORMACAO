@@ -27,4 +27,7 @@ double inputDouble();
 long long int inputDLLD();
 int inputBoleano();
 void inputS(char destino[]);
+
+double getTime();
+void calcularTempo(double ini);
 #endif
