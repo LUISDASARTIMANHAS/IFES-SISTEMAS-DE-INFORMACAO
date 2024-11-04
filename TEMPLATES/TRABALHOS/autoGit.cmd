@@ -33,7 +33,7 @@ set fullFileName=%fileName%.V%versao%
 :: Inicializa o repositório Git (se necessário)
 if not exist ".git" (
     git init
-    git remote add origin https://github.com/LUISDASARTIMANHAS/Representacao-Computacional-de-Grafos-de-Listas-de-Adjacencia.git
+    git remote add origin https://github.com/LUISDASARTIMANHAS/Arvore-Geradora-Minima.git
 )
 
 :: Verifica o status dos arquivos
@@ -47,3 +47,5 @@ git commit -m "Automated commit for %fullFileName%"
 
 :: Envia os arquivos para o repositório remoto na branch especificada
 git push origin main
+
+exit /b 0
