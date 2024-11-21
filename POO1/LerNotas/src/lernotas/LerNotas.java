@@ -4,15 +4,8 @@
  */
 package lernotas;
 
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.util.Scanner;
-
-public class LerNotas {
-
-    public static void main(String[] args) {
-        try {
-            FileInputStream fil = new FileInputStream("notas.txt");
+fil = new FileInputStream("notas.txt");
             Scanner scan = new Scanner(fil);
             
             int num1 = scan.nextInt();
@@ -20,7 +13,13 @@ public class LerNotas {
             double num3 = scan.nextDouble();
             System.out.println(num1 + num2);
             System.out.println(num3);
-            scan.close();
+            scan.close();.Scanner;
+
+public class LerNotas {
+
+    public static void main(String[] args) {
+        try {
+            
         } catch (FileNotFoundException error) {
             System.out.println("Erro: Arquivo Não Encontrado. ERR:" + error);
         }
