@@ -7,6 +7,7 @@
 #include <ctype.h>
 #include <string.h>
 #include <time.h>
+#include <windows.h>
 
 // Defina constantes para as sequências de escape ANSI das cores
 #define RED "\x1b[31m"
