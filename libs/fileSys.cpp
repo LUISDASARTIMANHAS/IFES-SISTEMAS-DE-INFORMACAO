@@ -1,5 +1,24 @@
 #include "fileSys.h"
 //=================================================
+
+void correct(){
+    SetConsoleOutputCP(65001);
+}
+void head(){
+    printf("\n ----------------------------------------------------");
+    printf("\n\t LUIS_DAS_ARTIMANHAS & PINGOBRAS S.A");
+    printf("\n\t Iniciando programa.....");
+    printf("\n----------------------------------------------------\n");
+}
+
+void copy(){
+    printf("\n----------------------------------------------------");
+    printf("\n\t DEVS:");
+    printf("\n\t LUIS_DAS_ARTIMANHAS.");
+    printf("\n\t PINGOBRAS S.A");
+    printf("\n----------------------------------------------------\n");
+}
+
 // Função para abrir um arquivo no modo especificado
 FILE *abrirArquivo(char *nomeArq, char *modo) {
     FILE *arquivo = fopen(nomeArq, modo);
