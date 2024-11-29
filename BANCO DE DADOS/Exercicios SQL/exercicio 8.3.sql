@@ -6,9 +6,9 @@ select filme.nom_filme
 , 		loc.dat_locacao
 from filme
 JOIN fita fita
-ON filme.cod_filme = fita.cod_filme
+	ON filme.cod_filme = fita.cod_filme
 JOIN locacao loc
-ON fita.cod_fita = loc.cod_fita
+	ON fita.cod_fita = loc.cod_fita
 
 -- SELECT fita.cod_fita, fita.nom_fita,
 -- fita.cod_genero, genero.dsc_genero
