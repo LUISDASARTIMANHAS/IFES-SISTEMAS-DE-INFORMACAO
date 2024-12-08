@@ -43,5 +43,6 @@ void inputS(char destino[]);
 
 double getTime();
 void calcularTempo(double ini);
+int arrayLength(int intArray[])
 void correct();
 #endif
