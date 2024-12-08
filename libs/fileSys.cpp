@@ -193,3 +193,17 @@ int inputBoleano(){
 void inputS(char destino[]){
     scanf(" %100[^\n]s", destino);
 }
+
+
+/**
+ * @brief // Obtem o tamanho do vetor inteiro
+ */
+int arrayLength(int intArray[]){
+    // int size = sizeof(intArray) / sizeof(intArray[0]);
+    int size = 0;
+
+    while (intArray[size] != NULL){
+        size++;
+    }
+    return size;
+}
