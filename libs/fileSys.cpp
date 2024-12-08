@@ -199,11 +199,6 @@ void inputS(char destino[]){
  * @brief // Obtem o tamanho do vetor inteiro
  */
 int arrayLength(int intArray[]){
-    // int size = sizeof(intArray) / sizeof(intArray[0]);
-    int size = 0;
-
-    while (intArray[size] != NULL){
-        size++;
-    }
+    int size = sizeof(intArray) / sizeof(intArray[0]);
     return size;
 }
