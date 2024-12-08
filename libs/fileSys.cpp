@@ -19,9 +19,50 @@ void copy(){
     printf("\n----------------------------------------------------\n");
 }
 
+
 // Função para abrir um arquivo no modo especificado
 FILE *abrirArquivo(char *nomeArq, char *modo) {
-    FILE *arquivo = fopen(nomeArq, modo);
+    FILE *arquivo;
+
+    if (nomeArq == NULL){
+        arquivo = fopen(DEFAULT_DATABASE, modo);
+    }
+    arquivo = fopen(nomeArq, modo);
+
+    if (arquivo == NULL) {
+        printf("Erro ao abrir o arquivo %s\n", nomeArq);
+        exit(1);
+    }
+    printf("\n INFO: Arquivo %s Aberto! Bom uso.\n", nomeArq);
+    return arquivo;
+}
+
+// Função para abrir um arquivo no modo leitura
+FILE *lerArquivo(char *nomeArq) {
+    FILE *arquivo;
+
+    if (nomeArq == NULL){
+        arquivo = fopen(DEFAULT_DATABASE, "r");
+    }
+    arquivo = fopen(nomeArq, "r");
+
+    if (arquivo == NULL) {
+        printf("Erro ao abrir o arquivo %s\n", nomeArq);
+        exit(1);
+    }
+    printf("\n INFO: Arquivo %s Aberto! Bom uso.\n", nomeArq);
+    return arquivo;
+}
+
+// Função para abrir um arquivo no modo escritura
+FILE *escreverArquivo(char *nomeArq) {
+    FILE *arquivo;
+
+    if (nomeArq == NULL){
+        arquivo = fopen(DEFAULT_DATABASE, "w");
+    }
+    arquivo = fopen(nomeArq, "w");
+
     if (arquivo == NULL) {
         printf("Erro ao abrir o arquivo %s\n", nomeArq);
         exit(1);
