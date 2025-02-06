@@ -39,10 +39,10 @@
   {
     "dia": "Quinta",
     "horarios": [
-      { "horario": "12:50 - 13:40", "materia": "TPA" },
-      { "horario": "13:40 - 14:30", "materia": "TPA" },
-      { "horario": "14:30 - 15:20", "materia": "POO1" },
-      { "horario": "15:40 - 16:30", "materia": "POO1" },
+      { "horario": "12:50 - 13:40", "materia": "PROB II" },
+      { "horario": "13:40 - 14:30", "materia": "PROB II" },
+      { "horario": "14:30 - 15:20", "materia": "PROSIS" },
+      { "horario": "15:40 - 16:30", "materia": "PROSIS" },
       { "horario": "16:30 - 17:20", "materia": "REF" },
       { "horario": "17:20 - 18:10", "materia": "REF" }
     ]
@@ -50,10 +50,10 @@
   {
     "dia": "Sexta",
     "horarios": [
-      { "horario": "12:50 - 13:40", "materia": "TPA" },
-      { "horario": "13:40 - 14:30", "materia": "TPA" },
-      { "horario": "14:30 - 15:20", "materia": "BD1" },
-      { "horario": "15:40 - 16:30", "materia": "BD1" },
+      { "horario": "12:50 - 13:40", "materia": "REF" },
+      { "horario": "13:40 - 14:30", "materia": "REF" },
+      { "horario": "14:30 - 15:20", "materia": "DesWeb I" },
+      { "horario": "15:40 - 16:30", "materia": "DesWeb I" },
       { "horario": "16:30 - 17:20", "materia": "REF" },
       { "horario": "17:20 - 18:10", "materia": "REF" }
     ]
