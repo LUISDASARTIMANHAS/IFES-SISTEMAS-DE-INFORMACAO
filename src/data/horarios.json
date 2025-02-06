@@ -2,32 +2,36 @@
   {
     "dia": "Segunda",
     "horarios": [
-      { "horario": "12:50 - 13:40", "materia": "POO1" },
-      { "horario": "13:40 - 14:30", "materia": "POO1" },
-      { "horario": "14:30 - 15:20", "materia": "TGS" },
-      { "horario": "15:40 - 16:30", "materia": "TGS" },
+      { "horario": "12:50 - 13:40", "materia": "ENFSOFT" },
+      { "horario": "13:40 - 14:30", "materia": "ENFSOFT" },
+      { "horario": "14:30 - 15:20", "materia": "DesWeb I" },
+      { "horario": "15:40 - 16:30", "materia": "DesWeb I" },
       { "horario": "16:30 - 17:20", "materia": "REF" },
-      { "horario": "17:20 - 18:10", "materia": "REF" }
+      { "horario": "17:20 - 18:10", "materia": "REF" },
+      { "horario": "18:10 - 19:30", "materia": "BD I" },
+      { "horario": "19:30 - 20:20", "materia": "BD I" }
     ]
   },
   {
     "dia": "Terça",
     "horarios": [
-      { "horario": "12:50 - 13:40", "materia": "ANS" },
-      { "horario": "13:40 - 14:30", "materia": "ANS" },
-      { "horario": "14:30 - 15:20", "materia": "BD1" },
-      { "horario": "15:40 - 16:30", "materia": "BD1" },
+      { "horario": "12:50 - 13:40", "materia": "PROB II" },
+      { "horario": "13:40 - 14:30", "materia": "PROB II" },
+      { "horario": "14:30 - 15:20", "materia": "ENFSOFT" },
+      { "horario": "15:40 - 16:30", "materia": "ENFSOFT" },
       { "horario": "16:30 - 17:20", "materia": "REF" },
-      { "horario": "17:20 - 18:10", "materia": "REF" }
+      { "horario": "17:20 - 18:10", "materia": "REF" },
+      { "horario": "18:10 - 19:30", "materia": "BD I" },
+      { "horario": "19:30 - 20:20", "materia": "BD I" }
     ]
   },
   {
     "dia": "Quarta",
     "horarios": [
-      { "horario": "12:50 - 13:40", "materia": "ANS" },
-      { "horario": "13:40 - 14:30", "materia": "ANS" },
-      { "horario": "14:30 - 15:20", "materia": "TGS" },
-      { "horario": "15:40 - 16:30", "materia": "TGS" },
+      { "horario": "12:50 - 13:40", "materia": "RED" },
+      { "horario": "13:40 - 14:30", "materia": "REF" },
+      { "horario": "14:30 - 15:20", "materia": "PROSIS" },
+      { "horario": "15:40 - 16:30", "materia": "PROSIS" },
       { "horario": "16:30 - 17:20", "materia": "REF" },
       { "horario": "17:20 - 18:10", "materia": "REF" }
     ]
