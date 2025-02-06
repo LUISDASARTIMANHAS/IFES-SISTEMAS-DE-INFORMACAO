@@ -33,7 +33,9 @@
       { "horario": "14:30 - 15:20", "materia": "PROSIS" },
       { "horario": "15:40 - 16:30", "materia": "PROSIS" },
       { "horario": "16:30 - 17:20", "materia": "REF" },
-      { "horario": "17:20 - 18:10", "materia": "REF" }
+      { "horario": "17:20 - 18:10", "materia": "REF" },
+      { "horario": "18:10 - 19:30", "materia": "REF" },
+      { "horario": "19:30 - 20:20", "materia": "REF" }
     ]
   },
   {
@@ -44,7 +46,9 @@
       { "horario": "14:30 - 15:20", "materia": "PROSIS" },
       { "horario": "15:40 - 16:30", "materia": "PROSIS" },
       { "horario": "16:30 - 17:20", "materia": "REF" },
-      { "horario": "17:20 - 18:10", "materia": "REF" }
+      { "horario": "17:20 - 18:10", "materia": "REF" },
+      { "horario": "18:10 - 19:30", "materia": "REF" },
+      { "horario": "19:30 - 20:20", "materia": "REF" }
     ]
   },
   {
@@ -55,7 +59,9 @@
       { "horario": "14:30 - 15:20", "materia": "DesWeb I" },
       { "horario": "15:40 - 16:30", "materia": "DesWeb I" },
       { "horario": "16:30 - 17:20", "materia": "REF" },
-      { "horario": "17:20 - 18:10", "materia": "REF" }
+      { "horario": "17:20 - 18:10", "materia": "REF" },
+      { "horario": "18:10 - 19:30", "materia": "REF" },
+      { "horario": "19:30 - 20:20", "materia": "REF" }
     ]
   }
 ]
