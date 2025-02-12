@@ -1,0 +1,37 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+footer{
+    background-color: black;
+    color: white;
+}
+
+code {
+    font-family: monospace;
+}
+
+header{
+    min-height: 80px;
+    background-color: #333333;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+header a{
+    text-decoration: none;
+    color: white;
+    padding: 10px;
+    border: 2px solid snow;
+}
+
+header a:hover{
+    background-color: darkgreen;
+}
