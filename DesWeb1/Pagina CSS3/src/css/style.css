@@ -1,0 +1,51 @@
+/* comentario */
+
+* {
+  font-family: "Minecraft";
+}
+
+p {
+  color: red;
+  text-align: center;
+}
+
+h1 {
+  font-size: 50px;
+  border: 2px solid blue;
+  color: blue;
+  background-color: gray;
+}
+
+.destaque {
+  color: blueviolet;
+  font-weight: bold;
+}
+
+.fgrande {
+  font-size: 40px;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.grifado {
+  text-decoration: line-through;
+}
+
+.italico {
+  font-style: italic;
+}
+
+.red {
+  color: red;
+}
+
+.subescrito {
+  vertical-align: super;
+  font-size: smaller;
+}
+
+.Sublinhado {
+  text-decoration: underline;
+}
