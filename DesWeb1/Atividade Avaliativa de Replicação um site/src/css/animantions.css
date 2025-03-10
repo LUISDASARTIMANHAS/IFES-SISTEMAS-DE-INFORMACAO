@@ -1,0 +1,84 @@
+ul.ponto-flutuante li::before {
+  content: "";
+  width: 4px;
+  height: 4px;
+  margin-right: 10px;
+  background-color: red;
+  display: inline-block;
+  margin-bottom: 5px;
+}
+
+@keyframes Ani-laminado {
+  0% {
+    -webkit-transform: scale(0) rotate(45deg);
+    opacity: 0;
+  }
+
+  80% {
+    -webkit-transform: scale(0) rotate(45deg);
+    opacity: 0.5;
+  }
+
+  81% {
+    -webkit-transform: scale(4) rotate(45deg);
+    opacity: 1;
+  }
+
+  100% {
+    -webkit-transform: scale(50) rotate(45deg);
+    opacity: 0;
+  }
+}
+
+@keyframes animation-rgb-roda {
+  0% {
+    border-top-color: red;
+  }
+  16% {
+    border-top-color: orange;
+  }
+  32% {
+    border-top-color: yellow;
+  }
+  48% {
+    border-top-color: green;
+  }
+  64% {
+    border-top-color: lightblue;
+  }
+  80% {
+    border-top-color: blue;
+  }
+  96% {
+    border-top-color: purple;
+  }
+  100% {
+    border-top-color: red;
+  }
+}
+@keyframes ani-rbg {
+  0% {
+    color: red;
+  }
+  16% {
+    color: orange;
+  }
+  32% {
+    color: yellow;
+  }
+  48% {
+    color: green;
+  }
+  64% {
+    color: lightblue;
+  }
+  80% {
+    color: blue;
+  }
+  96% {
+    color: purple;
+  }
+  100% {
+    color: red;
+  }
+}
