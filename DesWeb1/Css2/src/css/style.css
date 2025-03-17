@@ -1,0 +1,47 @@
+footer a {
+	color: green;
+}
+
+footer a[title] {
+	color: aqua;
+}
+
+footer a[title="teste"] {
+	color: brown;
+}
+
+.destaque,h3 {
+	color: var(--vermelho);
+	font-weight: bold;
+}
+
+.fgrande {
+	font-size: 40px;
+}
+
+h1.destaque {
+	color: blueviolet;
+	text-decoration: underline;
+}
+
+.destaque.fgrande {
+	font-style: italic;
+}
+
+footer>p {
+	color: deeppink;
+}
+
+.destaque~p {
+	color: gold;
+}
+
+a:hover{
+	background-color: var(--vermelho);
+	color: white;
+	font-size: 30px;
+}
+
+p::first-letter{
+	font-size: 32px;
+}
