@@ -1,0 +1,3162 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="pt-br" xml:lang="pt-br" class="no-js">
+  <head>
+    <title>
+      Curso: Comunicação Empresarial - Sistema de Informação - 2023/1
+    </title>
+    <!-- ======================================================================================== -->
+    <!-- Altera a cor da janela do browser no Android -->
+    <meta name="theme-color" content="#68912e" />
+    <!-- ======================================================================================== -->
+    <link
+      rel="shortcut icon"
+      href="//ava.cefor.ifes.edu.br/pluginfile.php/1/theme_essential/favicon/1700847285/favicon.ico"
+    />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta
+      name="keywords"
+      content="moodle, Curso: Comunicação Empresarial - Sistema de Informação - 2023/1"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://ava.cefor.ifes.edu.br/theme/yui_combo.php?rollup/3.17.2/yui-moodlesimple-min.css"
+    />
+    <script id="firstthemesheet" type="text/css">
+      /** Required in order to fix style inclusion problems in IE with YUI **/
+    </script>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://ava.cefor.ifes.edu.br/theme/styles.php/ifescustom/1700847285/all"
+    />
+    <script type="text/javascript">
+      //<![CDATA[
+      var M = {};
+      M.yui = {};
+      M.pageloadstarttime = new Date();
+      M.cfg = {
+        wwwroot: "https:\/\/ava.cefor.ifes.edu.br",
+        0: "",
+        loadingicon:
+          "https:\/\/ava.cefor.ifes.edu.br\/theme\/image.php\/essential\/core\/1700847285\/i\/loading_small",
+        themerev: "1700847285",
+        slasharguments: 1,
+        theme: "ifescustom",
+        jsrev: "1694008189",
+        admin: "admin",
+        svgicons: true,
+      };
+      var yui1ConfigFn = function (me) {
+        if (/-skin|reset|fonts|grids|base/.test(me.name)) {
+          me.type = "css";
+          me.path = me.path.replace(/\.js/, ".css");
+          me.path = me.path.replace(
+            /\/yui2-skin/,
+            "/assets/skins/sam/yui2-skin"
+          );
+        }
+      };
+      var yui2ConfigFn = function (me) {
+        var parts = me.name.replace(/^moodle-/, "").split("-"),
+          component = parts.shift(),
+          module = parts[0],
+          min = "-min";
+        if (/-(skin|core)$/.test(me.name)) {
+          parts.pop();
+          me.type = "css";
+          min = "";
+        }
+        if (module) {
+          var filename = parts.join("-");
+          me.path =
+            component + "/" + module + "/" + filename + min + "." + me.type;
+        } else me.path = component + "/" + component + "." + me.type;
+      };
+      YUI_config = {
+        debug: false,
+        base: "https:\/\/ava.cefor.ifes.edu.br\/lib\/yuilib\/3.17.2\/",
+        comboBase: "https:\/\/ava.cefor.ifes.edu.br\/theme\/yui_combo.php?",
+        combine: true,
+        filter: null,
+        insertBefore: "firstthemesheet",
+        groups: {
+          yui2: {
+            base: "https:\/\/ava.cefor.ifes.edu.br\/lib\/yuilib\/2in3\/2.9.0\/build\/",
+            comboBase: "https:\/\/ava.cefor.ifes.edu.br\/theme\/yui_combo.php?",
+            combine: true,
+            ext: false,
+            root: "2in3\/2.9.0\/build\/",
+            patterns: { "yui2-": { group: "yui2", configFn: yui1ConfigFn } },
+          },
+          moodle: {
+            name: "moodle",
+            base: "https:\/\/ava.cefor.ifes.edu.br\/theme\/yui_combo.php?m\/1694008189\/",
+            combine: true,
+            comboBase: "https:\/\/ava.cefor.ifes.edu.br\/theme\/yui_combo.php?",
+            ext: false,
+            root: "m\/1694008189\/",
+            patterns: {
+              "moodle-": { group: "moodle", configFn: yui2ConfigFn },
+            },
+            filter: null,
+            modules: {
+              "moodle-core-lockscroll": { requires: ["plugin", "base-build"] },
+              "moodle-core-checknet": {
+                requires: [
+                  "base-base",
+                  "moodle-core-notification-alert",
+                  "io-base",
+                ],
+              },
+              "moodle-core-chooserdialogue": {
+                requires: ["base", "panel", "moodle-core-notification"],
+              },
+              "moodle-core-actionmenu": {
+                requires: ["base", "event", "node-event-simulate"],
+              },
+              "moodle-core-notification": {
+                requires: [
+                  "moodle-core-notification-dialogue",
+                  "moodle-core-notification-alert",
+                  "moodle-core-notification-confirm",
+                  "moodle-core-notification-exception",
+                  "moodle-core-notification-ajaxexception",
+                ],
+              },
+              "moodle-core-notification-dialogue": {
+                requires: [
+                  "base",
+                  "node",
+                  "panel",
+                  "escape",
+                  "event-key",
+                  "dd-plugin",
+                  "moodle-core-widget-focusafterclose",
+                  "moodle-core-lockscroll",
+                ],
+              },
+              "moodle-core-notification-alert": {
+                requires: ["moodle-core-notification-dialogue"],
+              },
+              "moodle-core-notification-confirm": {
+                requires: ["moodle-core-notification-dialogue"],
+              },
+              "moodle-core-notification-exception": {
+                requires: ["moodle-core-notification-dialogue"],
+              },
+              "moodle-core-notification-ajaxexception": {
+                requires: ["moodle-core-notification-dialogue"],
+              },
+              "moodle-core-handlebars": {
+                condition: { trigger: "handlebars", when: "after" },
+              },
+              "moodle-core-event": { requires: ["event-custom"] },
+              "moodle-core-formautosubmit": { requires: ["base", "event-key"] },
+              "moodle-core-blocks": {
+                requires: [
+                  "base",
+                  "node",
+                  "io",
+                  "dom",
+                  "dd",
+                  "dd-scroll",
+                  "moodle-core-dragdrop",
+                  "moodle-core-notification",
+                ],
+              },
+              "moodle-core-formchangechecker": {
+                requires: ["base", "event-focus", "moodle-core-event"],
+              },
+              "moodle-core-dragdrop": {
+                requires: [
+                  "base",
+                  "node",
+                  "io",
+                  "dom",
+                  "dd",
+                  "event-key",
+                  "event-focus",
+                  "moodle-core-notification",
+                ],
+              },
+              "moodle-core-tooltip": {
+                requires: [
+                  "base",
+                  "node",
+                  "io-base",
+                  "moodle-core-notification-dialogue",
+                  "json-parse",
+                  "widget-position",
+                  "widget-position-align",
+                  "event-outside",
+                  "cache-base",
+                ],
+              },
+              "moodle-core-popuphelp": { requires: ["moodle-core-tooltip"] },
+              "moodle-core-languninstallconfirm": {
+                requires: [
+                  "base",
+                  "node",
+                  "moodle-core-notification-confirm",
+                  "moodle-core-notification-alert",
+                ],
+              },
+              "moodle-core-maintenancemodetimer": {
+                requires: ["base", "node"],
+              },
+              "moodle-core-dock": {
+                requires: [
+                  "base",
+                  "node",
+                  "event-custom",
+                  "event-mouseenter",
+                  "event-resize",
+                  "escape",
+                  "moodle-core-dock-loader",
+                  "moodle-core-event",
+                ],
+              },
+              "moodle-core-dock-loader": { requires: ["escape"] },
+              "moodle-core_availability-form": {
+                requires: [
+                  "base",
+                  "node",
+                  "event",
+                  "panel",
+                  "moodle-core-notification-dialogue",
+                  "json",
+                ],
+              },
+              "moodle-backup-backupselectall": {
+                requires: ["node", "event", "node-event-simulate", "anim"],
+              },
+              "moodle-backup-confirmcancel": {
+                requires: [
+                  "node",
+                  "node-event-simulate",
+                  "moodle-core-notification-confirm",
+                ],
+              },
+              "moodle-calendar-info": {
+                requires: [
+                  "base",
+                  "node",
+                  "event-mouseenter",
+                  "event-key",
+                  "overlay",
+                  "moodle-calendar-info-skin",
+                ],
+              },
+              "moodle-course-util": {
+                requires: ["node"],
+                use: ["moodle-course-util-base"],
+                submodules: {
+                  "moodle-course-util-base": {},
+                  "moodle-course-util-section": {
+                    requires: ["node", "moodle-course-util-base"],
+                  },
+                  "moodle-course-util-cm": {
+                    requires: ["node", "moodle-course-util-base"],
+                  },
+                },
+              },
+              "moodle-course-categoryexpander": {
+                requires: ["node", "event-key"],
+              },
+              "moodle-course-management": {
+                requires: [
+                  "base",
+                  "node",
+                  "io-base",
+                  "moodle-core-notification-exception",
+                  "json-parse",
+                  "dd-constrain",
+                  "dd-proxy",
+                  "dd-drop",
+                  "dd-delegate",
+                  "node-event-delegate",
+                ],
+              },
+              "moodle-course-toolboxes": {
+                requires: [
+                  "node",
+                  "base",
+                  "event-key",
+                  "node",
+                  "io",
+                  "moodle-course-coursebase",
+                  "moodle-course-util",
+                ],
+              },
+              "moodle-course-formatchooser": {
+                requires: ["base", "node", "node-event-simulate"],
+              },
+              "moodle-course-modchooser": {
+                requires: [
+                  "moodle-core-chooserdialogue",
+                  "moodle-course-coursebase",
+                ],
+              },
+              "moodle-course-dragdrop": {
+                requires: [
+                  "base",
+                  "node",
+                  "io",
+                  "dom",
+                  "dd",
+                  "dd-scroll",
+                  "moodle-core-dragdrop",
+                  "moodle-core-notification",
+                  "moodle-course-coursebase",
+                  "moodle-course-util",
+                ],
+              },
+              "moodle-form-passwordunmask": { requires: ["node", "base"] },
+              "moodle-form-showadvanced": {
+                requires: ["node", "base", "selector-css3"],
+              },
+              "moodle-form-shortforms": {
+                requires: [
+                  "node",
+                  "base",
+                  "selector-css3",
+                  "moodle-core-event",
+                ],
+              },
+              "moodle-form-dateselector": {
+                requires: ["base", "node", "overlay", "calendar"],
+              },
+              "moodle-core_message-messenger": {
+                requires: [
+                  "escape",
+                  "handlebars",
+                  "io-base",
+                  "moodle-core-notification-ajaxexception",
+                  "moodle-core-notification-alert",
+                  "moodle-core-notification-dialogue",
+                  "moodle-core-notification-exception",
+                ],
+              },
+              "moodle-core_message-deletemessage": {
+                requires: ["node", "event"],
+              },
+              "moodle-question-preview": {
+                requires: [
+                  "base",
+                  "dom",
+                  "event-delegate",
+                  "event-key",
+                  "core_question_engine",
+                ],
+              },
+              "moodle-question-qbankmanager": {
+                requires: ["node", "selector-css3"],
+              },
+              "moodle-question-searchform": { requires: ["base", "node"] },
+              "moodle-question-chooser": {
+                requires: ["moodle-core-chooserdialogue"],
+              },
+              "moodle-availability_completion-form": {
+                requires: [
+                  "base",
+                  "node",
+                  "event",
+                  "moodle-core_availability-form",
+                ],
+              },
+              "moodle-availability_date-form": {
+                requires: [
+                  "base",
+                  "node",
+                  "event",
+                  "io",
+                  "moodle-core_availability-form",
+                ],
+              },
+              "moodle-availability_grade-form": {
+                requires: [
+                  "base",
+                  "node",
+                  "event",
+                  "moodle-core_availability-form",
+                ],
+              },
+              "moodle-availability_group-form": {
+                requires: [
+                  "base",
+                  "node",
+                  "event",
+                  "moodle-core_availability-form",
+                ],
+              },
+              "moodle-availability_grouping-form": {
+                requires: [
+                  "base",
+                  "node",
+                  "event",
+                  "moodle-core_availability-form",
+                ],
+              },
+              "moodle-availability_profile-form": {
+                requires: [
+                  "base",
+                  "node",
+                  "event",
+                  "moodle-core_availability-form",
+                ],
+              },
+              "moodle-availability_xp-form": {
+                requires: [
+                  "base",
+                  "node",
+                  "event",
+                  "handlebars",
+                  "moodle-core_availability-form",
+                ],
+              },
+              "moodle-qtype_ddimageortext-form": {
+                requires: ["moodle-qtype_ddimageortext-dd", "form_filepicker"],
+              },
+              "moodle-qtype_ddimageortext-dd": {
+                requires: ["node", "dd", "dd-drop", "dd-constrain"],
+              },
+              "moodle-qtype_ddmarker-dd": {
+                requires: [
+                  "node",
+                  "event-resize",
+                  "dd",
+                  "dd-drop",
+                  "dd-constrain",
+                  "graphics",
+                ],
+              },
+              "moodle-qtype_ddmarker-form": {
+                requires: [
+                  "moodle-qtype_ddmarker-dd",
+                  "form_filepicker",
+                  "graphics",
+                  "escape",
+                ],
+              },
+              "moodle-qtype_ddwtos-dd": {
+                requires: ["node", "dd", "dd-drop", "dd-constrain"],
+              },
+              "moodle-mod_assign-history": { requires: ["node", "transition"] },
+              "moodle-mod_attendance-groupfilter": {
+                requires: ["base", "node"],
+              },
+              "moodle-mod_bigbluebuttonbn-rooms": {
+                requires: [
+                  "base",
+                  "node",
+                  "datasource-get",
+                  "datasource-jsonschema",
+                  "datasource-polling",
+                  "moodle-core-notification",
+                ],
+              },
+              "moodle-mod_bigbluebuttonbn-recordings": {
+                requires: [
+                  "base",
+                  "node",
+                  "datasource-get",
+                  "datasource-jsonschema",
+                  "datasource-polling",
+                  "moodle-core-notification",
+                ],
+              },
+              "moodle-mod_bigbluebuttonbn-broker": {
+                requires: [
+                  "base",
+                  "node",
+                  "datasource-get",
+                  "datasource-jsonschema",
+                  "datasource-polling",
+                  "moodle-core-notification",
+                ],
+              },
+              "moodle-mod_bigbluebuttonbn-imports": {
+                requires: ["base", "node"],
+              },
+              "moodle-mod_bigbluebuttonbn-modform": {
+                requires: ["base", "node"],
+              },
+              "moodle-mod_forum-subscriptiontoggle": {
+                requires: ["base-base", "io-base"],
+              },
+              "moodle-mod_quiz-util": {
+                requires: ["node"],
+                use: ["moodle-mod_quiz-util-base"],
+                submodules: {
+                  "moodle-mod_quiz-util-base": {},
+                  "moodle-mod_quiz-util-slot": {
+                    requires: ["node", "moodle-mod_quiz-util-base"],
+                  },
+                  "moodle-mod_quiz-util-page": {
+                    requires: ["node", "moodle-mod_quiz-util-base"],
+                  },
+                },
+              },
+              "moodle-mod_quiz-quizquestionbank": {
+                requires: [
+                  "base",
+                  "event",
+                  "node",
+                  "io",
+                  "io-form",
+                  "yui-later",
+                  "moodle-question-qbankmanager",
+                  "moodle-core-notification-dialogue",
+                ],
+              },
+              "moodle-mod_quiz-autosave": {
+                requires: [
+                  "base",
+                  "node",
+                  "event",
+                  "event-valuechange",
+                  "node-event-delegate",
+                  "io-form",
+                ],
+              },
+              "moodle-mod_quiz-quizbase": { requires: ["base", "node"] },
+              "moodle-mod_quiz-toolboxes": {
+                requires: [
+                  "base",
+                  "node",
+                  "event",
+                  "event-key",
+                  "io",
+                  "moodle-mod_quiz-quizbase",
+                  "moodle-mod_quiz-util-slot",
+                  "moodle-core-notification-ajaxexception",
+                ],
+              },
+              "moodle-mod_quiz-randomquestion": {
+                requires: [
+                  "base",
+                  "event",
+                  "node",
+                  "io",
+                  "moodle-core-notification-dialogue",
+                ],
+              },
+              "moodle-mod_quiz-dragdrop": {
+                requires: [
+                  "base",
+                  "node",
+                  "io",
+                  "dom",
+                  "dd",
+                  "dd-scroll",
+                  "moodle-core-dragdrop",
+                  "moodle-core-notification",
+                  "moodle-mod_quiz-quizbase",
+                  "moodle-mod_quiz-util-base",
+                  "moodle-mod_quiz-util-page",
+                  "moodle-mod_quiz-util-slot",
+                  "moodle-course-util",
+                ],
+              },
+              "moodle-mod_quiz-repaginate": {
+                requires: [
+                  "base",
+                  "event",
+                  "node",
+                  "io",
+                  "moodle-core-notification-dialogue",
+                ],
+              },
+              "moodle-mod_quiz-questionchooser": {
+                requires: [
+                  "moodle-core-chooserdialogue",
+                  "moodle-mod_quiz-util",
+                  "querystring-parse",
+                ],
+              },
+              "moodle-mod_quiz-modform": {
+                requires: ["base", "node", "event"],
+              },
+              "moodle-message_airnotifier-toolboxes": {
+                requires: ["base", "node", "io"],
+              },
+              "moodle-block_xp-notification": {
+                requires: [
+                  "base",
+                  "node",
+                  "handlebars",
+                  "button-plugin",
+                  "moodle-core-notification-dialogue",
+                ],
+              },
+              "moodle-block_xp-filters": {
+                requires: [
+                  "base",
+                  "node",
+                  "moodle-core-dragdrop",
+                  "moodle-block_xp-rulepicker",
+                ],
+              },
+              "moodle-block_xp-rulepicker": {
+                requires: [
+                  "base",
+                  "node",
+                  "handlebars",
+                  "moodle-core-notification-dialogue",
+                ],
+              },
+              "moodle-filter_glossary-autolinker": {
+                requires: [
+                  "base",
+                  "node",
+                  "io-base",
+                  "json-parse",
+                  "event-delegate",
+                  "overlay",
+                  "moodle-core-event",
+                  "moodle-core-notification-alert",
+                  "moodle-core-notification-exception",
+                  "moodle-core-notification-ajaxexception",
+                ],
+              },
+              "moodle-filter_mathjaxloader-loader": {
+                requires: ["moodle-core-event"],
+              },
+              "moodle-editor_atto-rangy": { requires: [] },
+              "moodle-editor_atto-editor": {
+                requires: [
+                  "node",
+                  "transition",
+                  "io",
+                  "overlay",
+                  "escape",
+                  "event",
+                  "event-simulate",
+                  "event-custom",
+                  "node-event-html5",
+                  "node-event-simulate",
+                  "yui-throttle",
+                  "moodle-core-notification-dialogue",
+                  "moodle-core-notification-confirm",
+                  "moodle-editor_atto-rangy",
+                  "handlebars",
+                  "timers",
+                  "querystring-stringify",
+                ],
+              },
+              "moodle-editor_atto-plugin": {
+                requires: [
+                  "node",
+                  "base",
+                  "escape",
+                  "event",
+                  "event-outside",
+                  "handlebars",
+                  "event-custom",
+                  "timers",
+                  "moodle-editor_atto-menu",
+                ],
+              },
+              "moodle-editor_atto-menu": {
+                requires: [
+                  "moodle-core-notification-dialogue",
+                  "node",
+                  "event",
+                  "event-custom",
+                ],
+              },
+              "moodle-report_eventlist-eventfilter": {
+                requires: [
+                  "base",
+                  "event",
+                  "node",
+                  "node-event-delegate",
+                  "datatable",
+                  "autocomplete",
+                  "autocomplete-filters",
+                ],
+              },
+              "moodle-report_loglive-fetchlogs": {
+                requires: [
+                  "base",
+                  "event",
+                  "node",
+                  "io",
+                  "node-event-delegate",
+                ],
+              },
+              "moodle-report_overviewstats-charts": {
+                requires: ["base", "node", "charts", "charts-legend"],
+              },
+              "moodle-gradereport_grader-gradereporttable": {
+                requires: [
+                  "base",
+                  "node",
+                  "event",
+                  "handlebars",
+                  "overlay",
+                  "event-hover",
+                ],
+              },
+              "moodle-gradereport_history-userselector": {
+                requires: [
+                  "escape",
+                  "event-delegate",
+                  "event-key",
+                  "handlebars",
+                  "io-base",
+                  "json-parse",
+                  "moodle-core-notification-dialogue",
+                ],
+              },
+              "moodle-tool_capability-search": { requires: ["base", "node"] },
+              "moodle-tool_lp-dragdrop-reorder": {
+                requires: ["moodle-core-dragdrop"],
+              },
+              "moodle-tool_monitor-dropdown": {
+                requires: ["base", "event", "node"],
+              },
+              "moodle-assignfeedback_editpdf-editor": {
+                requires: [
+                  "base",
+                  "event",
+                  "node",
+                  "io",
+                  "graphics",
+                  "json",
+                  "event-move",
+                  "event-resize",
+                  "transition",
+                  "querystring-stringify-simple",
+                  "moodle-core-notification-dialog",
+                  "moodle-core-notification-exception",
+                  "moodle-core-notification-ajaxexception",
+                ],
+              },
+              "moodle-atto_accessibilitychecker-button": {
+                requires: ["color-base", "moodle-editor_atto-plugin"],
+              },
+              "moodle-atto_accessibilityhelper-button": {
+                requires: ["moodle-editor_atto-plugin"],
+              },
+              "moodle-atto_align-button": {
+                requires: ["moodle-editor_atto-plugin"],
+              },
+              "moodle-atto_bold-button": {
+                requires: ["moodle-editor_atto-plugin"],
+              },
+              "moodle-atto_charmap-button": {
+                requires: ["moodle-editor_atto-plugin"],
+              },
+              "moodle-atto_clear-button": {
+                requires: ["moodle-editor_atto-plugin"],
+              },
+              "moodle-atto_collapse-button": {
+                requires: ["moodle-editor_atto-plugin"],
+              },
+              "moodle-atto_emoticon-button": {
+                requires: ["moodle-editor_atto-plugin"],
+              },
+              "moodle-atto_equation-button": {
+                requires: [
+                  "moodle-editor_atto-plugin",
+                  "moodle-core-event",
+                  "io",
+                  "event-valuechange",
+                  "tabview",
+                  "array-extras",
+                ],
+              },
+              "moodle-atto_html-button": {
+                requires: ["moodle-editor_atto-plugin", "event-valuechange"],
+              },
+              "moodle-atto_image-button": {
+                requires: ["moodle-editor_atto-plugin"],
+              },
+              "moodle-atto_indent-button": {
+                requires: ["moodle-editor_atto-plugin"],
+              },
+              "moodle-atto_italic-button": {
+                requires: ["moodle-editor_atto-plugin"],
+              },
+              "moodle-atto_link-button": {
+                requires: ["moodle-editor_atto-plugin"],
+              },
+              "moodle-atto_managefiles-usedfiles": {
+                requires: ["node", "escape"],
+              },
+              "moodle-atto_managefiles-button": {
+                requires: ["moodle-editor_atto-plugin"],
+              },
+              "moodle-atto_media-button": {
+                requires: ["moodle-editor_atto-plugin"],
+              },
+              "moodle-atto_noautolink-button": {
+                requires: ["moodle-editor_atto-plugin"],
+              },
+              "moodle-atto_orderedlist-button": {
+                requires: ["moodle-editor_atto-plugin"],
+              },
+              "moodle-atto_recordrtc-button": {
+                requires: [
+                  "moodle-editor_atto-plugin",
+                  "moodle-atto_recordrtc-recording",
+                ],
+              },
+              "moodle-atto_recordrtc-recording": {
+                requires: ["moodle-atto_recordrtc-button"],
+              },
+              "moodle-atto_rtl-button": {
+                requires: ["moodle-editor_atto-plugin"],
+              },
+              "moodle-atto_strike-button": {
+                requires: ["moodle-editor_atto-plugin"],
+              },
+              "moodle-atto_structure-button": {
+                requires: ["moodle-editor_atto-plugin"],
+              },
+              "moodle-atto_subscript-button": {
+                requires: ["moodle-editor_atto-plugin"],
+              },
+              "moodle-atto_superscript-button": {
+                requires: ["moodle-editor_atto-plugin"],
+              },
+              "moodle-atto_table-button": {
+                requires: [
+                  "moodle-editor_atto-plugin",
+                  "moodle-editor_atto-menu",
+                  "event",
+                  "event-valuechange",
+                ],
+              },
+              "moodle-atto_title-button": {
+                requires: ["moodle-editor_atto-plugin"],
+              },
+              "moodle-atto_underline-button": {
+                requires: ["moodle-editor_atto-plugin"],
+              },
+              "moodle-atto_undo-button": {
+                requires: ["moodle-editor_atto-plugin"],
+              },
+              "moodle-atto_unorderedlist-button": {
+                requires: ["moodle-editor_atto-plugin"],
+              },
+              "moodle-atto_wiris-button": {
+                requires: ["moodle-editor_atto-plugin", "get"],
+              },
+              "moodle-tinymce_mathslate-dialogue": {
+                requires: [
+                  "escape",
+                  "moodle-local_mathslate-editor",
+                  "moodle-tinymce_mathslate-editor",
+                ],
+              },
+              "moodle-tinymce_mathslate-snippeteditor": { requires: ["json"] },
+              "moodle-tinymce_mathslate-mathjaxeditor": {
+                requires: ["moodle-tinymce_mathslate-snippeteditor", "dd-drop"],
+              },
+              "moodle-tinymce_mathslate-editor": {
+                requires: [
+                  "dd-drag",
+                  "dd-proxy",
+                  "dd-drop",
+                  "event",
+                  "tabview",
+                  "io-base",
+                  "json",
+                  "moodle-tinymce_mathslate-textool",
+                  "moodle-tinymce_mathslate-mathjaxeditor",
+                ],
+              },
+              "moodle-tinymce_mathslate-textool": {
+                requires: ["dd-drag", "dd-proxy", "dd-drop", "event", "json"],
+              },
+            },
+          },
+          gallery: {
+            name: "gallery",
+            base: "https:\/\/ava.cefor.ifes.edu.br\/lib\/yuilib\/gallery\/",
+            combine: true,
+            comboBase: "https:\/\/ava.cefor.ifes.edu.br\/theme\/yui_combo.php?",
+            ext: false,
+            root: "gallery\/1694008189\/",
+            patterns: { "gallery-": { group: "gallery" } },
+          },
+        },
+        modules: {
+          core_filepicker: {
+            name: "core_filepicker",
+            fullpath:
+              "https:\/\/ava.cefor.ifes.edu.br\/lib\/javascript.php\/1694008189\/repository\/filepicker.js",
+            requires: [
+              "base",
+              "node",
+              "node-event-simulate",
+              "json",
+              "async-queue",
+              "io-base",
+              "io-upload-iframe",
+              "io-form",
+              "yui2-treeview",
+              "panel",
+              "cookie",
+              "datatable",
+              "datatable-sort",
+              "resize-plugin",
+              "dd-plugin",
+              "escape",
+              "moodle-core_filepicker",
+            ],
+          },
+          core_comment: {
+            name: "core_comment",
+            fullpath:
+              "https:\/\/ava.cefor.ifes.edu.br\/lib\/javascript.php\/1694008189\/comment\/comment.js",
+            requires: [
+              "base",
+              "io-base",
+              "node",
+              "json",
+              "yui2-animation",
+              "overlay",
+            ],
+          },
+          core_completion: {
+            name: "core_completion",
+            fullpath:
+              "https:\/\/ava.cefor.ifes.edu.br\/lib\/javascript.php\/1694008189\/course\/completion.js",
+          },
+        },
+      };
+      M.yui.loader = { modules: {} };
+
+      //]]>
+    </script>
+
+    <meta
+      name="google-site-verification"
+      content="69JiJceulOxMUYJls8nk-F5h0F6rLtK4Yj9rUF2IVPY"
+    />
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=UA-149951235-1"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+
+      gtag("config", "UA-149951235-1");
+    </script>
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nunito&family=Open+Sans&display=swap"
+      rel="stylesheet"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Google web fonts -->
+    <link
+      href="//fonts.googleapis.com/css?family=Oswald|Arial&subset=latin,latin-ext"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <!-- iOS Homescreen Icons -->
+
+    <link
+      rel="apple-touch-icon"
+      sizes="57x57"
+      href="https://ava.cefor.ifes.edu.br/theme/image.php/essential/theme/1700847285/homeicon/iphone"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="72x72"
+      href="https://ava.cefor.ifes.edu.br/theme/image.php/essential/theme/1700847285/homeicon/ipad"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="114x114"
+      href="https://ava.cefor.ifes.edu.br/theme/image.php/essential/theme/1700847285/homeicon/iphone_retina"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="144x144"
+      href="https://ava.cefor.ifes.edu.br/theme/image.php/essential/theme/1700847285/homeicon/ipad_retina"
+    />
+    <!-- Start Analytics -->
+    <!-- End Analytics -->
+  </head>
+
+  <body
+    id="page-course-view-weeks"
+    class="format-weeks path-course path-course-view safari dir-ltr lang-pt_br yui-skin-sam yui3-skin-sam ava-cefor-ifes-edu-br pagelayout-course course-35239 context-3188076 category-3474 loggedin desktopdevice pagewidthnormal categoryicons modeditingmenu has-region-side-pre used-region-side-pre has-region-footer-left empty-region-footer-left has-region-footer-middle empty-region-footer-middle has-region-footer-right empty-region-footer-right has-region-header empty-region-header has-region-page-top empty-region-page-top has-region-side-post used-region-side-post"
+  >
+    <div class="skiplinks">
+      <a class="skip" href="#maincontent">Ir para o conteúdo principal</a>
+    </div>
+    <script
+      type="text/javascript"
+      src="https://ava.cefor.ifes.edu.br/theme/yui_combo.php?rollup/3.17.2/yui-moodlesimple-min.js&amp;rollup/1694008189/mcore-min.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="https://ava.cefor.ifes.edu.br/lib/javascript.php/1694008189/lib/javascript-static.js"
+    ></script>
+    <script type="text/javascript">
+      //<![CDATA[
+      document.body.className += " jsenabled";
+      //]]>
+    </script>
+
+    <header role="banner">
+      <nav
+        id="essentialnavbar"
+        role="navigation"
+        class="moodle-has-zindex logo"
+      >
+        <div class="navbar">
+          <div class="container-fluid navbar-inner">
+            <div class="row-fluid">
+              <div class="custommenus pull-left">
+                <!-- ======================================================================================== -->
+                <!-- Adicionado data-target=#navbar-main - Ativa a seção com o menu hambúrguer -->
+                <a
+                  class="btn btn-navbar"
+                  data-toggle="collapse"
+                  data-target="#essentialmenus,#navbar-main"
+                >
+                  <!-- ======================================================================================== -->
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                </a>
+                <!-- ======================================================================================== -->
+                <!-- Adiciona a classe .logo para que a logo seja adicionada automaticamente pelo CSS -->
+                <a
+                  class="logo"
+                  href="//ava.cefor.ifes.edu.br"
+                  title="Página inicial"
+                ></a>
+                <!-- ======================================================================================== -->
+                <!-- Torna o menu #navbar-main oculto por padrão em mobile -->
+                <div id="navbar-main" class="nav-collapse collapse pull-right">
+                  <!-- ======================================================================================== -->
+                  <div class="usermenu navbarrightitem">
+                    <ul class="nav">
+                      <li class="dropdown">
+                        <a
+                          class="dropdown-toggle"
+                          data-toggle="dropdown"
+                          href="#"
+                          ><img
+                            src=""
+                            alt="luis-das-artimanhas-img-perfil.png"
+                            title="luis-das-artimanhas-img-perfil.png"
+                            class="userpicture"
+                            width="64"
+                            height="64" />Anonimo<span
+                            aria-hidden="true"
+                            class="fa fa-caret-right"
+                          ></span
+                        ></a>
+                        <ul class="dropdown-menu pull-right">
+                          <li>
+                            <a
+                              href="https://ava.cefor.ifes.edu.br/user/profile.php"
+                              ><em
+                                ><span
+                                  aria-hidden="true"
+                                  class="fa fa-user"
+                                ></span
+                                >Anonimo</em
+                              ></a
+                            >
+                          </li>
+                          <li class="dropdown-submenu preferences">
+                            <a
+                              class="dropdown-toggle"
+                              data-toggle="dropdown"
+                              href="#"
+                              ><em
+                                ><span
+                                  aria-hidden="true"
+                                  class="fa fa-cog"
+                                ></span
+                                >Preferências</em
+                              ></a
+                            >
+                            <ul class="dropdown-menu">
+                              <li>
+                                <a
+                                  href="https://ava.cefor.ifes.edu.br/user/preferences.php?userid=106968"
+                                  ><em
+                                    ><span
+                                      aria-hidden="true"
+                                      class="fa fa-user"
+                                    ></span
+                                    >Usuário</em
+                                  ></a
+                                >
+                              </li>
+                              <li>
+                                <a
+                                  href="https://ava.cefor.ifes.edu.br/user/edit.php"
+                                  ><em
+                                    ><span
+                                      aria-hidden="true"
+                                      class="fa fa-info-circle"
+                                    ></span
+                                    >Modificar perfil</em
+                                  ></a
+                                >
+                              </li>
+                              <li>
+                                <a
+                                  href="https://ava.cefor.ifes.edu.br/login/change_password.php"
+                                  ><em
+                                    ><span
+                                      aria-hidden="true"
+                                      class="fa fa-key"
+                                    ></span
+                                    >Mudar a senha</em
+                                  ></a
+                                >
+                              </li>
+                              <li>
+                                <a
+                                  href="https://ava.cefor.ifes.edu.br/message/edit.php"
+                                  ><em
+                                    ><span
+                                      aria-hidden="true"
+                                      class="fa fa-comments"
+                                    ></span
+                                    >Mensagem</em
+                                  ></a
+                                >
+                              </li>
+                              <li>
+                                <a
+                                  href="https://ava.cefor.ifes.edu.br/blog/preferences.php"
+                                  ><em
+                                    ><span
+                                      aria-hidden="true"
+                                      class="fa fa-rss-square"
+                                    ></span
+                                    >Blog</em
+                                  ></a
+                                >
+                              </li>
+                              <li>
+                                <a
+                                  href="https://ava.cefor.ifes.edu.br/badges/preferences.php"
+                                  ><em
+                                    ><span
+                                      aria-hidden="true"
+                                      class="fa fa-certificate"
+                                    ></span
+                                    >Emblema</em
+                                  ></a
+                                >
+                              </li>
+                            </ul>
+                          </li>
+                          <hr class="sep" />
+                          <li>
+                            <a
+                              href="https://ava.cefor.ifes.edu.br/calendar/view.php"
+                              ><em
+                                ><span
+                                  aria-hidden="true"
+                                  class="fa fa-calendar"
+                                ></span
+                                >Calendário</em
+                              ></a
+                            >
+                          </li>
+                          <li>
+                            <a
+                              href="https://ava.cefor.ifes.edu.br/message/index.php"
+                              ><em
+                                ><span
+                                  aria-hidden="true"
+                                  class="fa fa-envelope"
+                                ></span
+                                >Mensagens</em
+                              ></a
+                            >
+                          </li>
+                          <li>
+                            <a
+                              href="https://ava.cefor.ifes.edu.br/user/files.php"
+                              ><em
+                                ><span
+                                  aria-hidden="true"
+                                  class="fa fa-file"
+                                ></span
+                                >Arquivos pessoais</em
+                              ></a
+                            >
+                          </li>
+                          <li>
+                            <a
+                              href="https://ava.cefor.ifes.edu.br/mod/forum/user.php"
+                              ><em
+                                ><span
+                                  aria-hidden="true"
+                                  class="fa fa-list-alt"
+                                ></span
+                                >Mensagens do fórum</em
+                              ></a
+                            >
+                          </li>
+                          <li>
+                            <a
+                              href="https://ava.cefor.ifes.edu.br/mod/forum/user.php&amp;mode=discussions"
+                              ><em
+                                ><span
+                                  aria-hidden="true"
+                                  class="fa fa-list"
+                                ></span
+                                >Tópicos</em
+                              ></a
+                            >
+                          </li>
+                          <hr class="sep" />
+                          <li>
+                            <a
+                              href="https://ava.cefor.ifes.edu.br/grade/report/overview/index.php?userid=106968&amp;id=35239"
+                              ><em
+                                ><span
+                                  aria-hidden="true"
+                                  class="fa fa-list-alt"
+                                ></span
+                                >Minhas notas</em
+                              ></a
+                            >
+                          </li>
+                          <li>
+                            <a
+                              href="https://ava.cefor.ifes.edu.br/grade/report/user/index.php?id=35239&amp;userid=106968"
+                              ><em
+                                ><span
+                                  aria-hidden="true"
+                                  class="fa fa-list-alt"
+                                ></span
+                                >Notas dos cursos</em
+                              ></a
+                            >
+                          </li>
+                          <li>
+                            <a
+                              href="https://ava.cefor.ifes.edu.br/badges/mybadges.php"
+                              ><em
+                                ><span
+                                  aria-hidden="true"
+                                  class="fa fa-certificate"
+                                ></span
+                                >Emblemas</em
+                              ></a
+                            >
+                          </li>
+                          <hr class="sep" />
+                          <li>
+                            <a
+                              href="https://ava.cefor.ifes.edu.br/login/logout.php?"
+                              ><em
+                                ><span
+                                  aria-hidden="true"
+                                  class="fa fa-sign-out"
+                                ></span
+                                >Sair</em
+                              ></a
+                            >
+                          </li>
+                          <li>
+                            <a
+                              target=""
+                              href="mailto:sistemas.cefor@ifes.edu.br?cc=0"
+                              ><em
+                                ><span
+                                  aria-hidden="true"
+                                  class="fa fa-question-circle"
+                                ></span
+                                >Ajuda</em
+                              ></a
+                            >
+                          </li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="messagemenu navbarrightitem">
+                    <ul class="nav">
+                      <li class="dropdown">
+                        <a
+                          href="https://ava.cefor.ifes.edu.br/message/index.php?viewing=recentconversations"
+                          class="dropdown-toggle"
+                          data-toggle="dropdown"
+                          title="0 mensagens não lidas"
+                          ><span>0</span
+                          ><span
+                            aria-hidden="true"
+                            class="fa fa-envelope-o"
+                          ></span
+                          ><span
+                            aria-hidden="true"
+                            class="fa fa-caret-right"
+                          ></span
+                        ></a>
+                        <div class="dropdown-menu">
+                          <ul>
+                            <li>
+                              <a
+                                title="Estudantes, bom..."
+                                href="https://ava.cefor.ifes.edu.br/message/index.php?user1=106968&amp;user2=1781"
+                                ><div class="message read">
+                                  <span class="msg-picture"
+                                    ><img
+                                      src="https://ava.cefor.ifes.edu.br/pluginfile.php/30458/user/icon/ifescustom/f1?rev=36044198"
+                                      alt="Imagem de David Paolini Develly"
+                                      title="Imagem de David Paolini Develly"
+                                      class="userpicture"
+                                      width="72"
+                                      height="72" /></span
+                                  ><span class="msg-body"
+                                    ><span class="msg-time"
+                                      ><span
+                                        aria-hidden="true"
+                                        class="fa fa-comments-o"
+                                      ></span
+                                      >1 ano atrás</span
+                                    ><span class="msg-sender">David</span
+                                    ><span class="msg-text"
+                                      >Estudantes, bom...</span
+                                    ></span
+                                  >
+                                </div></a
+                              >
+                            </li>
+                            <li>
+                              <a
+                                title="Prezad@s,
+
+Hoje..."
+                                href="https://ava.cefor.ifes.edu.br/message/index.php?user1=106968&amp;user2=6917"
+                                ><div class="message read">
+                                  <span class="msg-picture"
+                                    ><img
+                                      src="https://ava.cefor.ifes.edu.br/pluginfile.php/81837/user/icon/ifescustom/f1?rev=11221810"
+                                      alt="Imagem de EDUARDO MAX AMARO AMARAL"
+                                      title="Imagem de EDUARDO MAX AMARO AMARAL"
+                                      class="userpicture"
+                                      width="72"
+                                      height="72" /></span
+                                  ><span class="msg-body"
+                                    ><span class="msg-time"
+                                      ><span
+                                        aria-hidden="true"
+                                        class="fa fa-comments-o"
+                                      ></span
+                                      >1 ano atrás</span
+                                    ><span class="msg-sender">EDUARDO</span
+                                    ><span class="msg-text"
+                                      >Prezad@s, Hoje...</span
+                                    ></span
+                                  >
+                                </div></a
+                              >
+                            </li>
+                            <li>
+                              <a
+                                title="É melhor não, a..."
+                                href="https://ava.cefor.ifes.edu.br/message/index.php?user1=106968&amp;user2=14746"
+                                ><div class="message read">
+                                  <span class="msg-picture"
+                                    ><img
+                                      src="https://ava.cefor.ifes.edu.br/pluginfile.php/147711/user/icon/ifescustom/f1?rev=42534874"
+                                      alt="Imagem de Jean Eduardo Glazar"
+                                      title="Imagem de Jean Eduardo Glazar"
+                                      class="userpicture"
+                                      width="72"
+                                      height="72" /></span
+                                  ><span class="msg-body"
+                                    ><span class="msg-time"
+                                      ><span
+                                        aria-hidden="true"
+                                        class="fa fa-comments-o"
+                                      ></span
+                                      >1 ano atrás</span
+                                    ><span class="msg-sender">Jean</span
+                                    ><span class="msg-text"
+                                      >É melhor não, a...</span
+                                    ></span
+                                  >
+                                </div></a
+                              >
+                            </li>
+                            <li>
+                              <a
+                                title="Prezad@ Alun@,
+..."
+                                href="https://ava.cefor.ifes.edu.br/message/index.php?user1=106968&amp;user2=6917"
+                                ><div class="message read">
+                                  <span class="msg-picture"
+                                    ><img
+                                      src="https://ava.cefor.ifes.edu.br/pluginfile.php/81837/user/icon/ifescustom/f1?rev=11221810"
+                                      alt="Imagem de EDUARDO MAX AMARO AMARAL"
+                                      title="Imagem de EDUARDO MAX AMARO AMARAL"
+                                      class="userpicture"
+                                      width="72"
+                                      height="72" /></span
+                                  ><span class="msg-body"
+                                    ><span class="msg-time"
+                                      ><span
+                                        aria-hidden="true"
+                                        class="fa fa-comments-o"
+                                      ></span
+                                      >1 ano atrás</span
+                                    ><span class="msg-sender">EDUARDO</span
+                                    ><span class="msg-text"
+                                      >Prezad@ Alun@, ...</span
+                                    ></span
+                                  >
+                                </div></a
+                              >
+                            </li>
+                            <li>
+                              <a
+                                title="Olá,
+
+Para quem..."
+                                href="https://ava.cefor.ifes.edu.br/message/index.php?user1=106968&amp;user2=6917"
+                                ><div class="message read">
+                                  <span class="msg-picture"
+                                    ><img
+                                      src="https://ava.cefor.ifes.edu.br/pluginfile.php/81837/user/icon/ifescustom/f1?rev=11221810"
+                                      alt="Imagem de EDUARDO MAX AMARO AMARAL"
+                                      title="Imagem de EDUARDO MAX AMARO AMARAL"
+                                      class="userpicture"
+                                      width="72"
+                                      height="72" /></span
+                                  ><span class="msg-body"
+                                    ><span class="msg-time"
+                                      ><span
+                                        aria-hidden="true"
+                                        class="fa fa-comments-o"
+                                      ></span
+                                      >1 ano atrás</span
+                                    ><span class="msg-sender">EDUARDO</span
+                                    ><span class="msg-text"
+                                      >Olá, Para quem...</span
+                                    ></span
+                                  >
+                                </div></a
+                              >
+                            </li>
+                          </ul>
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="navbarrightitem">
+                    <!-- ======================================================================================== -->
+                    <!-- Remove o botão goto_bottom -->
+                    <!-- ======================================================================================== -->
+                  </div>
+                  <div id="custom_menu_editing" class="navbarrightitem"></div>
+                  <div class="navbarrightitem"></div>
+                </div>
+                <div
+                  id="essentialmenus"
+                  class="nav-collapse collapse pull-left"
+                >
+                  <div id="custom_menu_language" class="custom_menu">
+                    <ul class="nav"></ul>
+                  </div>
+                  <div id="custom_menu_courses" class="custom_menu">
+                    <ul class="nav">
+                      <li class="dropdown">
+                        <a
+                          href="#"
+                          class="dropdown-toggle"
+                          data-toggle="dropdown"
+                          title="Cursos"
+                          ><span
+                            aria-hidden="true"
+                            class="fa fa-briefcase"
+                          ></span
+                          >Cursos<span
+                            aria-hidden="true"
+                            class="fa fa-caret-right"
+                          ></span
+                        ></a>
+                        <div class="dropdown-menu">
+                          <ul>
+                            <li>
+                              <a
+                                title="Painel"
+                                href="https://ava.cefor.ifes.edu.br/my/index.php"
+                                ><span
+                                  ><span
+                                    aria-hidden="true"
+                                    class="fa fa-home"
+                                  ></span
+                                  ><span> Painel</span></span
+                                ></a
+                              >
+                            </li>
+                            <li>
+                              <a
+                                title="biblioteca"
+                                href="https://ava.cefor.ifes.edu.br/course/view.php?id=1774"
+                                ><span
+                                  ><span
+                                    aria-hidden="true"
+                                    class="fa fa-graduation-cap"
+                                  ></span
+                                  >Biblioteca Virtual</span
+                                ></a
+                              >
+                            </li>
+                            <li>
+                              <a
+                                title="31533. Comunicação Empresarial (Bacharel em SIN - Col - 2011/1) - 30h - João Ricardo da Silva Meireles"
+                                href="https://ava.cefor.ifes.edu.br/course/view.php?id=35239"
+                                ><span
+                                  ><span
+                                    aria-hidden="true"
+                                    class="fa fa-graduation-cap"
+                                  ></span
+                                  >Comunicação Empresarial - Sistema de
+                                  Informação - 2023/1</span
+                                ></a
+                              >
+                            </li>
+                            <li>
+                              <a
+                                title="30838. Metodologia da Pesquisa (Bacharel em SIN - Col - 2011/1) - 30h - Ricardo Tedesco da Silva"
+                                href="https://ava.cefor.ifes.edu.br/course/view.php?id=34548"
+                                ><span
+                                  ><span
+                                    aria-hidden="true"
+                                    class="fa fa-graduation-cap"
+                                  ></span
+                                  >2023-01 - Metodologia da Pesquisa BSI -
+                                  Ricardo Tedesco da Silva</span
+                                ></a
+                              >
+                            </li>
+                            <li>
+                              <a
+                                title="Organização e Arquitetura de Computadores - 2023 - 60h - Julio Cesar Goldner Vendramini"
+                                href="https://ava.cefor.ifes.edu.br/course/view.php?id=34463"
+                                ><span
+                                  ><span
+                                    aria-hidden="true"
+                                    class="fa fa-graduation-cap"
+                                  ></span
+                                  >Organização e Arquitetura de Computadores
+                                  (Bacharel em SIN - Col - 2011/1) - 60h - Julio
+                                  Cesar Goldner Vendramini - 2023</span
+                                ></a
+                              >
+                            </li>
+                          </ul>
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
+                  <div id="custom_menu" class="custom_menu">
+                    <ul class="nav"></ul>
+                  </div>
+                  <div id="custom_menu_activitystream" class="custom_menu">
+                    <ul class="nav">
+                      <li class="dropdown">
+                        <a
+                          href="#"
+                          class="dropdown-toggle"
+                          data-toggle="dropdown"
+                          title="Neste curso"
+                          ><span aria-hidden="true" class="fa fa-book"></span
+                          >Neste curso<span
+                            aria-hidden="true"
+                            class="fa fa-caret-right"
+                          ></span
+                        ></a>
+                        <div class="dropdown-menu">
+                          <ul>
+                            <li>
+                              <a
+                                title="Participantes"
+                                href="https://ava.cefor.ifes.edu.br/user/index.php?id=35239"
+                                ><span
+                                  aria-hidden="true"
+                                  class="fa fa-users"
+                                ></span
+                                >Participantes</a
+                              >
+                            </li>
+                            <li>
+                              <a
+                                title="Notas"
+                                href="https://ava.cefor.ifes.edu.br/grade/report/index.php?id=35239"
+                                ><span
+                                  aria-hidden="true"
+                                  class="icon fa fa-list-alt"
+                                ></span
+                                >Notas</a
+                              >
+                            </li>
+                            <li>
+                              <a
+                                href="https://ava.cefor.ifes.edu.br/mod/forum/index.php?id=35239"
+                                ><img
+                                  src="https://ava.cefor.ifes.edu.br/theme/image.php/essential/forum/1700847285/icon"
+                                  class="icon"
+                                  alt=""
+                                />Fóruns</a
+                              >
+                            </li>
+                            <li>
+                              <a
+                                href="https://ava.cefor.ifes.edu.br/mod/assign/index.php?id=35239"
+                                ><img
+                                  src="https://ava.cefor.ifes.edu.br/theme/image.php/essential/assign/1700847285/icon"
+                                  class="icon"
+                                  alt=""
+                                />Tarefas</a
+                              >
+                            </li>
+                          </ul>
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <div id="page-header" class="clearfix logo">
+        <div class="container-fluid">
+          <div class="row-fluid">
+            <!-- HEADER: LOGO AREA -->
+            <div class="pull-left">
+              <a class="textlogo" href="//ava.cefor.ifes.edu.br"
+                ><div class="titlearea">
+                  <h1>
+                    <a
+                      href="https://ava.cefor.ifes.edu.br/course/view.php?id=35239"
+                      >Comunicação Empresarial - Sistema de Informação -
+                      2023/1</a
+                    >
+                  </h1>
+                </div></a
+              >
+            </div>
+            <!-- ======================================================================================== -->
+            <!-- Adiciona o Breadcrumb e botão de edição no header, após o título. -->
+            <div id="page-top-header" class="clearfix">
+              <div id="page-navbar" class="clearfix row-fluid">
+                <div class="breadcrumb-nav span6">
+                  <span class="accesshide" id="navbar-label"
+                    >Caminho da página</span
+                  >
+                  <nav aria-labelledby="navbar-label">
+                    <ul class="breadcrumb style3">
+                      <li>
+                        <span
+                          itemscope=""
+                          itemtype="http://data-vocabulary.org/Breadcrumb"
+                          ><a
+                            itemprop="url"
+                            href="https://ava.cefor.ifes.edu.br/"
+                            ><span itemprop="title">Página inicial</span></a
+                          ></span
+                        >
+                      </li>
+                      <li>
+                        <span
+                          itemscope=""
+                          itemtype="http://data-vocabulary.org/Breadcrumb"
+                          ><a
+                            itemprop="url"
+                            href="https://ava.cefor.ifes.edu.br/course/index.php?categoryid=261"
+                            ><span itemprop="title">Campus Colatina</span></a
+                          ></span
+                        >
+                      </li>
+                      <li>
+                        <span
+                          itemscope=""
+                          itemtype="http://data-vocabulary.org/Breadcrumb"
+                          ><a
+                            itemprop="url"
+                            href="https://ava.cefor.ifes.edu.br/course/index.php?categoryid=730"
+                            ><span itemprop="title"
+                              >Graduação - Presencial</span
+                            ></a
+                          ></span
+                        >
+                      </li>
+                      <li>
+                        <span
+                          itemscope=""
+                          itemtype="http://data-vocabulary.org/Breadcrumb"
+                          ><a
+                            itemprop="url"
+                            href="https://ava.cefor.ifes.edu.br/course/index.php?categoryid=731"
+                            ><span itemprop="title"
+                              >Graduação Bacharelado</span
+                            ></a
+                          ></span
+                        >
+                      </li>
+                      <li>
+                        <span
+                          itemscope=""
+                          itemtype="http://data-vocabulary.org/Breadcrumb"
+                          ><a
+                            itemprop="url"
+                            href="https://ava.cefor.ifes.edu.br/course/index.php?categoryid=2813"
+                            ><span itemprop="title"
+                              >Sistemas de Informação</span
+                            ></a
+                          ></span
+                        >
+                      </li>
+                      <li>
+                        <span
+                          itemscope=""
+                          itemtype="http://data-vocabulary.org/Breadcrumb"
+                          ><a
+                            itemprop="url"
+                            href="https://ava.cefor.ifes.edu.br/course/index.php?categoryid=3474"
+                            ><span itemprop="title">2023/1</span></a
+                          ></span
+                        >
+                      </li>
+                      <li>
+                        <span
+                          itemscope=""
+                          itemtype="http://data-vocabulary.org/Breadcrumb"
+                          ><a
+                            itemprop="url"
+                            title="Comunicação Empresarial - Sistema de Informação - 2023/1"
+                            href="https://ava.cefor.ifes.edu.br/course/view.php?id=35239"
+                            ><span itemprop="title"
+                              >31533. Comunicação Empresarial (Bacharel em SIN -
+                              ...</span
+                            ></a
+                          ></span
+                        >
+                      </li>
+                    </ul>
+                  </nav>
+                </div>
+                <nav class="breadcrumb-button span6"></nav>
+              </div>
+            </div>
+            <!-- ======================================================================================== -->
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div id="page" class="container-fluid">
+      <!-- Start Main Regions -->
+      <div id="page-content" class="row-fluid">
+        <div id="main-and-pre" class="span9">
+          <div class="row-fluid">
+            <div id="content" class="span8 desktop-first-column">
+              <section id="region-main" class="border-removal">
+                <span class="notifications" id="user-notifications"></span>
+                <div role="main">
+                  <span id="maincontent"></span>
+                  <form action="." method="get">
+                    <div>
+                      <input
+                        type="hidden"
+                        id="completion_dynamic_change"
+                        name="completion_dynamic_change"
+                        value="0"
+                      />
+                    </div>
+                  </form>
+                  <div class="course-content">
+                    <div id="completionprogressid" class="completionprogress">
+                      Seu progresso<span class="helptooltip"
+                        ><a
+                          href="https://ava.cefor.ifes.edu.br/help.php?component=completion&amp;identifier=completionicons&amp;lang=pt_br"
+                          title="Ajuda com Caixa para marcar atividades concluídas"
+                          aria-haspopup="true"
+                          target="_blank"
+                          ><img
+                            src="https://ava.cefor.ifes.edu.br/theme/image.php/essential/core/1700847285/help"
+                            alt="Ajuda com Caixa para marcar atividades concluídas"
+                            class="iconhelp" /></a
+                      ></span>
+                    </div>
+                    <h2 class="accesshide">Agenda do Curso</h2>
+                    <ul class="weeks">
+                      <li
+                        id="section-0"
+                        class="section main clearfix"
+                        role="region"
+                        aria-label="Geral"
+                      >
+                        <span class="hidden sectionname">Geral</span>
+                        <div class="left side">
+                          <img
+                            width="1"
+                            height="1"
+                            class="spacer"
+                            alt=""
+                            src="https://ava.cefor.ifes.edu.br/theme/image.php/essential/core/1700847285/spacer"
+                          />
+                        </div>
+                        <div class="right side">
+                          <img
+                            width="1"
+                            height="1"
+                            class="spacer"
+                            alt=""
+                            src="https://ava.cefor.ifes.edu.br/theme/image.php/essential/core/1700847285/spacer"
+                          />
+                        </div>
+                        <div class="content">
+                          <h3 class="sectionname accesshide">
+                            <span>Geral</span>
+                          </h3>
+                          <div class="summary"></div>
+                          <ul class="section img-text">
+                            <li
+                              class="activity forum modtype_forum"
+                              id="module-2154168"
+                            >
+                              <div>
+                                <div class="mod-indent-outer">
+                                  <div class="mod-indent"></div>
+                                  <div>
+                                    <div class="activityinstance">
+                                      <a
+                                        class=""
+                                        onclick=""
+                                        href="https://ava.cefor.ifes.edu.br/mod/forum/view.php?id=2154168"
+                                        ><img
+                                          src="https://ava.cefor.ifes.edu.br/theme/image.php/essential/forum/1700847285/icon"
+                                          class="iconlarge activityicon"
+                                          alt=" "
+                                          role="presentation"
+                                        /><span class="instancename"
+                                          >Avisos<span class="accesshide">
+                                            Fórum</span
+                                          ></span
+                                        ></a
+                                      >
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </li>
+                          </ul>
+                        </div>
+                      </li>
+                      <li
+                        id="section-1"
+                        class="section main clearfix"
+                        role="region"
+                        aria-label="Avaliação Final Comunicação Empresarial"
+                      >
+                        <span class="hidden sectionname"
+                          >Avaliação Final Comunicação Empresarial</span
+                        >
+                        <div class="left side">
+                          <img
+                            width="1"
+                            height="1"
+                            class="spacer"
+                            alt=""
+                            src="https://ava.cefor.ifes.edu.br/theme/image.php/essential/core/1700847285/spacer"
+                          />
+                        </div>
+                        <div class="right side">
+                          <img
+                            width="1"
+                            height="1"
+                            class="spacer"
+                            alt=""
+                            src="https://ava.cefor.ifes.edu.br/theme/image.php/essential/core/1700847285/spacer"
+                          />
+                        </div>
+                        <div class="content">
+                          <h3 class="sectionname">
+                            <span>Avaliação Final Comunicação Empresarial</span>
+                          </h3>
+                          <div class="summary">
+                            <div class="no-overflow">
+                              <p>
+                                Aqui você postará seu trabalho final de
+                                Comunicação Empresarial.
+                              </p>
+                            </div>
+                          </div>
+                          <ul class="section img-text">
+                            <li
+                              class="activity assign modtype_assign"
+                              id="module-2154170"
+                            >
+                              <div>
+                                <div class="mod-indent-outer">
+                                  <div class="mod-indent"></div>
+                                  <div>
+                                    <div class="activityinstance">
+                                      <a
+                                        class=""
+                                        onclick=""
+                                        href="https://ava.cefor.ifes.edu.br/mod/assign/view.php?id=2154170"
+                                        ><img
+                                          src="https://ava.cefor.ifes.edu.br/theme/image.php/essential/assign/1700847285/icon"
+                                          class="iconlarge activityicon"
+                                          alt=" "
+                                          role="presentation"
+                                        /><span class="instancename"
+                                          >Texto Acadêmico<span
+                                            class="accesshide"
+                                          >
+                                            Tarefa</span
+                                          ></span
+                                        ></a
+                                      >
+                                    </div>
+                                    <span class="actions"
+                                      ><form
+                                        method="post"
+                                        action="https://ava.cefor.ifes.edu.br/course/togglecompletion.php"
+                                        class="togglecompletion"
+                                      >
+                                        <div>
+                                          <input
+                                            type="hidden"
+                                            name="id"
+                                            value="2154170"
+                                          /><input
+                                            type="hidden"
+                                            name="0"
+                                            value=""
+                                          /><input
+                                            type="hidden"
+                                            name="modulename"
+                                            value="Texto Acadêmico"
+                                          /><input
+                                            type="hidden"
+                                            name="completionstate"
+                                            value="0"
+                                          /><input
+                                            type="image"
+                                            src="https://ava.cefor.ifes.edu.br/theme/image.php/essential/core/1700847285/i/completion-manual-y"
+                                            alt="Concluído(s): Texto Acadêmico. Selecione para marcar como não concluído."
+                                            title="Marcar como não concluído: Texto Acadêmico"
+                                            aria-live="polite"
+                                          />
+                                        </div></form
+                                    ></span>
+                                  </div>
+                                </div>
+                              </div>
+                            </li>
+                          </ul>
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </section>
+            </div>
+            <aside
+              id="block-region-side-pre"
+              class="span4 pull-right block-region"
+              data-blockregion="side-pre"
+              data-droptarget="1"
+            >
+              <a class="skip skip-block" id="fsb-2" href="#sb-2"
+                >Pular Atividade recente</a
+              >
+              <div
+                id="inst886856"
+                class="block_recent_activity block"
+                role="complementary"
+                data-block="recent_activity"
+                data-instanceid="886856"
+                aria-labelledby="instance-886856-header"
+                data-dockable="1"
+              >
+                <div class="header">
+                  <div class="title">
+                    <div class="block_action"></div>
+                    <span aria-hidden="true" class="fa fa-clock-o"></span>
+                    <h2 id="instance-886856-header">Atividade recente</h2>
+                  </div>
+                </div>
+                <div class="content">
+                  <div class="activityhead">
+                    Atividade desde Wednesday, 19 Mar 2025, 09:00
+                  </div>
+                  <div class="activityhead">
+                    <a
+                      href="https://ava.cefor.ifes.edu.br/course/recent.php?id=35239"
+                      >Relatório completo da atividade recente..</a
+                    >
+                  </div>
+                  <p class="message">Nenhuma atividade recente</p>
+                </div>
+              </div>
+              <span class="skip-block-to" id="sb-2"></span
+              ><a class="skip skip-block" id="fsb-3" href="#sb-3"
+                >Pular Calendário</a
+              >
+              <div
+                id="inst886857"
+                class="block_calendar_month block"
+                role="complementary"
+                data-block="calendar_month"
+                data-instanceid="886857"
+                aria-labelledby="instance-886857-header"
+                data-dockable="1"
+              >
+                <div class="header">
+                  <div class="title">
+                    <div class="block_action"></div>
+                    <span aria-hidden="true" class="fa fa-calendar"></span>
+                    <h2 id="instance-886857-header">Calendário</h2>
+                  </div>
+                </div>
+                <div class="content">
+                  <table
+                    class="minicalendar calendartable"
+                    summary="March 2025 Calendário"
+                  >
+                    <caption>
+                      <div class="calendar-controls">
+                        <a
+                          class="arrow_link previous"
+                          href="https://ava.cefor.ifes.edu.br/course/view.php?id=35239&amp;time=1738378800"
+                          title="Mês anterior"
+                          ><span class="arrow">&#x25C4;</span
+                          ><span class="accesshide"
+                            >&nbsp;<span class="arrow_text"
+                              >Mês anterior</span
+                            ></span
+                          ></a
+                        ><span class="hide"> | </span
+                        ><span class="current"
+                          ><a
+                            title="Este mês"
+                            href="https://ava.cefor.ifes.edu.br/calendar/view.php?view=month&amp;time=1742558440&amp;course=35239"
+                            >March 2025</a
+                          ></span
+                        ><span class="hide"> | </span
+                        ><a
+                          class="arrow_link next"
+                          href="https://ava.cefor.ifes.edu.br/course/view.php?id=35239&amp;time=1743476400"
+                          title="Próximo mês"
+                          ><span class="accesshide"
+                            ><span class="arrow_text">Próximo mês</span
+                            >&nbsp;</span
+                          ><span class="arrow">&#x25BA;</span></a
+                        ><span class="clearer"><!-- --></span>
+                      </div>
+                    </caption>
+                    <tr class="weekdays">
+                      <th scope="col"><abbr title="Domingo">Dom</abbr></th>
+                      <th scope="col">
+                        <abbr title="Segunda-feira">Seg</abbr>
+                      </th>
+                      <th scope="col"><abbr title="Terça-feira">Ter</abbr></th>
+                      <th scope="col"><abbr title="Quarta-feira">Qua</abbr></th>
+                      <th scope="col"><abbr title="Quinta-feira">Qui</abbr></th>
+                      <th scope="col"><abbr title="Sexta-feira">Sex</abbr></th>
+                      <th scope="col"><abbr title="Sábado">Sáb</abbr></th>
+                    </tr>
+                    <tr>
+                      <td class="dayblank">&nbsp;</td>
+                      <td class="dayblank">&nbsp;</td>
+                      <td class="dayblank">&nbsp;</td>
+                      <td class="dayblank">&nbsp;</td>
+                      <td class="dayblank">&nbsp;</td>
+                      <td class="dayblank">&nbsp;</td>
+                      <td class="weekend day">1</td>
+                    </tr>
+                    <tr>
+                      <td class="weekend day">2</td>
+                      <td class="day">3</td>
+                      <td class="day">4</td>
+                      <td class="day">5</td>
+                      <td class="day">6</td>
+                      <td class="day">7</td>
+                      <td class="weekend day">8</td>
+                    </tr>
+                    <tr>
+                      <td class="weekend day">9</td>
+                      <td class="day">10</td>
+                      <td class="day">11</td>
+                      <td class="day">12</td>
+                      <td class="day">13</td>
+                      <td class="day">14</td>
+                      <td class="weekend day">15</td>
+                    </tr>
+                    <tr>
+                      <td class="weekend day">16</td>
+                      <td class="day">17</td>
+                      <td class="day">18</td>
+                      <td class="day">19</td>
+                      <td class="day">20</td>
+                      <td
+                        data-core_calendar-title="Hoje Friday, 21 March"
+                        data-core_calendar-popupcontent="Nenhum evento"
+                        class="day today eventnone"
+                      >
+                        <span class="accesshide">Hoje Friday, 21 March </span
+                        ><a href="#">21</a>
+                      </td>
+                      <td class="weekend day">22</td>
+                    </tr>
+                    <tr>
+                      <td class="weekend day">23</td>
+                      <td class="day">24</td>
+                      <td class="day">25</td>
+                      <td class="day">26</td>
+                      <td class="day">27</td>
+                      <td class="day">28</td>
+                      <td class="weekend day">29</td>
+                    </tr>
+                    <tr>
+                      <td class="weekend day">30</td>
+                      <td class="day">31</td>
+                      <td class="dayblank">&nbsp;</td>
+                      <td class="dayblank">&nbsp;</td>
+                      <td class="dayblank">&nbsp;</td>
+                      <td class="dayblank">&nbsp;</td>
+                      <td class="dayblank">&nbsp;</td>
+                    </tr>
+                  </table>
+                  <h3 class="eventskey">Chave de eventos</h3>
+                  <div class="filters calendar_filters">
+                    <ul>
+                      <li class="calendar_event">
+                        <a
+                          href="https://ava.cefor.ifes.edu.br/calendar/set.php?return=L2NvdXJzZS92aWV3LnBocD9pZD0zNTIzOQ%3D%3D&amp;&amp;var=showglobal"
+                          rel="nofollow"
+                          ><span class="calendar_event_global"
+                            ><i
+                              class="fa fa-eye icon"
+                              title="Ocultar"
+                              aria-hidden="true"
+                              ><img
+                                class="smallicon"
+                                alt="Ocultar"
+                                title="Ocultar"
+                                src="https://ava.cefor.ifes.edu.br/theme/image.php/essential/core/1700847285/t/hide" /></i></span
+                          ><span class="eventname"
+                            >Ocultar eventos globais</span
+                          ></a
+                        >
+                      </li>
+                      <li class="calendar_event">
+                        <a
+                          href="https://ava.cefor.ifes.edu.br/calendar/set.php?return=L2NvdXJzZS92aWV3LnBocD9pZD0zNTIzOQ%3D%3D&amp;&amp;var=showcourses"
+                          rel="nofollow"
+                          ><span class="calendar_event_course"
+                            ><i
+                              class="fa fa-eye icon"
+                              title="Ocultar"
+                              aria-hidden="true"
+                              ><img
+                                class="smallicon"
+                                alt="Ocultar"
+                                title="Ocultar"
+                                src="https://ava.cefor.ifes.edu.br/theme/image.php/essential/core/1700847285/t/hide" /></i></span
+                          ><span class="eventname"
+                            >Ocultar eventos de curso</span
+                          ></a
+                        >
+                      </li>
+                      <li class="calendar_event">
+                        <a
+                          href="https://ava.cefor.ifes.edu.br/calendar/set.php?return=L2NvdXJzZS92aWV3LnBocD9pZD0zNTIzOQ%3D%3D&amp;&amp;var=showgroups"
+                          rel="nofollow"
+                          ><span class="calendar_event_group"
+                            ><i
+                              class="fa fa-eye icon"
+                              title="Ocultar"
+                              aria-hidden="true"
+                              ><img
+                                class="smallicon"
+                                alt="Ocultar"
+                                title="Ocultar"
+                                src="https://ava.cefor.ifes.edu.br/theme/image.php/essential/core/1700847285/t/hide" /></i></span
+                          ><span class="eventname"
+                            >Ocultar eventos de grupo</span
+                          ></a
+                        >
+                      </li>
+                      <li class="calendar_event">
+                        <a
+                          href="https://ava.cefor.ifes.edu.br/calendar/set.php?return=L2NvdXJzZS92aWV3LnBocD9pZD0zNTIzOQ%3D%3D&amp;&amp;var=showuser"
+                          rel="nofollow"
+                          ><span class="calendar_event_user"
+                            ><i
+                              class="fa fa-eye icon"
+                              title="Ocultar"
+                              aria-hidden="true"
+                              ><img
+                                class="smallicon"
+                                alt="Ocultar"
+                                title="Ocultar"
+                                src="https://ava.cefor.ifes.edu.br/theme/image.php/essential/core/1700847285/t/hide" /></i></span
+                          ><span class="eventname"
+                            >Ocultar eventos de usuário</span
+                          ></a
+                        >
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <span class="skip-block-to" id="sb-3"></span
+              ><a class="skip skip-block" id="fsb-4" href="#sb-4"
+                >Pular Próximos eventos</a
+              >
+              <div
+                id="inst886858"
+                class="block_calendar_upcoming block"
+                role="complementary"
+                data-block="calendar_upcoming"
+                data-instanceid="886858"
+                aria-labelledby="instance-886858-header"
+                data-dockable="1"
+              >
+                <div class="header">
+                  <div class="title">
+                    <div class="block_action"></div>
+                    <span aria-hidden="true" class="fa fa-calendar"></span>
+                    <h2 id="instance-886858-header">Próximos eventos</h2>
+                  </div>
+                </div>
+                <div class="content">
+                  <div class="post">Não há nenhum evento próximo</div>
+                  <div class="footer">
+                    <div class="gotocal">
+                      <a
+                        href="https://ava.cefor.ifes.edu.br/calendar/view.php?view=upcoming&amp;course=35239"
+                        >Ir ao calendário</a
+                      >...
+                    </div>
+                    <div class="newevent">
+                      <a
+                        href="https://ava.cefor.ifes.edu.br/calendar/event.php?action=new&amp;course=35239"
+                        >Novo evento</a
+                      >...
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <span class="skip-block-to" id="sb-4"></span
+              ><a class="skip skip-block" id="fsb-5" href="#sb-5"
+                >Pular Últimos avisos</a
+              >
+              <div
+                id="inst886859"
+                class="block_news_items block"
+                role="complementary"
+                data-block="news_items"
+                data-instanceid="886859"
+                aria-labelledby="instance-886859-header"
+                data-dockable="1"
+              >
+                <div class="header">
+                  <div class="title">
+                    <div class="block_action"></div>
+                    <span aria-hidden="true" class="fa fa-bullhorn"></span>
+                    <h2 id="instance-886859-header">Últimos avisos</h2>
+                  </div>
+                </div>
+                <div class="content">(Nenhuma notícia publicada)</div>
+              </div>
+              <span class="skip-block-to" id="sb-5"></span
+              ><a class="skip skip-block" id="fsb-6" href="#sb-6"
+                >Pular Pesquisar nos fóruns</a
+              >
+              <div
+                id="inst886860"
+                class="block_search_forums block"
+                role="search"
+                data-block="search_forums"
+                data-instanceid="886860"
+                aria-labelledby="instance-886860-header"
+                data-dockable="1"
+              >
+                <div class="header">
+                  <div class="title">
+                    <div class="block_action"></div>
+                    <span aria-hidden="true" class="fa fa-comments-o"></span>
+                    <h2 id="instance-886860-header">Pesquisar nos fóruns</h2>
+                  </div>
+                </div>
+                <div class="content">
+                  <div class="searchform">
+                    <form
+                      action="https://ava.cefor.ifes.edu.br/mod/forum/search.php"
+                      style="display: inline"
+                    >
+                      <fieldset class="invisiblefieldset">
+                        <legend class="accesshide">Buscar</legend>
+                        <input name="id" type="hidden" value="35239" /><label
+                          class="accesshide"
+                          for="searchform_search"
+                          >Buscar</label
+                        ><input
+                          id="searchform_search"
+                          name="search"
+                          type="text"
+                          size="16"
+                        /><button
+                          id="searchform_button"
+                          type="submit"
+                          title="Buscar"
+                        >
+                          Vai</button
+                        ><br /><a
+                          href="https://ava.cefor.ifes.edu.br/mod/forum/search.php?id=35239"
+                          >Pesquisa Avançada</a
+                        ><span class="helptooltip"
+                          ><a
+                            href="https://ava.cefor.ifes.edu.br/help.php?component=moodle&amp;identifier=search&amp;lang=pt_br"
+                            title="Ajuda com Buscar"
+                            aria-haspopup="true"
+                            target="_blank"
+                            ><img
+                              src="https://ava.cefor.ifes.edu.br/theme/image.php/essential/core/1700847285/help"
+                              alt="Ajuda com Buscar"
+                              class="iconhelp" /></a
+                        ></span>
+                      </fieldset>
+                    </form>
+                  </div>
+                </div>
+              </div>
+              <span class="skip-block-to" id="sb-6"></span>
+            </aside>
+          </div>
+        </div>
+        <aside
+          id="block-region-side-post"
+          class="span3 block-region"
+          data-blockregion="side-post"
+          data-droptarget="1"
+        >
+          <a class="skip skip-block" id="fsb-7" href="#sb-7">Pular Navegação</a>
+          <div
+            id="inst4"
+            class="block_navigation block"
+            role="navigation"
+            data-block="navigation"
+            data-instanceid="4"
+            aria-labelledby="instance-4-header"
+            data-dockable="1"
+          >
+            <div class="header">
+              <div class="title">
+                <div class="block_action"></div>
+                <span aria-hidden="true" class="fa fa-sitemap"></span>
+                <h2 id="instance-4-header">Navegação</h2>
+              </div>
+            </div>
+            <div class="content">
+              <ul
+                class="block_tree list"
+                role="tree"
+                data-ajax-loader="block_navigation/nav_loader"
+              >
+                <li
+                  class="type_unknown depth_1 contains_branch"
+                  aria-labelledby="label_1_1"
+                >
+                  <p
+                    class="tree_item branch canexpand navigation_node"
+                    role="treeitem"
+                    aria-expanded="true"
+                    aria-owns="random67dd54e8e28cc2_group"
+                    data-collapsible="false"
+                  >
+                    <a
+                      tabindex="-1"
+                      id="label_1_1"
+                      href="https://ava.cefor.ifes.edu.br/"
+                      >Página inicial</a
+                    >
+                  </p>
+                  <ul id="random67dd54e8e28cc2_group" role="group">
+                    <li
+                      class="type_setting depth_2 item_with_icon"
+                      aria-labelledby="label_2_2"
+                    >
+                      <p class="tree_item hasicon" role="treeitem">
+                        <a
+                          tabindex="-1"
+                          id="label_2_2"
+                          href="https://ava.cefor.ifes.edu.br/my/"
+                          ><i class="fa fa-file icon" aria-hidden="true"
+                            ><img
+                              class="smallicon navicon"
+                              alt=""
+                              src="https://ava.cefor.ifes.edu.br/theme/image.php/essential/core/1700847285/i/navigationitem" /></i
+                          ><span class="item-content-wrap">Painel</span></a
+                        >
+                      </p>
+                    </li>
+                    <li
+                      class="type_system depth_2 contains_branch"
+                      aria-labelledby="label_2_4"
+                    >
+                      <p
+                        class="tree_item branch"
+                        role="treeitem"
+                        aria-expanded="true"
+                        aria-owns="random67dd54e8e28cc4_group"
+                      >
+                        <span tabindex="-1" id="label_2_4">Curso atual</span>
+                      </p>
+                      <ul id="random67dd54e8e28cc4_group" role="group">
+                        <li
+                          class="type_course depth_3 contains_branch current_branch"
+                          aria-labelledby="label_3_5"
+                        >
+                          <p
+                            class="tree_item branch active_tree_node"
+                            role="treeitem"
+                            aria-expanded="true"
+                            aria-owns="random67dd54e8e28cc5_group"
+                          >
+                            <a
+                              tabindex="-1"
+                              id="label_3_5"
+                              title="Comunicação Empresarial - Sistema de Informação - 2023/1"
+                              href="https://ava.cefor.ifes.edu.br/course/view.php?id=35239"
+                              >31533. Comunicação Empresarial (Bacharel em SIN -
+                              ...</a
+                            >
+                          </p>
+                          <ul id="random67dd54e8e28cc5_group" role="group">
+                            <li
+                              class="type_unknown depth_4 contains_branch"
+                              aria-labelledby="label_4_6"
+                            >
+                              <p
+                                class="tree_item branch"
+                                role="treeitem"
+                                aria-expanded="false"
+                                aria-owns="random67dd54e8e28cc6_group"
+                              >
+                                <a
+                                  tabindex="-1"
+                                  id="label_4_6"
+                                  href="https://ava.cefor.ifes.edu.br/user/index.php?id=35239"
+                                  >Participantes</a
+                                >
+                              </p>
+                              <ul
+                                id="random67dd54e8e28cc6_group"
+                                role="group"
+                                aria-hidden="true"
+                              >
+                                <li
+                                  class="type_setting depth_5 item_with_icon"
+                                  aria-labelledby="label_5_7"
+                                >
+                                  <p class="tree_item hasicon" role="treeitem">
+                                    <a
+                                      tabindex="-1"
+                                      id="label_5_7"
+                                      href="https://ava.cefor.ifes.edu.br/blog/index.php?groupid=132919"
+                                      ><i
+                                        class="fa fa-file icon"
+                                        aria-hidden="true"
+                                        ><img
+                                          class="smallicon navicon"
+                                          alt=""
+                                          src="https://ava.cefor.ifes.edu.br/theme/image.php/essential/core/1700847285/i/navigationitem" /></i
+                                      ><span class="item-content-wrap"
+                                        >Blogs do curso</span
+                                      ></a
+                                    >
+                                  </p>
+                                </li>
+                                <li
+                                  class="type_user depth_5 item_with_icon"
+                                  aria-labelledby="label_5_8"
+                                >
+                                  <p class="tree_item hasicon" role="treeitem">
+                                    <a
+                                      tabindex="-1"
+                                      id="label_5_8"
+                                      href="https://ava.cefor.ifes.edu.br/user/view.php&amp;course=35239"
+                                      ><i
+                                        class="fa fa-file icon"
+                                        aria-hidden="true"
+                                        ><img
+                                          class="smallicon navicon"
+                                          alt=""
+                                          src="https://ava.cefor.ifes.edu.br/theme/image.php/essential/core/1700847285/i/navigationitem" /></i
+                                      ><span class="item-content-wrap"
+                                        >Anonimo</span
+                                      ></a
+                                    >
+                                  </p>
+                                </li>
+                              </ul>
+                            </li>
+                            <li
+                              class="type_unknown depth_4 contains_branch"
+                              aria-labelledby="label_4_9"
+                            >
+                              <p
+                                class="tree_item branch"
+                                role="treeitem"
+                                aria-expanded="false"
+                                aria-owns="random67dd54e8e28cc9_group"
+                              >
+                                <span tabindex="-1" id="label_4_9"
+                                  >Emblemas</span
+                                >
+                              </p>
+                              <ul
+                                id="random67dd54e8e28cc9_group"
+                                role="group"
+                                aria-hidden="true"
+                              >
+                                <li
+                                  class="type_setting depth_5 item_with_icon"
+                                  aria-labelledby="label_5_10"
+                                >
+                                  <p class="tree_item hasicon" role="treeitem">
+                                    <a
+                                      tabindex="-1"
+                                      id="label_5_10"
+                                      href="https://ava.cefor.ifes.edu.br/badges/view.php?type=2&amp;id=35239"
+                                      ><img
+                                        class="smallicon navicon"
+                                        alt="Emblemas do curso"
+                                        title="Emblemas do curso"
+                                        src="https://ava.cefor.ifes.edu.br/theme/image.php/essential/core/1700847285/i/badge"
+                                      /><span class="item-content-wrap"
+                                        >Emblemas do curso</span
+                                      ></a
+                                    >
+                                  </p>
+                                </li>
+                              </ul>
+                            </li>
+                          </ul>
+                        </li>
+                      </ul>
+                    </li>
+                    <li
+                      class="type_system depth_2 contains_branch"
+                      aria-labelledby="label_2_13"
+                    >
+                      <p
+                        class="tree_item branch"
+                        role="treeitem"
+                        id="expandable_branch_0_mycourses"
+                        aria-expanded="false"
+                        data-requires-ajax="true"
+                        data-loaded="false"
+                        data-node-id="expandable_branch_0_mycourses"
+                        data-node-key="mycourses"
+                        data-node-type="0"
+                      >
+                        <span tabindex="-1" id="label_2_13">Meus cursos</span>
+                      </p>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <span class="skip-block-to" id="sb-7"></span
+          ><a class="skip skip-block" id="fsb-8" href="#sb-8"
+            >Pular Mensagens</a
+          >
+          <div
+            id="inst886861"
+            class="block_messages block"
+            role="complementary"
+            data-block="messages"
+            data-instanceid="886861"
+            aria-labelledby="instance-886861-header"
+            data-dockable="1"
+          >
+            <div class="header">
+              <div class="title">
+                <div class="block_action"></div>
+                <span aria-hidden="true" class="fa fa-envelope"></span>
+                <h2 id="instance-886861-header">Mensagens</h2>
+              </div>
+            </div>
+            <div class="content">
+              <div class="info">Não há mensagens pendentes</div>
+              <div class="footer">
+                <a href="https://ava.cefor.ifes.edu.br/message/index.php"
+                  >Mensagens</a
+                >
+              </div>
+            </div>
+          </div>
+          <span class="skip-block-to" id="sb-8"></span
+          ><a class="skip skip-block" id="fsb-9" href="#sb-9"
+            >Pular Usuários Online</a
+          >
+          <div
+            id="inst886862"
+            class="block_online_users block"
+            role="complementary"
+            data-block="online_users"
+            data-instanceid="886862"
+            aria-labelledby="instance-886862-header"
+            data-dockable="1"
+          >
+            <div class="header">
+              <div class="title">
+                <div class="block_action"></div>
+                <span aria-hidden="true" class="fa fa-users"></span>
+                <h2 id="instance-886862-header">Usuários Online</h2>
+              </div>
+            </div>
+            <div class="content">
+              <div class="info">(últimos 5 minutos)</div>
+              <ul class="list">
+                <li class="listentry">
+                  <div class="user">
+                    <a
+                      href="https://ava.cefor.ifes.edu.br/user/view.php&amp;course=35239"
+                      title="28 segundos"
+                      ><img
+                        src=""
+                        alt=""
+                        title=""
+                        class="userpicture"
+                        width="72"
+                        height="72"
+                      />Anonimo</a
+                    >
+                  </div>
+                </li>
+              </ul>
+              <div class="clearer"><!-- --></div>
+            </div>
+          </div>
+          <span class="skip-block-to" id="sb-9"></span
+          ><a class="skip skip-block" id="fsb-10" href="#sb-10"
+            >Pular Atividades</a
+          >
+          <div
+            id="inst886863"
+            class="block_activity_modules block list_block"
+            role="navigation"
+            data-block="activity_modules"
+            data-instanceid="886863"
+            aria-labelledby="instance-886863-header"
+            data-dockable="1"
+          >
+            <div class="header">
+              <div class="title">
+                <div class="block_action"></div>
+                <span aria-hidden="true" class="fa fa-puzzle-piece"></span>
+                <h2 id="instance-886863-header">Atividades</h2>
+              </div>
+            </div>
+            <div class="content">
+              <ul class="unlist">
+                <li class="r0">
+                  <div class="column c1">
+                    <a
+                      href="https://ava.cefor.ifes.edu.br/mod/forum/index.php?id=35239"
+                      ><img
+                        src="https://ava.cefor.ifes.edu.br/theme/image.php/essential/forum/1700847285/icon"
+                        class="icon"
+                        alt=""
+                      />Fóruns</a
+                    >
+                  </div>
+                </li>
+                <li class="r1">
+                  <div class="column c1">
+                    <a
+                      href="https://ava.cefor.ifes.edu.br/mod/assign/index.php?id=35239"
+                      ><img
+                        src="https://ava.cefor.ifes.edu.br/theme/image.php/essential/assign/1700847285/icon"
+                        class="icon"
+                        alt=""
+                      />Tarefas</a
+                    >
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <span class="skip-block-to" id="sb-10"></span
+          ><a class="skip skip-block" id="fsb-11" href="#sb-11"
+            >Pular Administração</a
+          >
+          <div
+            id="inst5"
+            class="block_settings block"
+            role="navigation"
+            data-block="settings"
+            data-instanceid="5"
+            aria-labelledby="instance-5-header"
+            data-dockable="1"
+          >
+            <div class="header">
+              <div class="title">
+                <div class="block_action"></div>
+                <span aria-hidden="true" class="fa fa-cogs"></span>
+                <h2 id="instance-5-header">Administração</h2>
+              </div>
+            </div>
+            <div class="content">
+              <div id="settingsnav" class="box block_tree_box">
+                <ul
+                  class="block_tree list"
+                  role="tree"
+                  data-ajax-loader="block_navigation/site_admin_loader"
+                >
+                  <li
+                    class="type_course depth_1 contains_branch"
+                    tabindex="-1"
+                    aria-labelledby="label_1_1"
+                  >
+                    <p
+                      class="tree_item root_node tree_item branch"
+                      role="treeitem"
+                      aria-expanded="true"
+                      aria-owns="random67dd54e8e28cc13_group"
+                    >
+                      <span tabindex="0">Administração do curso</span>
+                    </p>
+                    <ul id="random67dd54e8e28cc13_group" role="group">
+                      <li
+                        class="type_setting depth_2 item_with_icon"
+                        tabindex="-1"
+                        aria-labelledby="label_2_1"
+                      >
+                        <p
+                          class="tree_item hasicon tree_item leaf"
+                          role="treeitem"
+                        >
+                          <a
+                            href="https://ava.cefor.ifes.edu.br/grade/report/index.php?id=35239"
+                            ><i class="fa fa-table icon" aria-hidden="true"
+                              ><img
+                                class="smallicon navicon"
+                                alt=""
+                                src="https://ava.cefor.ifes.edu.br/theme/image.php/essential/core/1700847285/i/grades" /></i
+                            >Notas</a
+                          >
+                        </p>
+                      </li>
+                      <li
+                        class="type_setting depth_2 item_with_icon"
+                        tabindex="-1"
+                        aria-labelledby="label_2_2"
+                      >
+                        <p
+                          class="tree_item hasicon tree_item leaf"
+                          role="treeitem"
+                        >
+                          <a
+                            href="https://ava.cefor.ifes.edu.br/admin/tool/lp/coursecompetencies.php?courseid=35239"
+                            ><i
+                              class="fa fa-wifi fa-flip-vertical icon"
+                              aria-hidden="true"
+                              ><img
+                                class="smallicon navicon"
+                                alt=""
+                                src="https://ava.cefor.ifes.edu.br/theme/image.php/essential/core/1700847285/i/competencies" /></i
+                            >Competências</a
+                          >
+                        </p>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <span class="skip-block-to" id="sb-11"></span>
+        </aside>
+      </div>
+      <!-- End Main Regions -->
+    </div>
+
+    <footer role="contentinfo" id="page-footer">
+      <div class="container-fluid">
+        <div class="row-fluid footerblocks">
+          <div class="footerblock span4"></div>
+          <div class="footerblock span4"></div>
+          <div class="footerblock span4"></div>
+        </div>
+        <div class="footerlinks row-fluid">
+          <hr />
+          <span class="helplink"></span>
+        </div>
+        <div class="footerperformance row-fluid"></div>
+      </div>
+    </footer>
+    <a href="#top" class="back-to-top" aria-label="Ir para o topo">
+      <span aria-hidden="true" class="fa fa-angle-up"></span
+    ></a>
+
+    <div vw class="enabled">
+      <div vw-access-button class="active"></div>
+      <div vw-plugin-wrapper>
+        <div class="vw-plugin-top-wrapper"></div>
+      </div>
+    </div>
+    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+    <script>
+      new window.VLibras.Widget("https://vlibras.gov.br/app");
+    </script>
+    <script type="text/javascript">
+      //<![CDATA[
+      var require = {
+        baseUrl: "https://ava.cefor.ifes.edu.br/lib/requirejs.php/1694008189/",
+        // We only support AMD modules with an explicit define() statement.
+        enforceDefine: true,
+        skipDataMain: true,
+        waitSeconds: 0,
+
+        paths: {
+          jquery:
+            "https://ava.cefor.ifes.edu.br/lib/javascript.php/1694008189/lib/jquery/jquery-1.12.1.min",
+          jqueryui:
+            "https://ava.cefor.ifes.edu.br/lib/javascript.php/1694008189/lib/jquery/ui-1.11.4/jquery-ui.min",
+          jqueryprivate:
+            "https://ava.cefor.ifes.edu.br/lib/javascript.php/1694008189/lib/requirejs/jquery-private",
+        },
+
+        // Custom jquery config map.
+        map: {
+          // '*' means all modules will get 'jqueryprivate'
+          // for their 'jquery' dependency.
+          "*": { jquery: "jqueryprivate" },
+
+          // 'jquery-private' wants the real jQuery module
+          // though. If this line was not here, there would
+          // be an unresolvable cyclic dependency.
+          jqueryprivate: { jquery: "jquery" },
+        },
+      };
+
+      //]]>
+    </script>
+    <script
+      type="text/javascript"
+      src="https://ava.cefor.ifes.edu.br/lib/javascript.php/1694008189/lib/requirejs/require.min.js"
+    ></script>
+    <script type="text/javascript">
+      //<![CDATA[
+      require(["core/first"], function () {
+        require(["theme_essential/header"], function (amd) {
+          amd.init();
+        });
+        require(["theme_essential/footer"], function (amd) {
+          amd.init();
+        });
+        require(["theme_essential/navbar"], function (amd) {
+          amd.init({ oldnavbar: false });
+        });
+        require(["theme_essential/course_navigation"], function (amd) {
+          amd.init();
+        });
+        require(["theme_essential/fitvids"], function (amd) {
+          amd.init();
+        });
+        require(["block_navigation/navblock"], function (amd) {
+          amd.init("4");
+        });
+        require(["block_settings/settingsblock"], function (amd) {
+          amd.init("5", null);
+        });
+        require(["core/log"], function (amd) {
+          amd.setConfig({ level: "warn" });
+        });
+      });
+      //]]>
+    </script>
+    <script type="text/javascript">
+      //<![CDATA[
+      M.yui.add_module({
+        mathjax: {
+          name: "mathjax",
+          fullpath:
+            "https:\/\/cdn.mathjax.org\/mathjax\/2.6-latest\/MathJax.js?delayStartupUntil=configured",
+        },
+      });
+
+      //]]>
+    </script>
+    <script
+      type="text/javascript"
+      src="https://ava.cefor.ifes.edu.br/theme/javascript.php/ifescustom/1700847285/footer"
+    ></script>
+    <script
+      type="text/javascript"
+      src="https://ava.cefor.ifes.edu.br/lib/javascript.php/1694008189/course/format/weeks/format.js"
+    ></script>
+    <script type="text/javascript">
+      //<![CDATA[
+      M.str = {
+        moodle: {
+          lastmodified: "\u00daltima atualiza\u00e7\u00e3o",
+          name: "Nome",
+          error: "Erro",
+          info: "Informa\u00e7\u00e3o",
+          yes: "Sim",
+          no: "N\u00e3o",
+          viewallcourses: "Ver todos os cursos",
+          morehelp: "Mais ajuda",
+          loadinghelp: "Carregando...",
+          cancel: "Cancelar",
+          confirm: "Confirmar",
+          areyousure: "Voc\u00ea tem certeza?",
+          closebuttontitle: "Fechar",
+          unknownerror: "Erro desconhecido",
+        },
+        repository: {
+          type: "Tipo",
+          size: "Tamanho",
+          invalidjson: "palavra JSON inv\u00e1lida",
+          nofilesattached: "Nenhum arquivo anexado",
+          filepicker: "File picker",
+          logout: "Sair",
+          nofilesavailable: "Nenhum arquivo dispon\u00edvel",
+          norepositoriesavailable:
+            "Desculpe, nenhum dos seus reposit\u00f3rios atuais pode retornar arquivos no formato solicitado.",
+          fileexistsdialogheader: "Arquivo existe",
+          fileexistsdialog_editor:
+            "Um arquivo com este nome j\u00e1 foi anexado ao texto que voc\u00ea est\u00e1 editando",
+          fileexistsdialog_filemanager:
+            "Um arquivo com este nome j\u00e1 foi anexado",
+          renameto: 'Renomear para "{$a}"',
+          referencesexist:
+            "H\u00e1 {$a} arquivos pseud\u00f4nimos\/atalhos que usam este arquivo como fonte",
+          select: "Selecione",
+        },
+        admin: {
+          confirmdeletecomments:
+            "Voc\u00ea est\u00e1 prestes a excluir coment\u00e1rios, tem certeza?",
+          confirmation: "Confirma\u00e7\u00e3o",
+        },
+        block: {
+          addtodock: "Mover isto para a dock",
+          undockitem: "Remover este item do dock",
+          dockblock: "Colocar o bloco {$a} em doc",
+          undockblock: "Retirar bloco {$a} do dock",
+          undockall: "Remover todos do dock",
+          hidedockpanel: "Esconder o painel dock",
+          hidepanel: "Esconder o painel",
+        },
+        langconfig: { thisdirectionvertical: "btt" },
+        completion: {
+          "completion-title-manual-y":
+            "Marcar como n\u00e3o conclu\u00eddo: {$a}",
+          "completion-title-manual-n": "Marcar como conclu\u00eddo: {$a}",
+          "completion-alt-manual-y":
+            "Conclu\u00eddo(s): {$a}. Selecione para marcar como n\u00e3o conclu\u00eddo.",
+          "completion-alt-manual-n":
+            "N\u00e3o conclu\u00eddo(s): {$a}. Selecione para marcar como conclu\u00eddo.",
+        },
+        core_message: {
+          errorwhilesendingmessage:
+            "Ocorreu um erro ao enviar a mensagem; por favor, tente novamente mais tarde.",
+          messagesent: "Mensagem enviada",
+          messagetosend: "Mensagem para enviar",
+          sendingmessage: "Enviando mensagem",
+          sendmessage: "Enviar mensagem",
+          viewconversation: "Ver conversa",
+        },
+        message: {
+          userisblockingyou: "Este usu\u00e1rio bloqueou as suas mensagens.",
+          userisblockingyounoncontact:
+            "{$a} s\u00f3 aceita mensagens de seus contatos.",
+        },
+        core: { error: "Erro" },
+      };
+      //]]>
+    </script>
+    <script type="text/javascript">
+      //<![CDATA[
+      (function () {
+        M.util.load_flowplayer();
+        setTimeout("fix_column_widths()", 20);
+        Y.use("moodle-core-dock-loader", function () {
+          M.core.dock.loader.initLoader();
+        });
+        M.util.js_pending("random67dd54e8e28cc1");
+        Y.use("core_completion", function (Y) {
+          M.core_completion.init(Y);
+          M.util.js_complete("random67dd54e8e28cc1");
+        });
+        Y.use("moodle-calendar-info", function () {
+          Y.M.core_calendar.info.init();
+        });
+        Y.use("moodle-core_message-messenger", function () {
+          Y.M.core_message.messenger.init([]);
+        });
+        M.util.js_pending("random67dd54e8e28cc11");
+        Y.on("domready", function () {
+          var activities = document.querySelectorAll(
+            '.section-cm-edit-actions div[role="menu"]'
+          );
+          if (activities) {
+            for (var i = 0; i < activities.length; i++) {
+              var ul = activities[i];
+              var owner =
+                ul.parentNode.parentNode.parentNode.getAttribute("data-owner");
+              if (owner) {
+                var id = owner.replace(/^#module-/, "");
+                ul.insertAdjacentHTML(
+                  "beforeend",
+                  '<a class="dropdown-item editing_notifications menu-action cm-edit-action" data-action="notifications" role="menuitem" href="https:\/\/ava.cefor.ifes.edu.br\/local\/resourcenotif\/resourcenotif.php?id=123XYZ321" title="Avisos"><img class="smallicon" alt="Avisos" title="Avisos" src="https:\/\/ava.cefor.ifes.edu.br\/theme\/image.php\/essential\/core\/1700847285\/t\/email" \/><span class="menu-action-text">Avisos<\/span><\/a>'.replace(
+                    "123XYZ321",
+                    id
+                  )
+                );
+              }
+            }
+          }
+          M.util.js_complete("random67dd54e8e28cc11");
+        });
+        M.util.js_pending("random67dd54e8e28cc12");
+        Y.on("domready", function () {
+          var activities = document.querySelectorAll(
+            '.section-cm-edit-actions ul[role="menu"]'
+          );
+          if (activities) {
+            for (var i = 0; i < activities.length; i++) {
+              var ul = activities[i];
+              var owner = ul.parentNode.getAttribute("data-owner");
+              if (owner) {
+                var id = owner.replace(/^#module-/, "");
+                ul.insertAdjacentHTML(
+                  "beforeend",
+                  '<li role="presentation"><a class="dropdown-item editing_notifications menu-action cm-edit-action" data-action="notifications" role="menuitem" href="https:\/\/ava.cefor.ifes.edu.br\/local\/resourcenotif\/resourcenotif.php?id=123XYZ321" title="Avisos"><img class="smallicon" alt="Avisos" title="Avisos" src="https:\/\/ava.cefor.ifes.edu.br\/theme\/image.php\/essential\/core\/1700847285\/t\/email" \/><span class="menu-action-text">Avisos<\/span><\/a><\/li>'.replace(
+                    "123XYZ321",
+                    id
+                  )
+                );
+              }
+            }
+          }
+          M.util.js_complete("random67dd54e8e28cc12");
+        });
+        M.util.help_popups.setup(Y);
+        Y.use("moodle-core-popuphelp", function () {
+          M.core.init_popuphelp();
+        });
+        M.util.init_skiplink(Y);
+        Y.use("moodle-filter_mathjaxloader-loader", function () {
+          M.filter_mathjaxloader.configure({
+            mathjaxconfig:
+              'MathJax.Hub.Config({\r\n    config: ["Accessible.js", "Safe.js"],\r\n    errorSettings: { message: ["!"] },\r\n    skipStartupTypeset: true,\r\n    messageStyle: "none"\r\n});\r\n',
+            lang: "en",
+          });
+        });
+        M.util.init_block_hider(Y, {
+          id: "inst886856",
+          title: "Atividade recente",
+          preference: "block886856hidden",
+          tooltipVisible: "Esconder o bloco Atividade recente",
+          tooltipHidden: "Mostrar o bloco Atividade recente",
+        });
+        M.util.init_block_hider(Y, {
+          id: "inst886857",
+          title: "Calend\u00e1rio",
+          preference: "block886857hidden",
+          tooltipVisible: "Esconder o bloco Calend\u00e1rio",
+          tooltipHidden: "Mostrar o bloco Calend\u00e1rio",
+        });
+        M.util.init_block_hider(Y, {
+          id: "inst886858",
+          title: "Pr\u00f3ximos eventos",
+          preference: "block886858hidden",
+          tooltipVisible: "Esconder o bloco Pr\u00f3ximos eventos",
+          tooltipHidden: "Mostrar o bloco Pr\u00f3ximos eventos",
+        });
+        M.util.init_block_hider(Y, {
+          id: "inst886859",
+          title: "\u00daltimos avisos",
+          preference: "block886859hidden",
+          tooltipVisible: "Esconder o bloco \u00daltimos avisos",
+          tooltipHidden: "Mostrar o bloco \u00daltimos avisos",
+        });
+        M.util.init_block_hider(Y, {
+          id: "inst886860",
+          title: "Pesquisar nos f\u00f3runs",
+          preference: "block886860hidden",
+          tooltipVisible: "Esconder o bloco Pesquisar nos f\u00f3runs",
+          tooltipHidden: "Mostrar o bloco Pesquisar nos f\u00f3runs",
+        });
+        M.util.init_block_hider(Y, {
+          id: "inst4",
+          title: "Navega\u00e7\u00e3o",
+          preference: "block4hidden",
+          tooltipVisible: "Esconder o bloco Navega\u00e7\u00e3o",
+          tooltipHidden: "Mostrar o bloco Navega\u00e7\u00e3o",
+        });
+        M.util.init_block_hider(Y, {
+          id: "inst886861",
+          title: "Mensagens",
+          preference: "block886861hidden",
+          tooltipVisible: "Esconder o bloco Mensagens",
+          tooltipHidden: "Mostrar o bloco Mensagens",
+        });
+        M.util.init_block_hider(Y, {
+          id: "inst886862",
+          title: "Usu\u00e1rios Online",
+          preference: "block886862hidden",
+          tooltipVisible: "Esconder o bloco Usu\u00e1rios Online",
+          tooltipHidden: "Mostrar o bloco Usu\u00e1rios Online",
+        });
+        M.util.init_block_hider(Y, {
+          id: "inst886863",
+          title: "Atividades",
+          preference: "block886863hidden",
+          tooltipVisible: "Esconder o bloco Atividades",
+          tooltipHidden: "Mostrar o bloco Atividades",
+        });
+        M.util.init_block_hider(Y, {
+          id: "inst5",
+          title: "Administra\u00e7\u00e3o",
+          preference: "block5hidden",
+          tooltipVisible: "Esconder o bloco Administra\u00e7\u00e3o",
+          tooltipHidden: "Mostrar o bloco Administra\u00e7\u00e3o",
+        });
+        M.util.js_pending("random67dd54e8e28cc28");
+        Y.on("domready", function () {
+          M.util.js_complete("init");
+          M.util.js_complete("random67dd54e8e28cc28");
+        });
+      })();
+      //]]>
+    </script>
+  </body>
+</html>
+<!-- Essential theme version: 2017061701 is developed by Gareth J Barnard: about.me/gjbarnard -->
