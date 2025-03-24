@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./src/css/style.css" />
+    <title>Exemplo de Unidades no CSS</title>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Unidades no CSS</h1>
+      <p>Veja como as unidades são aplicadas ao layout e ao texto.</p>
+
+      <p>Unidades Relativas</p>
+      <ul>
+        <li>
+          <input type="radio" value="px" name="unit" id="0" />
+          <label for="0"> px - Pixels</label>
+        </li>
+        <li>
+          <input type="radio" value="em" name="unit" id="1" />
+          <label for="1">em - Relativo ao tamanho da fonte do elemento</label>
+        </li>
+        <li>
+          <input type="radio" value="rem" name="unit" id="2" />
+          <label for="2"
+            >rem - Relativo ao tamanho da fonte do elemento raiz</label
+          >
+        </li>
+        <li>
+          <input type="radio" value="%" name="unit" id="3" />
+          <label for="3">% - Porcentagem</label>
+        </li>
+        <li>
+          <input type="radio" value="vw" name="unit" id="4" />
+          <label for="4">vw - Relativo à largura da viewport</label>
+        </li>
+        <li>
+          <input type="radio" value="vh" name="unit" id="5" />
+          <label for="5">vh - Relativo à altura da viewport</label>
+        </li>
+        <li>
+          <input type="radio" value="vmin" name="unit" id="6" />
+          <label for="6">vmin - Relativo à menor dimensão da viewport</label>
+        </li>
+        <li>
+          <input type="radio" value="vmax" name="unit" id="7" />
+          <label for="7">vmax - Relativo à maior dimensão da viewport</label>
+        </li>
+      </ul>
+
+      <p>Unidades Absolutas</p>
+
+      <p>Absolutas:</p>
+      <ul>
+        <li>
+          <input type="radio" name="unit" value="cm" id="8" />
+          <label for="8">cm - Centímetros </label>
+        </li>
+        <li>
+          <input type="radio" name="unit" value="mm" id="9" />
+          <label for="9">mm - Milímetros </label>
+        </li>
+        <li>
+          <input type="radio" name="unit" value="in" id="10" />
+          <label for="10"> in - Polegadas </label>
+        </li>
+        <li>
+          <input type="radio" name="unit" value="pt" id="11" />
+          <label for="11"> pt - Pontos</label>
+        </li>
+        <li>
+          <input type="radio" name="unit" value="pc" id="12" />
+          <label for="12"> pc - Pica's</label>
+        </li>
+      </ul>
+
+      <p>Teste em tempo real:</p>
+
+      <div class="box" id="box">Unidade Atual: 100px</div>
+    </div>
+
+    <script src="./src/js/index.js"></script>
+  </body>
+</html>

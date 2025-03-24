@@ -1,0 +1,22 @@
+.container {
+  width: 50%; /* 50% da largura da tela */
+  margin: 0 auto;
+  padding: 2em; /* 2 vezes o tamanho da fonte */
+  background-color: lightblue;
+}
+
+h1 {
+  font-size: 2rem; /* 2 vezes o tamanho da fonte raiz */
+}
+
+p {
+  font-size: 1.5em; /* 1.5 vezes o tamanho da fonte do elemento pai */
+}
+
+.box {
+  width: 100px;
+  height: 100px;
+  color: white;
+  background-color: darkblue;
+  margin: 10px;
+}
