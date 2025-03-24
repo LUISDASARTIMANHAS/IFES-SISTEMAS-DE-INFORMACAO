@@ -14,9 +14,27 @@ p {
 }
 
 .box {
+  border: 2px solid;
+  padding: 10px;
+  border-radius: 25px;
   width: 100px;
   height: 100px;
+  animation: animation-rgb-roda 5s infinite, roda 1.5s infinite;
   color: white;
   background-color: darkblue;
   margin: 10px;
+  transition: all 0.7s ease-out;
+  -webkit-animation: animation-rgb-roda 5s infinite, roda 1.5s infinite;
+  -webkit-transition: all 0.7s ease-out;
+  -moz-transition: all 0.7s ease-out;
+  -ms-transition: all 0.7s ease-out;
+  -o-transition: all 0.7s ease-out;
+  -webkit-border-radius: 25px;
+  -moz-border-radius: 25px;
+  -ms-border-radius: 25px;
+  -o-border-radius: 25px;
+}
+
+.box:hover{
+  opacity: 0.7;
 }
