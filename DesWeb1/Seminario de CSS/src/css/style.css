@@ -66,3 +66,6 @@ input[type="radio"] {
 .box:hover{
   opacity: 0.7;
 }
+.img-unidade{
+  width: 25%;
+}
