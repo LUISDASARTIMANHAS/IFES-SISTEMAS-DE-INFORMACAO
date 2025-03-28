@@ -3,84 +3,118 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./src/css/animantions.css">
+    <link rel="stylesheet" href="./src/css/animantions.css" />
     <link rel="stylesheet" href="./src/css/style.css" />
-    
+
     <title>Exemplo de Unidades no CSS</title>
   </head>
   <body>
-    <div class="container">
-      <h1>Unidades no CSS</h1>
-      <p>Veja como as unidades são aplicadas ao layout e ao texto.</p>
+    <main class="container">
+      <h1>📐 Unidades no CSS</h1>
+      <p>Escolha uma unidade para ver como ela afeta o tamanho do elemento.</p>
 
-      <p>Unidades Relativas</p>
-      <ul>
-        <li>
-          <input type="radio" value="px" name="unit" id="0" />
-          <label for="0"> px - Pixels</label>
-        </li>
-        <li>
-          <input type="radio" value="em" name="unit" id="1" />
-          <label for="1">em - Relativo ao tamanho da fonte do elemento</label>
-        </li>
-        <li>
-          <input type="radio" value="rem" name="unit" id="2" />
-          <label for="2"
-            >rem - Relativo ao tamanho da fonte do elemento raiz</label
-          >
-        </li>
-        <li>
-          <input type="radio" value="%" name="unit" id="3" />
-          <label for="3">% - Porcentagem</label>
-        </li>
-        <li>
-          <input type="radio" value="vw" name="unit" id="4" />
-          <label for="4">vw - Relativo à largura da viewport</label>
-        </li>
-        <li>
-          <input type="radio" value="vh" name="unit" id="5" />
-          <label for="5">vh - Relativo à altura da viewport</label>
-        </li>
-        <li>
-          <input type="radio" value="vmin" name="unit" id="6" />
-          <label for="6">vmin - Relativo à menor dimensão da viewport</label>
-        </li>
-        <li>
-          <input type="radio" value="vmax" name="unit" id="7" />
-          <label for="7">vmax - Relativo à maior dimensão da viewport</label>
-        </li>
-      </ul>
+      <section>
+        <h2>🧮 Unidades Relativas</h2>
+        <ul>
+          <li>
+            <input type="radio" value="px" name="unit" id="px" /><label for="px"
+              >px - Pixels</label
+            >
+          </li>
+          <li>
+            <input type="radio" value="em" name="unit" id="em" /><label for="em"
+              >em - Relativo ao elemento pai</label
+            >
+          </li>
+          <li>
+            <input type="radio" value="rem" name="unit" id="rem" /><label
+              for="rem"
+              >rem - Relativo ao elemento raiz</label
+            >
+          </li>
+          <li>
+            <input type="radio" value="%" name="unit" id="percent" /><label
+              for="percent"
+              >% - Porcentagem do pai</label
+            >
+          </li>
+          <li>
+            <input type="radio" value="vw" name="unit" id="vw" /><label for="vw"
+              >vw - Largura da viewport</label
+            >
+          </li>
+          <li>
+            <input type="radio" value="vh" name="unit" id="vh" /><label for="vh"
+              >vh - Altura da viewport</label
+            >
+          </li>
+          <li>
+            <input type="radio" value="vmin" name="unit" id="vmin" /><label
+              for="vmin"
+              >vmin - Menor dimensão da viewport</label
+            >
+          </li>
+          <li>
+            <input type="radio" value="vmax" name="unit" id="vmax" /><label
+              for="vmax"
+              >vmax - Maior dimensão da viewport</label
+            >
+          </li>
+        </ul>
+      </section>
 
-      <p>Unidades Absolutas</p>
+      <section>
+        <h2>📏 Unidades Absolutas</h2>
+        <ul>
+          <li>
+            <input type="radio" value="cm" name="unit" id="cm" /><label for="cm"
+              >cm - Centímetros</label
+            >
+          </li>
+          <li>
+            <input type="radio" value="mm" name="unit" id="mm" /><label for="mm"
+              >mm - Milímetros</label
+            >
+          </li>
+          <li>
+            <input type="radio" value="in" name="unit" id="in" /><label for="in"
+              >in - Polegadas</label
+            >
+          </li>
+          <li>
+            <input type="radio" value="pt" name="unit" id="pt" /><label for="pt"
+              >pt - Pontos</label
+            >
+          </li>
+          <li>
+            <input type="radio" value="pc" name="unit" id="pc" /><label for="pc"
+              >pc - Picas</label
+            >
+          </li>
+        </ul>
+      </section>
 
-      <p>Absolutas:</p>
-      <ul>
-        <li>
-          <input type="radio" name="unit" value="cm" id="8" />
-          <label for="8">cm - Centímetros </label>
-        </li>
-        <li>
-          <input type="radio" name="unit" value="mm" id="9" />
-          <label for="9">mm - Milímetros </label>
-        </li>
-        <li>
-          <input type="radio" name="unit" value="in" id="10" />
-          <label for="10"> in - Polegadas </label>
-        </li>
-        <li>
-          <input type="radio" name="unit" value="pt" id="11" />
-          <label for="11"> pt - Pontos</label>
-        </li>
-        <li>
-          <input type="radio" name="unit" value="pc" id="12" />
-          <label for="12"> pc - Pica's</label>
-        </li>
-      </ul>
+      <section>
+        <h2>📚 Outras Unidades Relativas (baseadas em fonte)</h2>
+        <ul>
+          <li>
+            <input type="radio" value="ch" name="unit" id="ch" /><label for="ch"
+              >ch - largura do caractere 0</label
+            >
+          </li>
+          <li>
+            <input type="radio" value="ex" name="unit" id="ex" /><label for="ex"
+              >ex - altura da letra x</label
+            >
+          </li>
+        </ul>
 
-      <p>Teste em tempo real:</p>
+        <img src="./src/img/Typography_Line_Terms.svg.png" alt="Typography_Line_Terms">
+      </section>
 
+      <h2>🔍 Resultado em tempo real:</h2>
       <div class="box" id="box">Unidade Atual: 100px</div>
-    </div>
+    </main>
 
     <script src="./src/js/index.js"></script>
   </body>
