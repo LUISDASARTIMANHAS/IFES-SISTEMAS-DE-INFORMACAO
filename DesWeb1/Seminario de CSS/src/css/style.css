@@ -69,3 +69,7 @@ input[type="radio"] {
 .img-unidade{
   width: 25%;
 }
+
+.aberto {
+  display: block;
+}
