@@ -1,0 +1,17 @@
+h1{
+    width: 33.333%;
+}
+
+.t1 {
+    background-color: blue;
+}
+
+.t2 {
+    background-color: red;
+    margin: auto;
+}
+
+.t3 {
+    background-color: green;
+    margin-left: auto;
+}
