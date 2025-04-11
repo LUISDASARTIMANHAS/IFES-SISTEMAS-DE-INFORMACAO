@@ -1,0 +1,35 @@
+.container {
+    border: 2px solid red;
+    display: flex;
+    flex-wrap: wrap;
+    background-color: white;
+    height: 100vh;
+    justify-content: space-around;
+    align-content: center;
+    align-items: flex-start;
+}
+
+.item {
+    width: 200px;
+    height: 100px;
+    color: white;
+
+    flex-wrap: wrap;
+    align-content: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.item1 {
+    background-color: blue;
+}
+
+.item2 {
+    background-color: red;
+}
+
+.item3 {
+    background-color: green;
+    align-self: flex-end;
+}
