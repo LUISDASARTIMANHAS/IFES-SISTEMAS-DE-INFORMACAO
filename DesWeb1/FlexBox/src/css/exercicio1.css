@@ -2,7 +2,6 @@
     border: 2px solid red;
     display: flex;
     flex-wrap: wrap;
-    background-color: white;
     height: 100vh;
     justify-content: space-around;
     align-content: center;
@@ -13,12 +12,12 @@
     width: 200px;
     height: 100px;
     color: white;
+    display: flex;
+    /* alinha horizontalmente */
+    justify-content: center;
 
     flex-wrap: wrap;
     align-content: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
 
 .item1 {
