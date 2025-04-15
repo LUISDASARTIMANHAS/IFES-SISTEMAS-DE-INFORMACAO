@@ -11,4 +11,11 @@
         <exec.mainClass>com.mycompany.produto_reivisao.Produto_reivisao</exec.mainClass>
     </properties>
     <name>Produto_revisao</name>
+    <dependencies>
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>8.0.30</version>
+        </dependency>
+    </dependencies>
 </project>
