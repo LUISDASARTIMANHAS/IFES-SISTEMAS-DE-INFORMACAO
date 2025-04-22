@@ -90,11 +90,6 @@ public class ProdutoMain extends javax.swing.JFrame {
         jLabel2.setText("Nome Categoria");
 
         btnInsCategoria.setText("Inserir Categoria");
-        btnInsCategoria.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnInsCategoriaActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -133,54 +128,18 @@ public class ProdutoMain extends javax.swing.JFrame {
         jLabel6.setText("Preço R$");
 
         btnInsProduto.setText("Inserir Produto");
-        btnInsProduto.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnInsProdutoActionPerformed(evt);
-            }
-        });
 
         btnPesquisar.setText("Pesquisar");
-        btnPesquisar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnPesquisarActionPerformed(evt);
-            }
-        });
 
         btnAlterar.setText("Alterar");
-        btnAlterar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAlterarActionPerformed(evt);
-            }
-        });
 
         btnListarEstoque.setText("Listar Estoque");
-        btnListarEstoque.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnListarEstoqueActionPerformed(evt);
-            }
-        });
 
         btnListarTodos.setText("Listar Todos");
-        btnListarTodos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnListarTodosActionPerformed(evt);
-            }
-        });
 
         jLabel7.setText("Categoria");
 
-        cmbCategoria.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cmbCategoriaActionPerformed(evt);
-            }
-        });
-
         btnListarCategoria.setText("Listar por Categoria");
-        btnListarCategoria.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnListarCategoriaActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -287,38 +246,6 @@ public class ProdutoMain extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnInsCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInsCategoriaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnInsCategoriaActionPerformed
-
-    private void btnInsProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInsProdutoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnInsProdutoActionPerformed
-
-    private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnPesquisarActionPerformed
-
-    private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnAlterarActionPerformed
-
-    private void btnListarEstoqueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarEstoqueActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnListarEstoqueActionPerformed
-
-    private void btnListarTodosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarTodosActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnListarTodosActionPerformed
-
-    private void btnListarCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarCategoriaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnListarCategoriaActionPerformed
-
-    private void cmbCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbCategoriaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cmbCategoriaActionPerformed
 
     /**
      * @param args the command line arguments
