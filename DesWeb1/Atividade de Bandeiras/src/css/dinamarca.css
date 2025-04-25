@@ -1,0 +1,27 @@
+.vermelho {
+    height: 44%;
+    width: 100%;
+    display: flex;
+}
+
+.branco {
+    height: 12%;
+}
+
+.p1 {
+    background-color: red;
+    height: 100%;
+    width: 30%;
+}
+
+.p2 {
+    background-color: white;
+    height: 100%;
+    width: 7%;
+}
+
+.p3 {
+    background-color: red;
+    height: 100%;
+    width: 62%;
+}

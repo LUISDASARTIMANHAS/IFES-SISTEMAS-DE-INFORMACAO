@@ -1,42 +1,4 @@
-.container {
-    background-color: yellowgreen;
-    display: flex;
-    flex-wrap: wrap;
-    width: 900px;
-    height: 400px;
-    justify-content: space-around;
-    align-content: center;
-    align-items: flex-start;
-}
-
-.item {
-    width: 200px;
-    height: 100px;
-    color: white;
-    display: flex;
-    /* alinha horizontalmente */
-    justify-content: center;
-
-    flex-wrap: wrap;
-    align-content: center;
-}
-
-.bandeira-item {
-    display: flex;
-    width: 33.33%;
-    height: 100%;
-}
-
-.bandeira-deitado{
-    flex-direction: column;
-    flex-wrap: nowrap;
-}
-
-.bandeira-deitado .bandeira-item {
-    width: 100%;
-}
-
-.argentina .bandeira-item{
+.argentina .bandeira-item {
     /* alinha horizontalmente */
     justify-content: center;
     flex-wrap: wrap;

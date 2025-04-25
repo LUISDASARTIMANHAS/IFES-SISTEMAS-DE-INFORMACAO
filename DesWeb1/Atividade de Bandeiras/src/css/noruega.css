@@ -1,0 +1,72 @@
+.bandeira-item {
+    display: flex;
+    width: 33.33%;
+    height: 100%;
+}
+
+.bandeira-deitado {
+    flex-direction: column;
+    flex-wrap: nowrap;
+}
+
+.bandeira-deitado .bandeira-item {
+    width: 100%;
+}
+
+/* .noruega {
+    height: 44%;
+    width: 100%;
+    display: flex;
+} */
+
+.branco {
+    background-color: white;
+    width: 100%;
+
+}
+
+.azul {
+    background-color: blue
+}
+
+
+.vermelho {
+    height: 44%;
+    width: 100%;
+}
+
+.p1 {
+    background-color: red;
+    height: 90%;
+    width: 34%;
+}
+
+.p2 {
+    background-color: blue;
+    height: 100%;
+    width: 7%;
+}
+
+.p3 {
+    background-color: red;
+    height: 90%;
+    width: 59%;
+}
+
+.branco .p1 {
+    background-color: red;
+    height: 90%;
+    width: 20%;
+}
+
+.branco .p2 {
+    background-color: blue;
+    height: 100%;
+    width: 5%;
+}
+
+.branco .p3 {
+    background-color: red;
+    height: 90%;
+    width: 15%;
+}
