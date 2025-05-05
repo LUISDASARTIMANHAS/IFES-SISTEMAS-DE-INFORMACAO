@@ -1,0 +1,44 @@
+.vermelho {
+    height: 44%;
+    width: 100%;
+    display: flex;
+}
+
+.meio {
+    height: 12%;
+}
+
+.p1 {
+    background-color: red;
+    height: 100%;
+    width: 50%;
+}
+
+.p2 {
+    height: 100%;
+    width: 7%;
+}
+
+.t1,
+.t2 {
+    height: 50%;
+    width: 100%;
+}
+
+.p3 {
+    background-color: red;
+    height: 100%;
+    width: 50%;
+}
+
+.p4 {
+    background-color: white;
+    height: 100%;
+    width: 25%;
+}
+
+.p5 {
+    background-color: red;
+    height: 100%;
+    width: 50%;
+}
