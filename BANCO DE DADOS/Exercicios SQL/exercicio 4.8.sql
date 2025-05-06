@@ -1,5 +1,5 @@
 -- 4. 8. A instrução abaixo será executada corretamente?
-SELECT seq_cliente
-, bairro
+SELECT cod_cliente
+, bai_cliente
 , uf_cliente
 FROM cliente
