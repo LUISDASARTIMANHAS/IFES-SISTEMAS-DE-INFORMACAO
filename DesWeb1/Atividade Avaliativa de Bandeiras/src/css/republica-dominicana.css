@@ -1,0 +1,35 @@
+.bandeira-item {
+    height: 44%;
+    width: 100%;
+    display: flex;
+}
+
+.branco {
+    height: 12%;
+}
+
+.p1 {
+    background-color: red;
+    height: 100%;
+    width: 50%;
+}
+
+.p2 {
+    background-color: white;
+    height: 100%;
+    width: 7%;
+}
+
+.p3 {
+    background-color: red;
+    height: 100%;
+    width: 50%;
+}
+
+.p1.darkblue,.p3.darkblue { 
+    background-color: darkblue;
+}
+
+img.icone-bandeira {
+    width: 6%;
+}
