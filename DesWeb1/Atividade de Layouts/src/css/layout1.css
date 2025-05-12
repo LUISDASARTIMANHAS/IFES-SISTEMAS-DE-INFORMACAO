@@ -1,0 +1,12 @@
+.main__container-item p {
+    margin: 5px;
+}
+
+main img {
+    width: 320px;
+    height: 180px;
+}
+
+body{
+    font-family: "Helvetica Neue",Helvetica, sans-serif;
+}

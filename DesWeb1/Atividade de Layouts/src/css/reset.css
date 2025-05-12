@@ -4,14 +4,26 @@
     box-sizing: border-box;
 }
 
-html{
+section,
+aside,
+main,
+.flex-center {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+}
+
+html {
     margin: 0 auto;
 }
 
 body {
-    max-width: 1000px;
+    width: 100%;
     min-height: 100vh;
-    overflow: hidden;
+    overflow: auto;
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
@@ -21,7 +33,6 @@ body {
     color: black;
     background-color: whitesmoke;
     margin-bottom: 5px;
-    border: 2px solid red;
 }
 
 footer {
@@ -81,21 +92,28 @@ tela {
 
 main {
     max-width: 1000px;
-    width: 1000px;
+    gap: 10px;
+    overflow-y: auto;
+}
+
+section {
+    min-width: 50%;
+}
+
+header nav {
+    min-width: 320px;
+}
+
+.main__container-item {
     display: flex;
+    flex-direction: column;
     flex-wrap: wrap;
-    flex-direction: row;
     align-content: center;
     justify-content: center;
     align-items: center;
-    gap: 10px;
+    margin: 10px 0;
 }
 
-main img {
-    width: 320px;
-    height: 180px;
-}
-
-header nav{
-min-width: 320px;
+.logo {
+    margin: 0 10px;
 }
