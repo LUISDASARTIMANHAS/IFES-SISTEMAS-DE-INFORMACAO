@@ -2,5 +2,5 @@
 select cod_fita
 ,      cod_cliente
 ,      dat_locacao
-from fita 
-where dat_locacao not BETWEEN '01-10-2003' and '15-10-2003'
+from locacao 
+where dat_locacao not BETWEEN '2003-10-01' and '2003-10-15'
