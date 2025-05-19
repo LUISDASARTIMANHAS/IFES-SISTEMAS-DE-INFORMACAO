@@ -1,5 +1,9 @@
-.main__container-item p {
-    margin: 5px;
+body {
+    font-family: "Abel",Arial, Helvetica, sans-serif;;
+}
+
+main{
+align-items: flex-start;
 }
 
 main img {
@@ -7,6 +11,38 @@ main img {
     height: 180px;
 }
 
-body{
-    font-family: "Helvetica Neue",Helvetica, sans-serif;
+aside.recomendados {
+flex-direction: column;
+}
+
+.main__container-item p {
+    margin: 5px;
+}
+
+.main__container-item.video-container{
+    width: 685px;
+    height: 324px;
+    flex-wrap: nowrap;
+}
+
+header{
+    background-color: #0000FF;
+}
+
+
+.video {
+    background-color: gray;
+    width: 685px;
+    height: 324px;
+}
+
+.thumbnail{
+    background-color: gray;
+    width: 215px;
+    height: 120px;
+}
+
+
+aside ul li{
+    list-style-type: none;
 }
