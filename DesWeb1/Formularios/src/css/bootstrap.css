@@ -99,7 +99,7 @@ js {
     border: 2px solid black;
 }
 
-[required]:after {
+[requireded]:after {
     content: " *";
     color: red;
 }
