@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <!-- <meta http-equiv="Refresh" content="120" /> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      http-equiv="Strict-Transport-Security"
+      content="max-age=31536000; includeSubDomains; preload"
+    />
+    <link
+      rel="icon"
+      href="https://cdn.glitch.global/b39d6a4a-0e14-4b41-930d-29d3ccd6c137/PINGOBRAS icon.png?v=1665177105635"
+    />
+    <links></links>
+    <link rel="stylesheet" href="./src/css/bootstrap.css" />
+    <link rel="stylesheet" href="./src/css/animantions.css" />
+    <link rel="stylesheet" href="./src/css/reset.css" />
+    <link rel="stylesheet" href="./src/css/exercicio1.css" />
+
+    <title>Exercicio 1</title>
+  </head>
+  <body>
+    <form id="formHospedagem" enctype="multipart/form-data">
+      <h2>Input Text e Button</h2>
+      <label for="nomecompleto">Nome Completo:</label>
+      <input
+        type="text"
+        name="nomecompleto"
+        id="nomecompleto"
+        size="50"
+        maxlength="50"
+        placeholder="Digite o seu nome completo"
+        class="destaque"
+      />
+
+      <input
+        type="button"
+        name="btnsaudacao"
+        id="btnsaudacao"
+        value="Saudação"
+        onclick="saudacao()"
+      />
+      <!-- <button type="button" name="btnsaudacao" id="btnsaudacao">Saudação</button> -->
+
+      <h2>Input Color</h2>
+      <label for="cordefundo">Cor de Fundo:</label>
+      <input
+        type="color"
+        id="cordefundo"
+        name="cordefundo"
+        onchange="mudaCor(this)"
+      />
+      <span id="corhexa">#000000</span>
+
+      <h2>Input File</h2>
+      <label for="file">Arquivo:</label>
+      <input type="file" id="file" name="file" />
+
+      <h2>Input Password</h2>
+      <label for="Password">Senha:</label>
+      <input type="password" id="password" name="password" />
+      <input type="button" value="Mostrar Senha" onclick="mostrarSenha(this)" />
+
+      <h2>Input Radio</h2>
+      <label>Qual o seu Sexo:</label>
+
+      <label for="fem">Feminino:</label>
+      <input type="radio" id="fem" name="sexo" value="Feminino" />
+
+      <label for="max">Maxculino:</label>
+      <input type="radio" id="max" name="sexo" value="Maxculino" />
+
+      <label for="outro">Outro:</label>
+      <input type="radio" id="outro" name="sexo" value="Outro" />
+
+      <h2>Input Checkbox</h2>
+      <label for="deficiencia">Possui Deficiência?:</label>
+
+      <input
+        type="checkbox"
+        id="Auditiva"
+        name="deficiencia"
+        value="Auditiva"
+      />
+      <label for="Auditiva">Auditiva</label>
+
+      <input type="checkbox" id="Visual" name="deficiencia" value="Visual" />
+      <label for="Visual">Visual</label>
+
+      <input type="checkbox" id="Motora" name="deficiencia" value="Motora" />
+      <label for="Motora">Motora</label>
+
+      <input type="checkbox" id="Outra" name="deficiencia" value="Outra" />
+      <label for="Outra">Outra</label>
+
+      <br />
+
+      <label for="termos">Aceite os Termos para continuar:</label>
+      <input
+        required=""
+        type="checkbox"
+        id="termos"
+        name="termos"
+        value="Aceitou os Termos"
+      />
+
+      <h2>Input Range</h2>
+      <label for="idade">Idade:</label>
+      <input type="range" id="idade" name="idade" onchange="mudaIdade(this)" />
+      <span id="idadeValue"></span>
+
+      <h2>Input Select</h2>
+      <select name="estado" id="estado">
+        <option value="default">Selecione uma Opção</option>
+        <option value="default">Espírito Santo</option>
+        <option value="default">Rio de Janeiro</option>
+        <option value="default">São Paulo</option>
+      </select>
+
+      <br>
+
+      <h2>Input Textarea</h2>
+      <label for="bio">Biografia:</label>
+      <textarea name="bio" id="bio" cols="30" rows="10" oninput="contarTexto(this)" maxlength="100"></textarea>
+      <span id="maxTexto">0/100</span>
+
+      <!-- <button id="sendBot" type="button">Saudação</button> -->
+    </form>
+
+    <scripts>
+      <script src="./src/js/index.js"></script>
+      <!-- <script src="https://pingobras.glitch.me/src/js/links.js" defer></script> -->
+    </scripts>
+    <autoscripts>
+      <script src="https://pingobras.glitch.me/src/js/load-scripts.js"></script>
+    </autoscripts>
+    <host>
+      <script
+        src="https://pingobras.glitch.me/src/js/load-host.js"
+        defer
+      ></script>
+    </host>
+  </body>
+</html>
