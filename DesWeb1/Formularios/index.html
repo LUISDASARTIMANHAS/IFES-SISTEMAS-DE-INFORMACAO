@@ -26,6 +26,7 @@
       <h2>Input Text e Button</h2>
       <label for="nomecompleto">Nome Completo:</label>
       <input
+        required
         type="text"
         name="nomecompleto"
         id="nomecompleto"
@@ -112,6 +113,7 @@
       <span id="idadeValue"></span>
 
       <h2>Input Select</h2>
+      <label for="estado">Estado:</label>
       <select name="estado" id="estado">
         <option value="default">Selecione uma Opção</option>
         <option value="default">Espírito Santo</option>
@@ -119,14 +121,66 @@
         <option value="default">São Paulo</option>
       </select>
 
-      <br>
+      <br />
 
       <h2>Input Textarea</h2>
       <label for="bio">Biografia:</label>
-      <textarea name="bio" id="bio" cols="30" rows="10" oninput="contarTexto(this)" maxlength="100"></textarea>
+      <textarea
+        name="bio"
+        id="bio"
+        cols="30"
+        rows="10"
+        oninput="contarTexto(this)"
+        maxlength="100"
+      ></textarea>
       <span id="maxTexto">0/100</span>
 
-      <!-- <button id="sendBot" type="button">Saudação</button> -->
+      <h2>Input Date</h2>
+      <label for="data">Data de Nascimento:</label>
+      <input type="date" name="data" id="data" value="2025-05-30" />
+
+      <h2>Input Datetime local</h2>
+      <label for="dataLocal">Data e Hora de Nascimento:</label>
+      <input
+        type="datetime-local"
+        name="dataLocal"
+        id="dataLocal"
+        value="2025-05-30T15:38"
+      />
+
+      <h2>Input Month</h2>
+      <label for="month">Mês de Nascimento:</label>
+      <input type="month" name="month" id="dataMonth" value="2025-05" />
+
+      <h2>Input Week</h2>
+      <label for="week">Semana:</label>
+      <input type="week" name="week" id="dataWeek" value="2025-W22" />
+
+      <h2>Input Time</h2>
+      <label for="time">Hora:</label>
+      <input type="time" name="time" id="dataTime" value="00:00" />
+
+      <h2>Input E-Mail</h2>
+      <label for="email">E-Mail:</label>
+      <input type="email" name="email" id="email" />
+
+      <h2>Input Number</h2>
+      <label for="number">Número:</label>
+      <input type="number" name="number" id="number" step="1" />
+
+      <h2>Input Search</h2>
+      <label for="search">Buscar:</label>
+      <input type="search" name="search" id="search" />
+
+      <h2>Input Tel</h2>
+      <label for="tel">Buscar:</label>
+      <input type="tel" name="tel" id="tel" />
+
+      <h2>Input Url</h2>
+      <label for="url">URL:</label>
+      <input type="url" name="url" id="url" aut/>
+
+      <button type="submit">Enviar</button>
     </form>
 
     <scripts>
