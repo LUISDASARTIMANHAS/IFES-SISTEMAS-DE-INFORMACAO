@@ -56,19 +56,3 @@ function onError(error) {
   alert(error);
   console.debug(error);
 }
-
-// {
-//     "cep": "29707-377",
-//     "logradouro": "Rua Marcelo Augusto da Silva Antolini",
-//     "complemento": "",
-//     "unidade": "",
-//     "bairro": "Luiz Iglesias",
-//     "localidade": "Colatina",
-//     "uf": "ES",
-//     "estado": "Espírito Santo",
-//     "regiao": "Sudeste",
-//     "ibge": "3201506",
-//     "gia": "",
-//     "ddd": "27",
-//     "siafi": "5629"
-// }
