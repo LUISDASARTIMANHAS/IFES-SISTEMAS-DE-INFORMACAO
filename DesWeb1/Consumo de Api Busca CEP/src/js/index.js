@@ -1,42 +1,74 @@
-const corhexa = document.getElementById("corhexa");
-
-
-changeBackgroundColor("#333333");
-
-function saudacao() {
-  var nome = document.getElementById("nomecompleto");
-  alert("Seja bem vindo: " + nome.value);
+function buscaCEP(elem) {
+  const cep = elem.value;
+  if (cep.length == 8) {
+    fetchViaCep(cep);
+  } else {
+    alert("CEP INVALIDO!");
+  }
 }
 
-function mudaCor(elem) {
-  corhexa.innerHTML = elem.value;
-  changeBackgroundColor(elem.value);
+async function fetchViaCep(cep) {
+  const url = `https://viacep.com.br/ws/${cep}/json`;
+  const options = {
+    method: "GET",
+    mode: "cors",
+    headers: {
+      "content-type": "application/json;charset=utf-8",
+    },
+  };
+
+  await fetch(url, options)
+    .then((response) => {
+      if (response.ok) {
+        return response.json();
+      } else {
+        return response.text().then((errorText) => {
+          throw new Error("Erro ao buscar CEP: " + errorText);
+        });
+      }
+    })
+    .then((data) => {
+      if (data.erro) {
+        throw new Error("Erro ao buscar CEP: CEP INVALIDO!");
+      }
+      console.log("DATA RESPONSE: ");
+      console.log(data);
+      renderData(data);
+    })
+    .catch((error) => onError(error));
 }
 
-function mudaIdade(elem) {
-	const idadeValue = document.getElementById("idadeValue");
-  idadeValue.textContent = elem.value;
+function renderData(data) {
+  const rua = document.getElementById("rua");
+  const compl = document.getElementById("compl");
+  const bairro = document.getElementById("bairro");
+  const uf = document.getElementById("uf");
+  const cid = document.getElementById("cid");
+
+  rua.value = data.logradouro;
+  compl.value = data.complemento;
+  bairro.value = data.bairro;
+  uf.value = data.uf;
+  cid.value = data.localidade;
 }
 
-function contarTexto(elem){
-	const maxTexto = document.getElementById("maxTexto");
-	var tam = elem.value.length;
-	maxTexto.textContent = tam + "/100"
+function onError(error) {
+  alert(error);
+  console.debug(error);
 }
 
-function mostrarSenha(button){
-	const passInp = document.getElementById("password");
-	if (passInp.type == "password") {
-		passInp.type = "text"
-		button.value = "Ocultar Senha"
-	} else {
-		passInp.type = "password"
-		button.value = "Mostrar Senha"
-	}
-}
-
-function changeBackgroundColor(color) {
-	const body = document.body;
-  body.style.background = color;
-	corhexa.textContent = color;
-}
+// {
+//     "cep": "29707-377",
+//     "logradouro": "Rua Marcelo Augusto da Silva Antolini",
+//     "complemento": "",
+//     "unidade": "",
+//     "bairro": "Luiz Iglesias",
+//     "localidade": "Colatina",
+//     "uf": "ES",
+//     "estado": "Espírito Santo",
+//     "regiao": "Sudeste",
+//     "ibge": "3201506",
+//     "gia": "",
+//     "ddd": "27",
+//     "siafi": "5629"
+// }

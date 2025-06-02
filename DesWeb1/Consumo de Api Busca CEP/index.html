@@ -19,20 +19,143 @@
     <link rel="stylesheet" href="./src/css/reset.css" />
     <link rel="stylesheet" href="./src/css/exercicio1.css" />
 
+    <style>
+  /* Reset básico */
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    padding: 20px;
+  }
+
+  form#formCep {
+    background: #fff;
+    padding: 40px 35px;
+    border-radius: 16px;
+    box-shadow: 0 16px 40px rgba(102, 126, 234, 0.3);
+    width: 100%;
+    max-width: 420px;
+    animation: fadeInUp 0.8s ease forwards;
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  @keyframes fadeInUp {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  form#formCep h2 {
+    margin-bottom: 30px;
+    font-weight: 700;
+    color: #4a4a4a;
+    text-align: center;
+    font-size: 1.9rem;
+    letter-spacing: 1.3px;
+  }
+
+  label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #6b6b6b;
+    font-size: 0.95rem;
+    transition: color 0.3s ease;
+  }
+
+  input[type="text"],
+  select {
+    width: 100%;
+    padding: 14px 18px;
+    margin-bottom: 28px;
+    border: 1.8px solid #d1d5db;
+    border-radius: 12px;
+    font-size: 1rem;
+    color: #444;
+    background: #fafafa;
+    transition:
+      border-color 0.3s ease,
+      box-shadow 0.3s ease,
+      background-color 0.3s ease;
+    outline: none;
+    font-weight: 500;
+    box-shadow: inset 0 2px 5px rgb(0 0 0 / 0.04);
+  }
+
+  input[type="text"]::placeholder {
+    color: #aaa;
+    font-weight: 400;
+  }
+
+  input[type="text"]:focus,
+  select:focus {
+    border-color: #667eea;
+    box-shadow: 0 0 12px rgba(102, 126, 234, 0.5);
+    background-color: #fff;
+  }
+
+  select {
+    cursor: pointer;
+    appearance: none;
+    background-image: url('data:image/svg+xml;utf8,<svg fill="%236677ea" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>');
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+    background-size: 18px 18px;
+  }
+
+  select:hover {
+    border-color: #5a67d8;
+  }
+
+  /* Botão estilizado */
+  button {
+    width: 100%;
+    padding: 16px 0;
+    background: #667eea;
+    border: none;
+    border-radius: 14px;
+    color: white;
+    font-size: 1.1rem;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 12px 30px rgba(102, 126, 234, 0.35);
+    transition: background 0.35s ease, box-shadow 0.35s ease;
+  }
+
+  button:hover {
+    background: #5a67d8;
+    box-shadow: 0 16px 40px rgba(90, 103, 216, 0.6);
+  }
+
+  /* Aparência da mensagem de erro (exemplo) */
+  input:invalid {
+    border-color: #e53e3e;
+  }
+</style>
+
     <title>Exercicio 1</title>
   </head>
   <body>
-    <form id="formCep" enctype="multipart/form-data">
+    <form id="formCep" method="post" enctype="multipart/form-data">
       <h2>Busca CEP</h2>
       <label for="cep">CEP:</label>
       <input
         required
-        type="text"
+        type="number"
         name="cep"
         id="cep"
-        size="9"
-        maxlength="9"
         placeholder="Digite o seu cep"
+        onblur="buscaCEP(this)"
       />
 
       <label for="rua">Rua:</label>
