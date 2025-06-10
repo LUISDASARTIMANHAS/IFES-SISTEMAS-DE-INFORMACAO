@@ -1,6 +1,7 @@
 -- 8.11. Exiba o código e nome dos filmes de comédia alugadas por clientes do Rio de Janeiro. Mostre
 -- também o nome e código desses clientes.
-select distinct
+-- resultado esperado 11.870
+select
 	fil.cod_filme
 ,	fil.nom_filme
 ,	c.cod_cliente
@@ -17,4 +18,4 @@ join genero g
 where 
 	c.uf_cliente ilike 'RJ'
 and 
-	g.nom_genero ilike 'comédia'
+	g.nom_genero ilike 'Comédia'
