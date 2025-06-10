@@ -1,5 +1,6 @@
 --  8.9. Exiba o nome e o valor que cada cliente gastou na locadora.
-select
+-- 1.351.556
+select 
 	c.nom_cliente
 ,	sum(l.val_locacao)
 from
