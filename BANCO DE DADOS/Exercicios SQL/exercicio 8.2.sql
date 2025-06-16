@@ -1,5 +1,9 @@
 -- 8.2. Exiba a descrição da situação de todos os filmes
-select distinct fita.sit_fita
-,		filme.nom_filme
-FROM fita, filme
-where fita.cod_filme = filme.cod_filme
+select 
+	fit.sit_fita
+,	fil.nom_filme
+FROM
+	fita fit,
+	filme fil
+where 
+fit.cod_filme = fil.cod_filme
