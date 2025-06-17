@@ -1,6 +1,7 @@
 -- 8.11. Exiba o código e nome dos filmes de comédia alugadas por clientes do Rio de Janeiro. Mostre
 -- também o nome e código desses clientes.
 -- resultado esperado 11.870
+-- 11) Tem 11870 filmes. Vou listar os 5 primeiros:
 select
 	fil.cod_filme
 ,	fil.nom_filme

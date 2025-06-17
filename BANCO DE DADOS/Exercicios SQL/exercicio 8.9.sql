@@ -3,6 +3,8 @@
 -- 335.282 com group by apenas nome cliente
 -- 1.351.556
 -- 1.328.344 com distinct
+
+-- 9) Tem 335282 clientes. Vou listar os 5 primeiros:
 select distinct
 	c.nom_cliente
 ,	sum(l.val_locacao)

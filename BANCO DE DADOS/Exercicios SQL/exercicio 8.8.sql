@@ -1,5 +1,6 @@
 -- 8.8. Exiba o código, nome e preço dos filmes disponíveis (sit_fita 2), cujo preço seja maior do que
 -- R$ 10,00.
+-- 8) Tem 253 filmes. Vou listar os 5 primeiros:
 select
 	f.cod_filme
 ,	f.nom_filme

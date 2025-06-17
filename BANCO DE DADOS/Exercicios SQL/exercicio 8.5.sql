@@ -1,5 +1,6 @@
 -- 8.5. Exiba o nome do filme e o código da cor dos filmes com situação Disponível (sit_fita = 2), ou
 -- seja, que estão na locadora.
+-- 5) Tem 296 filmes. Vou listar os 5 primeiros:
 select
 	f.nom_filme
 ,	f.cod_cor

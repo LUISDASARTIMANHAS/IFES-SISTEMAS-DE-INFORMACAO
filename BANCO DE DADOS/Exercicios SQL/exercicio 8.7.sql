@@ -1,4 +1,5 @@
 -- 8.7. Exiba o código, nome e preço dos filmes do gênero “Aventura"
+-- 7) Tem 62 filmes. Vou listar os 5 primeiros:
 select
 	f.cod_filme
 ,	f.nom_filme
