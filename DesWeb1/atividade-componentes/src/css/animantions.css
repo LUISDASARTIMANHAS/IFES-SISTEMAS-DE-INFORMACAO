@@ -1,0 +1,74 @@
+@keyframes Ani-laminado {
+  0% {
+    -webkit-transform: scale(0) rotate(45deg);
+    opacity: 0;
+  }
+
+  80% {
+    -webkit-transform: scale(0) rotate(45deg);
+    opacity: 0.5;
+  }
+
+  81% {
+    -webkit-transform: scale(4) rotate(45deg);
+    opacity: 1;
+  }
+
+  100% {
+    -webkit-transform: scale(50) rotate(45deg);
+    opacity: 0;
+  }
+}
+
+@keyframes animation-rgb-roda {
+  0% {
+    border-color: red;
+  }
+  16% {
+    border-color: orange;
+  }
+  32% {
+    border-color: yellow;
+  }
+  48% {
+    border-color: green;
+  }
+  64% {
+    border-color: lightblue;
+  }
+  80% {
+    border-color: blue;
+  }
+  96% {
+    border-color: purple;
+  }
+  100% {
+    border-color: red;
+  }
+}
+@keyframes ani-rbg {
+  0% {
+    color: red;
+  }
+  16% {
+    color: orange;
+  }
+  32% {
+    color: yellow;
+  }
+  48% {
+    color: green;
+  }
+  64% {
+    color: lightblue;
+  }
+  80% {
+    color: blue;
+  }
+  96% {
+    color: purple;
+  }
+  100% {
+    color: red;
+  }
+}
