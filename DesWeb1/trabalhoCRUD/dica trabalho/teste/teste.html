@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teste</title>
+</head>
+<body>
+
+    <input type="text" id="inseretexto" name="inseretexto">
+    <input type="button" id="btinsere" name="btinsere" value="Inserir" onclick="inserir()">
+
+    <br><br>
+
+    <table border="1" style="width: 50%;" id="tabela_dados">
+        
+    </table>
+
+<script>
+let i = 0;
+
+function editar(valor, index){
+    let c1 = document.getElementById('c'+index+'1');
+    let c2 = document.getElementById('c'+index+'2');
+    
+    c1.innerHTML = '<input type="text" id="texto" name="texto" size="30" value="'+valor+'">';
+    c2.innerHTML = '<input type="button" id="btsalvar" name="btsalvar" value="Salvar" onclick="salvar('+index+')">';
+}
+
+function salvar(index){
+    let valor = document.getElementById('texto').value;
+    let c1 = document.getElementById('c'+index+'1');
+    let c2 = document.getElementById('c'+index+'2');
+
+    c1.innerHTML = valor;
+    c2.innerHTML = '<input type="button" id="bteditar" name="bteditar" value="Editar" onclick="editar(\''+valor+'\', '+index+')">';
+}
+
+function inserir(){
+    let texto = document.getElementById('inseretexto');
+    let tabela = document.getElementById('tabela_dados');
+
+    i++;
+
+    let linha = '<tr><td id="c'+i+'1">'+texto.value+'</td><td id="c'+i+'2"><input type="button" id="bteditar" name="bteditar" value="Editar" onclick="editar(\''+texto.value+'\', '+i+')"></td></tr>';
+
+    texto.value = "";
+
+    //alert(linha);
+
+    tabela.innerHTML = tabela.innerHTML + linha;
+}
+</script>
+    
+</body>
+</html>

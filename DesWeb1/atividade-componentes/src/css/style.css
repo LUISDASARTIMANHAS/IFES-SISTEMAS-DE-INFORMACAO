@@ -1,0 +1,130 @@
+.accordion-body button.btn {
+  display: inline-block;
+  opacity: 1;
+  visibility: visible;
+  color: black;
+}
+
+.card {
+  border-radius: 10px;
+  overflow: hidden;
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s;
+  background-color: #1e1e1e;
+}
+
+.card:hover {
+  transform: scale(1.03);
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+}
+
+.card-img-top {
+  height: 320px;
+  object-fit: cover;
+  border-bottom: 1px solid #333;
+}
+
+.card-title {
+  font-size: 1rem;
+  font-weight: bold;
+  margin-top: 0.5rem;
+  text-align: center;
+  color: #ffffff;
+}
+
+.accordion-button {
+  background-color: #2c2c2c;
+  color: #ffffff;
+  font-weight: bold;
+  border: none;
+  box-shadow: none;
+}
+
+.accordion-button:not(.collapsed) {
+  background-color: #3d3d3d;
+}
+
+.accordion-body {
+  background-color: #2a2a2a;
+  color: #ccc;
+  padding: 1rem;
+  font-size: 0.9rem;
+  border-radius: 0 0 10px 10px;
+}
+
+.accordion-body .btn {
+  margin-top: 0.5rem;
+  color: #fff;
+  background-color: #6c5ce7;
+  border: none;
+  transition: background-color 0.3s ease;
+}
+
+.accordion-body .btn:hover {
+  background-color: #5a4bd4;
+}
+
+
+.modal-content {
+  background-color: #1f1f1f;
+  color: #fff;
+  border-radius: 10px;
+}
+
+.modal-header {
+  border-bottom: 1px solid #444;
+}
+
+.modal-footer {
+  border-top: 1px solid #444;
+}
+
+body {
+  background-color: #121212;
+  color: #f0f0f0;
+}
+
+h3, .navbar-brand {
+  color: #ffffff;
+  font-weight: bold;
+}
+
+.row.flex-nowrap {
+  gap: 1.5rem;
+}
+
+.carousel-inner {
+  padding-left: 12px;
+  padding-right: 12px;
+}
+
+.carousel-inner .row {
+  margin-left: 0;
+  margin-right: 0;
+  gap: 1rem; /* controla o espaçamento entre os cards */
+}
+
+/* Estilo para o carrossel de destaques (top filmes) */
+.carousel-inner img {
+  object-fit: cover;
+  object-position: center; /* mostra o topo da imagem */
+  height: 400px; /* altura fixa */
+  width: 100%;
+  border-radius: 8px;
+}
+
+.carousel-caption {
+  bottom: 10%;
+  left: 5%;
+  text-align: left;
+}
+
+.carousel-caption h5 {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: white;
+}
+
+.carousel-caption p {
+  font-size: 1rem;
+  color: #f1f1f1;
+}
