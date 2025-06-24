@@ -42,7 +42,7 @@ FROM Paciente pac
 		ON cons.idMedico = med.idMedico
 	JOIN Diagnostico diag 
 		ON cons.idConsulta = diag.idConsulta
-WHERE med.nomeMedico LIKE 'Dra.%'
+WHERE med.nomeMedico LIKE 'Dra.%';
 
 -- 4. Consulta envolvendo LEFT JOIN
 -- Enunciado: Para entender melhor a relação entre medicamentos e as receitas prescritas, o hospital 
