@@ -1,0 +1,37 @@
+body {
+  font-family: Arial, sans-serif;
+}
+
+a {
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.bg-red {
+  background-color: #c4170c !important;
+  color: white !important;
+}
+
+.bg-red a {
+  color: white;
+}
+
+.acesso-rapido {
+  width: 100%;
+  border-bottom: 1px solid gray;
+}
+
+.acesso-rapido p{
+  padding: 10px;
+  margin: 0;
+  margin-left: 100px;
+}
+
+.acesso-rapido ul li a{
+  color: #c4170c;
+  font-size: 20px;
+}

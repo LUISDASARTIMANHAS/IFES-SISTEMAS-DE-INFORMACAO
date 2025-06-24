@@ -1,13 +1,3 @@
-ul.ponto-flutuante li::before {
-  content: "";
-  width: 4px;
-  height: 4px;
-  margin-right: 10px;
-  background-color: red;
-  display: inline-block;
-  margin-bottom: 5px;
-}
-
 @keyframes Ani-laminado {
   0% {
     -webkit-transform: scale(0) rotate(45deg);
@@ -32,28 +22,28 @@ ul.ponto-flutuante li::before {
 
 @keyframes animation-rgb-roda {
   0% {
-    border-top-color: red;
+    border-color: red;
   }
   16% {
-    border-top-color: orange;
+    border-color: orange;
   }
   32% {
-    border-top-color: yellow;
+    border-color: yellow;
   }
   48% {
-    border-top-color: green;
+    border-color: green;
   }
   64% {
-    border-top-color: lightblue;
+    border-color: lightblue;
   }
   80% {
-    border-top-color: blue;
+    border-color: blue;
   }
   96% {
-    border-top-color: purple;
+    border-color: purple;
   }
   100% {
-    border-top-color: red;
+    border-color: red;
   }
 }
 @keyframes ani-rbg {
