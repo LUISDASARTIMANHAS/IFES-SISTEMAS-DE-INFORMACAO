@@ -1,0 +1,89 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  background: #f5f7fa;
+}
+
+header nav ul {
+  display: flex;
+  gap: 20px;
+  background: #fff;
+  padding: 15px;
+  list-style: none;
+  justify-content: center;
+}
+
+.container {
+  display: flex;
+  padding: 20px;
+  gap: 30px;
+}
+
+.detalhes {
+  flex: 2;
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.resumo {
+  flex: 1;
+  background: #f0f4fa;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.bloco {
+  margin-bottom: 20px;
+}
+
+.metodos button {
+  margin-right: 10px;
+  padding: 10px 20px;
+}
+
+.formulario-cartao input {
+  display: block;
+  margin-bottom: 10px;
+  padding: 8px;
+  width: 100%;
+}
+
+.formulario-cartao .duplo {
+  display: flex;
+  gap: 10px;
+}
+
+.resumo ul {
+  list-style: none;
+  padding: 0;
+}
+
+.resumo ul li {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.total {
+  font-size: 1.2em;
+}
+
+.finalizar {
+  width: 100%;
+  padding: 12px;
+  background: #ffa500;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+#resumo {
+  background: #eafbe7;
+  padding: 15px;
+  margin-top: 20px;
+  border: 2px dashed #2e8b57;
+  color: #2e8b57;
+  font-weight: bold;
+  border-radius: 8px;
+}
