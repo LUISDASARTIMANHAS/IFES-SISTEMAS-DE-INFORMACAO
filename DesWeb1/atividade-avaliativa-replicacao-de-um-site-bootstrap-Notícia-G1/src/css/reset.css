@@ -1,0 +1,103 @@
+section,
+aside,
+main,
+.flex-center {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+}
+
+body {
+    font-family: Arial, sans-serif;
+}
+
+a {
+    text-decoration: none;
+}
+
+ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+nav .separator {
+    color: gray;
+    font-size: 10px;
+}
+
+nav a {
+    text-decoration: none;
+    margin: 3px;
+    font-weight: bold;
+}
+
+article {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+
+article p{
+    overflow-wrap: break-word;
+    font-size: 18px;
+    font-weight: 400px;
+    line-height: -.015em;
+    line-height: 28px;
+}
+
+[bold],
+.bold {
+    font-weight: bold;
+}
+
+.bg-red {
+    background-color: #c4170c !important;
+    color: white !important;
+}
+
+.bg-red a {
+    color: white;
+}
+
+.bg-light-gray {
+    background-color: #F3F3F3;
+    color: black;
+}
+
+.c-blue {
+    color: blue;
+}
+
+.c-green {
+    color: green;
+}
+
+.c-red {
+    color: #C4170C;
+}
+
+.c-light-red {
+    color: #FB0334;
+}
+
+.c-orange {
+    color: #FF6700;
+}
+
+.bg-dev-focus{
+    background-color: aquamarine;
+}
+
+.bg-dev-focus .bg-dev-focus{
+    background-color: darkgreen;
+}
+
+.bg-dev-focus-2{
+    background-color: dodgerblue;
+}

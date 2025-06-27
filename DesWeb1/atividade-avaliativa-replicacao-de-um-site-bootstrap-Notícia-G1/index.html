@@ -5,59 +5,63 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="./src/css/animantions.css" />
     <link rel="stylesheet" href="./src/css/bootstrap@5.3.6.css" />
-		<link rel="stylesheet" href="./src/css/bootstrap-icons@1.13.1.css">
+    <link rel="stylesheet" href="./src/css/bootstrap-icons@1.13.1.css" />
     <link rel="stylesheet" href="./src/css/style.css" />
+    <!-- more priority -->
+    <link rel="stylesheet" href="./src/css/reset.css" />
     <title>Notícia G1 Clone</title>
   </head>
-  <body class="bg-light">
-    <nav class="bg-red d-flex justify-content-between navbar navbar-expand-lg bg-body-tertiary">
-      <div class="container-fluid">
-				<h2>
-					<a href="#">G1</a>
-				</h2>
+  <body class="bg-light bg-white">
+    <nav
+      class="bg-light-gray navbar navbar-expand-lg bg-body-tertiary d-flex justify-content-start"
+    >
+      <a class="c-blue" href="#">globo.com</a>
+      <span class="separator">|</span>
+      <a class="c-red" href="#">g1</a>
+      <span class="separator">|</span>
+      <a class="c-green" href="#">ge</a>
+      <span class="separator">|</span>
+      <a class="c-orange" href="#">gshow</a>
+      <span class="separator">|</span>
+      <a class="c-light-red" href="#">globoplay</a>
+    </nav>
+    <nav class="header-title bg-red navbar navbar-expand-lg bg-body-tertiary">
+      <div class="w-75 d-flex justify-content-around">
+        <h2>
+          <a href="#">G1</a>
+        </h2>
 
-				<h2>
-					MUNDO
-				</h2>
-        <!-- <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarNav"
-          aria-controls="navbarNav"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button> -->
-
+        <h2>MUNDO</h2>
       </div>
     </nav>
-		<nav class="acesso-rapido flex-nowrap justify-content-between navbar-expand-lg bg-body-tertiary">
-			<!-- links de acesso rapido -->
-			<ul class="d-flex justify-content-between align-items-center" >
-				<p>fique por <strong>dentro</strong></p>
-				<li class="nav-item">
-					<a class="nav-link active" aria-current="page" href="#">Eleições</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="#">Desaparecidos na Amazônia</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="#">Greve em SP</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="#">Feriados 2022</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="#">50 anos sem Leila Diniz</a>
-				</li>
-			</ul>
-	</nav>
+    <nav
+      class="acesso-rapido d-flex flex-nowrap justify-content-center navbar-expand-lg bg-body-tertiary border-bottom border-secondary"
+    >
+      <!-- links de acesso rapido -->
+      <ul class="w-75 d-flex justify-content-end align-items-center">
+        <p>fique por <strong>dentro</strong></p>
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#">Eleições</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Desaparecidos na Amazônia</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Greve em SP</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Feriados 2022</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">50 anos sem Leila Diniz</a>
+        </li>
+      </ul>
+    </nav>
 
     <!-- Banner Superior -->
-    <div class="text-center bg-white p-2 border-bottom">
+    <div class="text-center bg-white p-2">
       <img
+        class="img-fluid w-75"
         src="./src/img/banner-superior.png"
         alt="Banner Superior"
         class="img-fluid"
@@ -65,50 +69,69 @@
     </div>
 
     <!-- Cabeçalho e Título -->
-    <div class="container mt-4">
-      <h1 class="fw-bold fs-2">
+    <div class="container mt-4 col-6 border-bottom border-secondary">
+      <h1 class="content-head__title">
         Em defesa dos animais, Justiça mexicana proíbe touradas na maior arena
         do mundo
       </h1>
-      <p class="text-muted">
+      <p class="text-muted content-head__subtitle">
         Decisão ainda não é definitiva, mas até que haja uma ordem final, a
         Monumental Praça de Touros da Cidade do México ficará fechada.
       </p>
-      <p class="small text-muted">
-        Por g1<br />14/06/2022 05h03 · Atualizado há 42 minutos
-      </p>
+      <div class="container small mt-2">
+        <p class="bold">Por g1</p>
+        <p class="text-muted">14/06/2022 05h03 · Atualizado há 42 minutos</p>
+      </div>
     </div>
 
     <!-- Imagem Principal -->
     <div class="container my-4">
-      <img
-        src="./src/img/img-noticia.webp"
-        class="img-fluid rounded"
-        alt="Praça de Touros"
-      />
-      <p class="text-muted small">
-        Imagem da Monumental Praça de Touros da Cidade do México — Foto:
-        Reprodução/Google Maps
-      </p>
+      <div class="container col-6">
+        <img
+          class="img-fluid"
+          src="./src/img/img-noticia.webp"
+          class="img-fluid rounded"
+          alt="Praça de Touros"
+        />
+        <p class="text-muted small content-media__description">
+          Imagem da Monumental Praça de Touros da Cidade do México — Foto:
+          Reprodução/Google Maps
+        </p>
+      </div>
     </div>
 
     <!-- Corpo da Notícia -->
-    <div class="container mb-5">
-      <p>
-        A maior arena de touradas do mundo, na Cidade do
-        <strong class="text-danger">México</strong>, foi proibida de receber
-        espetáculos desde a última sexta-feira (10).
-      </p>
-      <p>
-        O juiz Jonathan Bass deu uma ordem no fim de maio que proíbe os
-        espetáculos no local. A ação havia sido iniciada por uma organização
-        chamada Justiça Justa.
-      </p>
+    <article
+      class="articleBody container border-bottom border-secondary mb-5 col-7"
+    >
+      <!-- informações da noticia com anuncio -->
+      <section class="d-flex flex-nowrap">
+        <div class="adware-container-info container d-flex flex-wrap gap-lg-3">
+          <p>
+            A maior arena de touradas do mundo, na Cidade do
+            <strong class="text-danger">México</strong>, foi proibida de receber
+            espetáculos desde a última sexta-feira (10).
+          </p>
+          <p>
+            O juiz Jonathan Bass deu uma ordem no fim de maio que proíbe os
+            espetáculos no local. A ação havia sido iniciada por uma organização
+            chamada Justiça Justa.
+          </p>
+        </div>
+
+        <div class="container adware-container">
+          <img
+            class="img-fluid"
+            src="./src/img/banner-noticia.png"
+            alt="Anuncio"
+          />
+        </div>
+      </section>
 
       <!-- Links relacionados -->
       <div class="my-4">
         <h5 class="fw-bold">Leia também</h5>
-        <ul>
+        <ul class="links-leia-tambem container d-flex flex-wrap fs-5 fw-bold">
           <li>
             <a href="#" class="text-danger"
               >Toureiro passa lenço em testa de touro antes de matá-lo e gera
@@ -133,28 +156,41 @@
         relação entre meio ambiente e direitos humanos já foi incorporada pelo
         Judiciário mexicano.
       </p>
-    </div>
+    </article>
 
     <!-- Imagem inferior (newsletter ou propaganda) -->
-    <div class="container text-center my-5">
-      <img
-        src="./src/img/img-fundo.png"
-        class="img-fluid"
-        alt="Resumo do dia"
-      />
-      <div class="mt-2">
-        <button class="btn btn-danger">
+    <section class="container d-flex flex-nowrap my-lg-5 col-7">
+      <div class="container d-flex w-50">
+        <img
+          src="./src/img/img-fundo.png"
+          class="img-fluid"
+          alt="Resumo do dia"
+        />
+      </div>
+      <div class="container d-flex w-50 flex-wrap mt-2">
+        <h3 class="fw-bold">Resumo do dia</h3>
+
+        <p>As notícias que voce não vai perder diariamente no seu e-mail.</p>
+
+        <p>Para se inscrever, entre ou crie uma Conta Globo gratuita</p>
+
+        <button class="btn btn-outline-danger">
           Inscreva-se e receba a newsletter
         </button>
       </div>
-    </div>
+    </section>
 
     <!-- Rodapé com comentários -->
-    <div class="container text-center mb-5">
-      <h5>Comentários (29)</h5>
-      <button class="btn btn-outline-secondary mt-2">
-        Clique aqui para fazer login
-      </button>
+    <div class="container d-flex flex-wrap mb-5 col-6">
+      <h5 class="bold">Comentários (29)</h5>
+
+      <div class="container border border-secondary d-flex flex-wrap justify-content-center text-center gap-1">
+        <p class="w-100">Acesse sua Conta Globo e participe da conversa</p>
+
+        <button class="btn btn-outline-secondary w-50 my-2">
+          Clique aqui para fazer login
+        </button>
+      </div>
     </div>
 
     <!-- Bootstrap JS -->
