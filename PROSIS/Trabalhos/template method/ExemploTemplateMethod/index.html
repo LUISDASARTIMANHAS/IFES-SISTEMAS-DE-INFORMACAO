@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Loja | Template Method</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <nav>
+      <ul>
+        <li>Home</li>
+        <li>Produtos</li>
+        <li>Promoções</li>
+        <li>Contato</li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section class="detalhes">
+      <h2>🛒 Carrinho de Compras</h2>
+
+      <div class="bloco">
+        <h3>👤 Login</h3>
+        <p>Lucas Andrade | +55 (27) 98888-0000</p>
+        <a href="#">Alterar</a>
+      </div>
+
+      <div class="bloco">
+        <h3>📦 Endereço de Entrega</h3>
+        <p>Rua Fictícia, 123 - Centro - Colatina/ES</p>
+        <a href="#">Alterar</a>
+      </div>
+
+      <div class="bloco">
+        <h3>💳 Forma de Pagamento</h3>
+
+        <select id="forma-pagamento">
+          <option value="credito">Cartão de Crédito</option>
+          <option value="pix">PIX</option>
+          <option value="boleto">Boleto</option>
+        </select>
+
+        <div class="formulario-cartao">
+          <input type="text" placeholder="Nome no Cartão" required>
+          <input type="text" placeholder="Número do Cartão" required>
+          <div class="duplo">
+            <input type="text" placeholder="MM/AA" required>
+            <input type="text" placeholder="CVC" required>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="resumo">
+      <h3>Resumo do Pedido</h3>
+      <ul>
+        <li><span>Produto 1</span><span>R$ 350,00</span></li>
+        <li><span>Produto 2</span><span>R$ 120,00</span></li>
+        <li><span>Frete</span><span>R$ 20,00</span></li>
+        <li class="total"><strong>Total:</strong><strong>R$ 490,00</strong></li>
+      </ul>
+
+      <button class="finalizar" onclick="finalizarSelecionado()">Finalizar Pagamento</button>
+
+      <div id="resumo"></div>
+    </section>
+  </main>
+
+  <script type="module" src="dist/app.js"></script>
+
+</body>
+</html>

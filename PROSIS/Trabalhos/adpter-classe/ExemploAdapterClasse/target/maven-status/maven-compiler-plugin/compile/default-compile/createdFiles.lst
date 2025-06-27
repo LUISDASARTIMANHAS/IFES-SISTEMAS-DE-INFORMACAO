@@ -1,0 +1,8 @@
+classes/FacebookLoginAdapter.class
+classes/GitHubLoginAdapter.class
+classes/FacebookAPI.class
+main/LoginApp.class
+interfaces/LoginProvider.class
+classes/GitHubAPI.class
+classes/GoogleLoginAdapter.class
+classes/GoogleAPI.class

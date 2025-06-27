@@ -1,0 +1,8 @@
+/home/lucas/Documentos/ifes-3ano/SI-IFES-III/projeto-sistemas/padroes-projeto/adpter-classe/ExemploAdapterClasse/src/main/java/classes/FacebookAPI.java
+/home/lucas/Documentos/ifes-3ano/SI-IFES-III/projeto-sistemas/padroes-projeto/adpter-classe/ExemploAdapterClasse/src/main/java/classes/FacebookLoginAdapter.java
+/home/lucas/Documentos/ifes-3ano/SI-IFES-III/projeto-sistemas/padroes-projeto/adpter-classe/ExemploAdapterClasse/src/main/java/classes/GitHubAPI.java
+/home/lucas/Documentos/ifes-3ano/SI-IFES-III/projeto-sistemas/padroes-projeto/adpter-classe/ExemploAdapterClasse/src/main/java/classes/GitHubLoginAdapter.java
+/home/lucas/Documentos/ifes-3ano/SI-IFES-III/projeto-sistemas/padroes-projeto/adpter-classe/ExemploAdapterClasse/src/main/java/classes/GoogleAPI.java
+/home/lucas/Documentos/ifes-3ano/SI-IFES-III/projeto-sistemas/padroes-projeto/adpter-classe/ExemploAdapterClasse/src/main/java/classes/GoogleLoginAdapter.java
+/home/lucas/Documentos/ifes-3ano/SI-IFES-III/projeto-sistemas/padroes-projeto/adpter-classe/ExemploAdapterClasse/src/main/java/interfaces/LoginProvider.java
+/home/lucas/Documentos/ifes-3ano/SI-IFES-III/projeto-sistemas/padroes-projeto/adpter-classe/ExemploAdapterClasse/src/main/java/main/LoginApp.java
