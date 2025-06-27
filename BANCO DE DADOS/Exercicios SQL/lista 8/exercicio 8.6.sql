@@ -2,15 +2,12 @@
 -- disponíveis (sit_fita =2)
 -- 6) Tem 296 filmes. Vou listar os 5 primeiros:
 select
-	f.nom_filme
-,	fit.sit_fita
-,	g.nom_genero
+	f.nom_filme,
+	fit.sit_fita,
+	g.nom_genero
 from
 	filme f
-join fita fit
-	on fit.cod_filme = f.cod_filme
-JOIN genero g
-	on g.cod_genero = f.cod_genero
-where 
+	join fita fit on fit.cod_filme = f.cod_filme
+	JOIN genero g on g.cod_genero = f.cod_genero
+where
 	sit_fita = 2
-	

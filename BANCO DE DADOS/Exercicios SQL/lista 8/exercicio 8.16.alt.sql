@@ -1,14 +1,17 @@
--- 8.16. Exiba o nome do filme e a quantidade que cada filme foi alugado. Caso um filme não tenha
--- sido alugado, o mesmo deve aparecer no resultado.
 select
-	fil.cod_filme,
-	fil.nom_filme,
-	Count(*) qtd_alugado
+	cli.nom_cliente,
+	gen.nom_genero,
+	Count(*) qtd_locacao
 FROM
-	filme fil
-left join fita fit
-	on fit.cod_filme = fil.cod_filme
+	cliente cli
+	JOIN locacao loc ON loc.cod_cliente = cli.cod_cliente
+	JOIN fita fit ON fit.cod_fita = loc.cod_fita
+	JOIN filme fil ON fil.cod_filme = fit.cod_filme
+	JOIN genero gen ON gen.cod_genero = fil.cod_genero
+WHERE
+	cli.cod_cliente = 1
 GROUP by
-fil.nom_filme,
-fil.cod_filme 
-	
+	cli.nom_cliente,
+	gen.nom_genero
+ORDER by
+	3 desc

@@ -2,12 +2,11 @@
 -- seja, que estão na locadora.
 -- 5) Tem 296 filmes. Vou listar os 5 primeiros:
 select
-	f.nom_filme
-,	f.cod_cor
-,	fit.sit_fita
+	f.nom_filme,
+	f.cod_cor,
+	fit.sit_fita
 from
 	filme f
-join fita fit
-	on fit.cod_filme = f.cod_filme
+	join fita fit on fit.cod_filme = f.cod_filme
 where
 	fit.sit_fita = 2

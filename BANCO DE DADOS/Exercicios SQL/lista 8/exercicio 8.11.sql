@@ -3,20 +3,16 @@
 -- resultado esperado 11.870
 -- 11) Tem 11870 filmes. Vou listar os 5 primeiros:
 select
-	fil.cod_filme
-,	fil.nom_filme
-,	c.cod_cliente
-,	c.nom_cliente
-from cliente c
-JOIN locacao l
-	on l.cod_cliente = c.cod_cliente
-JOIN fita fit
-	on fit.cod_fita = l.cod_fita
-join filme fil
-	on fil.cod_filme = fit.cod_filme
-join genero g
-	on g.cod_genero = fil.cod_genero
-where 
+	fil.cod_filme,
+	fil.nom_filme,
+	c.cod_cliente,
+	c.nom_cliente
+from
+	cliente c
+	JOIN locacao l on l.cod_cliente = c.cod_cliente
+	JOIN fita fit on fit.cod_fita = l.cod_fita
+	join filme fil on fil.cod_filme = fit.cod_filme
+	join genero g on g.cod_genero = fil.cod_genero
+where
 	c.uf_cliente ilike 'RJ'
-and 
-	g.nom_genero ilike 'Comédia'
+	and g.nom_genero ilike 'Comédia'
