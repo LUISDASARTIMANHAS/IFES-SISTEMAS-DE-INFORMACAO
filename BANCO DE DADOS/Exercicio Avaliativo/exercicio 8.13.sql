@@ -1,13 +1,15 @@
--- 8.12. Exiba o nome do filme, seu código, a data de sua locação e a data de sua devolução. Mostre
--- também as fitas que nunca foram alugadas.
-select
-	fil.cod_filme
-,	fil.nom_filme
-,	l.dat_locacao
-,	l.dat_devolucao
-, 	fit.dat_aquisicao
-from locacao l
-JOIN fita fit
-	on fit.cod_fita = l.cod_fita
-JOIN filme fil
-	on fil.cod_filme = fit.cod_filme
+-- 8.13. Exiba o nome do cliente, seu código e o código das fitas alugadas por ele. Mostre também os
+-- clientes que nunca alugaram fitas.
+-- Tem 2.574.040 filmes. Ordenado pelo “cod_fita” e “cod_cliente”. Vou listar os 5
+-- primeiros:
+SELECT
+    cli.nom_cliente,
+    cli.cod_cliente,
+    fit.cod_fita
+FROM
+    cliente cli
+    LEFT JOIN locacao l ON cli.cod_cliente = l.cod_cliente
+    LEFT JOIN fita fit ON fit.cod_fita = l.cod_fita
+ORDER BY
+    fit.cod_fita,
+    cli.cod_cliente;
