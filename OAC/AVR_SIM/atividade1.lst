@@ -1,0 +1,207 @@
+gavrasm Gerd's AVR assembler version 4.2 (C)2019 by DG4FAC
+----------------------------------------------------------
+
+Path:        D:\AVR_SIM\
+Source file: atividade1.asm
+Hex file:    atividade1.hex
+Eeprom file: atividade1.eep
+Compiled:    08.07.2023, 14:59:27
+Pass:        2
+
+     1: ;
+     2: ; *********************************
+     3: ; *                               *
+     4: ; *                               *
+     5: ; *********************************
+     6: ;
+     7: .nolist
+    10: ;
+    11: ; **********************************
+    12: ;        H A R D W A R E
+    13: ; **********************************
+    14: ;
+    15: ; **********************************
+    16: ;  P O R T S   A N D   P I N S
+    17: ; **********************************
+    18: ;
+    19: .equ pOut = PORTB ; Define a output port
+    20: .equ pDir = DDRB ; Define a direction port
+    21: .equ pIn = PINB ; Define an input port
+    22: .equ bMyPinO = PORTB0 ; Define an output pin
+    23: .equ bDir0 = DDB0 ; Define a direction pin
+    24: .equ bMyIn = PINB0 ; Define an input pin
+    25: ;
+    26: ; **********************************
+    27: ;   A D J U S T A B L E   C O N S T
+    28: ; **********************************
+    29: ;
+    30: .equ clock=1000000 ; Define clock frequency
+    31: ;
+    32: ; **********************************
+    33: ;  F I X  &  D E R I V.  C O N S T
+    34: ; **********************************
+    35: ;
+    36: .equ cTc0Clk = clock / 256 ; Define from clock
+    37: ;
+    38: ; **********************************
+    39: ;       R E G I S T E R S
+    40: ; **********************************
+    41: ;
+    42: ; free: R0 to R14
+    43: .def rSreg = R15 ; Save/Restore status port
+    44: ; free: R0 to R15
+    45: .def rmp = R16 ; Define multipurpose register
+    46: ; free: R17 to R29
+    47: ; used: R31:R30 = Z for ...
+    48: ;
+    49: ; **********************************
+    50: ;           S R A M
+    51: ; **********************************
+    52: ;
+    53: .dseg
+    54: .org SRAM_START
+    55: sLabel1:
+    56: .byte 16 ; Reserve 16 bytes
+    57: ;
+    58: ; **********************************
+    59: ;         C O D E
+    60: ; **********************************
+    61: ;
+    62: .cseg
+    63: .org 000000
+    64: ;
+    65: ; **********************************
+    66: ; R E S E T  &  I N T - V E C T O R S
+    67: ; **********************************
+    68: 000000   C033  rjmp Main ; Reset vector
+    69: 000001   0000  nop
+    70: 000002   9518  reti ; INT0
+    71: 000003   0000  nop
+    72: 000004   9518  reti ; INT1
+    73: 000005   0000  nop
+    74: 000006   9518  reti ; PCI0
+    75: 000007   0000  nop
+    76: 000008   9518  reti ; PCI1
+    77: 000009   0000  nop
+    78: 00000A   9518  reti ; PCI2
+    79: 00000B   0000  nop
+    80: 00000C   9518  reti ; WDT
+    81: 00000D   0000  nop
+    82: 00000E   9518  reti ; OC2A
+    83: 00000F   0000  nop
+    84: 000010   9518  reti ; OC2B
+    85: 000011   0000  nop
+    86: 000012   9518  reti ; OVF2
+    87: 000013   0000  nop
+    88: 000014   9518  reti ; ICP1
+    89: 000015   0000  nop
+    90: 000016   9518  reti ; OC1A
+    91: 000017   0000  nop
+    92: 000018   9518  reti ; OC1B
+    93: 000019   0000  nop
+    94: 00001A   9518  reti ; OVF1
+    95: 00001B   0000  nop
+    96: 00001C   9518  reti ; OC0A
+    97: 00001D   0000  nop
+    98: 00001E   9518  reti ; OC0B
+    99: 00001F   0000  nop
+   100: 000020   9518  reti ; OVF0
+   101: 000021   0000  nop
+   102: 000022   9518  reti ; SPI
+   103: 000023   0000  nop
+   104: 000024   9518  reti ; URXC
+   105: 000025   0000  nop
+   106: 000026   9518  reti ; UDRE
+   107: 000027   0000  nop
+   108: 000028   9518  reti ; UTXC
+   109: 000029   0000  nop
+   110: 00002A   9518  reti ; ADCC
+   111: 00002B   0000  nop
+   112: 00002C   9518  reti ; ERDY
+   113: 00002D   0000  nop
+   114: 00002E   9518  reti ; ACI
+   115: 00002F   0000  nop
+   116: 000030   9518  reti ; TWI
+   117: 000031   0000  nop
+   118: 000032   9518  reti ; SPMR
+   119: 000033   0000  nop
+   120: ;
+   121: ; **********************************
+   122: ;  I N T - S E R V I C E   R O U T .
+   123: ; **********************************
+   124: ;
+   125: ; Add all interrupt service routines
+   126: ;
+   127: ; **********************************
+   128: ;  M A I N   P R O G R A M   I N I T
+   129: ; **********************************
+   130: ;
+   131: Main:
+   132: 000034   E008  ldi rmp,High(RAMEND)
+   133: 000035   BF0E  out SPH,rmp ; Init MSB stack pointer
+   134: 000036   EF0F  ldi rmp,Low(RAMEND)
+   135: 000037   BF0D  out SPL,rmp ; Init LSB stack pointer
+   136: ; ...
+   137: 000038   9478  sei ; Enable interrupts
+   138: ;
+   139: ; **********************************
+   140: ;    P R O G R A M   L O O P
+   141: ; **********************************
+   142: ;
+   143: 
+   144: 000039   E000  LDI R16, 0        ; Inicializa o registrador R16 com zero (acumulador)
+   145: 00003A   E010  LDI R17, 0        ; Inicializa o registrador R17 com zero (contador)
+   146: 00003B   EC28  LDI R18, 200      ; Carrega a constante 200 em R18 (limite da soma)
+   147: 
+   148: 00003C   EFBF  LDI R27, $FF      ; Carrega o valor máximo na parte alta do registrador R27
+   149: 00003D   E1A0  LDI R26, $10      ; Carrega o endereço de memória em formato hexadecimal na parte baixa do registrador R26
+   150: 
+   151: my_loop:
+   152: 00003E   8140  LD R20, Z       ; Carrega o valor da memória apontada por Z em R20
+   153: 00003F   0F04  ADD R16, R20    ; Soma o valor de R20 ao acumulador em R16 (sem considerar carry)
+   154: 000040   9513  INC R17         ; Incrementa o contador em R17
+   155: 
+   156: 000041   1702  CP R16, R18     ; Compara o valor do acumulador com o limite em R18
+   157: 000042   F418  BRSH end        ; Sai do loop se a soma for maior ou igual ao limite
+   158: 
+   159: 000043   95A3  INC R26         ; Incrementa o endereço de memória para apontar para o próximo número
+   160: 000044   940C  jmp my_loop    ; Salta de volta para o início do loop se o resultado do salto não for zero
+        000045   003E
+   161: 
+   162: end:
+   163:     ; Aqui você pode adicionar o código para lidar com o resultado da soma
+   164:     ; O valor final da soma estará em R16
+   165: 
+   166: 
+   167: Loop:
+   168: 000046   CFFF  rjmp loop
+   169: ;
+   170: ; End of source code
+
+List of symbols:
+Type nDef nUsed Decimalval  Hexvalue Name
+  T     1     1         150       96 ATMEGA328P
+  L     1     0         256      100 SLABEL1
+  L     1     2          52       34 MAIN
+  L     1     1          62       3E MY_LOOP
+  L     1     2          70       46 END
+  L     1     2          70       46 LOOP
+  R     1     0          15        F RSREG
+  R     1     4          16       10 RMP
+  C     1     0           5        5 POUT
+  C     1     0           4        4 PDIR
+  C     1     0           3        3 PIN
+  C     1     0           0        0 BMYPINO
+  C     1     0           0        0 BDIR0
+  C     1     0           0        0 BMYIN
+  C     1     1     1000000    F4240 CLOCK
+  C     1     0        3906      F42 CTC0CLK
+   No macros.
+
+Program             :       71 words.
+Constants           :        0 words.
+Total program memory:       71 words.
+Eeprom space        :        0 bytes.
+Data segment        :       16 bytes.
+Compilation completed, no errors.
+Compilation endet 08.07.2023, 14:59:27
