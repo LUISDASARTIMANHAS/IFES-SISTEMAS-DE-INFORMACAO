@@ -49,7 +49,7 @@
       var trLine = document.createElement("tr");
       var tdElementDia = document.createElement("td");
 
-      if(diaDaSemana == i){
+      if(diaDaSemana == i-1){
         tdElementDia.style.backgroundColor = "red"
       }
       tdElementDia.innerHTML = dia;
