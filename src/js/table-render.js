@@ -1,4 +1,8 @@
 (() => {
+  const timestamp = new Date();
+  const diaDaSemana = timestamp.getDay();
+  const hora = timestamp.getHours();
+  
   function getData() {
     const url = "./src/data/horarios.json";
     const date = new Date();
@@ -45,6 +49,9 @@
       var trLine = document.createElement("tr");
       var tdElementDia = document.createElement("td");
 
+      if(diaDaSemana == i){
+        tdElementDia.style.backgroundColor = "red"
+      }
       tdElementDia.innerHTML = dia;
 
       trLine.appendChild(tdElementDia);
