@@ -27,10 +27,10 @@
       name="description"
       content="Portal para visualizações de horários, ₢Creditos ao Instituto Federal de Educação, Ciência e Tecnologia do Espírito Santo."
     />
-    <link href="https://ifes.edu.br/templates/padraogoverno01/favicon-96x96.png" rel="icon" type="image/png" sizes="96x96">
+    <link href="./src/assets/favicon-96x96.png" rel="icon" type="image/png" sizes="96x96">
     <meta
       property="og:image"
-      content="https://ifes.edu.br/templates/padraogoverno01/favicon-96x96.png"/>
+      content="./src/assets/favicon-96x96.png"/>
     <links></links>
 
     <link
@@ -39,25 +39,24 @@
     />
     <link
       rel="stylesheet"
-      href="https://ifes.edu.br/components/com_k2/css/k2.css?v=2.10.3&b=20200429"
+      href="./src/css/k2.css"
     />
     <link
       rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/simple-line-icons@2.4.1/css/simple-line-icons.css"
+      href="./src/css/simple-line-icons@2.4.1.css"
+    />
+    <link
+      rel="stylesheet"
+      href="./src/css/reset.css"
     />
     <links></links>
     <title>PINGOBRAS IFES SISTEMA</title>
   </head>
-  <body style="background: white">
+  <body>
     <header>
       <div class="container">
         <div class="row-fluid accessibility-language-actions-container">
-          <div class="span6 accessibility-container">
-            <!-- accessibilidade de movimentação na pagina -->
-          </div>
           <!-- fim div.span6 -->
-          <div class="span6 language-and-actions-container">
-            <h2 class="hide">Opções de acessibilidade</h2>
 
             <ul class="pull-right" id="portal-siteactions">
               <li class="item-140">
@@ -80,8 +79,6 @@
                 </a>
               </li>
             </ul>
-          </div>
-          <!-- fim div.span6 -->
         </div>
         <!-- fim .row-fluid -->
         <div class="row-fluid">
@@ -173,7 +170,7 @@
         <!-- fim .sobre -->
       </div>
     </header>
-    <main style="display: flex">
+    <main>
       <table>
         <tbody>
           <div id="loadingTable" class="loading">
