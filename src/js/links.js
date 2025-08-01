@@ -1,5 +1,6 @@
+import { renderLinkCss } from "../lib/render.js";
 (() => {
-  const url = "./src/data/info.json";
+  const url = "../src/data/info.json";
   const options = {
     method: "GET",
     mode: "cors",
@@ -19,8 +20,6 @@
       }
     })
     .then((data) => {
-      // console.log("DATA RESPONSE: ");
-      // console.log(data.hostname);
       importarCss(data);
     })
     .catch((error) => onErrorHostname(error));
@@ -31,10 +30,17 @@
 })();
 
 function importarCss(data) {
-  const links = document.querySelector("links");
-  const hostname = data.hostname || "betapingobras.glitch.me" || "pingobras.glitch.me"
-  const protocol = document.location.protocol
-  const fonte = `${protocol}//${hostname}/src/css/`
+  const linksContainer = document.querySelector("links");
+  const head = document.querySelector("head");
+  const isGithubPages = location.hostname.includes("github.io");
+  const hostname =
+    data.hostname ||
+    "luisdasartimanhas.github.io/PINGOBRAS" ||
+    "betapingobras.onrender.me";
+  const localFonte = isGithubPages
+    ? `${window.location.origin}/IFES-SISTEMAS-DE-INFORMACAO/src/css/`
+    : "/src/css/";
+  const fonte = `https://${hostname}/src/css/`;
   const srcs = [
     "footer",
     "style",
@@ -43,52 +49,44 @@ function importarCss(data) {
     "RGB",
     "main",
     "temas",
-    "bootstrap"
-  ];
-  const srcsLinksFonts = [
-    "4.7.0/css/font-awesome.min.css"
+    "bootstrap",
   ];
   const srcsLinksIfes = [
-    "html/mod_banners/css/banner-rotativo-home.css",
-    "bootstrap/css/bootstrap.min.css",
-    "css/custom.css",
-    "font-awesome/css/font-awesome.min.css",
-    "css/icones-bmp-verde.css",
-    "css/template-verde.css"
+    "html/mod_banners/css/banner-rotativo-home",
+    "bootstrap/css/bootstrap.min",
+    "css/custom",
+    "font-awesome/css/font-awesome.min",
+    "css/icones-bmp-verde",
+    "css/template-verde"
   ];
+  const srcsLinksLocal = ["k2", "reset", "simple-line-icons@2.4.1"];
 
-  for (let i = 0; i < srcs.length; i++) {
-    const src = srcs[i];
-    const link = fonte + src + ".css"
-    var newLink = document.createElement("link");
+  srcs.forEach((src) => {
+    const link = fonte + src + ".css";
+    renderLinkCss(linksContainer, link);
 
-    newLink.setAttribute("href", link);
-    newLink.rel = "stylesheet";
-    links.appendChild(newLink);
+    console.log(`%c [SISTEMA]: Carregando CSS: ${link}`, "color: #ff00ff");
+  });
 
-    console.log("Carregando css: " + link);
-  }
+  srcsLinksLocal.forEach((src) => {
+    const link = localFonte + src + ".css";
+    renderLinkCss(head, link);
 
-  for (let i = 0; i < srcsLinksFonts.length; i++) {
-    const head = document.querySelector("head");
-    var newLink = document.createElement("link");
+    console.log(
+      `%c [SISTEMA]: Carregando CSS Local: ${link}`,
+      "color: #00ff00"
+    );
+  });
 
-    newLink.setAttribute("href", "https://stackpath.bootstrapcdn.com/font-awesome/" + srcsLinksFonts[i]);
-    newLink.rel = "stylesheet";
-    head.appendChild(newLink);
+  // srcsLinksIfes
+  // https://ifes.edu.br/templates/padraogoverno01/
+  srcsLinksIfes.forEach((src) => {
+    const link = `https://ifes.edu.br/templates/padraogoverno01/${src}.css`;
+    renderLinkCss(head, link);
 
-    console.log("Novo Link de fonte css Num: " + srcsLinksFonts[i]);
-  }
-
-  for (let i = 0; i < srcsLinksIfes.length; i++) {
-    const head = document.querySelector("head");
-    var newLink = document.createElement("link");
-
-    newLink.setAttribute("href", "https://ifes.edu.br/templates/padraogoverno01/" + srcsLinksIfes[i]);
-    newLink.rel = "stylesheet";
-    head.appendChild(newLink);
-
-    console.log("Novo Link de IFES css Num: " + srcsLinksIfes[i]);
-  }
-
+    console.log(
+      `%c [SISTEMA]: Carregando CSS BY IFES: ${link}`,
+      "color: #00ff00"
+    );
+  });
 }
