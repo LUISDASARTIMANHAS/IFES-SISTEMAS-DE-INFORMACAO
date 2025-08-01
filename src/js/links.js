@@ -1,6 +1,10 @@
 import { renderLinkCss } from "../lib/render.js";
+const isGithubPages = location.hostname.includes("github.io");
+const localFonte = isGithubPages
+    ? `${window.location.origin}/IFES-SISTEMAS-DE-INFORMACAO/src`
+    : "/src/";
 (() => {
-  const url = "../data/info.json";
+  const url = `${localFonte}/data/info.json`;
   const options = {
     method: "GET",
     mode: "cors",
@@ -32,14 +36,10 @@ import { renderLinkCss } from "../lib/render.js";
 function importarCss(data) {
   const linksContainer = document.querySelector("links");
   const head = document.querySelector("head");
-  const isGithubPages = location.hostname.includes("github.io");
   const hostname =
     data.hostname ||
     "luisdasartimanhas.github.io/PINGOBRAS" ||
     "betapingobras.onrender.me";
-  const localFonte = isGithubPages
-    ? `${window.location.origin}/IFES-SISTEMAS-DE-INFORMACAO/src/css/`
-    : "/src/css/";
   const fonte = `https://${hostname}/src/css/`;
   const srcs = [
     "footer",
@@ -57,7 +57,7 @@ function importarCss(data) {
     "css/custom",
     "font-awesome/css/font-awesome.min",
     "css/icones-bmp-verde",
-    "css/template-verde"
+    "css/template-verde",
   ];
   const srcsLinksLocal = ["k2", "reset", "simple-line-icons@2.4.1"];
 
@@ -69,7 +69,7 @@ function importarCss(data) {
   });
 
   srcsLinksLocal.forEach((src) => {
-    const link = localFonte + src + ".css";
+    const link = `${localFonte}/css/${src}.css`;
     renderLinkCss(head, link);
 
     console.log(
