@@ -2,7 +2,10 @@
   const timestamp = new Date();
   const diaDaSemana = timestamp.getDay();
   const hora = timestamp.getHours();
-  
+
+  console.log("Dia da Semana:", diaDaSemana);
+  console.log("hora:", hora);
+
   function getData() {
     const url = "./src/data/horarios.json";
     const date = new Date();
@@ -11,7 +14,7 @@
       method: "GET",
       mode: "cors",
       headers: {
-        "content-type": "application/json;charset=utf-8"
+        "content-type": "application/json;charset=utf-8",
       },
     };
 
@@ -32,12 +35,12 @@
       })
       .catch((error) => onError(error));
   }
-    getData();
+  getData();
 
   function criarTabela(database) {
     const tabela = document.querySelector("tbody");
     const loading = document.getElementById("loadingTable");
-    
+
     createTableTitulo(tabela, database[0].horarios);
     loading.hidden = true;
 
@@ -46,11 +49,13 @@
       const dia = data.dia;
       const horarios = data.horarios;
 
+      console.log("[criarTabela] Criando Dia:", `${i+1} - ${dia}`);
+
       var trLine = document.createElement("tr");
       var tdElementDia = document.createElement("td");
 
-      if(diaDaSemana == i-1){
-        tdElementDia.style.backgroundColor = "red"
+      if (diaDaSemana == i+1) {
+        tdElementDia.style.backgroundColor = "red";
       }
       tdElementDia.innerHTML = dia;
 
