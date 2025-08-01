@@ -1,6 +1,6 @@
 import { renderLinkCss } from "../lib/render.js";
 (() => {
-  const url = "../src/data/info.json";
+  const url = "../data/info.json";
   const options = {
     method: "GET",
     mode: "cors",
