@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src/main/java"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-11">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="con" path="org.eclipse.jst.server.core.container/org.eclipse.jst.server.tomcat.runtimeTarget/apache-tomcat-10.0.6">
+		<attributes>
+			<attribute name="owner.project.facets" value="jst.web"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
+	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
+	<classpathentry kind="lib" path="/home/julionardi/eclipse/jee-2021-06/eclipse/plugins/hibernate-release-5.5.7.Final/lib/required/hibernate-core-5.5.7.Final.jar"/>
+	<classpathentry kind="lib" path="/home/julionardi/eclipse/jee-2021-06/eclipse/plugins/hibernate-release-5.5.7.Final/lib/required/classmate-1.5.1.jar"/>
+	<classpathentry kind="lib" path="/home/julionardi/eclipse/jee-2021-06/eclipse/plugins/hibernate-release-5.5.7.Final/lib/required/jandex-2.2.3.Final.jar"/>
+	<classpathentry kind="lib" path="/home/julionardi/eclipse/jee-2021-06/eclipse/plugins/hibernate-release-5.5.7.Final/lib/required/jboss-transaction-api_1.2_spec-1.1.1.Final.jar"/>
+	<classpathentry kind="lib" path="/home/julionardi/eclipse/jee-2021-06/eclipse/plugins/hibernate-release-5.5.7.Final/lib/required/byte-buddy-1.11.12.jar"/>
+	<classpathentry kind="lib" path="/home/julionardi/eclipse/jee-2021-06/eclipse/plugins/hibernate-release-5.5.7.Final/lib/required/javassist-3.27.0-GA.jar"/>
+	<classpathentry kind="lib" path="/home/julionardi/eclipse/jee-2021-06/eclipse/plugins/hibernate-release-5.5.7.Final/lib/required/javax.persistence-api-2.2.jar"/>
+	<classpathentry kind="lib" path="/home/julionardi/eclipse/jee-2021-06/eclipse/plugins/hibernate-release-5.5.7.Final/lib/required/hibernate-commons-annotations-5.1.2.Final.jar"/>
+	<classpathentry kind="lib" path="/home/julionardi/eclipse/jee-2021-06/eclipse/plugins/hibernate-release-5.5.7.Final/lib/required/FastInfoset-1.2.15.jar"/>
+	<classpathentry kind="lib" path="/home/julionardi/eclipse/jee-2021-06/eclipse/plugins/hibernate-release-5.5.7.Final/lib/required/stax-ex-1.8.jar"/>
+	<classpathentry kind="lib" path="/home/julionardi/eclipse/jee-2021-06/eclipse/plugins/hibernate-release-5.5.7.Final/lib/required/istack-commons-runtime-3.0.7.jar"/>
+	<classpathentry kind="lib" path="/home/julionardi/eclipse/jee-2021-06/eclipse/plugins/hibernate-release-5.5.7.Final/lib/required/txw2-2.3.1.jar"/>
+	<classpathentry kind="lib" path="/home/julionardi/eclipse/jee-2021-06/eclipse/plugins/hibernate-release-5.5.7.Final/lib/required/javax.activation-api-1.2.0.jar"/>
+	<classpathentry kind="lib" path="/home/julionardi/eclipse/jee-2021-06/eclipse/plugins/hibernate-release-5.5.7.Final/lib/required/jaxb-api-2.3.1.jar"/>
+	<classpathentry kind="lib" path="/home/julionardi/eclipse/jee-2021-06/eclipse/plugins/hibernate-release-5.5.7.Final/lib/required/jaxb-runtime-2.3.1.jar"/>
+	<classpathentry kind="lib" path="/home/julionardi/eclipse/jee-2021-06/eclipse/plugins/hibernate-release-5.5.7.Final/lib/required/antlr-2.7.7.jar"/>
+	<classpathentry kind="lib" path="/home/julionardi/eclipse/jee-2021-06/eclipse/plugins/hibernate-release-5.5.7.Final/lib/required/jboss-logging-3.4.2.Final.jar"/>
+	<classpathentry kind="lib" path="/home/julionardi/eclipse/jee-2021-06/eclipse/plugins/postgresql-42.2.23.jar"/>
+	<classpathentry kind="lib" path="/home/julionardi/eclipse/jee-2021-06/eclipse/plugins/hibernate-release-5.5.7.Final/lib/envers/hibernate-envers-5.5.7.Final.jar"/>
+	<classpathentry kind="lib" path="/home/julionardi/eclipse/jee-2021-06/eclipse/plugins/hibernate-release-5.5.7.Final/lib/envers/dom4j-2.1.3.jar"/>
+	<classpathentry kind="lib" path="/home/julionardi/eclipse/jee-2021-06/eclipse/plugins/hibernate-release-5.5.7.Final/lib/optional/proxool/proxool-0.8.3.jar"/>
+	<classpathentry kind="lib" path="/home/julionardi/eclipse/jee-2021-06/eclipse/plugins/hibernate-release-5.5.7.Final/lib/optional/proxool/hibernate-proxool-5.5.7.Final.jar"/>
+	<classpathentry kind="lib" path="/home/julionardi/eclipse/jee-2021-06/eclipse/plugins/hibernate-release-5.5.7.Final/lib/optional/vibur/slf4j-api-1.7.13.jar"/>
+	<classpathentry kind="lib" path="/home/julionardi/eclipse/jee-2021-06/eclipse/plugins/hibernate-release-5.5.7.Final/lib/optional/vibur/vibur-object-pool-25.0.jar"/>
+	<classpathentry kind="lib" path="/home/julionardi/eclipse/jee-2021-06/eclipse/plugins/hibernate-release-5.5.7.Final/lib/optional/vibur/vibur-dbcp-25.0.jar"/>
+	<classpathentry kind="lib" path="/home/julionardi/eclipse/jee-2021-06/eclipse/plugins/hibernate-release-5.5.7.Final/lib/optional/vibur/hibernate-vibur-5.5.7.Final.jar"/>
+	<classpathentry kind="lib" path="/home/julionardi/eclipse/jee-2021-06/eclipse/plugins/hibernate-release-5.5.7.Final/lib/optional/jcache/cache-api-1.0.0.jar"/>
+	<classpathentry kind="lib" path="/home/julionardi/eclipse/jee-2021-06/eclipse/plugins/hibernate-release-5.5.7.Final/lib/optional/jcache/hibernate-jcache-5.5.7.Final.jar"/>
+	<classpathentry kind="lib" path="/home/julionardi/eclipse/jee-2021-06/eclipse/plugins/hibernate-release-5.5.7.Final/lib/optional/hikaricp/HikariCP-3.2.0.jar"/>
+	<classpathentry kind="lib" path="/home/julionardi/eclipse/jee-2021-06/eclipse/plugins/hibernate-release-5.5.7.Final/lib/optional/hikaricp/hibernate-hikaricp-5.5.7.Final.jar"/>
+	<classpathentry kind="lib" path="/home/julionardi/eclipse/jee-2021-06/eclipse/plugins/hibernate-release-5.5.7.Final/lib/optional/ehcache/ehcache-2.10.6.jar"/>
+	<classpathentry kind="lib" path="/home/julionardi/eclipse/jee-2021-06/eclipse/plugins/hibernate-release-5.5.7.Final/lib/optional/ehcache/hibernate-ehcache-5.5.7.Final.jar"/>
+	<classpathentry kind="lib" path="/home/julionardi/eclipse/jee-2021-06/eclipse/plugins/hibernate-release-5.5.7.Final/lib/optional/ehcache/slf4j-api-1.7.25.jar"/>
+	<classpathentry kind="lib" path="/home/julionardi/eclipse/jee-2021-06/eclipse/plugins/hibernate-release-5.5.7.Final/lib/optional/c3p0/mchange-commons-java-0.2.19.jar"/>
+	<classpathentry kind="lib" path="/home/julionardi/eclipse/jee-2021-06/eclipse/plugins/hibernate-release-5.5.7.Final/lib/optional/c3p0/c3p0-0.9.5.5.jar"/>
+	<classpathentry kind="lib" path="/home/julionardi/eclipse/jee-2021-06/eclipse/plugins/hibernate-release-5.5.7.Final/lib/optional/c3p0/hibernate-c3p0-5.5.7.Final.jar"/>
+	<classpathentry kind="lib" path="/home/julionardi/eclipse/jee-2021-06/eclipse/plugins/hibernate-release-5.5.7.Final/lib/optional/agroal/agroal-pool-1.9.jar"/>
+	<classpathentry kind="lib" path="/home/julionardi/eclipse/jee-2021-06/eclipse/plugins/hibernate-release-5.5.7.Final/lib/optional/agroal/hibernate-agroal-5.5.7.Final.jar"/>
+	<classpathentry kind="lib" path="/home/julionardi/eclipse/jee-2021-06/eclipse/plugins/hibernate-release-5.5.7.Final/lib/optional/agroal/agroal-api-1.9.jar"/>
+	<classpathentry kind="lib" path="/home/julionardi/eclipse/jee-2021-06/eclipse/plugins/hibernate-release-5.5.7.Final/lib/osgi/org.osgi.compendium-5.0.0.jar"/>
+	<classpathentry kind="lib" path="/home/julionardi/eclipse/jee-2021-06/eclipse/plugins/hibernate-release-5.5.7.Final/lib/osgi/org.osgi.core-6.0.0.jar"/>
+	<classpathentry kind="lib" path="/home/julionardi/eclipse/jee-2021-06/eclipse/plugins/hibernate-release-5.5.7.Final/lib/osgi/hibernate-osgi-5.5.7.Final.jar"/>
+	<classpathentry kind="lib" path="/home/julionardi/eclipse/jee-2021-06/eclipse/plugins/hibernate-release-5.5.7.Final/lib/osgi/javax.interceptor-api-1.2.jar"/>
+	<classpathentry kind="output" path="build/classes"/>
+</classpath>
