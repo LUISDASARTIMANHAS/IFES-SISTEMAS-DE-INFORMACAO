@@ -24,7 +24,7 @@
           return response.json();
         } else {
           return response.text().then((errorText) => {
-            throw new Error("Erro ao fazer login: " + errorText);
+            throw new Error("Erro ao carregar tabela de horarios: " + errorText);
           });
         }
       })
@@ -40,14 +40,16 @@
   function criarTabela(database) {
     const tabela = document.querySelector("tbody");
     const loading = document.getElementById("loadingTable");
+    const horarios = database.horarios;
+    const semanas = database.semana;
 
-    createTableTitulo(tabela, database[0].horarios);
+    createTableTitulo(tabela, horarios);
     loading.hidden = true;
 
-    for (let i = 0; i < database.length; i++) {
-      const data = database[i];
-      const dia = data.dia;
-      const horarios = data.horarios;
+    for (let i = 0; i < semanas.length; i++) {
+      const semana = semanas[i];
+      const dia = semana.dia;
+      const materias = semana.materias;
 
       console.log("[criarTabela] Criando Dia:", `${i+1} - ${dia}`);
 
@@ -60,17 +62,17 @@
       tdElementDia.innerHTML = dia;
 
       trLine.appendChild(tdElementDia);
-      createTDMateria(trLine, horarios);
+      createTDMateria(trLine, materias);
 
       tabela.appendChild(trLine);
     }
 
-    function createTDMateria(trLine, database) {
-      for (let h = 0; h < database.length; h++) {
-        const materia = database[h];
+    function createTDMateria(trLine, materias) {
+      for (let h = 0; h < materias.length; h++) {
+        const materia = materias[h];
         var tdElementMateria = document.createElement("td");
 
-        tdElementMateria.innerHTML = materia.materia;
+        tdElementMateria.innerHTML = materia;
         trLine.appendChild(tdElementMateria);
       }
     }
@@ -86,7 +88,7 @@
         const horario = database[h];
         var thElementHorario = document.createElement("th");
 
-        thElementHorario.innerHTML = horario.horario;
+        thElementHorario.innerHTML = horario;
         trLine.appendChild(thElementHorario);
       }
       tabela.appendChild(trLine);

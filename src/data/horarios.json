@@ -1,77 +1,91 @@
-[
-  {
-    "dia": "Segunda",
-    "horarios": [
-      { "horario": "12:50 - 13:40", "materia": "REF" },
-      { "horario": "13:40 - 14:30", "materia": "REF" },
-      { "horario": "14:30 - 15:20", "materia": "GEPSOFT" },
-      { "horario": "15:40 - 16:30", "materia": "GEPSOFT" },
-      { "horario": "16:30 - 17:20", "materia": "REF" },
-      { "horario": "17:20 - 18:10", "materia": "REF" },
-      { "horario": "18:10 - 19:30", "materia": "BD II" },
-      { "horario": "19:30 - 20:20", "materia": "BD II" },
-      { "horario": "20:20 - 21:09", "materia": "BD II" },
-      { "horario": "21:10 - 22:00", "materia": "BD II" }
-    ]
-  },
-  {
-    "dia": "Terça",
-    "horarios": [
-      { "horario": "12:50 - 13:40", "materia": "REF" },
-      { "horario": "13:40 - 14:30", "materia": "REF" },
-      { "horario": "14:30 - 15:20", "materia": "REF" },
-      { "horario": "15:40 - 16:30", "materia": "REF" },
-      { "horario": "16:30 - 17:20", "materia": "Cal I" },
-      { "horario": "17:20 - 18:10", "materia": "Cal I" },
-      { "horario": "18:10 - 19:30", "materia": "Disp Moveis" },
-      { "horario": "19:30 - 20:20", "materia": "Disp Moveis" },
-      { "horario": "20:20 - 21:09", "materia": "Disp Moveis" },
-      { "horario": "21:10 - 22:00", "materia": "Disp Moveis" }
-    ]
-  },
-  {
-    "dia": "Quarta",
-    "horarios": [
-      { "horario": "12:50 - 13:40", "materia": "REF" },
-      { "horario": "13:40 - 14:30", "materia": "REF" },
-      { "horario": "14:30 - 15:20", "materia": "REF" },
-      { "horario": "15:40 - 16:30", "materia": "REF" },
-      { "horario": "16:30 - 17:20", "materia": "DEVWEB II" },
-      { "horario": "17:20 - 18:10", "materia": "DEVWEB II" },
-      { "horario": "18:10 - 19:30", "materia": "INFSO" },
-      { "horario": "19:30 - 20:20", "materia": "INFSO" },
-      { "horario": "20:20 - 21:09", "materia": "INFSO" },
-      { "horario": "21:10 - 22:00", "materia": "INFSO" }
-    ]
-  },
-  {
-    "dia": "Quinta",
-    "horarios": [
-      { "horario": "12:50 - 13:40", "materia": "DEVWEB II" },
-      { "horario": "13:40 - 14:30", "materia": "DEVWEB II" },
-      { "horario": "14:30 - 15:20", "materia": "Cal I" },
-      { "horario": "15:40 - 16:30", "materia": "Cal I" },
-      { "horario": "16:30 - 17:20", "materia": "REF" },
-      { "horario": "17:20 - 18:10", "materia": "REF" },
-      { "horario": "18:10 - 19:30", "materia": "REF" },
-      { "horario": "19:30 - 20:20", "materia": "REF" },
-      { "horario": "20:20 - 21:09", "materia": "REF" },
-      { "horario": "21:10 - 22:00", "materia": "REF" }
-    ]
-  },
-  {
-    "dia": "Sexta",
-    "horarios": [
-      { "horario": "12:50 - 13:40", "materia": "Empreend" },
-      { "horario": "13:40 - 14:30", "materia": "Empreend" },
-      { "horario": "14:30 - 15:20", "materia": "GEPSOFT" },
-      { "horario": "15:40 - 16:30", "materia": "GEPSOFT" },
-      { "horario": "16:30 - 17:20", "materia": "REF" },
-      { "horario": "17:20 - 18:10", "materia": "REF" },
-      { "horario": "18:10 - 19:30", "materia": "REF" },
-      { "horario": "19:30 - 20:20", "materia": "REF" },
-      { "horario": "20:20 - 21:09", "materia": "REF" },
-      { "horario": "21:10 - 22:00", "materia": "REF" }
-    ]
-  }
-]
+{
+  "horarios": [
+    "13:00 - 13:49",
+    "13:50 - 14:39",
+    "14:40 - 15:30",
+    "15:50 - 16:39",
+    "16:40 - 17:29",
+    "17:30 - 18:20",
+    "18:40 - 19:29",
+    "19:30 - 20:19",
+    "20:20 - 21:09",
+    "21:10 - 22:00"
+  ],
+  "semana": [
+    {
+      "dia": "Segunda",
+      "materias": [
+        "REF",
+        "REF",
+        "GEPSOFT",
+        "GEPSOFT",
+        "REF",
+        "REF",
+        "BD II",
+        "BD II",
+        "BD II",
+        "BD II"
+      ]
+    },
+    {
+      "dia": "Terça",
+      "materias": [
+        "REF",
+        "REF",
+        "REF",
+        "REF",
+        "Cal I",
+        "Cal I",
+        "REF",
+        "REF",
+        "REF",
+        "REF"
+      ]
+    },
+    {
+      "dia": "Quarta",
+      "materias": [
+        "REF",
+        "REF",
+        "REF",
+        "REF",
+        "DEVWEB II",
+        "DEVWEB II",
+        "INFSO",
+        "INFSO",
+        "REF",
+        "REF"
+      ]
+    },
+    {
+      "dia": "Quinta",
+      "materias": [
+        "DEVWEB II",
+        "DEVWEB II",
+        "Cal I",
+        "Cal I",
+        "REF",
+        "REF",
+        "REF",
+        "REF",
+        "REF",
+        "REF"
+      ]
+    },
+    {
+      "dia": "Sexta",
+      "materias": [
+        "Empreend",
+        "Empreend",
+        "GEPSOFT",
+        "GEPSOFT",
+        "REF",
+        "REF",
+        "REF",
+        "REF",
+        "REF",
+        "REF"
+      ]
+    }
+  ]
+}
