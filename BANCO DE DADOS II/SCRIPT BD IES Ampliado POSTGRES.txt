@@ -1,0 +1,304 @@
+-- SCRIPT de criação do Banco de Dados IES
+-- 23-07-2025
+---------------------------------------------------------------------------------------------------------------
+CREATE TABLE PROFESSOR (
+    ID_PROFESSOR INTEGER NOT NULL PRIMARY KEY,
+	NOME VARCHAR(45) NOT NULL
+);
+
+CREATE TABLE CURSO (
+    ID_CURSO SERIAL NOT NULL PRIMARY KEY,
+	NOME VARCHAR(45) NOT NULL,
+	ID_COORDENADOR INTEGER NOT NULL,
+
+	FOREIGN KEY (ID_COORDENADOR) REFERENCES PROFESSOR (ID_PROFESSOR)
+	ON DELETE RESTRICT
+);
+
+CREATE TABLE DEPARTAMENTO (
+   ID_CURSO INTEGER NOT NULL,
+   ID_PROFESSOR INTEGER NOT NULL,
+
+   PRIMARY KEY(ID_CURSO, ID_PROFESSOR),
+
+   FOREIGN KEY (ID_CURSO) REFERENCES CURSO (ID_CURSO) ON DELETE RESTRICT,
+   FOREIGN KEY (ID_PROFESSOR) REFERENCES PROFESSOR (ID_PROFESSOR) ON DELETE RESTRICT
+);
+
+CREATE TABLE DISCIPLINA (
+   ID_DISCIPLINA SERIAL NOT NULL PRIMARY KEY,
+   NOME VARCHAR(45) NOT NULL,
+   CARGA_HORARIA INTEGER NOT NULL,
+   EMENTA VARCHAR(900) NOT NULL,
+   ID_PRE_REQUISITO INTEGER,
+
+   FOREIGN KEY (ID_PRE_REQUISITO) REFERENCES DISCIPLINA (ID_DISCIPLINA)
+   ON DELETE RESTRICT
+);
+
+CREATE TABLE GRADE_CURRICULAR (
+   NR_GRADE INTEGER NOT NULL,
+   NR_PERIODO INTEGER NOT NULL,
+   ID_CURSO INTEGER NOT NULL,
+   ID_DISCIPLINA INTEGER NOT NULL,
+
+   PRIMARY KEY(NR_GRADE, NR_PERIODO, ID_CURSO, ID_DISCIPLINA),
+
+   FOREIGN KEY (ID_CURSO) REFERENCES CURSO (ID_CURSO) ON DELETE RESTRICT,
+   FOREIGN KEY (ID_DISCIPLINA) REFERENCES DISCIPLINA (ID_DISCIPLINA) ON DELETE RESTRICT
+);
+
+-- AMPLIAÇÃO DO BANCO DE DADOS --------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------
+
+CREATE TABLE IF NOT EXISTS DISCIPLINA_OFERTADA (
+  ID_DISCIPLINA_OFERTADA INT NOT NULL,
+  ANO INT NOT NULL,
+  SEMESTRE INT NOT NULL CHECK (SEMESTRE > 0 AND SEMESTRE < 3),
+  VAGAS INT NOT NULL,
+  LOCAL VARCHAR(45) NULL,
+  
+  PRIMARY KEY (ID_DISCIPLINA_OFERTADA, ANO, SEMESTRE),
+  
+  CONSTRAINT ID_DISCIPLINA_OFERTADA
+    FOREIGN KEY (ID_DISCIPLINA_OFERTADA) REFERENCES Disciplina (ID_DISCIPLINA)
+    ON DELETE RESTRICT
+    ON UPDATE NO ACTION
+);
+
+
+CREATE TABLE IF NOT EXISTS ALUNO (
+  Matricula INT NOT NULL,
+  Nome VARCHAR(45) NOT NULL,
+  Sexo CHAR(1) NOT NULL CHECK (SEXO='M' OR SEXO='F'),
+  Nascimento DATE NOT NULL,
+  Id_Curso INT NOT NULL,
+  
+  PRIMARY KEY (Matricula),
+  
+  CONSTRAINT Id_Curso
+    FOREIGN KEY (Id_Curso)
+    REFERENCES CURSO (ID_CURSO)
+    ON DELETE RESTRICT
+    ON UPDATE NO ACTION
+);
+
+
+
+CREATE TABLE IF NOT EXISTS CONDICAO (
+  ID_CONDICAO VARCHAR(3) NOT NULL,
+  DESCR_CONDICAO VARCHAR(45) NULL,
+  PRIMARY KEY (ID_CONDICAO));
+
+
+
+CREATE TABLE IF NOT EXISTS HISTORICO (
+  ID_DISCIPLINA INT NOT NULL,
+  MATRICULA INT NOT NULL,
+  ANO INT NOT NULL,
+  SEMESTRE INT NOT NULL,
+  NOTA INT NOT NULL,
+  FREQUENCIA INT NOT NULL,
+  CONDICAO VARCHAR(3) NULL,
+  
+  PRIMARY KEY (ID_DISCIPLINA, MATRICULA, ANO, SEMESTRE),
+
+  CONSTRAINT ID_DISCIPLINA
+    FOREIGN KEY (ID_DISCIPLINA, ANO, SEMESTRE)
+    REFERENCES Disciplina_Ofertada (ID_DISCIPLINA_OFERTADA, ANO, SEMESTRE)
+    ON DELETE RESTRICT
+    ON UPDATE NO ACTION,
+	
+  CONSTRAINT MATRICULA
+    FOREIGN KEY (MATRICULA)
+    REFERENCES Aluno (Matricula)
+    ON DELETE RESTRICT
+    ON UPDATE NO ACTION,
+	
+
+	CONSTRAINT CONDICAO
+	FOREIGN KEY (CONDICAO)
+	REFERENCES CONDICAO (ID_CONDICAO)
+	ON DELETE RESTRICT
+);
+
+
+
+
+
+
+-- CARGA INICIAL DE REGISTROS -------------------------------------------------------------------------------------------------------------------------------------------------
+
+INSERT INTO PROFESSOR VALUES (10,'ASDRUBAL SOARES RIBEIRO'), (22,'JAMBIRA TIMBIRAS'), (31,'DESIDERIO MONFORTE');
+INSERT INTO PROFESSOR VALUES (15,'SUETONIO ROMAO SOUZA'), (21,'CARLOTA FLAVINIAS'), (33,'RONALDO CARVALHO CAMPOS'),
+                             (34,'EDUARDO LICOLINI'), (35,'CINTHIA RIBEIRO'),(36,'RENATO AURELIO MARCONDES'),(37,'ANA PAULA XAVIER DE ABREU'),
+							 (38,'CLAUDIA LUCIA OLIVEIRA OHMS'),(39,'JOSE MAGALHAES NETO'),(40,'JOSE MAURICIO MADEIRO'), (41,'ANA PAULA LASCASAS'),
+							 (42,'CLAUDIA GONCALVES RIBEIRO'),(43,'TITO CARVALHO'),(44,'ROXANNA ALVES MANGABEIRA'), (45,'LEONARDO PEREIRA');
+
+INSERT INTO CURSO VALUES (100,'CIENCIAS ECONOMICAS', 22), (200,'ARQUITETURA E URBANISMO', 31), (300,'SISTEMAS DE INFORMACAO',10);
+
+
+INSERT INTO DISCIPLINA VALUES (1079,'CALCULO', 120,'LIMITE, DIFERENCIAL E INTEGRAL.', NULL), 
+                              (1080,'CALCULO 2', 120,'CALCULO NUMERICO.', 1079),
+							  (1081,'LOGICA', 120, 'CALCULO PROPOSICIONAL, INFERENCIA E LOGICA NAO CLASSICA.', NULL),
+							  (1082,'MATEMATICA DISCRETA', 90,'GRAFOS, AUTOMATOS FINITOS DETERMINISTICOS.', NULL),
+							  (1083,'PROGRAMACAO', 120,'COMANDOS CONDICIONAIS, COMANDOS DE REPETICAO E PROCEDIMENTOS RECURSIVOS.', NULL);
+							  
+
+INSERT INTO DISCIPLINA VALUES (1084,'ESTRUTURA DE DADOS',120,'LISTAS ENCADEADAS. FILAS. PILHAS. ARVORES. GRAFOS', 1083),
+                              (1085,'BANCO DE DADOS',90,'MODELAGEM. SQL.', NULL),
+							  (1086,'BANCO DE DADOS 2', 120,'TRANSACOES, VIEWS, FUNCTIONS, STORED PROCEDURE, RULES.',1085);
+							  
+
+INSERT INTO GRADE_CURRICULAR VALUES (1,1,300,1079), (1,2,300,1080), (1,1,300, 1081), (1,1, 300, 1082), (1,2,300, 1083), 
+                                    (1,3,300,1084), (1,3,300, 1085),(1,4,300,1086);
+
+
+
+
+-- AMPLIAÇÃO -------------------------------------------------------------------------------------------------------------
+
+INSERT INTO DISCIPLINA_OFERTADA VALUES (1079, 2025, 1, 40,'SALA 1001'),
+                                       (1081, 2025, 1, 45,'SALA 8902'),
+					   (1083, 2025, 1, 30,'LAB. 05'),
+                			   (1080, 2025, 2, 40,'SALA 5901'),
+					   (1084, 2025, 2, 30,'LAB. 04'),
+		        		   (1085, 2025, 2, 30,'LAB. 03'),
+					   (1083, 2025, 2, 30,'LAB. 05');
+
+
+INSERT INTO ALUNO VALUES
+(2099,'FRANCISCO BUARQUE DE HOLANDA','M','1992-09-22',200),
+(2100,'CAETANO VELOSO','M','1993-01-21',100),
+(2101,'MILTON NASCIMENTO','M','1994-04-03',100),
+(2102,'AGNETHA FALTSKOG','F','1995-05-01', 300),
+(2200,'JOHN LENNON','M','1995-07-21',300),
+(2300,'ANNY FRID LYNGSTAD','F','1996-03-25',300);
+
+
+INSERT INTO CONDICAO VALUES ('APR','APROVADO'), ('RNO','REPROVADO POR NOTA'),
+                            ('RFA','REPROVADO POR FALTA');
+
+
+
+
+------------------------------------------------------------------------------------------------------------------------------ FUNÇÕES SQL ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------
+
+CREATE FUNCTION incrementar (INTEGER)
+RETURNS INTEGER AS '
+	SELECT $1 + 1;
+'
+LANGUAGE SQL;
+
+SELECT incrementar(27);
+
+-------------------------------------------------------------------------------------------------
+
+CREATE FUNCTION totalDisciplinas(INTEGER)
+RETURNS INT8 AS '
+	--PARÂMETRO DE ENTRADA $1 CORRESPONDE A ID_CURSO
+
+	SELECT COUNT(*) AS TOTAL_DE_DISCIPLINAS
+	FROM GRADE_CURRICULAR
+	WHERE ID_CURSO = $1;
+	
+'
+LANGUAGE SQL;
+
+SELECT totalDisciplinas(300);
+
+-------------------------------------------------------------------------------------------------
+
+-------------------------------------------------------------------------------------------------
+
+CREATE FUNCTION insereProfessor(INTEGER, VARCHAR(45))
+RETURNS INTEGER AS '
+	INSERT INTO PROFESSOR (NOME, ID_PROFESSOR) 
+	VALUES ($2, $1);
+
+	SELECT $1;
+'
+LANGUAGE SQL;
+
+SELECT insereProfessor(46,'ANTONIO JONAS PINOTTI');
+
+SELECT insereProfessor(47,'FLAVIO FALQUETO');
+
+---------------------------------------------------------------------------------------------------
+
+CREATE FUNCTION exibeGrade(CURSO INTEGER, GRADE INTEGER)
+RETURNS SETOF GRADE_CURRICULAR AS '
+	SELECT * 
+	FROM GRADE_CURRICULAR 
+	WHERE ID_CURSO = CURSO
+	AND NR_GRADE = GRADE
+	ORDER BY ID_CURSO, NR_GRADE, NR_PERIODO;
+'
+LANGUAGE SQL;
+
+SELECT exibeGrade(300,1);
+
+SELECT ID_CURSO, NR_GRADE, NR_PERIODO, ID_DISCIPLINA FROM exibeGrade(300, 1);
+
+
+-----------------------------------------------------------------------------------------------------------------
+DROP FUNCTION exibeGrade(CURSO INTEGER, GRADE INTEGER);
+
+CREATE FUNCTION exibeGrade(CURSOID INTEGER, GRADE INTEGER)
+RETURNS SETOF RECORD AS '
+	SELECT CURSO.ID_CURSO, CURSO.NOME AS NOME_CURSO, NR_GRADE, NR_PERIODO,
+	       DISCIPLINA.ID_DISCIPLINA, DISCIPLINA.NOME AS NOME_DISCIPLINA, CARGA_HORARIA
+		   
+	FROM GRADE_CURRICULAR, CURSO, DISCIPLINA
+	
+	WHERE CURSO.ID_CURSO = CURSOID
+	AND NR_GRADE = GRADE
+	AND CURSO.ID_CURSO = GRADE_CURRICULAR.ID_CURSO
+	AND DISCIPLINA.ID_DISCIPLINA = GRADE_CURRICULAR.ID_DISCIPLINA
+	ORDER BY ID_CURSO, NR_GRADE, NR_PERIODO;
+'
+LANGUAGE SQL;
+
+SELECT * FROM exibeGrade(300, 1) 
+AS (ID_CURSO INTEGER, NOME_CURSO VARCHAR(45), NR_GRADE INTEGER, NR_PERIODO INTEGER, 
+       ID_DISCIPLINA INTEGER, NOME_DISCIPLINA VARCHAR(45), CARGA_HORARIA INTEGER);
+
+--------------------------------------------------------------------------------------------------------------------
+
+INSERT INTO DISCIPLINA VALUES (1000,'DISCIPLINA GENERICA',60,' *** QUALQUER COISA ***', NULL);
+
+SELECT * FROM DISCIPLINA;
+
+
+CREATE FUNCTION apagaDisciplina(ID INTEGER)
+RETURNS TEXT AS $$
+	DELETE FROM DISCIPLINA WHERE ID_DISCIPLINA = ID;
+
+	SELECT 'A DISCIPLINA ' || ID || ' FOI EXCLUIDA COM SUCESSO!';
+$$
+LANGUAGE SQL;
+
+SELECT apagaDisciplina(1000);
+-------------------------------------------------------------------------------------------------------------------
+
+
+------------------------------------------------------------------------------------------
+CREATE OR REPLACE FUNCTION dividir(val1 NUMERIC, val2 NUMERIC, 
+                                   OUT quociente NUMERIC, OUT resto NUMERIC)
+LANGUAGE SQL
+AS $$
+    SELECT val1 / val2, MOD(val1, val2);
+$$;
+
+
+SELECT * FROM dividir(10, 3);
+
+
+-------------------------------------------------------------------------------------------------------------------
+---- FUNÇÕES PLPGSQL ----------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------
+
+

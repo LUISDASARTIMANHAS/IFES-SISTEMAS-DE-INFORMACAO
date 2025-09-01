@@ -1,0 +1,319 @@
+-------------------------------------------------------------------------------------------------------------------------------
+-- BANCO DE DADOS LOJA (PostgreSQL) ----------------------------------------------------------------------------------------
+------------------------------------------------------------------------02-08-2025 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------
+
+
+--- MODELO SIMPLIFICADO DE UMA LOJA
+CREATE TABLE PRODUTO (
+   ID_PRODUTO BIGSERIAL NOT NULL,
+   NOME_PRODUTO VARCHAR(40) NOT NULL,
+   QT_ESTOQUE INTEGER NOT NULL CHECK (QT_ESTOQUE >= 0),
+   QT_ESTOQUE_MINIMO INTEGER NOT NULL CHECK (QT_ESTOQUE_MINIMO >= 0),
+   PRECO NUMERIC(9,2) NOT NULL,
+
+   PRIMARY KEY (ID_PRODUTO)
+);
+
+INSERT INTO PRODUTO VALUES (1200,'APARELHO DE TV EXCELSIOR', 100, 20, 2450.00);
+INSERT INTO PRODUTO VALUES (1210,'SMARTPHONE CELTOP', 104, 100, 1999.99);
+INSERT INTO PRODUTO VALUES (1220,'NOTEBOOK EPSTOLA', 50, 51, 3500.00);
+
+
+CREATE TABLE VENDA (
+   NR_VENDA BIGSERIAL NOT NULL PRIMARY KEY,
+   DATA_VENDA DATE NOT NULL
+);
+
+INSERT INTO VENDA VALUES (100,'2025-08-02'), (101,'2025-08-03');
+
+
+CREATE TABLE PRODUTO_VENDIDO (
+   NR_VENDA BIGINT NOT NULL,
+   NR_SEQUENCIAL INTEGER NOT NULL,
+   ID_PRODUTO BIGINT NOT NULL,
+   QUANTIDADE INTEGER NOT NULL,
+   PRECO NUMERIC(9,2) NOT NULL,
+
+   PRIMARY KEY (NR_VENDA, NR_SEQUENCIAL, ID_PRODUTO),
+
+   FOREIGN KEY (NR_VENDA) REFERENCES VENDA (NR_VENDA)
+   ON DELETE RESTRICT,
+
+   FOREIGN KEY (ID_PRODUTO) REFERENCES PRODUTO (ID_PRODUTO)
+   ON DELETE RESTRICT
+
+);
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+--------------------------------------------------------------------------------------------------------------------------------------
+CREATE OR REPLACE PROCEDURE registrar_produto_vendido(
+    p_nr_venda BIGINT,
+    p_id_produto BIGINT,
+    p_quantidade INTEGER
+)
+LANGUAGE plpgsql
+AS $$
+DECLARE
+    v_preco_produto NUMERIC(9,2);
+    v_estoque_atual INTEGER;
+    v_novo_sequencial INTEGER;
+BEGIN
+    -- Validações
+    IF p_quantidade <= 0 THEN
+        RAISE EXCEPTION 'A quantidade deve ser maior que zero.';
+    END IF;
+
+    -- Verifica se venda existe
+    IF NOT EXISTS (SELECT 1 FROM venda WHERE nr_venda = p_nr_venda) THEN
+        RAISE EXCEPTION 'Venda % não encontrada.', p_nr_venda;
+    END IF;
+
+    -- Verifica se produto existe
+    SELECT preco, qt_estoque INTO v_preco_produto, v_estoque_atual
+    FROM produto
+    WHERE id_produto = p_id_produto;
+
+    IF NOT FOUND THEN
+        RAISE EXCEPTION 'Produto % não encontrado.', p_id_produto;
+    END IF;
+
+    -- Verifica estoque
+    IF v_estoque_atual < p_quantidade THEN
+        RAISE EXCEPTION 'Estoque insuficiente para o produto %.', p_id_produto;
+    END IF;
+
+    -- Gera número sequencial automaticamente
+    SELECT COALESCE(MAX(nr_sequencial), 0) + 1 INTO v_novo_sequencial
+    FROM produto_vendido
+    WHERE nr_venda = p_nr_venda;
+
+    -- Inserção
+    INSERT INTO produto_vendido (
+        nr_venda, nr_sequencial, id_produto, quantidade, preco
+    )
+    VALUES (
+        p_nr_venda, v_novo_sequencial, p_id_produto, p_quantidade, v_preco_produto
+    );
+
+    -- Atualiza estoque
+    UPDATE produto
+    SET qt_estoque = qt_estoque - p_quantidade
+    WHERE id_produto = p_id_produto;
+
+    -- COMMIT explícito (somente se não estiver em uma transação externa)
+    COMMIT;
+
+
+END;
+$$;
+
+
+CALL registrar_produto_vendido(100, 1200, 2);
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+---------------------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------------------
+
+CREATE OR REPLACE FUNCTION atualizar_estoque_produto()
+RETURNS TRIGGER AS $$
+BEGIN
+    -- Subtrai a quantidade vendida do estoque do produto correspondente
+    UPDATE produto
+    SET qt_estoque = qt_estoque - NEW.quantidade
+    WHERE id_produto = NEW.id_produto;
+
+    RETURN NULL; -- AFTER triggers podem retornar NULL
+END;
+$$ LANGUAGE plpgsql;
+
+
+CREATE TRIGGER trg_atualizar_estoque
+AFTER INSERT ON produto_vendido
+FOR EACH ROW
+EXECUTE FUNCTION atualizar_estoque_produto();
+
+
+CREATE OR REPLACE PROCEDURE registrar_produto_vendido(
+    p_nr_venda BIGINT,
+    p_id_produto BIGINT,
+    p_quantidade INTEGER
+)
+LANGUAGE plpgsql
+AS $$
+DECLARE
+    v_preco_produto NUMERIC(9,2);
+    v_estoque_atual INTEGER;
+    v_novo_sequencial INTEGER;
+BEGIN
+    -- Verificações
+    IF p_quantidade <= 0 THEN
+        RAISE EXCEPTION 'A quantidade deve ser maior que zero.';
+    END IF;
+
+    -- Verifica se venda existe
+    IF NOT EXISTS (SELECT 1 FROM venda WHERE nr_venda = p_nr_venda) THEN
+        RAISE EXCEPTION 'Venda % não encontrada.', p_nr_venda;
+    END IF;
+
+    -- Verifica se produto existe e obtém dados
+    SELECT preco, qt_estoque INTO v_preco_produto, v_estoque_atual
+    FROM produto
+    WHERE id_produto = p_id_produto;
+
+    IF NOT FOUND THEN
+        RAISE EXCEPTION 'Produto % não encontrado.', p_id_produto;
+    END IF;
+
+    -- Verifica estoque disponível antes de inserir
+    IF v_estoque_atual < p_quantidade THEN
+        RAISE EXCEPTION 'Estoque insuficiente para o produto %.', p_id_produto;
+    END IF;
+
+    -- Gera número sequencial automaticamente
+    SELECT COALESCE(MAX(nr_sequencial), 0) + 1 INTO v_novo_sequencial
+    FROM produto_vendido
+    WHERE nr_venda = p_nr_venda;
+
+    -- Insere o produto vendido (trigger cuidará do estoque)
+    INSERT INTO produto_vendido (
+        nr_venda, nr_sequencial, id_produto, quantidade, preco
+    )
+    VALUES (
+        p_nr_venda, v_novo_sequencial, p_id_produto, p_quantidade, v_preco_produto
+    );
+
+    -- Não atualiza o estoque aqui. A trigger faz isso.
+
+END;
+$$;
+
+CALL registrar_produto_vendido(100, 1210, 3);
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+CREATE TABLE PRODUTO_VENDIDO_LOG (
+   NR_LOG BIGSERIAL NOT NULL PRIMARY KEY,
+   DT_OPERACAO TIMESTAMP NOT NULL,
+   OPERACAO CHAR(1) NOT NULL,
+   USUARIO VARCHAR(45) NOT NULL,
+
+   NR_VENDA_VELHO BIGINT,
+   NR_VENDA_NOVO BIGINT,
+   NR_SEQUENCIAL_VELHO INTEGER,
+   NR_SEQUENCIAL_NOVO INTEGER,
+   ID_PRODUTO_VELHO BIGINT,
+   ID_PRODUTO_NOVO BIGINT,
+   QUANTIDADE_VELHO INTEGER,
+   QUANTIDADE_NOVO INTEGER,
+   PRECO_VELHO NUMERIC(9,2),
+   PRECO_NOVO NUMERIC(9,2)
+);
+
+
+CREATE OR REPLACE FUNCTION TRIG_LOG_VENDA ()
+RETURNS TRIGGER AS $$
+BEGIN
+   IF TG_OP = 'INSERT'
+   THEN INSERT INTO PRODUTO_VENDIDO_LOG (DT_OPERACAO, OPERACAO, USUARIO, NR_VENDA_NOVO, 
+                                         NR_SEQUENCIAL_NOVO, ID_PRODUTO_NOVO,
+                                         QUANTIDADE_NOVO, PRECO_NOVO) VALUES
+										 (NOW(),'I',USER,NEW.NR_VENDA, NEW.NR_SEQUENCIAL,
+										 NEW.ID_PRODUTO, NEW.QUANTIDADE, NEW.PRECO);
+   END IF;
+
+   IF TG_OP = 'UPDATE'
+   THEN INSERT INTO PRODUTO_VENDIDO_LOG (DT_OPERACAO, OPERACAO, USUARIO, NR_VENDA_NOVO,
+                                         NR_VENDA_VELHO, NR_SEQUENCIAL_NOVO, NR_SEQUENCIAL_VELHO,
+										 ID_PRODUTO_NOVO, ID_PRODUTO_VELHO, QUANTIDADE_NOVO,
+										 QUANTIDADE_VELHO, PRECO_NOVO, PRECO_VELHO) VALUES
+										 (NOW(),'U',USER,NEW.NR_VENDA, OLD.NR_VENDA, 
+										 NEW.NR_SEQUENCIAL, OLD.NR_SEQUENCIAL, NEW.ID_PRODUTO,
+										 OLD.ID_PRODUTO, NEW.QUANTIDADE, OLD.QUANTIDADE,
+										 NEW.PRECO, OLD.PRECO);
+   END IF;
+
+   IF TG_OP = 'DELETE'
+   THEN INSERT INTO PRODUTO_VENDIDO_LOG (DT_OPERACAO, OPERACAO, USUARIO, NR_VENDA_VELHO, 
+                                         NR_SEQUENCIAL_VELHO, ID_PRODUTO_VELHO,
+                                         QUANTIDADE_VELHO, PRECO_VELHO) VALUES
+										 (NOW(),'I',USER,OLD.NR_VENDA, OLD.NR_SEQUENCIAL,
+										 OLD.ID_PRODUTO, OLD.QUANTIDADE, OLD.PRECO);
+   END IF;
+
+   RETURN NEW;
+END;
+$$ LANGUAGE PLPGSQL;
+
+
+
+
+
+
+CREATE OR REPLACE FUNCTION TRIG_LOG_VENDA ()
+RETURNS TRIGGER AS $$
+BEGIN
+   IF TG_OP = 'INSERT'
+   THEN INSERT INTO PRODUTO_VENDIDO_LOG (DT_OPERACAO, OPERACAO, USUARIO, NR_VENDA_NOVO, 
+                                         NR_SEQUENCIAL_NOVO, ID_PRODUTO_NOVO,
+                                         QUANTIDADE_NOVO, PRECO_NOVO) VALUES
+										 (NOW(),'I',USER,NEW.NR_VENDA, NEW.NR_SEQUENCIAL,
+										 NEW.ID_PRODUTO, NEW.QUANTIDADE, NEW.PRECO);
+   END IF;
+
+   IF TG_OP = 'UPDATE'
+   THEN INSERT INTO PRODUTO_VENDIDO_LOG (DT_OPERACAO, OPERACAO, USUARIO, NR_VENDA_NOVO,
+                                         NR_VENDA_VELHO, NR_SEQUENCIAL_NOVO, NR_SEQUENCIAL_VELHO,
+										 ID_PRODUTO_NOVO, ID_PRODUTO_VELHO, QUANTIDADE_NOVO,
+										 QUANTIDADE_VELHO, PRECO_NOVO, PRECO_VELHO) VALUES
+										 (NOW(),'U',USER,NEW.NR_VENDA, OLD.NR_VENDA, 
+										 NEW.NR_SEQUENCIAL, OLD.NR_SEQUENCIAL, NEW.ID_PRODUTO,
+										 OLD.ID_PRODUTO, NEW.QUANTIDADE, OLD.QUANTIDADE,
+										 NEW.PRECO, OLD.PRECO);
+   END IF;
+
+   IF TG_OP = 'DELETE'
+   THEN INSERT INTO PRODUTO_VENDIDO_LOG (DT_OPERACAO, OPERACAO, USUARIO, NR_VENDA_VELHO, 
+                                         NR_SEQUENCIAL_VELHO, ID_PRODUTO_VELHO,
+                                         QUANTIDADE_VELHO, PRECO_VELHO) VALUES
+										 (NOW(),'D',USER,OLD.NR_VENDA, OLD.NR_SEQUENCIAL,
+										 OLD.ID_PRODUTO, OLD.QUANTIDADE, OLD.PRECO);
+   END IF;
+
+   RETURN NEW;
+END;
+$$ LANGUAGE PLPGSQL;
+
+
+
+
+
+
+CREATE TRIGGER LOG_VENDA_INSERT
+AFTER INSERT ON PRODUTO_VENDIDO
+FOR EACH ROW
+EXECUTE PROCEDURE TRIG_LOG_VENDA( );
+
+
+
+CREATE TRIGGER LOG_VENDA_UPDATE
+AFTER UPDATE ON PRODUTO_VENDIDO
+FOR EACH ROW
+EXECUTE PROCEDURE TRIG_LOG_VENDA( );
+
+
+
+CREATE TRIGGER LOG_VENDA_DELETE
+AFTER DELETE ON PRODUTO_VENDIDO
+FOR EACH ROW
+EXECUTE PROCEDURE TRIG_LOG_VENDA( );
+
+
+
+

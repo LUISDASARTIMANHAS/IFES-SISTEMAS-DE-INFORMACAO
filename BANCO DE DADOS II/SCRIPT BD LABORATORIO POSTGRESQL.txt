@@ -1,0 +1,558 @@
+------------------------------------------------------------------------------------
+-- LABORATÓRIO DE ANÁLISES CLÍNICAS ------------------------------------------------
+------------------------------------------------- 14-08-2025 -----------------------
+------------------------------------------------------------------------------------
+
+CREATE TABLE EMPRESA (
+   ID_EMPRESA SERIAL NOT NULL PRIMARY KEY,
+   NOME_EMPRESA VARCHAR(50) NOT NULL
+);
+
+INSERT INTO EMPRESA (NOME_EMPRESA) VALUES ('*** INEXISTENTE ***'),
+                    ('UNIMED COOPERATIVA'),('SAO BERNARDO SAUDE'),
+					('FUNSSEST'),('GOLDEN CROSS ENTERPRISES');
+
+------------------------------------------------------------------------------------
+
+CREATE TABLE PLANO_SAUDE (
+   ID_PLANO SERIAL NOT NULL PRIMARY KEY,
+   NOME_PLANO VARCHAR(50) NOT NULL,
+   ID_EMPRESA INTEGER NOT NULL,
+   PERCENTUAL_PACIENTE NUMERIC,
+
+   FOREIGN KEY(ID_EMPRESA) REFERENCES EMPRESA (ID_EMPRESA)
+   ON DELETE RESTRICT
+);		
+
+INSERT INTO PLANO_SAUDE (NOME_PLANO, ID_EMPRESA, PERCENTUAL_PACIENTE)
+VALUES ('UNIMED INTEGRAL',2, 0.00),
+       ('UNIMED PARTICIPACAO GOLDEN',2, 0.20),
+	   ('UNIMED PARTICIPACAO SILVER',2, 0.30),
+	   ('SAO BERNARDO INTEGRAL',3, 0.00);
+-----------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------
+
+CREATE TABLE PACIENTE (
+   ID_PACIENTE SERIAL NOT NULL PRIMARY KEY,
+   NOME_PACIENTE VARCHAR(45) NOT NULL,
+   SEXO CHAR(1) NOT NULL,
+   NASCIMENTO DATE NOT NULL
+);
+
+INSERT INTO PACIENTE (NOME_PACIENTE, SEXO, NASCIMENTO)
+VALUES ('LIVIA XAVIER','F','2015-10-02'), ('RENATO SOUZA JR','M','2002-03-30'),
+       ('CASSANDRA SILVA','F','1961-06-17');
+
+------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------
+CREATE TABLE MEDICO (
+   CRM TEXT NOT NULL PRIMARY KEY,
+   NOME_MEDICO VARCHAR(45) NOT NULL
+);
+
+INSERT INTO MEDICO VALUES ('SP 125900','JOSE MADUREIRA ALENCASTRO'),
+                          ('ES 2356','MARIANA CASTRO ALLENDE');
+						  
+-----------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------
+CREATE TABLE PEDIDO (
+   NR_PEDIDO SERIAL NOT NULL PRIMARY KEY,
+   DT_PEDIDO DATE NOT NULL,
+   ID_PACIENTE INTEGER NOT NULL,
+   ID_PLANO INTEGER NOT NULL,
+   CRM TEXT NOT NULL,
+
+   FOREIGN KEY (ID_PACIENTE) REFERENCES PACIENTE(ID_PACIENTE)
+   ON DELETE RESTRICT,
+
+   FOREIGN KEY (ID_PLANO) REFERENCES PLANO_SAUDE (ID_PLANO)
+   ON DELETE RESTRICT,
+
+   FOREIGN KEY (CRM) REFERENCES MEDICO (CRM)
+   ON DELETE RESTRICT
+);
+
+INSERT INTO PEDIDO (DT_PEDIDO, ID_PACIENTE, ID_PLANO, CRM) VALUES
+('2025-08-18', 1, 2,'SP 125900'), ('2025-09-18',2,1,'ES 2356'), 
+('2025-11-03', 1, 2,'SP 125900');
+
+-----------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------
+CREATE TABLE MATERIAL (
+   ID_MATERIAL SERIAL NOT NULL PRIMARY KEY,
+   DESCRICAO_MATERIAL VARCHAR(45) NOT NULL
+);
+
+INSERT INTO MATERIAL VALUES (100,'SANGUE'),(110,'URINA'),(120,'FEZES'),(130,'ESPERMA');
+------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------
+CREATE TABLE EXAME (
+   ID_EXAME INTEGER NOT NULL PRIMARY KEY,
+   NOME_EXAME VARCHAR(50) NOT NULL,
+   ID_MATERIAL INTEGER NOT NULL,
+
+   FOREIGN KEY (ID_MATERIAL) REFERENCES MATERIAL (ID_MATERIAL)
+   ON DELETE RESTRICT
+);
+
+INSERT INTO EXAME VALUES (1099,'HEMOGRAMA',100), (1100,'GLICEMIA',100),
+                         (1101,'GLICEMIA',110), (1200,'GLICEMIA POS-PRANDIAL',100),
+						 (1300,'CREATININA',100), (1400,'PROTEINURIA',110),
+						 (1500,'UREIA',100), (1600,'BETA HCG',100),(1700,'PSA - ANTIGENO PROSTATICO ESPECIFICO',100),
+						 (1800,'PARASITOLOGICO', 120), (1900,'ACIDO FOLICO',100),(2000,'ESPERMOGRAMA',130),
+						 (2100,'DOSAGEM VITAMINA D', 100);
+-------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------
+CREATE TABLE EXAME_AUTORIZADO (
+    ID_EXAME_AUTORIZADO INTEGER NOT NULL,
+	ID_PLANO INTEGER NOT NULL,
+	VALOR_CH NUMERIC(9,2) NOT NULL,
+
+	PRIMARY KEY (ID_EXAME_AUTORIZADO, ID_PLANO),
+	FOREIGN KEY (ID_EXAME_AUTORIZADO) REFERENCES EXAME (ID_EXAME)
+	ON DELETE RESTRICT,
+
+	FOREIGN KEY (ID_PLANO) REFERENCES PLANO_SAUDE (ID_PLANO)
+	ON DELETE RESTRICT
+);
+
+
+INSERT INTO PLANO_SAUDE VALUES (0,'PARTICULAR - SEM CONVÊNIO', 1, 1.00);
+
+INSERT INTO EXAME_AUTORIZADO VALUES (1099, 0, 5.99), (1099, 1, 3.00), (1099,2, 3.00), (1099,3, 3.00),(1099, 4, 2.50),
+                                    (1100, 0, 7.50), (1100, 1, 4.00), (1100,2, 5.00), (1100,3, 4.00),(1100, 4, 4.00),
+									(1101, 0, 6.00), (1101, 1, 4.00), (1101,4, 3.00),
+									(1200, 0, 6.00), (1200, 1, 5.00), (1200,2, 4.50), (1200,3, 4.00),(1200,4, 3.50),
+									(1300, 0, 4.00), (1300, 1, 4.00), (1300,2, 3.50), (1300,3, 3.00),(1300,4, 2.00),
+									(1400, 0, 9.00), (1400, 1,10.00), (1400,2,12.00), (1400,3,10.00),(1400,4,10.00),
+									(1500, 0, 8.00), (1500, 1, 8.00), (1500,2,10.00), (1500,3,12.00),(1500,4,8.00),
+									(1600,0, 7.00), (1600, 1, 7.50), (1600,2,8.00), (1600,3,9.00),(1600,4,10.00),
+									(1700,0, 8.00), (1700, 1, 8.00), (1700,2,8.00), (1700,3,8.00),(1700,4,8.00),
+									(1800,0,10.00), (1800, 4, 9.00),
+									(1900,0, 15.00), (1900,1, 12.00),
+									(2000,0, 10.00),
+									(2100,0, 20.00);
+
+
+--------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------
+CREATE TABLE EXAME_PEDIDO (
+   NR_PEDIDO INTEGER NOT NULL,
+   ID_EXAME_PEDIDO INTEGER NOT NULL,
+   DT_COLETA DATE,
+   VALOR_PACIENTE NUMERIC(9,2) NOT NULL,
+   VALOR_PLANO NUMERIC(9,2) NOT NULL,
+
+   FOREIGN KEY (NR_PEDIDO) REFERENCES PEDIDO (NR_PEDIDO)
+   ON DELETE RESTRICT,
+
+   FOREIGN KEY (ID_EXAME_PEDIDO) REFERENCES EXAME (ID_EXAME)
+   ON DELETE RESTRICT
+);
+
+SELECT * FROM PEDIDO;
+
+INSERT INTO EXAME_PEDIDO VALUES (1,1099,'2025-08-18',0, 60.00),
+            (1,1500, NULL, 0, 40.50), (1, 1100,'2025-08-20', 0, 35.00),
+			(2,1099,'2025-09-18', 0, 70.00),(2,1200,'2025-09-18', 0 ,40.00),
+			(3,1300,'2025-11-03',0, 92.00), (3,1400,'2025-11-03',0, 95.00);
+
+------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------
+CREATE TABLE UNIDADE_SERVICO (
+   ID_PLANO INTEGER NOT NULL,
+   DT_INICIO_VIGENCIA DATE NOT NULL,
+   DT_FIM_VIGENCIA DATE,
+   VALOR NUMERIC(9,2) NOT NULL,
+
+   PRIMARY KEY (ID_PLANO, DT_INICIO_VIGENCIA),
+
+   FOREIGN KEY (ID_PLANO) REFERENCES PLANO_SAUDE (ID_PLANO)
+   ON DELETE RESTRICT
+);
+
+INSERT INTO UNIDADE_SERVICO VALUES (0,'2024-01-02','2025-01-01', 2.50), (0,'2025-01-02', NULL, 3.00),
+                                   (1,'2025-01-02', NULL, 1.80), (2,'2025-04-01', NULL, 2.00),
+								   (3,'2025-02-10', NULL, 2.10), (4,'2025-01-02', NULL, 2.40);
+
+---------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------
+-- Visão (VIEW) que efetua o cálculo do valor dos exames
+
+CREATE OR REPLACE VIEW vw_exame_pedido_valores AS
+SELECT 
+    ep.nr_pedido,
+    ep.id_exame_pedido,
+    e.nome_exame,
+    p.dt_pedido,
+    ps.nome_plano,
+    ea.valor_ch,
+    us.valor AS valor_unidade,
+    (ea.valor_ch * us.valor) AS valor_total,
+    ROUND((ea.valor_ch * us.valor) * ps.percentual_paciente, 2) AS valor_paciente,
+    ROUND((ea.valor_ch * us.valor) * (1 - ps.percentual_paciente), 2) AS valor_plano
+FROM exame_pedido ep
+JOIN pedido p 
+    ON ep.nr_pedido = p.nr_pedido
+JOIN plano_saude ps
+    ON p.id_plano = ps.id_plano
+JOIN exame_autorizado ea
+    ON ep.id_exame_pedido = ea.id_exame_autorizado
+   AND p.id_plano = ea.id_plano
+JOIN exame e
+    ON ep.id_exame_pedido = e.id_exame
+JOIN unidade_servico us
+    ON us.id_plano = ps.id_plano
+   AND p.dt_pedido >= us.dt_inicio_vigencia
+   AND (us.dt_fim_vigencia IS NULL OR p.dt_pedido <= us.dt_fim_vigencia);
+
+
+SELECT * FROM vw_exame_pedido_valores;
+
+SELECT * FROM vw_exame_pedido_valores WHERE nr_pedido = 1;
+
+------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------------------------------
+-- EXERCÍCIO RESOLVIDO [1] -----------------------------------------------------------------------------
+-- -----------------------------------------------------------------------------------------------------
+-- Faça um STORED PROCEDURE para a inserção de um novo PACIENTE. Não esqueça de implementar as validações 
+-- necessárias para tanto.
+---------------------------------------------------------------------------------------------------------
+CREATE OR REPLACE PROCEDURE inserir_paciente(
+    p_nome        VARCHAR,
+    p_sexo        CHAR(1),
+    p_nascimento  DATE
+)
+LANGUAGE plpgsql
+AS $$
+BEGIN
+    -- Validação: nome obrigatório
+    IF p_nome IS NULL OR LENGTH(TRIM(p_nome)) = 0 THEN
+        RAISE EXCEPTION 'O nome do paciente não pode ser vazio';
+    END IF;
+
+    -- Validação: sexo só pode ser M ou F
+    IF p_sexo NOT IN ('M', 'F') THEN
+        RAISE EXCEPTION 'Sexo inválido: % (use M ou F)', p_sexo;
+    END IF;
+
+    -- Validação: nascimento não pode ser no futuro
+    IF p_nascimento > CURRENT_DATE THEN
+        RAISE EXCEPTION 'Data de nascimento inválida: % (no futuro)', p_nascimento;
+    END IF;
+
+    -- Validação: evitar duplicidade (mesmo nome e nascimento)
+    IF EXISTS (
+        SELECT 1
+        FROM paciente
+        WHERE UPPER(nome_paciente) = UPPER(TRIM(p_nome))
+          AND nascimento = p_nascimento
+    ) THEN
+        RAISE EXCEPTION 'Já existe um paciente chamado % com nascimento em %', p_nome, p_nascimento;
+    END IF;
+
+    -- Inserção
+    INSERT INTO paciente (nome_paciente, sexo, nascimento)
+    VALUES (TRIM(p_nome), p_sexo, p_nascimento);
+
+    RAISE NOTICE 'Paciente % inserido com sucesso.', p_nome;
+END;
+$$;
+
+
+CALL inserir_paciente('', 'M', '1990-05-10');   -- ERRO: nome vazio
+CALL inserir_paciente('João Pedro', 'X', '2010-03-05');  -- ERRO: sexo inválido
+CALL inserir_paciente('Maria Silva', 'F', '2030-01-01'); -- ERRO: data no futuro
+
+CALL inserir_paciente('Carlos Alberto', 'M', '1990-05-10');
+CALL inserir_paciente('Fernanda Lima', 'F', '2000-12-25');
+
+---------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------
+-- EXERCÍCIO RESOLVIDO [2] ------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------
+-- Escreva um STORED PROCEDURE com as devidas validações dos dados de entrada para a geração de um 
+-- novo PEDIDO.
+---------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------
+
+CREATE OR REPLACE PROCEDURE inserir_pedido(
+    p_dt_pedido DATE,
+    p_id_paciente INTEGER,
+    p_id_plano INTEGER,
+    p_crm TEXT
+)
+LANGUAGE plpgsql
+AS $$
+DECLARE
+    v_exists INTEGER;
+BEGIN
+    -- Validação: data obrigatória
+    IF p_dt_pedido IS NULL THEN
+        RAISE EXCEPTION 'A data do pedido não pode ser nula';
+    END IF;
+
+    -- Validação: data não pode ser no futuro
+    IF p_dt_pedido > CURRENT_DATE THEN
+        RAISE EXCEPTION 'A data do pedido não pode ser futura (%).', p_dt_pedido;
+    END IF;
+
+    -- Validação: paciente deve existir
+    SELECT COUNT(*) INTO v_exists
+    FROM paciente
+    WHERE id_paciente = p_id_paciente;
+    IF v_exists = 0 THEN
+        RAISE EXCEPTION 'Paciente com ID % não existe', p_id_paciente;
+    END IF;
+
+    -- Validação: plano de saúde deve existir
+    SELECT COUNT(*) INTO v_exists
+    FROM plano_saude
+    WHERE id_plano = p_id_plano;
+    IF v_exists = 0 THEN
+        RAISE EXCEPTION 'Plano de saúde com ID % não existe', p_id_plano;
+    END IF;
+
+    -- Validação: médico deve existir
+    SELECT COUNT(*) INTO v_exists
+    FROM medico
+    WHERE crm = p_crm;
+    IF v_exists = 0 THEN
+        RAISE EXCEPTION 'Médico com CRM % não existe', p_crm;
+    END IF;
+
+    -- Validação: evitar duplicidade de pedido (mesmo paciente, plano, médico e data)
+    IF EXISTS (
+        SELECT 1 FROM pedido
+        WHERE dt_pedido = p_dt_pedido
+          AND id_paciente = p_id_paciente
+          AND id_plano = p_id_plano
+          AND crm = p_crm
+    ) THEN
+        RAISE EXCEPTION 'Já existe um pedido idêntico (paciente %, plano %, médico %, data %)',
+            p_id_paciente, p_id_plano, p_crm, p_dt_pedido;
+    END IF;
+
+    -- Inserção
+    INSERT INTO pedido (dt_pedido, id_paciente, id_plano, crm)
+    VALUES (p_dt_pedido, p_id_paciente, p_id_plano, p_crm);
+
+    RAISE NOTICE 'Pedido inserido com sucesso para paciente % na data %.', p_id_paciente, p_dt_pedido;
+END;
+$$;
+
+
+-- Inserção válida
+CALL inserir_pedido('2025-08-18', 3, 2, 'SP 125900');
+
+-- Tentativa inválida: paciente inexistente
+CALL inserir_pedido('2025-08-19', 99, 2, 'SP 125900');
+
+-- Tentativa inválida: médico inexistente
+CALL inserir_pedido('2025-08-19', 1, 2, 'SP 9999');
+
+-- Tentativa inválida: data futura
+CALL inserir_pedido('2030-01-01', 1, 2, 'SP 125900');
+
+
+---------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------
+-- EXERCÍCIO RESOLVIDO [3] ------------------------------------------------------------------------
+-- Produza um STORED PROCEDURE que valide os dados de entrada e insira um novo EXAME_PEDIDO.
+---------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------
+
+CREATE OR REPLACE PROCEDURE inserir_exame_pedido(
+    p_nr_pedido INTEGER,
+    p_id_exame INTEGER,
+    p_dt_coleta DATE DEFAULT NULL
+)
+LANGUAGE plpgsql
+AS $$
+DECLARE
+    v_id_plano       INTEGER;
+    v_dt_pedido      DATE;
+    v_percentual     NUMERIC;
+    v_valor_ch       NUMERIC;
+    v_valor_unidade  NUMERIC;
+    v_valor_total    NUMERIC;
+    v_valor_paciente NUMERIC;
+    v_valor_plano    NUMERIC;
+BEGIN
+    -- Validação: pedido deve existir
+    SELECT id_plano, dt_pedido
+    INTO v_id_plano, v_dt_pedido
+    FROM pedido
+    WHERE nr_pedido = p_nr_pedido;
+
+    IF NOT FOUND THEN
+        RAISE EXCEPTION 'Pedido % não existe', p_nr_pedido;
+    END IF;
+
+    -- Validação: exame deve existir
+    PERFORM 1 FROM exame WHERE id_exame = p_id_exame;
+    IF NOT FOUND THEN
+        RAISE EXCEPTION 'Exame % não existe', p_id_exame;
+    END IF;
+
+    -- Validação: exame deve estar autorizado para o plano
+    SELECT valor_ch
+    INTO v_valor_ch
+    FROM exame_autorizado
+    WHERE id_exame_autorizado = p_id_exame
+      AND id_plano = v_id_plano;
+
+    IF NOT FOUND THEN
+        RAISE EXCEPTION 'Exame % não autorizado para o plano %', p_id_exame, v_id_plano;
+    END IF;
+
+    -- Validação: unidade de serviço vigente
+    SELECT valor
+    INTO v_valor_unidade
+    FROM unidade_servico
+    WHERE id_plano = v_id_plano
+      AND v_dt_pedido >= dt_inicio_vigencia
+      AND (dt_fim_vigencia IS NULL OR v_dt_pedido <= dt_fim_vigencia);
+
+    IF NOT FOUND THEN
+        RAISE EXCEPTION 'Não há unidade de serviço vigente para o plano % na data %', v_id_plano, v_dt_pedido;
+    END IF;
+
+    -- Validação: data de coleta
+    IF p_dt_coleta IS NOT NULL AND p_dt_coleta < v_dt_pedido THEN
+        RAISE EXCEPTION 'Data de coleta % não pode ser anterior ao pedido %', p_dt_coleta, v_dt_pedido;
+    END IF;
+
+    -- Buscar percentual do paciente
+    SELECT percentual_paciente
+    INTO v_percentual
+    FROM plano_saude
+    WHERE id_plano = v_id_plano;
+
+    -- Cálculo dos valores
+    v_valor_total    := v_valor_ch * v_valor_unidade;
+    v_valor_paciente := ROUND(v_valor_total * v_percentual, 2);
+    v_valor_plano    := ROUND(v_valor_total - v_valor_paciente, 2);
+
+    -- Inserir exame pedido
+    INSERT INTO exame_pedido (nr_pedido, id_exame_pedido, dt_coleta, valor_paciente, valor_plano)
+    VALUES (p_nr_pedido, p_id_exame, p_dt_coleta, v_valor_paciente, v_valor_plano);
+
+    RAISE NOTICE 'Exame % inserido no pedido % com sucesso. Valor total: %, Paciente: %, Plano: %',
+        p_id_exame, p_nr_pedido, v_valor_total, v_valor_paciente, v_valor_plano;
+END;
+$$;
+
+
+-- Inserir hemograma (1099) no pedido 1
+CALL inserir_exame_pedido(1, 1099, '2025-08-19');
+
+-- Inserir glicemia (1100) no pedido 1 sem data de coleta
+CALL inserir_exame_pedido(1, 1100, NULL);
+
+-- Tentativa inválida: exame não autorizado
+CALL inserir_exame_pedido(1, 2000, '2025-08-19');
+
+-- Tentativa inválida: coleta antes da data do pedido
+CALL inserir_exame_pedido(1, 1099, '2025-08-01');
+
+-------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------
+-- [4] Elabore um TRIGGER que impeça um PACIENTE do sexo MASCULINO solicitar um EXAME_PEDIDO de "Beta 
+-- HCG" (Exame de Gravidez).
+-------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------
+
+CREATE OR REPLACE FUNCTION fn_impedir_beta_hcg_masculino()
+RETURNS TRIGGER
+LANGUAGE plpgsql
+AS $$
+DECLARE
+    v_sexo CHAR(1);
+    v_nome_exame TEXT;
+BEGIN
+    -- Obter sexo do paciente e nome do exame
+    SELECT pa.sexo, e.nome_exame
+    INTO v_sexo, v_nome_exame
+    FROM pedido p
+    JOIN paciente pa ON pa.id_paciente = p.id_paciente
+    JOIN exame e ON e.id_exame = NEW.id_exame_pedido
+    WHERE p.nr_pedido = NEW.nr_pedido;
+
+    -- Validar
+    IF v_sexo = 'M' AND UPPER(v_nome_exame) LIKE 'BETA HCG%' THEN
+        RAISE EXCEPTION 'Paciente do sexo masculino não pode solicitar exame BETA HCG.';
+    END IF;
+
+    RETURN NEW;
+END;
+$$;
+
+-- Criar o trigger
+CREATE TRIGGER trg_impedir_beta_hcg_masculino
+BEFORE INSERT ON exame_pedido
+FOR EACH ROW
+EXECUTE FUNCTION fn_impedir_beta_hcg_masculino();
+
+
+
+-- Paciente masculino tenta inserir Beta HCG
+CALL inserir_exame_pedido(2, 1600, '2025-09-20');
+-- ERRO: Paciente do sexo masculino não pode solicitar exame BETA HCG.
+
+-- Paciente feminino solicita Beta HCG
+CALL inserir_exame_pedido(1, 1600, '2025-08-19');
+-- OK: inserido normalmente
+
+
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+-- EXERCÍCIO RESOLVIDO ----------------------------------------------------------
+---------------------------------------------------------------------------------
+-- [5] Implemente uma RULE que impeça uma mulher de solicitar um exame de "PSA" 
+-- (Próstata).
+----------------------------------------------------------------------------------
+----------------------------------------------------------------------------------
+
+CREATE OR REPLACE RULE impedir_psa_feminino AS
+ON INSERT TO exame_pedido
+WHERE EXISTS (
+    SELECT 1
+    FROM pedido p
+    JOIN paciente pa ON pa.id_paciente = p.id_paciente
+    JOIN exame e ON e.id_exame = NEW.id_exame_pedido
+    WHERE p.nr_pedido = NEW.nr_pedido
+      AND pa.sexo = 'F'
+      AND UPPER(e.nome_exame) LIKE 'PSA%'
+)
+DO INSTEAD NOTHING;
+
+-- Mulher solicitando PSA → NÃO insere nada
+CALL inserir_exame_pedido(1, 1700, '2025-08-25');
+
+-- Homem solicitando PSA → inserção acontece normalmente
+CALL inserir_exame_pedido(2, 1700, '2025-08-25');
+
+-------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

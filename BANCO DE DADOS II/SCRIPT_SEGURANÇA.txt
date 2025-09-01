@@ -1,0 +1,350 @@
+CREATE TABLE usuarios (
+    id SERIAL PRIMARY KEY,
+    login VARCHAR(50) NOT NULL,
+    senha VARCHAR(50) NOT NULL
+);
+
+INSERT INTO usuarios (login, senha) VALUES
+('admin', '1234'),
+('joao', 'abcd'),
+('maria', 'senha');
+
+
+-- VULNERÁVEL
+CREATE OR REPLACE FUNCTION autenticar_usuario_vulneravel(p_login text, p_senha text)
+RETURNS SETOF usuarios AS $$
+BEGIN
+    -- Aqui concatenamos as variáveis p_login e p_senha na query (ERRADO!)
+    RETURN QUERY
+    EXECUTE 'SELECT * FROM usuarios WHERE login = ''' || p_login || ''' AND senha = ''' || p_senha || ''' ';
+END;
+$$ LANGUAGE plpgsql;
+
+
+-- Usuário válido
+SELECT * FROM autenticar_usuario_vulneravel('joao','abcd');
+
+-- Tentativa de injeção funcionando
+SELECT * FROM autenticar_usuario_vulneravel('admin', ''' OR 1=1 --');
+
+-- Versão segura com USING e Dollar Quoting
+CREATE OR REPLACE FUNCTION autenticar_usuario_seguro(p_login text, p_senha text)
+RETURNS SETOF usuarios AS $$
+BEGIN
+    RETURN QUERY
+    EXECUTE $sql$
+        SELECT * FROM usuarios WHERE login = $1 AND senha = $2
+    $sql$
+    USING p_login, p_senha;
+
+-- O Dollar Quoting ($sql$) delimita a string SQL.
+-- O USING injeta o valor de forma segura.	
+END;
+$$ LANGUAGE plpgsql;
+
+-- Usuário válido
+SELECT * FROM autenticar_usuario_seguro('joao','abcd');
+
+-- Tentativa de injeção
+SELECT * FROM autenticar_usuario_seguro('admin',''' OR 1=1');
+
+-- As ROLES de Banco de Dados são GLOBAIS em uma instalação de CLUSTER
+-- de BANCO de DADOS e NÃO pertencentes a um Banco de Dados individual
+-- como IES, LABORATORIO, PASSAGENS etc.
+SELECT ROLNAME FROM PG_ROLES;
+
+-- A tabela interna do PostgreSQL PG_ROLES possui a coluna ROLNAME com os
+-- nomes de todos os ROLES existentes no CLUSTER de BANCO de DADOS.
+
+CREATE ROLE SECRETARIA;
+CREATE ROLE PROFESSOR;
+CREATE ROLE COORDENADOR;
+CREATE ROLE DIRECAO;
+
+
+-----------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------
+-- SCRIPT de criação do Banco de Dados IES
+-- --------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------
+
+CREATE TABLE PROFESSOR (
+    ID_PROFESSOR INTEGER NOT NULL PRIMARY KEY,
+	NOME VARCHAR(45) NOT NULL
+);
+
+CREATE TABLE CURSO (
+    ID_CURSO SERIAL NOT NULL PRIMARY KEY,
+	NOME VARCHAR(45) NOT NULL,
+	ID_COORDENADOR INTEGER NOT NULL,
+
+	FOREIGN KEY (ID_COORDENADOR) REFERENCES PROFESSOR (ID_PROFESSOR)
+	ON DELETE RESTRICT
+);
+
+CREATE TABLE DEPARTAMENTO (
+   ID_CURSO INTEGER NOT NULL,
+   ID_PROFESSOR INTEGER NOT NULL,
+
+   PRIMARY KEY(ID_CURSO, ID_PROFESSOR),
+
+   FOREIGN KEY (ID_CURSO) REFERENCES CURSO (ID_CURSO) ON DELETE RESTRICT,
+   FOREIGN KEY (ID_PROFESSOR) REFERENCES PROFESSOR (ID_PROFESSOR) ON DELETE RESTRICT
+);
+
+CREATE TABLE DISCIPLINA (
+   ID_DISCIPLINA SERIAL NOT NULL PRIMARY KEY,
+   NOME VARCHAR(45) NOT NULL,
+   CARGA_HORARIA INTEGER NOT NULL,
+   EMENTA VARCHAR(900) NOT NULL,
+   ID_PRE_REQUISITO INTEGER,
+
+   FOREIGN KEY (ID_PRE_REQUISITO) REFERENCES DISCIPLINA (ID_DISCIPLINA)
+   ON DELETE RESTRICT
+);
+
+CREATE TABLE GRADE_CURRICULAR (
+   NR_GRADE INTEGER NOT NULL,
+   NR_PERIODO INTEGER NOT NULL,
+   ID_CURSO INTEGER NOT NULL,
+   ID_DISCIPLINA INTEGER NOT NULL,
+
+   PRIMARY KEY(NR_GRADE, NR_PERIODO, ID_CURSO, ID_DISCIPLINA),
+
+   FOREIGN KEY (ID_CURSO) REFERENCES CURSO (ID_CURSO) ON DELETE RESTRICT,
+   FOREIGN KEY (ID_DISCIPLINA) REFERENCES DISCIPLINA (ID_DISCIPLINA) ON DELETE RESTRICT
+);
+
+-- AMPLIAÇÃO DO BANCO DE DADOS --------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------
+
+CREATE TABLE IF NOT EXISTS DISCIPLINA_OFERTADA (
+  ID_DISCIPLINA_OFERTADA INT NOT NULL,
+  ANO INT NOT NULL,
+  SEMESTRE INT NOT NULL CHECK (SEMESTRE > 0 AND SEMESTRE < 3),
+  VAGAS INT NOT NULL,
+  LOCAL VARCHAR(45) NULL,
+  
+  PRIMARY KEY (ID_DISCIPLINA_OFERTADA, ANO, SEMESTRE),
+  
+  CONSTRAINT ID_DISCIPLINA_OFERTADA
+    FOREIGN KEY (ID_DISCIPLINA_OFERTADA) REFERENCES Disciplina (ID_DISCIPLINA)
+    ON DELETE RESTRICT
+    ON UPDATE NO ACTION
+);
+
+
+CREATE TABLE IF NOT EXISTS ALUNO (
+  Matricula INT NOT NULL,
+  Nome VARCHAR(45) NOT NULL,
+  Sexo CHAR(1) NOT NULL CHECK (SEXO='M' OR SEXO='F'),
+  Nascimento DATE NOT NULL,
+  Id_Curso INT NOT NULL,
+  
+  PRIMARY KEY (Matricula),
+  
+  CONSTRAINT Id_Curso
+    FOREIGN KEY (Id_Curso)
+    REFERENCES CURSO (ID_CURSO)
+    ON DELETE RESTRICT
+    ON UPDATE NO ACTION
+);
+
+
+
+CREATE TABLE IF NOT EXISTS CONDICAO (
+  ID_CONDICAO VARCHAR(3) NOT NULL,
+  DESCR_CONDICAO VARCHAR(45) NULL,
+  PRIMARY KEY (ID_CONDICAO));
+
+
+
+CREATE TABLE IF NOT EXISTS HISTORICO (
+  ID_DISCIPLINA INT NOT NULL,
+  MATRICULA INT NOT NULL,
+  ANO INT NOT NULL,
+  SEMESTRE INT NOT NULL,
+  NOTA INT NOT NULL,
+  FREQUENCIA INT NOT NULL,
+  CONDICAO VARCHAR(3) NULL,
+  
+  PRIMARY KEY (ID_DISCIPLINA, MATRICULA, ANO, SEMESTRE),
+
+  CONSTRAINT ID_DISCIPLINA
+    FOREIGN KEY (ID_DISCIPLINA, ANO, SEMESTRE)
+    REFERENCES Disciplina_Ofertada (ID_DISCIPLINA_OFERTADA, ANO, SEMESTRE)
+    ON DELETE RESTRICT
+    ON UPDATE NO ACTION,
+	
+  CONSTRAINT MATRICULA
+    FOREIGN KEY (MATRICULA)
+    REFERENCES Aluno (Matricula)
+    ON DELETE RESTRICT
+    ON UPDATE NO ACTION,
+	
+
+	CONSTRAINT CONDICAO
+	FOREIGN KEY (CONDICAO)
+	REFERENCES CONDICAO (ID_CONDICAO)
+	ON DELETE RESTRICT
+);
+
+
+
+
+
+
+-- CARGA INICIAL DE REGISTROS -------------------------------------------------------------------------------------------------------------------------------------------------
+
+INSERT INTO PROFESSOR VALUES (10,'ASDRUBAL SOARES RIBEIRO'), (22,'JAMBIRA TIMBIRAS'), (31,'DESIDERIO MONFORTE');
+INSERT INTO PROFESSOR VALUES (15,'SUETONIO ROMAO SOUZA'), (21,'CARLOTA FLAVINIAS'), (33,'RONALDO CARVALHO CAMPOS'),
+                             (34,'EDUARDO LICOLINI'), (35,'CINTHIA RIBEIRO'),(36,'RENATO AURELIO MARCONDES'),(37,'ANA PAULA XAVIER DE ABREU'),
+							 (38,'CLAUDIA LUCIA OLIVEIRA OHMS'),(39,'JOSE MAGALHAES NETO'),(40,'JOSE MAURICIO MADEIRO'), (41,'ANA PAULA LASCASAS'),
+							 (42,'CLAUDIA GONCALVES RIBEIRO'),(43,'TITO CARVALHO'),(44,'ROXANNA ALVES MANGABEIRA'), (45,'LEONARDO PEREIRA');
+
+INSERT INTO CURSO VALUES (100,'CIENCIAS ECONOMICAS', 22), (200,'ARQUITETURA E URBANISMO', 31), (300,'SISTEMAS DE INFORMACAO',10);
+
+
+INSERT INTO DISCIPLINA VALUES (1079,'CALCULO', 120,'LIMITE, DIFERENCIAL E INTEGRAL.', NULL), 
+                              (1080,'CALCULO 2', 120,'CALCULO NUMERICO.', 1079),
+							  (1081,'LOGICA', 120, 'CALCULO PROPOSICIONAL, INFERENCIA E LOGICA NAO CLASSICA.', NULL),
+							  (1082,'MATEMATICA DISCRETA', 90,'GRAFOS, AUTOMATOS FINITOS DETERMINISTICOS.', NULL),
+							  (1083,'PROGRAMACAO', 120,'COMANDOS CONDICIONAIS, COMANDOS DE REPETICAO E PROCEDIMENTOS RECURSIVOS.', NULL);
+							  
+
+INSERT INTO DISCIPLINA VALUES (1084,'ESTRUTURA DE DADOS',120,'LISTAS ENCADEADAS. FILAS. PILHAS. ARVORES. GRAFOS', 1083),
+                              (1085,'BANCO DE DADOS',90,'MODELAGEM. SQL.', NULL),
+							  (1086,'BANCO DE DADOS 2', 120,'TRANSACOES, VIEWS, FUNCTIONS, STORED PROCEDURE, RULES.',1085);
+							  
+
+INSERT INTO GRADE_CURRICULAR VALUES (1,1,300,1079), (1,2,300,1080), (1,1,300, 1081), (1,1, 300, 1082), (1,2,300, 1083), 
+                                    (1,3,300,1084), (1,3,300, 1085),(1,4,300,1086);
+
+
+
+
+-- AMPLIAÇÃO -------------------------------------------------------------------------------------------------------------
+
+INSERT INTO DISCIPLINA_OFERTADA VALUES (1079, 2025, 1, 40,'SALA 1001'),
+                                       (1081, 2025, 1, 45,'SALA 8902'),
+					   (1083, 2025, 1, 30,'LAB. 05'),
+                			   (1080, 2025, 2, 40,'SALA 5901'),
+					   (1084, 2025, 2, 30,'LAB. 04'),
+		        		   (1085, 2025, 2, 30,'LAB. 03'),
+					   (1083, 2025, 2, 30,'LAB. 05');
+
+
+INSERT INTO ALUNO VALUES
+(2099,'FRANCISCO BUARQUE DE HOLANDA','M','1992-09-22',200),
+(2100,'CAETANO VELOSO','M','1993-01-21',100),
+(2101,'MILTON NASCIMENTO','M','1994-04-03',100),
+(2102,'AGNETHA FALTSKOG','F','1995-05-01', 300),
+(2200,'JOHN LENNON','M','1995-07-21',300),
+(2300,'ANNY FRID LYNGSTAD','F','1996-03-25',300);
+
+
+INSERT INTO CONDICAO VALUES ('APR','APROVADO'), ('RNO','REPROVADO POR NOTA'),
+                            ('RFA','REPROVADO POR FALTA');
+
+
+-----------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------
+
+SELECT ROLNAME FROM PG_ROLES;
+
+CREATE ROLE ANDRESSA LOGIN PASSWORD '12345' IN ROLE SECRETARIA;
+
+CREATE ROLE LINA LOGIN PASSWORD '4567' IN ROLE PROFESSOR;
+
+-- Revogação (REVOKE) de todos (ALL) os privilégios de acesso sobre
+-- as tabelas para todos os usuários.
+
+REVOKE ALL ON TABLE PROFESSOR FROM PUBLIC;
+REVOKE ALL ON TABLE CURSO FROM PUBLIC;
+REVOKE ALL ON TABLE DEPARTAMENTO FROM PUBLIC;
+REVOKE ALL ON TABLE DISCIPLINA FROM PUBLIC;
+REVOKE ALL ON TABLE GRADE_CURRICULAR FROM PUBLIC;
+REVOKE ALL ON TABLE DISCIPLINA_OFERTADA FROM PUBLIC;
+REVOKE ALL ON TABLE ALUNO FROM PUBLIC;
+REVOKE ALL ON TABLE CONDICAO FROM PUBLIC;
+REVOKE ALL ON TABLE HISTORICO FROM PUBLIC;
+
+
+-- TODOS os USUÁRIOS (ROLEs) tiveram retirados os seus eventuais privilégios
+-- sobre a totalidade das tabelas do Banco de Dados IES (Instituição de Ensino
+-- Superior).
+
+-- Como esse BANCO e suas TABELAS foram criados e são propriedade do ROLE postrgres,
+-- essa medida parece exagerada e quase desnecessária mas visa assegurar com absoluta
+-- certeza que NENHUM outro USUÁRIO (Exceto postgres) pode ALTERAR, APAGAR, CONSULTAR
+-- ou INSERIR dados nessas tabelas.
+
+-- Criação de Função SQL para listar Professores.
+CREATE FUNCTION LISTAR_PROFESSORES()
+RETURNS SETOF PROFESSOR AS $$
+    SELECT ID_PROFESSOR, NOME
+    FROM PROFESSOR
+    ORDER BY NOME;
+$$ LANGUAGE SQL;
+
+REVOKE ALL ON FUNCTION LISTAR_PROFESSORES() FROM PUBLIC;
+
+-- Concedendo privilégio de execução para os ROLEs SECRETARIA,
+-- DIRECAO
+
+GRANT EXECUTE ON FUNCTION LISTAR_PROFESSORES() TO SECRETARIA;
+
+GRANT EXECUTE ON FUNCTION LISTAR_PROFESSORES() TO DIRECAO;
+
+GRANT EXECUTE ON FUNCTION LISTAR_PROFESSORES() TO COORDENADOR;
+
+-- Apenas o ROLE PROFESSOR não tem permissão de executar a Função
+-- LISTAR_PROFESSOR( ).
+
+
+-- Atribuição de privilégios (GRANT) para consulta (SELECT) e inserção
+-- (INSERT) sobre as tabelas PROFESSOR, CURSO, DEPARTAMENTO, ALUNO e 
+-- CONDICAO para o ROLE SECRETARIA.
+
+
+GRANT SELECT, INSERT ON PROFESSOR, CURSO, DEPARTAMENTO, ALUNO, CONDICAO TO
+SECRETARIA WITH GRANT OPTION;
+
+-- O WITH GRANT OPTION permite que esse usuário (SECRETARIA) não apenas use 
+-- os privilégios concedidos, mas também os repasse a outros usuários/roles.
+
+
+GRANT SELECT, INSERT, UPDATE, DELETE ON CURSO, DISCIPLINA, GRADE_CURRICULAR,
+DISCIPLINA_OFERTADA TO COORDENADOR;
+
+-- Autoriza (GRANT) o ROLE COORDENADOR a efetuar consultas (SELECT), inserções
+-- (INSERT), exclusões (DELETE) e atualizações (UPDATE) sobre a lista de tabelas:
+-- CURSO, DISCIPLINA, GRADE_CURRICULAR e DISCIPLINA_OFERTADA.
+
+SET ROLE SECRETARIA;
+
+DELETE FROM PROFESSOR WHERE ID_PROFESSOR = 46;
+
+RESET ROLE;
+
+GRANT PROFESSOR TO SECRETARIA; 
+-- Autoriza SECRETARIA a fazer SET ROLE para PROFESSOR.
+
+-- Remove todos os privilégios (SELECT, INSERT, UPDATE, DELETE) da tabela 
+-- PROFESSOR para o PUBLIC (ou seja, para todos os usuários).
+-- Só o dono da tabela (neste caso, o postgres) ainda terá acesso.
+
+REVOKE ALL ON TABLE PROFESSOR FROM PUBLIC;
+
+-- O role SECRETARIA deixa de poder inserir registros na tabela ALUNO,
+-- mas mantém outros privilégios (como SELECT, se já tiver sido concedido).
+REVOKE INSERT ON TABLE ALUNO FROM SECRETARIA;
+
+-- O COORDENADOR poderá continuar lendo (SELECT) e inserindo (INSERT) cursos, 
+-- mas não poderá mais atualizar nem excluir registros dessa tabela.
+REVOKE UPDATE, DELETE ON TABLE CURSO FROM COORDENADOR;
+
+
