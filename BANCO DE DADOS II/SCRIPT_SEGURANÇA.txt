@@ -348,3 +348,330 @@ REVOKE INSERT ON TABLE ALUNO FROM SECRETARIA;
 REVOKE UPDATE, DELETE ON TABLE CURSO FROM COORDENADOR;
 
 
+----------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------
+CREATE VIEW alunos_sistemas AS
+SELECT a.matricula, a.nome, c.nome AS curso
+FROM aluno a
+JOIN curso c ON a.id_curso = c.id_curso
+WHERE c.nome = 'SISTEMAS DE INFORMACAO';
+
+
+
+CREATE OR REPLACE VIEW alunos_aprovados AS
+SELECT 
+    a.matricula,
+    a.nome AS aluno,
+    d.nome AS disciplina,
+    h.ano,
+    h.semestre,
+    h.nota,
+    h.frequencia,
+    c.descr_condicao
+FROM historico h
+JOIN aluno a 
+    ON h.matricula = a.matricula
+JOIN disciplina d 
+    ON h.id_disciplina = d.id_disciplina
+JOIN condicao c 
+    ON h.condicao = c.id_condicao
+WHERE h.condicao = 'APR';
+
+
+-----------------------------------------------------------------------------------------------
+--- CONTEXTO DE RECURSOS HUMANOS (SETEMBRO DE 2025) -------------------------------------------
+-----------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------
+
+CREATE TABLE SETOR (
+    ID_SETOR CHAR(4) NOT NULL PRIMARY KEY,
+	NOME_SETOR VARCHAR(40) NOT NULL
+);
+
+INSERT INTO SETOR VALUES ('REI','REITORIA'), ('NTI','NUCLEO DE TECNOLOGIA DA INFORMAÇÃO'), 
+                         ('CSI','COORDENADORIA DE SISTEMAS DE INFORMACAO'),
+						 ('CCE','COORDENADORIA DE CIENCIAS ECONOMICAS');
+
+
+
+CREATE TABLE FUNCAO (
+    ID_FUNCAO CHAR(4) NOT NULL PRIMARY KEY,
+	NOME_FUNCAO VARCHAR(40) NOT NULL
+);
+
+INSERT INTO FUNCAO VALUES ('PROF','PROFESSOR'),('REIT','REITOR'),('COOR','COORDENADOR'),
+('TECA','TECNICO ADMINISTRATIVO'),('GERE','GERENTE ADMINISTRATIVO');
+
+
+CREATE TABLE FUNCIONARIO (
+    MATRICULA SERIAL NOT NULL PRIMARY KEY,
+	NOME VARCHAR(45) NOT NULL,
+	SEXO CHAR(1) NOT NULL,
+	NASCIMENTO DATE NOT NULL,
+	DT_INGRESSO DATE NOT NULL,
+	ID_SETOR CHAR(4) NOT NULL,
+
+	FOREIGN KEY (ID_SETOR) REFERENCES SETOR (ID_SETOR) ON DELETE RESTRICT
+
+);
+
+INSERT INTO FUNCIONARIO (NOME, SEXO, NASCIMENTO, DT_INGRESSO, ID_SETOR)
+VALUES ('CINTIA ANDRADE RIBEIRO','F','1970-03-21','1995-05-13','CSI'),
+       ('EDUARDO LICOLINI','M','1967-09-19','1992-09-23','CSI'),
+	   ('RONALDO CARVALHO CAMPOS','M','1968-06-21','1995-02-14','CSI'),
+	   ('CLAUDIA GONCALVES MACHADO','F','1969-06-13','1992-09-22','CCE'),
+	   ('ANA PAULA XAVIER DE ABREU','F','1967-08-29','1997-10-03','CCE'),
+	   ('ANA PAULA LASCASAS','F','1968-06-10','1999-04-03','CCE'),
+	   ('HUMBERTO TAVARES NOGUEIRA','M','1969-09-12','2000-06-06','CCE'),
+	   ('THORSTEN BERG','M','1970-01-21','2000-01-02','CSI'),
+	   ('LEONARDO PEREIRA','M', '1971-01-21','2001-07-21','NTI'),
+	   ('RENATA CRISTINA LARANJA','F','1970-06-23','2002-03-28','NTI'),
+	   ('FABRICIA PARAGUACU','F','1969-12-03','2008-07-25','REI');
+
+CREATE TABLE HISTORICO_FUNCIONAL (
+    MATRICULA_FUNC INTEGER NOT NULL,
+	ID_SETOR CHAR(4) NOT NULL,
+	ID_FUNCAO CHAR(4) NOT NULL,
+	DT_INICIAL DATE NOT NULL,
+	DT_FINAL DATE,
+
+	PRIMARY KEY(MATRICULA_FUNC, ID_SETOR, ID_FUNCAO, DT_INICIAL),
+
+	FOREIGN KEY (MATRICULA_FUNC) REFERENCES FUNCIONARIO (MATRICULA)
+	ON DELETE RESTRICT,
+
+	FOREIGN KEY (ID_SETOR) REFERENCES SETOR (ID_SETOR)
+	ON DELETE RESTRICT,
+
+	FOREIGN KEY (ID_FUNCAO) REFERENCES FUNCAO (ID_FUNCAO)
+	ON DELETE RESTRICT
+
+);
+
+INSERT INTO FUNCIONARIO (NOME, SEXO, NASCIMENTO, DT_INGRESSO, ID_SETOR)
+VALUES ('JOSE MAGALHAES NETO','M','1969-10-12','1995-05-13','CCE');
+
+
+INSERT INTO HISTORICO_FUNCIONAL VALUES
+(2,'CSI','PROF','1992-09-23', NULL),
+(2,'CSI','COOR','2002-01-02', '2005-09-01'),
+(2,'REI','REIT','2005-9-02', '2009-09-01'),
+(4,'CCE','PROF','1992-09-22', NULL),
+(1,'CSI','PROF','1995-05-13', NULL),
+(1,'REI','REIT','2009-09-02','2017-09-01'),
+(3,'CSI','PROF','1995-02-14', NULL),
+(5,'CCE','PROF','1997-10-03', NULL),
+(6,'CCE','PROF','1999-04-03', '2025-01-30'),
+(6,'CCE','COOR','2003-01-02', '2017-09-01'),
+(6,'REI','REIT','2017-09-02', '2025-01-30'),
+(7,'CCE','PROF','2000-06-06', NULL),
+(8,'CSI','PROF','2000-01-02', NULL),
+(9,'NTI','TECA','2001-07-21', NULL),
+(9,'NTI','GERE','2018-01-02', NULL),
+(10,'NTI','TECA','2002-02-28', NULL),
+(11,'REI', 'TECA','2008-07-25', NULL),
+(12,'CCE','PROF','1995-05-13', NULL);	 
+
+ALTER TABLE FUNCIONARIO ADD COLUMN SENHA VARCHAR(06);
+
+
+UPDATE FUNCIONARIO SET SENHA = '123456' WHERE SEXO = 'M';
+UPDATE FUNCIONARIO SET SENHA = '456789' WHERE SEXO = 'F';
+  
+
+CREATE TABLE FERIAS (
+    MATRICULA_FUNC INTEGER NOT NULL PRIMARY KEY,
+	DT_INICIO DATE NOT NULL,
+	DT_FIM DATE NOT NULL CHECK (DT_FIM > DT_INICIO),
+
+    FOREIGN KEY (MATRICULA_FUNC) REFERENCES FUNCIONARIO (MATRICULA)
+	ON DELETE RESTRICT
+);
+
+
+----------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------
+
+-- View para REITORIA
+CREATE OR REPLACE VIEW vw_funcionarios_reitoria AS
+SELECT MATRICULA, NOME, SEXO, NASCIMENTO, DT_INGRESSO, ID_SETOR
+FROM FUNCIONARIO
+WHERE ID_SETOR = 'REI';
+
+-- View para NTI
+CREATE OR REPLACE VIEW vw_funcionarios_nti AS
+SELECT MATRICULA, NOME, SEXO, NASCIMENTO, DT_INGRESSO, ID_SETOR
+FROM FUNCIONARIO
+WHERE ID_SETOR = 'NTI';
+
+-- View para CSI
+CREATE OR REPLACE VIEW vw_funcionarios_csi AS
+SELECT MATRICULA, NOME, SEXO, NASCIMENTO, DT_INGRESSO, ID_SETOR
+FROM FUNCIONARIO
+WHERE ID_SETOR = 'CSI';
+
+-- View para CCE
+CREATE OR REPLACE VIEW vw_funcionarios_cce AS
+SELECT MATRICULA, NOME, SEXO, NASCIMENTO, DT_INGRESSO, ID_SETOR
+FROM FUNCIONARIO
+WHERE ID_SETOR = 'CCE';
+
+------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------
+-- REITORIA
+CREATE OR REPLACE VIEW vw_ferias_reitoria AS
+SELECT f.matricula_func, f.dt_inicio, f.dt_fim
+FROM ferias f
+JOIN funcionario fu ON fu.matricula = f.matricula_func
+WHERE fu.id_setor = 'REI';
+
+-- NTI
+CREATE OR REPLACE VIEW vw_ferias_nti AS
+SELECT f.matricula_func, f.dt_inicio, f.dt_fim
+FROM ferias f
+JOIN funcionario fu ON fu.matricula = f.matricula_func
+WHERE fu.id_setor = 'NTI';
+
+-- CSI
+CREATE OR REPLACE VIEW vw_ferias_csi AS
+SELECT f.matricula_func, f.dt_inicio, f.dt_fim
+FROM ferias f
+JOIN funcionario fu ON fu.matricula = f.matricula_func
+WHERE fu.id_setor = 'CSI';
+
+-- CCE
+CREATE OR REPLACE VIEW vw_ferias_cce AS
+SELECT f.matricula_func, f.dt_inicio, f.dt_fim
+FROM ferias f
+JOIN funcionario fu ON fu.matricula = f.matricula_func
+WHERE fu.id_setor = 'CCE';
+
+
+INSERT INTO VW_FERIAS_CSI VALUES (1,'2025-08-29','2025-09-27');
+
+-- INSERT em vw_ferias_reitoria
+CREATE OR REPLACE RULE vw_ferias_reitoria_insert AS
+ON INSERT TO vw_ferias_reitoria DO INSTEAD
+INSERT INTO ferias (matricula_func, dt_inicio, dt_fim)
+VALUES (NEW.matricula_func, NEW.dt_inicio, NEW.dt_fim);
+
+-- UPDATE em vw_ferias_reitoria
+CREATE OR REPLACE RULE vw_ferias_reitoria_update AS
+ON UPDATE TO vw_ferias_reitoria DO INSTEAD
+UPDATE ferias
+SET dt_inicio = NEW.dt_inicio,
+    dt_fim = NEW.dt_fim
+WHERE matricula_func = OLD.matricula_func
+  AND dt_inicio = OLD.dt_inicio
+  AND dt_fim = OLD.dt_fim;
+
+-- DELETE em vw_ferias_reitoria
+CREATE OR REPLACE RULE vw_ferias_reitoria_delete AS
+ON DELETE TO vw_ferias_reitoria DO INSTEAD
+DELETE FROM ferias
+WHERE matricula_func = OLD.matricula_func
+  AND dt_inicio = OLD.dt_inicio
+  AND dt_fim = OLD.dt_fim;
+
+
+--------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------
+-----------------------------------------------------------------------
+-----------------------------------------------------------------------
+-- INSERT em vw_ferias_csi
+CREATE OR REPLACE RULE vw_ferias_csi_insert AS
+ON INSERT TO vw_ferias_csi DO INSTEAD
+INSERT INTO ferias (matricula_func, dt_inicio, dt_fim)
+VALUES (NEW.matricula_func, NEW.dt_inicio, NEW.dt_fim);
+
+-- UPDATE em vw_ferias_csi
+CREATE OR REPLACE RULE vw_ferias_csi_update AS
+ON UPDATE TO vw_ferias_csi DO INSTEAD
+UPDATE ferias
+SET dt_inicio = NEW.dt_inicio,
+    dt_fim = NEW.dt_fim
+WHERE matricula_func = OLD.matricula_func
+  AND dt_inicio = OLD.dt_inicio
+  AND dt_fim = OLD.dt_fim;
+
+-- DELETE em vw_ferias_csi
+CREATE OR REPLACE RULE vw_ferias_csi_delete AS
+ON DELETE TO vw_ferias_csi DO INSTEAD
+DELETE FROM ferias
+WHERE matricula_func = OLD.matricula_func
+  AND dt_inicio = OLD.dt_inicio
+  AND dt_fim = OLD.dt_fim;
+
+--------------------------------------------------------------------------
+--------------------------------------------------------------------------
+--------------------------------------------------------------------------
+
+INSERT INTO VW_FERIAS_CSI VALUES (1,'2025-08-29','2025-09-27');
+
+
+--------------------------------------------------------------------------
+--------------------------------------------------------------------------
+--------------------------------------------------------------------------
+
+
+
+CREATE ROLE COORDENADOR_CSI;
+
+-- Revogar todos os privilégios sobre todas as tabelas no schema 'public' para o papel 'COORDENADOR_CSI'
+REVOKE ALL PRIVILEGES ON ALL TABLES IN SCHEMA public FROM COORDENADOR_CSI;
+
+GRANT ALL PRIVILEGES ON vw_funcionarios_csi, vw_ferias_csi TO COORDENADOR_CSI;
+
+CREATE ROLE CINTIA_ANDRADE LOGIN PASSWORD '123456' IN ROLE COORDENADOR_CSI;
+
+SET ROLE CINTIA_ANDRADE;
+
+SELECT * FROM FUNCIONARIO;
+
+SELECT * FROM VW_FUNCIONARIOS_CSI;
+
+SELECT * FROM VW_FERIAS_CSI;
+
+SELECT FROM FERIAS;
+
+UPDATE VW_FERIAS_CSI SET DT_FIM = '2025-09-13' WHERE MATRICULA_FUNC = 1 AND DT_INICIO = '2025-08-29';
+
+RESET ROLE;
+
+CREATE MATERIALIZED VIEW mv_funcionarios_ativos AS
+SELECT MATRICULA, NOME, SEXO, NASCIMENTO, DT_INGRESSO, ID_SETOR
+FROM FUNCIONARIO;
+
+INSERT INTO FUNCIONARIO (NOME, SEXO, NASCIMENTO, DT_INGRESSO, ID_SETOR) 
+VALUES ('ASDRUBAL RIBEIRO SOARES','M','1956-04-03','1979-01-02','REI');
+
+SELECT * FROM FUNCIONARIO;
+
+
+SELECT * FROM MV_FUNCIONARIOS_ATIVOS;
+
+REFRESH MATERIALIZED VIEW mv_funcionarios_ativos;  -- Atualização da View Materializada
+
+SELECT * FROM MV_FUNCIONARIOS_ATIVOS;
+
+
+
+
+
+
+
+
+
+
+
+
+

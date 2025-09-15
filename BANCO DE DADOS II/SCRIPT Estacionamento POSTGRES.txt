@@ -1,0 +1,410 @@
+CREATE TABLE estacionamento (
+    id_carro SERIAL PRIMARY KEY,
+    placa VARCHAR(10) NOT NULL,
+    modelo VARCHAR(50) NOT NULL
+);
+
+INSERT INTO estacionamento (placa, modelo)
+VALUES 
+('ABC123', 'Fiat Uno'),
+('XYZ999', 'Honda Civic'),
+('DEF456', 'Toyota Corolla'),
+('GHI789', 'Chevrolet Onix');
+
+CREATE INDEX idx_estacionamento_placa_hash
+ON estacionamento USING hash (placa);
+
+SELECT * 
+FROM estacionamento
+WHERE placa = 'XYZ999';
+
+-- verificar que o banco realmente está usando o índice hash
+EXPLAIN SELECT * 
+FROM estacionamento
+WHERE placa = 'XYZ999';
+
+-- Como forçar o PostgreSQL a usar o índice HASH
+SET enable_seqscan = off;
+
+-- verificar que o banco realmente está usando o índice hash
+EXPLAIN SELECT * 
+FROM estacionamento
+WHERE placa = 'XYZ999';
+
+--------------------------------------------------------------------------
+--------------------------------------------------------------------------
+-- Experimento: quando o otimizador troca do Seq Scan para o Index Scan.
+DROP TABLE IF EXISTS estacionamento;
+CREATE TABLE estacionamento (
+    id_carro SERIAL PRIMARY KEY,
+    placa VARCHAR(10) NOT NULL,
+    modelo VARCHAR(50) NOT NULL
+);
+
+
+CREATE INDEX idx_estacionamento_placa_hash
+ON estacionamento USING hash (placa);
+
+-- Inserindo poucos registros (100 ao todo).
+INSERT INTO estacionamento (placa, modelo)
+SELECT 'CAR' || g, 'Modelo ' || g
+FROM generate_series(1, 100) g;
+
+-- liberando para o otimizador escolher a utilização ou não de indexação.
+SET enable_seqscan = on;
+
+-- Analisando a consulta (Query) com EXPLAIN
+EXPLAIN SELECT * 
+FROM estacionamento
+WHERE placa = 'CAR50';
+
+
+-- Inserindo MUITOS registros (1 milhão ao todo além dos 100 anteriores).
+INSERT INTO estacionamento (placa, modelo)
+SELECT 'CAR' || g, 'Modelo ' || g
+FROM generate_series(101, 1000000) g;
+
+-- Analisando novamente a QUERY.
+EXPLAIN SELECT * 
+FROM estacionamento
+WHERE placa = 'CAR500000';
+
+
+------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------
+DROP TABLE IF EXISTS filmes;
+CREATE TABLE filmes (
+    id_filme SERIAL PRIMARY KEY,
+    titulo TEXT NOT NULL
+);
+
+
+INSERT INTO filmes (titulo) VALUES
+('Matrix'),
+('Matrix Reloaded'),
+('Matrix Revolutions'),
+('Senhor dos Anéis: A Sociedade do Anel'),
+('O Senhor dos Anéis: As Duas Torres'),
+('O Senhor dos Anéis: O Retorno do Rei');
+
+
+-- O PostgreSQL precisa transformar o texto em tokens (palavras normalizadas).
+-- Usamos to_tsvector para isso:
+ALTER TABLE filmes
+ADD COLUMN titulo_tsv tsvector;
+
+-- Popular a coluna com tokens
+UPDATE filmes
+SET titulo_tsv = to_tsvector('portuguese', titulo);
+
+-- Criação de Índice GIN (Lista Invertida):
+CREATE INDEX idx_filmes_titulo_tsv
+ON filmes USING gin (titulo_tsv);
+
+
+-- Esse índice é a lista invertida:
+-- Cada termo do título (ex: "matrix", "senhor", "anéis") é armazenado como chave.
+-- Ele aponta para a lista de documentos (IDs de filmes) onde aparece.
+
+SELECT id_filme, titulo
+FROM filmes
+WHERE titulo_tsv @@ to_tsquery('portuguese', 'matrix');
+
+
+-- buscando "Senhor e Aneis": Falha
+SELECT id_filme, titulo
+FROM filmes
+WHERE titulo_tsv @@ to_tsquery('portuguese', 'senhor & aneis');
+
+
+
+SELECT id_filme, titulo, to_tsvector('portuguese', titulo)
+FROM filmes;
+
+-- Repare: “Anéis” → “anel”
+-- “Sociedade” → “sociedad”
+-- Como vimos, não adianta buscar aneis. O correto é usar a forma stemmed que o dicionário gerou.
+-- Exemplo:
+
+SELECT id_filme, titulo
+FROM filmes
+WHERE titulo_tsv @@ to_tsquery('portuguese', 'senhor & anel');
+
+-- Alternativa sem stemming (text search “literal”)
+-- Se você quiser que o PostgreSQL não faça redução de palavras (stemmer), 
+-- pode usar a configuração "simple" em vez de "portuguese":
+
+UPDATE filmes
+SET titulo_tsv = to_tsvector('simple', titulo);
+
+-- Agora os tokens ficam exatamente iguais às palavras originais (Anéis, Sociedade, etc).
+-- Mas aí você perde a vantagem de buscar plurais e variações automaticamente.
+
+-- buscando "Senhor e Aneis": Ainda Falha
+SELECT id_filme, titulo
+FROM filmes
+WHERE titulo_tsv @@ to_tsquery('portuguese', 'senhor & anéis');
+
+-- O PostgreSQL não reconheceu anéis como a mesma raiz que foi gravada no índice.
+-- No índice, quando você rodou to_tsvector('portuguese', titulo), a palavra “Anéis” 
+-- foi reduzida para o radical anel (sem acento e no singular).
+
+SELECT id_filme, titulo, to_tsvector('portuguese', titulo)
+FROM filmes;
+
+
+-- inspecionar diretamente o parser:
+SELECT to_tsvector('portuguese', 'Senhor dos Anéis'),
+       to_tsquery('portuguese', 'senhor & anéis');
+
+-- Se o usuário digitar “anéis”, você pode aplicar plainto_tsquery, 
+-- que tenta tokenizar automaticamente e aplicar o mesmo dicionário:
+SELECT id_filme, titulo
+FROM filmes
+WHERE titulo_tsv @@ plainto_tsquery('portuguese', 'senhor anéis');
+
+
+--falhou
+
+
+-- O que foi indexado (mostra os lexemas por título)
+SELECT id_filme, titulo, to_tsvector('portuguese', titulo) AS tsv_calc,
+       titulo_tsv
+FROM filmes;
+
+-- Como o parser trata “senhor anéis”
+SELECT plainto_tsquery('portuguese', 'senhor anéis') AS q1,
+       to_tsquery('portuguese', 'senhor & anéis')     AS q2;
+
+-- Depuração detalhada do termo “anéis”
+SELECT * FROM ts_debug('portuguese', 'anéis');
+
+
+-- 1) Extensão para remover acentos
+CREATE EXTENSION IF NOT EXISTS unaccent;
+
+-- 2) Crie uma configuração de busca que primeiro remove acento e depois aplica o stemmer
+DROP TEXT SEARCH CONFIGURATION IF EXISTS portuguese_unaccent;
+CREATE TEXT SEARCH CONFIGURATION portuguese_unaccent ( COPY = portuguese );
+ALTER TEXT SEARCH CONFIGURATION portuguese_unaccent
+  ALTER MAPPING FOR hword, hword_part, word
+  WITH unaccent, portuguese_stem;
+
+-- 3) Recalcule a coluna TSVECTOR usando a nova config
+UPDATE filmes
+SET titulo_tsv = to_tsvector('portuguese_unaccent', titulo);
+
+-- 4) (Opcional) GIN index na coluna
+DROP INDEX IF EXISTS idx_filmes_titulo_tsv;
+CREATE INDEX idx_filmes_titulo_tsv
+ON filmes USING gin (titulo_tsv);
+
+-- Versão “plain text” (boa para input de usuário)
+SELECT id_filme, titulo
+FROM filmes
+WHERE titulo_tsv @@ plainto_tsquery('portuguese_unaccent', 'senhor anéis');
+
+-- Versão estilo pesquisa web (aceita espaços, aspas, OR, -)
+SELECT id_filme, titulo
+FROM filmes
+WHERE titulo_tsv @@ websearch_to_tsquery('portuguese_unaccent', 'senhor anéis');
+
+
+-- Trigger function
+CREATE OR REPLACE FUNCTION filmes_tsv_trigger()
+RETURNS trigger AS $$
+BEGIN
+  NEW.titulo_tsv := to_tsvector('portuguese_unaccent', NEW.titulo);
+  RETURN NEW;
+END
+$$ LANGUAGE plpgsql;
+
+-- Trigger
+DROP TRIGGER IF EXISTS tsv_update ON filmes;
+CREATE TRIGGER tsv_update
+BEFORE INSERT OR UPDATE OF titulo ON filmes
+FOR EACH ROW EXECUTE FUNCTION filmes_tsv_trigger();
+
+
+INSERT INTO filmes (titulo) 
+VALUES ('Harry Potter e a Pedra Filosofal');
+
+SELECT id_filme, titulo, titulo_tsv 
+FROM filmes
+WHERE titulo LIKE 'Harry Potter%';
+
+UPDATE filmes
+SET titulo = 'Harry Potter e a Câmara Secreta'
+WHERE titulo LIKE 'Harry Potter%';
+
+SELECT id_filme, titulo, titulo_tsv 
+FROM filmes
+WHERE titulo LIKE 'Harry Potter%';
+
+-- Testando a busca FULL TEXT
+SELECT id_filme, titulo
+FROM filmes
+WHERE titulo_tsv @@ plainto_tsquery('portuguese_unaccent', 'camara secreta');
+
+-- Deve encontrar “Harry Potter e a Câmara Secreta” mesmo 
+-- que você não digite acento.
+
+-----------------------------------------------------------------------------------------------
+-- FULL TEXT SEARCH ---------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------
+CREATE TABLE artigos (
+    id SERIAL PRIMARY KEY,
+    conteudo TEXT NOT NULL
+);
+
+INSERT INTO artigos (conteudo) VALUES
+('O Senhor dos Anéis é uma trilogia épica de fantasia.'),
+('Matrix é um clássico da ficção científica.'),
+('Harry Potter e a Pedra Filosofal é o início da saga.');
+
+-- CRIAR UMA COLUNA INDEXADA PARA FULL TEXT.
+ALTER TABLE artigos
+ADD COLUMN conteudo_tsv tsvector;
+
+UPDATE artigos
+SET conteudo_tsv = to_tsvector('portuguese', conteudo);
+
+CREATE INDEX idx_artigos_tsv
+ON artigos USING gin (conteudo_tsv);
+
+-- Busca por "Matrix"
+SELECT id, conteudo
+FROM artigos
+WHERE conteudo_tsv @@ to_tsquery('portuguese', 'matrix');
+
+-------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------
+-- Outro Exemplo de ---------------------------------------------------
+-- Lista Invertida ----------------------------------------------------
+-----------------------------------------------------------------------
+-----------------------------------------------------------------------
+CREATE TABLE funcionario (
+    matricula   SERIAL PRIMARY KEY,
+    nome        TEXT NOT NULL,
+    sexo        CHAR(1) CHECK (sexo IN ('M','F')),
+    id_setor    INT NOT NULL,
+    id_cargo    INT NOT NULL
+);
+
+INSERT INTO funcionario (nome, sexo, id_setor, id_cargo) VALUES
+('João da Silva', 'M', 1, 101),
+('Maria Oliveira', 'F', 1, 102),
+('José Santos', 'M', 2, 201),
+('Ana Beatriz', 'F', 2, 202),
+('Carlos Mendes', 'M', 3, 301),
+('Beatriz Souza', 'F', 3, 302);
+
+
+
+CREATE INDEX idx_funcionario_setor ON funcionario (id_setor);
+CREATE INDEX idx_funcionario_sexo  ON funcionario (sexo);
+CREATE INDEX idx_funcionario_cargo ON funcionario (id_cargo);
+
+SELECT nome
+FROM funcionario
+WHERE id_setor = 2 AND sexo = 'F';
+
+-----------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------
+CREATE TABLE cliente (
+    id_cliente SERIAL PRIMARY KEY,
+    nome VARCHAR(100) NOT NULL,
+    email VARCHAR(150) UNIQUE NOT NULL,
+    idade INT NOT NULL,
+    cidade VARCHAR(100)
+);
+
+
+-- Por padrão, o PostgreSQL cria índice B-Tree em chaves primárias e colunas UNIQUE, 
+-- mas podemos criar índices adicionais para acelerar buscas.
+
+-- Índice B-Tree na coluna idade
+CREATE INDEX idx_cliente_idade
+    ON cliente USING btree (idade);
+
+-- Índice B-Tree na coluna cidade
+CREATE INDEX idx_cliente_cidade
+    ON cliente USING btree (cidade);
+
+
+
+INSERT INTO CLIENTE 
+VALUES (35,'ASDRUBAL SOARES NETO','asr@gmail.com',27,'COLATINA'),
+       (41,'JAMBIRA TIMBIRAS','jtimb@gmail.com',23,'LINHARES'),
+       (50,'ANACLETO SUETONIO ANDRADA','anac@yahoo.com.br',37,'VITORIA'),
+       (51,'YARAMAS SOUZA','yara@yahoo.com.br',49,'VILA VELHA'),
+       (57,'DESIDERIO PIRES JR','desid@hotmail.com', 67,'COLATINA');
+
+
+-- Busca por igualdade (usa índice em idade)
+SELECT * FROM cliente WHERE idade = 37;
+
+-- Busca por intervalo (usa índice em idade)
+SELECT * FROM cliente WHERE idade BETWEEN 25 AND 40;
+
+-- Busca por igualdade em texto (usa índice em cidade)
+SELECT * FROM cliente WHERE cidade = 'COLATINA';
+
+-- Ordenação pode usar índice também
+SELECT * FROM cliente ORDER BY idade;
+
+EXPLAIN ANALYZE
+SELECT * FROM cliente WHERE idade BETWEEN 25 AND 40;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
