@@ -1,0 +1,261 @@
+﻿VERSÃO FINAL
+1.Faça uma função PLPGSQL que receba como parâmetro de entrada ID_USUARIO_PARAM e retorne um CURSOR com a lista de todos os conteúdos assistidos pelo usuário em questão. A referida lista deve retornar o TÍTULO da série, TÍTULO do episódio, ANO_LANCAMENTO da Série, TEMPORADA, ANO_LANCAMENTO do Episódio, DURACAO_MIN do episódio e percentual do episódio assistido pelo usuário.
+__________________________________________________________________________________________________________________________________________________
+CREATE OR REPLACE FUNCTION fn_conteudos_assistidos(
+    ID_USUARIO_PARAM INT   -- parâmetro: o ID do usuário que queremos consultar
+)
+RETURNS refcursor AS $$
+DECLARE
+    -- criamos um cursor nomeado, que vai armazenar o resultado da consulta
+    cur_conteudos refcursor := 'conteudos_cursor';
+        v_assinatura_status VARCHAR(20);
+BEGIN
+        -- Verifica se o usuário possui assinatura ativa
+    SELECT a.status
+    INTO v_assinatura_status
+    FROM assinatura a
+    WHERE a.id_usuario = ID_USUARIO_PARAM
+    ORDER BY data_inicio DESC
+    LIMIT 1;  -- pega a assinatura mais recente
+
+
+     -- Se não encontrou nenhuma assinatura
+    IF NOT FOUND THEN
+        RAISE NOTICE 'Usuário com ID % não possui nenhuma assinatura.', ID_USUARIO_PARAM;
+        RETURN NULL;  -- cursor nunca é aberto
+    END IF;
+
+
+    -- Se a assinatura não estiver ativa
+    IF v_assinatura_status <> 'ATIVA' THEN
+        RAISE NOTICE 'Usuário com ID % possui assinatura "%" que não está ativa.', ID_USUARIO_PARAM, v_assinatura_status;
+        RETURN NULL;  -- cursor nunca é aberto
+    END IF;
+
+
+    -- Se assinatura ativa, abre o cursor normalmente
+    OPEN cur_conteudos FOR
+        SELECT
+            c.titulo AS titulo_serie,
+            e.titulo AS titulo_episodio,
+            c.ano_lancamento AS ano_lancamento_serie,
+            t.numero AS temporada,
+            t.ano_lancamento AS ano_lancamento_temporada,
+            e.duracao_min AS duracao_episodio,
+            ROUND((hr.minutos_assistidos * 100.0 / e.duracao_min), 2) AS percentual_assistido
+-- ============================================================================================                
+        -- título do conteúdo (série ou filme)
+        -- título do episódio (somente faz sentido quando o conteúdo é série)
+        -- ano de lançamento do conteúdo principal (série ou filme)
+        -- número da temporada (quando for série)
+        -- ano de lançamento da temporada
+        -- duração total do episódio
+        -- percentual assistido = (minutos assistidos / duração total) * 100
+-- ============================================================================================        
+
+
+        FROM historico_reproducao hr
+        JOIN perfil p 
+            ON hr.id_perfil = p.id_perfil
+        JOIN conteudo c 
+            ON hr.id_conteudo = c.id_conteudo
+        JOIN episodio e 
+            ON hr.id_episodio = e.id_episodio
+        JOIN temporada t 
+            ON e.id_temporada = t.id_temporada
+        WHERE p.id_usuario = ID_USUARIO_PARAM
+        
+        ORDER BY c.titulo, t.numero, e.numero;
+-- ============================================================================================        
+        -- juntamos o histórico com o perfil
+        -- juntamos com a tabela de conteúdos
+        -- juntamos com os episódios (só vai funcionar para séries)
+        -- juntamos com a temporada correspondente
+        -- filtramos apenas os conteúdos assistidos por perfis do usuário informado
+        -- organizamos por título da série, temporada e número do episódio
+-- ============================================================================================        
+        
+    -- retornamos o cursor já aberto para ser usado no FETCH
+    RETURN cur_conteudos;
+END;
+$$ LANGUAGE plpgsql;
+
+
+BEGIN;
+
+
+-- chama a função e abre o cursor
+SELECT fn_conteudos_assistidos(1);
+
+
+-- busca os dados do cursor retornado (conteudos_cursor)
+FETCH ALL FROM conteudos_cursor;
+
+
+COMMIT;
+
+
+2. Uma função PLPGSQL que receba como parâmetro de entrada o ID_USUARIO_PARAM e que faça uma chamada à função anterior para, em posse do CURSOR recebido, exibir apenas os três últimos registros existentes no referido CURSOR. Quando existirem menos que os 3 registros pretendidos a função deverá exibir todos os registros existentes ou nenhum.
+CREATE OR REPLACE FUNCTION exibir_tres_ultimos_registros(ID_USUARIO_PARAM INT)
+RETURNS TABLE (
+    titulo_serie TEXT,
+    titulo_episodio TEXT,
+    ano_lancamento_serie INT,
+    temporada INT,
+    ano_lancamento_temporada INT,
+    duracao_episodio INT,
+    percentual_assistido NUMERIC
+) AS $$
+DECLARE
+    historico_cursor REFCURSOR;
+BEGIN
+    historico_cursor := fn_conteudos_assistidos(ID_USUARIO_PARAM);
+
+
+    IF historico_cursor IS NULL THEN
+        RETURN;
+    END IF;
+
+
+    -- Aqui FETCH joga direto nos parâmetros OUT (colunas da função)
+    FOR i IN 1..3 LOOP
+        FETCH historico_cursor INTO 
+            titulo_serie,
+            titulo_episodio,
+            ano_lancamento_serie,
+            temporada,
+            ano_lancamento_temporada,
+            duracao_episodio,
+            percentual_assistido;
+
+
+        EXIT WHEN NOT FOUND;
+        RETURN NEXT;  -- devolve a linha preenchida
+    END LOOP;
+
+
+    CLOSE historico_cursor;
+END;
+$$ LANGUAGE plpgsql;
+
+
+SELECT *
+FROM exibir_tres_ultimos_registros(3);
+
+
+-- teste a função
+SELECT * FROM exibir_tres_ultimos_registros(1);
+
+
+3.  Stored Procedures para a inserção de registros nas tabelas USUARIO, PLANO e ASSINATURA. Não deixe de validar os dados de entrada. 
+
+
+
+
+4. Uma trigger a critério do grupo.
+-- Ideia: se um pagamento falhar (STATUS = 'FALHOU'), a assinatura automaticamente vira CANCELADA.
+CREATE OR REPLACE FUNCTION TRIG_ATUALIZA_ASSINATURA()
+RETURNS TRIGGER AS $$
+BEGIN
+   -- Se o pagamento falhou
+   IF NEW.STATUS = 'FALHOU' THEN
+      UPDATE ASSINATURA
+      SET STATUS = 'CANCELADA',
+          DATA_FIM = CURRENT_DATE
+      WHERE ID_ASSINATURA = NEW.ID_ASSINATURA;
+
+
+      RAISE NOTICE 'Assinatura % foi cancelada por falha no pagamento', NEW.ID_ASSINATURA;
+   END IF;
+
+
+   -- Se o pagamento foi confirmado
+   IF NEW.STATUS = 'CONFIRMADO' THEN
+      UPDATE ASSINATURA
+      SET STATUS = 'ATIVA',
+          DATA_FIM = NULL
+      WHERE ID_ASSINATURA = NEW.ID_ASSINATURA
+        AND STATUS <> 'ATIVA';
+
+
+      RAISE NOTICE 'Assinatura % foi reativada', NEW.ID_ASSINATURA;
+   END IF;
+
+
+   RETURN NEW;
+END;
+$$ LANGUAGE PLPGSQL;
+
+
+-- Trigger para INSERT
+CREATE TRIGGER TG_PAGAMENTO_ASSINATURA_INSERT
+AFTER INSERT ON PAGAMENTO
+FOR EACH ROW
+EXECUTE FUNCTION TRIG_ATUALIZA_ASSINATURA();
+
+
+-- Trigger para UPDATE
+CREATE TRIGGER TG_PAGAMENTO_ASSINATURA_UPDATE
+AFTER UPDATE ON PAGAMENTO
+FOR EACH ROW
+EXECUTE FUNCTION TRIG_ATUALIZA_ASSINATURA();
+
+
+-- 1. Testar INSERT FALHOU → cancela assinatura ativa
+INSERT INTO PAGAMENTO (id_assinatura, valor, metodo, status)
+VALUES (1, 59.90, 'PIX', 'FALHOU');
+
+
+SELECT * FROM ASSINATURA WHERE id_assinatura = 1;
+
+
+-- Esperado: Assinatura 1 muda para CANCELADA, data_fim = hoje.
+
+
+-- 2. Testar INSERT CONFIRMADO em assinatura CANCELADA → reativa
+INSERT INTO PAGAMENTO (id_assinatura, valor, metodo, status)
+VALUES (3, 29.90, 'PIX', 'CONFIRMADO');
+
+
+SELECT * FROM ASSINATURA WHERE id_assinatura = 3;
+
+
+-- Esperado: Assinatura 3 volta a ATIVA, data_fim = NULL.
+
+
+--3. Testar INSERT CONFIRMADO em assinatura já ativa → sem efeito
+INSERT INTO PAGAMENTO (id_assinatura, valor, metodo, status)
+VALUES (2, 44.90, 'CARTAO_CREDITO', 'CONFIRMADO');
+
+
+SELECT * FROM ASSINATURA WHERE id_assinatura = 2;
+
+
+-- Esperado: Assinatura 2 continua ATIVA, sem alteração.
+
+
+--4. Testar UPDATE → PENDENTE → FALHOU
+--UPDATE PAGAMENTO
+SET status = 'FALHOU'
+WHERE id_pagamento = 4;  -- antes estava PENDENTE
+
+
+SELECT * FROM ASSINATURA WHERE id_assinatura = 2;
+
+
+ Esperado: Assinatura 2 vira CANCELADA, data_fim = hoje.
+
+
+--5. Testar UPDATE → FALHOU → CONFIRMADO
+--UPDATE PAGAMENTO
+SET status = 'CONFIRMADO'
+WHERE id_pagamento = 4;
+
+
+SELECT * FROM ASSINATURA WHERE id_assinatura = 2;
+
+
+-- Esperado: Assinatura 2 volta a ficar ATIVA, data_fim = NULL
+
+
+5. Duas rules a critério do grupo.

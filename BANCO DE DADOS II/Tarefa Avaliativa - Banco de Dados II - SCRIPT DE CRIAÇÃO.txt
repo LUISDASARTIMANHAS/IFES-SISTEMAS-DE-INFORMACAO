@@ -1,0 +1,185 @@
+﻿--SCRIPT DE CRIAÇÃO
+--==========================================================================================
+-- CRIAÇÃO DO BANCO DE DADOS PARA UMA PLATAFORMA DE STREAMING (ESTILO NETFLIX)
+--==========================================================================================
+
+
+--==========================================================================================
+-- TABELAS PRINCIPAIS
+--==========================================================================================
+
+
+-- Usuários (assinantes)
+CREATE TABLE USUARIO (
+    ID_USUARIO SERIAL PRIMARY KEY,
+    NOME VARCHAR(100) NOT NULL,
+    EMAIL VARCHAR(150) UNIQUE NOT NULL,
+    SENHA_HASH VARCHAR(200) NOT NULL,
+    DATA_CADASTRO TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    STATUS VARCHAR(20) DEFAULT 'ATIVO' CHECK (STATUS IN ('ATIVO','INATIVO'))
+);
+
+
+-- Planos de assinatura
+CREATE TABLE PLANO (
+    ID_PLANO SERIAL PRIMARY KEY,
+    NOME VARCHAR(50) NOT NULL,
+    PRECO NUMERIC(10,2) NOT NULL,
+    MAX_PERFIS INT NOT NULL,
+    QUALIDADE_STREAMING VARCHAR(20) NOT NULL -- Ex: HD, FULLHD, 4K
+);
+
+
+-- Assinaturas dos usuários
+CREATE TABLE ASSINATURA (
+    ID_ASSINATURA SERIAL PRIMARY KEY,
+    ID_USUARIO INT NOT NULL REFERENCES USUARIO(ID_USUARIO),
+    ID_PLANO INT NOT NULL REFERENCES PLANO(ID_PLANO),
+    DATA_INICIO DATE NOT NULL,
+    DATA_FIM DATE,
+    STATUS VARCHAR(20) DEFAULT 'ATIVA' CHECK (STATUS IN ('ATIVA','CANCELADA','EXPIRADA'))
+);
+
+
+-- Perfis (cada usuário pode ter múltiplos perfis)
+CREATE TABLE PERFIL (
+    ID_PERFIL SERIAL PRIMARY KEY,
+    ID_USUARIO INT NOT NULL REFERENCES USUARIO(ID_USUARIO),
+    NOME VARCHAR(50) NOT NULL,
+    DATA_NASCIMENTO DATE,
+    TIPO VARCHAR(20) DEFAULT 'PADRAO' CHECK (TIPO IN ('PADRAO','INFANTIL'))
+);
+
+
+--==========================================================================================
+-- CATÁLOGO DE CONTEÚDO
+--==========================================================================================
+
+
+-- Conteúdos (filmes ou séries)
+CREATE TABLE CONTEUDO (
+    ID_CONTEUDO SERIAL PRIMARY KEY,
+    TITULO VARCHAR(200) NOT NULL,
+    DESCRICAO TEXT,
+    TIPO VARCHAR(20) NOT NULL CHECK (TIPO IN ('FILME','SERIE')),
+    ANO_LANCAMENTO INT,
+    CLASSIFICACAO_INDICATIVA VARCHAR(10),
+    DURACAO_MIN INT, -- apenas para filmes
+    DATA_INSERCAO TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+
+-- Temporadas (apenas para séries)
+CREATE TABLE TEMPORADA (
+    ID_TEMPORADA SERIAL PRIMARY KEY,
+    ID_CONTEUDO INT NOT NULL REFERENCES CONTEUDO(ID_CONTEUDO),
+    NUMERO INT NOT NULL,
+    ANO_LANCAMENTO INT
+);
+
+
+-- Episódios (apenas para séries)
+CREATE TABLE EPISODIO (
+    ID_EPISODIO SERIAL PRIMARY KEY,
+    ID_TEMPORADA INT NOT NULL REFERENCES TEMPORADA(ID_TEMPORADA),
+    TITULO VARCHAR(200) NOT NULL,
+    NUMERO INT NOT NULL,
+    DURACAO_MIN INT NOT NULL,
+    SINOPSE TEXT
+);
+
+
+-- Gêneros
+CREATE TABLE GENERO (
+    ID_GENERO SERIAL PRIMARY KEY,
+    NOME VARCHAR(50) UNIQUE NOT NULL
+);
+
+
+-- Relação Conteúdo x Gênero
+CREATE TABLE CONTEUDO_GENERO (
+    ID_CONTEUDO INT REFERENCES CONTEUDO(ID_CONTEUDO),
+    ID_GENERO INT REFERENCES GENERO(ID_GENERO),
+    PRIMARY KEY (ID_CONTEUDO, ID_GENERO)
+);
+
+
+-- Atores / Diretores
+CREATE TABLE PESSOA (
+    ID_PESSOA SERIAL PRIMARY KEY,
+    NOME VARCHAR(150) NOT NULL,
+    TIPO VARCHAR(20) CHECK (TIPO IN ('ATOR','DIRETOR','ROTEIRISTA'))
+);
+
+
+-- Relação Conteúdo x Pessoa
+CREATE TABLE CONTEUDO_PESSOA (
+    ID_CONTEUDO INT REFERENCES CONTEUDO(ID_CONTEUDO),
+    ID_PESSOA INT REFERENCES PESSOA(ID_PESSOA),
+    FUNCAO VARCHAR(50), -- Ex: Ator, Diretor
+    PRIMARY KEY (ID_CONTEUDO, ID_PESSOA)
+);
+
+
+--==========================================================================================
+-- INTERAÇÃO DO USUÁRIO
+--==========================================================================================
+
+
+-- Histórico de reprodução
+CREATE TABLE HISTORICO_REPRODUCAO (
+    ID_HISTORICO SERIAL PRIMARY KEY,
+    ID_PERFIL INT REFERENCES PERFIL(ID_PERFIL),
+    ID_CONTEUDO INT REFERENCES CONTEUDO(ID_CONTEUDO),
+    ID_EPISODIO INT REFERENCES EPISODIO(ID_EPISODIO),
+    DATA_REPRODUCAO TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    MINUTOS_ASSISTIDOS INT
+);
+
+
+-- Avaliações
+CREATE TABLE AVALIACAO (
+    ID_AVALIACAO SERIAL PRIMARY KEY,
+    ID_PERFIL INT REFERENCES PERFIL(ID_PERFIL),
+    ID_CONTEUDO INT REFERENCES CONTEUDO(ID_CONTEUDO),
+    NOTA INT CHECK (NOTA BETWEEN 1 AND 5),
+    COMENTARIO TEXT,
+    DATA_AVALIACAO TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    UNIQUE (ID_PERFIL, ID_CONTEUDO) -- só 1 avaliação por perfil
+);
+
+
+-- Lista de favoritos / "Minha Lista"
+CREATE TABLE MINHA_LISTA (
+    ID_PERFIL INT REFERENCES PERFIL(ID_PERFIL),
+    ID_CONTEUDO INT REFERENCES CONTEUDO(ID_CONTEUDO),
+    DATA_ADICAO TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (ID_PERFIL, ID_CONTEUDO)
+);
+
+
+--==========================================================================================
+-- PAGAMENTOS
+--==========================================================================================
+
+
+CREATE TABLE PAGAMENTO (
+    ID_PAGAMENTO SERIAL PRIMARY KEY,
+    ID_ASSINATURA INT NOT NULL REFERENCES ASSINATURA(ID_ASSINATURA),
+    VALOR NUMERIC(10,2) NOT NULL,
+    DATA_PAGAMENTO DATE DEFAULT CURRENT_DATE,
+    METODO VARCHAR(50) CHECK (METODO IN ('CARTAO_CREDITO','PIX','PAYPAL','BOLETO')),
+    STATUS VARCHAR(20) DEFAULT 'CONFIRMADO' CHECK (STATUS IN ('CONFIRMADO','PENDENTE','FALHOU'))
+);
+
+
+--==========================================================================================
+-- ÍNDICES E OTIMIZAÇÃO
+--==========================================================================================
+
+
+CREATE INDEX idx_usuario_email ON USUARIO(EMAIL);
+CREATE INDEX idx_conteudo_titulo ON CONTEUDO(TITULO);
+CREATE INDEX idx_genero_nome ON GENERO(NOME);
+CREATE INDEX idx_pessoa_nome ON PESSOA(NOME);
+CREATE INDEX idx_hist_repro_perfil ON HISTORICO_REPRODUCAO(ID_PERFIL);
