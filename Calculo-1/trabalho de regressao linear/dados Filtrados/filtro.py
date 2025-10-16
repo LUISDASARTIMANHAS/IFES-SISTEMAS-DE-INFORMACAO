@@ -55,9 +55,11 @@ def filtrar_colunas(csv_path: str, output_path: str = None) -> pd.DataFrame:
         output_path = f"{base}_filtrado{ext}"
 
     df_filtrado.to_csv(output_path, index=False, encoding="utf-8")
-    print(f"[OK] CSV filtrado salvo em {output_path} | Colunas mantidas: {len(colunas_para_manter)}")
+    print(f"[OK] CSV filtrado salvo em ../dados filtrados/{output_path} | Colunas mantidas: {len(colunas_para_manter)}")
     return df_filtrado
 
 if __name__ == "__main__":
     # Exemplo de uso
-    filtrar_colunas("INMP 15102025-15102025.csv")
+    filtrar_colunas("./dados/anuario estatistico de energia eletrica.csv")
+    filtrar_colunas("./dados/INMET_BRASILIA_01-01-2024_A_31-12-2024.csv")
+    filtrar_colunas("./dados/INMP 15102025-15102025.csv")
