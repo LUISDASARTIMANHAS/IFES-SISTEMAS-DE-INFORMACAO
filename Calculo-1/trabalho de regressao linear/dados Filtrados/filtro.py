@@ -19,12 +19,7 @@ COLUNAS_DESEJADAS = [
 ]
 
 def normalizar_colunas(df: pd.DataFrame) -> pd.DataFrame:
-    """
-    Normaliza os nomes das colunas:
-    - Remove acentos
-    - Converte espaços e caracteres especiais para "_"
-    - Converte para minúsculas
-    """
+    """Normaliza os nomes das colunas (remove acentos, espaços e caracteres especiais)."""
     df.columns = [
         unicodedata.normalize('NFKD', str(c))
         .encode('ascii', 'ignore')
@@ -38,30 +33,74 @@ def normalizar_colunas(df: pd.DataFrame) -> pd.DataFrame:
     ]
     return df
 
-def filtrar_colunas(csv_path: str, output_path: str = None) -> pd.DataFrame:
-    """
-    Carrega CSV, mantém apenas as colunas desejadas e salva em outro arquivo.
 
-    @param {str} csv_path - Caminho para o arquivo CSV original
-    @param {str} output_path - Caminho de saída opcional para o CSV filtrado
-    @return {pd.DataFrame} DataFrame com as colunas filtradas
+def converter_coluna_data(df: pd.DataFrame) -> pd.DataFrame:
+    """
+    Tenta converter a coluna 'data' em datetime, lidando com vários formatos:
+    - YYYYMMDD
+    - YYYY/MM/DD
+    - DD/MM/YYYY
+    """
+    if 'data' not in df.columns:
+        return df
+
+    # Remove espaços e converte tudo para string
+    df['data'] = df['data'].astype(str).str.strip()
+
+    # Detecta datas no formato numérico contínuo (ex: 20110101)
+    mask_numeric = df['data'].str.match(r'^\d{8}$')
+    if mask_numeric.any():
+        df.loc[mask_numeric, 'data'] = pd.to_datetime(df.loc[mask_numeric, 'data'], format='%Y%m%d', errors='coerce')
+
+    # Tenta os outros formatos comuns
+    df['data'] = pd.to_datetime(df['data'], errors='coerce', dayfirst=True)
+
+    # Remove linhas com datas inválidas
+    df = df.dropna(subset=['data'])
+
+    # Padroniza para formato YYYY-MM-DD
+    df['data'] = df['data'].dt.strftime('%Y-%m-%d')
+
+    return df
+
+
+def filtrar_colunas(csv_path: str, output_path: str = None, ano_minimo: int = 2023) -> pd.DataFrame:
+    """
+    Carrega CSV, mantém apenas as colunas desejadas, filtra por ano mínimo e salva resultado.
+
+    @param {str} csv_path - Caminho do arquivo CSV original
+    @param {str} output_path - Caminho de saída opcional
+    @param {int} ano_minimo - Linhas com ano menor que este serão removidas
+    @return {pd.DataFrame} DataFrame filtrado
     """
     df = pd.read_csv(csv_path, encoding="utf-8")
     df = normalizar_colunas(df)
 
+    # Mantém apenas colunas relevantes
     colunas_para_manter = [c for c in COLUNAS_DESEJADAS if c in df.columns]
     df_filtrado = df[colunas_para_manter]
 
+    # Converte e padroniza coluna de data
+    df_filtrado = converter_coluna_data(df_filtrado)
+
+    # 🔹 Remove linhas com ano anterior ao mínimo
+    if 'data' in df_filtrado.columns:
+        df_filtrado = df_filtrado[pd.to_datetime(df_filtrado['data']).dt.year >= ano_minimo]
+
+    # Define o nome de saída
     if output_path is None:
         base, ext = os.path.splitext(os.path.basename(csv_path))
         output_path = f"./dados filtrados/{base}_filtrado{ext}"
 
-    # 🔧 Cria o diretório automaticamente se não existir
+    # Cria diretório de saída se não existir
     os.makedirs(os.path.dirname(output_path), exist_ok=True)
 
+    # Salva CSV filtrado
     df_filtrado.to_csv(output_path, index=False, encoding="utf-8")
-    print(f"[OK] CSV filtrado salvo em {output_path} | Colunas mantidas: {len(colunas_para_manter)}")
+    print(f"[OK] CSV filtrado salvo em {output_path} | Colunas: {len(colunas_para_manter)} | Linhas: {len(df_filtrado)}")
+
     return df_filtrado
+
 
 if __name__ == "__main__":
     filtrar_colunas("./dados/anuario estatistico de energia eletrica.csv")
