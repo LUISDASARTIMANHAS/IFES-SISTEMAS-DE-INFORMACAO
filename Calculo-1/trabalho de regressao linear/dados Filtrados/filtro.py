@@ -2,7 +2,6 @@ import pandas as pd
 import unicodedata
 import os
 
-# Lista de colunas que queremos manter
 COLUNAS_DESEJADAS = [
     "ano",
     "data",
@@ -42,24 +41,29 @@ def normalizar_colunas(df: pd.DataFrame) -> pd.DataFrame:
 def filtrar_colunas(csv_path: str, output_path: str = None) -> pd.DataFrame:
     """
     Carrega CSV, mantém apenas as colunas desejadas e salva em outro arquivo.
+
+    @param {str} csv_path - Caminho para o arquivo CSV original
+    @param {str} output_path - Caminho de saída opcional para o CSV filtrado
+    @return {pd.DataFrame} DataFrame com as colunas filtradas
     """
     df = pd.read_csv(csv_path, encoding="utf-8")
     df = normalizar_colunas(df)
 
-    # Manter apenas colunas que existem no CSV
     colunas_para_manter = [c for c in COLUNAS_DESEJADAS if c in df.columns]
     df_filtrado = df[colunas_para_manter]
 
     if output_path is None:
-        base, ext = os.path.splitext(csv_path)
-        output_path = f"{base}_filtrado{ext}"
+        base, ext = os.path.splitext(os.path.basename(csv_path))
+        output_path = f"./dados filtrados/{base}_filtrado{ext}"
+
+    # 🔧 Cria o diretório automaticamente se não existir
+    os.makedirs(os.path.dirname(output_path), exist_ok=True)
 
     df_filtrado.to_csv(output_path, index=False, encoding="utf-8")
-    print(f"[OK] CSV filtrado salvo em ../dados filtrados/{output_path} | Colunas mantidas: {len(colunas_para_manter)}")
+    print(f"[OK] CSV filtrado salvo em {output_path} | Colunas mantidas: {len(colunas_para_manter)}")
     return df_filtrado
 
 if __name__ == "__main__":
-    # Exemplo de uso
     filtrar_colunas("./dados/anuario estatistico de energia eletrica.csv")
     filtrar_colunas("./dados/INMET_BRASILIA_01-01-2024_A_31-12-2024.csv")
     filtrar_colunas("./dados/INMP 15102025-15102025.csv")
