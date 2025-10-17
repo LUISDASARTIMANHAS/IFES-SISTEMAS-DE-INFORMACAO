@@ -3,6 +3,7 @@ import unicodedata
 import os
 
 COLUNAS_DESEJADAS = [
+    "data",
     "temp._ins._(c)",
     "temp._max._(c)",
     "temp._min._(c)",

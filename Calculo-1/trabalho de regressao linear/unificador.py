@@ -6,13 +6,15 @@ def normalizar_colunas(df: pd.DataFrame) -> pd.DataFrame:
     """
     Normaliza os nomes das colunas:
     - Remove acentos
-    - Converte espaços e caracteres especiais para "_"
+    - Substitui espaços e caracteres especiais por "_"
     - Converte para minúsculas
+    @param {pd.DataFrame} df - DataFrame de entrada.
+    @return {pd.DataFrame} - DataFrame com colunas normalizadas.
     """
     df.columns = [
-        unicodedata.normalize('NFKD', str(c))
-        .encode('ascii', 'ignore')
-        .decode('ascii')
+        unicodedata.normalize("NFKD", str(c))
+        .encode("ascii", "ignore")
+        .decode("ascii")
         .strip()
         .replace(" ", "_")
         .replace("/", "_")
@@ -22,12 +24,13 @@ def normalizar_colunas(df: pd.DataFrame) -> pd.DataFrame:
     ]
     return df
 
-def mesclar_csvs(*csv_paths, output_path="dados_unificados.csv", preencher_ausentes=False):
+
+def mesclar_csvs(*csv_paths, output_path="dados_unificados.csv", preencher_ausentes=False) -> pd.DataFrame:
     """
-    Mescla múltiplos CSVs em um único DataFrame unificado.
-    
+    Mescla múltiplos CSVs em um único DataFrame com base na coluna 'data'.
+
     @param {str[]} csv_paths - Caminhos dos arquivos CSV a unir.
-    @param {str} output_path - Nome do arquivo de saída.
+    @param {str} output_path - Caminho do arquivo CSV de saída.
     @param {bool} preencher_ausentes - Se True, preenche valores ausentes com 0.
     @return {pd.DataFrame} - DataFrame final unificado.
     """
@@ -37,30 +40,57 @@ def mesclar_csvs(*csv_paths, output_path="dados_unificados.csv", preencher_ausen
     dataframes = []
     print("[INICIANDO] Mesclagem de CSVs...\n")
 
+    # Carregar e normalizar todos os arquivos
     for path in csv_paths:
         if not os.path.exists(path):
             print(f"[ERRO] Arquivo não encontrado: {path}")
             continue
 
-        df = pd.read_csv(path, encoding="utf-8")
+        try:
+            df = pd.read_csv(path, encoding="utf-8")
+        except UnicodeDecodeError:
+            df = pd.read_csv(path, encoding="latin-1")
+
         df = normalizar_colunas(df)
+
+        # Verifica se existe coluna 'data'
+        if "data" not in df.columns:
+            print(f"[AVISO] '{os.path.basename(path)}' não possui coluna 'data'. Será ignorado.")
+            continue
+
+        # Converter coluna 'data' para datetime (melhor compatibilidade)
+        df["data"] = pd.to_datetime(df["data"], errors="coerce")
+        df = df.dropna(subset=["data"])
+        df["data"] = df["data"].dt.strftime("%Y-%m-%d")
+
         print(f"[OK] {os.path.basename(path)} carregado com {len(df)} linhas e {len(df.columns)} colunas.")
         dataframes.append(df)
 
-    # Faz o merge completo com todas as colunas existentes
-    print("\n[PROCESSANDO] Unindo todos os CSVs...")
-    df_final = pd.concat(dataframes, ignore_index=True, sort=False)
+    if not dataframes:
+        raise ValueError("Nenhum arquivo válido encontrado para mesclagem.")
 
-    # Preencher valores ausentes, se ativado
+    # Mesclagem incremental (merge por 'data')
+    print("\n[PROCESSANDO] Unindo todos os CSVs com base na coluna 'data'...")
+    df_final = dataframes[0]
+
+    for df in dataframes[1:]:
+        df_final = pd.merge(df_final, df, on="data", how="outer")
+
+    # Preenche valores ausentes
     if preencher_ausentes:
         df_final = df_final.fillna(0)
 
+    # Ordena por data
+    df_final = df_final.sort_values(by="data").reset_index(drop=True)
+
     # Salva o resultado final
     df_final.to_csv(output_path, index=False, encoding="utf-8")
+
     print(f"\n[FINALIZADO] Arquivo unificado salvo em: {output_path}")
     print(f"[INFO] Total de linhas: {len(df_final)}, colunas: {len(df_final.columns)}")
 
     return df_final
+
 
 # =============================
 # Exemplo de uso direto:
