@@ -35,12 +35,11 @@ def mesclar_csvs(*csv_paths, output_path="dados_unificados.csv", preencher_ausen
     @return {pd.DataFrame} - DataFrame final unificado.
     """
     if len(csv_paths) < 2:
-        raise ValueError("Você deve informar pelo menos dois arquivos CSV para mesclar.")
+        raise ValueError("Informe pelo menos dois arquivos CSV para mesclar.")
 
     dataframes = []
     print("[INICIANDO] Mesclagem de CSVs...\n")
 
-    # Carregar e normalizar todos os arquivos
     for path in csv_paths:
         if not os.path.exists(path):
             print(f"[ERRO] Arquivo não encontrado: {path}")
@@ -53,47 +52,45 @@ def mesclar_csvs(*csv_paths, output_path="dados_unificados.csv", preencher_ausen
 
         df = normalizar_colunas(df)
 
-        # Verifica se existe coluna 'data'
         if "data" not in df.columns:
-            print(f"[AVISO] '{os.path.basename(path)}' não possui coluna 'data'. Será ignorado.")
+            print(f"[AVISO] '{os.path.basename(path)}' não possui coluna 'data'. Ignorado.")
             continue
 
-        # Converter coluna 'data' para datetime (melhor compatibilidade)
         df["data"] = pd.to_datetime(df["data"], errors="coerce")
         df = df.dropna(subset=["data"])
         df["data"] = df["data"].dt.strftime("%Y-%m-%d")
 
-        print(f"[OK] {os.path.basename(path)} carregado com {len(df)} linhas e {len(df.columns)} colunas.")
+        # Remove duplicadas por data no próprio arquivo
+        df = df.drop_duplicates(subset=["data"], keep="first")
+
+        print(f"[OK] {os.path.basename(path)} -> {len(df)} linhas | {len(df.columns)} colunas.")
         dataframes.append(df)
 
     if not dataframes:
         raise ValueError("Nenhum arquivo válido encontrado para mesclagem.")
 
-    # Mesclagem incremental (merge por 'data')
-    print("\n[PROCESSANDO] Unindo todos os CSVs com base na coluna 'data'...")
+    print("\n[PROCESSANDO] Unindo todos os CSVs por 'data'...")
     df_final = dataframes[0]
 
     for df in dataframes[1:]:
         df_final = pd.merge(df_final, df, on="data", how="outer")
 
-    # Preenche valores ausentes
     if preencher_ausentes:
         df_final = df_final.fillna(0)
 
-    # Ordena por data
+    df_final = df_final.drop_duplicates(subset=["data"], keep="first")
     df_final = df_final.sort_values(by="data").reset_index(drop=True)
 
-    # Salva o resultado final
     df_final.to_csv(output_path, index=False, encoding="utf-8")
 
     print(f"\n[FINALIZADO] Arquivo unificado salvo em: {output_path}")
-    print(f"[INFO] Total de linhas: {len(df_final)}, colunas: {len(df_final.columns)}")
+    print(f"[INFO] Linhas: {len(df_final)} | Colunas: {len(df_final.columns)}")
 
     return df_final
 
 
 # =============================
-# Exemplo de uso direto:
+# Exemplo de uso direto
 # =============================
 if __name__ == "__main__":
     df_final = mesclar_csvs(
