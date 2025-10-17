@@ -23,7 +23,6 @@ def realizar_regressao_mensal(csv_path: str):
 
     # === PONTO DE CORREÇÃO: Agregação Mensal ===
     # Agrupa por Ano e Mês, calculando a MÉDIA de Consumo e Temperatura
-    # Isso transforma a análise diária (com consumo repetido) em uma análise mensal
     df_mensal = df.set_index("data").resample("M").mean().dropna()
 
     # Se a agregação resultar em menos de 3 pontos, a regressão será fraca/impossível
