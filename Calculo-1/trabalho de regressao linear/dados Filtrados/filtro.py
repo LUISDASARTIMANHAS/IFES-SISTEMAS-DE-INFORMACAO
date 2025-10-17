@@ -3,8 +3,6 @@ import unicodedata
 import os
 
 COLUNAS_DESEJADAS = [
-    "ano",
-    "data",
     "temp._ins._(c)",
     "temp._max._(c)",
     "temp._min._(c)",
@@ -64,7 +62,7 @@ def converter_coluna_data(df: pd.DataFrame) -> pd.DataFrame:
     return df
 
 
-def filtrar_colunas(csv_path: str, output_path: str = None, ano_minimo: int = 2023) -> pd.DataFrame:
+def filtrar_colunas(csv_path: str, output_path: str = None, ano_minimo: int = 2024) -> pd.DataFrame:
     """
     Carrega CSV, mantém apenas as colunas desejadas, filtra por ano mínimo e salva resultado.
 
