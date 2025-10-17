@@ -13,7 +13,6 @@ COLUNAS_DESEJADAS = [
     "temperatura_minima_na_hora_ant._(aut)_(c)",
     "temperatura_orvalho_max._na_hora_ant._(aut)_(c)",
     "temperatura_orvalho_min._na_hora_ant._(aut)_(c)",
-    "consumidores",
     "consumo_kw"
 ]
 

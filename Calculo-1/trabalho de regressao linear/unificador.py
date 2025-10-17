@@ -1,16 +1,9 @@
 import pandas as pd
 import unicodedata
 import os
+import numpy as np
 
 def normalizar_colunas(df: pd.DataFrame) -> pd.DataFrame:
-    """
-    Normaliza os nomes das colunas:
-    - Remove acentos
-    - Substitui espaços e caracteres especiais por "_"
-    - Converte para minúsculas
-    @param {pd.DataFrame} df - DataFrame de entrada.
-    @return {pd.DataFrame} - DataFrame com colunas normalizadas.
-    """
     df.columns = [
         unicodedata.normalize("NFKD", str(c))
         .encode("ascii", "ignore")
@@ -24,21 +17,11 @@ def normalizar_colunas(df: pd.DataFrame) -> pd.DataFrame:
     ]
     return df
 
-
 def mesclar_csvs(*csv_paths, output_path="dados_unificados.csv", preencher_ausentes=False) -> pd.DataFrame:
-    """
-    Mescla múltiplos CSVs em um único DataFrame com base na coluna 'data'.
-
-    @param {str[]} csv_paths - Caminhos dos arquivos CSV a unir.
-    @param {str} output_path - Caminho do arquivo CSV de saída.
-    @param {bool} preencher_ausentes - Se True, preenche valores ausentes com 0.
-    @return {pd.DataFrame} - DataFrame final unificado.
-    """
     if len(csv_paths) < 2:
         raise ValueError("Informe pelo menos dois arquivos CSV para mesclar.")
 
     dataframes = []
-    print("[INICIANDO] Mesclagem de CSVs...\n")
 
     for path in csv_paths:
         if not os.path.exists(path):
@@ -58,40 +41,40 @@ def mesclar_csvs(*csv_paths, output_path="dados_unificados.csv", preencher_ausen
 
         df["data"] = pd.to_datetime(df["data"], errors="coerce")
         df = df.dropna(subset=["data"])
-        df["data"] = df["data"].dt.strftime("%Y-%m-%d")
 
-        # Remove duplicadas por data no próprio arquivo
-        df = df.drop_duplicates(subset=["data"], keep="first")
+        colunas_temperatura = [c for c in df.columns if "temp" in c]
+        colunas_consumo = [c for c in df.columns if "consumo" in c and "kw" in c]
 
-        print(f"[OK] {os.path.basename(path)} -> {len(df)} linhas | {len(df.columns)} colunas.")
+        for c in colunas_temperatura + colunas_consumo:
+            df[c] = pd.to_numeric(df[c], errors="coerce")
+
+        df["temperatura_media"] = df[colunas_temperatura].mean(axis=1, skipna=True) if colunas_temperatura else np.nan
+        df["consumo_kw"] = df[colunas_consumo].mean(axis=1, skipna=True) if colunas_consumo else np.nan
+
+        df = df[["data", "consumo_kw", "temperatura_media"]]
+
+        df = df.groupby("data", as_index=False).mean(numeric_only=True)
         dataframes.append(df)
 
     if not dataframes:
-        raise ValueError("Nenhum arquivo válido encontrado para mesclagem.")
+        raise ValueError("Nenhum arquivo válido encontrado.")
 
-    print("\n[PROCESSANDO] Unindo todos os CSVs por 'data'...")
-    df_final = dataframes[0]
+    df_final = pd.concat(dataframes, ignore_index=True)
+    df_final = df_final.groupby("data", as_index=False).mean(numeric_only=True)
 
-    for df in dataframes[1:]:
-        df_final = pd.merge(df_final, df, on="data", how="outer")
+    # Preencher ausentes com média mensal
+    df_final["mes"] = df_final["data"].dt.month
+    for col in ["consumo_kw", "temperatura_media"]:
+        df_final[col] = df_final.groupby("mes")[col].transform(lambda x: x.fillna(x.mean()))
+    df_final = df_final.drop(columns=["mes"])
 
-    if preencher_ausentes:
-        df_final = df_final.fillna(0)
-
-    df_final = df_final.drop_duplicates(subset=["data"], keep="first")
     df_final = df_final.sort_values(by="data").reset_index(drop=True)
-
     df_final.to_csv(output_path, index=False, encoding="utf-8")
 
-    print(f"\n[FINALIZADO] Arquivo unificado salvo em: {output_path}")
+    print(f"[FINALIZADO] Arquivo unificado salvo em: {output_path}")
     print(f"[INFO] Linhas: {len(df_final)} | Colunas: {len(df_final.columns)}")
-
     return df_final
 
-
-# =============================
-# Exemplo de uso direto
-# =============================
 if __name__ == "__main__":
     df_final = mesclar_csvs(
         "./dados filtrados/anuario estatistico de energia eletrica_filtrado.csv",
