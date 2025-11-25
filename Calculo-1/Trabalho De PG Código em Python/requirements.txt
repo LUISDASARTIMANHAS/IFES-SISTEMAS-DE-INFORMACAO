@@ -3,7 +3,7 @@ cycler==0.10.0
 kiwisolver==1.1.0
 matplotlib==2.2.5
 numpy==1.16.6
-pygame==1.9.2a0
+pygame==1.9.6
 pyparsing==2.4.7
 python-dateutil==2.9.0.post0
 pytz==2025.2
