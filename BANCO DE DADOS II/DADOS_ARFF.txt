@@ -1,0 +1,15 @@
+@RELATION DADOS
+
+@ATTRIBUTE nr_venda REAL
+@ATTRIBUTE leite {f,t}
+@ATTRIBUTE pao {f,t}
+@ATTRIBUTE bolacha {f,t}
+@ATTRIBUTE suco {f,t}
+@ATTRIBUTE cafe {f,t}
+@ATTRIBUTE ovos {f,t}
+
+@DATA
+1,t,t,t,t,f,f
+2,t,f,f,t,f,f
+3,t,f,f,f,f,t
+4,f,t,t,f,t,f

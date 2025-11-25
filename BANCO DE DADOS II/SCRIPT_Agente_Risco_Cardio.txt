@@ -1,0 +1,217 @@
+-- Agente BDI (Crenças, Desejos e Intenções) implementado em PL/pgSQL
+-- 19-11-2025
+-- Inclui também conjunto de testes ao final.
+
+CREATE SCHEMA IF NOT EXISTS agente_bdi;
+SET search_path = agente_bdi, public;
+
+-- ========== 1. Tabelas ==========
+
+-- Tabela de pacientes
+CREATE TABLE IF NOT EXISTS pacientes (
+  id_paciente SERIAL PRIMARY KEY,
+  nome TEXT,
+  data_nascimento DATE
+);
+
+-- Tabela de sinais vitais
+CREATE TABLE IF NOT EXISTS sinais_vitais (
+  id_sinal SERIAL PRIMARY KEY,
+  id_paciente INT REFERENCES pacientes(id_paciente) ON DELETE CASCADE,
+  data_medicao TIMESTAMP DEFAULT now(),
+  peso_kg NUMERIC NOT NULL,
+  altura_m NUMERIC NOT NULL,
+  pressao_sistolica INT NOT NULL,
+  pressao_diastolica INT NOT NULL
+);
+
+-- Tabela de avaliações geradas pelo agente
+CREATE TABLE IF NOT EXISTS avaliacoes (
+  id_avaliacao SERIAL PRIMARY KEY,
+  id_sinal INT REFERENCES sinais_vitais(id_sinal) ON DELETE CASCADE,
+  data_avaliacao TIMESTAMP DEFAULT now(),
+  imc NUMERIC,
+  pontuacao_risco NUMERIC,
+  categoria_risco TEXT,
+  recomendacao TEXT
+);
+
+-- Parâmetros do agente (pesos e taxa de aprendizado)
+CREATE TABLE IF NOT EXISTS parametros_agente (
+  id INT PRIMARY KEY DEFAULT 1,
+  peso_imc NUMERIC DEFAULT 0.5,
+  peso_sistolica NUMERIC DEFAULT 0.02,
+  peso_diastolica NUMERIC DEFAULT 0.01,
+  vies NUMERIC DEFAULT -1.0,
+  taxa_aprendizado NUMERIC DEFAULT 0.05,
+  atualizado_em TIMESTAMP DEFAULT now()
+);
+INSERT INTO parametros_agente(id) SELECT 1 WHERE NOT EXISTS (SELECT 1 FROM parametros_agente);
+
+-- Feedback clínico
+CREATE TABLE IF NOT EXISTS feedback_clinico (
+  id_feedback SERIAL PRIMARY KEY,
+  id_avaliacao INT REFERENCES avaliacoes(id_avaliacao) ON DELETE CASCADE,
+  rotulo INT NOT NULL CHECK(rotulo IN (0,1)), -- 1 = evento real, 0 = não
+  comentario TEXT,
+  data_feedback TIMESTAMP DEFAULT now(),
+  treinado BOOLEAN DEFAULT FALSE
+);
+
+-- Histórico de ajustes
+CREATE TABLE IF NOT EXISTS historico_parametros (
+  id_historico SERIAL PRIMARY KEY,
+  data_mudanca TIMESTAMP DEFAULT now(),
+  peso_imc NUMERIC,
+  peso_sistolica NUMERIC,
+  peso_diastolica NUMERIC,
+  vies NUMERIC,
+  taxa_aprendizado NUMERIC,
+  motivo TEXT
+);
+
+-- ========== 2. Funções ==========
+
+CREATE OR REPLACE FUNCTION agente_bdi.calcular_imc(peso NUMERIC, altura NUMERIC)
+RETURNS NUMERIC LANGUAGE plpgsql AS $$
+BEGIN
+  RETURN peso / (altura * altura);
+END; $$;
+
+CREATE OR REPLACE FUNCTION agente_bdi.sigmoide(x NUMERIC)
+RETURNS NUMERIC LANGUAGE plpgsql AS $$ BEGIN RETURN 1/(1+exp(-x)); END; $$;
+
+CREATE OR REPLACE FUNCTION agente_bdi.mapear_categoria(valor NUMERIC)
+RETURNS TEXT LANGUAGE plpgsql AS $$
+BEGIN
+  IF valor < 0.33 THEN RETURN 'baixo';
+  ELSIF valor < 0.66 THEN RETURN 'moderado';
+  ELSE RETURN 'alto'; END IF;
+END; $$;
+
+-- Avaliação BDI
+CREATE OR REPLACE FUNCTION agente_bdi.avaliar_sinal(id_sinal_input INT)
+RETURNS INT LANGUAGE plpgsql AS $$
+DECLARE
+  s RECORD;
+  imc NUMERIC;
+  p RECORD;
+  f_imc NUMERIC;
+  f_sys NUMERIC;
+  f_dia NUMERIC;
+  pontuacao NUMERIC;
+  prob NUMERIC;
+  cat TEXT;
+  rec TEXT;
+BEGIN
+  SELECT * INTO s FROM sinais_vitais WHERE id_sinal = id_sinal_input;
+
+  imc := agente_bdi.calcular_imc(s.peso_kg, s.altura_m);
+  SELECT * INTO p FROM parametros_agente WHERE id = 1;
+
+  f_imc := imc - 25;
+  f_sys := s.pressao_sistolica - 120;
+  f_dia := s.pressao_diastolica - 80;
+
+  pontuacao := p.vies + p.peso_imc*f_imc + p.peso_sistolica*f_sys + p.peso_diastolica*f_dia;
+  prob := agente_bdi.sigmoide(pontuacao);
+  cat := agente_bdi.mapear_categoria(prob);
+
+  IF cat='baixo' THEN rec := 'Manter hábitos saudáveis e observação.';
+  ELSIF cat='moderado' THEN rec := 'Recomendar avaliação clínica e monitoramento.';
+  ELSE rec := 'Encaminhar para cardiologia e investigar.'; END IF;
+
+  INSERT INTO avaliacoes(id_sinal, data_avaliacao, imc, pontuacao_risco, categoria_risco, recomendacao)
+  VALUES(id_sinal_input, now(), imc, prob, cat, rec)
+  RETURNING id_avaliacao INTO id_sinal_input;
+
+  RETURN id_sinal_input;
+END; $$;
+
+-- Trigger
+CREATE OR REPLACE FUNCTION agente_bdi.trigger_sinais_insert()
+RETURNS TRIGGER LANGUAGE plpgsql AS $$
+BEGIN
+  PERFORM agente_bdi.avaliar_sinal(NEW.id_sinal);
+  RETURN NEW;
+END; $$;
+
+DROP TRIGGER IF EXISTS trg_sinais_insert ON sinais_vitais;
+CREATE TRIGGER trg_sinais_insert AFTER INSERT ON sinais_vitais
+FOR EACH ROW EXECUTE FUNCTION agente_bdi.trigger_sinais_insert();
+
+-- Treinamento
+CREATE OR REPLACE FUNCTION agente_bdi.treinar_um(id_feedback_input INT)
+RETURNS TEXT LANGUAGE plpgsql AS $$
+DECLARE
+  fb RECORD;
+  a RECORD;
+  s RECORD;
+  p RECORD;
+  f_imc NUMERIC;
+  f_sys NUMERIC;
+  f_dia NUMERIC;
+  pont NUMERIC;
+  pred NUMERIC;
+  grad NUMERIC;
+BEGIN
+  SELECT * INTO fb FROM feedback_clinico WHERE id_feedback=id_feedback_input;
+  SELECT * INTO a FROM avaliacoes WHERE id_avaliacao=fb.id_avaliacao;
+  SELECT * INTO s FROM sinais_vitais WHERE id_sinal=a.id_sinal;
+  SELECT * INTO p FROM parametros_agente WHERE id=1;
+
+  f_imc := a.imc - 25;
+  f_sys := s.pressao_sistolica - 120;
+  f_dia := s.pressao_diastolica - 80;
+
+  pont := p.vies + p.peso_imc*f_imc + p.peso_sistolica*f_sys + p.peso_diastolica*f_dia;
+  pred := agente_bdi.sigmoide(pont);
+  grad := pred - fb.rotulo;
+
+  UPDATE parametros_agente SET
+    peso_imc = peso_imc - p.taxa_aprendizado * grad * f_imc,
+    peso_sistolica = peso_sistolica - p.taxa_aprendizado * grad * f_sys,
+    peso_diastolica = peso_diastolica - p.taxa_aprendizado * grad * f_dia,
+    vies = vies - p.taxa_aprendizado * grad,
+    atualizado_em = now()
+  WHERE id=1;
+
+  UPDATE feedback_clinico SET treinado=TRUE WHERE id_feedback=id_feedback_input;
+
+  RETURN 'Treinamento realizado';
+END; $$;
+
+
+-- ========== 3. Conjunto de testes sintéticos ==========
+-- Pacientes
+INSERT INTO pacientes(nome, data_nascimento) VALUES
+ ('João Teste', '1980-01-01'),
+ ('Maria Teste', '1975-05-10');
+
+-- Sinais vitais de treinamento (antes do feedback)
+INSERT INTO sinais_vitais(id_paciente, peso_kg, altura_m, pressao_sistolica, pressao_diastolica) VALUES
+ (1, 95, 1.70, 160, 100), -- risco alto
+ (1, 82, 1.70, 130, 85),  -- moderado
+ (2, 60, 1.60, 115, 75),  -- baixo
+ (2, 70, 1.60, 145, 95);  -- alto
+
+-- Suponha que o médico informe que os casos 1 e 4 tiveram eventos (1), os demais não (0)
+INSERT INTO feedback_clinico(id_avaliacao, rotulo, comentario)
+VALUES
+ (1,1,'Evento real ocorreu'),
+ (2,0,'Sem evento'),
+ (3,0,'Sem evento'),
+ (4,1,'Evento real ocorreu');
+
+-- Treinar em lote
+-- SELECT agente_bdi.treinar_um(id_feedback) FROM feedback_clinico;
+
+
+-- Em produção:
+INSERT INTO sinais_vitais(id_paciente, peso_kg, altura_m, pressao_sistolica, pressao_diastolica) VALUES
+ (4, 109, 1.77, 140, 90);
+
+SELECT * FROM SINAIS_VITAIS;
+
+
+select * from avaliacoes;

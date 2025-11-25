@@ -1,0 +1,124 @@
+-- Tabela de transações (cada compra feita por um cliente)
+CREATE TABLE transacao (
+    id_transacao INT,
+    item VARCHAR(50)
+);
+
+-- Inserindo dados de exemplo
+INSERT INTO transacao VALUES
+(1, 'Pão'),
+(1, 'Manteiga'),
+(1, 'Leite'),
+(2, 'Pão'),
+(2, 'Manteiga'),
+(3, 'Pão'),
+(3, 'Leite'),
+(4, 'Pão'),
+(4, 'Manteiga'),
+(4, 'Café'),
+(5, 'Manteiga'),
+(5, 'Leite');
+
+SELECT * FROM transacao ORDER BY id_transacao;
+
+-- Número total de transações
+WITH total AS (
+    SELECT COUNT(DISTINCT id_transacao) AS total_transacoes FROM transacao
+)
+SELECT 
+    item,
+    COUNT(DISTINCT id_transacao) AS freq,
+    ROUND(100.0 * COUNT(DISTINCT id_transacao) / (SELECT total_transacoes FROM total), 2) AS suporte_percentual
+FROM transacao
+GROUP BY item
+ORDER BY suporte_percentual DESC;
+
+
+WITH total AS (
+    SELECT COUNT(DISTINCT id_transacao) AS total_transacoes FROM transacao
+)
+SELECT 
+    t1.item AS item_a,
+    t2.item AS item_b,
+    COUNT(DISTINCT t1.id_transacao) AS freq,
+    ROUND(100.0 * COUNT(DISTINCT t1.id_transacao) / (SELECT total_transacoes FROM total), 2) AS suporte_percentual
+FROM transacao t1
+JOIN transacao t2 
+    ON t1.id_transacao = t2.id_transacao
+   AND t1.item < t2.item -- evita pares duplicados e reflexivos
+GROUP BY t1.item, t2.item
+ORDER BY suporte_percentual DESC;
+
+
+WITH suporte_ambos AS (
+    SELECT COUNT(*) AS freq
+    FROM (
+        SELECT id_transacao
+        FROM transacao
+        WHERE item IN ('Pão', 'Manteiga')
+        GROUP BY id_transacao
+        HAVING COUNT(DISTINCT item) = 2
+    ) s
+),
+suporte_pao AS (
+    SELECT COUNT(DISTINCT id_transacao) AS freq
+    FROM transacao
+    WHERE item = 'Pão'
+)
+SELECT 
+    sa.freq AS suporte_pao_manteiga,
+    sp.freq AS suporte_pao,
+    ROUND(100.0 * sa.freq / NULLIF(sp.freq,0), 2) AS confianca_percent
+FROM suporte_ambos sa
+CROSS JOIN suporte_pao sp;
+
+-- Se quiser gerar suporte/confiança para todos os pares ordenados de itens de uma vez:
+WITH total AS (
+  SELECT COUNT(DISTINCT id_transacao) AS total_transacoes FROM transacao
+),
+item_freq AS (
+  SELECT item, COUNT(DISTINCT id_transacao) AS freq
+  FROM transacao
+  GROUP BY item
+),
+pair_freq AS (
+  SELECT t1.item AS item_a, t2.item AS item_b, COUNT(DISTINCT t1.id_transacao) AS freq
+  FROM transacao t1
+  JOIN transacao t2 
+    ON t1.id_transacao = t2.id_transacao
+   AND t1.item <> t2.item
+  GROUP BY t1.item, t2.item
+)
+SELECT
+  pf.item_a,
+  pf.item_b,
+  pf.freq AS suporte_pares,
+  ROUND(100.0 * pf.freq / (SELECT total_transacoes FROM total), 2) AS suporte_percent,
+  ifreq.freq AS suporte_item_a,
+  ROUND(100.0 * pf.freq / NULLIF(ifreq.freq,0), 2) AS confianca_percent,
+  ROUND( (pf.freq::numeric / (SELECT total_transacoes FROM total)) 
+         / ( (SELECT freq FROM item_freq WHERE item = pf.item_b)::numeric / (SELECT total_transacoes FROM total) )
+       , 4) AS lift
+FROM pair_freq pf
+JOIN item_freq ifreq ON ifreq.item = pf.item_a
+ORDER BY confianca_percent DESC;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
