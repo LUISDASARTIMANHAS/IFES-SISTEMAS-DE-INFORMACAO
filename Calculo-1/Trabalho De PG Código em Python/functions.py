@@ -30,7 +30,8 @@ CWHITEBG2 = Back.LIGHTWHITE_EX
 def head():
     clear()
     print("----------------------------------------------------")
-    print(OK + "\t LUIS_DAS_ARTIMANHAS & PINGOBRAS S.A")
+    print(OK + "\t Progressão Geométrica (PG) - Analisador de Convergência")
+    print("\t PRODUZIDO POR LUIS, THALES, ANTONIO" + STOPCOLOR)
     print("\t Iniciando programa....." + STOPCOLOR)
     print("----------------------------------------------------")
 
@@ -49,8 +50,9 @@ def data(line1, line2, line3, line4, dado1, dado2, dado3, dado4):
 def copy():
     print("----------------------------------------------------")
     print(OK + "\t DEVS:")
-    print("\t LUIS_DAS_ARTIMANHAS.")
-    print("\t PINGOBRAS S.A" + STOPCOLOR)
+    print("\t LUIS AUGUSTO.")
+    print("\t THALES.")
+    print("\t ANTONIO" + STOPCOLOR)
     print("----------------------------------------------------")
 
 

@@ -1,5 +1,7 @@
 # Importação das bibliotecas necessárias
 import functions
+
+functions.head()
 # Lista com amostras de PGs para testar diferentes comportamentos
 amostras = [
     (2, 0.5),   # PG convergente com razão menor que 1
@@ -34,4 +36,4 @@ for a, r in amostras:
 
 
 # Mensagem final indicando que o código terminou de executar
-print("Pronto.")
+functions.copy()
