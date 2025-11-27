@@ -1,1 +1,6 @@
-python -u pg.py >> output.log 2>&1 
+pip install -r requirements.txt
+pip install matplotlib numpy
+
+python -u pg.py
+
+python -u pg.py >> output.log 2>&1
