@@ -9,4 +9,4 @@ python.exe -m pip install --upgrade pip
 pip freeze > requirements.txt
 @REM instalar as dependencias
 pip install -r requirements.txt
-pip install matplotlib numpy
+pip install matplotlib numpy colorama

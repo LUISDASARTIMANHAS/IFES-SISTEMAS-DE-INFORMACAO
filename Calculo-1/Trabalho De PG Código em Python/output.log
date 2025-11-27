@@ -22,76 +22,21 @@ Converge: True, último termo: 2.6645352591003757e-15
 ------------------------------------------------------------
 a=5, r=1
 Limite do termo: 5
-Limite da soma infinita: None
+Limite da soma infinita: Soma infinita não existe (|r| >= 1)
 Converge: False, último termo: None
 [plot_termos] Salvo: termos_a5_r1.png
 [plot_somas] Salvo: somas_a5_r1.png
 ------------------------------------------------------------
 a=1, r=-1
-Limite do termo: None
-Limite da soma infinita: None
+Limite do termo: Oscilação entre a e -a (não tem limite)
+Limite da soma infinita: Soma infinita não existe (|r| >= 1)
 Converge: False, último termo: None
 [plot_termos] Salvo: termos_a1_r-1.png
 [plot_somas] Salvo: somas_a1_r-1.png
 ------------------------------------------------------------
 a=1, r=1.5
-Limite do termo: None
-Limite da soma infinita: None
-Converge: False, último termo: None
-[plot_termos] Salvo: termos_a1_r1.5.png
-[plot_somas] Salvo: somas_a1_r1.5.png
-Pronto.
-Traceback (most recent call last):
-  File "d:\Users\2023122760328\Downloads\IFES-SISTEMAS-DE-INFORMACAO\Calculo-1\Trabalho De PG Código em Python\pg.py", line 1, in <module>
-    import numpy as np
-ModuleNotFoundError: No module named 'numpy'
-Traceback (most recent call last):
-  File "d:\Users\2023122760328\Downloads\IFES-SISTEMAS-DE-INFORMACAO\Calculo-1\Trabalho De PG Código em Python\pg.py", line 1, in <module>
-    import numpy as np
-ModuleNotFoundError: No module named 'numpy'
-Traceback (most recent call last):
-  File "d:\Users\2023122760328\Downloads\IFES-SISTEMAS-DE-INFORMACAO\Calculo-1\Trabalho De PG Código em Python\pg.py", line 2, in <module>
-    import matplotlib.pyplot as plt
-ModuleNotFoundError: No module named 'matplotlib'
-------------------------------------------------------------
-a=2, r=0.5
-Limite do termo: 0
-Limite da soma infinita: 4.0
-Converge: True, último termo: 1.7763568394002505e-15
-[plot_termos] Salvo: termos_a2_r0.5.png
-[plot_somas] Salvo: somas_a2_r0.5.png
-------------------------------------------------------------
-a=1, r=0.9
-Limite do termo: 0
-Limite da soma infinita: 10.000000000000002
-Converge: True, último termo: 0.00515377520732012
-[plot_termos] Salvo: termos_a1_r0.9.png
-[plot_somas] Salvo: somas_a1_r0.9.png
-------------------------------------------------------------
-a=3, r=-0.5
-Limite do termo: 0
-Limite da soma infinita: 2.0
-Converge: True, último termo: 2.6645352591003757e-15
-[plot_termos] Salvo: termos_a3_r-0.5.png
-[plot_somas] Salvo: somas_a3_r-0.5.png
-------------------------------------------------------------
-a=5, r=1
-Limite do termo: 5
-Limite da soma infinita: None
-Converge: False, último termo: None
-[plot_termos] Salvo: termos_a5_r1.png
-[plot_somas] Salvo: somas_a5_r1.png
-------------------------------------------------------------
-a=1, r=-1
-Limite do termo: None
-Limite da soma infinita: None
-Converge: False, último termo: None
-[plot_termos] Salvo: termos_a1_r-1.png
-[plot_somas] Salvo: somas_a1_r-1.png
-------------------------------------------------------------
-a=1, r=1.5
-Limite do termo: None
-Limite da soma infinita: None
+Limite do termo: Sem limite finito (termos crescem indefinidamente)
+Limite da soma infinita: Soma infinita não existe (|r| >= 1)
 Converge: False, último termo: None
 [plot_termos] Salvo: termos_a1_r1.5.png
 [plot_somas] Salvo: somas_a1_r1.5.png
@@ -120,21 +65,21 @@ Converge: True, último termo: 2.6645352591003757e-15
 ------------------------------------------------------------
 a=5, r=1
 Limite do termo: 5
-Limite da soma infinita: None
+Limite da soma infinita: Soma infinita não existe (|r| >= 1)
 Converge: False, último termo: None
 [plot_termos] Salvo: termos_a5_r1.png
 [plot_somas] Salvo: somas_a5_r1.png
 ------------------------------------------------------------
 a=1, r=-1
-Limite do termo: None
-Limite da soma infinita: None
+Limite do termo: Oscilação entre a e -a (não tem limite)
+Limite da soma infinita: Soma infinita não existe (|r| >= 1)
 Converge: False, último termo: None
 [plot_termos] Salvo: termos_a1_r-1.png
 [plot_somas] Salvo: somas_a1_r-1.png
 ------------------------------------------------------------
 a=1, r=1.5
-Limite do termo: None
-Limite da soma infinita: None
+Limite do termo: Sem limite finito (termos crescem indefinidamente)
+Limite da soma infinita: Soma infinita não existe (|r| >= 1)
 Converge: False, último termo: None
 [plot_termos] Salvo: termos_a1_r1.5.png
 [plot_somas] Salvo: somas_a1_r1.5.png
@@ -163,21 +108,21 @@ Converge: True, último termo: 2.6645352591003757e-15
 ------------------------------------------------------------
 a=5, r=1
 Limite do termo: 5
-Limite da soma infinita: None
+Limite da soma infinita: Soma infinita não existe (|r| >= 1)
 Converge: False, último termo: None
 [plot_termos] Salvo: termos_a5_r1.png
 [plot_somas] Salvo: somas_a5_r1.png
 ------------------------------------------------------------
 a=1, r=-1
-Limite do termo: None
-Limite da soma infinita: None
+Limite do termo: Oscilação entre a e -a (não tem limite)
+Limite da soma infinita: Soma infinita não existe (|r| >= 1)
 Converge: False, último termo: None
 [plot_termos] Salvo: termos_a1_r-1.png
 [plot_somas] Salvo: somas_a1_r-1.png
 ------------------------------------------------------------
 a=1, r=1.5
-Limite do termo: None
-Limite da soma infinita: None
+Limite do termo: Sem limite finito (termos crescem indefinidamente)
+Limite da soma infinita: Soma infinita não existe (|r| >= 1)
 Converge: False, último termo: None
 [plot_termos] Salvo: termos_a1_r1.5.png
 [plot_somas] Salvo: somas_a1_r1.5.png
@@ -206,107 +151,107 @@ Converge: True, último termo: 2.6645352591003757e-15
 ------------------------------------------------------------
 a=5, r=1
 Limite do termo: 5
-Limite da soma infinita: None
+Limite da soma infinita: Soma infinita não existe (|r| >= 1)
 Converge: False, último termo: None
 [plot_termos] Salvo: termos_a5_r1.png
 [plot_somas] Salvo: somas_a5_r1.png
 ------------------------------------------------------------
 a=1, r=-1
-Limite do termo: None
-Limite da soma infinita: None
+Limite do termo: Oscilação entre a e -a (não tem limite)
+Limite da soma infinita: Soma infinita não existe (|r| >= 1)
 Converge: False, último termo: None
 [plot_termos] Salvo: termos_a1_r-1.png
 [plot_somas] Salvo: somas_a1_r-1.png
 ------------------------------------------------------------
 a=1, r=1.5
-Limite do termo: None
-Limite da soma infinita: None
+Limite do termo: Sem limite finito (termos crescem indefinidamente)
+Limite da soma infinita: Soma infinita não existe (|r| >= 1)
 Converge: False, último termo: None
 [plot_termos] Salvo: termos_a1_r1.5.png
 [plot_somas] Salvo: somas_a1_r1.5.png
 Pronto.
 ------------------------------------------------------------
 a=2, r=0.5
-Limite do termo: 0
-Limite da soma infinita: 4.0
+Limite do termo: Limite do termo: 0
+Limite da soma infinita: Limite da soma infinita: 4.0
 Converge: True, último termo: 1.7763568394002505e-15
 [plot_termos] Salvo: termos_a2_r0.5.png
 [plot_somas] Salvo: somas_a2_r0.5.png
 ------------------------------------------------------------
 a=1, r=0.9
-Limite do termo: 0
-Limite da soma infinita: 10.000000000000002
+Limite do termo: Limite do termo: 0
+Limite da soma infinita: Limite da soma infinita: 10.000000000000002
 Converge: True, último termo: 0.00515377520732012
 [plot_termos] Salvo: termos_a1_r0.9.png
 [plot_somas] Salvo: somas_a1_r0.9.png
 ------------------------------------------------------------
 a=3, r=-0.5
-Limite do termo: 0
-Limite da soma infinita: 2.0
+Limite do termo: Limite do termo: 0
+Limite da soma infinita: Limite da soma infinita: 2.0
 Converge: True, último termo: 2.6645352591003757e-15
 [plot_termos] Salvo: termos_a3_r-0.5.png
 [plot_somas] Salvo: somas_a3_r-0.5.png
 ------------------------------------------------------------
 a=5, r=1
-Limite do termo: 5
-Limite da soma infinita: None
+Limite do termo: Limite do termo: 5
+Limite da soma infinita: Limite da soma infinita: Soma infinita não existe (|r| >= 1)
 Converge: False, último termo: None
 [plot_termos] Salvo: termos_a5_r1.png
 [plot_somas] Salvo: somas_a5_r1.png
 ------------------------------------------------------------
 a=1, r=-1
-Limite do termo: None
-Limite da soma infinita: None
+Limite do termo: Limite do termo: Oscilação entre a e -a (não tem limite)
+Limite da soma infinita: Limite da soma infinita: Soma infinita não existe (|r| >= 1)
 Converge: False, último termo: None
 [plot_termos] Salvo: termos_a1_r-1.png
 [plot_somas] Salvo: somas_a1_r-1.png
 ------------------------------------------------------------
 a=1, r=1.5
-Limite do termo: None
-Limite da soma infinita: None
+Limite do termo: Limite do termo: Sem limite finito (termos crescem indefinidamente)
+Limite da soma infinita: Limite da soma infinita: Soma infinita não existe (|r| >= 1)
 Converge: False, último termo: None
 [plot_termos] Salvo: termos_a1_r1.5.png
 [plot_somas] Salvo: somas_a1_r1.5.png
 Pronto.
 ------------------------------------------------------------
 a=2, r=0.5
-Limite do termo: 0
-Limite da soma infinita: 4.0
+Limite do termo: Limite do termo: 0
+Limite da soma infinita: Limite da soma infinita: 4.0
 Converge: True, último termo: 1.7763568394002505e-15
 [plot_termos] Salvo: termos_a2_r0.5.png
 [plot_somas] Salvo: somas_a2_r0.5.png
 ------------------------------------------------------------
 a=1, r=0.9
-Limite do termo: 0
-Limite da soma infinita: 10.000000000000002
+Limite do termo: Limite do termo: 0
+Limite da soma infinita: Limite da soma infinita: 10.000000000000002
 Converge: True, último termo: 0.00515377520732012
 [plot_termos] Salvo: termos_a1_r0.9.png
 [plot_somas] Salvo: somas_a1_r0.9.png
 ------------------------------------------------------------
 a=3, r=-0.5
-Limite do termo: 0
-Limite da soma infinita: 2.0
+Limite do termo: Limite do termo: 0
+Limite da soma infinita: Limite da soma infinita: 2.0
 Converge: True, último termo: 2.6645352591003757e-15
 [plot_termos] Salvo: termos_a3_r-0.5.png
 [plot_somas] Salvo: somas_a3_r-0.5.png
 ------------------------------------------------------------
 a=5, r=1
-Limite do termo: 5
-Limite da soma infinita: None
+Limite do termo: Limite do termo: 5
+Limite da soma infinita: Limite da soma infinita: Soma infinita não existe (|r| >= 1)
 Converge: False, último termo: None
 [plot_termos] Salvo: termos_a5_r1.png
 [plot_somas] Salvo: somas_a5_r1.png
 ------------------------------------------------------------
 a=1, r=-1
-Limite do termo: None
-Limite da soma infinita: None
+Limite do termo: Limite do termo: Oscilação entre a e -a (não tem limite)
+Limite da soma infinita: Limite da soma infinita: Soma infinita não existe (|r| >= 1)
 Converge: False, último termo: None
 [plot_termos] Salvo: termos_a1_r-1.png
 [plot_somas] Salvo: somas_a1_r-1.png
 ------------------------------------------------------------
 a=1, r=1.5
-Limite do termo: None
-Limite da soma infinita: None
+Limite do termo: Limite do termo: Sem limite finito (termos crescem indefinidamente)
+Limite da soma infinita: Limite da soma infinita: Soma infinita não existe (|r| >= 1)
 Converge: False, último termo: None
 [plot_termos] Salvo: termos_a1_r1.5.png
 [plot_somas] Salvo: somas_a1_r1.5.png
