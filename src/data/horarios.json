@@ -15,76 +15,76 @@
     {
       "dia": "Segunda",
       "materias": [
-        "REF",
-        "REF",
-        "GEPSOFT",
-        "GEPSOFT",
-        "REF",
-        "REF",
-        "BD II",
-        "BD II",
-        "BD II",
-        "BD II"
+        "LIVRE",
+        "LIVRE",
+        "LIVRE",
+        "LIVRE",
+        "LIVRE",
+        "LIVRE",
+        "LIVRE",
+        "LIVRE",
+        "LIVRE",
+        "LIVRE"
       ]
     },
     {
       "dia": "Terça",
       "materias": [
+        "LIVRE",
+        "LIVRE",
+        "LIVRE",
+        "LIVRE",
         "REF",
         "REF",
-        "REF",
-        "REF",
-        "Cal I",
-        "Cal I",
-        "REF",
-        "REF",
-        "REF",
-        "REF"
+        "LABSOFT",
+        "LABSOFT",
+        "LABSOFT",
+        "LABSOFT"
       ]
     },
     {
       "dia": "Quarta",
       "materias": [
+        "Cal II",
+        "Cal II",
         "REF",
         "REF",
-        "DEVWEB II",
-        "DEVWEB II",
-        "REF",
-        "REF",
-        "INFSO",
-        "INFSO",
-        "REF",
-        "REF"
+        "ADFIN",
+        "ADFIN",
+        "APLogistica",
+        "APLogistica",
+        "APLogistica",
+        "APLogistica"
       ]
     },
     {
       "dia": "Quinta",
       "materias": [
-        "DEVWEB II",
-        "DEVWEB II",
-        "REF",
-        "Cal I",
-        "Cal I",
-        "REF",
+        "PROEST",
+        "PROEST",
+        "Cal II",
+        "Cal II",
         "REF",
         "REF",
-        "REF",
-        "REF"
+        "GSISIN",
+        "GSISIN",
+        "GSISIN",
+        "GSISIN"
       ]
     },
     {
       "dia": "Sexta",
       "materias": [
-        "Empreend",
-        "Empreend",
-        "GEPSOFT",
-        "GEPSOFT",
+        "PROEST",
+        "PROEST",
+        "ADFIN",
+        "ADFIN",
         "REF",
         "REF",
-        "REF",
-        "REF",
-        "REF",
-        "REF"
+        "COMEL",
+        "COMEL",
+        "COMEL",
+        "COMEL"
       ]
     }
   ]
