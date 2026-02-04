@@ -15,25 +15,25 @@
     {
       "dia": "Segunda",
       "materias": [
-        "LIVRE",
-        "LIVRE",
-        "LIVRE",
-        "LIVRE",
-        "LIVRE",
-        "LIVRE",
-        "LIVRE",
-        "LIVRE",
-        "LIVRE",
-        "LIVRE"
+        "-",
+        "-",
+        "-",
+        "-",
+        "-",
+        "-",
+        "-",
+        "-",
+        "-",
+        "-"
       ]
     },
     {
       "dia": "Terça",
       "materias": [
-        "LIVRE",
-        "LIVRE",
-        "LIVRE",
-        "LIVRE",
+        "-",
+        "-",
+        "-",
+        "-",
         "REF",
         "REF",
         "LABSOFT",
