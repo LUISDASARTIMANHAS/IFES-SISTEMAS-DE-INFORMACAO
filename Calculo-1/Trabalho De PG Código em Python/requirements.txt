@@ -20,7 +20,7 @@ platformdirs==4.9.4
 pluggy==1.6.0
 psutil==7.2.2
 pycparser==3.0
-Pygments==2.19.2
+Pygments==2.20.0
 pyparsing==3.3.2
 pytest==9.0.2
 python-dateutil==2.9.0.post0
