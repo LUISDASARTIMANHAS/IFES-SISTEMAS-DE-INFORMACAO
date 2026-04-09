@@ -16,7 +16,7 @@ mpmath==1.4.1
 numpy==2.4.4
 packaging==26.0
 pillow==12.2.0
-platformdirs==4.9.4
+platformdirs==4.9.6
 pluggy==1.6.0
 psutil==7.2.2
 pycparser==3.0
