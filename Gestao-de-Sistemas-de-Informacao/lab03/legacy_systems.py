@@ -48,6 +48,9 @@ def processar_pagamento(dados_pagamento):
 # Tentativa de integração direta (VAI FALHAR)
 # ------------------------------------------------------------
 if __name__ == "__main__":
-    print("\nTentando integrar Sistema RH com Sistema Financeiro...\n")
+    print("\n1) Tentativa direta de integrar RH com Financeiro...\n")
+    processar_pagamento(funcionario_rh)
+
+    print("\n2) Integração usando o middleware/ESB...\n")
     dados_convertidos = IntegradorESB.transformar_rh_para_financeiro(funcionario_rh)
-    processar_pagamento(dados_convertidos)  # Agora funciona!
+    processar_pagamento(dados_convertidos)

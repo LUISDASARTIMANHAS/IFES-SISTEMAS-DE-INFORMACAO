@@ -1,0 +1,702 @@
+ID_Transacao,Data,Regional,Vendedor,Categoria,Produto,Valor_Venda
+1,21/03/2026,Sul,Ana,Eletrônicos,Tablet,1800.0
+1,21/03/2026,Sul,Ana,Acessórios,Capa Tablet,100.0
+1,21/03/2026,Sul,Ana,Móveis,Cadeira Office,800.0
+2,03/03/2026,Nordeste,Diego,Acessórios,Fone Bluetooth,200.0
+3,07/03/2026,Sul,Elena,Móveis,Sofá 3 Lugares,2100.0
+3,07/03/2026,Sul,Elena,Móveis,Painel TV,400.0
+3,07/03/2026,Sul,Elena,Eletrônicos,Tablet,1800.0
+4,08/03/2026,Sudeste,Elena,Eletrodomésticos,Micro-ondas,700.0
+4,08/03/2026,Sudeste,Elena,Eletrônicos,Tablet,1800.0
+5,11/03/2026,Sudeste,Bruno,Acessórios,Capa Tablet,100.0
+5,11/03/2026,Sudeste,Bruno,Acessórios,Fone Bluetooth,200.0
+6,13/03/2026,Sul,Carla,Acessórios,Teclado Mecânico,350.0
+6,13/03/2026,Sul,Carla,Cozinha,Jogo de Panelas,600.0
+6,13/03/2026,Sul,Carla,Móveis,Cadeira Office,800.0
+7,04/03/2026,Sudeste,Ana,Eletrônicos,Smartphone,2500.0
+7,04/03/2026,Sudeste,Ana,Móveis,Mesa de Jantar,1500.0
+8,07/03/2026,Nordeste,Ana,Eletrodomésticos,Máquina de Lavar,2900.0
+9,25/03/2026,Sudeste,Ana,Eletrônicos,Monitor 24,1200.0
+9,25/03/2026,Sudeste,Ana,Eletrodomésticos,Ar Condicionado,2200.0
+9,25/03/2026,Sudeste,Ana,Cozinha,Jogo de Panelas,600.0
+10,21/03/2026,Sudeste,Bruno,Eletrônicos,Notebook,4500.0
+10,21/03/2026,Sudeste,Bruno,Eletrônicos,Monitor 24,1200.0
+11,23/03/2026,Nordeste,Ana,Eletrônicos,Tablet,1800.0
+11,23/03/2026,Nordeste,Ana,Acessórios,Capa Tablet,100.0
+11,23/03/2026,Nordeste,Ana,Eletrodomésticos,Micro-ondas,700.0
+12,15/03/2026,Sudeste,Carla,Móveis,Cadeira Office,800.0
+12,15/03/2026,Sudeste,Carla,Eletrodomésticos,Máquina de Lavar,2900.0
+12,15/03/2026,Sudeste,Carla,Eletrônicos,Notebook,4500.0
+12,15/03/2026,Sudeste,Carla,Acessórios,Teclado Mecânico,350.0
+13,08/03/2026,Sul,Carla,Móveis,Sofá 3 Lugares,2100.0
+13,08/03/2026,Sul,Carla,Móveis,Painel TV,400.0
+14,29/03/2026,Nordeste,Carla,Eletrodomésticos,Airfryer,450.0
+14,29/03/2026,Nordeste,Carla,Eletrodomésticos,Micro-ondas,700.0
+15,05/03/2026,Sudeste,Bruno,Eletrônicos,Notebook,4500.0
+15,05/03/2026,Sudeste,Bruno,Eletrônicos,Monitor 24,1200.0
+16,24/03/2026,Nordeste,Diego,Eletrônicos,Tablet,1800.0
+16,24/03/2026,Nordeste,Diego,Acessórios,Capa Tablet,100.0
+16,24/03/2026,Nordeste,Diego,Eletrodomésticos,Airfryer,450.0
+17,17/03/2026,Sudeste,Ana,Eletrodomésticos,Airfryer,450.0
+17,17/03/2026,Sudeste,Ana,Eletrodomésticos,Micro-ondas,700.0
+17,17/03/2026,Sudeste,Ana,Eletrônicos,Tablet,1800.0
+18,20/03/2026,Sul,Diego,Móveis,Painel TV,400.0
+18,20/03/2026,Sul,Diego,Eletrodomésticos,Ar Condicionado,2200.0
+19,18/03/2026,Sul,Ana,Eletrônicos,Notebook,4500.0
+19,18/03/2026,Sul,Ana,Eletrônicos,Monitor 24,1200.0
+19,18/03/2026,Sul,Ana,Acessórios,Capa Tablet,100.0
+20,10/03/2026,Sudeste,Bruno,Eletrodomésticos,Ar Condicionado,2200.0
+20,10/03/2026,Sudeste,Bruno,Móveis,Painel TV,400.0
+21,25/03/2026,Sul,Elena,Eletrodomésticos,Cafeteira,350.0
+21,25/03/2026,Sul,Elena,Móveis,Painel TV,400.0
+21,25/03/2026,Sul,Elena,Eletrodomésticos,Geladeira,3800.0
+21,25/03/2026,Sul,Elena,Eletrodomésticos,Airfryer,450.0
+22,12/03/2026,Sul,Elena,Acessórios,Mouse Gamer,150.0
+22,12/03/2026,Sul,Elena,Eletrônicos,Notebook,4500.0
+22,12/03/2026,Sul,Elena,Móveis,Sofá 3 Lugares,2100.0
+22,12/03/2026,Sul,Elena,Acessórios,Capa Tablet,100.0
+23,30/03/2026,Sudeste,Carla,Móveis,Sofá 3 Lugares,2100.0
+23,30/03/2026,Sudeste,Carla,Móveis,Painel TV,400.0
+24,31/03/2026,Sul,Ana,Móveis,Cadeira Office,800.0
+24,31/03/2026,Sul,Ana,Eletrodomésticos,Airfryer,450.0
+24,31/03/2026,Sul,Ana,Móveis,Sofá 3 Lugares,2100.0
+25,31/03/2026,Nordeste,Bruno,Eletrônicos,Tablet,1800.0
+25,31/03/2026,Nordeste,Bruno,Eletrodomésticos,Geladeira,3800.0
+26,30/03/2026,Nordeste,Bruno,Eletrônicos,Notebook,4500.0
+26,30/03/2026,Nordeste,Bruno,Eletrônicos,Monitor 24,1200.0
+26,30/03/2026,Nordeste,Bruno,Cozinha,Jogo de Panelas,600.0
+27,29/03/2026,Nordeste,Diego,Eletrodomésticos,Máquina de Lavar,2900.0
+28,03/03/2026,Sudeste,Ana,Eletrônicos,Tablet,1800.0
+28,03/03/2026,Sudeste,Ana,Acessórios,Capa Tablet,100.0
+29,01/03/2026,Sul,Ana,Eletrônicos,Notebook,4500.0
+29,01/03/2026,Sul,Ana,Acessórios,Fone Bluetooth,200.0
+30,17/03/2026,Sul,Carla,Eletrônicos,Tablet,1800.0
+30,17/03/2026,Sul,Carla,Acessórios,Capa Tablet,100.0
+30,17/03/2026,Sul,Carla,Móveis,Mesa de Jantar,1500.0
+31,19/03/2026,Sudeste,Bruno,Eletrodomésticos,Geladeira,3800.0
+31,19/03/2026,Sudeste,Bruno,Acessórios,Capa Tablet,100.0
+31,19/03/2026,Sudeste,Bruno,Eletrônicos,Tablet,1800.0
+32,12/03/2026,Sudeste,Diego,Acessórios,Capa Tablet,100.0
+32,12/03/2026,Sudeste,Diego,Acessórios,Teclado Mecânico,350.0
+33,13/03/2026,Nordeste,Carla,Eletrônicos,Tablet,1800.0
+33,13/03/2026,Nordeste,Carla,Acessórios,Capa Tablet,100.0
+33,13/03/2026,Nordeste,Carla,Eletrodomésticos,Geladeira,3800.0
+34,18/03/2026,Sudeste,Bruno,Eletrônicos,Tablet,1800.0
+34,18/03/2026,Sudeste,Bruno,Acessórios,Capa Tablet,100.0
+35,28/03/2026,Sul,Diego,Acessórios,Capa Tablet,100.0
+35,28/03/2026,Sul,Diego,Acessórios,Teclado Mecânico,350.0
+35,28/03/2026,Sul,Diego,Móveis,Cadeira Office,800.0
+36,27/03/2026,Sul,Ana,Eletrodomésticos,Micro-ondas,700.0
+36,27/03/2026,Sul,Ana,Eletrônicos,Tablet,1800.0
+36,27/03/2026,Sul,Ana,Móveis,Sofá 3 Lugares,2100.0
+36,27/03/2026,Sul,Ana,Eletrodomésticos,Geladeira,3800.0
+37,28/03/2026,Sudeste,Ana,Acessórios,Mouse Gamer,150.0
+38,13/03/2026,Sudeste,Diego,Móveis,Cadeira Office,800.0
+38,13/03/2026,Sudeste,Diego,Móveis,Sofá 3 Lugares,2100.0
+39,05/03/2026,Sul,Carla,Móveis,Sofá 3 Lugares,2100.0
+39,05/03/2026,Sul,Carla,Móveis,Painel TV,400.0
+40,02/03/2026,Nordeste,Carla,Móveis,Mesa de Jantar,1500.0
+41,16/03/2026,Nordeste,Elena,Móveis,Painel TV,400.0
+42,03/03/2026,Sul,Ana,Eletrodomésticos,Máquina de Lavar,2900.0
+42,03/03/2026,Sul,Ana,Eletrônicos,Monitor 24,1200.0
+43,04/03/2026,Nordeste,Bruno,Acessórios,Mouse Gamer,150.0
+43,04/03/2026,Nordeste,Bruno,Acessórios,Teclado Mecânico,350.0
+44,14/03/2026,Nordeste,Elena,Eletrônicos,Notebook,4500.0
+44,14/03/2026,Nordeste,Elena,Eletrônicos,Monitor 24,1200.0
+45,07/03/2026,Nordeste,Carla,Eletrônicos,Notebook,4500.0
+45,07/03/2026,Nordeste,Carla,Eletrônicos,Monitor 24,1200.0
+46,15/03/2026,Sudeste,Ana,Móveis,Mesa de Jantar,1500.0
+47,04/03/2026,Sul,Elena,Eletrônicos,Notebook,4500.0
+47,04/03/2026,Sul,Elena,Eletrônicos,Monitor 24,1200.0
+48,29/03/2026,Sul,Bruno,Móveis,Sofá 3 Lugares,2100.0
+48,29/03/2026,Sul,Bruno,Móveis,Painel TV,400.0
+49,23/03/2026,Sudeste,Elena,Móveis,Painel TV,400.0
+49,23/03/2026,Sudeste,Elena,Acessórios,Mouse Gamer,150.0
+49,23/03/2026,Sudeste,Elena,Móveis,Cadeira Office,800.0
+49,23/03/2026,Sudeste,Elena,Eletrodomésticos,Cafeteira,350.0
+50,30/03/2026,Nordeste,Ana,Acessórios,Mouse Gamer,150.0
+50,30/03/2026,Nordeste,Ana,Acessórios,Teclado Mecânico,350.0
+50,30/03/2026,Nordeste,Ana,Acessórios,Capa Tablet,100.0
+50,30/03/2026,Nordeste,Ana,Móveis,Cadeira Office,800.0
+51,05/03/2026,Sudeste,Carla,Eletrodomésticos,Geladeira,3800.0
+51,05/03/2026,Sudeste,Carla,Eletrodomésticos,Ar Condicionado,2200.0
+51,05/03/2026,Sudeste,Carla,Móveis,Painel TV,400.0
+52,16/03/2026,Sudeste,Ana,Eletrônicos,Tablet,1800.0
+53,27/03/2026,Sudeste,Ana,Eletrodomésticos,Airfryer,450.0
+54,21/03/2026,Sudeste,Bruno,Eletrodomésticos,Airfryer,450.0
+54,21/03/2026,Sudeste,Bruno,Eletrodomésticos,Micro-ondas,700.0
+54,21/03/2026,Sudeste,Bruno,Móveis,Cadeira Office,800.0
+55,01/03/2026,Sul,Ana,Eletrodomésticos,Airfryer,450.0
+55,01/03/2026,Sul,Ana,Móveis,Cadeira Office,800.0
+55,01/03/2026,Sul,Ana,Acessórios,Teclado Mecânico,350.0
+55,01/03/2026,Sul,Ana,Eletrônicos,Smartphone,2500.0
+56,19/03/2026,Nordeste,Bruno,Eletrônicos,Notebook,4500.0
+56,19/03/2026,Nordeste,Bruno,Eletrônicos,Monitor 24,1200.0
+57,29/03/2026,Sul,Carla,Acessórios,Mouse Gamer,150.0
+57,29/03/2026,Sul,Carla,Acessórios,Teclado Mecânico,350.0
+58,12/03/2026,Nordeste,Diego,Eletrodomésticos,Máquina de Lavar,2900.0
+58,12/03/2026,Nordeste,Diego,Eletrodomésticos,Micro-ondas,700.0
+58,12/03/2026,Nordeste,Diego,Eletrônicos,Tablet,1800.0
+58,12/03/2026,Nordeste,Diego,Acessórios,Mouse Gamer,150.0
+59,06/03/2026,Nordeste,Carla,Eletrônicos,Tablet,1800.0
+59,06/03/2026,Nordeste,Carla,Acessórios,Capa Tablet,100.0
+59,06/03/2026,Nordeste,Carla,Eletrodomésticos,Ar Condicionado,2200.0
+60,06/03/2026,Nordeste,Ana,Eletrodomésticos,Airfryer,450.0
+60,06/03/2026,Nordeste,Ana,Eletrodomésticos,Micro-ondas,700.0
+61,08/03/2026,Sul,Diego,Eletrodomésticos,Máquina de Lavar,2900.0
+61,08/03/2026,Sul,Diego,Acessórios,Mouse Gamer,150.0
+62,22/03/2026,Sul,Diego,Eletrodomésticos,Ar Condicionado,2200.0
+62,22/03/2026,Sul,Diego,Eletrônicos,Smartphone,2500.0
+63,21/03/2026,Nordeste,Diego,Eletrônicos,Notebook,4500.0
+63,21/03/2026,Nordeste,Diego,Acessórios,Mouse Gamer,150.0
+63,21/03/2026,Nordeste,Diego,Acessórios,Capa Tablet,100.0
+64,29/03/2026,Sudeste,Bruno,Acessórios,Teclado Mecânico,350.0
+64,29/03/2026,Sudeste,Bruno,Acessórios,Capa Tablet,100.0
+65,20/03/2026,Sudeste,Carla,Móveis,Sofá 3 Lugares,2100.0
+65,20/03/2026,Sudeste,Carla,Móveis,Painel TV,400.0
+65,20/03/2026,Sudeste,Carla,Acessórios,Capa Tablet,100.0
+66,13/03/2026,Nordeste,Bruno,Acessórios,Mouse Gamer,150.0
+66,13/03/2026,Nordeste,Bruno,Móveis,Painel TV,400.0
+67,30/03/2026,Nordeste,Bruno,Eletrônicos,Notebook,4500.0
+67,30/03/2026,Nordeste,Bruno,Eletrônicos,Monitor 24,1200.0
+68,20/03/2026,Sudeste,Ana,Eletrônicos,Notebook,4500.0
+68,20/03/2026,Sudeste,Ana,Eletrônicos,Monitor 24,1200.0
+68,20/03/2026,Sudeste,Ana,Eletrônicos,Tablet,1800.0
+69,11/03/2026,Sudeste,Carla,Eletrodomésticos,Airfryer,450.0
+69,11/03/2026,Sudeste,Carla,Eletrodomésticos,Micro-ondas,700.0
+70,22/03/2026,Nordeste,Bruno,Móveis,Sofá 3 Lugares,2100.0
+70,22/03/2026,Nordeste,Bruno,Móveis,Painel TV,400.0
+70,22/03/2026,Nordeste,Bruno,Acessórios,Mouse Gamer,150.0
+71,10/03/2026,Sudeste,Bruno,Eletrônicos,Notebook,4500.0
+71,10/03/2026,Sudeste,Bruno,Eletrônicos,Monitor 24,1200.0
+72,15/03/2026,Sudeste,Diego,Eletrônicos,Tablet,1800.0
+72,15/03/2026,Sudeste,Diego,Acessórios,Capa Tablet,100.0
+72,15/03/2026,Sudeste,Diego,Acessórios,Fone Bluetooth,200.0
+73,10/03/2026,Nordeste,Elena,Eletrodomésticos,Máquina de Lavar,2900.0
+73,10/03/2026,Nordeste,Elena,Eletrodomésticos,Cafeteira,350.0
+74,08/03/2026,Sul,Bruno,Eletrodomésticos,Máquina de Lavar,2900.0
+75,16/03/2026,Nordeste,Ana,Móveis,Mesa de Jantar,1500.0
+75,16/03/2026,Nordeste,Ana,Eletrodomésticos,Geladeira,3800.0
+76,23/03/2026,Nordeste,Diego,Acessórios,Mouse Gamer,150.0
+76,23/03/2026,Nordeste,Diego,Acessórios,Teclado Mecânico,350.0
+77,29/03/2026,Sul,Diego,Móveis,Painel TV,400.0
+77,29/03/2026,Sul,Diego,Cozinha,Jogo de Panelas,600.0
+78,02/03/2026,Nordeste,Bruno,Eletrônicos,Tablet,1800.0
+78,02/03/2026,Nordeste,Bruno,Acessórios,Capa Tablet,100.0
+78,02/03/2026,Nordeste,Bruno,Cozinha,Jogo de Panelas,600.0
+78,02/03/2026,Nordeste,Bruno,Móveis,Painel TV,400.0
+79,18/03/2026,Nordeste,Carla,Móveis,Painel TV,400.0
+79,18/03/2026,Nordeste,Carla,Eletrônicos,Tablet,1800.0
+79,18/03/2026,Nordeste,Carla,Móveis,Cadeira Office,800.0
+79,18/03/2026,Nordeste,Carla,Cozinha,Jogo de Panelas,600.0
+80,29/03/2026,Sul,Diego,Eletrodomésticos,Ar Condicionado,2200.0
+80,29/03/2026,Sul,Diego,Móveis,Painel TV,400.0
+81,16/03/2026,Nordeste,Bruno,Eletrônicos,Notebook,4500.0
+81,16/03/2026,Nordeste,Bruno,Eletrônicos,Monitor 24,1200.0
+82,08/03/2026,Sudeste,Carla,Eletrônicos,Tablet,1800.0
+82,08/03/2026,Sudeste,Carla,Acessórios,Capa Tablet,100.0
+83,05/03/2026,Sul,Diego,Acessórios,Fone Bluetooth,200.0
+83,05/03/2026,Sul,Diego,Eletrônicos,Tablet,1800.0
+83,05/03/2026,Sul,Diego,Eletrônicos,Notebook,4500.0
+84,18/03/2026,Sudeste,Diego,Eletrônicos,Tablet,1800.0
+85,13/03/2026,Nordeste,Ana,Eletrônicos,Monitor 24,1200.0
+85,13/03/2026,Nordeste,Ana,Móveis,Sofá 3 Lugares,2100.0
+85,13/03/2026,Nordeste,Ana,Acessórios,Mouse Gamer,150.0
+86,31/03/2026,Sudeste,Carla,Eletrônicos,Tablet,1800.0
+86,31/03/2026,Sudeste,Carla,Móveis,Cadeira Office,800.0
+86,31/03/2026,Sudeste,Carla,Eletrodomésticos,Máquina de Lavar,2900.0
+87,16/03/2026,Sul,Carla,Eletrônicos,Notebook,4500.0
+87,16/03/2026,Sul,Carla,Eletrônicos,Monitor 24,1200.0
+88,22/03/2026,Nordeste,Diego,Eletrodomésticos,Airfryer,450.0
+88,22/03/2026,Nordeste,Diego,Móveis,Cadeira Office,800.0
+88,22/03/2026,Nordeste,Diego,Acessórios,Mouse Gamer,150.0
+89,30/03/2026,Sudeste,Elena,Eletrodomésticos,Airfryer,450.0
+89,30/03/2026,Sudeste,Elena,Eletrodomésticos,Micro-ondas,700.0
+90,05/03/2026,Sudeste,Bruno,Eletrônicos,Monitor 24,1200.0
+91,11/03/2026,Sul,Diego,Eletrônicos,Monitor 24,1200.0
+91,11/03/2026,Sul,Diego,Eletrodomésticos,Ar Condicionado,2200.0
+92,25/03/2026,Sudeste,Carla,Móveis,Sofá 3 Lugares,2100.0
+92,25/03/2026,Sudeste,Carla,Móveis,Painel TV,400.0
+92,25/03/2026,Sudeste,Carla,Acessórios,Teclado Mecânico,350.0
+93,31/03/2026,Sudeste,Bruno,Acessórios,Teclado Mecânico,350.0
+93,31/03/2026,Sudeste,Bruno,Acessórios,Mouse Gamer,150.0
+93,31/03/2026,Sudeste,Bruno,Eletrodomésticos,Máquina de Lavar,2900.0
+94,07/03/2026,Sul,Elena,Eletrodomésticos,Airfryer,450.0
+95,16/03/2026,Nordeste,Ana,Eletrônicos,Notebook,4500.0
+95,16/03/2026,Nordeste,Ana,Eletrônicos,Monitor 24,1200.0
+96,25/03/2026,Sudeste,Bruno,Acessórios,Capa Tablet,100.0
+96,25/03/2026,Sudeste,Bruno,Eletrodomésticos,Micro-ondas,700.0
+96,25/03/2026,Sudeste,Bruno,Eletrodomésticos,Cafeteira,350.0
+97,04/03/2026,Nordeste,Ana,Eletrodomésticos,Airfryer,450.0
+97,04/03/2026,Nordeste,Ana,Eletrodomésticos,Micro-ondas,700.0
+97,04/03/2026,Nordeste,Ana,Eletrônicos,Monitor 24,1200.0
+97,04/03/2026,Nordeste,Ana,Eletrodomésticos,Geladeira,3800.0
+98,03/03/2026,Nordeste,Bruno,Eletrodomésticos,Cafeteira,350.0
+99,28/03/2026,Nordeste,Elena,Móveis,Mesa de Jantar,1500.0
+99,28/03/2026,Nordeste,Elena,Acessórios,Teclado Mecânico,350.0
+99,28/03/2026,Nordeste,Elena,Eletrônicos,Smartphone,2500.0
+100,18/03/2026,Sudeste,Carla,Eletrônicos,Notebook,4500.0
+101,01/03/2026,Sudeste,Diego,Eletrônicos,Smartphone,2500.0
+102,21/03/2026,Sudeste,Bruno,Eletrodomésticos,Ar Condicionado,2200.0
+102,21/03/2026,Sudeste,Bruno,Móveis,Cadeira Office,800.0
+103,25/03/2026,Sudeste,Diego,Eletrodomésticos,Ar Condicionado,2200.0
+103,25/03/2026,Sudeste,Diego,Eletrônicos,Notebook,4500.0
+104,28/03/2026,Sul,Ana,Eletrodomésticos,Airfryer,450.0
+104,28/03/2026,Sul,Ana,Eletrodomésticos,Micro-ondas,700.0
+105,19/03/2026,Nordeste,Diego,Eletrônicos,Notebook,4500.0
+105,19/03/2026,Nordeste,Diego,Eletrônicos,Monitor 24,1200.0
+106,06/03/2026,Sudeste,Bruno,Eletrônicos,Notebook,4500.0
+106,06/03/2026,Sudeste,Bruno,Eletrônicos,Monitor 24,1200.0
+107,29/03/2026,Nordeste,Carla,Eletrônicos,Tablet,1800.0
+107,29/03/2026,Nordeste,Carla,Acessórios,Capa Tablet,100.0
+108,03/03/2026,Sul,Diego,Móveis,Sofá 3 Lugares,2100.0
+108,03/03/2026,Sul,Diego,Cozinha,Jogo de Panelas,600.0
+109,26/03/2026,Sul,Ana,Eletrônicos,Tablet,1800.0
+109,26/03/2026,Sul,Ana,Acessórios,Capa Tablet,100.0
+110,10/03/2026,Nordeste,Elena,Eletrônicos,Notebook,4500.0
+110,10/03/2026,Nordeste,Elena,Eletrônicos,Monitor 24,1200.0
+111,14/03/2026,Nordeste,Elena,Eletrodomésticos,Ar Condicionado,2200.0
+111,14/03/2026,Nordeste,Elena,Eletrodomésticos,Cafeteira,350.0
+112,09/03/2026,Sul,Ana,Móveis,Sofá 3 Lugares,2100.0
+112,09/03/2026,Sul,Ana,Móveis,Painel TV,400.0
+112,09/03/2026,Sul,Ana,Eletrodomésticos,Micro-ondas,700.0
+113,07/03/2026,Sul,Diego,Móveis,Sofá 3 Lugares,2100.0
+113,07/03/2026,Sul,Diego,Móveis,Painel TV,400.0
+114,20/03/2026,Sudeste,Ana,Eletrônicos,Notebook,4500.0
+114,20/03/2026,Sudeste,Ana,Eletrônicos,Monitor 24,1200.0
+114,20/03/2026,Sudeste,Ana,Eletrodomésticos,Micro-ondas,700.0
+115,10/03/2026,Sul,Elena,Acessórios,Teclado Mecânico,350.0
+116,02/03/2026,Nordeste,Carla,Eletrodomésticos,Airfryer,450.0
+116,02/03/2026,Nordeste,Carla,Eletrodomésticos,Micro-ondas,700.0
+116,02/03/2026,Nordeste,Carla,Acessórios,Capa Tablet,100.0
+117,28/03/2026,Sul,Elena,Eletrônicos,Notebook,4500.0
+117,28/03/2026,Sul,Elena,Eletrônicos,Monitor 24,1200.0
+118,06/03/2026,Sul,Carla,Acessórios,Mouse Gamer,150.0
+118,06/03/2026,Sul,Carla,Acessórios,Teclado Mecânico,350.0
+118,06/03/2026,Sul,Carla,Eletrônicos,Monitor 24,1200.0
+118,06/03/2026,Sul,Carla,Móveis,Sofá 3 Lugares,2100.0
+119,03/03/2026,Nordeste,Ana,Móveis,Mesa de Jantar,1500.0
+120,31/03/2026,Sudeste,Ana,Eletrodomésticos,Airfryer,450.0
+120,31/03/2026,Sudeste,Ana,Eletrodomésticos,Micro-ondas,700.0
+120,31/03/2026,Sudeste,Ana,Eletrodomésticos,Máquina de Lavar,2900.0
+120,31/03/2026,Sudeste,Ana,Móveis,Painel TV,400.0
+121,13/03/2026,Sudeste,Diego,Eletrodomésticos,Airfryer,450.0
+121,13/03/2026,Sudeste,Diego,Eletrodomésticos,Micro-ondas,700.0
+122,10/03/2026,Nordeste,Elena,Acessórios,Capa Tablet,100.0
+123,31/03/2026,Sul,Bruno,Eletrônicos,Tablet,1800.0
+123,31/03/2026,Sul,Bruno,Acessórios,Capa Tablet,100.0
+124,06/03/2026,Nordeste,Ana,Eletrônicos,Tablet,1800.0
+125,15/03/2026,Nordeste,Elena,Eletrônicos,Notebook,4500.0
+125,15/03/2026,Nordeste,Elena,Eletrônicos,Monitor 24,1200.0
+126,23/03/2026,Sudeste,Diego,Eletrodomésticos,Máquina de Lavar,2900.0
+127,30/03/2026,Sudeste,Elena,Eletrônicos,Tablet,1800.0
+127,30/03/2026,Sudeste,Elena,Acessórios,Capa Tablet,100.0
+127,30/03/2026,Sudeste,Elena,Móveis,Cadeira Office,800.0
+128,08/03/2026,Nordeste,Bruno,Acessórios,Fone Bluetooth,200.0
+128,08/03/2026,Nordeste,Bruno,Acessórios,Teclado Mecânico,350.0
+128,08/03/2026,Nordeste,Bruno,Eletrodomésticos,Micro-ondas,700.0
+128,08/03/2026,Nordeste,Bruno,Eletrodomésticos,Cafeteira,350.0
+129,20/03/2026,Nordeste,Elena,Eletrodomésticos,Airfryer,450.0
+129,20/03/2026,Nordeste,Elena,Eletrodomésticos,Micro-ondas,700.0
+129,20/03/2026,Nordeste,Elena,Eletrodomésticos,Cafeteira,350.0
+129,20/03/2026,Nordeste,Elena,Eletrônicos,Monitor 24,1200.0
+130,31/03/2026,Sudeste,Elena,Móveis,Sofá 3 Lugares,2100.0
+130,31/03/2026,Sudeste,Elena,Móveis,Painel TV,400.0
+131,02/03/2026,Sudeste,Carla,Eletrônicos,Tablet,1800.0
+131,02/03/2026,Sudeste,Carla,Acessórios,Capa Tablet,100.0
+131,02/03/2026,Sudeste,Carla,Móveis,Mesa de Jantar,1500.0
+132,19/03/2026,Sul,Carla,Eletrodomésticos,Micro-ondas,700.0
+132,19/03/2026,Sul,Carla,Móveis,Sofá 3 Lugares,2100.0
+133,17/03/2026,Nordeste,Diego,Móveis,Sofá 3 Lugares,2100.0
+133,17/03/2026,Nordeste,Diego,Móveis,Painel TV,400.0
+133,17/03/2026,Nordeste,Diego,Eletrônicos,Tablet,1800.0
+133,17/03/2026,Nordeste,Diego,Acessórios,Fone Bluetooth,200.0
+134,16/03/2026,Sudeste,Diego,Eletrodomésticos,Micro-ondas,700.0
+134,16/03/2026,Sudeste,Diego,Eletrônicos,Notebook,4500.0
+135,14/03/2026,Nordeste,Diego,Móveis,Cadeira Office,800.0
+135,14/03/2026,Nordeste,Diego,Acessórios,Teclado Mecânico,350.0
+136,15/03/2026,Sul,Carla,Eletrodomésticos,Airfryer,450.0
+136,15/03/2026,Sul,Carla,Eletrodomésticos,Micro-ondas,700.0
+137,28/03/2026,Nordeste,Ana,Eletrodomésticos,Airfryer,450.0
+137,28/03/2026,Nordeste,Ana,Eletrodomésticos,Micro-ondas,700.0
+137,28/03/2026,Nordeste,Ana,Acessórios,Teclado Mecânico,350.0
+138,07/03/2026,Nordeste,Carla,Eletrodomésticos,Airfryer,450.0
+138,07/03/2026,Nordeste,Carla,Eletrodomésticos,Micro-ondas,700.0
+138,07/03/2026,Nordeste,Carla,Acessórios,Teclado Mecânico,350.0
+139,07/03/2026,Sudeste,Elena,Eletrodomésticos,Cafeteira,350.0
+140,15/03/2026,Nordeste,Diego,Eletrodomésticos,Máquina de Lavar,2900.0
+141,23/03/2026,Sul,Carla,Acessórios,Mouse Gamer,150.0
+141,23/03/2026,Sul,Carla,Acessórios,Teclado Mecânico,350.0
+142,08/03/2026,Sul,Diego,Eletrodomésticos,Airfryer,450.0
+142,08/03/2026,Sul,Diego,Móveis,Sofá 3 Lugares,2100.0
+142,08/03/2026,Sul,Diego,Eletrodomésticos,Cafeteira,350.0
+142,08/03/2026,Sul,Diego,Móveis,Painel TV,400.0
+143,23/03/2026,Sudeste,Diego,Eletrodomésticos,Máquina de Lavar,2900.0
+143,23/03/2026,Sudeste,Diego,Cozinha,Jogo de Panelas,600.0
+143,23/03/2026,Sudeste,Diego,Móveis,Cadeira Office,800.0
+144,05/03/2026,Sudeste,Bruno,Eletrônicos,Tablet,1800.0
+144,05/03/2026,Sudeste,Bruno,Acessórios,Capa Tablet,100.0
+144,05/03/2026,Sudeste,Bruno,Acessórios,Fone Bluetooth,200.0
+144,05/03/2026,Sudeste,Bruno,Eletrodomésticos,Ar Condicionado,2200.0
+145,25/03/2026,Sudeste,Carla,Acessórios,Mouse Gamer,150.0
+145,25/03/2026,Sudeste,Carla,Acessórios,Teclado Mecânico,350.0
+145,25/03/2026,Sudeste,Carla,Eletrodomésticos,Cafeteira,350.0
+145,25/03/2026,Sudeste,Carla,Móveis,Mesa de Jantar,1500.0
+146,19/03/2026,Nordeste,Diego,Eletrodomésticos,Airfryer,450.0
+146,19/03/2026,Nordeste,Diego,Eletrodomésticos,Micro-ondas,700.0
+146,19/03/2026,Nordeste,Diego,Eletrônicos,Smartphone,2500.0
+147,11/03/2026,Nordeste,Elena,Eletrodomésticos,Geladeira,3800.0
+147,11/03/2026,Nordeste,Elena,Eletrodomésticos,Máquina de Lavar,2900.0
+148,19/03/2026,Sudeste,Bruno,Eletrônicos,Notebook,4500.0
+148,19/03/2026,Sudeste,Bruno,Eletrônicos,Monitor 24,1200.0
+148,19/03/2026,Sudeste,Bruno,Móveis,Sofá 3 Lugares,2100.0
+149,23/03/2026,Sudeste,Diego,Eletrodomésticos,Airfryer,450.0
+149,23/03/2026,Sudeste,Diego,Móveis,Sofá 3 Lugares,2100.0
+149,23/03/2026,Sudeste,Diego,Acessórios,Teclado Mecânico,350.0
+149,23/03/2026,Sudeste,Diego,Móveis,Painel TV,400.0
+150,31/03/2026,Nordeste,Carla,Cozinha,Jogo de Panelas,600.0
+150,31/03/2026,Nordeste,Carla,Acessórios,Capa Tablet,100.0
+150,31/03/2026,Nordeste,Carla,Móveis,Painel TV,400.0
+151,30/03/2026,Sudeste,Ana,Eletrônicos,Tablet,1800.0
+151,30/03/2026,Sudeste,Ana,Acessórios,Capa Tablet,100.0
+151,30/03/2026,Sudeste,Ana,Acessórios,Fone Bluetooth,200.0
+152,16/03/2026,Sudeste,Carla,Acessórios,Mouse Gamer,150.0
+152,16/03/2026,Sudeste,Carla,Acessórios,Teclado Mecânico,350.0
+152,16/03/2026,Sudeste,Carla,Eletrônicos,Notebook,4500.0
+153,28/03/2026,Nordeste,Elena,Eletrodomésticos,Airfryer,450.0
+153,28/03/2026,Nordeste,Elena,Eletrodomésticos,Micro-ondas,700.0
+154,28/03/2026,Nordeste,Ana,Eletrônicos,Notebook,4500.0
+154,28/03/2026,Nordeste,Ana,Eletrônicos,Monitor 24,1200.0
+154,28/03/2026,Nordeste,Ana,Eletrodomésticos,Máquina de Lavar,2900.0
+155,24/03/2026,Sul,Diego,Acessórios,Capa Tablet,100.0
+155,24/03/2026,Sul,Diego,Cozinha,Jogo de Panelas,600.0
+155,24/03/2026,Sul,Diego,Eletrodomésticos,Micro-ondas,700.0
+155,24/03/2026,Sul,Diego,Eletrodomésticos,Cafeteira,350.0
+156,29/03/2026,Sul,Ana,Eletrônicos,Notebook,4500.0
+156,29/03/2026,Sul,Ana,Eletrônicos,Monitor 24,1200.0
+157,12/03/2026,Sudeste,Bruno,Eletrônicos,Tablet,1800.0
+157,12/03/2026,Sudeste,Bruno,Acessórios,Capa Tablet,100.0
+158,06/03/2026,Sul,Ana,Eletrônicos,Tablet,1800.0
+158,06/03/2026,Sul,Ana,Acessórios,Capa Tablet,100.0
+158,06/03/2026,Sul,Ana,Móveis,Sofá 3 Lugares,2100.0
+159,30/03/2026,Nordeste,Bruno,Cozinha,Jogo de Panelas,600.0
+159,30/03/2026,Nordeste,Bruno,Eletrodomésticos,Ar Condicionado,2200.0
+160,22/03/2026,Sul,Diego,Eletrodomésticos,Micro-ondas,700.0
+160,22/03/2026,Sul,Diego,Acessórios,Fone Bluetooth,200.0
+160,22/03/2026,Sul,Diego,Cozinha,Jogo de Panelas,600.0
+160,22/03/2026,Sul,Diego,Eletrônicos,Smartphone,2500.0
+161,19/03/2026,Sudeste,Diego,Eletrônicos,Notebook,4500.0
+161,19/03/2026,Sudeste,Diego,Eletrônicos,Monitor 24,1200.0
+161,19/03/2026,Sudeste,Diego,Eletrodomésticos,Geladeira,3800.0
+162,13/03/2026,Sudeste,Ana,Móveis,Sofá 3 Lugares,2100.0
+162,13/03/2026,Sudeste,Ana,Móveis,Painel TV,400.0
+163,10/03/2026,Nordeste,Carla,Eletrônicos,Monitor 24,1200.0
+164,09/03/2026,Sul,Elena,Acessórios,Teclado Mecânico,350.0
+164,09/03/2026,Sul,Elena,Móveis,Sofá 3 Lugares,2100.0
+164,09/03/2026,Sul,Elena,Eletrodomésticos,Cafeteira,350.0
+165,25/03/2026,Sul,Elena,Eletrônicos,Tablet,1800.0
+165,25/03/2026,Sul,Elena,Acessórios,Capa Tablet,100.0
+165,25/03/2026,Sul,Elena,Eletrodomésticos,Ar Condicionado,2200.0
+166,22/03/2026,Nordeste,Bruno,Acessórios,Teclado Mecânico,350.0
+166,22/03/2026,Nordeste,Bruno,Eletrodomésticos,Cafeteira,350.0
+166,22/03/2026,Nordeste,Bruno,Cozinha,Jogo de Panelas,600.0
+167,02/03/2026,Nordeste,Carla,Eletrônicos,Notebook,4500.0
+167,02/03/2026,Nordeste,Carla,Eletrônicos,Monitor 24,1200.0
+167,02/03/2026,Nordeste,Carla,Eletrônicos,Tablet,1800.0
+168,06/03/2026,Sul,Bruno,Eletrônicos,Smartphone,2500.0
+168,06/03/2026,Sul,Bruno,Móveis,Painel TV,400.0
+168,06/03/2026,Sul,Bruno,Eletrodomésticos,Ar Condicionado,2200.0
+169,27/03/2026,Sul,Carla,Eletrodomésticos,Cafeteira,350.0
+169,27/03/2026,Sul,Carla,Eletrônicos,Notebook,4500.0
+169,27/03/2026,Sul,Carla,Acessórios,Capa Tablet,100.0
+169,27/03/2026,Sul,Carla,Cozinha,Jogo de Panelas,600.0
+170,31/03/2026,Sul,Bruno,Eletrodomésticos,Airfryer,450.0
+170,31/03/2026,Sul,Bruno,Eletrodomésticos,Micro-ondas,700.0
+170,31/03/2026,Sul,Bruno,Móveis,Cadeira Office,800.0
+171,12/03/2026,Sul,Diego,Móveis,Cadeira Office,800.0
+172,04/03/2026,Sudeste,Carla,Móveis,Mesa de Jantar,1500.0
+172,04/03/2026,Sudeste,Carla,Eletrônicos,Monitor 24,1200.0
+172,04/03/2026,Sudeste,Carla,Eletrônicos,Smartphone,2500.0
+173,04/03/2026,Nordeste,Bruno,Móveis,Cadeira Office,800.0
+173,04/03/2026,Nordeste,Bruno,Eletrônicos,Notebook,4500.0
+174,30/03/2026,Nordeste,Bruno,Cozinha,Jogo de Panelas,600.0
+174,30/03/2026,Nordeste,Bruno,Eletrodomésticos,Cafeteira,350.0
+174,30/03/2026,Nordeste,Bruno,Eletrônicos,Tablet,1800.0
+175,04/03/2026,Sul,Ana,Eletrodomésticos,Airfryer,450.0
+175,04/03/2026,Sul,Ana,Eletrodomésticos,Micro-ondas,700.0
+175,04/03/2026,Sul,Ana,Acessórios,Capa Tablet,100.0
+175,04/03/2026,Sul,Ana,Eletrodomésticos,Máquina de Lavar,2900.0
+176,29/03/2026,Nordeste,Bruno,Móveis,Sofá 3 Lugares,2100.0
+176,29/03/2026,Nordeste,Bruno,Móveis,Painel TV,400.0
+177,14/03/2026,Nordeste,Bruno,Móveis,Sofá 3 Lugares,2100.0
+177,14/03/2026,Nordeste,Bruno,Eletrônicos,Tablet,1800.0
+177,14/03/2026,Nordeste,Bruno,Eletrodomésticos,Ar Condicionado,2200.0
+178,02/03/2026,Nordeste,Carla,Eletrônicos,Tablet,1800.0
+178,02/03/2026,Nordeste,Carla,Acessórios,Capa Tablet,100.0
+179,28/03/2026,Sudeste,Ana,Eletrônicos,Notebook,4500.0
+179,28/03/2026,Sudeste,Ana,Eletrônicos,Monitor 24,1200.0
+179,28/03/2026,Sudeste,Ana,Acessórios,Teclado Mecânico,350.0
+179,28/03/2026,Sudeste,Ana,Eletrodomésticos,Ar Condicionado,2200.0
+180,07/03/2026,Sul,Diego,Eletrodomésticos,Geladeira,3800.0
+181,21/03/2026,Nordeste,Elena,Eletrônicos,Notebook,4500.0
+181,21/03/2026,Nordeste,Elena,Eletrônicos,Monitor 24,1200.0
+181,21/03/2026,Nordeste,Elena,Eletrodomésticos,Máquina de Lavar,2900.0
+181,21/03/2026,Nordeste,Elena,Eletrodomésticos,Airfryer,450.0
+182,26/03/2026,Nordeste,Bruno,Móveis,Cadeira Office,800.0
+183,07/03/2026,Nordeste,Bruno,Eletrônicos,Tablet,1800.0
+183,07/03/2026,Nordeste,Bruno,Acessórios,Capa Tablet,100.0
+183,07/03/2026,Nordeste,Bruno,Acessórios,Mouse Gamer,150.0
+184,09/03/2026,Sul,Bruno,Acessórios,Capa Tablet,100.0
+184,09/03/2026,Sul,Bruno,Acessórios,Mouse Gamer,150.0
+185,05/03/2026,Sul,Carla,Eletrônicos,Notebook,4500.0
+185,05/03/2026,Sul,Carla,Eletrônicos,Monitor 24,1200.0
+185,05/03/2026,Sul,Carla,Acessórios,Mouse Gamer,150.0
+186,06/03/2026,Sudeste,Ana,Eletrônicos,Tablet,1800.0
+187,17/03/2026,Sul,Ana,Móveis,Painel TV,400.0
+187,17/03/2026,Sul,Ana,Móveis,Mesa de Jantar,1500.0
+188,04/03/2026,Sudeste,Elena,Móveis,Painel TV,400.0
+188,04/03/2026,Sudeste,Elena,Eletrodomésticos,Cafeteira,350.0
+189,15/03/2026,Nordeste,Ana,Móveis,Sofá 3 Lugares,2100.0
+190,28/03/2026,Sudeste,Diego,Eletrodomésticos,Airfryer,450.0
+190,28/03/2026,Sudeste,Diego,Eletrodomésticos,Micro-ondas,700.0
+190,28/03/2026,Sudeste,Diego,Acessórios,Fone Bluetooth,200.0
+191,29/03/2026,Sul,Carla,Eletrônicos,Notebook,4500.0
+191,29/03/2026,Sul,Carla,Eletrônicos,Monitor 24,1200.0
+191,29/03/2026,Sul,Carla,Móveis,Mesa de Jantar,1500.0
+192,18/03/2026,Nordeste,Carla,Eletrônicos,Notebook,4500.0
+192,18/03/2026,Nordeste,Carla,Eletrônicos,Monitor 24,1200.0
+193,15/03/2026,Nordeste,Elena,Acessórios,Capa Tablet,100.0
+193,15/03/2026,Nordeste,Elena,Móveis,Cadeira Office,800.0
+194,24/03/2026,Sul,Diego,Eletrônicos,Notebook,4500.0
+194,24/03/2026,Sul,Diego,Eletrônicos,Monitor 24,1200.0
+195,27/03/2026,Sudeste,Diego,Eletrodomésticos,Airfryer,450.0
+195,27/03/2026,Sudeste,Diego,Eletrodomésticos,Micro-ondas,700.0
+196,11/03/2026,Nordeste,Carla,Eletrodomésticos,Airfryer,450.0
+196,11/03/2026,Nordeste,Carla,Eletrodomésticos,Micro-ondas,700.0
+197,03/03/2026,Sul,Ana,Acessórios,Capa Tablet,100.0
+198,24/03/2026,Nordeste,Carla,Móveis,Sofá 3 Lugares,2100.0
+198,24/03/2026,Nordeste,Carla,Móveis,Painel TV,400.0
+198,24/03/2026,Nordeste,Carla,Móveis,Cadeira Office,800.0
+199,18/03/2026,Sudeste,Ana,Eletrônicos,Tablet,1800.0
+199,18/03/2026,Sudeste,Ana,Acessórios,Teclado Mecânico,350.0
+200,31/03/2026,Sudeste,Elena,Móveis,Sofá 3 Lugares,2100.0
+200,31/03/2026,Sudeste,Elena,Móveis,Painel TV,400.0
+201,07/03/2026,Sul,Diego,Móveis,Sofá 3 Lugares,2100.0
+201,07/03/2026,Sul,Diego,Móveis,Painel TV,400.0
+202,12/03/2026,Sul,Carla,Móveis,Cadeira Office,800.0
+202,12/03/2026,Sul,Carla,Acessórios,Mouse Gamer,150.0
+203,20/03/2026,Nordeste,Carla,Eletrodomésticos,Ar Condicionado,2200.0
+204,23/03/2026,Sudeste,Carla,Eletrônicos,Tablet,1800.0
+204,23/03/2026,Sudeste,Carla,Acessórios,Capa Tablet,100.0
+205,19/03/2026,Nordeste,Diego,Acessórios,Mouse Gamer,150.0
+206,03/03/2026,Nordeste,Elena,Eletrônicos,Notebook,4500.0
+206,03/03/2026,Nordeste,Elena,Eletrônicos,Monitor 24,1200.0
+207,06/03/2026,Sudeste,Carla,Móveis,Mesa de Jantar,1500.0
+207,06/03/2026,Sudeste,Carla,Acessórios,Fone Bluetooth,200.0
+207,06/03/2026,Sudeste,Carla,Acessórios,Teclado Mecânico,350.0
+208,05/03/2026,Sul,Elena,Acessórios,Fone Bluetooth,200.0
+209,09/03/2026,Sudeste,Diego,Eletrônicos,Notebook,4500.0
+209,09/03/2026,Sudeste,Diego,Eletrônicos,Monitor 24,1200.0
+210,07/03/2026,Nordeste,Ana,Móveis,Sofá 3 Lugares,2100.0
+210,07/03/2026,Nordeste,Ana,Móveis,Painel TV,400.0
+211,16/03/2026,Nordeste,Carla,Eletrônicos,Monitor 24,1200.0
+212,20/03/2026,Sul,Ana,Eletrodomésticos,Airfryer,450.0
+212,20/03/2026,Sul,Ana,Eletrodomésticos,Ar Condicionado,2200.0
+213,10/03/2026,Sudeste,Ana,Eletrônicos,Tablet,1800.0
+214,06/03/2026,Sul,Diego,Móveis,Sofá 3 Lugares,2100.0
+214,06/03/2026,Sul,Diego,Móveis,Painel TV,400.0
+215,27/03/2026,Nordeste,Carla,Acessórios,Teclado Mecânico,350.0
+216,14/03/2026,Sul,Diego,Móveis,Mesa de Jantar,1500.0
+216,14/03/2026,Sul,Diego,Eletrônicos,Tablet,1800.0
+216,14/03/2026,Sul,Diego,Eletrônicos,Monitor 24,1200.0
+216,14/03/2026,Sul,Diego,Eletrodomésticos,Cafeteira,350.0
+217,04/03/2026,Sudeste,Ana,Móveis,Sofá 3 Lugares,2100.0
+217,04/03/2026,Sudeste,Ana,Móveis,Painel TV,400.0
+217,04/03/2026,Sudeste,Ana,Cozinha,Jogo de Panelas,600.0
+217,04/03/2026,Sudeste,Ana,Eletrônicos,Smartphone,2500.0
+218,03/03/2026,Sudeste,Ana,Móveis,Sofá 3 Lugares,2100.0
+218,03/03/2026,Sudeste,Ana,Móveis,Painel TV,400.0
+219,03/03/2026,Sudeste,Carla,Eletrônicos,Tablet,1800.0
+219,03/03/2026,Sudeste,Carla,Acessórios,Capa Tablet,100.0
+219,03/03/2026,Sudeste,Carla,Acessórios,Fone Bluetooth,200.0
+220,17/03/2026,Nordeste,Ana,Eletrônicos,Notebook,4500.0
+220,17/03/2026,Nordeste,Ana,Eletrônicos,Monitor 24,1200.0
+221,12/03/2026,Nordeste,Bruno,Eletrônicos,Tablet,1800.0
+221,12/03/2026,Nordeste,Bruno,Acessórios,Capa Tablet,100.0
+222,06/03/2026,Nordeste,Bruno,Eletrodomésticos,Micro-ondas,700.0
+222,06/03/2026,Nordeste,Bruno,Móveis,Sofá 3 Lugares,2100.0
+222,06/03/2026,Nordeste,Bruno,Cozinha,Jogo de Panelas,600.0
+223,25/03/2026,Nordeste,Elena,Móveis,Mesa de Jantar,1500.0
+223,25/03/2026,Nordeste,Elena,Eletrônicos,Notebook,4500.0
+224,28/03/2026,Nordeste,Carla,Acessórios,Fone Bluetooth,200.0
+225,16/03/2026,Sudeste,Carla,Eletrônicos,Notebook,4500.0
+225,16/03/2026,Sudeste,Carla,Eletrônicos,Monitor 24,1200.0
+225,16/03/2026,Sudeste,Carla,Móveis,Painel TV,400.0
+226,03/03/2026,Sudeste,Diego,Eletrônicos,Notebook,4500.0
+226,03/03/2026,Sudeste,Diego,Eletrônicos,Monitor 24,1200.0
+227,03/03/2026,Nordeste,Ana,Eletrodomésticos,Airfryer,450.0
+227,03/03/2026,Nordeste,Ana,Eletrodomésticos,Micro-ondas,700.0
+227,03/03/2026,Nordeste,Ana,Móveis,Mesa de Jantar,1500.0
+228,18/03/2026,Nordeste,Ana,Eletrodomésticos,Geladeira,3800.0
+228,18/03/2026,Nordeste,Ana,Eletrônicos,Notebook,4500.0
+229,20/03/2026,Sudeste,Elena,Acessórios,Teclado Mecânico,350.0
+230,15/03/2026,Sul,Carla,Eletrônicos,Tablet,1800.0
+230,15/03/2026,Sul,Carla,Acessórios,Capa Tablet,100.0
+230,15/03/2026,Sul,Carla,Acessórios,Teclado Mecânico,350.0
+230,15/03/2026,Sul,Carla,Eletrodomésticos,Máquina de Lavar,2900.0
+231,23/03/2026,Sudeste,Diego,Eletrônicos,Smartphone,2500.0
+231,23/03/2026,Sudeste,Diego,Eletrodomésticos,Cafeteira,350.0
+232,13/03/2026,Sudeste,Carla,Eletrônicos,Notebook,4500.0
+232,13/03/2026,Sudeste,Carla,Eletrônicos,Monitor 24,1200.0
+232,13/03/2026,Sudeste,Carla,Acessórios,Fone Bluetooth,200.0
+233,11/03/2026,Sul,Elena,Móveis,Sofá 3 Lugares,2100.0
+233,11/03/2026,Sul,Elena,Móveis,Painel TV,400.0
+233,11/03/2026,Sul,Elena,Eletrodomésticos,Airfryer,450.0
+234,11/03/2026,Sul,Elena,Eletrodomésticos,Cafeteira,350.0
+234,11/03/2026,Sul,Elena,Eletrônicos,Monitor 24,1200.0
+234,11/03/2026,Sul,Elena,Eletrodomésticos,Airfryer,450.0
+235,20/03/2026,Nordeste,Ana,Eletrônicos,Notebook,4500.0
+235,20/03/2026,Nordeste,Ana,Eletrônicos,Monitor 24,1200.0
+236,27/03/2026,Sul,Elena,Eletrônicos,Tablet,1800.0
+237,17/03/2026,Sudeste,Ana,Eletrônicos,Tablet,1800.0
+237,17/03/2026,Sudeste,Ana,Acessórios,Capa Tablet,100.0
+238,11/03/2026,Sudeste,Bruno,Acessórios,Mouse Gamer,150.0
+238,11/03/2026,Sudeste,Bruno,Acessórios,Teclado Mecânico,350.0
+239,10/03/2026,Sul,Elena,Móveis,Painel TV,400.0
+239,10/03/2026,Sul,Elena,Acessórios,Teclado Mecânico,350.0
+239,10/03/2026,Sul,Elena,Eletrônicos,Notebook,4500.0
+240,29/03/2026,Nordeste,Bruno,Eletrônicos,Tablet,1800.0
+240,29/03/2026,Nordeste,Bruno,Acessórios,Capa Tablet,100.0
+241,27/03/2026,Nordeste,Elena,Eletrodomésticos,Airfryer,450.0
+241,27/03/2026,Nordeste,Elena,Eletrodomésticos,Micro-ondas,700.0
+241,27/03/2026,Nordeste,Elena,Acessórios,Teclado Mecânico,350.0
+242,14/03/2026,Sudeste,Bruno,Cozinha,Jogo de Panelas,600.0
+242,14/03/2026,Sudeste,Bruno,Eletrodomésticos,Máquina de Lavar,2900.0
+242,14/03/2026,Sudeste,Bruno,Móveis,Cadeira Office,800.0
+242,14/03/2026,Sudeste,Bruno,Eletrodomésticos,Cafeteira,350.0
+243,31/03/2026,Sudeste,Bruno,Cozinha,Jogo de Panelas,600.0
+243,31/03/2026,Sudeste,Bruno,Eletrodomésticos,Cafeteira,350.0
+244,25/03/2026,Sudeste,Elena,Eletrodomésticos,Geladeira,3800.0
+244,25/03/2026,Sudeste,Elena,Eletrodomésticos,Airfryer,450.0
+245,28/03/2026,Sudeste,Ana,Móveis,Cadeira Office,800.0
+245,28/03/2026,Sudeste,Ana,Acessórios,Capa Tablet,100.0
+245,28/03/2026,Sudeste,Ana,Móveis,Painel TV,400.0
+246,28/03/2026,Sul,Carla,Eletrodomésticos,Micro-ondas,700.0
+247,09/03/2026,Sudeste,Elena,Eletrônicos,Tablet,1800.0
+248,03/03/2026,Sul,Diego,Eletrônicos,Tablet,1800.0
+248,03/03/2026,Sul,Diego,Acessórios,Teclado Mecânico,350.0
+248,03/03/2026,Sul,Diego,Eletrônicos,Monitor 24,1200.0
+249,17/03/2026,Sudeste,Bruno,Eletrônicos,Tablet,1800.0
+249,17/03/2026,Sudeste,Bruno,Acessórios,Capa Tablet,100.0
+250,01/03/2026,Sudeste,Ana,Eletrodomésticos,Airfryer,450.0
+250,01/03/2026,Sudeste,Ana,Acessórios,Teclado Mecânico,350.0
+250,01/03/2026,Sudeste,Ana,Eletrodomésticos,Cafeteira,350.0
+251,30/03/2026,Sudeste,Bruno,Móveis,Sofá 3 Lugares,2100.0
+251,30/03/2026,Sudeste,Bruno,Móveis,Painel TV,400.0
+251,30/03/2026,Sudeste,Bruno,Acessórios,Mouse Gamer,150.0
+252,29/03/2026,Sul,Ana,Móveis,Cadeira Office,800.0
+252,29/03/2026,Sul,Ana,Móveis,Painel TV,400.0
+253,14/03/2026,Sul,Carla,Eletrônicos,Tablet,1800.0
+253,14/03/2026,Sul,Carla,Acessórios,Capa Tablet,100.0
+254,14/03/2026,Nordeste,Elena,Eletrodomésticos,Airfryer,450.0
+254,14/03/2026,Nordeste,Elena,Eletrodomésticos,Micro-ondas,700.0
+255,20/03/2026,Nordeste,Ana,Eletrônicos,Tablet,1800.0
+255,20/03/2026,Nordeste,Ana,Acessórios,Capa Tablet,100.0
+255,20/03/2026,Nordeste,Ana,Eletrodomésticos,Cafeteira,350.0
+256,14/03/2026,Sul,Elena,Eletrônicos,Tablet,1800.0
+256,14/03/2026,Sul,Elena,Acessórios,Capa Tablet,100.0
+257,22/03/2026,Nordeste,Ana,Móveis,Sofá 3 Lugares,2100.0
+257,22/03/2026,Nordeste,Ana,Móveis,Painel TV,400.0
+258,18/03/2026,Nordeste,Elena,Eletrodomésticos,Airfryer,450.0
+258,18/03/2026,Nordeste,Elena,Eletrodomésticos,Micro-ondas,700.0
+259,02/03/2026,Nordeste,Diego,Acessórios,Mouse Gamer,150.0
+259,02/03/2026,Nordeste,Diego,Acessórios,Teclado Mecânico,350.0
+259,02/03/2026,Nordeste,Diego,Eletrônicos,Smartphone,2500.0
+259,02/03/2026,Nordeste,Diego,Acessórios,Fone Bluetooth,200.0
+260,12/03/2026,Sul,Ana,Eletrônicos,Notebook,4500.0
+260,12/03/2026,Sul,Ana,Eletrodomésticos,Airfryer,450.0
+260,12/03/2026,Sul,Ana,Acessórios,Teclado Mecânico,350.0
+261,12/03/2026,Nordeste,Carla,Eletrodomésticos,Airfryer,450.0
+261,12/03/2026,Nordeste,Carla,Eletrodomésticos,Micro-ondas,700.0
+261,12/03/2026,Nordeste,Carla,Móveis,Sofá 3 Lugares,2100.0
+262,21/03/2026,Sul,Bruno,Cozinha,Jogo de Panelas,600.0
+263,02/03/2026,Sudeste,Bruno,Eletrodomésticos,Geladeira,3800.0
+264,29/03/2026,Sul,Carla,Móveis,Sofá 3 Lugares,2100.0
+264,29/03/2026,Sul,Carla,Móveis,Painel TV,400.0
+264,29/03/2026,Sul,Carla,Eletrodomésticos,Ar Condicionado,2200.0
+264,29/03/2026,Sul,Carla,Acessórios,Teclado Mecânico,350.0
+265,25/03/2026,Nordeste,Bruno,Acessórios,Teclado Mecânico,350.0
+265,25/03/2026,Nordeste,Bruno,Eletrônicos,Notebook,4500.0
+266,09/03/2026,Sul,Carla,Eletrodomésticos,Airfryer,450.0
+266,09/03/2026,Sul,Carla,Eletrodomésticos,Micro-ondas,700.0
+267,29/03/2026,Sudeste,Carla,Eletrodomésticos,Airfryer,450.0
+267,29/03/2026,Sudeste,Carla,Eletrodomésticos,Micro-ondas,700.0
+267,29/03/2026,Sudeste,Carla,Eletrônicos,Smartphone,2500.0
+267,29/03/2026,Sudeste,Carla,Móveis,Painel TV,400.0
+268,09/03/2026,Sul,Diego,Eletrodomésticos,Micro-ondas,700.0
+269,18/03/2026,Sudeste,Carla,Eletrônicos,Notebook,4500.0
+270,22/03/2026,Sudeste,Carla,Eletrodomésticos,Micro-ondas,700.0
+270,22/03/2026,Sudeste,Carla,Cozinha,Jogo de Panelas,600.0
+271,12/03/2026,Sudeste,Ana,Eletrônicos,Tablet,1800.0
+271,12/03/2026,Sudeste,Ana,Eletrodomésticos,Ar Condicionado,2200.0
+271,12/03/2026,Sudeste,Ana,Acessórios,Teclado Mecânico,350.0
+272,03/03/2026,Nordeste,Diego,Eletrodomésticos,Micro-ondas,700.0
+272,03/03/2026,Nordeste,Diego,Acessórios,Mouse Gamer,150.0
+273,05/03/2026,Nordeste,Diego,Acessórios,Fone Bluetooth,200.0
+274,08/03/2026,Nordeste,Carla,Acessórios,Teclado Mecânico,350.0
+274,08/03/2026,Nordeste,Carla,Eletrodomésticos,Airfryer,450.0
+275,22/03/2026,Sudeste,Carla,Móveis,Mesa de Jantar,1500.0
+275,22/03/2026,Sudeste,Carla,Eletrodomésticos,Airfryer,450.0
+276,17/03/2026,Sudeste,Diego,Acessórios,Mouse Gamer,150.0
+276,17/03/2026,Sudeste,Diego,Acessórios,Teclado Mecânico,350.0
+277,01/03/2026,Nordeste,Bruno,Móveis,Sofá 3 Lugares,2100.0
+277,01/03/2026,Nordeste,Bruno,Móveis,Painel TV,400.0
+278,04/03/2026,Sudeste,Carla,Móveis,Sofá 3 Lugares,2100.0
+278,04/03/2026,Sudeste,Carla,Móveis,Painel TV,400.0
+278,04/03/2026,Sudeste,Carla,Eletrodomésticos,Cafeteira,350.0
+279,23/03/2026,Sudeste,Bruno,Acessórios,Fone Bluetooth,200.0
+280,15/03/2026,Sul,Diego,Eletrônicos,Notebook,4500.0
+280,15/03/2026,Sul,Diego,Eletrônicos,Smartphone,2500.0
+280,15/03/2026,Sul,Diego,Acessórios,Fone Bluetooth,200.0
+280,15/03/2026,Sul,Diego,Móveis,Cadeira Office,800.0
+281,18/03/2026,Sudeste,Carla,Eletrodomésticos,Micro-ondas,700.0
+281,18/03/2026,Sudeste,Carla,Eletrônicos,Smartphone,2500.0
+281,18/03/2026,Sudeste,Carla,Móveis,Painel TV,400.0
+282,08/03/2026,Sul,Bruno,Eletrodomésticos,Airfryer,450.0
+282,08/03/2026,Sul,Bruno,Eletrodomésticos,Micro-ondas,700.0
+282,08/03/2026,Sul,Bruno,Acessórios,Mouse Gamer,150.0
+283,12/03/2026,Nordeste,Elena,Móveis,Cadeira Office,800.0
+283,12/03/2026,Nordeste,Elena,Eletrodomésticos,Airfryer,450.0
+284,20/03/2026,Sul,Ana,Móveis,Sofá 3 Lugares,2100.0
+284,20/03/2026,Sul,Ana,Móveis,Painel TV,400.0
+285,14/03/2026,Sudeste,Elena,Eletrônicos,Notebook,4500.0
+286,21/03/2026,Sul,Diego,Eletrônicos,Tablet,1800.0
+286,21/03/2026,Sul,Diego,Acessórios,Capa Tablet,100.0
+287,29/03/2026,Nordeste,Elena,Eletrodomésticos,Airfryer,450.0
+288,14/03/2026,Nordeste,Ana,Eletrônicos,Notebook,4500.0
+288,14/03/2026,Nordeste,Ana,Eletrônicos,Monitor 24,1200.0
+288,14/03/2026,Nordeste,Ana,Eletrodomésticos,Micro-ondas,700.0
+289,06/03/2026,Sudeste,Bruno,Eletrodomésticos,Cafeteira,350.0
+289,06/03/2026,Sudeste,Bruno,Acessórios,Fone Bluetooth,200.0
+290,09/03/2026,Sul,Elena,Móveis,Cadeira Office,800.0
+290,09/03/2026,Sul,Elena,Acessórios,Fone Bluetooth,200.0
+291,17/03/2026,Nordeste,Bruno,Eletrônicos,Tablet,1800.0
+291,17/03/2026,Nordeste,Bruno,Acessórios,Capa Tablet,100.0
+292,22/03/2026,Nordeste,Elena,Acessórios,Teclado Mecânico,350.0
+292,22/03/2026,Nordeste,Elena,Acessórios,Mouse Gamer,150.0
+293,03/03/2026,Sul,Elena,Móveis,Sofá 3 Lugares,2100.0
+293,03/03/2026,Sul,Elena,Móveis,Painel TV,400.0
+294,14/03/2026,Nordeste,Ana,Eletrodomésticos,Cafeteira,350.0
+294,14/03/2026,Nordeste,Ana,Móveis,Sofá 3 Lugares,2100.0
+295,08/03/2026,Nordeste,Diego,Acessórios,Mouse Gamer,150.0
+295,08/03/2026,Nordeste,Diego,Acessórios,Teclado Mecânico,350.0
+296,06/03/2026,Sudeste,Diego,Móveis,Sofá 3 Lugares,2100.0
+296,06/03/2026,Sudeste,Diego,Móveis,Painel TV,400.0
+297,05/03/2026,Sudeste,Carla,Eletrônicos,Monitor 24,1200.0
+297,05/03/2026,Sudeste,Carla,Eletrodomésticos,Airfryer,450.0
+297,05/03/2026,Sudeste,Carla,Eletrônicos,Smartphone,2500.0
+298,17/03/2026,Nordeste,Ana,Eletrônicos,Notebook,4500.0
+298,17/03/2026,Nordeste,Ana,Eletrônicos,Monitor 24,1200.0
+299,15/03/2026,Sul,Bruno,Eletrodomésticos,Cafeteira,350.0
+300,31/03/2026,Sudeste,Elena,Eletrodomésticos,Micro-ondas,700.0
+300,31/03/2026,Sudeste,Elena,Eletrônicos,Notebook,4500.0

@@ -3,7 +3,7 @@
 <html lang="en">
 <head><meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>dw_extraction jupter</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
+<title>Laboratorio_5_Lucas_E_Luis</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <style type="text/css">
     pre { line-height: 125%; }
 td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
@@ -7312,7 +7312,6 @@ a.anchor-link {
                     processEnvironments: true
                 },
                 displayAlign: 'center',
-                messageStyle: 'none',
                 CommonHTML: {
                     linebreaks: {
                     automatic: true
@@ -7332,12 +7331,7 @@ a.anchor-link {
     if (!diagrams.length) {
       return;
     }
-    const mermaid = (await import("https://cdnjs.cloudflare.com/ajax/libs/mermaid/11.10.0/mermaid.esm.min.mjs")).default;
-    const elkUrl = "https://cdnjs.cloudflare.com/ajax/libs/mermaid-layout-elk/0.1.9/mermaid-layout-elk.esm.min.mjs";
-    if(elkUrl) {
-      const elkLayouts = (await import(elkUrl)).default;
-      mermaid.registerLayoutLoaders(elkLayouts);
-    }
+    const mermaid = (await import("https://cdnjs.cloudflare.com/ajax/libs/mermaid/10.7.0/mermaid.esm.min.mjs")).default;
     const parser = new DOMParser();
 
     mermaid.initialize({
@@ -7434,8 +7428,7 @@ a.anchor-link {
      * Post-process to ensure mermaid diagrams contain only valid SVG and XHTML.
      */
     function cleanMermaidSvg(svg) {
-      svg = svg.replace(RE_VOID_ELEMENT, replaceVoidElement);
-      return `${SVG_XML_HEADER}${svg}`;
+      return svg.replace(RE_VOID_ELEMENT, replaceVoidElement);
     }
 
 
@@ -7461,285 +7454,6 @@ a.anchor-link {
       }
       return `<${tag} ${rest}>`;
     }
-
-
-  /**
-   * Named HTML entities with their decimal equivalent codes.
-   *
-   * @see https://www.w3.org/TR/WD-html40-970708/sgml/entities.html
-   * */
-  const HTML_ENTITIES = `<!ENTITY Aacute "&#193;">
-<!ENTITY aacute "&#225;">
-<!ENTITY Acirc "&#194;">
-<!ENTITY acirc "&#226;">
-<!ENTITY acute "&#180;">
-<!ENTITY AElig "&#198;">
-<!ENTITY aelig "&#230;">
-<!ENTITY Agrave "&#192;">
-<!ENTITY agrave "&#224;">
-<!ENTITY alefsym "&#8501;">
-<!ENTITY Alpha "&#913;">
-<!ENTITY alpha "&#945;">
-<!ENTITY amp "&#38;">
-<!ENTITY and "&#8869;">
-<!ENTITY ang "&#8736;">
-<!ENTITY Aring "&#197;">
-<!ENTITY aring "&#229;">
-<!ENTITY asymp "&#8776;">
-<!ENTITY Atilde "&#195;">
-<!ENTITY atilde "&#227;">
-<!ENTITY Auml "&#196;">
-<!ENTITY auml "&#228;">
-<!ENTITY bdquo "&#8222;">
-<!ENTITY Beta "&#914;">
-<!ENTITY beta "&#946;">
-<!ENTITY brvbar "&#166;">
-<!ENTITY bull "&#8226;">
-<!ENTITY cap "&#8745;">
-<!ENTITY Ccedil "&#199;">
-<!ENTITY ccedil "&#231;">
-<!ENTITY cedil "&#184;">
-<!ENTITY cent "&#162;">
-<!ENTITY Chi "&#935;">
-<!ENTITY chi "&#967;">
-<!ENTITY circ "&#710;">
-<!ENTITY clubs "&#9827;">
-<!ENTITY cong "&#8773;">
-<!ENTITY copy "&#169;">
-<!ENTITY crarr "&#8629;">
-<!ENTITY cup "&#8746;">
-<!ENTITY curren "&#164;">
-<!ENTITY dagger "&#8224;">
-<!ENTITY Dagger "&#8225;">
-<!ENTITY darr "&#8595;">
-<!ENTITY dArr "&#8659;">
-<!ENTITY deg "&#176;">
-<!ENTITY Delta "&#916;">
-<!ENTITY delta "&#948;">
-<!ENTITY diams "&#9830;">
-<!ENTITY divide "&#247;">
-<!ENTITY Eacute "&#201;">
-<!ENTITY eacute "&#233;">
-<!ENTITY Ecirc "&#202;">
-<!ENTITY ecirc "&#234;">
-<!ENTITY Egrave "&#200;">
-<!ENTITY egrave "&#232;">
-<!ENTITY empty "&#8709;">
-<!ENTITY emsp "&#8195;">
-<!ENTITY ensp "&#8194;">
-<!ENTITY epsilon "&#949;">
-<!ENTITY Epsilon "&#917;">
-<!ENTITY equiv "&#8801;">
-<!ENTITY Eta "&#919;">
-<!ENTITY eta "&#951;">
-<!ENTITY ETH "&#208;">
-<!ENTITY eth "&#240;">
-<!ENTITY Euml "&#203;">
-<!ENTITY euml "&#235;">
-<!ENTITY exist "&#8707;">
-<!ENTITY fnof "&#402;">
-<!ENTITY forall "&#8704;">
-<!ENTITY frac12 "&#189;">
-<!ENTITY frac14 "&#188;">
-<!ENTITY frac34 "&#190;">
-<!ENTITY frasl "&#8260;">
-<!ENTITY Gamma "&#915;">
-<!ENTITY gamma "&#947;">
-<!ENTITY ge "&#8805;">
-<!ENTITY gt "&#62;">
-<!ENTITY harr "&#8596;">
-<!ENTITY hArr "&#8660;">
-<!ENTITY hearts "&#9829;">
-<!ENTITY hellip "&#8230;">
-<!ENTITY Iacute "&#205;">
-<!ENTITY iacute "&#237;">
-<!ENTITY Icirc "&#206;">
-<!ENTITY icirc "&#238;">
-<!ENTITY iexcl "&#161;">
-<!ENTITY Igrave "&#204;">
-<!ENTITY igrave "&#236;">
-<!ENTITY image "&#8465;">
-<!ENTITY infin "&#8734;">
-<!ENTITY int "&#8747;">
-<!ENTITY Iota "&#921;">
-<!ENTITY iota "&#953;">
-<!ENTITY iquest "&#191;">
-<!ENTITY isin "&#8712;">
-<!ENTITY Iuml "&#207;">
-<!ENTITY iuml "&#239;">
-<!ENTITY Kappa "&#922;">
-<!ENTITY kappa "&#954;">
-<!ENTITY Lambda "&#923;">
-<!ENTITY lambda "&#955;">
-<!ENTITY lang "&#9001;">
-<!ENTITY laquo "&#171;">
-<!ENTITY larr "&#8592;">
-<!ENTITY lArr "&#8656;">
-<!ENTITY lceil "&#8968;">
-<!ENTITY ldquo "&#8220;">
-<!ENTITY le "&#8804;">
-<!ENTITY lfloor "&#8970;">
-<!ENTITY lowast "&#8727;">
-<!ENTITY loz "&#9674;">
-<!ENTITY lrm "&#8206;">
-<!ENTITY lsaquo "&#8249;">
-<!ENTITY lsquo "&#8216;">
-<!ENTITY lt "&#60;">
-<!ENTITY macr "&#175;">
-<!ENTITY mdash "&#8212;">
-<!ENTITY micro "&#181;">
-<!ENTITY middot "&#183;">
-<!ENTITY minus "&#8722;">
-<!ENTITY Mu "&#924;">
-<!ENTITY mu "&#956;">
-<!ENTITY nabla "&#8711;">
-<!ENTITY nbsp "&#160;">
-<!ENTITY ndash "&#8211;">
-<!ENTITY ne "&#8800;">
-<!ENTITY ni "&#8715;">
-<!ENTITY not "&#172;">
-<!ENTITY notin "&#8713;">
-<!ENTITY nsub "&#8836;">
-<!ENTITY Ntilde "&#209;">
-<!ENTITY ntilde "&#241;">
-<!ENTITY Nu "&#925;">
-<!ENTITY nu "&#957;">
-<!ENTITY Oacute "&#211;">
-<!ENTITY oacute "&#243;">
-<!ENTITY Ocirc "&#212;">
-<!ENTITY ocirc "&#244;">
-<!ENTITY OElig "&#338;">
-<!ENTITY oelig "&#339;">
-<!ENTITY Ograve "&#210;">
-<!ENTITY ograve "&#242;">
-<!ENTITY oline "&#8254;">
-<!ENTITY Omega "&#937;">
-<!ENTITY omega "&#969;">
-<!ENTITY Omicron "&#927;">
-<!ENTITY omicron "&#959;">
-<!ENTITY oplus "&#8853;">
-<!ENTITY or "&#8870;">
-<!ENTITY ordf "&#170;">
-<!ENTITY ordm "&#186;">
-<!ENTITY Oslash "&#216;">
-<!ENTITY oslash "&#248;">
-<!ENTITY Otilde "&#213;">
-<!ENTITY otilde "&#245;">
-<!ENTITY otimes "&#8855;">
-<!ENTITY Ouml "&#214;">
-<!ENTITY ouml "&#246;">
-<!ENTITY para "&#182;">
-<!ENTITY part "&#8706;">
-<!ENTITY permil "&#8240;">
-<!ENTITY perp "&#8869;">
-<!ENTITY Phi "&#934;">
-<!ENTITY phi "&#966;">
-<!ENTITY Pi "&#928;">
-<!ENTITY pi "&#960;">
-<!ENTITY piv "&#982;">
-<!ENTITY plusmn "&#177;">
-<!ENTITY pound "&#163;">
-<!ENTITY prime "&#8242;">
-<!ENTITY Prime "&#8243;">
-<!ENTITY prod "&#8719;">
-<!ENTITY prop "&#8733;">
-<!ENTITY Psi "&#936;">
-<!ENTITY psi "&#968;">
-<!ENTITY quot "&#34;">
-<!ENTITY radic "&#8730;">
-<!ENTITY rang "&#9002;">
-<!ENTITY raquo "&#187;">
-<!ENTITY rarr "&#8594;">
-<!ENTITY rArr "&#8658;">
-<!ENTITY rceil "&#8969;">
-<!ENTITY rdquo "&#8221;">
-<!ENTITY real "&#8476;">
-<!ENTITY reg "&#174;">
-<!ENTITY rfloor "&#8971;">
-<!ENTITY Rho "&#929;">
-<!ENTITY rho "&#961;">
-<!ENTITY rlm "&#8207;">
-<!ENTITY rsaquo "&#8250;">
-<!ENTITY rsquo "&#8217;">
-<!ENTITY sbquo "&#8218;">
-<!ENTITY Scaron "&#352;">
-<!ENTITY scaron "&#353;">
-<!ENTITY sdot "&#8901;">
-<!ENTITY sect "&#167;">
-<!ENTITY shy "&#173;">
-<!ENTITY Sigma "&#931;">
-<!ENTITY sigma "&#963;">
-<!ENTITY sigmaf "&#962;">
-<!ENTITY sim "&#8764;">
-<!ENTITY spades "&#9824;">
-<!ENTITY sub "&#8834;">
-<!ENTITY sube "&#8838;">
-<!ENTITY sum "&#8721;">
-<!ENTITY sup "&#8835;">
-<!ENTITY sup1 "&#185;">
-<!ENTITY sup2 "&#178;">
-<!ENTITY sup3 "&#179;">
-<!ENTITY supe "&#8839;">
-<!ENTITY szlig "&#223;">
-<!ENTITY Tau "&#932;">
-<!ENTITY tau "&#964;">
-<!ENTITY there4 "&#8756;">
-<!ENTITY Theta "&#920;">
-<!ENTITY theta "&#952;">
-<!ENTITY thetasym "&#977;">
-<!ENTITY thinsp "&#8201;">
-<!ENTITY THORN "&#222;">
-<!ENTITY thorn "&#254;">
-<!ENTITY tilde "&#732;">
-<!ENTITY times "&#215;">
-<!ENTITY trade "&#8482;">
-<!ENTITY Uacute "&#218;">
-<!ENTITY uacute "&#250;">
-<!ENTITY uarr "&#8593;">
-<!ENTITY uArr "&#8657;">
-<!ENTITY Ucirc "&#219;">
-<!ENTITY ucirc "&#251;">
-<!ENTITY Ugrave "&#217;">
-<!ENTITY ugrave "&#249;">
-<!ENTITY uml "&#168;">
-<!ENTITY upsih "&#978;">
-<!ENTITY Upsilon "&#933;">
-<!ENTITY upsilon "&#965;">
-<!ENTITY Uuml "&#220;">
-<!ENTITY uuml "&#252;">
-<!ENTITY weierp "&#8472;">
-<!ENTITY Xi "&#926;">
-<!ENTITY xi "&#958;">
-<!ENTITY Yacute "&#221;">
-<!ENTITY yacute "&#253;">
-<!ENTITY yen "&#165;">
-<!ENTITY Yuml "&#376;">
-<!ENTITY yuml "&#255;">
-<!ENTITY Zeta "&#918;">
-<!ENTITY zeta "&#950;">
-<!ENTITY zwj "&#8205;">
-<!ENTITY zwnj "&#8204;">`.replace(/\n/g, ' ');
-
-  /**
-   * A reasonably strict xml declaration.
-   */
-  const XML_DECL = '<?xml version="1.0" standalone="no"?>';
-
-  /**
-   * The beginning of the XML doctype declaration.
-   */
-  const DOCTYPE_START = `<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd" [`;
-
-  /**
-   * The end of the XML docype declaration.
-   */
-  const DOCTYPE_END = ']>';
-
-  /**
-   * A full header for an SVG XML document.
-   */
-  const SVG_XML_HEADER = `${XML_DECL}
-    ${DOCTYPE_START}${HTML_ENTITIES}${DOCTYPE_END}`;
 
     void Promise.all([...diagrams].map(renderOneMarmaid));
   });
@@ -7795,168 +7509,1004 @@ a.anchor-link {
 </style>
 <!-- End of mermaid configuration --></head>
 <body class="jp-Notebook" data-jp-theme-light="true" data-jp-theme-name="JupyterLab Light">
-<main><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=ebfba562">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">=============================="</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">"ETAPA 1 - EXTRAÇÃO"</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">"=============================="</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=62441e4d">
+<main>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=2e6597e1">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h1 id="Interoperabilidade-T%C3%A9cnica:">Interoperabilidade Técnica:<a class="anchor-link" href="#Interoperabilidade-T%C3%A9cnica:">¶</a></h1><h1 id="Estamos-lendo-arquivos-CSV-de-sistemas-diferentes.">Estamos lendo arquivos CSV de sistemas diferentes.<a class="anchor-link" href="#Estamos-lendo-arquivos-CSV-de-sistemas-diferentes.">¶</a></h1>
+<h1 id="LABORAT%C3%93RIO-5-%E2%80%94-BI-e-Data-Mining-com-Python">LABORATÓRIO 5 — BI e Data Mining com Python<a class="anchor-link" href="#LABORAT%C3%93RIO-5-%E2%80%94-BI-e-Data-Mining-com-Python">¶</a></h1><p>Disciplina: Gestão de Sistemas de Informação<br/>
+Professor: Eduardo Max Amaro Amaral</p>
+<h2 id="Objetivo">Objetivo<a class="anchor-link" href="#Objetivo">¶</a></h2><p>Aplicar conceitos de OLAP (exploração multidimensional) e Mineração de Dados (regras de associação) utilizando Pandas sobre a nova base de 300 transações de vendas.</p>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=80e395b0">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=c804dc86">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [26]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">vendas</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">"vendas.csv"</span><span class="p">)</span>
-<span class="n">produtos</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">"produtos.csv"</span><span class="p">)</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">"PARTE 0 - CARGA DE DADOS"</span><span class="p">)</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">"base_vendas_transacional_300.csv"</span><span class="p">)</span>
+
+<span class="c1"># Normaliza a data mantendo apenas os 4 ultimos digitos do ano.</span>
+<span class="c1"># Isso preserva compatibilidade com bases antigas e com a base nova.</span>
+<span class="n">partes_data</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">"Data"</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">"/"</span><span class="p">,</span> <span class="n">expand</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="s2">"Data"</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span>
+    <span class="n">partes_data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="s2">"/"</span> <span class="o">+</span> <span class="n">partes_data</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="s2">"/"</span> <span class="o">+</span> <span class="n">partes_data</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="p">[</span><span class="o">-</span><span class="mi">4</span><span class="p">:],</span>
+    <span class="nb">format</span><span class="o">=</span><span class="s2">"</span><span class="si">%d</span><span class="s2">/%m/%Y"</span><span class="p">,</span>
+    <span class="n">errors</span><span class="o">=</span><span class="s2">"coerce"</span>
+<span class="p">)</span>
+
+<span class="k">if</span> <span class="n">df</span><span class="p">[</span><span class="s2">"Data"</span><span class="p">]</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span><span class="o">.</span><span class="n">any</span><span class="p">():</span>
+    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"Existem datas invalidas na nova base apos a normalizacao."</span><span class="p">)</span>
+
+<span class="n">display</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">Total de Registros:"</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=eabb9e3f">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
 </div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">display</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">=============================="</span><span class="p">)</span>
-<span class="n">display</span><span class="p">(</span><span class="s2">"ETAPA 2 - TRANSFORMAÇÃO"</span><span class="p">)</span>
-<span class="n">display</span><span class="p">(</span><span class="s2">"=============================="</span><span class="p">)</span>
-</pre></div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>PARTE 0 - CARGA DE DADOS
+</pre>
 </div>
 </div>
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output" data-mime-type="text/html" tabindex="0">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>ID_Transacao</th>
+<th>Data</th>
+<th>Regional</th>
+<th>Vendedor</th>
+<th>Categoria</th>
+<th>Produto</th>
+<th>Valor_Venda</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>0</th>
+<td>1</td>
+<td>2026-03-21</td>
+<td>Sul</td>
+<td>Ana</td>
+<td>Eletrônicos</td>
+<td>Tablet</td>
+<td>1800.0</td>
+</tr>
+<tr>
+<th>1</th>
+<td>1</td>
+<td>2026-03-21</td>
+<td>Sul</td>
+<td>Ana</td>
+<td>Acessórios</td>
+<td>Capa Tablet</td>
+<td>100.0</td>
+</tr>
+<tr>
+<th>2</th>
+<td>1</td>
+<td>2026-03-21</td>
+<td>Sul</td>
+<td>Ana</td>
+<td>Móveis</td>
+<td>Cadeira Office</td>
+<td>800.0</td>
+</tr>
+<tr>
+<th>3</th>
+<td>2</td>
+<td>2026-03-03</td>
+<td>Nordeste</td>
+<td>Diego</td>
+<td>Acessórios</td>
+<td>Fone Bluetooth</td>
+<td>200.0</td>
+</tr>
+<tr>
+<th>4</th>
+<td>3</td>
+<td>2026-03-07</td>
+<td>Sul</td>
+<td>Elena</td>
+<td>Móveis</td>
+<td>Sofá 3 Lugares</td>
+<td>2100.0</td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=5af1f672">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>
+Total de Registros: 701
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=e4b9a741">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h1 id="============================================================">============================================================<a class="anchor-link" href="#============================================================">¶</a></h1><h1 id="INTEROPERABILIDADE-SEM%C3%82NTICA">INTEROPERABILIDADE SEMÂNTICA<a class="anchor-link" href="#INTEROPERABILIDADE-SEM%C3%82NTICA">¶</a></h1><h1 id="O-SKU-%C3%A9-o-elo-de-liga%C3%A7%C3%A3o-entre-sistemas-que-%22falam-l%C3%ADnguas-diferentes%22.">O SKU é o elo de ligação entre sistemas que "falam línguas diferentes".<a class="anchor-link" href="#O-SKU-%C3%A9-o-elo-de-liga%C3%A7%C3%A3o-entre-sistemas-que-%22falam-l%C3%ADnguas-diferentes%22.">¶</a></h1><h1 id="Ele-garante-que-estamos-unindo-o-produto-correto-%C3%A0-venda-correta.">Ele garante que estamos unindo o produto correto à venda correta.<a class="anchor-link" href="#Ele-garante-que-estamos-unindo-o-produto-correto-%C3%A0-venda-correta.">¶</a></h1><h1 id="============================================================">============================================================<a class="anchor-link" href="#============================================================">¶</a></h1>
+<h1 id="Parte-1-%E2%80%94-OLAP-(Explora%C3%A7%C3%A3o-Multidimensional)">Parte 1 — OLAP (Exploração Multidimensional)<a class="anchor-link" href="#Parte-1-%E2%80%94-OLAP-(Explora%C3%A7%C3%A3o-Multidimensional)">¶</a></h1><p>Nesta seção aplicaremos operações típicas de OLAP utilizando Pandas:</p>
+<ul>
+<li>Drill-down → detalhamento hierárquico</li>
+<li>Slice → filtro em uma dimensão</li>
+<li>Dice → recorte multidimensional</li>
+</ul>
+<p>O objetivo é simular a navegação analítica sobre um cubo de dados.</p>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=3208ee7e">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=80f72778">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [27]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">dw</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">vendas</span><span class="p">,</span> <span class="n">produtos</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s2">"sku"</span><span class="p">)</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">"EXERCÍCIO 1.1 — DRILL-DOWN"</span><span class="p">)</span>
 
-<span class="n">display</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">Tabela após Merge (Integração):"</span><span class="p">)</span>
-<span class="n">display</span><span class="p">(</span><span class="n">dw</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+<span class="c1"># Agregação por Regional</span>
+<span class="n">faturamento_regional</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">"Regional"</span><span class="p">)[</span><span class="s2">"Valor_Venda"</span><span class="p">]</span>
+      <span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+      <span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">Faturamento por Regional:"</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">faturamento_regional</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=30854c79">
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>EXERCÍCIO 1.1 — DRILL-DOWN
+
+Faturamento por Regional:
+</pre>
+</div>
+</div>
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>Regional
+Sudeste     329300.0
+Nordeste    328550.0
+Sul         268150.0
+Name: Valor_Venda, dtype: float64</pre>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=050f8d45">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [28]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">"Drill-down da Regional Sudeste por Vendedor"</span><span class="p">)</span>
+
+<span class="n">sudeste</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s2">"Regional"</span><span class="p">]</span> <span class="o">==</span> <span class="s2">"Sudeste"</span><span class="p">]</span>
+
+<span class="n">faturamento_vendedor</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">sudeste</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">"Vendedor"</span><span class="p">)[</span><span class="s2">"Valor_Venda"</span><span class="p">]</span>
+           <span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+           <span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="n">display</span><span class="p">(</span><span class="n">faturamento_vendedor</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>Drill-down da Regional Sudeste por Vendedor
+</pre>
+</div>
+</div>
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>Vendedor
+Carla    92350.0
+Bruno    73650.0
+Ana      70500.0
+Diego    62550.0
+Elena    30250.0
+Name: Valor_Venda, dtype: float64</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=66daafd2">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h1 id="============================================================">============================================================<a class="anchor-link" href="#============================================================">¶</a></h1><h1 id="REGRA-DE-NEG%C3%93CIO---M%C3%89TRICA-DE-FATURAMENTO">REGRA DE NEGÓCIO - MÉTRICA DE FATURAMENTO<a class="anchor-link" href="#REGRA-DE-NEG%C3%93CIO---M%C3%89TRICA-DE-FATURAMENTO">¶</a></h1><h1 id="============================================================">============================================================<a class="anchor-link" href="#============================================================">¶</a></h1>
+<h2 id="Exerc%C3%ADcio-1.2-%E2%80%94-SLICE">Exercício 1.2 — SLICE<a class="anchor-link" href="#Exerc%C3%ADcio-1.2-%E2%80%94-SLICE">¶</a></h2><p>O Slice consiste em fixar uma dimensão e analisar apenas um subconjunto específico.</p>
+<p>Pergunta de Gestão:
+Qual foi o faturamento apenas da categoria "Eletrodomésticos"?</p>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=0f04c10d">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=068c03b8">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [29]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">dw</span><span class="p">[</span><span class="s2">"faturamento"</span><span class="p">]</span> <span class="o">=</span> <span class="n">dw</span><span class="p">[</span><span class="s2">"qtd"</span><span class="p">]</span> <span class="o">*</span> <span class="n">dw</span><span class="p">[</span><span class="s2">"preco"</span><span class="p">]</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">"EXERCÍCIO 1.2 — SLICE"</span><span class="p">)</span>
 
-<span class="n">display</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">Tabela com Faturamento Calculado:"</span><span class="p">)</span>
-<span class="n">display</span><span class="p">(</span><span class="n">dw</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+<span class="c1"># Filtrando apenas a categoria Eletrodomésticos</span>
+<span class="n">slice_eletro</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s2">"Categoria"</span><span class="p">]</span> <span class="o">==</span> <span class="s2">"Eletrodomésticos"</span><span class="p">]</span>
+
+<span class="n">faturamento_slice</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">slice_eletro</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">"Regional"</span><span class="p">)[</span><span class="s2">"Valor_Venda"</span><span class="p">]</span>
+    <span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+    <span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">Faturamento de Eletrodomésticos por Regional:"</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">faturamento_slice</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=3eff9a6f">
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>EXERCÍCIO 1.2 — SLICE
+
+Faturamento de Eletrodomésticos por Regional:
+</pre>
+</div>
+</div>
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>Regional
+Nordeste    84300.0
+Sudeste     78700.0
+Sul         62150.0
+Name: Valor_Venda, dtype: float64</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=441fb367">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h1 id="============================================================">============================================================<a class="anchor-link" href="#============================================================">¶</a></h1><h1 id="GOVERNAN%C3%87A---PADRONIZA%C3%87%C3%83O">GOVERNANÇA - PADRONIZAÇÃO<a class="anchor-link" href="#GOVERNAN%C3%87A---PADRONIZA%C3%87%C3%83O">¶</a></h1><h1 id="============================================================">============================================================<a class="anchor-link" href="#============================================================">¶</a></h1>
+<h2 id="Exerc%C3%ADcio-1.3-%E2%80%94-DICE">Exercício 1.3 — DICE<a class="anchor-link" href="#Exerc%C3%ADcio-1.3-%E2%80%94-DICE">¶</a></h2><p>O Dice permite aplicar múltiplos filtros simultaneamente.</p>
+<p>Pergunta de Gestão:
+Qual o faturamento da Regional Sudeste,
+considerando apenas a Categoria "Acessórios",
+e apenas os vendedores Ana e Carla?</p>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=371c59ae">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=6c14c5d1">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [30]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">dw</span><span class="p">[</span><span class="s2">"nome"</span><span class="p">]</span> <span class="o">=</span> <span class="n">dw</span><span class="p">[</span><span class="s2">"nome"</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">"EXERCÍCIO 1.3 — DICE"</span><span class="p">)</span>
 
-<span class="n">display</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">Tabela após Padronização (Nomes em MAIÚSCULO):"</span><span class="p">)</span>
-<span class="n">display</span><span class="p">(</span><span class="n">dw</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+<span class="n">dice</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span>
+    <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">"Regional"</span><span class="p">]</span> <span class="o">==</span> <span class="s2">"Sudeste"</span><span class="p">)</span> <span class="o">&amp;</span>
+    <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">"Categoria"</span><span class="p">]</span> <span class="o">==</span> <span class="s2">"Acessórios"</span><span class="p">)</span> <span class="o">&amp;</span>
+    <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">"Vendedor"</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">([</span><span class="s2">"Ana"</span><span class="p">,</span> <span class="s2">"Carla"</span><span class="p">]))</span>
+<span class="p">]</span>
+
+<span class="n">faturamento_dice</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">dice</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">"Vendedor"</span><span class="p">)[</span><span class="s2">"Valor_Venda"</span><span class="p">]</span>
+    <span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+    <span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">Faturamento do recorte multidimensional:"</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">faturamento_dice</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=ba27a901">
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>EXERCÍCIO 1.3 — DICE
+
+Faturamento do recorte multidimensional:
+</pre>
+</div>
+</div>
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>Vendedor
+Carla    3150.0
+Ana      2150.0
+Name: Valor_Venda, dtype: float64</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=42ac6161">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h1 id="Parte-2-%E2%80%94-Business-Intelligence-(Indicadores)">Parte 2 — Business Intelligence (Indicadores)<a class="anchor-link" href="#Parte-2-%E2%80%94-Business-Intelligence-(Indicadores)">¶</a></h1><p>Nesta etapa iremos gerar KPIs estratégicos:</p>
+<ul>
+<li>Faturamento total</li>
+<li>Ticket médio</li>
+<li>Top vendedor</li>
+<li>Produto mais vendido</li>
+<li>Análise temporal (vendas por dia)</li>
+</ul>
+<p>O objetivo é transformar dados em informação para tomada de decisão.</p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=31fcebf0">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [31]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">display</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">=============================="</span><span class="p">)</span>
-<span class="n">display</span><span class="p">(</span><span class="s2">"ETAPA 3 - CARGA"</span><span class="p">)</span>
-<span class="n">display</span><span class="p">(</span><span class="s2">"=============================="</span><span class="p">)</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">"PARTE 2 — KPI GERAL"</span><span class="p">)</span>
 
-<span class="c1"># Persistência do Data Warehouse</span>
-<span class="n">dw</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s2">"data_warehouse_final.csv"</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">faturamento_total</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">"Valor_Venda"</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<span class="n">ticket_medio</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">"Valor_Venda"</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
 
-<span class="n">display</span><span class="p">(</span><span class="s2">"Arquivo data_warehouse_final.csv criado com sucesso!"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="se">\n</span><span class="s2">Faturamento Total: R$ </span><span class="si">{</span><span class="n">faturamento_total</span><span class="si">:</span><span class="s2">,.2f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Ticket Médio: R$ </span><span class="si">{</span><span class="n">ticket_medio</span><span class="si">:</span><span class="s2">,.2f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>PARTE 2 — KPI GERAL
+
+Faturamento Total: R$ 926,000.00
+Ticket Médio: R$ 1,320.97
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=d41b4c85">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [32]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">EXERCÍCIO 2.2 — TOP VENDEDOR"</span><span class="p">)</span>
+
+<span class="n">top_vendedor</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">"Vendedor"</span><span class="p">)[</span><span class="s2">"Valor_Venda"</span><span class="p">]</span>
+      <span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+      <span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="n">display</span><span class="p">(</span><span class="n">top_vendedor</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>
+EXERCÍCIO 2.2 — TOP VENDEDOR
+</pre>
+</div>
+</div>
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>Vendedor
+Ana    225700.0
+Name: Valor_Venda, dtype: float64</pre>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=a11d9f93">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [33]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">EXERCÍCIO 2.3 — PRODUTO MAIS RENTÁVEL"</span><span class="p">)</span>
+
+<span class="n">produto_top</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">"Produto"</span><span class="p">)[</span><span class="s2">"Valor_Venda"</span><span class="p">]</span>
+      <span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+      <span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="n">display</span><span class="p">(</span><span class="n">produto_top</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>
+EXERCÍCIO 2.3 — PRODUTO MAIS RENTÁVEL
+</pre>
+</div>
+</div>
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>Produto
+Notebook            270000.0
+Tablet              109800.0
+Sofá 3 Lugares      100800.0
+Monitor 24           66000.0
+Máquina de Lavar     58000.0
+Name: Valor_Venda, dtype: float64</pre>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=4f9003af">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [34]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">EXERCÍCIO 2.4 — VENDAS POR DATA"</span><span class="p">)</span>
+
+<span class="c1"># A coluna Data ja foi normalizada na carga inicial.</span>
+
+<span class="n">vendas_por_dia</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">"Data"</span><span class="p">)[</span><span class="s2">"Valor_Venda"</span><span class="p">]</span>
+      <span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+      <span class="o">.</span><span class="n">sort_index</span><span class="p">()</span>
+<span class="p">)</span>
+
+<span class="n">display</span><span class="p">(</span><span class="n">vendas_por_dia</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>
+EXERCÍCIO 2.4 — VENDAS POR DATA
+</pre>
+</div>
+</div>
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>Data
+2026-03-01    14950.0
+2026-03-02    25450.0
+2026-03-03    36200.0
+2026-03-04    40200.0
+2026-03-05    37000.0
+Name: Valor_Venda, dtype: float64</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=4a2fc52c">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h1 id="Parte-3-%E2%80%94-Data-Mining">Parte 3 — Data Mining<a class="anchor-link" href="#Parte-3-%E2%80%94-Data-Mining">¶</a></h1><p>Nesta etapa buscamos padrões e relações nos dados.</p>
+<p>Aplicaremos:</p>
+<ul>
+<li>Análise de correlação simples</li>
+<li>Tabela dinâmica (pivot table)</li>
+<li>Identificação de concentração de vendas</li>
+</ul>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=9166af1b">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [35]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">"EXERCÍCIO 3.1 — Padrão Regional x Categoria"</span><span class="p">)</span>
+
+<span class="n">pivot_regional_categoria</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">pivot_table</span><span class="p">(</span>
+    <span class="n">df</span><span class="p">,</span>
+    <span class="n">values</span><span class="o">=</span><span class="s2">"Valor_Venda"</span><span class="p">,</span>
+    <span class="n">index</span><span class="o">=</span><span class="s2">"Regional"</span><span class="p">,</span>
+    <span class="n">columns</span><span class="o">=</span><span class="s2">"Categoria"</span><span class="p">,</span>
+    <span class="n">aggfunc</span><span class="o">=</span><span class="s2">"sum"</span><span class="p">,</span>
+    <span class="n">fill_value</span><span class="o">=</span><span class="mi">0</span>
+<span class="p">)</span>
+
+<span class="n">display</span><span class="p">(</span><span class="n">pivot_regional_categoria</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>EXERCÍCIO 3.1 — Padrão Regional x Categoria
+</pre>
+</div>
+</div>
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output" data-mime-type="text/html" tabindex="0">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+<thead>
+<tr style="text-align: right;">
+<th>Categoria</th>
+<th>Acessórios</th>
+<th>Cozinha</th>
+<th>Eletrodomésticos</th>
+<th>Eletrônicos</th>
+<th>Móveis</th>
+</tr>
+<tr>
+<th>Regional</th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>Nordeste</th>
+<td>10850.0</td>
+<td>4800.0</td>
+<td>84300.0</td>
+<td>180300.0</td>
+<td>48300.0</td>
+</tr>
+<tr>
+<th>Sudeste</th>
+<td>10800.0</td>
+<td>3600.0</td>
+<td>78700.0</td>
+<td>179900.0</td>
+<td>56300.0</td>
+</tr>
+<tr>
+<th>Sul</th>
+<td>8900.0</td>
+<td>4200.0</td>
+<td>62150.0</td>
+<td>125600.0</td>
+<td>67300.0</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=4ae1ed25">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [36]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">EXERCÍCIO 3.2 — Concentração de Receita (Top Produtos)"</span><span class="p">)</span>
+
+<span class="n">produto_receita</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">"Produto"</span><span class="p">)[</span><span class="s2">"Valor_Venda"</span><span class="p">]</span>
+      <span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+      <span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="n">receita_total</span> <span class="o">=</span> <span class="n">produto_receita</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<span class="n">receita_acumulada</span> <span class="o">=</span> <span class="n">produto_receita</span><span class="o">.</span><span class="n">cumsum</span><span class="p">()</span> <span class="o">/</span> <span class="n">receita_total</span> <span class="o">*</span> <span class="mi">100</span>
+
+<span class="n">concentracao</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s2">"Receita"</span><span class="p">:</span> <span class="n">produto_receita</span><span class="p">,</span>
+    <span class="s2">"% Acumulado"</span><span class="p">:</span> <span class="n">receita_acumulada</span>
+<span class="p">})</span>
+
+<span class="n">display</span><span class="p">(</span><span class="n">concentracao</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>
+EXERCÍCIO 3.2 — Concentração de Receita (Top Produtos)
+</pre>
+</div>
+</div>
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output" data-mime-type="text/html" tabindex="0">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>Receita</th>
+<th>% Acumulado</th>
+</tr>
+<tr>
+<th>Produto</th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>Notebook</th>
+<td>270000.0</td>
+<td>29.157667</td>
+</tr>
+<tr>
+<th>Tablet</th>
+<td>109800.0</td>
+<td>41.015119</td>
+</tr>
+<tr>
+<th>Sofá 3 Lugares</th>
+<td>100800.0</td>
+<td>51.900648</td>
+</tr>
+<tr>
+<th>Monitor 24</th>
+<td>66000.0</td>
+<td>59.028078</td>
+</tr>
+<tr>
+<th>Máquina de Lavar</th>
+<td>58000.0</td>
+<td>65.291577</td>
+</tr>
+<tr>
+<th>Geladeira</th>
+<td>53200.0</td>
+<td>71.036717</td>
+</tr>
+<tr>
+<th>Ar Condicionado</th>
+<td>46200.0</td>
+<td>76.025918</td>
+</tr>
+<tr>
+<th>Smartphone</th>
+<td>40000.0</td>
+<td>80.345572</td>
+</tr>
+<tr>
+<th>Micro-ondas</th>
+<td>35000.0</td>
+<td>84.125270</td>
+</tr>
+<tr>
+<th>Mesa de Jantar</th>
+<td>25500.0</td>
+<td>86.879050</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=a283f5d5">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [37]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">EXERCÍCIO 3.3 — Identificação de Outliers"</span><span class="p">)</span>
+
+<span class="n">media</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">"Valor_Venda"</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="n">desvio</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">"Valor_Venda"</span><span class="p">]</span><span class="o">.</span><span class="n">std</span><span class="p">()</span>
+
+<span class="n">limite_superior</span> <span class="o">=</span> <span class="n">media</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">desvio</span>
+
+<span class="n">outliers</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s2">"Valor_Venda"</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">limite_superior</span><span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Média: </span><span class="si">{</span><span class="n">media</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Desvio Padrão: </span><span class="si">{</span><span class="n">desvio</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Limite Superior (2σ): </span><span class="si">{</span><span class="n">limite_superior</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Quantidade de Outliers: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">outliers</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+
+<span class="n">display</span><span class="p">(</span><span class="n">outliers</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>
+EXERCÍCIO 3.3 — Identificação de Outliers
+Média: 1320.97
+Desvio Padrão: 1293.88
+Limite Superior (2σ): 3908.72
+Quantidade de Outliers: 60
+</pre>
+</div>
+</div>
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output" data-mime-type="text/html" tabindex="0">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>ID_Transacao</th>
+<th>Data</th>
+<th>Regional</th>
+<th>Vendedor</th>
+<th>Categoria</th>
+<th>Produto</th>
+<th>Valor_Venda</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>20</th>
+<td>10</td>
+<td>2026-03-21</td>
+<td>Sudeste</td>
+<td>Bruno</td>
+<td>Eletrônicos</td>
+<td>Notebook</td>
+<td>4500.0</td>
+</tr>
+<tr>
+<th>27</th>
+<td>12</td>
+<td>2026-03-15</td>
+<td>Sudeste</td>
+<td>Carla</td>
+<td>Eletrônicos</td>
+<td>Notebook</td>
+<td>4500.0</td>
+</tr>
+<tr>
+<th>33</th>
+<td>15</td>
+<td>2026-03-05</td>
+<td>Sudeste</td>
+<td>Bruno</td>
+<td>Eletrônicos</td>
+<td>Notebook</td>
+<td>4500.0</td>
+</tr>
+<tr>
+<th>43</th>
+<td>19</td>
+<td>2026-03-18</td>
+<td>Sul</td>
+<td>Ana</td>
+<td>Eletrônicos</td>
+<td>Notebook</td>
+<td>4500.0</td>
+</tr>
+<tr>
+<th>53</th>
+<td>22</td>
+<td>2026-03-12</td>
+<td>Sul</td>
+<td>Elena</td>
+<td>Eletrônicos</td>
+<td>Notebook</td>
+<td>4500.0</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=f764c258">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h1 id="Conclus%C3%A3o-Geral-do-Laborat%C3%B3rio">Conclusão Geral do Laboratório<a class="anchor-link" href="#Conclus%C3%A3o-Geral-do-Laborat%C3%B3rio">¶</a></h1><p>Este laboratório demonstrou a aplicação prática de Business Intelligence e Data Mining com Pandas.</p>
+<p>Principais aprendizados:</p>
+<ul>
+<li>OLAP permite navegação multidimensional (Drill-down, Slice, Dice)</li>
+<li>KPIs transformam dados brutos em informação estratégica</li>
+<li>Pivot tables revelam padrões regionais e setoriais</li>
+<li>Análise de concentração evidencia possível efeito Pareto</li>
+<li>Identificação de outliers auxilia na detecção de anomalias</li>
+</ul>
+<p>A base de dados permitiu simular um cenário real de apoio à decisão empresarial.</p>
 </div>
 </div>
 </div>

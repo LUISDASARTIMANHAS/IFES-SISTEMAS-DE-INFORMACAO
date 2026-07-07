@@ -3,7 +3,7 @@
 <html lang="en">
 <head><meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>dw_extraction jupter</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
+<title>Laboratorio_13_Lucas_Garcia_e_Luis_Augusto</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <style type="text/css">
     pre { line-height: 125%; }
 td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
@@ -7312,7 +7312,6 @@ a.anchor-link {
                     processEnvironments: true
                 },
                 displayAlign: 'center',
-                messageStyle: 'none',
                 CommonHTML: {
                     linebreaks: {
                     automatic: true
@@ -7332,12 +7331,7 @@ a.anchor-link {
     if (!diagrams.length) {
       return;
     }
-    const mermaid = (await import("https://cdnjs.cloudflare.com/ajax/libs/mermaid/11.10.0/mermaid.esm.min.mjs")).default;
-    const elkUrl = "https://cdnjs.cloudflare.com/ajax/libs/mermaid-layout-elk/0.1.9/mermaid-layout-elk.esm.min.mjs";
-    if(elkUrl) {
-      const elkLayouts = (await import(elkUrl)).default;
-      mermaid.registerLayoutLoaders(elkLayouts);
-    }
+    const mermaid = (await import("https://cdnjs.cloudflare.com/ajax/libs/mermaid/10.7.0/mermaid.esm.min.mjs")).default;
     const parser = new DOMParser();
 
     mermaid.initialize({
@@ -7434,8 +7428,7 @@ a.anchor-link {
      * Post-process to ensure mermaid diagrams contain only valid SVG and XHTML.
      */
     function cleanMermaidSvg(svg) {
-      svg = svg.replace(RE_VOID_ELEMENT, replaceVoidElement);
-      return `${SVG_XML_HEADER}${svg}`;
+      return svg.replace(RE_VOID_ELEMENT, replaceVoidElement);
     }
 
 
@@ -7461,285 +7454,6 @@ a.anchor-link {
       }
       return `<${tag} ${rest}>`;
     }
-
-
-  /**
-   * Named HTML entities with their decimal equivalent codes.
-   *
-   * @see https://www.w3.org/TR/WD-html40-970708/sgml/entities.html
-   * */
-  const HTML_ENTITIES = `<!ENTITY Aacute "&#193;">
-<!ENTITY aacute "&#225;">
-<!ENTITY Acirc "&#194;">
-<!ENTITY acirc "&#226;">
-<!ENTITY acute "&#180;">
-<!ENTITY AElig "&#198;">
-<!ENTITY aelig "&#230;">
-<!ENTITY Agrave "&#192;">
-<!ENTITY agrave "&#224;">
-<!ENTITY alefsym "&#8501;">
-<!ENTITY Alpha "&#913;">
-<!ENTITY alpha "&#945;">
-<!ENTITY amp "&#38;">
-<!ENTITY and "&#8869;">
-<!ENTITY ang "&#8736;">
-<!ENTITY Aring "&#197;">
-<!ENTITY aring "&#229;">
-<!ENTITY asymp "&#8776;">
-<!ENTITY Atilde "&#195;">
-<!ENTITY atilde "&#227;">
-<!ENTITY Auml "&#196;">
-<!ENTITY auml "&#228;">
-<!ENTITY bdquo "&#8222;">
-<!ENTITY Beta "&#914;">
-<!ENTITY beta "&#946;">
-<!ENTITY brvbar "&#166;">
-<!ENTITY bull "&#8226;">
-<!ENTITY cap "&#8745;">
-<!ENTITY Ccedil "&#199;">
-<!ENTITY ccedil "&#231;">
-<!ENTITY cedil "&#184;">
-<!ENTITY cent "&#162;">
-<!ENTITY Chi "&#935;">
-<!ENTITY chi "&#967;">
-<!ENTITY circ "&#710;">
-<!ENTITY clubs "&#9827;">
-<!ENTITY cong "&#8773;">
-<!ENTITY copy "&#169;">
-<!ENTITY crarr "&#8629;">
-<!ENTITY cup "&#8746;">
-<!ENTITY curren "&#164;">
-<!ENTITY dagger "&#8224;">
-<!ENTITY Dagger "&#8225;">
-<!ENTITY darr "&#8595;">
-<!ENTITY dArr "&#8659;">
-<!ENTITY deg "&#176;">
-<!ENTITY Delta "&#916;">
-<!ENTITY delta "&#948;">
-<!ENTITY diams "&#9830;">
-<!ENTITY divide "&#247;">
-<!ENTITY Eacute "&#201;">
-<!ENTITY eacute "&#233;">
-<!ENTITY Ecirc "&#202;">
-<!ENTITY ecirc "&#234;">
-<!ENTITY Egrave "&#200;">
-<!ENTITY egrave "&#232;">
-<!ENTITY empty "&#8709;">
-<!ENTITY emsp "&#8195;">
-<!ENTITY ensp "&#8194;">
-<!ENTITY epsilon "&#949;">
-<!ENTITY Epsilon "&#917;">
-<!ENTITY equiv "&#8801;">
-<!ENTITY Eta "&#919;">
-<!ENTITY eta "&#951;">
-<!ENTITY ETH "&#208;">
-<!ENTITY eth "&#240;">
-<!ENTITY Euml "&#203;">
-<!ENTITY euml "&#235;">
-<!ENTITY exist "&#8707;">
-<!ENTITY fnof "&#402;">
-<!ENTITY forall "&#8704;">
-<!ENTITY frac12 "&#189;">
-<!ENTITY frac14 "&#188;">
-<!ENTITY frac34 "&#190;">
-<!ENTITY frasl "&#8260;">
-<!ENTITY Gamma "&#915;">
-<!ENTITY gamma "&#947;">
-<!ENTITY ge "&#8805;">
-<!ENTITY gt "&#62;">
-<!ENTITY harr "&#8596;">
-<!ENTITY hArr "&#8660;">
-<!ENTITY hearts "&#9829;">
-<!ENTITY hellip "&#8230;">
-<!ENTITY Iacute "&#205;">
-<!ENTITY iacute "&#237;">
-<!ENTITY Icirc "&#206;">
-<!ENTITY icirc "&#238;">
-<!ENTITY iexcl "&#161;">
-<!ENTITY Igrave "&#204;">
-<!ENTITY igrave "&#236;">
-<!ENTITY image "&#8465;">
-<!ENTITY infin "&#8734;">
-<!ENTITY int "&#8747;">
-<!ENTITY Iota "&#921;">
-<!ENTITY iota "&#953;">
-<!ENTITY iquest "&#191;">
-<!ENTITY isin "&#8712;">
-<!ENTITY Iuml "&#207;">
-<!ENTITY iuml "&#239;">
-<!ENTITY Kappa "&#922;">
-<!ENTITY kappa "&#954;">
-<!ENTITY Lambda "&#923;">
-<!ENTITY lambda "&#955;">
-<!ENTITY lang "&#9001;">
-<!ENTITY laquo "&#171;">
-<!ENTITY larr "&#8592;">
-<!ENTITY lArr "&#8656;">
-<!ENTITY lceil "&#8968;">
-<!ENTITY ldquo "&#8220;">
-<!ENTITY le "&#8804;">
-<!ENTITY lfloor "&#8970;">
-<!ENTITY lowast "&#8727;">
-<!ENTITY loz "&#9674;">
-<!ENTITY lrm "&#8206;">
-<!ENTITY lsaquo "&#8249;">
-<!ENTITY lsquo "&#8216;">
-<!ENTITY lt "&#60;">
-<!ENTITY macr "&#175;">
-<!ENTITY mdash "&#8212;">
-<!ENTITY micro "&#181;">
-<!ENTITY middot "&#183;">
-<!ENTITY minus "&#8722;">
-<!ENTITY Mu "&#924;">
-<!ENTITY mu "&#956;">
-<!ENTITY nabla "&#8711;">
-<!ENTITY nbsp "&#160;">
-<!ENTITY ndash "&#8211;">
-<!ENTITY ne "&#8800;">
-<!ENTITY ni "&#8715;">
-<!ENTITY not "&#172;">
-<!ENTITY notin "&#8713;">
-<!ENTITY nsub "&#8836;">
-<!ENTITY Ntilde "&#209;">
-<!ENTITY ntilde "&#241;">
-<!ENTITY Nu "&#925;">
-<!ENTITY nu "&#957;">
-<!ENTITY Oacute "&#211;">
-<!ENTITY oacute "&#243;">
-<!ENTITY Ocirc "&#212;">
-<!ENTITY ocirc "&#244;">
-<!ENTITY OElig "&#338;">
-<!ENTITY oelig "&#339;">
-<!ENTITY Ograve "&#210;">
-<!ENTITY ograve "&#242;">
-<!ENTITY oline "&#8254;">
-<!ENTITY Omega "&#937;">
-<!ENTITY omega "&#969;">
-<!ENTITY Omicron "&#927;">
-<!ENTITY omicron "&#959;">
-<!ENTITY oplus "&#8853;">
-<!ENTITY or "&#8870;">
-<!ENTITY ordf "&#170;">
-<!ENTITY ordm "&#186;">
-<!ENTITY Oslash "&#216;">
-<!ENTITY oslash "&#248;">
-<!ENTITY Otilde "&#213;">
-<!ENTITY otilde "&#245;">
-<!ENTITY otimes "&#8855;">
-<!ENTITY Ouml "&#214;">
-<!ENTITY ouml "&#246;">
-<!ENTITY para "&#182;">
-<!ENTITY part "&#8706;">
-<!ENTITY permil "&#8240;">
-<!ENTITY perp "&#8869;">
-<!ENTITY Phi "&#934;">
-<!ENTITY phi "&#966;">
-<!ENTITY Pi "&#928;">
-<!ENTITY pi "&#960;">
-<!ENTITY piv "&#982;">
-<!ENTITY plusmn "&#177;">
-<!ENTITY pound "&#163;">
-<!ENTITY prime "&#8242;">
-<!ENTITY Prime "&#8243;">
-<!ENTITY prod "&#8719;">
-<!ENTITY prop "&#8733;">
-<!ENTITY Psi "&#936;">
-<!ENTITY psi "&#968;">
-<!ENTITY quot "&#34;">
-<!ENTITY radic "&#8730;">
-<!ENTITY rang "&#9002;">
-<!ENTITY raquo "&#187;">
-<!ENTITY rarr "&#8594;">
-<!ENTITY rArr "&#8658;">
-<!ENTITY rceil "&#8969;">
-<!ENTITY rdquo "&#8221;">
-<!ENTITY real "&#8476;">
-<!ENTITY reg "&#174;">
-<!ENTITY rfloor "&#8971;">
-<!ENTITY Rho "&#929;">
-<!ENTITY rho "&#961;">
-<!ENTITY rlm "&#8207;">
-<!ENTITY rsaquo "&#8250;">
-<!ENTITY rsquo "&#8217;">
-<!ENTITY sbquo "&#8218;">
-<!ENTITY Scaron "&#352;">
-<!ENTITY scaron "&#353;">
-<!ENTITY sdot "&#8901;">
-<!ENTITY sect "&#167;">
-<!ENTITY shy "&#173;">
-<!ENTITY Sigma "&#931;">
-<!ENTITY sigma "&#963;">
-<!ENTITY sigmaf "&#962;">
-<!ENTITY sim "&#8764;">
-<!ENTITY spades "&#9824;">
-<!ENTITY sub "&#8834;">
-<!ENTITY sube "&#8838;">
-<!ENTITY sum "&#8721;">
-<!ENTITY sup "&#8835;">
-<!ENTITY sup1 "&#185;">
-<!ENTITY sup2 "&#178;">
-<!ENTITY sup3 "&#179;">
-<!ENTITY supe "&#8839;">
-<!ENTITY szlig "&#223;">
-<!ENTITY Tau "&#932;">
-<!ENTITY tau "&#964;">
-<!ENTITY there4 "&#8756;">
-<!ENTITY Theta "&#920;">
-<!ENTITY theta "&#952;">
-<!ENTITY thetasym "&#977;">
-<!ENTITY thinsp "&#8201;">
-<!ENTITY THORN "&#222;">
-<!ENTITY thorn "&#254;">
-<!ENTITY tilde "&#732;">
-<!ENTITY times "&#215;">
-<!ENTITY trade "&#8482;">
-<!ENTITY Uacute "&#218;">
-<!ENTITY uacute "&#250;">
-<!ENTITY uarr "&#8593;">
-<!ENTITY uArr "&#8657;">
-<!ENTITY Ucirc "&#219;">
-<!ENTITY ucirc "&#251;">
-<!ENTITY Ugrave "&#217;">
-<!ENTITY ugrave "&#249;">
-<!ENTITY uml "&#168;">
-<!ENTITY upsih "&#978;">
-<!ENTITY Upsilon "&#933;">
-<!ENTITY upsilon "&#965;">
-<!ENTITY Uuml "&#220;">
-<!ENTITY uuml "&#252;">
-<!ENTITY weierp "&#8472;">
-<!ENTITY Xi "&#926;">
-<!ENTITY xi "&#958;">
-<!ENTITY Yacute "&#221;">
-<!ENTITY yacute "&#253;">
-<!ENTITY yen "&#165;">
-<!ENTITY Yuml "&#376;">
-<!ENTITY yuml "&#255;">
-<!ENTITY Zeta "&#918;">
-<!ENTITY zeta "&#950;">
-<!ENTITY zwj "&#8205;">
-<!ENTITY zwnj "&#8204;">`.replace(/\n/g, ' ');
-
-  /**
-   * A reasonably strict xml declaration.
-   */
-  const XML_DECL = '<?xml version="1.0" standalone="no"?>';
-
-  /**
-   * The beginning of the XML doctype declaration.
-   */
-  const DOCTYPE_START = `<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd" [`;
-
-  /**
-   * The end of the XML docype declaration.
-   */
-  const DOCTYPE_END = ']>';
-
-  /**
-   * A full header for an SVG XML document.
-   */
-  const SVG_XML_HEADER = `${XML_DECL}
-    ${DOCTYPE_START}${HTML_ENTITIES}${DOCTYPE_END}`;
 
     void Promise.all([...diagrams].map(renderOneMarmaid));
   });
@@ -7795,168 +7509,999 @@ a.anchor-link {
 </style>
 <!-- End of mermaid configuration --></head>
 <body class="jp-Notebook" data-jp-theme-light="true" data-jp-theme-name="JupyterLab Light">
-<main><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=ebfba562">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">=============================="</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">"ETAPA 1 - EXTRAÇÃO"</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">"=============================="</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=62441e4d">
+<main>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=b4f4beae">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h1 id="Interoperabilidade-T%C3%A9cnica:">Interoperabilidade Técnica:<a class="anchor-link" href="#Interoperabilidade-T%C3%A9cnica:">¶</a></h1><h1 id="Estamos-lendo-arquivos-CSV-de-sistemas-diferentes.">Estamos lendo arquivos CSV de sistemas diferentes.<a class="anchor-link" href="#Estamos-lendo-arquivos-CSV-de-sistemas-diferentes.">¶</a></h1>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=80e395b0">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">vendas</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">"vendas.csv"</span><span class="p">)</span>
-<span class="n">produtos</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">"produtos.csv"</span><span class="p">)</span>
-</pre></div>
+<h1 id="Laboratorio-13---Painel-de-Governanca:-Incidentes,-Problemas-e-SLA">Laboratorio 13 - Painel de Governanca: Incidentes, Problemas e SLA<a class="anchor-link" href="#Laboratorio-13---Painel-de-Governanca:-Incidentes,-Problemas-e-SLA">¶</a></h1><p><strong>Disciplina:</strong> Gestao de Sistemas de Informacao<br/>
+<strong>Empresa ficticia:</strong> TechStore S.A.<br/>
+<strong>Roteiro:</strong> Metadados de Governanca e Problemas em ITIL com Python<br/>
+<strong>Atividade implementada:</strong> Atividade 3 - Painel de Governanca</p>
+<p>Este notebook funciona como relatorio, implementacao e evidencia de execucao da atividade.
+Como a Atividade 3 depende de <code>df_incidentes</code> e <code>df_problemas</code>, a preparacao dos dados da
+Atividade 2 foi recriada antes do painel.</p>
 </div>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=eabb9e3f">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">display</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">=============================="</span><span class="p">)</span>
-<span class="n">display</span><span class="p">(</span><span class="s2">"ETAPA 2 - TRANSFORMAÇÃO"</span><span class="p">)</span>
-<span class="n">display</span><span class="p">(</span><span class="s2">"=============================="</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=5af1f672">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=d4519f94">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h1 id="============================================================">============================================================<a class="anchor-link" href="#============================================================">¶</a></h1><h1 id="INTEROPERABILIDADE-SEM%C3%82NTICA">INTEROPERABILIDADE SEMÂNTICA<a class="anchor-link" href="#INTEROPERABILIDADE-SEM%C3%82NTICA">¶</a></h1><h1 id="O-SKU-%C3%A9-o-elo-de-liga%C3%A7%C3%A3o-entre-sistemas-que-%22falam-l%C3%ADnguas-diferentes%22.">O SKU é o elo de ligação entre sistemas que "falam línguas diferentes".<a class="anchor-link" href="#O-SKU-%C3%A9-o-elo-de-liga%C3%A7%C3%A3o-entre-sistemas-que-%22falam-l%C3%ADnguas-diferentes%22.">¶</a></h1><h1 id="Ele-garante-que-estamos-unindo-o-produto-correto-%C3%A0-venda-correta.">Ele garante que estamos unindo o produto correto à venda correta.<a class="anchor-link" href="#Ele-garante-que-estamos-unindo-o-produto-correto-%C3%A0-venda-correta.">¶</a></h1><h1 id="============================================================">============================================================<a class="anchor-link" href="#============================================================">¶</a></h1>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=3208ee7e">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">dw</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">vendas</span><span class="p">,</span> <span class="n">produtos</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s2">"sku"</span><span class="p">)</span>
-
-<span class="n">display</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">Tabela após Merge (Integração):"</span><span class="p">)</span>
-<span class="n">display</span><span class="p">(</span><span class="n">dw</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
-</pre></div>
+<h2 id="1.-Objetivo">1. Objetivo<a class="anchor-link" href="#1.-Objetivo">¶</a></h2><p>Construir um painel de governanca que consolide, por servico:</p>
+<ul>
+<li>volume total de incidentes;</li>
+<li>quantidade de incidentes de Prioridade Alta;</li>
+<li>existencia de Problema aberto;</li>
+<li>taxa de servicos com Problema aberto em relacao ao total monitorado.</li>
+</ul>
+<p>O resultado ajuda a gestao de TI a identificar servicos com recorrencia critica e maior exposicao
+a metas de SLA para chamados de prioridade Alta.</p>
 </div>
 </div>
 </div>
 </div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=30854c79">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=9dc3650f">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h1 id="============================================================">============================================================<a class="anchor-link" href="#============================================================">¶</a></h1><h1 id="REGRA-DE-NEG%C3%93CIO---M%C3%89TRICA-DE-FATURAMENTO">REGRA DE NEGÓCIO - MÉTRICA DE FATURAMENTO<a class="anchor-link" href="#REGRA-DE-NEG%C3%93CIO---M%C3%89TRICA-DE-FATURAMENTO">¶</a></h1><h1 id="============================================================">============================================================<a class="anchor-link" href="#============================================================">¶</a></h1>
+<h2 id="2.-Fundamentacao-teorica-resumida">2. Fundamentacao teorica resumida<a class="anchor-link" href="#2.-Fundamentacao-teorica-resumida">¶</a></h2><table>
+<thead>
+<tr>
+<th>Conceito</th>
+<th>Aplicacao no laboratorio</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Incidente</td>
+<td>Interrupcao ou degradacao percebida em um servico de TI.</td>
+</tr>
+<tr>
+<td>Problema</td>
+<td>Registro criado quando incidentes recorrentes indicam necessidade de investigar causa raiz.</td>
+</tr>
+<tr>
+<td>Prioridade</td>
+<td>Combina impacto e urgencia; aqui, chamados de Prioridade Alta sao o foco de risco.</td>
+</tr>
+<tr>
+<td>Severidade</td>
+<td>Mede a gravidade tecnica do incidente, de 1 (critico) a 4 (baixo).</td>
+</tr>
+<tr>
+<td>SLA</td>
+<td>Define metas mensuraveis; incidentes Alta exigem maior controle por terem impacto maior.</td>
+</tr>
+</tbody>
+</table>
+<p>Na logica do ITIL, incidentes sao sintomas operacionais. Problemas representam investigacao
+da causa raiz para reduzir repeticao e impacto futuro.</p>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=0f04c10d">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">dw</span><span class="p">[</span><span class="s2">"faturamento"</span><span class="p">]</span> <span class="o">=</span> <span class="n">dw</span><span class="p">[</span><span class="s2">"qtd"</span><span class="p">]</span> <span class="o">*</span> <span class="n">dw</span><span class="p">[</span><span class="s2">"preco"</span><span class="p">]</span>
-
-<span class="n">display</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">Tabela com Faturamento Calculado:"</span><span class="p">)</span>
-<span class="n">display</span><span class="p">(</span><span class="n">dw</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=3eff9a6f">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=cded8459">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h1 id="============================================================">============================================================<a class="anchor-link" href="#============================================================">¶</a></h1><h1 id="GOVERNAN%C3%87A---PADRONIZA%C3%87%C3%83O">GOVERNANÇA - PADRONIZAÇÃO<a class="anchor-link" href="#GOVERNAN%C3%87A---PADRONIZA%C3%87%C3%83O">¶</a></h1><h1 id="============================================================">============================================================<a class="anchor-link" href="#============================================================">¶</a></h1>
+<h2 id="3.-Preparacao-do-ambiente">3. Preparacao do ambiente<a class="anchor-link" href="#3.-Preparacao-do-ambiente">¶</a></h2><p>Usamos <code>pandas</code> para manipulacao tabular, <code>random</code> para gerar uma massa de dados reprodutivel
+e <code>matplotlib</code> para gerar uma evidencia visual do painel.</p>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=371c59ae">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=051dc6b9">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [1]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">dw</span><span class="p">[</span><span class="s2">"nome"</span><span class="p">]</span> <span class="o">=</span> <span class="n">dw</span><span class="p">[</span><span class="s2">"nome"</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">import</span> <span class="nn">random</span>
 
-<span class="n">display</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">Tabela após Padronização (Nomes em MAIÚSCULO):"</span><span class="p">)</span>
-<span class="n">display</span><span class="p">(</span><span class="n">dw</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s2">"display.max_rows"</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s2">"display.max_columns"</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
+
+<span class="n">RANDOM_SEED</span> <span class="o">=</span> <span class="mi">99</span>
+<span class="n">N_INCIDENTES</span> <span class="o">=</span> <span class="mi">30</span>
+<span class="n">PRIORIDADES</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"Alta"</span><span class="p">,</span> <span class="s2">"Media"</span><span class="p">,</span> <span class="s2">"Baixa"</span><span class="p">]</span>
+<span class="n">SEVERIDADES</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
+<span class="n">SERVICOS</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">"ERP"</span><span class="p">,</span>
+    <span class="s2">"Portal do Cliente"</span><span class="p">,</span>
+    <span class="s2">"Sistema de Pagamentos"</span><span class="p">,</span>
+    <span class="s2">"E-mail Corporativo"</span><span class="p">,</span>
+<span class="p">]</span>
+<span class="n">LIMITE_PROBLEMA</span> <span class="o">=</span> <span class="mi">3</span>
+
+<span class="n">SAIDAS_DIR</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">"saidas"</span><span class="p">)</span>
+<span class="n">SAIDAS_DIR</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=ba27a901">
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=ad9603b0">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="4.-Base-de-incidentes-usada-no-painel">4. Base de incidentes usada no painel<a class="anchor-link" href="#4.-Base-de-incidentes-usada-no-painel">¶</a></h2><p>A Atividade 3 reaproveita os dados da Atividade 2. Por isso, geramos um log com 30 incidentes,
+cada um contendo <code>ticket_id</code>, <code>servico</code>, <code>prioridade</code> e <code>severidade</code>.</p>
+<p>O uso de <code>RANDOM_SEED = 99</code> garante que a execucao gere sempre os mesmos registros, permitindo
+conferir o resultado e reproduzir o relatorio.</p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=cd2546e9">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [2]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">display</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">=============================="</span><span class="p">)</span>
-<span class="n">display</span><span class="p">(</span><span class="s2">"ETAPA 3 - CARGA"</span><span class="p">)</span>
-<span class="n">display</span><span class="p">(</span><span class="s2">"=============================="</span><span class="p">)</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">gerar_log_incidentes</span><span class="p">(</span><span class="n">seed</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">RANDOM_SEED</span><span class="p">,</span> <span class="n">n_incidentes</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">N_INCIDENTES</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""Gera um log ficticio de incidentes da TechStore S.A."""</span>
+    <span class="n">rng</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">Random</span><span class="p">(</span><span class="n">seed</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+        <span class="p">{</span>
+            <span class="s2">"ticket_id"</span><span class="p">:</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5001</span><span class="p">,</span> <span class="mi">5001</span> <span class="o">+</span> <span class="n">n_incidentes</span><span class="p">),</span>
+            <span class="s2">"servico"</span><span class="p">:</span> <span class="p">[</span><span class="n">rng</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">SERVICOS</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_incidentes</span><span class="p">)],</span>
+            <span class="s2">"prioridade"</span><span class="p">:</span> <span class="p">[</span><span class="n">rng</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">PRIORIDADES</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_incidentes</span><span class="p">)],</span>
+            <span class="s2">"severidade"</span><span class="p">:</span> <span class="p">[</span><span class="n">rng</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">SEVERIDADES</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_incidentes</span><span class="p">)],</span>
+        <span class="p">}</span>
+    <span class="p">)</span>
 
-<span class="c1"># Persistência do Data Warehouse</span>
-<span class="n">dw</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s2">"data_warehouse_final.csv"</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
-<span class="n">display</span><span class="p">(</span><span class="s2">"Arquivo data_warehouse_final.csv criado com sucesso!"</span><span class="p">)</span>
+<span class="n">df_incidentes</span> <span class="o">=</span> <span class="n">gerar_log_incidentes</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">"=== LOG DE INCIDENTES POR SERVICO - TECHSTORE S.A. ==="</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">df_incidentes</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>=== LOG DE INCIDENTES POR SERVICO - TECHSTORE S.A. ===
+</pre>
+</div>
+</div>
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output" data-mime-type="text/html" tabindex="0">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>ticket_id</th>
+<th>servico</th>
+<th>prioridade</th>
+<th>severidade</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>0</th>
+<td>5001</td>
+<td>E-mail Corporativo</td>
+<td>Media</td>
+<td>1</td>
+</tr>
+<tr>
+<th>1</th>
+<td>5002</td>
+<td>E-mail Corporativo</td>
+<td>Alta</td>
+<td>4</td>
+</tr>
+<tr>
+<th>2</th>
+<td>5003</td>
+<td>Portal do Cliente</td>
+<td>Media</td>
+<td>1</td>
+</tr>
+<tr>
+<th>3</th>
+<td>5004</td>
+<td>Portal do Cliente</td>
+<td>Baixa</td>
+<td>2</td>
+</tr>
+<tr>
+<th>4</th>
+<td>5005</td>
+<td>Portal do Cliente</td>
+<td>Alta</td>
+<td>3</td>
+</tr>
+<tr>
+<th>5</th>
+<td>5006</td>
+<td>Portal do Cliente</td>
+<td>Media</td>
+<td>1</td>
+</tr>
+<tr>
+<th>6</th>
+<td>5007</td>
+<td>Portal do Cliente</td>
+<td>Baixa</td>
+<td>4</td>
+</tr>
+<tr>
+<th>7</th>
+<td>5008</td>
+<td>ERP</td>
+<td>Alta</td>
+<td>3</td>
+</tr>
+<tr>
+<th>8</th>
+<td>5009</td>
+<td>Sistema de Pagamentos</td>
+<td>Baixa</td>
+<td>2</td>
+</tr>
+<tr>
+<th>9</th>
+<td>5010</td>
+<td>E-mail Corporativo</td>
+<td>Media</td>
+<td>4</td>
+</tr>
+<tr>
+<th>10</th>
+<td>5011</td>
+<td>ERP</td>
+<td>Alta</td>
+<td>2</td>
+</tr>
+<tr>
+<th>11</th>
+<td>5012</td>
+<td>E-mail Corporativo</td>
+<td>Media</td>
+<td>1</td>
+</tr>
+<tr>
+<th>12</th>
+<td>5013</td>
+<td>Portal do Cliente</td>
+<td>Alta</td>
+<td>2</td>
+</tr>
+<tr>
+<th>13</th>
+<td>5014</td>
+<td>E-mail Corporativo</td>
+<td>Alta</td>
+<td>4</td>
+</tr>
+<tr>
+<th>14</th>
+<td>5015</td>
+<td>Portal do Cliente</td>
+<td>Baixa</td>
+<td>3</td>
+</tr>
+<tr>
+<th>15</th>
+<td>5016</td>
+<td>Sistema de Pagamentos</td>
+<td>Alta</td>
+<td>4</td>
+</tr>
+<tr>
+<th>16</th>
+<td>5017</td>
+<td>E-mail Corporativo</td>
+<td>Baixa</td>
+<td>2</td>
+</tr>
+<tr>
+<th>17</th>
+<td>5018</td>
+<td>Portal do Cliente</td>
+<td>Media</td>
+<td>3</td>
+</tr>
+<tr>
+<th>18</th>
+<td>5019</td>
+<td>Portal do Cliente</td>
+<td>Baixa</td>
+<td>4</td>
+</tr>
+<tr>
+<th>19</th>
+<td>5020</td>
+<td>E-mail Corporativo</td>
+<td>Alta</td>
+<td>1</td>
+</tr>
+<tr>
+<th>20</th>
+<td>5021</td>
+<td>Portal do Cliente</td>
+<td>Baixa</td>
+<td>2</td>
+</tr>
+<tr>
+<th>21</th>
+<td>5022</td>
+<td>Sistema de Pagamentos</td>
+<td>Baixa</td>
+<td>2</td>
+</tr>
+<tr>
+<th>22</th>
+<td>5023</td>
+<td>ERP</td>
+<td>Alta</td>
+<td>4</td>
+</tr>
+<tr>
+<th>23</th>
+<td>5024</td>
+<td>ERP</td>
+<td>Alta</td>
+<td>1</td>
+</tr>
+<tr>
+<th>24</th>
+<td>5025</td>
+<td>E-mail Corporativo</td>
+<td>Alta</td>
+<td>1</td>
+</tr>
+<tr>
+<th>25</th>
+<td>5026</td>
+<td>Sistema de Pagamentos</td>
+<td>Alta</td>
+<td>1</td>
+</tr>
+<tr>
+<th>26</th>
+<td>5027</td>
+<td>E-mail Corporativo</td>
+<td>Alta</td>
+<td>2</td>
+</tr>
+<tr>
+<th>27</th>
+<td>5028</td>
+<td>ERP</td>
+<td>Media</td>
+<td>3</td>
+</tr>
+<tr>
+<th>28</th>
+<td>5029</td>
+<td>Sistema de Pagamentos</td>
+<td>Baixa</td>
+<td>2</td>
+</tr>
+<tr>
+<th>29</th>
+<td>5030</td>
+<td>ERP</td>
+<td>Media</td>
+<td>2</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=3bb3d7f0">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="5.-Preparacao-dos-Registros-de-Problema">5. Preparacao dos Registros de Problema<a class="anchor-link" href="#5.-Preparacao-dos-Registros-de-Problema">¶</a></h2><p>Politica da TechStore S.A.:</p>
+<blockquote>
+<p>Se um mesmo servico tiver 3 ou mais incidentes de Prioridade Alta no periodo,
+deve ser aberto um Problema para investigacao da causa raiz.</p>
+</blockquote>
+<p>Essa etapa cria <code>df_problemas</code>, objeto necessario para a montagem do painel de governanca.</p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=68a8848d">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [3]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">incidentes_alta</span> <span class="o">=</span> <span class="n">df_incidentes</span><span class="p">[</span><span class="n">df_incidentes</span><span class="p">[</span><span class="s2">"prioridade"</span><span class="p">]</span> <span class="o">==</span> <span class="s2">"Alta"</span><span class="p">]</span>
+
+<span class="n">contagem_alta_por_servico</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">incidentes_alta</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">"servico"</span><span class="p">)[</span><span class="s2">"ticket_id"</span><span class="p">]</span>
+    <span class="o">.</span><span class="n">count</span><span class="p">()</span>
+    <span class="o">.</span><span class="n">reindex</span><span class="p">(</span><span class="n">SERVICOS</span><span class="p">,</span> <span class="n">fill_value</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+<span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">abrir_problemas</span><span class="p">(</span><span class="n">contagem_alta</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">,</span> <span class="n">limite</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">LIMITE_PROBLEMA</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""Cria registros de problema para servicos que atingiram o limite de recorrencia."""</span>
+    <span class="n">servicos_criticos</span> <span class="o">=</span> <span class="n">contagem_alta</span><span class="p">[</span><span class="n">contagem_alta</span> <span class="o">&gt;=</span> <span class="n">limite</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+        <span class="p">{</span>
+            <span class="s2">"problema_id"</span><span class="p">:</span> <span class="p">[</span><span class="sa">f</span><span class="s2">"PRB-</span><span class="si">{</span><span class="n">idx</span><span class="si">:</span><span class="s2">03d</span><span class="si">}</span><span class="s2">"</span> <span class="k">for</span> <span class="n">idx</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">servicos_criticos</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)],</span>
+            <span class="s2">"servico"</span><span class="p">:</span> <span class="n">servicos_criticos</span><span class="o">.</span><span class="n">index</span><span class="p">,</span>
+            <span class="s2">"qtd_incidentes_alta"</span><span class="p">:</span> <span class="n">servicos_criticos</span><span class="o">.</span><span class="n">values</span><span class="p">,</span>
+            <span class="s2">"status_problema"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"Aberto"</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">servicos_criticos</span><span class="p">),</span>
+        <span class="p">}</span>
+    <span class="p">)</span>
+
+
+<span class="n">df_problemas</span> <span class="o">=</span> <span class="n">abrir_problemas</span><span class="p">(</span><span class="n">contagem_alta_por_servico</span><span class="p">)</span>
+
+<span class="n">resumo_alta</span> <span class="o">=</span> <span class="n">contagem_alta_por_servico</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="s2">"incidentes_prioridade_alta"</span><span class="p">)</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+<span class="n">resumo_alta</span> <span class="o">=</span> <span class="n">resumo_alta</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s2">"index"</span><span class="p">:</span> <span class="s2">"servico"</span><span class="p">})</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">"=== CONTAGEM DE INCIDENTES DE PRIORIDADE ALTA POR SERVICO ==="</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">resumo_alta</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">"=== REGISTROS DE PROBLEMAS ABERTOS ==="</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">df_problemas</span><span class="o">.</span><span class="n">empty</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"Nenhum Problema aberto. Nenhum servico atingiu o limite de recorrencia."</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">display</span><span class="p">(</span><span class="n">df_problemas</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>=== CONTAGEM DE INCIDENTES DE PRIORIDADE ALTA POR SERVICO ===
+</pre>
+</div>
+</div>
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output" data-mime-type="text/html" tabindex="0">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>servico</th>
+<th>incidentes_prioridade_alta</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>0</th>
+<td>ERP</td>
+<td>4</td>
+</tr>
+<tr>
+<th>1</th>
+<td>Portal do Cliente</td>
+<td>2</td>
+</tr>
+<tr>
+<th>2</th>
+<td>Sistema de Pagamentos</td>
+<td>2</td>
+</tr>
+<tr>
+<th>3</th>
+<td>E-mail Corporativo</td>
+<td>5</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>=== REGISTROS DE PROBLEMAS ABERTOS ===
+</pre>
+</div>
+</div>
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output" data-mime-type="text/html" tabindex="0">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>problema_id</th>
+<th>servico</th>
+<th>qtd_incidentes_alta</th>
+<th>status_problema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>0</th>
+<td>PRB-001</td>
+<td>ERP</td>
+<td>4</td>
+<td>Aberto</td>
+</tr>
+<tr>
+<th>1</th>
+<td>PRB-002</td>
+<td>E-mail Corporativo</td>
+<td>5</td>
+<td>Aberto</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=3c376d9f">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="6.-Implementacao-da-Atividade-3---Painel-de-Governanca">6. Implementacao da Atividade 3 - Painel de Governanca<a class="anchor-link" href="#6.-Implementacao-da-Atividade-3---Painel-de-Governanca">¶</a></h2><p>O painel consolida:</p>
+<ol>
+<li>total de incidentes por servico;</li>
+<li>incidentes de Prioridade Alta por servico;</li>
+<li>flag <code>problema_aberto</code>, com valor 1 para servicos presentes em <code>df_problemas</code>;</li>
+<li>indicador percentual de servicos com Problema aberto.</li>
+</ol>
+<p>A coluna <code>acao_governanca</code> foi adicionada para transformar o resultado em uma leitura executiva.</p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=636d450f">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [4]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">montar_painel_governanca</span><span class="p">(</span>
+    <span class="n">df_incidentes</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">df_problemas</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">"""Monta o painel de governanca da Atividade 3."""</span>
+    <span class="n">servicos_monitorados</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">df_incidentes</span><span class="p">[</span><span class="s2">"servico"</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">())</span>
+
+    <span class="n">total_incidentes_por_servico</span> <span class="o">=</span> <span class="n">df_incidentes</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">"servico"</span><span class="p">)[</span><span class="s2">"ticket_id"</span><span class="p">]</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
+
+    <span class="n">incidentes_alta</span> <span class="o">=</span> <span class="n">df_incidentes</span><span class="p">[</span><span class="n">df_incidentes</span><span class="p">[</span><span class="s2">"prioridade"</span><span class="p">]</span> <span class="o">==</span> <span class="s2">"Alta"</span><span class="p">]</span>
+    <span class="n">incidentes_alta_por_servico</span> <span class="o">=</span> <span class="n">incidentes_alta</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">"servico"</span><span class="p">)[</span><span class="s2">"ticket_id"</span><span class="p">]</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
+
+    <span class="n">painel</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">servicos_monitorados</span><span class="p">)</span>
+    <span class="n">painel</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">"servico"</span>
+    <span class="n">painel</span><span class="p">[</span><span class="s2">"total_incidentes"</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="n">total_incidentes_por_servico</span><span class="o">.</span><span class="n">reindex</span><span class="p">(</span><span class="n">servicos_monitorados</span><span class="p">,</span> <span class="n">fill_value</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+    <span class="p">)</span>
+    <span class="n">painel</span><span class="p">[</span><span class="s2">"incidentes_prioridade_alta"</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="n">incidentes_alta_por_servico</span><span class="o">.</span><span class="n">reindex</span><span class="p">(</span><span class="n">servicos_monitorados</span><span class="p">,</span> <span class="n">fill_value</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+    <span class="p">)</span>
+    <span class="n">painel</span><span class="p">[</span><span class="s2">"problema_aberto"</span><span class="p">]</span> <span class="o">=</span> <span class="n">painel</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">df_problemas</span><span class="p">[</span><span class="s2">"servico"</span><span class="p">])</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+    <span class="n">painel</span><span class="p">[</span><span class="s2">"percentual_incidentes_alta"</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="p">(</span><span class="n">painel</span><span class="p">[</span><span class="s2">"incidentes_prioridade_alta"</span><span class="p">]</span> <span class="o">/</span> <span class="n">painel</span><span class="p">[</span><span class="s2">"total_incidentes"</span><span class="p">])</span> <span class="o">*</span> <span class="mi">100</span>
+    <span class="p">)</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="n">painel</span><span class="p">[</span><span class="s2">"acao_governanca"</span><span class="p">]</span> <span class="o">=</span> <span class="s2">"Monitorar rotina"</span>
+    <span class="n">painel</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">painel</span><span class="p">[</span><span class="s2">"incidentes_prioridade_alta"</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">"acao_governanca"</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="s2">"Acompanhar SLA de prioridade Alta"</span>
+    <span class="p">)</span>
+    <span class="n">painel</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">painel</span><span class="p">[</span><span class="s2">"problema_aberto"</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">"acao_governanca"</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="s2">"Investigar causa raiz"</span>
+    <span class="p">)</span>
+
+    <span class="n">qtd_servicos</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">painel</span><span class="p">)</span>
+    <span class="n">qtd_com_problema</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">painel</span><span class="p">[</span><span class="s2">"problema_aberto"</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+    <span class="n">taxa_servicos_com_problema</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="nb">round</span><span class="p">((</span><span class="n">qtd_com_problema</span> <span class="o">/</span> <span class="n">qtd_servicos</span><span class="p">)</span> <span class="o">*</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="k">if</span> <span class="n">qtd_servicos</span> <span class="k">else</span> <span class="mf">0.0</span>
+    <span class="p">)</span>
+
+    <span class="n">resumo</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+        <span class="p">{</span>
+            <span class="s2">"indicador"</span><span class="p">:</span> <span class="p">[</span>
+                <span class="s2">"Total de servicos monitorados"</span><span class="p">,</span>
+                <span class="s2">"Servicos com Problema aberto"</span><span class="p">,</span>
+                <span class="s2">"Taxa de servicos com Problema aberto"</span><span class="p">,</span>
+            <span class="p">],</span>
+            <span class="s2">"valor"</span><span class="p">:</span> <span class="p">[</span>
+                <span class="n">qtd_servicos</span><span class="p">,</span>
+                <span class="n">qtd_com_problema</span><span class="p">,</span>
+                <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">taxa_servicos_com_problema</span><span class="si">}</span><span class="s2">%"</span><span class="p">,</span>
+            <span class="p">],</span>
+        <span class="p">}</span>
+    <span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">painel</span><span class="p">,</span> <span class="n">resumo</span>
+
+
+<span class="n">painel</span><span class="p">,</span> <span class="n">resumo_governanca</span> <span class="o">=</span> <span class="n">montar_painel_governanca</span><span class="p">(</span><span class="n">df_incidentes</span><span class="p">,</span> <span class="n">df_problemas</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">"=== PAINEL DE GOVERNANCA - INCIDENTES, PRIORIDADE ALTA E PROBLEMAS ==="</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">painel</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">"=== RESUMO EXECUTIVO ==="</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">resumo_governanca</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>=== PAINEL DE GOVERNANCA - INCIDENTES, PRIORIDADE ALTA E PROBLEMAS ===
+</pre>
+</div>
+</div>
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output" data-mime-type="text/html" tabindex="0">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>total_incidentes</th>
+<th>incidentes_prioridade_alta</th>
+<th>problema_aberto</th>
+<th>percentual_incidentes_alta</th>
+<th>acao_governanca</th>
+</tr>
+<tr>
+<th>servico</th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>E-mail Corporativo</th>
+<td>9</td>
+<td>5</td>
+<td>1</td>
+<td>55.6</td>
+<td>Investigar causa raiz</td>
+</tr>
+<tr>
+<th>ERP</th>
+<td>6</td>
+<td>4</td>
+<td>1</td>
+<td>66.7</td>
+<td>Investigar causa raiz</td>
+</tr>
+<tr>
+<th>Portal do Cliente</th>
+<td>10</td>
+<td>2</td>
+<td>0</td>
+<td>20.0</td>
+<td>Acompanhar SLA de prioridade Alta</td>
+</tr>
+<tr>
+<th>Sistema de Pagamentos</th>
+<td>5</td>
+<td>2</td>
+<td>0</td>
+<td>40.0</td>
+<td>Acompanhar SLA de prioridade Alta</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>=== RESUMO EXECUTIVO ===
+</pre>
+</div>
+</div>
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output" data-mime-type="text/html" tabindex="0">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>indicador</th>
+<th>valor</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>0</th>
+<td>Total de servicos monitorados</td>
+<td>4</td>
+</tr>
+<tr>
+<th>1</th>
+<td>Servicos com Problema aberto</td>
+<td>2</td>
+</tr>
+<tr>
+<th>2</th>
+<td>Taxa de servicos com Problema aberto</td>
+<td>50.0%</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=bd4aef6a">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="7.-Evidencia-visual-do-painel">7. Evidencia visual do painel<a class="anchor-link" href="#7.-Evidencia-visual-do-painel">¶</a></h2><p>O grafico compara o volume total de incidentes com o subconjunto de Prioridade Alta e destaca
+quais servicos possuem Problema aberto. A imagem tambem e gravada em <code>saidas/</code>.</p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=0828aace">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [5]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">painel_plot</span> <span class="o">=</span> <span class="n">painel</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s2">"total_incidentes"</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">13</span><span class="p">,</span> <span class="mf">4.8</span><span class="p">))</span>
+
+<span class="n">painel_plot</span><span class="p">[[</span><span class="s2">"total_incidentes"</span><span class="p">,</span> <span class="s2">"incidentes_prioridade_alta"</span><span class="p">]]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+    <span class="n">kind</span><span class="o">=</span><span class="s2">"bar"</span><span class="p">,</span>
+    <span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+    <span class="n">color</span><span class="o">=</span><span class="p">[</span><span class="s2">"#4c78a8"</span><span class="p">,</span> <span class="s2">"#f58518"</span><span class="p">],</span>
+<span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">"Incidentes por servico"</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">"Servico"</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">"Quantidade"</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s2">"x"</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">25</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s2">"Total"</span><span class="p">,</span> <span class="s2">"Prioridade Alta"</span><span class="p">])</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s2">"y"</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.25</span><span class="p">)</span>
+
+<span class="n">cores_problema</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"#e45756"</span> <span class="k">if</span> <span class="n">valor</span> <span class="o">==</span> <span class="mi">1</span> <span class="k">else</span> <span class="s2">"#72b7b2"</span> <span class="k">for</span> <span class="n">valor</span> <span class="ow">in</span> <span class="n">painel_plot</span><span class="p">[</span><span class="s2">"problema_aberto"</span><span class="p">]]</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">painel_plot</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">painel_plot</span><span class="p">[</span><span class="s2">"problema_aberto"</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="n">cores_problema</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">"Problema aberto por servico"</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">"Servico"</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">"Flag"</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_yticklabels</span><span class="p">([</span><span class="s2">"Nao"</span><span class="p">,</span> <span class="s2">"Sim"</span><span class="p">])</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s2">"x"</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">25</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s2">"y"</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.25</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">arquivo_grafico</span> <span class="o">=</span> <span class="n">SAIDAS_DIR</span> <span class="o">/</span> <span class="s2">"painel_governanca_lab13.png"</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">arquivo_grafico</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">140</span><span class="p">,</span> <span class="n">bbox_inches</span><span class="o">=</span><span class="s2">"tight"</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Grafico salvo em: </span><span class="si">{</span><span class="n">arquivo_grafico</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedImage jp-OutputArea-output" tabindex="0">
+<img alt="No description has been provided for this image" class="" src="data:image/png;base64,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sKGef/55ff755/rqq6/Uu3dveXt768MPP1Tbtm3VokULTZs2TR06dNBzzz2n3LlzS5L+/vtvrVixQq1atVLu3Ll1+fJlTZ8+XdWrV9eff/6prFmzPvZzmzp1qooWLaoXXnhBbm5u+v7779WzZ09ZrVb16tUr2rrHjx/Xyy+/rDfeeEMdO3bU3Llz1apVK61du9aWC4aGhqp69eo6f/68unfvrpw5c2r79u0aOHCgLl68qHHjxkXb59y5c3Xv3j29/vrr8vDwUPPmzXX79m0NHjxYr7/+uqpVqyZJqly5sqQHBbvOnTurfPnyGjlypC5fvqzx48dr27Zt2r9/v9KmTfvY45XISclJgYcYAE5l7ty5RpLZvXu3ra1jx45Gkhk+fHi0dUuXLm3Kli1re/3zzz8bSaZPnz4x9mu1Wm2/BwYGmo4dO9pe9+3b10gyO3futLVduXLFpEmTxkgyp06dMsYYc/v2bZM2bVrTrVu3aPu+dOmSSZMmTbT2+MZ89epVI8kMGTIkRsy1a9c2xYsXN/fu3Yt2HJUrVzb58+e3tZUsWdI0btw4xvb/JeqzLlu2rAkPD7e1f/7550aSWblype2zcHd3N/Xq1TORkZG29SZNmmQkmTlz5tjaqlevbiSZadOm/ef737x500gyo0ePjnOdhHzm77//frR1rVaryZYtm2nZsmW09iVLlhhJZsuWLdHir169uu31nDlzjCQzduzYGLFF9akVK1YYSeaTTz6Jtvyll14yFovFnDhxIs7jAwDAWUTlFRs2bDBXr141586dM998841Jnz698fLyMv/8848xJu7z9ZOcTyUZSWbPnj22tjNnzhhPT0/TvHnzGDE9TS736aef2tpu3rxpvLy8jMViMd98842t/ciRIzHyuXv37kXLm4wx5tSpU8bDwyNGfhib0NDQGG3169c3efLkidYWGBhoJJlly5bZ2m7dumWyZMliSpcubWv7+OOPjbe3tzl27Fi07d9//33j6upqzp49a4tRkvHz8zNXrlyJtu7u3buNJDN37txo7eHh4SZjxoymWLFi5u7du7b2H374wUgygwcPfuyxkpOSkwKP4jFeIAV54403or2uVq2a/v77b9vrZcuWyWKxaMiQITG2jboaGJvVq1erUqVKqlChgq0tICDA9khJlPXr1ysoKEht2rTRtWvXbD+urq6qWLGiNm3a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kACHQT6J+CJvfPbID4GYHCEPpNiHJBWVlJ09e1bdunXT+++/r+3bt+uVV16xjY/RokULeXl56eeff7aN2+Dh4aG+ffvKzc1NRYsWVYcOHfT888+rWbNmqly5su0fD5zXoUOH9Ouvv8pisdj6UUhIiLp27aqPPvpIWbJk0cqVK3X16lW99957OnPmjFxdXXX37l3du3dPnp6ekqQRI0bIxcVFjRs31tChQ9WyZUstXbpUvXr1su0X/4qMjNRHH30kPz8/jR07VmXKlJGLi4veeOMNbdiwQUeOHJH04JGNLVu2yNXVVRkyZLBtX7ZsWVWuXFlHjx6Vi4uLIiMjJYnPGk4n6g+UqDFamjZtqjNnzqhEiRK6ffu2PvnkE0nSxYsX5eXlpYCAANu2pUqVUuHChXXy5EldvHhRJ06c0MSJE9WrVy/lyJFDx44dU4cOHaLNMAqkZOST+C/kjc8W+SEQnSPmgfxrwjPz8PPpUS5cuKCXXnpJzZo1k7u7u44fP661a9eqffv2WrRokQ4ePKj06dOrfv36OnjwoLZv327btlatWvr222/15ZdfKiAgQLVq1bLNivXw1Vk4p+HDh6t79+4yxmjChAl644035OPjI6vVqv379+vIkSMKDAzUl19+qb///ts2rkHt2rW1d+9eubu7S5KKFCmiRYsW6c0339ShQ4eUOnVq7dixQy+88II9D8/hhIeHa9iwYfLw8ND69es1d+5cnTp1Sm3atJEk9e7dW0FBQfrkk09UunRptWrVSjdu3FDNmjX1888/2/bj5+en3r17a82aNTp27JhcXV0fO2AtkNw8eodRVCK2atUq+fr6qmTJklq5cqVKlCghSXrhhRd0/vz5aHcQWSwW+fv76/Lly8qSJYvSpk2r27dv69atW5o3b5727NmjcuXKJfGRAY6BfBIJQd74bJAfAtE5dB5ogERmtVpNZGSk7fXdu3dtv4eGhpr333/f+Pn5menTp9vaf//9d/P888+bTp06GWOMOXPmjHn++edN69atzfnz58306dPNsmXLku4g4HD27NljPDw8jLe3t8mTJ49ZtGiRMcaYH374wVSuXNl88sknxpgH/e/kyZMmS5YspmfPnmby5MmmVq1aZufOnbblUe7fv2/7PTIyMtqylO78+fMmV65cplWrVnGuM3ToUGOxWMwbb7xhbt++bS5cuGB+/vln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"/>
+</div>
+</div>
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>Grafico salvo em: saidas/painel_governanca_lab13.png
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=6c807751">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="8.-Analise-dos-resultados">8. Analise dos resultados<a class="anchor-link" href="#8.-Analise-dos-resultados">¶</a></h2><p>A celula abaixo interpreta automaticamente o painel gerado. Isso evita escrever uma conclusao
+fixa que poderia ficar incorreta se a base ou a semente de geracao fossem alteradas.</p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=67732018">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [6]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">servicos_com_problema</span> <span class="o">=</span> <span class="n">painel</span><span class="p">[</span><span class="n">painel</span><span class="p">[</span><span class="s2">"problema_aberto"</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+<span class="n">servico_maior_volume</span> <span class="o">=</span> <span class="n">painel</span><span class="p">[</span><span class="s2">"total_incidentes"</span><span class="p">]</span><span class="o">.</span><span class="n">idxmax</span><span class="p">()</span>
+<span class="n">servico_maior_alta</span> <span class="o">=</span> <span class="n">painel</span><span class="p">[</span><span class="s2">"incidentes_prioridade_alta"</span><span class="p">]</span><span class="o">.</span><span class="n">idxmax</span><span class="p">()</span>
+<span class="n">taxa_problemas</span> <span class="o">=</span> <span class="n">resumo_governanca</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span>
+    <span class="n">resumo_governanca</span><span class="p">[</span><span class="s2">"indicador"</span><span class="p">]</span> <span class="o">==</span> <span class="s2">"Taxa de servicos com Problema aberto"</span><span class="p">,</span> <span class="s2">"valor"</span>
+<span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Analise executiva:"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"- Servico com maior volume total de incidentes: </span><span class="si">{</span><span class="n">servico_maior_volume</span><span class="si">}</span><span class="s2">."</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"- Servico com maior quantidade de incidentes Alta: </span><span class="si">{</span><span class="n">servico_maior_alta</span><span class="si">}</span><span class="s2">."</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">servicos_com_problema</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"- Servicos com Problema aberto: "</span> <span class="o">+</span> <span class="s2">", "</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">servicos_com_problema</span><span class="p">)</span> <span class="o">+</span> <span class="s2">"."</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"- Nenhum servico teve Problema aberto."</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"- Taxa de servicos com Problema aberto: </span><span class="si">{</span><span class="n">taxa_problemas</span><span class="si">}</span><span class="s2">."</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"- Acao recomendada: priorizar investigacao de causa raiz nos servicos marcados com Problema aberto."</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>Analise executiva:
+- Servico com maior volume total de incidentes: Portal do Cliente.
+- Servico com maior quantidade de incidentes Alta: E-mail Corporativo.
+- Servicos com Problema aberto: E-mail Corporativo, ERP.
+- Taxa de servicos com Problema aberto: 50.0%.
+- Acao recomendada: priorizar investigacao de causa raiz nos servicos marcados com Problema aberto.
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=48337064">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="9.-Conclusao">9. Conclusao<a class="anchor-link" href="#9.-Conclusao">¶</a></h2><p>A Atividade 3 foi implementada com um painel consolidado que une incidentes, recorrencia de
+Prioridade Alta e abertura de Problemas. A entrega tambem registra a taxa de servicos com
+Problema aberto, que funciona como indicador de risco operacional para a governanca de TI.</p>
+<p>Com a base gerada neste laboratorio, o painel permite diferenciar servicos apenas monitorados
+daqueles que exigem investigacao de causa raiz, seguindo a logica do Gerenciamento de Problemas
+do ITIL.</p>
 </div>
 </div>
 </div>

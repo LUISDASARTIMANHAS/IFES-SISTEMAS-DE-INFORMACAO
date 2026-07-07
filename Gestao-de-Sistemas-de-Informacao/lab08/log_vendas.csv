@@ -1,0 +1,301 @@
+id_transacao,cliente,valor,metodo_pagamento
+101,,abc,
+102,Renata Dias,-96.64,Cartao
+103,Ana Paula,abc,Pix
+104,Juliana Martins,,Pix
+105,Rafael Costa,abc,Dinheiro
+106,Camila Ferreira,-377.07,
+107,,,
+108,,,Cartao
+109,Felipe Batista,-462.75,Boleto
+110,Maria Oliveira,erro,Boleto
+111,,abc,Dinheiro
+112,Rodrigo Nunes,,Crypto
+113,,,Boleto
+114,Carlos Eduardo,,Dinheiro
+115,Carlos Eduardo,,Crypto
+116,,3705.49,
+117,,erro,Cartao
+118,Fernanda Souza,-32.85,Boleto
+119,Bruno Ribeiro,abc,Cartao
+120,,0.0,Crypto
+121,Mariana Lima,0.0,Cartao
+122,Rodrigo Nunes,-386.94,
+123,Felipe Batista,erro,
+124,Aline Barros,erro,Pix
+125,Lucas Rocha,2340.77,Boleto
+126,Felipe Batista,abc,Dinheiro
+127,Carlos Souza,2003.96,Pix
+128,Rafael Costa,,Dinheiro
+129,Mariana Lima,-299.64,
+130,Mariana Lima,2991.77,Cartao
+131,Camila Ferreira,4155.59,Cartao
+132,Felipe Batista,2635.5,Cartao
+133,Lucas Rocha,-275.26,
+134,Patricia Gomes,abc,Boleto
+135,Ana Costa,-21.63,
+136,Carlos Eduardo,-473.28,Boleto
+137,Rodrigo Nunes,,
+138,Camila Ferreira,4446.44,Pix
+139,Rodrigo Nunes,abc,Cartao
+140,Maria Oliveira,erro,
+141,Carlos Eduardo,0.0,
+142,Diego Carvalho,erro,Pix
+143,Diego Carvalho,0.0,Pix
+144,Maria Oliveira,0.0,Dinheiro
+145,,,
+146,Renata Dias,abc,
+147,Carlos Eduardo,erro,Pix
+148,Rodrigo Nunes,0.0,Crypto
+149,Maria Oliveira,erro,Cartao
+150,Aline Barros,,
+151,Renata Dias,0.0,Pix
+152,Maria Oliveira,erro,Pix
+153,,erro,Pix
+154,Carlos Eduardo,83.33,
+155,Carlos Souza,erro,Dinheiro
+156,,2720.98,Crypto
+157,Pedro Alves,erro,Dinheiro
+158,Felipe Batista,3103.52,Cartao
+159,Fernanda Souza,0.0,Pix
+160,Carlos Souza,erro,Crypto
+161,Pedro Alves,,Pix
+162,Ana Costa,,Boleto
+163,Rafael Costa,0.0,
+164,Ana Paula,0.0,Pix
+165,Carlos Souza,-405.42,Boleto
+166,Ana Costa,-338.07,
+167,Fernanda Souza,erro,
+168,Carlos Souza,0.0,Boleto
+169,Ana Paula,2020.8,Cartao
+170,Fernanda Souza,erro,Boleto
+171,,-210.01,Boleto
+172,Felipe Batista,erro,
+173,Juliana Martins,0.0,
+174,Ana Paula,1913.46,Crypto
+175,Maria Oliveira,abc,
+176,Diego Carvalho,0.0,Crypto
+177,Fernanda Souza,,Boleto
+178,Ana Costa,,Crypto
+179,Diego Carvalho,erro,Cartao
+180,Renata Dias,138.15,Cartao
+181,Rodrigo Nunes,,Cartao
+182,Lucas Rocha,1911.81,Boleto
+183,Lucas Rocha,,Dinheiro
+184,Carlos Souza,4709.04,Crypto
+185,Pedro Alves,0.0,
+186,Mariana Lima,-105.66,Crypto
+187,,-346.2,Cartao
+188,Pedro Alves,erro,
+189,,,Cartao
+190,Maria Oliveira,,
+191,Juliana Martins,-406.67,
+192,Bruno Ribeiro,,Crypto
+193,Lucas Rocha,3244.96,Dinheiro
+194,Rodrigo Nunes,0.0,Boleto
+195,Bruno Ribeiro,erro,Crypto
+196,Carlos Souza,,Dinheiro
+197,Mariana Lima,,Dinheiro
+198,Carlos Eduardo,,Pix
+199,Ana Paula,1092.39,Dinheiro
+200,Maria Oliveira,,Dinheiro
+201,Patricia Gomes,erro,Crypto
+202,Mariana Lima,4463.26,Cartao
+203,Felipe Batista,abc,
+204,Lucas Rocha,3076.34,
+205,Rafael Costa,erro,
+206,Felipe Batista,,Dinheiro
+207,Rafael Costa,erro,Boleto
+208,Pedro Alves,abc,Pix
+209,Maria Oliveira,abc,Dinheiro
+210,Aline Barros,0.0,Dinheiro
+211,Ana Costa,erro,Dinheiro
+212,Aline Barros,abc,
+213,Aline Barros,-23.81,Boleto
+214,Aline Barros,0.0,Dinheiro
+215,Fernanda Souza,erro,
+216,Aline Barros,,Boleto
+217,Mariana Lima,erro,Dinheiro
+218,Joao Silva,,Crypto
+219,Pedro Alves,erro,Cartao
+220,Aline Barros,,
+221,Renata Dias,abc,Dinheiro
+222,Camila Ferreira,,Pix
+223,,erro,Cartao
+224,Pedro Alves,-121.21,Crypto
+225,Carlos Souza,-388.82,Crypto
+226,Carlos Souza,abc,Pix
+227,Carlos Eduardo,abc,
+228,Joao Silva,erro,Crypto
+229,Maria Oliveira,,
+230,Mariana Lima,2623.64,Boleto
+231,Bruno Ribeiro,1317.31,Cartao
+232,,erro,Boleto
+233,Patricia Gomes,,Crypto
+234,,0.0,Pix
+235,Juliana Martins,erro,Dinheiro
+236,,0.0,Pix
+237,,,Pix
+238,Patricia Gomes,350.06,Crypto
+239,Patricia Gomes,,Dinheiro
+240,Rafael Costa,0.0,
+241,Ana Costa,abc,
+242,Juliana Martins,,Boleto
+243,Lucas Rocha,erro,
+244,Rafael Costa,erro,
+245,,,Crypto
+246,Maria Oliveira,0.0,Crypto
+247,Lucas Rocha,0.0,Crypto
+248,Ana Paula,erro,Dinheiro
+249,Rafael Costa,,Dinheiro
+250,Carlos Eduardo,,
+251,Pedro Alves,,Pix
+252,,-274.14,Cartao
+253,Carlos Souza,erro,Boleto
+254,Patricia Gomes,erro,Boleto
+255,Juliana Martins,,Dinheiro
+256,Ana Costa,1806.38,Pix
+257,Bruno Ribeiro,,Crypto
+258,Felipe Batista,0.0,
+259,Lucas Rocha,-494.48,
+260,Pedro Alves,0.0,Dinheiro
+261,Camila Ferreira,3847.49,Cartao
+262,Fernanda Souza,-82.75,
+263,Camila Ferreira,-116.88,Crypto
+264,,626.97,Boleto
+265,Rodrigo Nunes,abc,Crypto
+266,Lucas Rocha,0.0,
+267,,-175.13,Boleto
+268,,-462.13,Boleto
+269,Camila Ferreira,0.0,Cartao
+270,Fernanda Souza,erro,Boleto
+271,Diego Carvalho,0.0,Cartao
+272,,erro,Crypto
+273,Ana Paula,0.0,Pix
+274,Renata Dias,,Pix
+275,Ana Paula,abc,Dinheiro
+276,Camila Ferreira,abc,
+277,Felipe Batista,-237.11,Crypto
+278,,0.0,Pix
+279,,erro,Pix
+280,Patricia Gomes,abc,Boleto
+281,Joao Silva,abc,
+282,,,Crypto
+283,Ana Costa,abc,Crypto
+284,Bruno Ribeiro,erro,Boleto
+285,Bruno Ribeiro,-407.78,
+286,Pedro Alves,abc,Cartao
+287,Fernanda Souza,abc,Crypto
+288,Rodrigo Nunes,,Boleto
+289,Ana Paula,0.0,Pix
+290,Carlos Eduardo,abc,
+291,Diego Carvalho,,Pix
+292,,4233.19,Cartao
+293,Rodrigo Nunes,abc,Dinheiro
+294,Ana Paula,-400.24,Crypto
+295,Pedro Alves,erro,Boleto
+296,Rodrigo Nunes,0.0,Dinheiro
+297,,-173.95,Pix
+298,Mariana Lima,-44.7,Boleto
+299,Rodrigo Nunes,erro,Boleto
+300,Aline Barros,-157.37,Dinheiro
+301,Maria Oliveira,,Dinheiro
+302,Rodrigo Nunes,abc,Crypto
+303,Juliana Martins,0.0,
+304,Ana Paula,0.0,Pix
+305,Fernanda Souza,erro,Pix
+306,Ana Costa,-93.88,Cartao
+307,,0.0,Boleto
+308,Carlos Eduardo,,Boleto
+309,Rafael Costa,erro,Boleto
+310,Maria Oliveira,,Crypto
+311,Lucas Rocha,erro,Boleto
+312,Ana Costa,abc,Crypto
+313,Pedro Alves,abc,Cartao
+314,Bruno Ribeiro,1736.06,Dinheiro
+315,,-499.01,Boleto
+316,Felipe Batista,,Boleto
+317,Carlos Souza,2552.49,Boleto
+318,,-238.34,
+319,,abc,Pix
+320,Joao Silva,erro,
+321,Diego Carvalho,erro,Boleto
+322,Rodrigo Nunes,-354.25,Dinheiro
+323,,0.0,Dinheiro
+324,,1013.8,Pix
+325,Patricia Gomes,,Cartao
+326,Diego Carvalho,abc,
+327,Fernanda Souza,erro,Crypto
+328,Bruno Ribeiro,-1.71,Dinheiro
+329,Rafael Costa,0.0,Pix
+330,Patricia Gomes,0.0,Boleto
+331,Carlos Souza,abc,Pix
+332,Juliana Martins,4833.0,
+333,Diego Carvalho,0.0,Boleto
+334,Bruno Ribeiro,,Pix
+335,Camila Ferreira,,Pix
+336,Fernanda Souza,,
+337,Joao Silva,abc,Boleto
+338,Fernanda Souza,0.0,Cartao
+339,Maria Oliveira,erro,Pix
+340,Felipe Batista,,Crypto
+341,Lucas Rocha,,Pix
+342,Aline Barros,-474.66,Dinheiro
+343,,erro,Crypto
+344,Camila Ferreira,-113.64,
+345,,,Cartao
+346,Bruno Ribeiro,-286.31,Boleto
+347,Juliana Martins,,Pix
+348,Maria Oliveira,erro,Cartao
+349,Lucas Rocha,,Dinheiro
+350,Felipe Batista,-130.3,Pix
+351,,-395.13,Cartao
+352,Lucas Rocha,0.0,Boleto
+353,,erro,Pix
+354,Carlos Eduardo,2540.98,Dinheiro
+355,Patricia Gomes,1564.24,Dinheiro
+356,,4751.68,Boleto
+357,,-109.56,Cartao
+358,Renata Dias,abc,Boleto
+359,,,Pix
+360,Maria Oliveira,403.01,Cartao
+361,,abc,Crypto
+362,Ana Paula,0.0,
+363,Maria Oliveira,erro,Pix
+364,Ana Costa,-85.38,
+365,Fernanda Souza,,
+366,Bruno Ribeiro,0.0,Boleto
+367,Camila Ferreira,,
+368,Felipe Batista,abc,Dinheiro
+369,,,Pix
+370,,abc,Cartao
+371,Felipe Batista,,Boleto
+372,,3231.32,Pix
+373,Felipe Batista,2905.16,
+374,,erro,Dinheiro
+375,,,
+376,Lucas Rocha,,Boleto
+377,Fernanda Souza,2675.69,Pix
+378,Aline Barros,-245.49,Crypto
+379,Renata Dias,erro,Dinheiro
+380,Mariana Lima,2288.04,Boleto
+381,Camila Ferreira,,Cartao
+382,Lucas Rocha,0.0,Pix
+383,Rafael Costa,abc,Dinheiro
+384,,,Boleto
+385,Renata Dias,,Dinheiro
+386,Maria Oliveira,abc,Cartao
+387,Carlos Souza,-79.69,
+388,Ana Costa,abc,Pix
+389,Joao Silva,2184.84,Crypto
+390,Ana Paula,-242.11,Pix
+391,Aline Barros,erro,Cartao
+392,Fernanda Souza,0.0,Cartao
+393,Felipe Batista,3539.43,Dinheiro
+394,,-33.17,Pix
+395,Pedro Alves,-294.24,Dinheiro
+396,Aline Barros,-380.9,Pix
+397,Fernanda Souza,,Pix
+398,Maria Oliveira,abc,Crypto
+399,Carlos Eduardo,erro,Crypto
+400,Patricia Gomes,-356.61,Crypto

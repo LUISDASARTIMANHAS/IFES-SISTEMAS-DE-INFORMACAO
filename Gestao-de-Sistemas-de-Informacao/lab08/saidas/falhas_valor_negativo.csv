@@ -1,0 +1,50 @@
+id_transacao,cliente,valor,metodo_pagamento,valor_numerico
+102,Renata Dias,-96.64,Cartao,-96.64
+106,Camila Ferreira,-377.07,,-377.07
+109,Felipe Batista,-462.75,Boleto,-462.75
+118,Fernanda Souza,-32.85,Boleto,-32.85
+122,Rodrigo Nunes,-386.94,,-386.94
+129,Mariana Lima,-299.64,,-299.64
+133,Lucas Rocha,-275.26,,-275.26
+135,Ana Costa,-21.63,,-21.63
+136,Carlos Eduardo,-473.28,Boleto,-473.28
+165,Carlos Souza,-405.42,Boleto,-405.42
+166,Ana Costa,-338.07,,-338.07
+171,,-210.01,Boleto,-210.01
+186,Mariana Lima,-105.66,Crypto,-105.66
+187,,-346.2,Cartao,-346.2
+191,Juliana Martins,-406.67,,-406.67
+213,Aline Barros,-23.81,Boleto,-23.81
+224,Pedro Alves,-121.21,Crypto,-121.21
+225,Carlos Souza,-388.82,Crypto,-388.82
+252,,-274.14,Cartao,-274.14
+259,Lucas Rocha,-494.48,,-494.48
+262,Fernanda Souza,-82.75,,-82.75
+263,Camila Ferreira,-116.88,Crypto,-116.88
+267,,-175.13,Boleto,-175.13
+268,,-462.13,Boleto,-462.13
+277,Felipe Batista,-237.11,Crypto,-237.11
+285,Bruno Ribeiro,-407.78,,-407.78
+294,Ana Paula,-400.24,Crypto,-400.24
+297,,-173.95,Pix,-173.95
+298,Mariana Lima,-44.7,Boleto,-44.7
+300,Aline Barros,-157.37,Dinheiro,-157.37
+306,Ana Costa,-93.88,Cartao,-93.88
+315,,-499.01,Boleto,-499.01
+318,,-238.34,,-238.34
+322,Rodrigo Nunes,-354.25,Dinheiro,-354.25
+328,Bruno Ribeiro,-1.71,Dinheiro,-1.71
+342,Aline Barros,-474.66,Dinheiro,-474.66
+344,Camila Ferreira,-113.64,,-113.64
+346,Bruno Ribeiro,-286.31,Boleto,-286.31
+350,Felipe Batista,-130.3,Pix,-130.3
+351,,-395.13,Cartao,-395.13
+357,,-109.56,Cartao,-109.56
+364,Ana Costa,-85.38,,-85.38
+378,Aline Barros,-245.49,Crypto,-245.49
+387,Carlos Souza,-79.69,,-79.69
+390,Ana Paula,-242.11,Pix,-242.11
+394,,-33.17,Pix,-33.17
+395,Pedro Alves,-294.24,Dinheiro,-294.24
+396,Aline Barros,-380.9,Pix,-380.9
+400,Patricia Gomes,-356.61,Crypto,-356.61

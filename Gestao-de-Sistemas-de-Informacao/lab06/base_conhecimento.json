@@ -1,0 +1,26 @@
+[
+  {
+    "id": "K001",
+    "categoria": "Infraestrutura",
+    "titulo": "Lentidao ERP Segundas-feiras",
+    "causa": "Conflito entre relatorio financeiro e backup_sync",
+    "solucao": "Pausar 'Backup_Sync' no console, aguardar 5min e dar Resume.",
+    "especialista": "Sr. Carlos (Senior)"
+  },
+  {
+    "id": "K002",
+    "categoria": "Infraestrutura",
+    "titulo": "Falha fisica no rack",
+    "causa": "Luz vermelha no rack indica cabo defeituoso",
+    "solucao": "Trocar o cabo de conexao e validar o status luminoso do rack.",
+    "especialista": "Sr. Carlos (Senior)"
+  },
+  {
+    "id": "K003",
+    "categoria": "Monitoramento",
+    "titulo": "Temperatura elevada do servidor",
+    "causa": "Aumento de temperatura acima do padrao operacional",
+    "solucao": "Aplicar o motor de regras conforme a faixa de temperatura.",
+    "especialista": "Sistema especialista simples"
+  }
+]

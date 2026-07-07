@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="720" viewBox="0 0 1100 720" role="img" aria-labelledby="titulo descricao">
+  <title id="titulo">Demonstração visual da interface gráfica do SGC</title>
+  <desc id="descricao">Mockup da tela de dashboard, busca e colaboração do Sistema de Gestão do Conhecimento.</desc>
+  <rect width="1100" height="720" fill="#f4f7f9"/>
+
+  <rect x="40" y="34" width="1020" height="92" rx="8" fill="#0f3d3e"/>
+  <text x="72" y="75" font-family="Arial, sans-serif" font-size="28" font-weight="700" fill="#ffffff">Sistema de Gestão do Conhecimento</text>
+  <text x="72" y="104" font-family="Arial, sans-serif" font-size="15" fill="#dbeceb">Busca, colaboração e análise de popularidade em uma única interface.</text>
+  <rect x="895" y="59" width="128" height="40" rx="6" fill="#ffffff"/>
+  <text x="924" y="84" font-family="Arial, sans-serif" font-size="14" font-weight="700" fill="#0f3d3e">Salvar agora</text>
+
+  <rect x="40" y="146" width="1020" height="520" rx="8" fill="#ffffff" stroke="#d8e1e5"/>
+  <rect x="40" y="146" width="1020" height="48" rx="8" fill="#e7eef0"/>
+  <rect x="62" y="158" width="116" height="36" rx="6" fill="#ffffff"/>
+  <text x="88" y="181" font-family="Arial, sans-serif" font-size="15" font-weight="700" fill="#183133">Dashboard</text>
+  <text x="214" y="181" font-family="Arial, sans-serif" font-size="15" fill="#48616a">Busca</text>
+  <text x="286" y="181" font-family="Arial, sans-serif" font-size="15" fill="#48616a">Novo conhecimento</text>
+
+  <rect x="72" y="222" width="298" height="90" rx="8" fill="#ffffff" stroke="#d8e1e5"/>
+  <text x="94" y="253" font-family="Arial, sans-serif" font-size="15" fill="#48616a">Artigos</text>
+  <text x="94" y="290" font-family="Arial, sans-serif" font-size="34" font-weight="700" fill="#1d2b2f">5</text>
+
+  <rect x="402" y="222" width="298" height="90" rx="8" fill="#ffffff" stroke="#d8e1e5"/>
+  <text x="424" y="253" font-family="Arial, sans-serif" font-size="15" fill="#48616a">Acessos registrados</text>
+  <text x="424" y="290" font-family="Arial, sans-serif" font-size="34" font-weight="700" fill="#1d2b2f">257</text>
+
+  <rect x="732" y="222" width="298" height="90" rx="8" fill="#ffffff" stroke="#d8e1e5"/>
+  <text x="754" y="253" font-family="Arial, sans-serif" font-size="15" fill="#48616a">Mais utilizado</text>
+  <text x="754" y="290" font-family="Arial, sans-serif" font-size="28" font-weight="700" fill="#1d2b2f">Acesso VPN</text>
+
+  <rect x="72" y="340" width="620" height="292" rx="8" fill="#ffffff" stroke="#d8e1e5"/>
+  <text x="96" y="380" font-family="Arial, sans-serif" font-size="23" font-weight="700" fill="#1d2b2f">Popularidade por acessos</text>
+
+  <text x="96" y="427" font-family="Arial, sans-serif" font-size="15" font-weight="700" fill="#1d2b2f">Acesso VPN</text>
+  <rect x="250" y="410" width="390" height="24" rx="4" fill="#edf3f5"/>
+  <rect x="250" y="410" width="390" height="24" rx="4" fill="#2f7d80"/>
+  <text x="650" y="427" font-family="Arial, sans-serif" font-size="14" fill="#1d2b2f">123</text>
+
+  <text x="96" y="476" font-family="Arial, sans-serif" font-size="15" font-weight="700" fill="#1d2b2f">Lentidão ERP</text>
+  <rect x="250" y="459" width="390" height="24" rx="4" fill="#edf3f5"/>
+  <rect x="250" y="459" width="282" height="24" rx="4" fill="#2f7d80"/>
+  <text x="542" y="476" font-family="Arial, sans-serif" font-size="14" fill="#1d2b2f">89</text>
+
+  <text x="96" y="525" font-family="Arial, sans-serif" font-size="15" font-weight="700" fill="#1d2b2f">Backup SQL</text>
+  <rect x="250" y="508" width="390" height="24" rx="4" fill="#edf3f5"/>
+  <rect x="250" y="508" width="143" height="24" rx="4" fill="#2f7d80"/>
+  <text x="403" y="525" font-family="Arial, sans-serif" font-size="14" fill="#1d2b2f">45</text>
+
+  <text x="96" y="574" font-family="Arial, sans-serif" font-size="15" font-weight="700" fill="#1d2b2f">Falha no Wi-Fi</text>
+  <rect x="250" y="557" width="390" height="24" rx="4" fill="#edf3f5"/>
+  <rect x="250" y="557" width="4" height="24" rx="4" fill="#2f7d80"/>
+  <text x="264" y="574" font-family="Arial, sans-serif" font-size="14" fill="#1d2b2f">0</text>
+
+  <rect x="720" y="340" width="310" height="292" rx="8" fill="#ffffff" stroke="#d8e1e5"/>
+  <text x="744" y="380" font-family="Arial, sans-serif" font-size="23" font-weight="700" fill="#1d2b2f">Ranking</text>
+  <line x1="744" y1="404" x2="1006" y2="404" stroke="#d8e1e5"/>
+  <text x="744" y="435" font-family="Arial, sans-serif" font-size="15" font-weight="700" fill="#1d2b2f">Acesso VPN</text>
+  <text x="962" y="435" font-family="Arial, sans-serif" font-size="15" fill="#1d2b2f">123</text>
+  <line x1="744" y1="456" x2="1006" y2="456" stroke="#edf3f5"/>
+  <text x="744" y="487" font-family="Arial, sans-serif" font-size="15" font-weight="700" fill="#1d2b2f">Lentidão ERP</text>
+  <text x="970" y="487" font-family="Arial, sans-serif" font-size="15" fill="#1d2b2f">89</text>
+  <line x1="744" y1="508" x2="1006" y2="508" stroke="#edf3f5"/>
+  <text x="744" y="539" font-family="Arial, sans-serif" font-size="15" font-weight="700" fill="#1d2b2f">Backup SQL</text>
+  <text x="970" y="539" font-family="Arial, sans-serif" font-size="15" fill="#1d2b2f">45</text>
+  <line x1="744" y1="560" x2="1006" y2="560" stroke="#edf3f5"/>
+  <text x="744" y="591" font-family="Arial, sans-serif" font-size="15" font-weight="700" fill="#1d2b2f">Falha no Wi-Fi</text>
+  <text x="978" y="591" font-family="Arial, sans-serif" font-size="15" fill="#1d2b2f">0</text>
+
+  <text x="40" y="696" font-family="Arial, sans-serif" font-size="13" fill="#48616a">Demonstração visual usada no relatório melhorado do laboratório 7.</text>
+</svg>

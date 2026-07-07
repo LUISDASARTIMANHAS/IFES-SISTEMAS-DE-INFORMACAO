@@ -1,3 +1,4 @@
+# Data Warehouse - Extração, Transformação e Carga (ETL) dw_extraction.py
 import pandas as pd
 
 print("\n==============================")

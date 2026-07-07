@@ -3,7 +3,7 @@
 <html lang="en">
 <head><meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>dw_extraction jupter</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
+<title>Laboratorio_12_Lucas_Garcia_e_Luis_Augusto</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <style type="text/css">
     pre { line-height: 125%; }
 td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
@@ -7795,168 +7795,600 @@ a.anchor-link {
 </style>
 <!-- End of mermaid configuration --></head>
 <body class="jp-Notebook" data-jp-theme-light="true" data-jp-theme-name="JupyterLab Light">
-<main><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=ebfba562">
+<main>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=e2f929fe">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h1 id="Metadados-de-Governan%C3%A7a-e-Problemas-em-ITIL-com-Python">Metadados de Governança e Problemas em ITIL com Python<a class="anchor-link" href="#Metadados-de-Governan%C3%A7a-e-Problemas-em-ITIL-com-Python">¶</a></h1><p><strong>Disciplina:</strong> Gestão de Sistemas de Informação<br/>
+<strong>Empresa fictícia:</strong> TechStore S.A.<br/>
+<strong>Framework:</strong> ITIL v4</p>
+<hr/>
+<h2 id="%F0%9F%93%9A-Fundamenta%C3%A7%C3%A3o-Te%C3%B3rica">📚 Fundamentação Teórica<a class="anchor-link" href="#%F0%9F%93%9A-Fundamenta%C3%A7%C3%A3o-Te%C3%B3rica">¶</a></h2><table>
+<thead>
+<tr>
+<th>Conceito</th>
+<th>Definição</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Incidente</strong></td>
+<td>Interrupção ou degradação de um serviço (<em>sintoma</em>)</td>
+</tr>
+<tr>
+<td><strong>Problema</strong></td>
+<td>Causa raiz desconhecida de um ou mais incidentes (<em>causa</em>)</td>
+</tr>
+<tr>
+<td><strong>Prioridade</strong></td>
+<td>Impacto no negócio + urgência — define o que atende primeiro</td>
+</tr>
+<tr>
+<td><strong>Severidade</strong></td>
+<td>Grau de gravidade técnica — quão "quebrado" o serviço está</td>
+</tr>
+<tr>
+<td><strong>SLA</strong></td>
+<td>Acordo formal com metas mensuráveis (ex.: Alta → ≤ 2 h para resolver)</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>Ideia-chave:</strong> incidente é o <strong>sintoma</strong>, problema é a <strong>causa raiz</strong>.</p>
+</blockquote>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=e46ed6d0">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<hr/>
+<h2 id="Atividade-1-%E2%80%94-Triagem-com-Prioridade-e-Severidade">Atividade 1 — Triagem com Prioridade e Severidade<a class="anchor-link" href="#Atividade-1-%E2%80%94-Triagem-com-Prioridade-e-Severidade">¶</a></h2><p><strong>Objetivo:</strong> simular a fila de incidentes usando Prioridade e Severidade para:</p>
+<ul>
+<li>Classificar os chamados;</li>
+<li>Determinar o nível de escalonamento (<strong>N1</strong> ou <strong>N2</strong>);</li>
+<li>Marcar possíveis <strong>violações de SLA</strong> para prioridade Alta.</li>
+</ul>
+<h3 id="Regras-de-triagem">Regras de triagem<a class="anchor-link" href="#Regras-de-triagem">¶</a></h3><table>
+<thead>
+<tr>
+<th>Condição</th>
+<th>Destino</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Prioridade = <code>Alta</code> <strong>e</strong> Severidade ∈ {1, 2}</td>
+<td><strong>N2</strong> (Nível 2)</td>
+</tr>
+<tr>
+<td>Qualquer outro caso</td>
+<td><strong>N1</strong> (Nível 1)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="Meta-de-SLA">Meta de SLA<a class="anchor-link" href="#Meta-de-SLA">¶</a></h3><ul>
+<li><strong>Prioridade Alta:</strong> resolução em até <strong>2,0 horas</strong></li>
+</ul>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=bb0441f4">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [1]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">random</span>
+
+<span class="c1"># ====================================================</span>
+<span class="c1"># ATIVIDADE 1 — TRIAGEM COM PRIORIDADE E SEVERIDADE</span>
+<span class="c1"># ====================================================</span>
+<span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+
+<span class="c1"># 1. Geração de log fictício de incidentes</span>
+<span class="n">n_incidentes</span> <span class="o">=</span> <span class="mi">25</span>
+<span class="n">prioridades</span>  <span class="o">=</span> <span class="p">[</span><span class="s2">"Alta"</span><span class="p">,</span> <span class="s2">"Media"</span><span class="p">,</span> <span class="s2">"Baixa"</span><span class="p">]</span>
+<span class="n">severidades</span>  <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>          <span class="c1"># 1 = mais grave, 4 = menos grave</span>
+
+<span class="n">dados_incidentes</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">"ticket_id"</span>            <span class="p">:</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4001</span><span class="p">,</span> <span class="mi">4001</span> <span class="o">+</span> <span class="n">n_incidentes</span><span class="p">),</span>
+    <span class="s2">"prioridade"</span>           <span class="p">:</span> <span class="p">[</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">prioridades</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_incidentes</span><span class="p">)],</span>
+    <span class="s2">"severidade"</span>           <span class="p">:</span> <span class="p">[</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">severidades</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_incidentes</span><span class="p">)],</span>
+    <span class="s2">"tempo_resolucao_horas"</span><span class="p">:</span> <span class="p">[</span><span class="nb">round</span><span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">),</span> <span class="mi">2</span><span class="p">)</span>
+                              <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_incidentes</span><span class="p">)],</span>
+<span class="p">}</span>
+
+<span class="n">df_triagem</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">dados_incidentes</span><span class="p">)</span>
+
+<span class="c1"># Meta de SLA para prioridade Alta</span>
+<span class="n">META_SLA_ALTA</span> <span class="o">=</span> <span class="mf">2.0</span>  <span class="c1"># horas</span>
+
+
+<span class="c1"># ─── TAREFA DO ALUNO ────────────────────────────────────────────────────────</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">decidir_fila</span><span class="p">(</span><span class="n">prioridade</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">severidade</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""Determina a fila de destino de um chamado com base em prioridade e severidade.</span>
+
+<span class="sd">    Regra ITIL simplificada:</span>
+<span class="sd">        - Prioridade Alta + Severidade 1 ou 2 → N2 (escalonamento imediato)</span>
+<span class="sd">        - Qualquer outro caso               → N1 (atendimento padrão)</span>
+
+<span class="sd">    @param prioridade: Nível de prioridade do chamado ('Alta', 'Media', 'Baixa')</span>
+<span class="sd">    @param severidade: Grau técnico de gravidade (1 = crítico … 4 = baixo)</span>
+<span class="sd">    @return: String 'N2' ou 'N1' indicando a fila de destino</span>
+<span class="sd">    """</span>
+    <span class="k">if</span> <span class="n">prioridade</span> <span class="o">==</span> <span class="s2">"Alta"</span> <span class="ow">and</span> <span class="n">severidade</span> <span class="ow">in</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">}:</span>
+        <span class="k">return</span> <span class="s2">"N2"</span>
+    <span class="k">return</span> <span class="s2">"N1"</span>
+
+
+<span class="c1"># 2. Aplicar regra de triagem ao DataFrame</span>
+<span class="n">df_triagem</span><span class="p">[</span><span class="s2">"fila_destino"</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_triagem</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span>
+    <span class="k">lambda</span> <span class="n">linha</span><span class="p">:</span> <span class="n">decidir_fila</span><span class="p">(</span><span class="n">linha</span><span class="p">[</span><span class="s2">"prioridade"</span><span class="p">],</span> <span class="n">linha</span><span class="p">[</span><span class="s2">"severidade"</span><span class="p">]),</span>
+    <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="c1"># 3. Identificar violações de SLA para chamados de Prioridade Alta</span>
+<span class="c1">#    Critério: tempo_resolucao_horas &gt; META_SLA_ALTA</span>
+<span class="n">violacoes_sla_alta</span> <span class="o">=</span> <span class="n">df_triagem</span><span class="p">[</span>
+    <span class="p">(</span><span class="n">df_triagem</span><span class="p">[</span><span class="s2">"prioridade"</span><span class="p">]</span> <span class="o">==</span> <span class="s2">"Alta"</span><span class="p">)</span>
+    <span class="o">&amp;</span> <span class="p">(</span><span class="n">df_triagem</span><span class="p">[</span><span class="s2">"tempo_resolucao_horas"</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">META_SLA_ALTA</span><span class="p">)</span>
+<span class="p">]</span>
+
+<span class="c1"># 4. Exibir relatório</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"=== LOG DE INCIDENTES — TRIAGEM POR PRIORIDADE E SEVERIDADE (TECHSTORE S.A.) ==="</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df_triagem</span><span class="o">.</span><span class="n">to_string</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">"</span> <span class="o">+</span> <span class="s2">"="</span> <span class="o">*</span> <span class="mi">70</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"RELATÓRIO DE GOVERNANÇA — VIOLAÇÕES DE SLA (PRIORIDADE ALTA)"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Critério: tempo_resolucao_horas &gt; </span><span class="si">{</span><span class="n">META_SLA_ALTA</span><span class="si">}</span><span class="s2"> horas"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"="</span> <span class="o">*</span> <span class="mi">70</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">violacoes_sla_alta</span><span class="o">.</span><span class="n">empty</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"✅  Nenhuma violação de SLA para incidentes de prioridade Alta."</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">violacoes_sla_alta</span><span class="o">.</span><span class="n">to_string</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="se">\n</span><span class="s2">⚠️  Total de violações de SLA (Alta): </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">violacoes_sla_alta</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>=== LOG DE INCIDENTES — TRIAGEM POR PRIORIDADE E SEVERIDADE (TECHSTORE S.A.) ===
+ ticket_id prioridade  severidade  tempo_resolucao_horas fila_destino
+      4001      Baixa           2                   2.98           N1
+      4002       Alta           4                   4.23           N1
+      4003       Alta           2                   3.28           N2
+      4004      Baixa           4                   4.38           N1
+      4005      Media           3                   3.10           N1
+      4006       Alta           1                   3.67           N2
+      4007       Alta           2                   0.71           N2
+      4008       Alta           4                   1.53           N1
+      4009      Baixa           3                   1.80           N1
+      4010       Alta           3                   0.86           N1
+      4011      Baixa           2                   1.55           N1
+      4012      Baixa           2                   0.95           N1
+      4013      Baixa           3                   1.75           N1
+      4014       Alta           1                   3.36           N2
+      4015      Baixa           1                   2.14           N1
+      4016      Media           4                   2.17           N1
+      4017       Alta           1                   1.44           N2
+      4018       Alta           3                   1.70           N1
+      4019       Alta           3                   4.71           N1
+      4020       Alta           3                   3.42           N1
+      4021       Alta           1                   3.24           N2
+      4022      Baixa           4                   1.27           N1
+      4023      Baixa           1                   3.78           N1
+      4024       Alta           4                   1.24           N1
+      4025      Baixa           1                   2.21           N1
+
+======================================================================
+RELATÓRIO DE GOVERNANÇA — VIOLAÇÕES DE SLA (PRIORIDADE ALTA)
+Critério: tempo_resolucao_horas &gt; 2.0 horas
+======================================================================
+ ticket_id prioridade  severidade  tempo_resolucao_horas fila_destino
+      4002       Alta           4                   4.23           N1
+      4003       Alta           2                   3.28           N2
+      4006       Alta           1                   3.67           N2
+      4014       Alta           1                   3.36           N2
+      4019       Alta           3                   4.71           N1
+      4020       Alta           3                   3.42           N1
+      4021       Alta           1                   3.24           N2
+
+⚠️  Total de violações de SLA (Alta): 7
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=d8e9ec69">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<ol>
+<li>Geramos 25 incidentes fictícios com <code>random.seed(42)</code> (reprodutível).</li>
+<li>A função <code>decidir_fila()</code> implementa a <strong>regra de triagem ITIL</strong>: incidentes críticos (Alta + Sev 1/2) vão direto para N2.</li>
+<li>Filtramos as <strong>violações de SLA</strong> — chamados Alta que ultrapassaram 2 h de resolução.</li>
+<li>Esse resultado é o <strong>teste substantivo</strong> de auditoria: dado real × meta em política.</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=f1b7315c">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<hr/>
+<h2 id="Atividade-2-%E2%80%94-Identifica%C3%A7%C3%A3o-de-Problemas-a-partir-de-Incidentes-Recorrentes">Atividade 2 — Identificação de Problemas a partir de Incidentes Recorrentes<a class="anchor-link" href="#Atividade-2-%E2%80%94-Identifica%C3%A7%C3%A3o-de-Problemas-a-partir-de-Incidentes-Recorrentes">¶</a></h2><p><strong>Objetivo:</strong> identificar incidentes recorrentes por serviço e abrir <strong>Registros de Problema</strong> automaticamente quando a recorrência ultrapassar o limite.</p>
+<h3 id="Pol%C3%ADtica-da-TechStore-S.A.">Política da TechStore S.A.<a class="anchor-link" href="#Pol%C3%ADtica-da-TechStore-S.A.">¶</a></h3><blockquote>
+<p>Se um mesmo serviço acumular <strong>≥ 3 incidentes de Prioridade Alta</strong> no período,<br/>
+deve ser aberto um <strong>Problema</strong> para investigação de causa raiz.</p>
+</blockquote>
+<h3 id="Servi%C3%A7os-monitorados">Serviços monitorados<a class="anchor-link" href="#Servi%C3%A7os-monitorados">¶</a></h3><p><code>ERP</code> · <code>Portal do Cliente</code> · <code>Sistema de Pagamentos</code> · <code>E-mail Corporativo</code></p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=05302371">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [2]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">random</span>
+
+<span class="c1"># ====================================================</span>
+<span class="c1"># ATIVIDADE 2 — IDENTIFICAÇÃO DE PROBLEMAS (ITIL)</span>
+<span class="c1"># ====================================================</span>
+<span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">99</span><span class="p">)</span>
+
+<span class="c1"># 1. Novo log de incidentes com campo 'servico'</span>
+<span class="n">n_incidentes</span> <span class="o">=</span> <span class="mi">30</span>
+<span class="n">prioridades</span>  <span class="o">=</span> <span class="p">[</span><span class="s2">"Alta"</span><span class="p">,</span> <span class="s2">"Media"</span><span class="p">,</span> <span class="s2">"Baixa"</span><span class="p">]</span>
+<span class="n">severidades</span>  <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
+<span class="n">servicos</span>     <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">"ERP"</span><span class="p">,</span>
+    <span class="s2">"Portal do Cliente"</span><span class="p">,</span>
+    <span class="s2">"Sistema de Pagamentos"</span><span class="p">,</span>
+    <span class="s2">"E-mail Corporativo"</span><span class="p">,</span>
+<span class="p">]</span>
+
+<span class="n">dados_incidentes2</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">"ticket_id"</span> <span class="p">:</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5001</span><span class="p">,</span> <span class="mi">5001</span> <span class="o">+</span> <span class="n">n_incidentes</span><span class="p">),</span>
+    <span class="s2">"servico"</span>   <span class="p">:</span> <span class="p">[</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">servicos</span><span class="p">)</span>    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_incidentes</span><span class="p">)],</span>
+    <span class="s2">"prioridade"</span><span class="p">:</span> <span class="p">[</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">prioridades</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_incidentes</span><span class="p">)],</span>
+    <span class="s2">"severidade"</span><span class="p">:</span> <span class="p">[</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">severidades</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_incidentes</span><span class="p">)],</span>
+<span class="p">}</span>
+
+<span class="n">df_incidentes</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">dados_incidentes2</span><span class="p">)</span>
+
+<span class="c1"># ─── TAREFA DO ALUNO ────────────────────────────────────────────────────────</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">"=== LOG DE INCIDENTES POR SERVIÇO — TECHSTORE S.A. ==="</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df_incidentes</span><span class="o">.</span><span class="n">to_string</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
+
+<span class="c1"># 2. Filtrar apenas incidentes de Prioridade Alta</span>
+<span class="n">incidentes_alta</span> <span class="o">=</span> <span class="n">df_incidentes</span><span class="p">[</span><span class="n">df_incidentes</span><span class="p">[</span><span class="s2">"prioridade"</span><span class="p">]</span> <span class="o">==</span> <span class="s2">"Alta"</span><span class="p">]</span>
+
+<span class="c1"># 3. Contar incidentes de Prioridade Alta por serviço</span>
+<span class="n">contagem_alta_por_servico</span> <span class="o">=</span> <span class="n">incidentes_alta</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">"servico"</span><span class="p">)[</span><span class="s2">"ticket_id"</span><span class="p">]</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">=== CONTAGEM DE INCIDENTES DE PRIORIDADE ALTA POR SERVIÇO ==="</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">contagem_alta_por_servico</span><span class="p">)</span>
+
+<span class="c1"># 4. Threshold para abertura de Problema</span>
+<span class="n">LIMITE_PROBLEMA</span> <span class="o">=</span> <span class="mi">3</span>
+
+<span class="c1"># 5. Serviços que atingiram ou ultrapassaram o limite → abrir Problema</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">criar_registro_problemas</span><span class="p">(</span><span class="n">contagem</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">,</span> <span class="n">limite</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""Cria um DataFrame de Problemas ITIL para serviços com recorrência crítica.</span>
+
+<span class="sd">    Percorre a contagem de incidentes Alta por serviço e filtra aqueles que</span>
+<span class="sd">    atingiram ou ultrapassaram o limite definido na política.</span>
+
+<span class="sd">    @param contagem: Series com índice = serviço e valor = quantidade de incidentes Alta</span>
+<span class="sd">    @param limite:   Número mínimo de incidentes Alta para abrir um Problema</span>
+<span class="sd">    @return: DataFrame com colunas ['servico', 'qtd_incidentes_alta', 'status_problema']</span>
+<span class="sd">    """</span>
+    <span class="n">servicos_criticos</span> <span class="o">=</span> <span class="n">contagem</span><span class="p">[</span><span class="n">contagem</span> <span class="o">&gt;=</span> <span class="n">limite</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+        <span class="s2">"servico"</span>           <span class="p">:</span> <span class="n">servicos_criticos</span><span class="o">.</span><span class="n">index</span><span class="p">,</span>
+        <span class="s2">"qtd_incidentes_alta"</span><span class="p">:</span> <span class="n">servicos_criticos</span><span class="o">.</span><span class="n">values</span><span class="p">,</span>
+        <span class="s2">"status_problema"</span>   <span class="p">:</span> <span class="p">[</span><span class="s2">"Aberto"</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">servicos_criticos</span><span class="p">),</span>
+    <span class="p">})</span>
+
+
+<span class="n">df_problemas</span> <span class="o">=</span> <span class="n">criar_registro_problemas</span><span class="p">(</span><span class="n">contagem_alta_por_servico</span><span class="p">,</span> <span class="n">LIMITE_PROBLEMA</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">"</span> <span class="o">+</span> <span class="s2">"="</span> <span class="o">*</span> <span class="mi">70</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"REGISTROS DE PROBLEMAS ABERTOS (SERVIÇOS COM INCIDENTES ALTA RECORRENTES)"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"="</span> <span class="o">*</span> <span class="mi">70</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">df_problemas</span><span class="o">.</span><span class="n">empty</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"✅  Nenhum Problema aberto. Nenhum serviço atingiu o limite de recorrência."</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">df_problemas</span><span class="o">.</span><span class="n">to_string</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="se">\n</span><span class="s2">🔴  Total de Problemas abertos: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">df_problemas</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>=== LOG DE INCIDENTES POR SERVIÇO — TECHSTORE S.A. ===
+ ticket_id               servico prioridade  severidade
+      5001    E-mail Corporativo      Media           1
+      5002    E-mail Corporativo       Alta           4
+      5003     Portal do Cliente      Media           1
+      5004     Portal do Cliente      Baixa           2
+      5005     Portal do Cliente       Alta           3
+      5006     Portal do Cliente      Media           1
+      5007     Portal do Cliente      Baixa           4
+      5008                   ERP       Alta           3
+      5009 Sistema de Pagamentos      Baixa           2
+      5010    E-mail Corporativo      Media           4
+      5011                   ERP       Alta           2
+      5012    E-mail Corporativo      Media           1
+      5013     Portal do Cliente       Alta           2
+      5014    E-mail Corporativo       Alta           4
+      5015     Portal do Cliente      Baixa           3
+      5016 Sistema de Pagamentos       Alta           4
+      5017    E-mail Corporativo      Baixa           2
+      5018     Portal do Cliente      Media           3
+      5019     Portal do Cliente      Baixa           4
+      5020    E-mail Corporativo       Alta           1
+      5021     Portal do Cliente      Baixa           2
+      5022 Sistema de Pagamentos      Baixa           2
+      5023                   ERP       Alta           4
+      5024                   ERP       Alta           1
+      5025    E-mail Corporativo       Alta           1
+      5026 Sistema de Pagamentos       Alta           1
+      5027    E-mail Corporativo       Alta           2
+      5028                   ERP      Media           3
+      5029 Sistema de Pagamentos      Baixa           2
+      5030                   ERP      Media           2
+
+=== CONTAGEM DE INCIDENTES DE PRIORIDADE ALTA POR SERVIÇO ===
+servico
+E-mail Corporativo       5
+ERP                      4
+Portal do Cliente        2
+Sistema de Pagamentos    2
+Name: ticket_id, dtype: int64
+
+======================================================================
+REGISTROS DE PROBLEMAS ABERTOS (SERVIÇOS COM INCIDENTES ALTA RECORRENTES)
+======================================================================
+           servico  qtd_incidentes_alta status_problema
+E-mail Corporativo                    5          Aberto
+               ERP                    4          Aberto
+
+🔴  Total de Problemas abertos: 2
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=b39ab401">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="O-que-acabou-de-acontecer?">O que acabou de acontecer?<a class="anchor-link" href="#O-que-acabou-de-acontecer?">¶</a></h3><ol>
+<li>Geramos 30 incidentes com serviço associado.</li>
+<li>Filtramos somente os de <strong>Prioridade Alta</strong> e agrupamos por serviço.</li>
+<li>A função <code>criar_registro_problemas()</code> aplica o <strong>threshold de recorrência</strong> (≥ 3).</li>
+<li>Serviços que ultrapassaram o limite ganham um <strong>Registro de Problema</strong> com status <code>Aberto</code>.</li>
+<li>Isso simula exatamente o que o <strong>Gerenciamento de Problemas</strong> do ITIL faz: transformar incidentes recorrentes em investigações de causa raiz.</li>
+</ol>
+<blockquote>
+<p>Os objetos <code>df_incidentes</code> e <code>df_problemas</code> ficam na memória para a Atividade 3. ✅</p>
+</blockquote>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=6ee1d8d3">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<hr/>
+<h2 id="Atividade-3-%E2%80%94-Painel-de-Governan%C3%A7a:-Incidentes,-Problemas-e-SLA">Atividade 3 — Painel de Governança: Incidentes, Problemas e SLA<a class="anchor-link" href="#Atividade-3-%E2%80%94-Painel-de-Governan%C3%A7a:-Incidentes,-Problemas-e-SLA">¶</a></h2><p><strong>Objetivo:</strong> unir em um único relatório executivo:</p>
+<ul>
+<li>Volume total de incidentes por serviço;</li>
+<li>Quantidade de incidentes de <strong>Prioridade Alta</strong>;</li>
+<li>Se há <strong>Problema aberto</strong> para o serviço;</li>
+<li><strong>Taxa de risco</strong> — % de serviços com Problema aberto.</li>
+</ul>
+<blockquote>
+<p>⚠️ Esta atividade depende dos objetos <code>df_incidentes</code> e <code>df_problemas</code> gerados na Atividade 2.</p>
+</blockquote>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=67f4a537">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [3]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">=============================="</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">"ETAPA 1 - EXTRAÇÃO"</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">"=============================="</span><span class="p">)</span>
+<span class="c1"># ====================================================</span>
+<span class="c1"># ATIVIDADE 3 — PAINEL DE GOVERNANÇA (RESUMO)</span>
+<span class="c1"># ====================================================</span>
+<span class="c1"># Depende de df_incidentes e df_problemas da Atividade 2.</span>
+
+<span class="c1"># ─── TAREFA DO ALUNO ────────────────────────────────────────────────────────</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">calcular_taxa_risco</span><span class="p">(</span><span class="n">qtd_com_problema</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">qtd_total</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""Calcula a taxa percentual de serviços com Problema aberto.</span>
+
+<span class="sd">    @param qtd_com_problema: Número de serviços com ao menos um Problema aberto</span>
+<span class="sd">    @param qtd_total:        Total de serviços monitorados no período</span>
+<span class="sd">    @return: Taxa em percentual arredondada a 1 casa decimal</span>
+<span class="sd">    """</span>
+    <span class="k">if</span> <span class="n">qtd_total</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mf">0.0</span>
+    <span class="k">return</span> <span class="nb">round</span><span class="p">((</span><span class="n">qtd_com_problema</span> <span class="o">/</span> <span class="n">qtd_total</span><span class="p">)</span> <span class="o">*</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+
+<span class="c1"># 1. Contagem total de incidentes por serviço</span>
+<span class="n">total_incidentes_por_servico</span> <span class="o">=</span> <span class="n">df_incidentes</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">"servico"</span><span class="p">)[</span><span class="s2">"ticket_id"</span><span class="p">]</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
+
+<span class="c1"># 2. Contagem de incidentes de Prioridade Alta por serviço</span>
+<span class="n">incidentes_alta</span>           <span class="o">=</span> <span class="n">df_incidentes</span><span class="p">[</span><span class="n">df_incidentes</span><span class="p">[</span><span class="s2">"prioridade"</span><span class="p">]</span> <span class="o">==</span> <span class="s2">"Alta"</span><span class="p">]</span>
+<span class="n">incidentes_alta_por_serv</span>  <span class="o">=</span> <span class="n">incidentes_alta</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">"servico"</span><span class="p">)[</span><span class="s2">"ticket_id"</span><span class="p">]</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
+
+<span class="c1"># 3. Montar DataFrame do painel unificado</span>
+<span class="n">painel</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s2">"total_incidentes"</span>          <span class="p">:</span> <span class="n">total_incidentes_por_servico</span><span class="p">,</span>
+    <span class="s2">"incidentes_prioridade_alta"</span><span class="p">:</span> <span class="n">incidentes_alta_por_serv</span><span class="p">,</span>
+<span class="p">})</span>
+
+<span class="c1"># Preencher 0 onde não houver incidentes Alta para o serviço</span>
+<span class="n">painel</span><span class="p">[</span><span class="s2">"incidentes_prioridade_alta"</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">painel</span><span class="p">[</span><span class="s2">"incidentes_prioridade_alta"</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="c1"># 4. Indicador: há Problema aberto para este serviço? (1 = Sim / 0 = Não)</span>
+<span class="n">painel</span><span class="p">[</span><span class="s2">"problema_aberto"</span><span class="p">]</span> <span class="o">=</span> <span class="n">painel</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">df_problemas</span><span class="p">[</span><span class="s2">"servico"</span><span class="p">])</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+
+<span class="c1"># 5. Calcular taxa de risco</span>
+<span class="n">qtd_servicos</span>       <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">painel</span><span class="p">)</span>
+<span class="n">qtd_com_problema</span>   <span class="o">=</span> <span class="n">painel</span><span class="p">[</span><span class="s2">"problema_aberto"</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<span class="n">taxa_risco</span>         <span class="o">=</span> <span class="n">calcular_taxa_risco</span><span class="p">(</span><span class="n">qtd_com_problema</span><span class="p">,</span> <span class="n">qtd_servicos</span><span class="p">)</span>
+
+<span class="c1"># ─── EXIBIÇÃO ────────────────────────────────────────────────────────────────</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"="</span> <span class="o">*</span> <span class="mi">65</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"   PAINEL DE GOVERNANÇA — INCIDENTES, PRIORIDADE ALTA E PROBLEMAS"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"="</span> <span class="o">*</span> <span class="mi">65</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">painel</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">"</span> <span class="o">+</span> <span class="s2">"-"</span> <span class="o">*</span> <span class="mi">65</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"RESUMO EXECUTIVO"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"-"</span> <span class="o">*</span> <span class="mi">65</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"  Total de serviços monitorados : </span><span class="si">{</span><span class="n">qtd_servicos</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"  Serviços com Problema aberto  : </span><span class="si">{</span><span class="n">qtd_com_problema</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"  Taxa de risco (Problemas/Total): </span><span class="si">{</span><span class="n">taxa_risco</span><span class="si">}</span><span class="s2">%"</span><span class="p">)</span>
+
+<span class="c1"># Classificação de risco</span>
+<span class="k">if</span> <span class="n">taxa_risco</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="n">nivel</span> <span class="o">=</span> <span class="s2">"🟢 BAIXO"</span>
+<span class="k">elif</span> <span class="n">taxa_risco</span> <span class="o">&lt;=</span> <span class="mi">50</span><span class="p">:</span>
+    <span class="n">nivel</span> <span class="o">=</span> <span class="s2">"🟡 MODERADO"</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">nivel</span> <span class="o">=</span> <span class="s2">"🔴 ALTO"</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"  Nível de risco da operação    : </span><span class="si">{</span><span class="n">nivel</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"="</span> <span class="o">*</span> <span class="mi">65</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=62441e4d">
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>=================================================================
+   PAINEL DE GOVERNANÇA — INCIDENTES, PRIORIDADE ALTA E PROBLEMAS
+=================================================================
+                       total_incidentes  incidentes_prioridade_alta  \
+servico                                                               
+E-mail Corporativo                    9                           5   
+ERP                                   6                           4   
+Portal do Cliente                    10                           2   
+Sistema de Pagamentos                 5                           2   
+
+                       problema_aberto  
+servico                                 
+E-mail Corporativo                   1  
+ERP                                  1  
+Portal do Cliente                    0  
+Sistema de Pagamentos                0  
+
+-----------------------------------------------------------------
+RESUMO EXECUTIVO
+-----------------------------------------------------------------
+  Total de serviços monitorados : 4
+  Serviços com Problema aberto  : 2
+  Taxa de risco (Problemas/Total): 50.0%
+  Nível de risco da operação    : 🟡 MODERADO
+=================================================================
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=e604d4b4">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h1 id="Interoperabilidade-T%C3%A9cnica:">Interoperabilidade Técnica:<a class="anchor-link" href="#Interoperabilidade-T%C3%A9cnica:">¶</a></h1><h1 id="Estamos-lendo-arquivos-CSV-de-sistemas-diferentes.">Estamos lendo arquivos CSV de sistemas diferentes.<a class="anchor-link" href="#Estamos-lendo-arquivos-CSV-de-sistemas-diferentes.">¶</a></h1>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=80e395b0">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">vendas</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">"vendas.csv"</span><span class="p">)</span>
-<span class="n">produtos</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">"produtos.csv"</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=eabb9e3f">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">display</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">=============================="</span><span class="p">)</span>
-<span class="n">display</span><span class="p">(</span><span class="s2">"ETAPA 2 - TRANSFORMAÇÃO"</span><span class="p">)</span>
-<span class="n">display</span><span class="p">(</span><span class="s2">"=============================="</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=5af1f672">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h1 id="============================================================">============================================================<a class="anchor-link" href="#============================================================">¶</a></h1><h1 id="INTEROPERABILIDADE-SEM%C3%82NTICA">INTEROPERABILIDADE SEMÂNTICA<a class="anchor-link" href="#INTEROPERABILIDADE-SEM%C3%82NTICA">¶</a></h1><h1 id="O-SKU-%C3%A9-o-elo-de-liga%C3%A7%C3%A3o-entre-sistemas-que-%22falam-l%C3%ADnguas-diferentes%22.">O SKU é o elo de ligação entre sistemas que "falam línguas diferentes".<a class="anchor-link" href="#O-SKU-%C3%A9-o-elo-de-liga%C3%A7%C3%A3o-entre-sistemas-que-%22falam-l%C3%ADnguas-diferentes%22.">¶</a></h1><h1 id="Ele-garante-que-estamos-unindo-o-produto-correto-%C3%A0-venda-correta.">Ele garante que estamos unindo o produto correto à venda correta.<a class="anchor-link" href="#Ele-garante-que-estamos-unindo-o-produto-correto-%C3%A0-venda-correta.">¶</a></h1><h1 id="============================================================">============================================================<a class="anchor-link" href="#============================================================">¶</a></h1>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=3208ee7e">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">dw</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">vendas</span><span class="p">,</span> <span class="n">produtos</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s2">"sku"</span><span class="p">)</span>
-
-<span class="n">display</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">Tabela após Merge (Integração):"</span><span class="p">)</span>
-<span class="n">display</span><span class="p">(</span><span class="n">dw</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=30854c79">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h1 id="============================================================">============================================================<a class="anchor-link" href="#============================================================">¶</a></h1><h1 id="REGRA-DE-NEG%C3%93CIO---M%C3%89TRICA-DE-FATURAMENTO">REGRA DE NEGÓCIO - MÉTRICA DE FATURAMENTO<a class="anchor-link" href="#REGRA-DE-NEG%C3%93CIO---M%C3%89TRICA-DE-FATURAMENTO">¶</a></h1><h1 id="============================================================">============================================================<a class="anchor-link" href="#============================================================">¶</a></h1>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=0f04c10d">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">dw</span><span class="p">[</span><span class="s2">"faturamento"</span><span class="p">]</span> <span class="o">=</span> <span class="n">dw</span><span class="p">[</span><span class="s2">"qtd"</span><span class="p">]</span> <span class="o">*</span> <span class="n">dw</span><span class="p">[</span><span class="s2">"preco"</span><span class="p">]</span>
-
-<span class="n">display</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">Tabela com Faturamento Calculado:"</span><span class="p">)</span>
-<span class="n">display</span><span class="p">(</span><span class="n">dw</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=3eff9a6f">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h1 id="============================================================">============================================================<a class="anchor-link" href="#============================================================">¶</a></h1><h1 id="GOVERNAN%C3%87A---PADRONIZA%C3%87%C3%83O">GOVERNANÇA - PADRONIZAÇÃO<a class="anchor-link" href="#GOVERNAN%C3%87A---PADRONIZA%C3%87%C3%83O">¶</a></h1><h1 id="============================================================">============================================================<a class="anchor-link" href="#============================================================">¶</a></h1>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=371c59ae">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">dw</span><span class="p">[</span><span class="s2">"nome"</span><span class="p">]</span> <span class="o">=</span> <span class="n">dw</span><span class="p">[</span><span class="s2">"nome"</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span>
-
-<span class="n">display</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">Tabela após Padronização (Nomes em MAIÚSCULO):"</span><span class="p">)</span>
-<span class="n">display</span><span class="p">(</span><span class="n">dw</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=ba27a901">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">display</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">=============================="</span><span class="p">)</span>
-<span class="n">display</span><span class="p">(</span><span class="s2">"ETAPA 3 - CARGA"</span><span class="p">)</span>
-<span class="n">display</span><span class="p">(</span><span class="s2">"=============================="</span><span class="p">)</span>
-
-<span class="c1"># Persistência do Data Warehouse</span>
-<span class="n">dw</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s2">"data_warehouse_final.csv"</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-
-<span class="n">display</span><span class="p">(</span><span class="s2">"Arquivo data_warehouse_final.csv criado com sucesso!"</span><span class="p">)</span>
-</pre></div>
-</div>
+<ol>
+<li><strong>Unificamos</strong> em um único DataFrame os dados de incidentes e problemas.</li>
+<li>A coluna <code>problema_aberto</code> (0/1) é um <strong>flag de risco</strong> por serviço.</li>
+<li>A <strong>taxa de risco</strong> é o KPI executivo: indica quantos % dos serviços têm causa raiz não resolvida.</li>
+<li>Essa visão consolida o <strong>Painel de Governança</strong> previsto no ITIL — base para tomada de decisão da gestão de TI.</li>
+</ol>
+<hr/>
+<h2 id="%F0%9F%94%97-Mapa-conceitual-ITIL-aplicado-neste-laborat%C3%B3rio">🔗 Mapa conceitual ITIL aplicado neste laboratório<a class="anchor-link" href="#%F0%9F%94%97-Mapa-conceitual-ITIL-aplicado-neste-laborat%C3%B3rio">¶</a></h2><pre><code>Incidentes (fila)
+    │
+    ├── Triagem (Prioridade + Severidade) ──► N1 / N2
+    │        └── Auditoria de SLA (tempo real × meta)
+    │
+    └── Recorrência Alta ≥ 3
+             │
+             └── Abertura de Problema ──► Investigação de Causa Raiz
+                          │
+                          └── Painel de Governança (KPIs executivos)
+</code></pre>
+<blockquote>
+<p><strong>Referência:</strong> ITIL v4 Foundation — Axelos, 2019.</p>
+</blockquote>
 </div>
 </div>
 </div>

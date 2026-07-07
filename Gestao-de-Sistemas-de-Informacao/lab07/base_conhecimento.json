@@ -1,0 +1,38 @@
+[
+    {
+        "id": 1,
+        "titulo": "Acesso VPN",
+        "conteudo": "Usar Cisco AnyConnect...",
+        "acessos": 124
+    },
+    {
+        "id": 2,
+        "titulo": "Backup SQL",
+        "conteudo": "Scripts às 02h...",
+        "acessos": 45
+    },
+    {
+        "id": 3,
+        "titulo": "Lentidão ERP",
+        "conteudo": "Pausar Backup_Sync.",
+        "acessos": 89
+    },
+    {
+        "id": 4,
+        "titulo": "Falha no Wi-Fi",
+        "conteudo": "Reiniciar modem e verificar cabos.",
+        "acessos": 0
+    },
+    {
+        "id": 5,
+        "titulo": "Falha no Wi-Fi",
+        "conteudo": "Reiniciar modem e verificar cabos.",
+        "acessos": 0
+    },
+    {
+        "id": 6,
+        "titulo": "Falha no Wi-Fi",
+        "conteudo": "Reiniciar modem e verificar cabos.",
+        "acessos": 0
+    }
+]
