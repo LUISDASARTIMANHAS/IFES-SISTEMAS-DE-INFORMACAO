@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Editor de Horários</title>
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+
+  <body>
+    <div class="container py-5">
+      <div class="row justify-content-center">
+        <div class="col-lg-8">
+          <div class="card shadow">
+            <div class="card-header bg-primary text-white">
+              <h2 class="mb-0">Editor de Horários</h2>
+            </div>
+
+            <div class="card-body">
+              <p class="text-muted">
+                Gerencie horários, dias, matérias e monte a grade semanal.
+              </p>
+
+              <div class="d-grid gap-3">
+                <a href="horarios.html" class="btn btn-outline-primary btn-lg">
+                  🕒 Editar Horários
+                </a>
+
+                <a href="dias.html" class="btn btn-outline-success btn-lg">
+                  📅 Editar Dias
+                </a>
+
+                <a href="materias.html" class="btn btn-outline-warning btn-lg">
+                  📚 Cadastro de Matérias
+                </a>
+
+                <a href="grade.html" class="btn btn-outline-danger btn-lg">
+                  🗓️ Editar Grade
+                </a>
+              </div>
+
+              <hr />
+
+              <div class="row g-2">
+                <div class="col-md-6">
+                  <button class="btn btn-secondary w-100" id="btnImportar">
+                    Importar JSON
+                  </button>
+                </div>
+
+                <div class="col-md-6">
+                  <button class="btn btn-success w-100" id="btnExportar">
+                    Exportar JSON
+                  </button>
+                </div>
+              </div>
+
+              <input type="file" id="arquivoJson" accept=".json" hidden />
+            </div>
+          </div>
+
+          <div class="card mt-4">
+            <div class="card-header">Pré-visualização do JSON</div>
+
+            <div class="card-body">
+              <textarea
+                id="previewJson"
+                class="form-control"
+                rows="18"
+                readonly
+              ></textarea>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="js/data.js"></script>
+
+    <script>
+      /**
+       * Atualiza visualização JSON.
+       */
+      function atualizarPreview() {
+        document.getElementById("previewJson").value = JSON.stringify(
+          carregarHorario(),
+          null,
+          2,
+        );
+      }
+
+      atualizarPreview();
+
+      document
+        .getElementById("btnExportar")
+        .addEventListener("click", exportarJSON);
+
+      document.getElementById("btnImportar").addEventListener("click", () => {
+        document.getElementById("arquivoJson").click();
+      });
+
+      document
+        .getElementById("arquivoJson")
+        .addEventListener("change", importarJSON);
+
+      window.addEventListener("focus", atualizarPreview);
+    </script>
+  </body>
+</html>

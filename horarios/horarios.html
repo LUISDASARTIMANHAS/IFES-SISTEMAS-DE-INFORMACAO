@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Editar Horários</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+
+<body>
+
+<div class="container py-4">
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+
+        <h2>🕒 Editar Horários</h2>
+
+        <a href="index.html" class="btn btn-outline-secondary">
+            Voltar
+        </a>
+
+    </div>
+
+    <div class="card">
+
+        <div class="card-header">
+
+            Horários das Aulas
+
+        </div>
+
+        <div class="card-body">
+
+            <div id="listaHorarios"></div>
+
+            <button
+                id="btnNovoHorario"
+                class="btn btn-success mt-3">
+
+                + Novo Horário
+
+            </button>
+
+        </div>
+
+    </div>
+
+    <div class="mt-4">
+
+        <button
+            id="btnSalvar"
+            class="btn btn-primary">
+
+            Salvar Alterações
+
+        </button>
+
+    </div>
+
+</div>
+
+<script src="js/data.js"></script>
+<script src="js/horarios.js"></script>
+
+</body>
+
+</html>

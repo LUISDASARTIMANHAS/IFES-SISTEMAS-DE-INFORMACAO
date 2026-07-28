@@ -1,0 +1,531 @@
+/**
+ * ==============================================
+ * Editor de Horários
+ * Tema visual
+ * ==============================================
+ */
+
+
+/* =========================
+   Base
+========================= */
+
+:root {
+
+    --primary: #0d6efd;
+    --success: #198754;
+    --warning: #ffc107;
+    --danger: #dc3545;
+
+    --background: #f4f7fb;
+
+    --card-radius: 18px;
+
+    --shadow:
+        0 10px 30px rgba(0, 0, 0, .08);
+
+}
+
+
+* {
+
+    box-sizing: border-box;
+
+}
+
+
+body {
+
+    min-height: 100vh;
+
+    background:
+        linear-gradient(135deg,
+            #eef4ff,
+            #f8f9fa);
+
+    font-family:
+        "Segoe UI",
+        Arial,
+        sans-serif;
+
+    animation:
+        fadePage .5s ease;
+
+}
+
+
+
+/* =========================
+   Animações
+========================= */
+
+
+@keyframes fadePage {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            translateY(15px);
+
+    }
+
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translateY(0);
+
+    }
+
+}
+
+
+
+@keyframes cardEnter {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            scale(.96);
+
+    }
+
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            scale(1);
+
+    }
+
+}
+
+
+
+/* =========================
+   Cards
+========================= */
+
+
+.card {
+
+    border: none;
+
+    border-radius:
+        var(--card-radius);
+
+    box-shadow:
+        var(--shadow);
+
+    overflow: hidden;
+
+    animation:
+        cardEnter .4s ease;
+
+    transition:
+        transform .25s ease,
+        box-shadow .25s ease;
+
+}
+
+
+
+.card:hover {
+
+    transform:
+        translateY(-4px);
+
+    box-shadow:
+        0 15px 40px rgba(0, 0, 0, .12);
+
+}
+
+
+
+.card-header {
+
+    font-weight: 700;
+
+    letter-spacing: .5px;
+
+}
+
+
+
+/* =========================
+   Títulos
+========================= */
+
+
+h2 {
+
+    font-weight: 800;
+
+    letter-spacing: .5px;
+
+}
+
+
+
+/* =========================
+   Botões
+========================= */
+
+
+.btn {
+
+    border-radius:
+        12px;
+
+    font-weight: 600;
+
+    transition:
+        all .25s ease;
+
+}
+
+
+
+.btn:hover {
+
+    transform:
+        translateY(-3px);
+
+    box-shadow:
+        0 8px 18px rgba(0, 0, 0, .15);
+
+}
+
+
+
+.btn:active {
+
+    transform:
+        scale(.97);
+
+}
+
+
+
+/* =========================
+   Inputs
+========================= */
+
+
+.form-control,
+.form-select {
+
+    border-radius:
+        12px;
+
+    border:
+        1px solid #dee2e6;
+
+    transition:
+        all .25s ease;
+
+}
+
+
+
+.form-control:focus,
+.form-select:focus {
+
+
+    border-color:
+        var(--primary);
+
+
+    box-shadow:
+        0 0 0 .25rem rgba(13, 110, 253, .15);
+
+    transform:
+        translateY(-1px);
+
+}
+
+
+
+/* =========================
+   Lista de matérias
+========================= */
+
+
+#listaMaterias .input-group {
+
+    animation:
+        fadePage .3s ease;
+
+}
+
+
+
+.input-group-text {
+
+    background:
+        #f1f5ff;
+
+    font-weight:
+        bold;
+
+}
+
+
+
+/* =========================
+   Grade
+========================= */
+
+
+.table-responsive {
+
+    border-radius:
+        15px;
+
+    overflow:
+        hidden;
+
+}
+
+
+
+.table {
+
+    margin-bottom: 0;
+
+}
+
+
+
+.table thead th {
+
+
+    background:
+        #0d6efd;
+
+    color: white;
+
+    vertical-align:
+        middle;
+
+    font-size:
+        .85rem;
+
+}
+
+
+
+.table tbody tr {
+
+
+    transition:
+        background .2s ease,
+        transform .2s ease;
+
+}
+
+
+
+.table tbody tr:hover {
+
+
+    background:
+        rgba(13, 110, 253, .05);
+
+}
+
+
+
+.table td {
+
+
+    min-width:
+        140px;
+
+    padding:
+        8px;
+
+}
+
+
+
+.table select {
+
+
+    cursor: pointer;
+
+    font-weight:
+        600;
+
+}
+
+
+
+/* =========================
+   Preview JSON
+========================= */
+
+
+#previewJson {
+
+    background:
+        #111827;
+
+    color:
+        #22c55e;
+
+    font-family:
+        Consolas,
+        monospace;
+
+    border-radius:
+        14px;
+
+    padding:
+        20px;
+
+}
+
+
+
+/* =========================
+   Menu principal
+========================= */
+
+
+.container>.card {
+
+
+    animation-delay:
+        .1s;
+
+}
+
+
+
+.d-grid .btn {
+
+
+    position:
+        relative;
+
+    overflow:
+        hidden;
+
+}
+
+
+
+.d-grid .btn::after {
+
+
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+
+    left: -100%;
+
+    width: 100%;
+
+    height: 100%;
+
+
+    background:
+        linear-gradient(120deg,
+            transparent,
+            rgba(255, 255, 255, .35),
+            transparent);
+
+
+    transition:
+        .5s;
+
+}
+
+
+
+.d-grid .btn:hover::after {
+
+
+    left: 100%;
+
+}
+
+
+
+/* =========================
+   Scroll
+========================= */
+
+
+::-webkit-scrollbar {
+
+    width:
+        10px;
+
+}
+
+
+::-webkit-scrollbar-track {
+
+    background:
+        #f1f1f1;
+
+}
+
+
+::-webkit-scrollbar-thumb {
+
+    background:
+        #0d6efd;
+
+    border-radius:
+        20px;
+
+}
+
+
+
+/* =========================
+   Mobile
+========================= */
+
+
+@media(max-width:768px) {
+
+
+    h2 {
+
+        font-size:
+            1.4rem;
+
+    }
+
+
+    .table td {
+
+        min-width:
+            120px;
+
+    }
+
+
+    .btn-lg {
+
+        font-size:
+            1rem;
+
+    }
+
+
+}

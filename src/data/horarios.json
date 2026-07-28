@@ -4,7 +4,6 @@
     "13:50 - 14:39",
     "14:40 - 15:30",
     "15:50 - 16:39",
-    "16:40 - 17:29",
     "17:30 - 18:20",
     "18:40 - 19:29",
     "19:30 - 20:19",
@@ -15,9 +14,8 @@
     {
       "dia": "Segunda",
       "materias": [
-        "-",
-        "-",
-        "-",
+        "MATD",
+        "MATD",
         "-",
         "-",
         "-",
@@ -30,61 +28,57 @@
     {
       "dia": "Terça",
       "materias": [
+        "SO",
+        "SO",
         "-",
         "-",
         "-",
-        "-",
-        "REF",
-        "REF",
-        "LABSOFT",
-        "LABSOFT",
-        "LABSOFT",
-        "LABSOFT"
+        "DDMóveis",
+        "DDMóveis",
+        "DDMóveis",
+        "DDMóveis"
       ]
     },
     {
       "dia": "Quarta",
       "materias": [
-        "Cal II",
-        "Cal II",
-        "REF",
-        "REF",
-        "ADFIN",
-        "ADFIN",
-        "APLogistica",
-        "APLogistica",
-        "APLogistica",
-        "APLogistica"
+        "-",
+        "-",
+        "-",
+        "-",
+        "-",
+        "-",
+        "-",
+        "-",
+        "-"
       ]
     },
     {
       "dia": "Quinta",
       "materias": [
-        "ADFIN",
-        "ADFIN",
-        "Cal II",
-        "Cal II",
-        "REF",
-        "REF",
-        "GSISIN",
-        "GSISIN",
-        "GSISIN",
-        "GSISIN"
+        "SO",
+        "SO",
+        "MATD",
+        "MATD",
+        "ELEGIS",
+        "INTAR",
+        "INTAR",
+        "INTAR",
+        "INTAR"
       ]
     },
     {
       "dia": "Sexta",
       "materias": [
-        "PROEST",
-        "PROEST",
-        "PROEST",
-        "PROEST",
-        "REF",
-        "REF",
-        "COMEL",
-        "COMEL",
-        "COMEL",
-        "COMEL"
+        "-",
+        "-",
+        "-",
+        "-",
+        "ELEGIS",
+        "-",
+        "-",
+        "-",
+        "-"
       ]
     }
   ]

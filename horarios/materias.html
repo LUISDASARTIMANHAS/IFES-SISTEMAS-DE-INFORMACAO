@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Cadastro de Matérias</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+
+<body>
+
+<div class="container py-4">
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+
+        <h2>📚 Cadastro de Matérias</h2>
+
+        <a href="index.html" class="btn btn-outline-secondary">
+            Voltar
+        </a>
+
+    </div>
+
+    <div class="card">
+
+        <div class="card-header">
+
+            Matérias Disponíveis
+
+        </div>
+
+        <div class="card-body">
+
+            <div id="listaMaterias"></div>
+
+            <button
+                id="btnNovaMateria"
+                class="btn btn-success mt-3">
+
+                + Nova Matéria
+
+            </button>
+
+        </div>
+
+    </div>
+
+    <div class="mt-4">
+
+        <button
+            id="btnSalvar"
+            class="btn btn-primary">
+
+            Salvar
+
+        </button>
+
+    </div>
+
+</div>
+
+<script src="js/data.js"></script>
+<script src="js/materias.js"></script>
+
+</body>
+
+</html>
