@@ -1,5 +1,5 @@
 # ============================================================
-# SIMULAÇÃO DO ALGORITMO PERCEPTRON - OPERAÇÃO AND - COM BIAS
+# SIMULAÇÃO DO ALGORITMO PERCEPTRON - OPERAÇÃO OR - SEM BIAS
 # ============================================================
 
 
@@ -10,10 +10,13 @@ def ativacao(u):
     """
     Função de ativação do Perceptron.
 
-    Se u >= 0, retorna 1.
+    Se u > 0, retorna 1.
     Caso contrário, retorna 0.
+
+    @param u Entrada líquida.
+    @return Saída produzida pelo Perceptron.
     """
-    if u >= 0:
+    if u > 0:
         return 1
     else:
         return 0
@@ -25,10 +28,12 @@ def ativacao(u):
 def calcular_erro(d, y):
     """
     Calcula o erro:
+
         e = d - y
 
-    d = saída desejada
-    y = saída produzida pelo Perceptron
+    @param d Saída desejada.
+    @param y Saída produzida pelo Perceptron.
+    @return Erro calculado.
     """
     return d - y
 
@@ -43,7 +48,15 @@ def atualizar_pesos(w1, w2, eta, e, x1, x2):
         w1 = w1 + eta * e * x1
         w2 = w2 + eta * e * x2
 
-    O bias NÃO é alterado porque foi definido como fixo.
+    O Perceptron não possui bias.
+
+    @param w1 Peso da entrada x1.
+    @param w2 Peso da entrada x2.
+    @param eta Taxa de aprendizagem.
+    @param e Erro.
+    @param x1 Primeira entrada.
+    @param x2 Segunda entrada.
+    @return Novos valores de w1 e w2.
     """
 
     w1 = w1 + eta * e * x1
@@ -55,10 +68,16 @@ def atualizar_pesos(w1, w2, eta, e, x1, x2):
 # ------------------------------------------------------------
 # 4. TREINAMENTO DO PERCEPTRON
 # ------------------------------------------------------------
-def treinar(dados, eta, w1, w2, b):
+def treinar(dados, eta, w1, w2):
     """
     Executa o treinamento do Perceptron até que uma época
     completa seja executada sem nenhum erro.
+
+    @param dados Dados de treinamento.
+    @param eta Taxa de aprendizagem.
+    @param w1 Peso inicial da entrada x1.
+    @param w2 Peso inicial da entrada x2.
+    @return Pesos finais w1 e w2.
     """
 
     epoca = 1
@@ -71,19 +90,20 @@ def treinar(dados, eta, w1, w2, b):
         print(f"ÉPOCA {epoca}")
         print("=" * 70)
 
-        print(f"Pesos iniciais da época:")
+        print("Pesos iniciais da época:")
         print(f"w1 = {w1}")
         print(f"w2 = {w2}")
-        print(f"b  = {b} (fixo)")
         print()
 
-        # Percorre todos os exemplos de treinamento
+        # ----------------------------------------------------
+        # Percorre os exemplos
+        # ----------------------------------------------------
         for i, (x1, x2, d) in enumerate(dados, start=1):
 
             # ------------------------------------------------
             # Entrada líquida
             # ------------------------------------------------
-            u = x1 * w1 + x2 * w2 + b
+            u = x1 * w1 + x2 * w2
 
             # ------------------------------------------------
             # Saída da rede
@@ -103,7 +123,7 @@ def treinar(dados, eta, w1, w2, b):
 
             print(
                 f"U = ({x1} * {w1}) + "
-                f"({x2} * {w2}) + {b} = {u}"
+                f"({x2} * {w2}) = {u}"
             )
 
             print(f"y = {y}")
@@ -128,7 +148,6 @@ def treinar(dados, eta, w1, w2, b):
                 print("ERRO! Pesos atualizados:")
                 print(f"w1 = {w1}")
                 print(f"w2 = {w2}")
-                print(f"b  = {b} (fixo)")
 
             else:
 
@@ -148,7 +167,7 @@ def treinar(dados, eta, w1, w2, b):
 
         epoca += 1
 
-    return w1, w2, b
+    return w1, w2
 
 
 # ------------------------------------------------------------
@@ -167,31 +186,26 @@ def main():
     w1 = 0
     w2 = 0
 
-    # Bias inicial
-    # O bias permanece FIXO durante todo o treinamento.
-    b = -2
-
     # --------------------------------------------------------
-    # Dados de treinamento da operação AND
+    # Dados de treinamento da operação OR
     #
     # (x1, x2, saída desejada)
     # --------------------------------------------------------
     dados = [
         (0, 0, 0),
-        (0, 1, 0),
-        (1, 0, 0),
+        (0, 1, 1),
+        (1, 0, 1),
         (1, 1, 1)
     ]
 
     # --------------------------------------------------------
     # Inicia o treinamento
     # --------------------------------------------------------
-    w1, w2, b = treinar(
+    w1, w2 = treinar(
         dados,
         eta,
         w1,
-        w2,
-        b
+        w2
     )
 
     # --------------------------------------------------------
@@ -203,7 +217,6 @@ def main():
 
     print(f"w1 = {w1}")
     print(f"w2 = {w2}")
-    print(f"b  = {b} (fixo)")
 
 
 # ------------------------------------------------------------
@@ -211,4 +224,3 @@ def main():
 # ------------------------------------------------------------
 if __name__ == "__main__":
     main()
-

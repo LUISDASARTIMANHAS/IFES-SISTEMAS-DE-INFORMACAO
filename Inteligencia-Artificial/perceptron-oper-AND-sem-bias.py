@@ -1,5 +1,5 @@
 # ============================================================
-# SIMULAÇÃO DO ALGORITMO PERCEPTRON - OPERAÇÃO AND
+# PERCEPTRON - OPERAÇÃO AND - SEM BIAS
 # ============================================================
 
 
@@ -8,15 +8,18 @@
 # ------------------------------------------------------------
 def ativacao(u):
     """
-    Função de ativação do Perceptron.
+    Função de ativação do Perceptron sem bias.
 
-    Se u >= 0, retorna 1.
+    Se u > 0, retorna 1.
     Caso contrário, retorna 0.
+
+    @param u Entrada líquida.
+    @return Saída binária do Perceptron.
     """
-    if u >= 0:
+    if u > 0:
         return 1
-    else:
-        return 0
+
+    return 0
 
 
 # ------------------------------------------------------------
@@ -24,11 +27,13 @@ def ativacao(u):
 # ------------------------------------------------------------
 def calcular_erro(d, y):
     """
-    Calcula o erro:
-        e = d - y
+    Calcula o erro do Perceptron.
 
-    d = saída desejada
-    y = saída produzida pelo Perceptron
+    e = d - y
+
+    @param d Saída desejada.
+    @param y Saída produzida.
+    @return Erro calculado.
     """
     return d - y
 
@@ -38,14 +43,19 @@ def calcular_erro(d, y):
 # ------------------------------------------------------------
 def atualizar_pesos(w1, w2, eta, e, x1, x2):
     """
-    Atualiza os pesos do Perceptron:
+    Atualiza os pesos do Perceptron.
 
-        w1 = w1 + eta * e * x1
-        w2 = w2 + eta * e * x2
+    w1 = w1 + eta * e * x1
+    w2 = w2 + eta * e * x2
 
-    O bias NÃO é alterado porque foi definido como fixo.
+    @param w1 Peso da entrada x1.
+    @param w2 Peso da entrada x2.
+    @param eta Taxa de aprendizagem.
+    @param e Erro.
+    @param x1 Primeira entrada.
+    @param x2 Segunda entrada.
+    @return Novos valores de w1 e w2.
     """
-
     w1 = w1 + eta * e * x1
     w2 = w2 + eta * e * x2
 
@@ -53,12 +63,17 @@ def atualizar_pesos(w1, w2, eta, e, x1, x2):
 
 
 # ------------------------------------------------------------
-# 4. TREINAMENTO DO PERCEPTRON
+# 4. TREINAMENTO
 # ------------------------------------------------------------
-def treinar(dados, eta, w1, w2, b):
+def treinar(dados, eta, w1, w2):
     """
-    Executa o treinamento do Perceptron até que uma época
-    completa seja executada sem nenhum erro.
+    Treina o Perceptron até uma época completa sem erros.
+
+    @param dados Dados de treinamento.
+    @param eta Taxa de aprendizagem.
+    @param w1 Peso inicial da entrada x1.
+    @param w2 Peso inicial da entrada x2.
+    @return Pesos finais.
     """
 
     epoca = 1
@@ -71,46 +86,40 @@ def treinar(dados, eta, w1, w2, b):
         print(f"ÉPOCA {epoca}")
         print("=" * 70)
 
-        print(f"Pesos iniciais da época:")
         print(f"w1 = {w1}")
         print(f"w2 = {w2}")
-        print(f"b  = {b} (fixo)")
         print()
 
-        # Percorre todos os exemplos de treinamento
         for i, (x1, x2, d) in enumerate(dados, start=1):
 
             # ------------------------------------------------
             # Entrada líquida
             # ------------------------------------------------
-            u = x1 * w1 + x2 * w2 + b
+            u = x1 * w1 + x2 * w2
 
             # ------------------------------------------------
-            # Saída da rede
+            # Saída
             # ------------------------------------------------
             y = ativacao(u)
 
             # ------------------------------------------------
-            # Cálculo do erro
+            # Erro
             # ------------------------------------------------
             e = calcular_erro(d, y)
 
-            # ------------------------------------------------
-            # Exibição dos cálculos
-            # ------------------------------------------------
             print(f"Exemplo {i}")
             print(f"x1 = {x1}, x2 = {x2}, desejado = {d}")
 
             print(
                 f"U = ({x1} * {w1}) + "
-                f"({x2} * {w2}) + {b} = {u}"
+                f"({x2} * {w2}) = {u}"
             )
 
             print(f"y = {y}")
             print(f"e = {d} - {y} = {e}")
 
             # ------------------------------------------------
-            # Atualização dos pesos
+            # Atualização
             # ------------------------------------------------
             if e != 0:
 
@@ -128,7 +137,6 @@ def treinar(dados, eta, w1, w2, b):
                 print("ERRO! Pesos atualizados:")
                 print(f"w1 = {w1}")
                 print(f"w2 = {w2}")
-                print(f"b  = {b} (fixo)")
 
             else:
 
@@ -137,7 +145,7 @@ def treinar(dados, eta, w1, w2, b):
             print("-" * 50)
 
         # ----------------------------------------------------
-        # Verifica se a época terminou sem erros
+        # Verificação
         # ----------------------------------------------------
         if not erro_epoca:
 
@@ -148,17 +156,13 @@ def treinar(dados, eta, w1, w2, b):
 
         epoca += 1
 
-    return w1, w2, b
+    return w1, w2
 
 
 # ------------------------------------------------------------
 # 5. FUNÇÃO PRINCIPAL
 # ------------------------------------------------------------
 def main():
-
-    # --------------------------------------------------------
-    # Configurações
-    # --------------------------------------------------------
 
     # Taxa de aprendizagem
     eta = 1
@@ -167,15 +171,7 @@ def main():
     w1 = 0
     w2 = 0
 
-    # Bias inicial
-    # O bias permanece FIXO durante todo o treinamento.
-    b = -2
-
-    # --------------------------------------------------------
-    # Dados de treinamento da operação AND
-    #
-    # (x1, x2, saída desejada)
-    # --------------------------------------------------------
+    # Dados da operação AND
     dados = [
         (0, 0, 0),
         (0, 1, 0),
@@ -183,32 +179,25 @@ def main():
         (1, 1, 1)
     ]
 
-    # --------------------------------------------------------
-    # Inicia o treinamento
-    # --------------------------------------------------------
-    w1, w2, b = treinar(
+    # Treinamento
+    w1, w2 = treinar(
         dados,
         eta,
         w1,
-        w2,
-        b
+        w2
     )
 
-    # --------------------------------------------------------
-    # Resultado final
-    # --------------------------------------------------------
+    # Resultado
     print("\n" + "=" * 70)
     print("PESOS FINAIS")
     print("=" * 70)
 
     print(f"w1 = {w1}")
     print(f"w2 = {w2}")
-    print(f"b  = {b} (fixo)")
 
 
 # ------------------------------------------------------------
-# EXECUÇÃO DO PROGRAMA
+# EXECUÇÃO
 # ------------------------------------------------------------
 if __name__ == "__main__":
     main()
-
