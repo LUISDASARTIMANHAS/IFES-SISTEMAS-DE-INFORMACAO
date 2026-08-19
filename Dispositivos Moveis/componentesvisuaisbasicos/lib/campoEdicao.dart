@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
 class CampoEdicao extends StatelessWidget {
-  late String? texto_label;
+  String texto_label;
   late String? texto_dica;
   late bool password;
   late TextEditingController? controlador;
   late FormFieldValidator<String>? validador;
-  late TextInputType teclado;
+  TextInputType teclado;
   late FocusNode? marcador_foco;
   late FocusNode? recebedor_foco;
 
