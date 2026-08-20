@@ -27,7 +27,7 @@ python-dateutil==2.9.0.post0
 python-engineio==4.13.5
 python-socketio==5.16.4
 pywin32==312
-pyzmq==27.1.0
+pyzmq==27.2.0
 requests==2.34.2
 simple-websocket==1.1.0
 six==1.17.0
