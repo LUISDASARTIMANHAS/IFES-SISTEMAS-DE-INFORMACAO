@@ -24,7 +24,7 @@ Pygments==2.21.0
 pyparsing==3.3.2
 pytest==9.1.1
 python-dateutil==2.9.0.post0
-python-engineio==4.13.5
+python-engineio==4.14.0
 python-socketio==5.16.4
 pywin32==312
 pyzmq==27.2.0
