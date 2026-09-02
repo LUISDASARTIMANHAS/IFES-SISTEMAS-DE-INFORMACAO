@@ -1,9 +1,11 @@
 import 'package:componentesvisuaisbasicos/Btn.dart';
+import 'package:componentesvisuaisbasicos/TabBarDemo.dart';
 import 'package:componentesvisuaisbasicos/campoEdicao.dart';
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(const MyApp());
+  // runApp(const MyApp());
+  runApp(const TabBarDemo());
 }
 
 class MyApp extends StatelessWidget {
@@ -14,6 +16,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.orange),
       ),
