@@ -1,0 +1,8 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Git Auto
+Comment=Atualiza e envia o Git automaticamente
+Exec=/home/SEU_USUARIO/caminho/para/git-auto.sh
+Terminal=true
+Icon=utilities-terminal
