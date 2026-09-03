@@ -1,9 +1,8 @@
 [Desktop Entry]
-Version=1.0
 Type=Application
 Name=Git Automático
 Comment=Atualiza o repositório Git
 Exec=/home/luis-das-artimanhas/IFES-SISTEMAS-DE-INFORMACAO/MD/git-auto.sh
-Path=/home/luis-das-artimanhas/IFES-SISTEMAS-DE-INFORMACAO/MD
 Terminal=true
+Icon=utilities-terminal
 
