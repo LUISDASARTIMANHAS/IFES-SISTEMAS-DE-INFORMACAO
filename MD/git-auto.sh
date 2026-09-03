@@ -1,26 +1,36 @@
 #!/bin/bash
 
-set -e
+cd "/home/luis-das-artimanhas/IFES-SISTEMAS-DE-INFORMACAO" || exit 1
 
-echo "🔍 === Git Auto ==="
+echo "================================"
+echo "       GIT AUTOMÁTICO"
+echo "================================"
+echo
+
+echo "🔍 Git status..."
 git status
 
 echo
-echo "⬇️ Executando git pull..."
-git pull
+echo "⬇️ Git pull..."
+git pull || exit 1
 
 echo
-echo "📦 Executando git add..."
+echo "📦 Git add..."
 git add .
 
 echo
-echo "💾 Executando git commit..."
+echo "💾 Git commit..."
 git commit -m "updated MD" || echo "ℹ️ Nenhuma alteração para commit."
 
 echo
-echo "⬆️ Executando git push..."
+echo "⬆️ Git push..."
 git push
 
 echo
-echo "✅ Concluído!"
+echo "================================"
+echo "✅ CONCLUÍDO"
+echo "================================"
+echo
+
+read -p "Pressione ENTER para fechar..."
 
