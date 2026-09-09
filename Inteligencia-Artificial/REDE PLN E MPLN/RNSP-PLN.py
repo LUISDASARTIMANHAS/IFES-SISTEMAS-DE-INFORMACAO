@@ -1,16 +1,15 @@
 # Protótipo RNSP-PLN
 # 2 nós, cada um com endereço de 3 bits
 
+
 class NoPLN:
     def __init__(self, tamanho_endereco=3):
         self.tamanho = tamanho_endereco
-        self.memoria = ["u"] * (2 ** tamanho_endereco)
+        self.memoria = ["u"] * (2**tamanho_endereco)
 
         # Guarda as ocorrências para podermos calcular
         # as probabilidades quando houver conflito.
-        self.ocorrencias = [
-            [] for _ in range(2 ** tamanho_endereco)
-        ]
+        self.ocorrencias = [[] for _ in range(2**tamanho_endereco)]
 
     def treinar(self, endereco, classe):
         """
@@ -96,7 +95,7 @@ class PLN:
             "endereco_d": endereco_d,
             "resposta_d": resposta_d,
             "prob_d": prob_d,
-            "classe": classe
+            "classe": classe,
         }
 
 
