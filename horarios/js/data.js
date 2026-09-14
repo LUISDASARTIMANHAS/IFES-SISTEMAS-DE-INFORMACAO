@@ -66,6 +66,33 @@ const DEFAULT_DATA = {
       materias: ["IC", "IC", "IC", "ELEGIS", "ELEGIS", "-", "-", "-", "-"],
     },
   ],
+  defaultMaterias: [
+    "IC",
+    "INTAR",
+    "MATD",
+    "SO",
+    "OAC",
+    "DDMóveis",
+    "ELEGIS",
+    "ADFIN",
+    "Cal II",
+    "REF",
+    "PROEST",
+    "COMEL",
+    "LABSOFT",
+    "GEPSOFT",
+    "BD II",
+    "Cal I",
+    "DEVWEB II",
+    "INFSO",
+    "APLogistica",
+    "GSISIN",
+    "PROB II",
+    "PROSIS",
+    "DesWeb I",
+    "POO1",
+    "TPA",
+  ],
 };
 
 /**
@@ -103,13 +130,20 @@ function carregarMaterias() {
   const json = localStorage.getItem(STORAGE_MATERIAS);
 
   if (!json) {
-    return [];
+    return [...DEFAULT_DATA.defaultMaterias];
   }
 
   try {
-    return JSON.parse(json);
+    const materiasSalvas = JSON.parse(json);
+
+    return [
+      ...new Set([
+        ...DEFAULT_DATA.defaultMaterias,
+        ...materiasSalvas,
+      ]),
+    ];
   } catch {
-    return [];
+    return [...DEFAULT_DATA.defaultMaterias];
   }
 }
 
