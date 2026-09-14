@@ -1,0 +1,132 @@
+octave:19> main
+
+=================================================================
+     MATEMÁTICA DISCRETA - LABORATÓRIO DE RELAÇÕES E FUNÇÕES
+=================================================================
+ [1] Atividade 1: Gerar Relação Linear y = a*x + b
+ [2] Atividade 2: Exibir Relação Inversa (R^-1)
+ [3] Atividade 3: Verificar Reflexividade e Simetria
+ [4] Atividade 4: Avaliar Relação de Equivalência
+ [5] Atividade 5: Validar e Classificar Função
+ [6] Atividade 6: Calcular Composição de Funções (f o g) e (g o f)
+ [7] Bateria de Testes Automatizada (Executar Todos os Exemplos)
+ [0] Sair
+=================================================================
+Escolha uma opção [0-7]: 7
+
+=================================================================
+       EXECUTANDO BATERIA DE TESTES AUTOMATIZADA COMPLETA
+=================================================================
+--- ATIVIDADE 1: GERAÇÃO DE RELAÇÃO LINEAR ---
+Conjunto A = [1  3  5  7]
+Conjunto B = [3   5   7   9  11]
+Regra da Relação: y = 2*x + (-3)
+
+Matriz Lógica Resultante M (|A| x |B|):
+   0   0   0   0   0
+   1   0   0   0   0
+   0   0   1   0   0
+   0   0   0   0   1
+
+--- ATIVIDADE 2: RELAÇÃO INVERSA E PARES ORDENADOS ---
+Matriz Original M:
+   0   0   0   0   0
+   1   0   0   0   0
+   0   0   1   0   0
+   0   0   0   0   1
+Pares ordenados da Relacao Inversa (R^-1):
+(3, 3)
+(7, 5)
+(11, 7)
+Matriz Transposta (Minv):
+   0   1   0   0
+   0   0   0   0
+   0   0   1   0
+   0   0   0   0
+   0   0   0   1
+
+--- ATIVIDADE 3: REFLEXIVIDADE E SIMETRIA ---
+>>> Matriz Teste 1 (Reflexiva e Simétrica):
+   1   1   0
+   1   1   0
+   0   0   1
+Reflexiva: 1 | Simétrica: 1
+
+>>> Matriz Teste 2 (Não Reflexiva, Não Simétrica):
+   1   1   0
+   0   0   1
+   0   0   1
+Reflexiva: 0 | Simétrica: 0
+
+--- ATIVIDADE 4: AVALIADOR DE RELAÇÃO DE EQUIVALÊNCIA ---
+>>> Caso 1: Relação de Equivalência Válida
+Matriz M1:
+   1   1   0
+   1   1   0
+   0   0   1
+A relacao e de equivalencia.
+
+>>> Caso 2: Falha na Simetria
+Matriz M2:
+   1   1   0
+   0   1   0
+   0   0   1
+A relacao NAO e de equivalencia. Motivos:
+- Falhou na simetria.
+
+>>> Caso 3: Falha na Reflexividade e Transitividade
+Matriz M3:
+   0   1   0
+   1   0   0
+   0   0   1
+A relacao NAO e de equivalencia. Motivos:
+- Falhou na reflexividade.
+- Falhou na transitividade.
+
+--- ATIVIDADE 5: VALIDAÇÃO E CLASSIFICAÇÃO DE FUNÇÕES ---
+>>> Exemplo 1: Função Bijetora
+Classificação: BIJETORA
+Matriz Inversa f^-1:
+   1   0   0
+   0   1   0
+   0   0   1
+
+>>> Exemplo 2: Função Apenas Sobrejetora
+Classificação: SOBREJETORA
+
+>>> Exemplo 3: Não é Função (elemento do domínio sem imagem)
+A matriz dada nao representa uma funcao valida.
+Classificação: NAO E FUNCAO
+
+--- ATIVIDADE 6: COMPOSIÇÃO DE FUNÇÕES ---
+Vetor de entrada x = [0  1  2  3  4  5]
+
+Dadas f(x) = 5x + 1  e  g(x) = x^2:
+  (f o g)(x) = 5*(x^2) + 1  =>
+     1     6    21    46    81   126
+  (g o f)(x) = (5x + 1)^2   =>
+     1    36   121   256   441   676
+
+=================================================================
+             TODOS OS TESTES FORAM CONCLUÍDOS!
+=================================================================
+stopped in main>executa_bateria_automatizada at line 174 [/home/luis-das-artimanhas/IFES-SISTEMAS-DE-INFORMACAO/MD/TAREFA 5/main.m]
+174: endfunction
+debug>
+debug>
+debug>
+Pressione ENTER para voltar ao menu...
+
+=================================================================
+     MATEMÁTICA DISCRETA - LABORATÓRIO DE RELAÇÕES E FUNÇÕES
+=================================================================
+ [1] Atividade 1: Gerar Relação Linear y = a*x + b
+ [2] Atividade 2: Exibir Relação Inversa (R^-1)
+ [3] Atividade 3: Verificar Reflexividade e Simetria
+ [4] Atividade 4: Avaliar Relação de Equivalência
+ [5] Atividade 5: Validar e Classificar Função
+ [6] Atividade 6: Calcular Composição de Funções (f o g) e (g o f)
+ [7] Bateria de Testes Automatizada (Executar Todos os Exemplos)
+ [0] Sair
+=================================================================
+Escolha uma opção [0-7]:
