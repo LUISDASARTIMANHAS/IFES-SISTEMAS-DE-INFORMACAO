@@ -1,12 +1,8 @@
-
-
 import 'package:flutter/material.dart';
-import 'package:nalista2/util/widget/botao.dart';
-import 'package:nalista2/util/widget/campo_edicao.dart';
+import 'package:malhamais/util/widget/botao.dart';
+import 'package:malhamais/util/widget/campo_edicao.dart';
 
 import 'controle_interacao/controle_tela_login.dart';
-
-
 
 class TelaLogin extends StatefulWidget {
   @override
@@ -26,9 +22,7 @@ class _TelaLoginState extends State<TelaLogin> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Login"),
-      ),
+      appBar: AppBar(title: Text("Login")),
       body: _body(),
     );
   }
@@ -48,15 +42,13 @@ class _TelaLoginState extends State<TelaLogin> {
               teclado: TextInputType.emailAddress,
               recebedor_foco: _controle.focus_senha,
             ),
-            SizedBox(
-              height: 10,
-            ),
+            SizedBox(height: 10),
             CampoEdicao(
               "Senha",
               texto_dica: "Digite a senha",
               passaword: true,
-              validador: (String? text){
-                if(text!.isEmpty)
+              validador: (String? text) {
+                if (text!.isEmpty)
                   return "O campo '$text' está vazio e necessita ser preenchido";
                 else if (text.length < 6)
                   return "A senha precisa ter no mínimo 6 caracteres";
@@ -66,13 +58,11 @@ class _TelaLoginState extends State<TelaLogin> {
               marcador_foco: _controle.focus_senha,
               recebedor_foco: _controle.focus_botao,
             ),
-            SizedBox(
-              height: 20,
-            ),
+            SizedBox(height: 20),
             Botao(
               texto: "Login",
               cor: Colors.green,
-              ao_clicar: (){
+              ao_clicar: () {
                 _controle.logar(context);
               },
               marcador_foco: _controle.focus_botao,
@@ -81,7 +71,7 @@ class _TelaLoginState extends State<TelaLogin> {
               height: 46,
               margin: EdgeInsets.only(top: 20),
               child: InkWell(
-                onTap: (){
+                onTap: () {
                   _controle.cadastrar(context);
                 },
                 child: Text(
@@ -94,7 +84,7 @@ class _TelaLoginState extends State<TelaLogin> {
                   ),
                 ),
               ),
-            )
+            ),
           ],
         ),
       ),
