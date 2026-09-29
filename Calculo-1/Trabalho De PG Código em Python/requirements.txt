@@ -9,7 +9,7 @@ colorama==0.4.6
 ConfigArgParse==1.8.0
 contourpy==1.4.0
 cycler==0.12.1
-fonttools==4.66.0
+fonttools==4.66.1
 kiwisolver==1.5.1
 matplotlib==3.11.2
 mpmath==1.4.1
