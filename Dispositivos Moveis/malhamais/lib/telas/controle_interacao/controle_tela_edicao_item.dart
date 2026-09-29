@@ -1,19 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:nalista2/dominio/item.dart';
-import 'package:nalista2/dominio/usuario.dart';
+import 'package:malhamais/dominio/item.dart';
+import 'package:malhamais/dominio/usuario.dart';
 
 import '../../util/nav.dart';
-
-
 
 class ControleTelaEdicaoItem {
   Usuario usuario;
 
   ControleTelaEdicaoItem(this.usuario);
 
-  CollectionReference<Map<String, dynamic>> get _collection_itens => FirebaseFirestore.instance.collection('itens');
-
+  CollectionReference<Map<String, dynamic>> get _collection_itens =>
+      FirebaseFirestore.instance.collection('itens');
 
   // Controlador de formulário (para fazer validações)
   final formkey = GlobalKey<FormState>();
@@ -23,7 +21,6 @@ class ControleTelaEdicaoItem {
   final controlador_quantidade = TextEditingController();
 
   bool eh_urgente = false;
-
 
   // Controladores de foco
   final focus_quantidade = FocusNode();
@@ -35,7 +32,7 @@ class ControleTelaEdicaoItem {
     eh_urgente = false;
   }
 
-  void trocar_eh_urgente(bool value){
+  void trocar_eh_urgente(bool value) {
     eh_urgente = value;
   }
 

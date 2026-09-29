@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:nalista2/dominio/item.dart';
-import 'package:nalista2/dominio/usuario.dart';
+import 'package:malhamais/dominio/item.dart';
+import 'package:malhamais/dominio/usuario.dart';
 
 import 'controle_interacao/controle_tela_principal.dart';
 import 'localwidget/card_item.dart';
 
 class TelaPrincipal extends StatefulWidget {
   Usuario usuario;
-
 
   TelaPrincipal(this.usuario);
 
@@ -25,7 +24,6 @@ class _TelaPrincipalState extends State<TelaPrincipal> {
     super.initState();
     _controle = ControleTelaPrincipal(widget.usuario);
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +42,7 @@ class _TelaPrincipalState extends State<TelaPrincipal> {
       body: _body(),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
-        onPressed: ()  {
+        onPressed: () {
           _controle.irParaTelaEdicaoItem(context);
         },
       ),
@@ -59,16 +57,14 @@ class _TelaPrincipalState extends State<TelaPrincipal> {
     return Container(
       padding: EdgeInsets.all(16),
       child: StreamBuilder<QuerySnapshot>(
-          stream: _controle.stream,
-          builder: (context, snapshot) {
-            if(!snapshot.hasData){
-              return Center(
-                child: CircularProgressIndicator(),
-              );
-            }
-            _controle.obterItens(snapshot.data!);
-            return _listView();
+        stream: _controle.stream,
+        builder: (context, snapshot) {
+          if (!snapshot.hasData) {
+            return Center(child: CircularProgressIndicator());
           }
+          _controle.obterItens(snapshot.data!);
+          return _listView();
+        },
       ),
     );
   }

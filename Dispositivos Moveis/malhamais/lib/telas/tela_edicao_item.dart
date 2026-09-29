@@ -1,16 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:nalista2/dominio/usuario.dart';
-import 'package:nalista2/util/widget/botao.dart';
-import 'package:nalista2/util/widget/campo_edicao.dart';
-import 'package:nalista2/util/widget/campo_edicao_int_maior_que_zero.dart';
+import 'package:malhamais/dominio/usuario.dart';
+import 'package:malhamais/util/widget/botao.dart';
+import 'package:malhamais/util/widget/campo_edicao.dart';
+import 'package:malhamais/util/widget/campo_edicao_int_maior_que_zero.dart';
 
 import 'controle_interacao/controle_tela_edicao_item.dart';
 
-
-
 class TelaEdicaoItem extends StatefulWidget {
   Usuario usuario;
-
 
   TelaEdicaoItem(this.usuario);
 
@@ -31,13 +28,10 @@ class _TelaEdicaoItemState extends State<TelaEdicaoItem> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Inclusão de Item para Compra"),
-      ),
+      appBar: AppBar(title: Text("Inclusão de Item para Compra")),
       body: _body(),
     );
   }
-
 
   _body() {
     return Form(
@@ -54,9 +48,7 @@ class _TelaEdicaoItemState extends State<TelaEdicaoItem> {
                 recebedor_foco: _controle.focus_quantidade,
                 teclado: TextInputType.text,
               ),
-              SizedBox(
-                height: 10,
-              ),
+              SizedBox(height: 10),
               CampoEdicaoIntMaiorQueZero(
                 "Quantidade:",
                 controlador: _controle.controlador_quantidade,
@@ -64,17 +56,15 @@ class _TelaEdicaoItemState extends State<TelaEdicaoItem> {
                 recebedor_foco: _controle.focus_botao_salvar,
                 teclado: TextInputType.number,
               ),
-              SizedBox(
-                height: 10,
-              ),
+              SizedBox(height: 10),
               CheckboxListTile(
                 value: _controle.eh_urgente,
-                onChanged: (value){
+                onChanged: (value) {
                   setState(() {
                     _controle.trocar_eh_urgente(value!);
                   });
                 },
-                title: new Text('Urgente', style: TextStyle(fontSize: 25),),
+                title: new Text('Urgente', style: TextStyle(fontSize: 25)),
                 controlAffinity: ListTileControlAffinity.leading,
                 subtitle: new Text('Acabou ou vai acabar'),
                 activeColor: Colors.green,
@@ -91,9 +81,7 @@ class _TelaEdicaoItemState extends State<TelaEdicaoItem> {
                         _controle.salvar_item(context);
                       },
                     ),
-                    SizedBox(
-                      width: 5,
-                    ),
+                    SizedBox(width: 5),
                     Botao(
                       texto: "Cancelar",
                       cor: Colors.green,

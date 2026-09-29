@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:nalista2/dominio/usuario.dart';
-import 'package:nalista2/util/nav.dart';
-import 'package:nalista2/util/toast.dart';
+import 'package:malhamais/dominio/usuario.dart';
+import 'package:malhamais/util/nav.dart';
+import 'package:malhamais/util/toast.dart';
 import 'package:email_validator/email_validator.dart';
 
 import '../tela_principal.dart';
@@ -40,12 +40,11 @@ class ControleTelaLogin {
         } on FirebaseAuthException catch (e) {
           if (e.code == 'user-not-found') {
             MensagemAlerta(
-                context, "Erro: Usuário não encontrado para o email informado");
-          } else if (e.code == 'wrong-password') {
-            MensagemAlerta(
               context,
-              "Erro: Password inválido!!!",
+              "Erro: Usuário não encontrado para o email informado",
             );
+          } else if (e.code == 'wrong-password') {
+            MensagemAlerta(context, "Erro: Password inválido!!!");
             print('Wrong password provided for that user.');
           }
         }
@@ -61,10 +60,10 @@ class ControleTelaLogin {
         .where("email", isEqualTo: "${user!.email}")
         .snapshots()
         .listen((data) {
-      Usuario usuario = Usuario.fromMap(data.docs[0].data());
-      usuario.id = data.docs[0].id;
-      push(context, TelaPrincipal(usuario), replace: true);
-    });
+          Usuario usuario = Usuario.fromMap(data.docs[0].data());
+          usuario.id = data.docs[0].id;
+          push(context, TelaPrincipal(usuario), replace: true);
+        });
   }
 
   void cadastrar(BuildContext context) async {
@@ -79,19 +78,21 @@ class ControleTelaLogin {
 
           // No serviço de armazenamento
           _collection_usuarios
-              .add({
-                'email': login,
-              })
+              .add({'email': login})
               .then(
-                  (value) => _irParaTelaPrincipal(userCredential.user, context))
+                (value) => _irParaTelaPrincipal(userCredential.user, context),
+              )
               .catchError(
-                  (error) => print("Falha ao adicionar o usuário: $error"));
+                (error) => print("Falha ao adicionar o usuário: $error"),
+              );
         } on FirebaseAuthException catch (e) {
           if (e.code == 'weak-password') {
             MensagemAlerta(context, "Erro: A senha fornecida é muito fraca");
           } else if (e.code == 'email-already-in-use') {
             MensagemAlerta(
-                context, "Erro: Já existe conta com o email informado");
+              context,
+              "Erro: Já existe conta com o email informado",
+            );
           }
         } catch (e) {
           print(e);

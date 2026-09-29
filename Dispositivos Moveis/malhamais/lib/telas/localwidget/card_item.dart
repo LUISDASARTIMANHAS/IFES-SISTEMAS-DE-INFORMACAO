@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:nalista2/dominio/item.dart';
-import 'package:nalista2/telas/controle_interacao/controle_tela_principal.dart';
-import 'package:nalista2/util/widget/botao_icone.dart';
-
+import 'package:malhamais/dominio/item.dart';
+import 'package:malhamais/telas/controle_interacao/controle_tela_principal.dart';
+import 'package:malhamais/util/widget/botao_icone.dart';
 
 class CardItem extends StatelessWidget {
   ControleTelaPrincipal controle;
@@ -27,7 +26,9 @@ class CardItem extends StatelessWidget {
                   style: TextStyle(
                     fontSize: 14,
                     color: item.eh_urgente! ? Colors.red : Colors.black,
-                    fontWeight: item.eh_urgente!  ? FontWeight.bold : FontWeight.normal,
+                    fontWeight: item.eh_urgente!
+                        ? FontWeight.bold
+                        : FontWeight.normal,
                   ),
                 ),
               ),
@@ -40,7 +41,9 @@ class CardItem extends StatelessWidget {
                   style: TextStyle(
                     fontSize: 14,
                     color: item.eh_urgente! ? Colors.red : Colors.black,
-                    fontWeight: item.eh_urgente!  ? FontWeight.bold : FontWeight.normal,
+                    fontWeight: item.eh_urgente!
+                        ? FontWeight.bold
+                        : FontWeight.normal,
                   ),
                 ),
               ),
