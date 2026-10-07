@@ -36,6 +36,10 @@ dependencies:
   cupertino_icons: ^1.0.8
   icons_launcher: ^3.0.3
   firebase_core: ^4.15.0
+  firebase_auth: ^6.7.0
+  cloud_firestore: ^6.10.0
+  ftoast: ^2.0.0
+  email_validator: ^3.0.0
 
 dev_dependencies:
   flutter_test:
