@@ -19,7 +19,7 @@ pillow==13.0.0
 platformdirs==4.13.5
 pluggy==1.7.0
 psutil==7.2.2
-pycparser==3.11
+pycparser==3.12
 Pygments==2.21.0
 pyparsing==3.3.3
 pytest==9.1.1
