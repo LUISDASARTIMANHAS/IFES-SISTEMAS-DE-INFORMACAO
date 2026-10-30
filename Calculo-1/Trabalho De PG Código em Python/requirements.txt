@@ -25,7 +25,7 @@ pyparsing==3.3.3
 pytest==9.2.0
 python-dateutil==3.0.0
 python-engineio==4.15.1
-python-socketio==5.17.0
+python-socketio==5.17.1
 pywin32==312
 pyzmq==27.2.0
 requests==2.34.2
