@@ -13,7 +13,7 @@ fonttools==4.68.0
 kiwisolver==1.5.1
 matplotlib==3.11.2
 mpmath==1.4.1
-numpy==2.5.4
+numpy==2.5.5
 packaging==26.3
 pillow==13.0.0
 platformdirs==4.14.5
