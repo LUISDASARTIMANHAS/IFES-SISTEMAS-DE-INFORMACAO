@@ -59,7 +59,7 @@ void dijkstra(int W[N][N], int origem, int dist[N], int anterior[N]) {
         visitado[u] = 1;
 
         for (v = 0; v < N; v++) {
-            /* Relaxamento: atualiza se passar por u der custo menor ate v */
+            /* Relaxamento: verifica se passar por u reduz o custo ate v */
             if (!visitado[v] && W[u][v] > 0 &&
                 dist[u] + W[u][v] < dist[v]) {
                 dist[v] = dist[u] + W[u][v];
@@ -69,7 +69,7 @@ void dijkstra(int W[N][N], int origem, int dist[N], int anterior[N]) {
     }
 }
 
-int imprimir_caminho(int anterior[N], int origem, int destino, const char rotulos[N]) {
+int imprimir_caminho(int anterior[N], int origem, int destino, const char *rotulos[N]) {
     int caminho[N];
     int tamanho = 0;
     int atual = destino;
@@ -90,7 +90,7 @@ int imprimir_caminho(int anterior[N], int origem, int destino, const char rotulo
 
     printf("(");
     for (i = tamanho - 1; i >= 0; i--) {
-        printf("%c", rotulos[caminho[i]]);
+        printf("%s", rotulos[caminho[i]]);
         if (i > 0) {
             printf(", ");
         }

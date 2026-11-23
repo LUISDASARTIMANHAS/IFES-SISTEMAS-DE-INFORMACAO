@@ -1,7 +1,7 @@
 #ifndef DIJKSTRA_H
 #define DIJKSTRA_H
 
-#define N 6
+#define N 100
 #define INF 1000000000
 
 /**
@@ -38,9 +38,9 @@ void dijkstra(int W[N][N], int origem, int dist[N], int anterior[N]);
  * @param anterior Vetor de predecessores calculado pelo Dijkstra.
  * @param origem Indice do vertice inicial.
  * @param destino Indice do vertice final.
- * @param rotulos Vetor com os rotulos dos vertices.
+ * @param rotulos Vetor com os rotulos em string dos vertices.
  * @return 1 se existe caminho da origem ao destino, ou 0 caso contrario.
  */
-int imprimir_caminho(int anterior[N], int origem, int destino, const char rotulos[N]);
+int imprimir_caminho(int anterior[N], int origem, int destino, const char *rotulos[N]);
 
 #endif
