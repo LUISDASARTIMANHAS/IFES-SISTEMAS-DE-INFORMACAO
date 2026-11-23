@@ -38,7 +38,8 @@ int proximo(int dist[N], int visitado[N]) {
     return u;
 }
 
-void dijkstra(int W[N][N], int origem, int dist[N], int anterior[N]) {
+void dijkstra(int W[N][N], int origem, int dist[N], int anterior[N],
+              const char *rotulos[N], int mostrar_passos) {
     int visitado[N] = {0};
     int i;
     int passo;
@@ -58,12 +59,28 @@ void dijkstra(int W[N][N], int origem, int dist[N], int anterior[N]) {
         }
         visitado[u] = 1;
 
+        if (mostrar_passos) {
+            printf("[Passo %d] Fechando vertice %s (dist = %d)\n",
+                   passo + 1, rotulos[u], dist[u]);
+        }
+
         for (v = 0; v < N; v++) {
             /* Relaxamento: verifica se passar por u reduz o custo ate v */
             if (!visitado[v] && W[u][v] > 0 &&
                 dist[u] + W[u][v] < dist[v]) {
+                int dist_antiga = dist[v];
                 dist[v] = dist[u] + W[u][v];
                 anterior[v] = u;
+
+                if (mostrar_passos) {
+                    if (dist_antiga >= INF) {
+                        printf("   -> Relaxou %s -> %s: INF -> %d\n",
+                               rotulos[u], rotulos[v], dist[v]);
+                    } else {
+                        printf("   -> Relaxou %s -> %s: %d -> %d\n",
+                               rotulos[u], rotulos[v], dist_antiga, dist[v]);
+                    }
+                }
             }
         }
     }

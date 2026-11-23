@@ -23,14 +23,17 @@ int carregar_matriz_txt(const char *nome_arquivo, int W[N][N]);
 int proximo(int dist[N], int visitado[N]);
 
 /**
- * @brief Executa o algoritmo de Dijkstra sobre uma matriz de adjacencia.
+ * @brief Executa o algoritmo de Dijkstra com opcao de exibir cada passo no console.
  *
  * @param W Matriz de adjacencia ponderada N x N (0 indica ausencia de aresta).
  * @param origem Indice do vertice inicial.
  * @param dist Vetor de saida com os menores custos a partir da origem.
  * @param anterior Vetor de saida com o predecessor de cada vertice (-1 se sem antecessor).
+ * @param rotulos Vetor com os rotulos em string dos vertices (usado se mostrar_passos == 1).
+ * @param mostrar_passos 1 para imprimir onde o algoritmo esta passando/relaxando, 0 para execucao silenciosa.
  */
-void dijkstra(int W[N][N], int origem, int dist[N], int anterior[N]);
+void dijkstra(int W[N][N], int origem, int dist[N], int anterior[N],
+              const char *rotulos[N], int mostrar_passos);
 
 /**
  * @brief Imprime o caminho minimo no formato (A, C, B, D, E, F).
