@@ -14,7 +14,7 @@ kiwisolver==1.5.1
 matplotlib==3.11.2
 mpmath==1.4.1
 numpy==2.5.5
-packaging==26.3
+packaging==26.4
 pillow==13.0.0
 platformdirs==4.14.8
 pluggy==1.7.0
